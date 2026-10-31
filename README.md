@@ -1,4 +1,4 @@
-# Equicord JA — Equicord 日本語化版（個人用）
+# Equicord JA — Equicord 日本語化版
 
 [Equicord](https://github.com/Equicord/Equicord)（[Vencord](https://github.com/Vendicated/Vencord) のフォークで、300以上のプラグインを同梱する Discord クライアント MOD）を個人用にコピーし、UI を日本語化したリポジトリです。
 
