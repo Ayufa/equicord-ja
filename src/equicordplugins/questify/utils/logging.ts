@@ -69,8 +69,8 @@ export function notifyQuestCompletion(quest?: Quest): void {
     if (!quest) return;
 
     showNotification({
-        title: "Quest Completed!",
-        body: `The ${normalizeQuestName(quest)} Quest has completed.`,
+        title: "クエスト完了！",
+        body: `${normalizeQuestName(quest)} クエストが完了しました。`,
         dismissOnClick: true,
         onClick: () => NavigationRouter.transitionTo(`${QUEST_PAGE}#${quest.id}`)
     });

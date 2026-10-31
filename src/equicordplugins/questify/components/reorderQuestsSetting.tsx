@@ -13,41 +13,41 @@ import { rerenderQuests } from "../settings/rerender";
 import { type ManaSelectOption, SettingsCard, SettingsDescription, SettingsHeader, SettingsRow, SettingsRowItem, SettingsSelect, SettingsSubheader, SettingsSubtleSwitch } from "./shared";
 
 const questStatusOptions = [
-    { label: "Unclaimed", value: "UNCLAIMED" },
-    { label: "Claimed", value: "CLAIMED" },
-    { label: "Ignored", value: "IGNORED" },
-    { label: "Expired", value: "EXPIRED" },
+    { label: "未受け取り", value: "UNCLAIMED" },
+    { label: "受け取り済み", value: "CLAIMED" },
+    { label: "無視済み", value: "IGNORED" },
+    { label: "期限切れ", value: "EXPIRED" },
 ] as const satisfies readonly { label: string, value: QuestOrderStatus; }[];
 
-const questPositionManaOptions: ManaSelectOption[] = ["First", "Second", "Third", "Fourth"].map((label, index) => ({
+const questPositionManaOptions: ManaSelectOption[] = ["1番目", "2番目", "3番目", "4番目"].map((label, index) => ({
     id: String(index),
     label,
     value: String(index),
 }));
 
-questPositionManaOptions.push({ id: "hidden", label: "Hidden", value: "hidden" });
+questPositionManaOptions.push({ id: "hidden", label: "非表示", value: "hidden" });
 
 const baseSubsortOptions = [
-    { label: "Added (Newest)", value: "Recent DESC" },
-    { label: "Added (Oldest)", value: "Recent ASC" },
+    { label: "追加順（新しい順）", value: "Recent DESC" },
+    { label: "追加順（古い順）", value: "Recent ASC" },
 ] as const satisfies readonly { label: string, value: QuestSubsort; }[];
 
 const expiringSubsortOptions = [
     ...baseSubsortOptions,
-    { label: "Expiring (Soonest)", value: "Expiring ASC" },
-    { label: "Expiring (Latest)", value: "Expiring DESC" },
+    { label: "期限順（早い順）", value: "Expiring ASC" },
+    { label: "期限順（遅い順）", value: "Expiring DESC" },
 ] as const satisfies readonly { label: string, value: QuestSubsort; }[];
 
 const expiredSubsortOptions = [
     ...baseSubsortOptions,
-    { label: "Expired (Most Recent)", value: "Expiring DESC" },
-    { label: "Expired (Least Recent)", value: "Expiring ASC" },
+    { label: "期限切れ日時（新しい順）", value: "Expiring DESC" },
+    { label: "期限切れ日時（古い順）", value: "Expiring ASC" },
 ] as const satisfies readonly { label: string, value: QuestSubsort; }[];
 
 const claimedSubsortOptions = [
     ...baseSubsortOptions,
-    { label: "Claimed (Most Recent)", value: "Claimed DESC" },
-    { label: "Claimed (Least Recent)", value: "Claimed ASC" },
+    { label: "受け取り日時（新しい順）", value: "Claimed DESC" },
+    { label: "受け取り日時（古い順）", value: "Claimed ASC" },
 ] as const satisfies readonly { label: string, value: QuestSubsort; }[];
 
 function toManaOptions(options: readonly { label: string, value: QuestSubsort; }[]): ManaSelectOption[] {
@@ -63,10 +63,10 @@ const claimedSubsortManaOptions = toManaOptions(claimedSubsortOptions);
 const ignoredSubsortManaOptions = toManaOptions(expiringSubsortOptions);
 const expiredSubsortManaOptions = toManaOptions(expiredSubsortOptions);
 const subsortTooltips = {
-    unclaimedSubsort: "Completed but unclaimed Quests stay below incomplete unclaimed Quests, then this subsort is applied within those groups.",
-    claimedSubsort: "Claimed Quests can be sorted by claim time or by when the Quest was added.",
-    ignoredSubsort: "Ignored Quests still keep their ignored group position, then this subsort controls their order inside that group.",
-    expiredSubsort: "Expired Quests can be sorted by expiration time or by when the Quest was added.",
+    unclaimedSubsort: "完了済みで未受け取りのクエストは、未完了で未受け取りのクエストの下に残り、その各グループ内でこのサブソートが適用されます。",
+    claimedSubsort: "受け取り済みのクエストは、受け取り日時またはクエストが追加された日時で並び替えられます。",
+    ignoredSubsort: "無視済みのクエストは無視グループの位置を維持し、そのグループ内の順序はこのサブソートで決まります。",
+    expiredSubsort: "期限切れのクエストは、期限日時またはクエストが追加された日時で並び替えられます。",
 } as const;
 
 function sanitizeQuestOrder(order: unknown): QuestOrderStatus[] {
@@ -141,9 +141,9 @@ export function ReorderQuestsSetting(): JSX.Element {
 
     return (
         <SettingsCard>
-            <SettingsHeader> Reorder Quests </SettingsHeader>
-            <SettingsDescription> Sort Quests by their status when the Questify sort option is selected on the Quests page. Hidden statuses are filtered out with any sort option. </SettingsDescription>
-            <SettingsSubheader> Status Order </SettingsSubheader>
+            <SettingsHeader> クエストの並び替え </SettingsHeader>
+            <SettingsDescription> クエストページで Questify の並び替えオプションが選択されているときに、クエストをステータスごとに並び替えます。非表示のステータスは、どの並び替えオプションでも除外されます。 </SettingsDescription>
+            <SettingsSubheader> ステータスの順序 </SettingsSubheader>
             <SettingsRow>
                 {questStatusOptions.map(({ label, value: status }) => (
                     <SettingsRowItem key={status}>
@@ -158,17 +158,17 @@ export function ReorderQuestsSetting(): JSX.Element {
                             onSelectionChange={value => updateQuestOrder(status, value)}
                             tooltip={{
                                 position: "top",
-                                text: "Selecting an occupied position swaps the two statuses. Hidden statuses are removed from the Quest lists."
+                                text: "埋まっている位置を選択すると、2つのステータスが入れ替わります。非表示のステータスはクエスト一覧から除外されます。"
                             }}
                         />
                     </SettingsRowItem>
                 ))}
             </SettingsRow>
-            <SettingsSubheader> Subsorts </SettingsSubheader>
+            <SettingsSubheader> サブソート </SettingsSubheader>
             <SettingsRow>
                 <SettingsRowItem>
                     <SettingsSelect
-                        label="Unclaimed Subsort:"
+                        label="未受け取りのサブソート:"
                         options={unclaimedSubsortManaOptions}
                         value={reorderQuests.unclaimedSubsort}
                         selectionMode="single"
@@ -184,7 +184,7 @@ export function ReorderQuestsSetting(): JSX.Element {
                 </SettingsRowItem>
                 <SettingsRowItem>
                     <SettingsSelect
-                        label="Claimed Subsort:"
+                        label="受け取り済みのサブソート:"
                         options={claimedSubsortManaOptions}
                         value={reorderQuests.claimedSubsort}
                         selectionMode="single"
@@ -202,7 +202,7 @@ export function ReorderQuestsSetting(): JSX.Element {
             <SettingsRow>
                 <SettingsRowItem>
                     <SettingsSelect
-                        label="Ignored Subsort:"
+                        label="無視済みのサブソート:"
                         options={ignoredSubsortManaOptions}
                         value={reorderQuests.ignoredSubsort}
                         selectionMode="single"
@@ -218,7 +218,7 @@ export function ReorderQuestsSetting(): JSX.Element {
                 </SettingsRowItem>
                 <SettingsRowItem>
                     <SettingsSelect
-                        label="Expired Subsort:"
+                        label="期限切れのサブソート:"
                         options={expiredSubsortManaOptions}
                         value={reorderQuests.expiredSubsort}
                         selectionMode="single"
@@ -233,26 +233,26 @@ export function ReorderQuestsSetting(): JSX.Element {
                     />
                 </SettingsRowItem>
             </SettingsRow>
-            <SettingsSubheader> Quest Page Memory </SettingsSubheader>
+            <SettingsSubheader> クエストページの記憶 </SettingsSubheader>
             <SettingsSubtleSwitch
                 checked={reorderQuests.rememberQuestPageSort}
                 disabled={disabled}
-                label="Remember the selected Quest page sort:"
+                label="選択したクエストページの並び替えを記憶する:"
                 onChange={checked => updateRememberSetting("rememberQuestPageSort", checked)}
                 bottomSpacing="5"
                 tooltip={{
                     position: "top",
-                    text: "When disabled, the Quests page opens with the Questify sort option each time."
+                    text: "無効にすると、クエストページは毎回 Questify の並び替えオプションで開きます。"
                 }}
             />
             <SettingsSubtleSwitch
                 checked={reorderQuests.rememberQuestPageFilters}
                 disabled={disabled}
-                label="Remember the selected Quest page filters:"
+                label="選択したクエストページのフィルターを記憶する:"
                 onChange={checked => updateRememberSetting("rememberQuestPageFilters", checked)}
                 tooltip={{
                     position: "top",
-                    text: "When disabled, the Quests page opens without task or reward filters each time."
+                    text: "無効にすると、クエストページは毎回タスクや報酬のフィルターなしで開きます。"
                 }}
             />
         </SettingsCard>

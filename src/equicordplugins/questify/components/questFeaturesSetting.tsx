@@ -41,31 +41,31 @@ interface QuestDisableOption {
 const disableFeatureOptions = [
     {
         key: "disableSponsoredBanner",
-        label: "Sponsored Banner",
+        label: "スポンサー付きバナー",
     },
     {
         key: "disableRelocationNotices",
-        label: "Relocation Notices",
+        label: "移転のお知らせ",
     },
     {
         key: "disableFriendsListPromo",
-        label: "Friends List Promo",
+        label: "フレンドリストのプロモーション",
     },
     {
         key: "disableMembersListPromo",
-        label: "Members List Promo",
+        label: "メンバーリストのプロモーション",
     },
     {
         key: "disableAccountPanelPromo",
-        label: "Account Panel Promo",
+        label: "アカウントパネルのプロモーション",
     },
     {
         key: "disableAccountPanelQuestProgress",
-        label: "Account Panel Progress",
+        label: "アカウントパネルの進捗",
     },
     {
         key: "disableOrbsAndQuestsBadges",
-        label: "Quest & Orbs Badges",
+        label: "クエスト＆Orbsバッジ",
     },
 ] as const satisfies readonly QuestDisableOption[];
 
@@ -76,13 +76,13 @@ const disableManaOptions: ManaSelectOption[] = disableFeatureOptions.map(({ key,
 }));
 
 const autoCompleteQuestTypeLabels = {
-    [QuestTaskType.WATCH_VIDEO]: "Watch Video",
-    [QuestTaskType.WATCH_VIDEO_ON_MOBILE]: "Watch Video on Mobile",
-    [QuestTaskType.ACHIEVEMENT_IN_ACTIVITY]: "Achievement in Activity",
-    [QuestTaskType.PLAY_ACTIVITY]: "Play Activity",
-    [QuestTaskType.PLAY_ON_DESKTOP]: "Play on Desktop",
-    [QuestTaskType.PLAY_ON_PLAYSTATION]: "Play on PlayStation",
-    [QuestTaskType.PLAY_ON_XBOX]: "Play on Xbox",
+    [QuestTaskType.WATCH_VIDEO]: "動画を視聴",
+    [QuestTaskType.WATCH_VIDEO_ON_MOBILE]: "モバイルで動画を視聴",
+    [QuestTaskType.ACHIEVEMENT_IN_ACTIVITY]: "アクティビティの実績",
+    [QuestTaskType.PLAY_ACTIVITY]: "アクティビティをプレイ",
+    [QuestTaskType.PLAY_ON_DESKTOP]: "デスクトップでプレイ",
+    [QuestTaskType.PLAY_ON_PLAYSTATION]: "PlayStationでプレイ",
+    [QuestTaskType.PLAY_ON_XBOX]: "Xboxでプレイ",
 } as const satisfies Record<typeof autoCompleteQuestTaskTypes[number], string>;
 
 const autoCompleteQuestTypeOptions = autoCompleteQuestTaskTypes.map(questType => ({
@@ -138,11 +138,11 @@ export function QuestFeaturesSetting(): JSX.Element {
 
     function confirmDangerousSettingChange(body: string, onConfirm: () => void) {
         Alerts.show({
-            title: "Are you sure?",
+            title: "本当によろしいですか？",
             body,
-            confirmText: "Continue",
+            confirmText: "続行",
             confirmVariant: "critical-primary",
-            cancelText: "Cancel",
+            cancelText: "キャンセル",
             onConfirm,
         });
     }
@@ -169,7 +169,7 @@ export function QuestFeaturesSetting(): JSX.Element {
 
         if (checked) {
             confirmDangerousSettingChange(
-                "This will completely disable Quest functionality.",
+                "クエスト機能が完全に無効化されます。",
                 () => {
                     resetDangerousSettings();
                     setDisableEverything();
@@ -187,7 +187,7 @@ export function QuestFeaturesSetting(): JSX.Element {
 
         if (checked) {
             confirmDangerousSettingChange(
-                "This will allow changing dangerous settings.",
+                "危険な設定の変更が許可されます。",
                 setDangerousAccess
             );
         } else {
@@ -206,21 +206,21 @@ export function QuestFeaturesSetting(): JSX.Element {
 
     return (
         <SettingsCard>
-            <SettingsHeader> Quest Features </SettingsHeader>
-            <SettingsDescription> Modify how Quests behave to enhance or remove functionality. </SettingsDescription>
-            <SettingsSubheader> Disable Features </SettingsSubheader>
+            <SettingsHeader> クエスト機能 </SettingsHeader>
+            <SettingsDescription> クエストの動作を変更して、機能を強化したり削除したりできます。 </SettingsDescription>
+            <SettingsSubheader> 機能を無効化 </SettingsSubheader>
             <SettingsSubtleSwitch
                 checked={questFeatures.disableQuestsEverything}
-                label="Completely disable Quest functionality:"
+                label="クエスト機能を完全に無効化："
                 onChange={updateDisableEverything}
                 bottomSpacing="10"
                 tooltip={{
                     position: "top",
-                    text: "This will disable all plugin enhancements, hide the Quests page and Quest elements across Discord, and prevent Discord from fetching Quest data. This will not affect the shop as Orbs are too intrinsically tied to it as a secondary currency."
+                    text: "すべてのプラグインの拡張機能が無効になり、Discord 全体のクエストページとクエスト要素が非表示になり、Discord がクエストデータを取得しなくなります。ショップには影響しません（Orbs はショップの第二の通貨として深く結びついているためです）。"
                 }}
             />
             <SettingsSelect
-                label="Disable specific features:"
+                label="無効化する機能を選択："
                 wrapTags={true}
                 options={disableManaOptions}
                 value={selectedDisableValues}
@@ -231,37 +231,37 @@ export function QuestFeaturesSetting(): JSX.Element {
                 onSelectionChange={updateDisableValue}
                 tooltip={{
                     position: "top",
-                    text: "Sponsored Banner is a paid-for Quest banner at the top of the Quests page."
-                        + "\n\nRelocation Notices are indicators such as in the Discovery page about Quests moving to DMs."
-                        + "\n\nFriends List Promo is a card that displays on the \"Active Now\" section of your Friends List while a user you share a server with is playing a game with an active Quest."
-                        + "\n\nMembers List Promo is an icon that displays on members in a server's Members List while they are playing a game with an active Quest."
-                        + "\n\nAccount Panel Promo is a paid-for Quest promotion that appears above your user account panel."
-                        + "\n\nAccount Panel Progress is the active or completed Quest progress shown above your user account panel."
-                        + "\n\nQuest & Orbs Badges are badges on user profiles for when someone has completed at least one Quest or bought the Orbs badge respectively."
+                    text: "スポンサー付きバナーは、クエストページの上部に表示される有料のクエストバナーです。"
+                        + "\n\n移転のお知らせは、クエストが DM に移動することなどを知らせる、発見ページなどに表示される案内です。"
+                        + "\n\nフレンドリストのプロモーションは、サーバーを共有しているユーザーが有効なクエストのあるゲームをプレイしている間、フレンドリストの「Active Now」セクションに表示されるカードです。"
+                        + "\n\nメンバーリストのプロモーションは、有効なクエストのあるゲームをプレイしている間、サーバーのメンバーリストのメンバーに表示されるアイコンです。"
+                        + "\n\nアカウントパネルのプロモーションは、ユーザーアカウントパネルの上に表示される有料のクエスト宣伝です。"
+                        + "\n\nアカウントパネルの進捗は、ユーザーアカウントパネルの上に表示される、進行中または完了したクエストの進捗です。"
+                        + "\n\nクエスト＆Orbsバッジは、クエストを少なくとも1つ完了したとき、または Orbs バッジを購入したときにユーザープロフィールに表示されるバッジです。"
                 }}
             />
-            <SettingsSubheader> Modify Features </SettingsSubheader>
+            <SettingsSubheader> 機能を変更 </SettingsSubheader>
             <SettingsNotice className={["notice-card-red", questFeatures.disableQuestsEverything ? "dimmed-settings-item" : undefined, questFeatures.allowChangingDangerousSettings ? undefined : "notice-card-solo", "no-bottom-margin"].filter(c => c !== undefined)}>
                 <SettingsParagraph>
-                    Discord is known to punish users of scripts or plugins that modify the completion of Quests. Modifying the completion of Quests is against Discord's <a href="https://discord.com/safety/platform-manipulation-policy-explainer" target="_blank" rel="noreferrer">Terms of Service</a>.
+                    Discord は、クエストの完了方法を変更するスクリプトやプラグインの使用者を処分することが知られています。クエストの完了方法を変更することは、Discord の<a href="https://discord.com/safety/platform-manipulation-policy-explainer" target="_blank" rel="noreferrer">利用規約</a>に違反します。
                 </SettingsParagraph>
                 <br />
                 <SettingsParagraph>
-                    The punishment consists of a temporary or permanent loss of access to Quests and their rewards. <strong>The punishment also consists of an account standing violation which lasts 2 years per violation.</strong>
+                    処分は、クエストとその報酬へのアクセスを一時的または永久的に失うことです。<strong>さらに、違反1件ごとに2年間続くアカウントステータス違反も含まれます。</strong>
                 </SettingsParagraph>
                 <br />
                 <SettingsParagraph>
-                    Due to the various methods Discord uses to track users, there's no way to realistically evade detection. If you proceed, understand that Discord likely will detect your use at some point.
+                    Discord はユーザーを追跡するためにさまざまな手段を用いているため、検出を現実的に回避する方法はありません。続行する場合は、いずれ Discord に使用を検出される可能性が高いことを理解してください。
                 </SettingsParagraph>
                 <br />
                 <SettingsParagraph>
-                    Use the following toggle to access potentially dangerous settings at your own risk.
+                    以下のボタンを使って、自己責任で潜在的に危険な設定にアクセスしてください。
                 </SettingsParagraph>
                 <div className={q("settings-button", "allow-dangerous-button")}>
                     <ManaButton
                         text={questFeatures.allowChangingDangerousSettings
-                            ? "Reset and disallow changing dangerous settings..."
-                            : "Allow changing dangerous settings..."}
+                            ? "危険な設定をリセットして変更を禁止する..."
+                            : "危険な設定の変更を許可する..."}
                         variant={questFeatures.allowChangingDangerousSettings ? "critical-secondary" : "critical-primary"}
                         fullWidth={true}
                         disabled={questFeatures.disableQuestsEverything}
@@ -273,76 +273,76 @@ export function QuestFeaturesSetting(): JSX.Element {
                     <SettingsSubtleSwitch
                         disabled={questFeatures.disableQuestsEverything || !questFeatures.allowChangingDangerousSettings}
                         checked={questFeatures.hideNonAutoCompletableQuests}
-                        label="Hide Non Auto-Completable Quests:"
+                        label="自動完了できないクエストを非表示："
                         onChange={checked => updateModifyValue("hideNonAutoCompletableQuests", checked)}
                         topSpacing="10"
                         bottomSpacing="5"
                         tooltip={{
                             position: "top",
-                            text: "Hide incomplete Quests with an unclaimed or ignored status when no auto-complete task is supported on this platform and enabled in the Quest types dropdown. Claimed, expired, and completed Quests are exempt. Use the Status Order Hidden options to hide those Quests."
+                            text: "このプラットフォームで対応し、クエスト種別のドロップダウンで有効になっている自動完了タスクがない場合に、未受け取りまたは無視状態の未完了クエストを隠します。受け取り済み、期限切れ、完了済みのクエストは対象外です。それらのクエストを隠すには、ステータス表示順の非表示オプションを使用してください。"
                         }}
                     />
                     <SettingsSubtleSwitch
                         disabled={questFeatures.disableQuestsEverything || !questFeatures.allowChangingDangerousSettings}
                         checked={questFeatures.completeVideoQuestsQuicker}
-                        label="Accelerate Video Quest auto-completion:"
+                        label="動画クエストの自動完了を高速化："
                         onChange={checked => updateModifyValue("completeVideoQuestsQuicker", checked)}
                         bottomSpacing="5"
                         tooltip={{
                             position: "top",
-                            text: "Discord allows Video Quests to be completed once 24 seconds less than the duration of the video has passed since you enrolled into the Quest."
-                                + "\n\nThis means that if a Video Quest is 24 seconds or less, or if you enroll in a Video Quest and return later to complete it, it can be completed immediately."
-                                + "\n\nThis setting will only apply to auto-completing Video Quests and relies on the auto-complete setting below. Manually completing Video Quests will still require waiting the full duration and is not dependent on enrollment time."
+                            text: "Discord では、クエストに登録してから動画の長さより24秒短い時間が経過すれば、動画クエストを完了できます。"
+                                + "\n\nつまり、動画クエストが24秒以下だったり、登録した後に戻ってきて完了したりする場合は、即座に完了できます。"
+                                + "\n\nこの設定は動画クエストの自動完了にのみ適用され、下の自動完了設定に依存します。動画クエストを手動で完了する場合は、引き続き全時間待つ必要があり、登録時刻には依存しません。"
                         }}
                     />
                     <SettingsSubtleSwitch
                         disabled={questFeatures.disableQuestsEverything || !questFeatures.allowChangingDangerousSettings}
                         checked={questFeatures.preventVideoQuestsPausing}
-                        label="Prevent Video Quests from pausing when losing focus:"
+                        label="フォーカスを失ったときに動画クエストが一時停止しないようにする："
                         onChange={checked => updateModifyValue("preventVideoQuestsPausing", checked)}
                         bottomSpacing="5"
                         tooltip={{
                             position: "top",
-                            text: "Discord forces you to be tabbed into the client for Video Quests to play their video."
-                                + "\n\nThis setting prevents the video from pausing and allows completion to progress as normal."
-                                + "\n\nThis setting applies only to manually completing Video Quests."
+                            text: "Discord では、動画クエストの動画を再生するにはクライアントにフォーカスが当たっている必要があります。"
+                                + "\n\nこの設定により動画が一時停止しなくなり、完了までの進捗が通常通り進みます。"
+                                + "\n\nこの設定は動画クエストを手動で完了する場合にのみ適用されます。"
                         }}
                     />
                     <SettingsSubtleSwitch
                         disabled={questFeatures.disableQuestsEverything || !questFeatures.allowChangingDangerousSettings}
                         checked={questFeatures.makeMobileVideoQuestsDesktopCompatible}
-                        label="Make some mobile-only Video Quests completable on desktop:"
+                        label="一部のモバイル専用動画クエストをデスクトップで完了できるようにする："
                         onChange={checked => updateModifyValue("makeMobileVideoQuestsDesktopCompatible", checked)}
                         bottomSpacing="5"
                         tooltip={{
                             position: "top",
-                            text: "Some mobile-only Video Quests can be enrolled in on desktop, but still must be completed on mobile. This setting will allow those to be completed on desktop."
-                                + "\n\nSome mobile-only Video Quests are only enrollable on mobile. For this setting to affect those, you must enroll in those Quests on your mobile device before returning to desktop and refreshing your Quests."
-                                + "\n\nThis setting, when enabled independently, applies only to manually completing Video Quests. Auto-completing mobile Video Quests from desktop relies on the auto-complete setting below, and will implicitly enable this setting as well."
+                            text: "一部のモバイル専用動画クエストはデスクトップで登録できますが、完了はモバイルで行う必要があります。この設定により、それらをデスクトップで完了できるようになります。"
+                                + "\n\n一部のモバイル専用動画クエストはモバイルでのみ登録できます。この設定をそれらに適用するには、デスクトップに戻ってクエストを更新する前に、モバイル端末でそれらのクエストに登録しておく必要があります。"
+                                + "\n\nこの設定を単独で有効にした場合、動画クエストの手動完了にのみ適用されます。デスクトップからモバイル動画クエストを自動完了するには下の自動完了設定が必要で、この設定も暗黙的に有効になります。"
                         }}
                     />
                     <SettingsSubtleSwitch
                         disabled={questFeatures.disableQuestsEverything || !questFeatures.allowChangingDangerousSettings}
                         checked={questFeatures.autoCompleteQuestsSimultaneously}
-                        label="Auto-complete Quests simultaneously rather than sequentially:"
+                        label="クエストを順番ではなく同時に自動完了："
                         onChange={checked => updateModifyValue("autoCompleteQuestsSimultaneously", checked)}
                         bottomSpacing="5"
                         tooltip={{
                             position: "top",
-                            text: "By default, attempting to auto-complete multiple Quests will queue them to be completed in order."
-                                + "\n\nThis setting will alternatively allow all auto-complete Quests to run at the same time."
-                                + "\n\nThis setting will only apply to auto-completing Quests and relies on the auto-complete setting below."
+                            text: "デフォルトでは、複数のクエストを自動完了しようとすると、順番に完了するようキューに入れられます。"
+                                + "\n\nこの設定では代わりに、すべての自動完了クエストを同時に実行できるようになります。"
+                                + "\n\nこの設定はクエストの自動完了にのみ適用され、下の自動完了設定に依存します。"
                         }}
                     />
                     <SettingsSubtleSwitch
                         disabled={questFeatures.disableQuestsEverything || !questFeatures.allowChangingDangerousSettings}
                         checked={questFeatures.resumeInterruptedQuests}
-                        label="Resume interrupted auto-completions after a reload or restart:"
+                        label="再読み込みや再起動の後に、中断された自動完了を再開："
                         onChange={checked => updateModifyValue("resumeInterruptedQuests", checked)}
                         bottomSpacing="5"
                         tooltip={{
                             position: "top",
-                            text: "This setting will automatically resume any interrupted auto-completions caused by reloads or restarts, including requeuing Quests which had yet to start auto-completing but had been queued."
+                            text: "再読み込みや再起動で中断された自動完了を自動的に再開します。キューに入っていたがまだ自動完了が始まっていなかったクエストの再キューも含みます。"
                         }}
                     />
                     {questFeatures.usedKonamiCode === true && (
@@ -350,31 +350,31 @@ export function QuestFeaturesSetting(): JSX.Element {
                             <SettingsSubtleSwitch
                                 disabled={questFeatures.disableQuestsEverything || !questFeatures.allowChangingDangerousSettings}
                                 checked={questFeatures.autoCompleteQuests}
-                                label="Automatically process compatible Quests for auto-completion:"
+                                label="対応クエストを自動的に処理して自動完了する："
                                 onChange={checked => updateModifyValue("autoCompleteQuests", checked)}
                                 bottomSpacing="5"
                                 tooltip={{
                                     position: "top",
-                                    text: "Complete eligible, unclaimed, unignored, and unexpired Quests included by your reward and Quest type filters that are detected while Discord is running. Only supported task types enabled below are included."
-                                        + "\n\nAutomatically enrolls in compatible Quests before queuing them for auto-completion. Waits for known rate-limit cooldowns. Stops on unknown errors, rate limits without a retry delay, or repeated enrollment failures."
+                                    text: "Discord の実行中に検出された、報酬とクエスト種別のフィルターに含まれる、対象で未受け取り・無視されておらず・期限切れでないクエストを完了します。下で有効にした対応タスク種別のみが含まれます。"
+                                        + "\n\n対応するクエストに自動登録してから、自動完了のキューに入れます。既知のレート制限のクールダウンは待ちます。不明なエラー、リトライ遅延のないレート制限、登録の繰り返し失敗が発生した場合は停止します。"
                                 }}
                             />
                             <SettingsSubtleSwitch
                                 disabled={questFeatures.disableQuestsEverything || !questFeatures.allowChangingDangerousSettings}
                                 checked={questFeatures.autoEnrollQuests}
-                                label="Automatically enroll in compatible Quests."
+                                label="対応するクエストに自動登録する。"
                                 onChange={checked => updateModifyValue("autoEnrollQuests", checked)}
                                 bottomSpacing="5"
                                 tooltip={{
                                     position: "top",
-                                    text: "Enroll in eligible, unclaimed, unignored, and unexpired Quests included by your reward and Quest type filters that are detected while Discord is running."
-                                        + "\n\nEnrolls in Quests without queuing them for auto-completion. Waits for known rate-limit cooldowns. Stops on unknown errors, rate limits without a retry delay, or repeated enrollment failures."
+                                    text: "Discord の実行中に検出された、報酬とクエスト種別のフィルターに含まれる、対象で未受け取り・無視されておらず・期限切れでないクエストに登録します。"
+                                        + "\n\n自動完了のキューには入れずにクエストへ登録します。既知のレート制限のクールダウンは待ちます。不明なエラー、リトライ遅延のないレート制限、登録の繰り返し失敗が発生した場合は停止します。"
                                 }}
                             />
                         </>
                     )}
                     <SettingsSelect
-                        label="Auto-complete specific Quest types:"
+                        label="自動完了するクエスト種別を選択："
                         wrapTags={true}
                         options={autoCompleteQuestTypeManaOptions}
                         value={selectedAutoCompleteQuestTypeValues}
@@ -386,12 +386,12 @@ export function QuestFeaturesSetting(): JSX.Element {
                         tooltip={{
                             position: "top",
                             wider: true,
-                            text: "Watch Video on Mobile Quests will only work on mobile Quests which are enrollable on desktop. If a Quest is locked to enrollment on mobile, you must first enroll in it on your mobile device before returning to desktop and refreshing your Quests."
-                                + "\n\nAll video related Quests usually send a stack trace with the progress reports. This means Discord would know exactly which functions were called, and can therefore verify that their own functions initiated the progress. Questify erases this stack trace, but the absence of it will be just as telling as its presence."
-                                + "\n\nPlay on Desktop, Play on PlayStation, Play on Xbox, Play Activity, and Achievement in Activity Quests are only available on official desktop clients due to a limitation imposed by Discord. 3rd party clients such as web extensions, Vesktop, Equibop, and others, do not support auto-completing these Quest types."
-                                + "\n\nAll game related Quests usually send a game fingerprint with the heartbeat reports. This means Discord can use data from tens of thousands of users to determine whether other users are likely using a real game or are emulating the executable. There is no reasonable method to spoof this value, so Questify leaves it blank, but the absence of it will be just as telling as poorly spoofing the value."
-                                + "\n\nAuto-completion starts from Quest buttons on the Quests page or automatic processing. Quests are completed in the order they were queued, unless simultaneous completion is enabled above."
-                                + "\n\nAuto-completing Quests is the riskiest dangerous setting available. Enable it at your own risk."
+                            text: "「モバイルで動画を視聴」クエストは、デスクトップで登録できるモバイルクエストでのみ動作します。登録がモバイルに制限されているクエストの場合は、デスクトップに戻ってクエストを更新する前に、まずモバイル端末で登録する必要があります。"
+                                + "\n\nすべての動画関連クエストは通常、進捗報告と一緒にスタックトレースを送信します。つまり Discord はどの関数が呼ばれたかを正確に把握でき、自社の関数が進捗を開始したかどうかを検証できます。Questify はこのスタックトレースを消去しますが、それが無いこと自体も、存在する場合と同様に痕跡となります。"
+                                + "\n\n「デスクトップでプレイ」「PlayStationでプレイ」「Xboxでプレイ」「アクティビティをプレイ」「アクティビティの実績」クエストは、Discord の制限により公式デスクトップクライアントでのみ利用できます。ウェブ拡張機能、Vesktop、Equibop などのサードパーティ製クライアントは、これらのクエスト種別の自動完了に対応していません。"
+                                + "\n\nすべてのゲーム関連クエストは通常、ハートビート報告と一緒にゲームのフィンガープリントを送信します。つまり Discord は何万人ものユーザーのデータを使って、他のユーザーが本物のゲームを使っているか、実行ファイルをエミュレートしているかを判定できます。この値を合理的に偽装する方法はないため、Questify は空白のままにしていますが、それが無いこと自体も、下手に偽装した場合と同じくらい痕跡となります。"
+                                + "\n\n自動完了は、クエストページのクエストボタン、または自動処理から開始されます。クエストはキューに入れられた順に完了します（上の同時完了が有効な場合を除きます）。"
+                                + "\n\nクエストの自動完了は、利用できる危険な設定の中で最もリスクが高いものです。自己責任で有効にしてください。"
                         }}
                     />
                 </div>

@@ -44,18 +44,18 @@ interface OneTimeNotice {
 const oneTimeNotices = [
     {
         id: "quest-ban-warning-2026-08-07",
-        title: "Questify Notice - August 7th, 2026",
+        title: "Questify からのお知らせ - 2026年8月7日",
         renderBody: () => <div className="questify-startup-notice-body">
             <p>
-                Discord has implemented a Quest Ban system which will temporarily or permanently limit your access to completing Quests and claiming their rewards if you are found to be completing them through unofficial means. Modifying the completion of Quests is against their <a href="https://discord.com/safety/platform-manipulation-policy-explainer" target="_blank" rel="noreferrer">Terms of Service</a>.
+                Discord はクエストBANシステムを導入しました。非公式な手段でクエストを完了していることが判明した場合、クエストの完了や報酬の受け取りへのアクセスが一時的または永久的に制限されます。クエストの完了方法を変更することは、Discord の<a href="https://discord.com/safety/platform-manipulation-policy-explainer" target="_blank" rel="noreferrer">利用規約</a>に違反します。
             </p>
             <br />
             <p>
-                The punishment appears limited to loss of access to Quests and their rewards, but Discord may escalate at any time.
+                処分はクエストとその報酬へのアクセス喪失に限られるようですが、Discord はいつでも処分を重くする可能性があります。
             </p>
             <br />
             <p>
-                Due to the various methods Discord uses to track users, there's no way to realistically evade detection. If you proceed, understand that Discord likely will detect it at some point.
+                Discord はユーザーを追跡するためにさまざまな手段を用いているため、検出を現実的に回避する方法はありません。続行する場合は、いずれ Discord に検出される可能性が高いことを理解してください。
             </p>
         </div>,
         condition: () => {
@@ -66,11 +66,11 @@ const oneTimeNotices = [
         autoAcknowledgeCondition: () => !getQuestifySettings().allowChangingDangerousSettings,
         actions: [
             {
-                text: "Keep Using Dangerous Questify Settings",
+                text: "危険な Questify 設定を使い続ける",
                 variant: "critical-primary",
             },
             {
-                text: "Disable Dangerous Questify Settings",
+                text: "危険な Questify 設定を無効化する",
                 variant: "primary",
                 run: resetDangerousSettings,
                 promptForRestart: true,
@@ -79,19 +79,19 @@ const oneTimeNotices = [
     },
     {
         id: "quest-ban-warning-2026-08-26",
-        title: "Questify Notice - August 26th, 2026",
+        title: "Questify からのお知らせ - 2026年8月26日",
         dismissable: false,
         renderBody: () => <div className="questify-startup-notice-body">
             <p>
-                Discord has begun punishing users of scripts and plugins that modify the completion of Quests. Modifying the completion of Quests is against their <a href="https://discord.com/safety/platform-manipulation-policy-explainer" target="_blank" rel="noreferrer">Terms of Service</a>.
+                Discord は、クエストの完了方法を変更するスクリプトやプラグインの使用者への処分を開始しました。クエストの完了方法を変更することは、Discord の<a href="https://discord.com/safety/platform-manipulation-policy-explainer" target="_blank" rel="noreferrer">利用規約</a>に違反します。
             </p>
             <br />
             <p>
-                The punishment consists of a temporary or permanent loss of access to Quests and their rewards. <strong>The punishment also consists of an account standing violation which lasts 2 years per violation.</strong>
+                処分は、クエストとその報酬へのアクセスを一時的または永久的に失うことです。<strong>さらに、違反1件ごとに2年間続くアカウントステータス違反も含まれます。</strong>
             </p>
             <br />
             <p>
-                Due to the various methods Discord uses to track users, there's no way to realistically evade detection. If you proceed, understand that Discord likely will detect your use at some point.
+                Discord はユーザーを追跡するためにさまざまな手段を用いているため、検出を現実的に回避する方法はありません。続行する場合は、いずれ Discord に使用を検出される可能性が高いことを理解してください。
             </p>
         </div>,
         condition: () => {
@@ -102,17 +102,17 @@ const oneTimeNotices = [
         autoAcknowledgeCondition: () => !getQuestifySettings().allowChangingDangerousSettings,
         actions: [
             {
-                text: "Keep Using Dangerous Questify Settings",
+                text: "危険な Questify 設定を使い続ける",
                 variant: "critical-primary",
                 disabledFor: 10,
                 confirmation: {
-                    text: "Are You Sure?",
+                    text: "本当によろしいですか？",
                     variant: "critical-secondary",
                     disabledFor: 5,
                 },
             },
             {
-                text: "Disable Dangerous Questify Settings",
+                text: "危険な Questify 設定を無効化する",
                 variant: "primary",
                 run: resetDangerousSettings,
                 promptForRestart: true,

@@ -305,7 +305,7 @@ function showBrokenAutoCompleteToast(): void {
     }
 
     didShowBrokenAutoCompleteToast = true;
-    showToast({ text: "AutoComplete is broken. A fix will be implemented shortly.", variant: "critical" });
+    showToast({ text: "自動完了が壊れています。まもなく修正されます。", variant: "critical" });
 }
 
 export function hasEnabledAutoCompleteQuestTypes(): boolean {
@@ -529,31 +529,31 @@ export function getQuestCompletionState(quest: Quest, options: QuestButtonTextOp
 
     if (activeEntry?.status === "running") {
         const text = immediate
-            ? "Completing..."
-            : `Completing ${options.prepositional ? `in ${formattedTime}` : `(${formattedTime})`}`;
+            ? "完了処理中…"
+            : `完了処理中${options.prepositional ? `（あと ${formattedTime}）` : `（${formattedTime}）`}`;
 
         return [text, QuestCompletionState.Completing];
     }
 
     if (activeEntry?.status === "queued") {
-        return [`Queued (${getQueuedAutoCompletePosition(quest.id) ?? "?"})`, QuestCompletionState.Queued];
+        return [`キュー待ち（${getQueuedAutoCompletePosition(quest.id) ?? "?"}）`, QuestCompletionState.Queued];
     }
 
     if (enrolledAt) {
         if (isQuestQueuedForResume(quest.id)) {
-            return ["Resuming...", QuestCompletionState.Queued];
+            return ["再開中…", QuestCompletionState.Queued];
         }
 
         const meaningfulProgress = progress >= 1;
 
         return [
-            immediate ? "Complete Now" : `${meaningfulProgress ? "Resume" : "Complete"} (${formatQuestTime(timeRemaining)})`,
+            immediate ? "今すぐ完了" : `${meaningfulProgress ? "再開" : "完了"}（${formatQuestTime(timeRemaining)}）`,
             QuestCompletionState.Accepted,
         ];
     }
 
     return [
-        immediate ? "Complete Now" : `Complete (${formatQuestTime(target)})`,
+        immediate ? "今すぐ完了" : `完了（${formatQuestTime(target)}）`,
         QuestCompletionState.Unenrolled,
     ];
 }
@@ -599,7 +599,7 @@ export function getQuestPanelSubtitleText(quest: Quest): string | null {
     const questCompleted = Boolean(quest.userStatus?.completedAt)
         && getQuestStatus(quest, getIgnoredQuestIDs()) === QuestStatus.Unclaimed;
     const [completingText] = getQuestCompletionState(quest, { prepositional: true });
-    const completedText = questCompleted ? "Completed" : null;
+    const completedText = questCompleted ? "完了" : null;
     const statusText = completedText ?? completingText;
 
     if (!statusText) {
@@ -610,14 +610,14 @@ export function getQuestPanelSubtitleText(quest: Quest): string | null {
     const orbsReward = getQuestOrbQuantity(quest.config, UserStore.getCurrentUser()) ?? 0;
 
     if (orbsReward > 0) {
-        return `${statusText} for ${orbsReward} Orbs.`;
+        return `${statusText}（報酬: ${orbsReward} Orbs）`;
     }
 
     if (rewardItem?.messages?.nameWithArticle) {
-        return `${statusText} for ${rewardItem.messages.nameWithArticle}.`;
+        return `${statusText}（報酬: ${rewardItem.messages.nameWithArticle}）`;
     }
 
-    return `${statusText} for an unrecognized reward.`;
+    return `${statusText}（報酬: 不明）`;
 }
 
 export function isQuestEnrollmentCompatible(quest: Quest): boolean {
@@ -725,9 +725,9 @@ function blockQuestEnrollmentForRetryAfter(retryAfter: number | null): void {
 }
 
 function showQuestEnrollmentFailureToast(quest: Quest, result: Exclude<QuestEnrollmentResult, { type: "success"; }>): void {
-    const rateLimitSuffix = result.type === "rate_limited" ? " due to rate limits" : "";
+    const rateLimitSuffix = result.type === "rate_limited" ? "（レート制限のため）" : "";
 
-    showToast({ text: `Enrollment in ${normalizeQuestName(quest)} Quest failed${rateLimitSuffix}.`, variant: "critical" });
+    showToast({ text: `${normalizeQuestName(quest)} クエストへの参加に失敗しました${rateLimitSuffix}。`, variant: "critical" });
 }
 
 export async function ensureQuestEnrolled(quest: Quest, analytics: QuestButtonAnalyticsArgs = {}): Promise<QuestEnrollmentResult> {

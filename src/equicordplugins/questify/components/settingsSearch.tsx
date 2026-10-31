@@ -13,7 +13,7 @@ import { getQuestifySettings } from "../settings/access";
 import { setSettingsSearchQuery, useSettingsSearchMatchCount, useSettingsSearchQuery } from "../settings/search";
 import { q } from "../utils/ui";
 
-const KONAMI_CODE_LABEL = "Konami Code";
+const KONAMI_CODE_LABEL = "コナミコード";
 const KONAMI_ARROWS: Record<string, string> = { ArrowUp: "↑", ArrowDown: "↓", ArrowLeft: "←", ArrowRight: "→" };
 
 export function SettingsSearch(): JSX.Element {
@@ -41,7 +41,7 @@ export function SettingsSearch(): JSX.Element {
         if (code === "↑↑↓↓←→←→ba") {
             const settings = getQuestifySettings();
             settings.usedKonamiCode = settings.usedKonamiCode !== true;
-            showToast({ text: `Quest Automation ${settings.usedKonamiCode ? "Unlocked" : "Locked"}.`, variant: "success", duration: 5000 });
+            showToast({ text: `クエスト自動化が${settings.usedKonamiCode ? "アンロック" : "ロック"}されました`, variant: "success", duration: 5000 });
             setInputValue(KONAMI_CODE_LABEL);
             setSettingsSearchQuery("");
             return;
@@ -71,14 +71,14 @@ export function SettingsSearch(): JSX.Element {
         <div className={q("settings-search")}>
             <TextInput
                 type="search"
-                aria-label="Search Questify Settings"
-                placeholder="Search Questify Settings..."
+                aria-label="Questify設定を検索"
+                placeholder="Questify設定を検索..."
                 value={inputValue}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
             />
             {query.trim() && matchCount === 0 && (
-                <div className={q("settings-search-empty")} role="status">No matching settings.</div>
+                <div className={q("settings-search-empty")} role="status">一致する設定がありません。</div>
             )}
         </div>
     );

@@ -22,44 +22,44 @@ interface QuestButtonIncludedTypeOption {
 }
 
 const questButtonDisplayOptions = [
-    { label: "Always", value: "always" },
-    { label: "Unclaimed", value: "unclaimed" },
-    { label: "Never", value: "never" },
+    { label: "常に表示", value: "always" },
+    { label: "未受け取り", value: "unclaimed" },
+    { label: "表示しない", value: "never" },
 ] as const satisfies readonly { label: string; value: QuestButtonDisplayMode; }[];
 
 const questButtonIndicatorOptions = [
-    { label: "Pill", value: "pill" },
-    { label: "Badge", value: "badge" },
-    { label: "Both", value: "both" },
-    { label: "None", value: "none" },
+    { label: "ピル", value: "pill" },
+    { label: "バッジ", value: "badge" },
+    { label: "両方", value: "both" },
+    { label: "なし", value: "none" },
 ] as const satisfies readonly { label: string; value: QuestButtonIndicatorMode; }[];
 
 const questButtonClickOptions = [
-    { label: "Open Quests", value: "open-quests" },
-    { label: "Context Menu", value: "context-menu" },
-    { label: "Plugin Settings", value: "plugin-settings" },
-    { label: "Nothing", value: "nothing" },
+    { label: "クエストを開く", value: "open-quests" },
+    { label: "コンテキストメニュー", value: "context-menu" },
+    { label: "プラグイン設定", value: "plugin-settings" },
+    { label: "何もしない", value: "nothing" },
 ] as const satisfies readonly { label: string; value: QuestButtonAction; }[];
 
 const questButtonRewardTypeOptions = [
     { label: "Orbs", value: QuestRewardType.VIRTUAL_CURRENCY },
-    { label: "Nitro Codes", value: QuestRewardType.FRACTIONAL_PREMIUM },
-    { label: "Reward Codes", value: QuestRewardType.REWARD_CODE },
-    { label: "In Game Items", value: QuestRewardType.IN_GAME },
-    { label: "Profile Collectibles", value: QuestRewardType.COLLECTIBLE },
+    { label: "Nitroコード", value: QuestRewardType.FRACTIONAL_PREMIUM },
+    { label: "報酬コード", value: QuestRewardType.REWARD_CODE },
+    { label: "ゲーム内アイテム", value: QuestRewardType.IN_GAME },
+    { label: "プロフィールコレクティブル", value: QuestRewardType.COLLECTIBLE },
 ] as const satisfies readonly QuestButtonIncludedTypeOption[];
 
 const questButtonQuestTypeOptions = [
-    { label: "Watch Video", value: QuestTaskType.WATCH_VIDEO },
-    { label: "Watch Video on Mobile", value: QuestTaskType.WATCH_VIDEO_ON_MOBILE },
-    { label: "Achievement in Activity", value: QuestTaskType.ACHIEVEMENT_IN_ACTIVITY },
-    { label: "Achievement in Game", value: QuestTaskType.ACHIEVEMENT_IN_GAME },
-    { label: "Play Activity", value: QuestTaskType.PLAY_ACTIVITY },
-    { label: "Play on Desktop", value: QuestTaskType.PLAY_ON_DESKTOP },
-    { label: "Play on Desktop V2", value: QuestTaskType.PLAY_ON_DESKTOP_V2 },
-    { label: "Stream on Desktop", value: QuestTaskType.STREAM_ON_DESKTOP },
-    { label: "Play on PlayStation", value: QuestTaskType.PLAY_ON_PLAYSTATION },
-    { label: "Play on Xbox", value: QuestTaskType.PLAY_ON_XBOX },
+    { label: "動画を視聴", value: QuestTaskType.WATCH_VIDEO },
+    { label: "モバイルで動画を視聴", value: QuestTaskType.WATCH_VIDEO_ON_MOBILE },
+    { label: "アクティビティでの実績", value: QuestTaskType.ACHIEVEMENT_IN_ACTIVITY },
+    { label: "ゲームでの実績", value: QuestTaskType.ACHIEVEMENT_IN_GAME },
+    { label: "アクティビティをプレイ", value: QuestTaskType.PLAY_ACTIVITY },
+    { label: "デスクトップでプレイ", value: QuestTaskType.PLAY_ON_DESKTOP },
+    { label: "デスクトップでプレイ V2", value: QuestTaskType.PLAY_ON_DESKTOP_V2 },
+    { label: "デスクトップで配信", value: QuestTaskType.STREAM_ON_DESKTOP },
+    { label: "PlayStationでプレイ", value: QuestTaskType.PLAY_ON_PLAYSTATION },
+    { label: "Xboxでプレイ", value: QuestTaskType.PLAY_ON_XBOX },
 ] as const satisfies readonly QuestButtonIncludedTypeOption[];
 
 function toManaOptions<T extends string | number>(options: readonly { label: string; value: T; }[]): ManaSelectOption[] {
@@ -140,8 +140,8 @@ export function QuestButtonSetting(): JSX.Element {
         <SettingsCard>
             <SettingsRow>
                 <SettingsRowItem>
-                    <SettingsHeader> Quest Button </SettingsHeader>
-                    <SettingsDescription> Show a Quest Button in the server list with an optional indicator for unclaimed and unignored Quests. </SettingsDescription>
+                    <SettingsHeader> クエストボタン </SettingsHeader>
+                    <SettingsDescription> サーバーリストにクエストボタンを表示し、未受け取りで無視されていないクエストのインジケーターを任意で表示します。 </SettingsDescription>
                 </SettingsRowItem>
                 {enabledOnStartup && <SettingsRowItem width="content">
                     <DummyQuestButton
@@ -155,11 +155,11 @@ export function QuestButtonSetting(): JSX.Element {
                     />
                 </SettingsRowItem>}
             </SettingsRow>
-            <SettingsSubheader className="no-top-margin"> Button Behavior </SettingsSubheader>
+            <SettingsSubheader className="no-top-margin"> ボタンの動作 </SettingsSubheader>
             <SettingsRow>
                 <SettingsRowItem>
                     <SettingsSelect
-                        label="Left Click Action:"
+                        label="左クリック時の動作:"
                         options={questButtonClickManaOptions}
                         value={questButton.questButtonLeftClickAction}
                         selectionMode="single"
@@ -170,7 +170,7 @@ export function QuestButtonSetting(): JSX.Element {
                 </SettingsRowItem>
                 <SettingsRowItem>
                     <SettingsSelect
-                        label="Middle Click Action:"
+                        label="中クリック時の動作:"
                         options={questButtonClickManaOptions}
                         value={questButton.questButtonMiddleClickAction}
                         selectionMode="single"
@@ -181,7 +181,7 @@ export function QuestButtonSetting(): JSX.Element {
                 </SettingsRowItem>
                 <SettingsRowItem>
                     <SettingsSelect
-                        label="Right Click Action:"
+                        label="右クリック時の動作:"
                         options={questButtonClickManaOptions}
                         value={questButton.questButtonRightClickAction}
                         selectionMode="single"
@@ -194,7 +194,7 @@ export function QuestButtonSetting(): JSX.Element {
             <SettingsRow>
                 <SettingsRowItem>
                     <SettingsSelect
-                        label="Button Visibility:"
+                        label="ボタンの表示:"
                         options={questButtonDisplayManaOptions}
                         value={questButton.questButtonDisplay}
                         selectionMode="single"
@@ -203,15 +203,15 @@ export function QuestButtonSetting(): JSX.Element {
                         onSelectionChange={updateQuestButtonDisplay}
                         tooltip={{
                             position: "top",
-                            text: "Always shows the Quest Button whenever this feature is enabled."
-                                + "\n\nUnclaimed only shows it while you have relevant unclaimed Quest rewards."
-                                + "\n\nNever hides the Quest Button."
+                            text: "この機能が有効な間、クエストボタンを常に表示します。"
+                                + "\n\n「未受け取り」は、関連する未受け取りのクエスト報酬がある間だけ表示します。"
+                                + "\n\n「表示しない」はクエストボタンを隠します。"
                         }}
                     />
                 </SettingsRowItem>
                 <SettingsRowItem>
                     <SettingsSelect
-                        label="Unclaimed Indicator:"
+                        label="未受け取りインジケーター:"
                         options={questButtonIndicatorManaOptions}
                         value={questButton.questButtonIndicator}
                         selectionMode="single"
@@ -220,16 +220,16 @@ export function QuestButtonSetting(): JSX.Element {
                         onSelectionChange={updateQuestButtonIndicator}
                         tooltip={{
                             position: "top",
-                            text: "Pill shows Discord's unread-style marker beside the Quest Button."
-                                + "\n\nBadge shows the number of relevant unclaimed Quest rewards."
-                                + "\n\nBoth shows the pill and badge together."
-                                + "\n\nNone hides unclaimed indicators."
+                            text: "「ピル」は、クエストボタンの横に Discord の未読風マーカーを表示します。"
+                                + "\n\n「バッジ」は、関連する未受け取りのクエスト報酬の数を表示します。"
+                                + "\n\n「両方」はピルとバッジを両方表示します。"
+                                + "\n\n「なし」は未受け取りインジケーターを隠します。"
                         }}
                     />
                 </SettingsRowItem>
                 <SettingsRowItem>
                     <SettingsColorPicker
-                        label="Badge Color:"
+                        label="バッジの色:"
                         className="quest-button-color-picker"
                         color={questButton.questButtonBadgeColor}
                         disabled={disabled}
@@ -238,9 +238,9 @@ export function QuestButtonSetting(): JSX.Element {
                     />
                 </SettingsRowItem>
             </SettingsRow>
-            <SettingsSubheader> Quest Relevancy </SettingsSubheader>
+            <SettingsSubheader> クエストの関連性 </SettingsSubheader>
             <SettingsSelect
-                label="Included Reward Types:"
+                label="対象の報酬タイプ:"
                 wrapTags={true}
                 options={questButtonRewardTypeManaOptions}
                 value={selectedRewardTypes}
@@ -252,11 +252,11 @@ export function QuestButtonSetting(): JSX.Element {
                 onSelectionChange={value => updateIncludedTypes(questButtonRewardTypeOptions, value)}
                 tooltip={{
                     position: "top",
-                    text: "Only count Quests with these reward types as unclaimed when determining button visibility, badge count, and alert behavior."
+                    text: "ボタンの表示、バッジの数、アラートの動作を決める際に、これらの報酬タイプのクエストのみを未受け取りとして数えます。"
                 }}
             />
             <SettingsSelect
-                label="Included Quest Types:"
+                label="対象のクエストタイプ:"
                 labelClassName="margin-top-9"
                 wrapTags={true}
                 options={questButtonQuestTypeManaOptions}
@@ -269,7 +269,7 @@ export function QuestButtonSetting(): JSX.Element {
                 onSelectionChange={value => updateIncludedTypes(questButtonQuestTypeOptions, value)}
                 tooltip={{
                     position: "top",
-                    text: "Only count Quests with these task types as unclaimed when determining button visibility, badge count, and alert behavior."
+                    text: "ボタンの表示、バッジの数、アラートの動作を決める際に、これらのタスクタイプのクエストのみを未受け取りとして数えます。"
                 }}
             />
         </SettingsCard>

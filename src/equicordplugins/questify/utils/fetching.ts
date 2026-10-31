@@ -103,18 +103,18 @@ function getQuestNotificationText(quests: Quest[], excluded: boolean): { title: 
 
     if (quests.length === 1) {
         return {
-            title: excluded ? "New Excluded Quest Detected!" : "New Quest Detected!",
+            title: excluded ? "対象外の新しいクエストを検出！" : "新しいクエストを検出！",
             body: excluded
-                ? `The excluded ${firstQuestName} Quest was detected. ID: ${firstQuest.id}`
-                : `The ${firstQuestName} Quest is now available.`
+                ? `対象外クエスト「${firstQuestName}」を検出しました。ID: ${firstQuest.id}`
+                : `${firstQuestName} クエストが利用可能になりました。`
         };
     }
 
     return {
-        title: excluded ? "New Excluded Quests Detected!" : "New Quests Detected!",
+        title: excluded ? "対象外の新しいクエストを検出！" : "新しいクエストを検出！",
         body: excluded
-            ? `${quests.length} new excluded Quests were detected. Check the console for their Quest IDs.`
-            : `${quests.length} new Quests are now available.`
+            ? `対象外の新しいクエストが ${quests.length} 件検出されました。クエストIDはコンソールで確認してください。`
+            : `新しいクエストが ${quests.length} 件利用可能になりました。`
     };
 }
 

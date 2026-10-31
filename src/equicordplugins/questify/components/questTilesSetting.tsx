@@ -23,10 +23,10 @@ const QuestTile = findComponentByCodeLazy(".rowIndex,trackGuildAndChannelMetadat
 }>;
 
 const gradientOptions = [
-    { label: "Intense Restyle Gradient", value: "intense" },
-    { label: "Default Restyle Gradient", value: "default" },
-    { label: "Subtle Black Gradient", value: "black" },
-    { label: "No Gradient", value: "hide" },
+    { label: "再スタイルグラデーション（強め）", value: "intense" },
+    { label: "再スタイルグラデーション（標準）", value: "default" },
+    { label: "控えめな黒グラデーション", value: "black" },
+    { label: "グラデーションなし", value: "hide" },
 ] as const satisfies readonly { label: string, value: QuestTileGradient; }[];
 
 const gradientManaOptions: ManaSelectOption[] = gradientOptions.map(({ label, value }) => ({
@@ -36,8 +36,8 @@ const gradientManaOptions: ManaSelectOption[] = gradientOptions.map(({ label, va
 }));
 
 const preloadManaOptions: ManaSelectOption[] = [
-    { id: "true", label: "Load All Quest Assets On Page Load", value: "true" },
-    { id: "false", label: "Load Quest Assets During Page Scroll", value: "false" },
+    { id: "true", label: "ページ読み込み時にすべてのクエストアセットを読み込む", value: "true" },
+    { id: "false", label: "ページスクロール中にクエストアセットを読み込む", value: "false" },
 ];
 
 type QuestTileColorKey =
@@ -55,22 +55,22 @@ interface QuestTileColorOption {
 const colorOptions = [
     {
         key: "questTileUnclaimedColor",
-        label: "Unclaimed",
+        label: "未受け取り",
         defaultValue: defaultQuestTileUnclaimedColorSetting,
     },
     {
         key: "questTileClaimedColor",
-        label: "Claimed",
+        label: "受け取り済み",
         defaultValue: defaultQuestTileClaimedColorSetting,
     },
     {
         key: "questTileIgnoredColor",
-        label: "Ignored",
+        label: "無視済み",
         defaultValue: defaultQuestTileIgnoredColorSetting,
     },
     {
         key: "questTileExpiredColor",
-        label: "Expired",
+        label: "期限切れ",
         defaultValue: defaultQuestTileExpiredColorSetting,
     },
 ] as const satisfies readonly QuestTileColorOption[];
@@ -195,13 +195,13 @@ export function QuestTilesSetting(): JSX.Element {
 
     return (
         <SettingsCard>
-            <SettingsHeader> Quest Tiles </SettingsHeader>
-            <SettingsDescription> Highlight Quests with optional theme colors for visibility. </SettingsDescription>
-            <SettingsSubheader> Tile Behavior </SettingsSubheader>
+            <SettingsHeader> クエストタイル </SettingsHeader>
+            <SettingsDescription> 見やすくするために、任意のテーマカラーでクエストをハイライトします。 </SettingsDescription>
+            <SettingsSubheader> タイルの動作 </SettingsSubheader>
             <SettingsRow className="quest-tile-behavior-row">
                 <SettingsRowItem className="quest-tile-gradient-row-item">
                     <SettingsSelect
-                        label="Gradient Style:"
+                        label="グラデーションスタイル:"
                         options={gradientManaOptions}
                         value={questTiles.questTileGradient}
                         selectionMode="single"
@@ -211,15 +211,15 @@ export function QuestTilesSetting(): JSX.Element {
                         onSelectionChange={updateGradient}
                         tooltip={{
                             position: "top",
-                            text: "Intense and Default use the selected tile color in the asset gradient."
-                                + "\n\nSubtle Black keeps a darker neutral gradient for contrast."
-                                + "\n\nNo Gradient removes the asset gradient, which can make some Quest artwork harder to read."
+                            text: "「強め」と「標準」は、選択したタイルの色をアセットのグラデーションに使います。"
+                                + "\n\n「控えめな黒」は、コントラストのために暗めの中立的なグラデーションを維持します。"
+                                + "\n\n「グラデーションなし」はアセットのグラデーションを取り除くため、一部のクエストアートワークが見づらくなる場合があります。"
                         }}
                     />
                 </SettingsRowItem>
                 <SettingsRowItem className="quest-tile-preload-row-item">
                     <SettingsSelect
-                        label="Asset Preload:"
+                        label="アセットの先読み:"
                         options={preloadManaOptions}
                         value={String(questTiles.questTilePreload)}
                         selectionMode="single"
@@ -229,13 +229,13 @@ export function QuestTilesSetting(): JSX.Element {
                         onSelectionChange={updatePreload}
                         tooltip={{
                             position: "top",
-                            text: "Loading all assets when the Quests page opens reduces layout shifting while scrolling."
-                                + "\n\nLoading during page scroll is closer to Discord's default behavior and may use less work up front."
+                            text: "クエストページを開いたときにすべてのアセットを読み込むと、スクロール中のレイアウトのずれが減ります。"
+                                + "\n\nページスクロール中に読み込む方式は Discord のデフォルトの動作に近く、初期の処理量が少なくなる場合があります。"
                         }}
                     />
                 </SettingsRowItem>
             </SettingsRow>
-            <SettingsSubheader> Tile Colors </SettingsSubheader>
+            <SettingsSubheader> タイルの色 </SettingsSubheader>
             <SettingsRow className="quest-tile-color-row">
                 {colorOptions.map(({ key, label }) => {
                     const setting = questTiles[key] as QuestTileColorSetting;
@@ -257,7 +257,7 @@ export function QuestTilesSetting(): JSX.Element {
                             </div>
                             <div className={q("settings-button", "quest-tile-color-button")}>
                                 <ManaButton
-                                    text={setting.enabled ? "Disable" : "Enable"}
+                                    text={setting.enabled ? "無効化" : "有効化"}
                                     variant={setting.enabled ? "critical-secondary" : "primary"}
                                     disabled={disabled}
                                     fullWidth={true}

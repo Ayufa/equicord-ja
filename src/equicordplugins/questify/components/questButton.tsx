@@ -63,7 +63,7 @@ function QuestButtonView({ id, className, badgeProps, hasUnread, selected, visib
             className={className}
             icon={QuestButtonIcon}
             nudgeOnClick
-            tooltip="Quests"
+            tooltip="クエスト"
             selected={selected}
             unread={hasUnread}
             badge={badgeProps}
@@ -149,7 +149,7 @@ export function QuestButtonContextMenu({ dummy = false }: { dummy?: boolean; }):
     const enrollmentRateLimited = isQuestEnrollmentRateLimited();
     const queueAllQuestsInProgress = isProcessingQuests();
     const queueAllQuestsDisabled = dummy || queueAllQuestsInProgress || enrollmentRateLimited;
-    const labelSuffix = (dummy ? "" : queueAllQuestsInProgress ? " (In-Progress)" : enrollmentRateLimited ? " (Rate-Limited)" : "");
+    const labelSuffix = (dummy ? "" : queueAllQuestsInProgress ? "（処理中）" : enrollmentRateLimited ? "（レート制限中）" : "");
     const clearQueueVisible = queueAllQuestsInProgress || getActiveAutoCompletes().length > 0;
     const automationControlsVisible = settings.usedKonamiCode === true && settings.allowChangingDangerousSettings;
     const fetchQuestsDisabled = dummy;
@@ -158,24 +158,24 @@ export function QuestButtonContextMenu({ dummy = false }: { dummy?: boolean; }):
         <Menu.Menu
             navId={navId}
             onClose={ContextMenuApi.closeContextMenu}
-            aria-label="Quest Button Menu"
+            aria-label="クエストボタンメニュー"
         >
             <Menu.MenuItem
                 id={q(`${navId}-mark-all-ignored`)}
-                label="Mark All Ignored"
+                label="すべて無視済みにする"
                 action={ignoreAllQuests}
                 disabled={markAllIgnoredDisabled}
             />
             <Menu.MenuItem
                 id={q(`${navId}-reset-ignored-list`)}
-                label="Reset Ignored List"
+                label="無視リストをリセット"
                 action={resetIgnoredQuests}
                 disabled={resetIgnoredDisabled}
             />
             {queueAllQuestsVisible && (
                 <Menu.MenuItem
                     id={q(`${navId}-queue-all-quests`)}
-                    label={"Queue All Quests" + labelSuffix}
+                    label={"すべてのクエストをキューに追加" + labelSuffix}
                     action={() => {
                         const queueAllPromise = processQuests(getQueueableAutoCompleteQuests(), { autoComplete: true });
 
@@ -193,7 +193,7 @@ export function QuestButtonContextMenu({ dummy = false }: { dummy?: boolean; }):
             {clearQueueVisible && (
                 <Menu.MenuItem
                     id={q(`${navId}-clear-queue`)}
-                    label="Clear Quest Queue"
+                    label="クエストキューをクリア"
                     action={() => {
                         stopAllAutoCompletes({
                             manual: true,
@@ -208,7 +208,7 @@ export function QuestButtonContextMenu({ dummy = false }: { dummy?: boolean; }):
             {automationControlsVisible && settings.autoEnrollQuests && (
                 <Menu.MenuItem
                     id={q(`${navId}-pause-auto-enrollment`)}
-                    label={settings.autoEnrollQuestsUnpaused === false ? "Unpause Auto-Enrollment" : "Pause Auto-Enrollment"}
+                    label={settings.autoEnrollQuestsUnpaused === false ? "自動参加を再開" : "自動参加を一時停止"}
                     dontCloseOnAction
                     action={() => {
                         settings.autoEnrollQuestsUnpaused = settings.autoEnrollQuestsUnpaused === false;
@@ -220,7 +220,7 @@ export function QuestButtonContextMenu({ dummy = false }: { dummy?: boolean; }):
             {automationControlsVisible && settings.autoCompleteQuests && (
                 <Menu.MenuItem
                     id={q(`${navId}-pause-auto-processing`)}
-                    label={settings.autoCompleteQuestsUnpaused === false ? "Unpause Auto-Processing" : "Pause Auto-Processing"}
+                    label={settings.autoCompleteQuestsUnpaused === false ? "自動処理を再開" : "自動処理を一時停止"}
                     dontCloseOnAction
                     action={() => {
                         settings.autoCompleteQuestsUnpaused = settings.autoCompleteQuestsUnpaused === false;
@@ -231,7 +231,7 @@ export function QuestButtonContextMenu({ dummy = false }: { dummy?: boolean; }):
             )}
             <Menu.MenuItem
                 id={q(`${navId}-fetch-quests`)}
-                label="Fetch Quests"
+                label="クエストを取得"
                 action={() => { void fetchAndAlertQuests("MANUAL_FETCH"); }}
                 disabled={fetchQuestsDisabled}
             />

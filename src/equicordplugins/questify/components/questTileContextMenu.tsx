@@ -38,7 +38,7 @@ export function QuestTileContextMenu(
             {canEnroll && (
                 <Menu.MenuItem
                     id={q("enroll-in-quest")}
-                    label="Enroll in Quest"
+                    label="クエストに参加"
                     action={async () => {
                         if ((await ensureQuestEnrolled(quest)).type === "success") {
                             rerenderQuests();
@@ -49,7 +49,7 @@ export function QuestTileContextMenu(
             {isAutoCompleting ? (
                 <Menu.MenuItem
                     id={q("stop-auto-complete")}
-                    label="Stop Auto-Complete"
+                    label="自動完了を停止"
                     action={() => {
                         stopQuestAutoComplete(quest, {
                             manual: true,
@@ -62,7 +62,7 @@ export function QuestTileContextMenu(
             ) : canStartAutoComplete ? (
                 <Menu.MenuItem
                     id={q("start-auto-complete")}
-                    label="Start Auto-Complete"
+                    label="自動完了を開始"
                     action={async () => {
                         if (await enrollAndStartQuestAutoComplete(quest)) {
                             rerenderQuests();
@@ -73,19 +73,19 @@ export function QuestTileContextMenu(
             {!isClaimedMenu && (!isIgnored ? (
                 <Menu.MenuItem
                     id={q("ignore-quest")}
-                    label="Mark as Ignored"
+                    label="無視済みにする"
                     action={() => addIgnoredQuest(quest.id)}
                 />
             ) : (
                 <Menu.MenuItem
                     id={q("unignore-quest")}
-                    label="Unmark as Ignored"
+                    label="無視済みを解除"
                     action={() => removeIgnoredQuest(quest.id)}
                 />
             ))}
             <Menu.MenuItem
                 id={q("copy-quest-id")}
-                label="Copy Quest ID"
+                label="クエストIDをコピー"
                 action={() => copyToClipboard(quest.id)}
             />
         </Menu.MenuGroup>
