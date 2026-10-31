@@ -10,6 +10,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -139,7 +140,34 @@ internal sealed class MainForm : Form
 
             ExtractCli();
 
-            if (!uninstall && IsDiscordRunning())
+            // 対象の Discord を決める。CLI の対話式の選択画面は GUI からは
+            // 操作できないため、--location / --branch で非対話に指定する
+            var installs = FindDiscordInstalls();
+            string targetArgs;
+            if (installs.Count == 1)
+            {
+                targetArgs = $" --location \"{installs[0].Path}\"";
+                AppendLog($"対象の Discord: {installs[0].DisplayName} ({installs[0].Path})");
+            }
+            else if (installs.Count >= 2)
+            {
+                var chosen = ChooseDiscord(installs, uninstall);
+                if (chosen == null)
+                {
+                    statusLabel.Text = "中止しました。";
+                    AppendLog("ユーザーにより中止されました。");
+                    return;
+                }
+                targetArgs = $" --location \"{chosen.Path}\"";
+                AppendLog($"対象の Discord: {chosen.DisplayName} ({chosen.Path})");
+            }
+            else
+            {
+                targetArgs = " --branch auto";
+                AppendLog("Discord の場所を自動検出します。");
+            }
+
+            if (IsDiscordRunning())
             {
                 var answer = MessageBox.Show(
                     this,
@@ -161,7 +189,7 @@ internal sealed class MainForm : Form
             progressBar.Style = ProgressBarStyle.Marquee;
             AppendLog(uninstall ? "アンインストールを開始します。" : "インストールを開始します。");
 
-            var exitCode = await RunCliAsync(uninstall ? "--uninstall" : "--install");
+            var exitCode = await RunCliAsync((uninstall ? "--uninstall" : "--install") + targetArgs);
 
             progressBar.Style = ProgressBarStyle.Continuous;
             if (exitCode == 0)
@@ -347,6 +375,89 @@ internal sealed class MainForm : Form
                 p.Dispose();
             }
         }
+    }
+
+    private sealed class DiscordCandidate
+    {
+        public string Branch = "";
+        public string DisplayName = "";
+        public string Path = "";
+    }
+
+    // 標準的な場所にある Discord を探す（app-* フォルダがあるものだけを対象にする）
+    private static List<DiscordCandidate> FindDiscordInstalls()
+    {
+        var local = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        var defs = new[]
+        {
+            ("stable", "Stable", "Discord"),
+            ("ptb", "PTB", "DiscordPTB"),
+            ("canary", "Canary", "DiscordCanary")
+        };
+        var list = new List<DiscordCandidate>();
+        foreach (var (branch, name, folder) in defs)
+        {
+            var path = Path.Combine(local, folder);
+            if (Directory.Exists(path) && Directory.GetDirectories(path, "app-*").Length > 0)
+                list.Add(new DiscordCandidate { Branch = branch, DisplayName = name, Path = path });
+        }
+        return list;
+    }
+
+    // 複数の Discord がある場合の選択ダイアログ
+    private DiscordCandidate? ChooseDiscord(List<DiscordCandidate> installs, bool uninstall)
+    {
+        using var form = new Form
+        {
+            Text = uninstall ? "アンインストール対象の選択" : "インストール対象の選択",
+            ClientSize = new Size(440, 130 + installs.Count * 30),
+            FormBorderStyle = FormBorderStyle.FixedDialog,
+            MaximizeBox = false,
+            MinimizeBox = false,
+            StartPosition = FormStartPosition.CenterParent,
+            Font = Font
+        };
+        var label = new Label
+        {
+            Text = "Discord が複数見つかりました。対象を選んでください。",
+            Location = new Point(16, 14),
+            Size = new Size(408, 22)
+        };
+        form.Controls.Add(label);
+
+        var radios = new List<RadioButton>();
+        for (var i = 0; i < installs.Count; i++)
+        {
+            var c = installs[i];
+            var radio = new RadioButton
+            {
+                Text = $"{c.DisplayName} - {c.Path}",
+                Location = new Point(20, 44 + i * 30),
+                Size = new Size(404, 24),
+                Checked = i == 0,
+                Tag = c
+            };
+            radios.Add(radio);
+            form.Controls.Add(radio);
+        }
+
+        DiscordCandidate? result = null;
+        var okButton = new Button
+        {
+            Text = "決定",
+            Size = new Size(110, 32),
+            Location = new Point(314, 56 + installs.Count * 30)
+        };
+        okButton.Click += (s, e) =>
+        {
+            result = radios.First(r => r.Checked).Tag as DiscordCandidate;
+            form.DialogResult = DialogResult.OK;
+            form.Close();
+        };
+        form.Controls.Add(okButton);
+        form.AcceptButton = okButton;
+
+        return form.ShowDialog(this) == DialogResult.OK ? result : null;
     }
 
     private static readonly string[] DiscordProcessNames = { "Discord", "DiscordPTB", "DiscordCanary", "DiscordDevelopment" };
