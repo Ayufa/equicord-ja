@@ -8,8 +8,21 @@ name: Release Installer exe
 on:
     workflow_dispatch:
         inputs:
-            tag:
-                description: "リリースのタグ（空欄なら日時から自動生成）"
+            version:
+                description: "バージョン（例: 1.2.0。空欄なら前回から自動で繰り上げ）"
+                required: false
+                type: string
+            bump:
+                description: "空欄で自動繰り上げする場合の上げ方"
+                required: false
+                type: choice
+                options:
+                    - patch
+                    - minor
+                    - major
+                default: patch
+            notes:
+                description: "今回の変更内容（不具合修正の内容など。リリースノートに載ります）"
                 required: false
                 type: string
 
@@ -60,23 +73,45 @@ jobs:
                       -c Release -o out
                   Get-Item out/EquicordJA-Setup.exe | Select-Object Name, Length
 
-            - name: Decide release tag
+            - name: Decide version and tag
               id: tag
               shell: pwsh
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
-                  $tag = "${{ inputs.tag }}"
-                  if ([string]::IsNullOrWhiteSpace($tag)) {
-                      $tag = "setup-" + (Get-Date -Format "yyyyMMdd-HHmm")
+                  $version = "${{ inputs.version }}"
+                  if ([string]::IsNullOrWhiteSpace($version)) {
+                      $bump = "${{ inputs.bump }}"
+                      if ([string]::IsNullOrWhiteSpace($bump)) { $bump = "patch" }
+                      $tags = gh release list --limit 100 --json tagName --jq '.[].tagName'
+                      $latest = $tags | Where-Object { $_ -match '^v\d+\.\d+\.\d+$' } | Select-Object -First 1
+                      if ($latest) {
+                          $parts = $latest.TrimStart('v').Split('.') | ForEach-Object { [int]$_ }
+                          switch ($bump) {
+                              "major" { $parts[0]++; $parts[1] = 0; $parts[2] = 0 }
+                              "minor" { $parts[1]++; $parts[2] = 0 }
+                              default { $parts[2]++ }
+                          }
+                          $version = "$($parts[0]).$($parts[1]).$($parts[2])"
+                      } else {
+                          $version = "1.0.0"
+                      }
                   }
-                  "tag=$tag" >> $env:GITHUB_OUTPUT
+                  "version=$version" >> $env:GITHUB_OUTPUT
+                  "tag=v$version" >> $env:GITHUB_OUTPUT
 
             - name: Create GitHub Release
               shell: pwsh
               env:
                   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
+                  $changes = "${{ inputs.notes }}"
+                  if ([string]::IsNullOrWhiteSpace($changes)) { $changes = "- 保守・改善のための更新" }
                   $notes = @"
                   日本語化した Equicord を Discord にインストールする exe です。
+
+                  ## 今回の変更内容
+                  $changes
 
                   ## 使い方
                   1. 下の EquicordJA-Setup.exe をダウンロード
@@ -88,7 +123,7 @@ jobs:
                   - 更新は Discord 内の Equicord 設定「Updater」からもできます（このリポジトリの最新リリースを見に行きます）。exe を再実行して上書き更新もできます。
                   - アンインストール: 起動して「アンインストール」ボタンを押してください。
                   "@
-                  $hash = git rev-parse HEAD
+                  $hash = git rev-parse --short=8 HEAD
                   gh release create "${{ steps.tag.outputs.tag }}" "out/EquicordJA-Setup.exe" "dist/desktop.asar" `
-                      --title "Equicord JA Setup ${{ steps.tag.outputs.tag }} $hash" `
+                      --title "Equicord JA v${{ steps.tag.outputs.version }} $hash" `
                       --notes $notes

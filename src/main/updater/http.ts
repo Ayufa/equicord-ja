@@ -57,7 +57,8 @@ async function fetchUpdate() {
     const data = await githubGet("/releases/latest");
 
     const hash = data.name.slice(data.name.lastIndexOf(" ") + 1);
-    if (hash === gitHash)
+    // [equicord-ja] リリースタイトルには短縮ハッシュを載せるため、前方一致でも最新とみなす
+    if (hash === gitHash || gitHash.startsWith(hash))
         return false;
 
     const asset = data.assets.find(a => a.name === ASAR_FILE);
