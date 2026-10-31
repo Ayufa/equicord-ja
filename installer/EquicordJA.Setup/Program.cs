@@ -126,6 +126,10 @@ internal sealed class MainForm : Form
             Directory.CreateDirectory(installDir);
             Directory.CreateDirectory(installerDir);
 
+            // 前回の実行でインストーラー本体 (EquilotlCli) が残っていると
+            // ファイルがロックされて上書きできないため、先に終了させる
+            KillStaleCli();
+
             if (!uninstall)
             {
                 statusLabel.Text = "ファイルを配置しています...";
@@ -133,7 +137,7 @@ internal sealed class MainForm : Form
                 AppendLog("Equicord JA 本体を配置しました: " + asarPath);
             }
 
-            ExtractFileResource("EquilotlCli.exe", cliPath);
+            ExtractCli();
 
             if (!uninstall && IsDiscordRunning())
             {
@@ -174,6 +178,17 @@ internal sealed class MainForm : Form
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
+            else if (exitCode == -2)
+            {
+                progressBar.Value = 0;
+                statusLabel.Text = "インストーラーが応答しなかったため、強制終了しました。";
+                MessageBox.Show(
+                    this,
+                    "インストーラーが2分間応答しなかったため、強制終了しました。\nもう一度お試しください。",
+                    "エラー",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
             else
             {
                 progressBar.Value = 0;
@@ -210,6 +225,7 @@ internal sealed class MainForm : Form
             Arguments = arguments,
             UseShellExecute = false,
             CreateNoWindow = true,
+            RedirectStandardInput = true,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             StandardOutputEncoding = Encoding.UTF8,
@@ -225,9 +241,21 @@ internal sealed class MainForm : Form
 
         if (!process.Start())
             throw new InvalidOperationException("インストーラーを起動できませんでした。");
+        // 標準入力はすぐ閉じる。開いたままだと、CLI が入力待ちで止まり続けることがある
+        process.StandardInput.Close();
         process.BeginOutputReadLine();
         process.BeginErrorReadLine();
-        await process.WaitForExitAsync();
+
+        // 応答がなくなった場合に備えた見張り（2分で強制終了）
+        var exitTask = process.WaitForExitAsync();
+        var finished = await Task.WhenAny(exitTask, Task.Delay(TimeSpan.FromSeconds(120)));
+        if (finished != exitTask)
+        {
+            AppendLog("インストーラーの応答がないため、強制終了しました。");
+            try { process.Kill(entireProcessTree: true); } catch { /* 既に終了している場合など */ }
+            await exitTask;
+            return -2;
+        }
         return process.ExitCode;
     }
 
@@ -267,6 +295,58 @@ internal sealed class MainForm : Form
         using var src = OpenResource(name);
         using var dst = File.Create(destPath);
         src.CopyTo(dst);
+    }
+
+    // EquilotlCli.exe の展開。前回の残留プロセス等でロックされている場合は
+    // 残留プロセスを終了させて再試行し、それでも無理なら既存ファイルを使う。
+    private void ExtractCli()
+    {
+        try
+        {
+            ExtractFileResource("EquilotlCli.exe", cliPath);
+            return;
+        }
+        catch (IOException)
+        {
+            KillStaleCli();
+        }
+
+        try
+        {
+            if (File.Exists(cliPath)) File.Delete(cliPath);
+            ExtractFileResource("EquilotlCli.exe", cliPath);
+        }
+        catch (IOException)
+        {
+            if (!File.Exists(cliPath)) throw;
+            AppendLog("既存のインストーラー本体をそのまま使います。");
+        }
+    }
+
+    // このセットアップが配置した EquilotlCli.exe のプロセスだけを終了させる
+    private void KillStaleCli()
+    {
+        foreach (var p in Process.GetProcessesByName("EquilotlCli"))
+        {
+            try
+            {
+                var path = p.MainModule?.FileName;
+                if (path != null && string.Equals(path, cliPath, StringComparison.OrdinalIgnoreCase))
+                {
+                    p.Kill();
+                    p.WaitForExit(3000);
+                    AppendLog("前回のインストーラープロセスが残っていたため、終了させました。");
+                }
+            }
+            catch
+            {
+                // 権限不足や既に終了している場合は無視する
+            }
+            finally
+            {
+                p.Dispose();
+            }
+        }
     }
 
     private static readonly string[] DiscordProcessNames = { "Discord", "DiscordPTB", "DiscordCanary", "DiscordDevelopment" };
