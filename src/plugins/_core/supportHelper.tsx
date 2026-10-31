@@ -375,19 +375,19 @@ export default definePlugin({
                         <ConfirmModal
                             {...props}
                             variant="primary"
-                            title="Hold on!"
-                            confirmText="Update & Restart Now"
-                            cancelText="View Updates"
+                            title="ちょっと待って！"
+                            confirmText="アップデートして今すぐ再起動"
+                            cancelText="アップデートを見る"
                             onConfirm={forceUpdate}
                             onCancel={() => openSettingsTabModal(UpdaterTab!)}
                         >
                             <div>
-                                <Paragraph>You are using an outdated version of Equicord! Chances are, your issue is already fixed.</Paragraph>
+                                <Paragraph>Equicord のバージョンが古くなっています！お困りの問題は、すでに修正されている可能性があります。</Paragraph>
                                 <Paragraph className={Margins.top8}>
-                                    Please first update before asking for support!
+                                    サポートに聞く前に、まずアップデートしてください！
                                 </Paragraph>
                                 <Paragraph className={Margins.top8}>
-                                    If you know what you're doing or cannot update, you can dismiss this prompt.
+                                    内容を理解している場合やアップデートできない場合は、この表示を閉じてもかまいません。
                                 </Paragraph>
                             </div>
                         </ConfirmModal>
@@ -446,9 +446,9 @@ export default definePlugin({
                     onClick={async () => {
                         try {
                             if (await forceUpdate())
-                                showToast({ text: "Success! Restarting...", variant: "success" });
+                                showToast({ text: "成功！再起動しています...", variant: "success" });
                             else
-                                showToast({ text: "Already up to date!" });
+                                showToast({ text: "すでに最新です！" });
                         } catch (e) {
                             new Logger(this.name).error("Error while updating:", e);
                             showToast({ text: "Failed to update :(", variant: "critical" });

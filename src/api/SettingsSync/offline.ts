@@ -14,7 +14,7 @@ import { DataStore } from "..";
 type BackupType = "all" | "plugins" | "css" | "datastore";
 
 const toastSuccess = () =>
-    showToast({ text: "Settings successfully imported. Restart to apply changes!", variant: "success" });
+    showToast({ text: "設定をインポートしました。変更を適用するには再起動してください！", variant: "success" });
 
 const toastFailure = (err: any) =>
     showToast({ text: `Failed to import settings: ${String(err)}`, variant: "critical" });

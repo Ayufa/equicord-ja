@@ -16,10 +16,10 @@ import { relaunch } from "./native";
 export function promptToRestart(
     type: "relaunch" | "reload",
     {
-        title = "Restart Required",
-        subtitle = "A restart is required to apply this change",
-        confirmText = "Restart now",
-        cancelText = "Later!",
+        title = "再起動が必要です",
+        subtitle = "この変更を適用するには再起動が必要です",
+        confirmText = "今すぐ再起動",
+        cancelText = "あとで",
         ...props
     }: Partial<ConfirmModalProps> = {}
 ) {

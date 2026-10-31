@@ -32,7 +32,7 @@ const settings = definePluginSettings({
     },
     disableStackDumping: {
         type: OptionType.BOOLEAN,
-        description: "Print a native stack trace to the console when Discord crashes. Requires full restart.",
+        description: "Discord のクラッシュ時にネイティブのスタックトレースをコンソールに出力します。完全な再起動が必要です。",
         default: false,
         restartNeeded: true,
         target: "DESKTOP"

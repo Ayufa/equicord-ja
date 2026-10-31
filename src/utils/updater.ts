@@ -75,7 +75,7 @@ export async function maybePromptToUpdate(confirmMessage: string, checkForDev = 
         const isOutdated = await checkForUpdates();
         if (isOutdated) {
             const wantsUpdate = confirm(confirmMessage);
-            if (wantsUpdate && isNewer) return alert("Your local copy has more recent commits. Please stash or reset them.");
+            if (wantsUpdate && isNewer) return alert("ローカルのコピーの方が新しいコミットを含んでいます。stash するかリセットしてください。");
             if (wantsUpdate) {
                 await update();
                 relaunch();
@@ -83,6 +83,6 @@ export async function maybePromptToUpdate(confirmMessage: string, checkForDev = 
         }
     } catch (err) {
         UpdateLogger.error(err);
-        alert("That also failed :( Try updating or re-installing with the installer!");
+        alert("それも失敗しました :( アップデートするか、インストーラーで入れ直してみてください！");
     }
 }
