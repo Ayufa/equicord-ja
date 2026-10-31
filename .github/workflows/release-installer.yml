@@ -1,0 +1,94 @@
+name: Release Installer exe
+
+# 手動実行で、起動するだけで日本語版 Equicord を Discord にインストールできる
+# 単体 exe (EquicordJA-Setup.exe) をビルドして GitHub Release に公開する。
+# 本家リポジトリには一切アクセスしない（EquilotlCli.exe の公開リリース
+# ファイルをダウンロードするだけ。これは本家の pnpm inject も行っている）。
+
+on:
+    workflow_dispatch:
+        inputs:
+            tag:
+                description: "リリースのタグ（空欄なら日時から自動生成）"
+                required: false
+                type: string
+
+permissions:
+    contents: write
+
+jobs:
+    build-installer:
+        runs-on: windows-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Setup Node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+
+            - name: Build Equicord
+              shell: pwsh
+              run: |
+                  corepack enable
+                  pnpm install --frozen-lockfile
+                  pnpm build
+
+            - name: Download Equilotl CLI installer
+              shell: pwsh
+              run: |
+                  Invoke-WebRequest `
+                      -Uri "https://github.com/Equicord/Equilotl/releases/latest/download/EquilotlCli.exe" `
+                      -OutFile "installer/EquicordJA.Setup/EquilotlCli.exe"
+
+            - name: Create payload.zip (dist/desktop without sourcemaps)
+              shell: pwsh
+              run: |
+                  $files = Get-ChildItem "dist/desktop" -File | Where-Object { $_.Extension -ne ".map" }
+                  Compress-Archive -Path $files.FullName -DestinationPath "installer/EquicordJA.Setup/payload.zip"
+
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v4
+              with:
+                  dotnet-version: 8.0.x
+
+            - name: Publish launcher exe
+              shell: pwsh
+              run: |
+                  dotnet publish installer/EquicordJA.Setup/EquicordJA.Setup.csproj `
+                      -c Release -o out
+                  Get-Item out/EquicordJA-Setup.exe | Select-Object Name, Length
+
+            - name: Decide release tag
+              id: tag
+              shell: pwsh
+              run: |
+                  $tag = "${{ inputs.tag }}"
+                  if ([string]::IsNullOrWhiteSpace($tag)) {
+                      $tag = "setup-" + (Get-Date -Format "yyyyMMdd-HHmm")
+                  }
+                  "tag=$tag" >> $env:GITHUB_OUTPUT
+
+            - name: Create GitHub Release
+              shell: pwsh
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  $notes = @"
+                  日本語化した Equicord を Discord にインストールする exe です。
+
+                  ## 使い方
+                  1. 下の EquicordJA-Setup.exe をダウンロード
+                  2. 起動するだけ（Discord が起動中なら、終了するか聞かれます）
+                  3. 完了したら Discord を起動
+
+                  - 初回は Windows SmartScreen の警告が出ることがあります。その場合は「詳細情報」→「実行」を選んでください（署名のない個人ビルドのため）。
+                  - ファイルは %LOCALAPPDATA%\equicord-ja に展開され、そこを参照する形でインストールされます。この exe を再実行すると、その時点のビルドで上書き更新されます。
+                  - アンインストール: コマンドラインから `EquicordJA-Setup.exe uninstall` を実行。
+
+                  ## 注意
+                  Equicord 内蔵の自動アップデーターは使わないでください（本家の英語ビルドで上書きされます）。更新は新しい exe をリリースし直して実行してください。
+                  "@
+                  gh release create "${{ steps.tag.outputs.tag }}" "out/EquicordJA-Setup.exe" `
+                      --title "Equicord JA Setup ${{ steps.tag.outputs.tag }}" `
+                      --notes $notes

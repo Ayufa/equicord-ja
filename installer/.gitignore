@@ -1,0 +1,6 @@
+# CI がビルド時に取得・生成するファイル（リポジトリには含めない）
+EquicordJA.Setup/payload.zip
+EquicordJA.Setup/EquilotlCli.exe
+EquicordJA.Setup/bin/
+EquicordJA.Setup/obj/
+out/
