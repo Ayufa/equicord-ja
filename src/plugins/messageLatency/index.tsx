@@ -35,22 +35,22 @@ export default definePlugin({
     settings: definePluginSettings({
         latency: {
             type: OptionType.NUMBER,
-            description: "Threshold in seconds for latency indicator",
+            description: "レイテンシインジケーターのしきい値（秒）",
             default: 2
         },
         detectDiscordKotlin: {
             type: OptionType.BOOLEAN,
-            description: "Detect old Discord Android clients",
+            description: "古い Discord Android クライアントを検出します",
             default: true
         },
         showMillis: {
             type: OptionType.BOOLEAN,
-            description: "Show milliseconds",
+            description: "ミリ秒を表示します",
             default: false
         },
         ignoreSelf: {
             type: OptionType.BOOLEAN,
-            description: "Don't add indicator to your own messages",
+            description: "自分のメッセージにはインジケーターを追加しません",
             default: false
         }
     }),

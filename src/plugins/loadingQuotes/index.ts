@@ -27,28 +27,28 @@ const noQuotesQuote = "Did you really disable all loading quotes? What a buffoon
 
 const settings = definePluginSettings({
     replaceEvents: {
-        description: "Should this plugin also apply during events with special event themed quotes? (e.g. Halloween)",
+        description: "特別なイベント用セリフがあるイベント時（例: ハロウィン）にもこのプラグインを適用するかどうか",
         type: OptionType.BOOLEAN,
         default: true
     },
     enablePluginPresetQuotes: {
-        description: "Enable the quotes preset by this plugin",
+        description: "このプラグインのプリセットセリフを有効にします",
         type: OptionType.BOOLEAN,
         default: true
     },
     enableDiscordPresetQuotes: {
-        description: "Enable Discord's preset quotes (including event quotes, during events)",
+        description: "Discord のプリセットセリフを有効にします（イベント期間中はイベント用セリフを含みます）",
         type: OptionType.BOOLEAN,
         default: false
     },
     additionalQuotes: {
-        description: "Additional custom quotes to possibly appear, separated by the below delimiter",
+        description: "表示される可能性のある追加のカスタムセリフ（下記の区切り文字で区切ります）",
         type: OptionType.STRING,
         default: "",
         multiline: true
     },
     additionalQuotesDelimiter: {
-        description: "Delimiter for additional quotes",
+        description: "追加セリフの区切り文字",
         type: OptionType.STRING,
         default: "|",
     },

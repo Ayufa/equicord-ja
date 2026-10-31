@@ -26,23 +26,23 @@ let notifyFor: string[] = [];
 export const settings = definePluginSettings({
     position: {
         type: OptionType.SELECT,
-        description: "The position of the toast notification.",
+        description: "トースト通知の表示位置。",
         options: [
             {
-                label: "Bottom Left",
+                label: "左下",
                 value: "bottom-left",
                 default: true
             },
             {
-                label: "Top Left",
+                label: "左上",
                 value: "top-left"
             },
             {
-                label: "Top Right",
+                label: "右上",
                 value: "top-right"
             },
             {
-                label: "Bottom Right",
+                label: "右下",
                 value: "bottom-right"
             },
         ],
@@ -50,64 +50,64 @@ export const settings = definePluginSettings({
     },
     timeout: {
         type: OptionType.SLIDER,
-        description: "Time in seconds notifications will be shown for.",
+        description: "通知が表示される時間（秒）。",
         default: 5,
         markers: makeRange(1, 15, 1)
     },
     opacity: {
         type: OptionType.SLIDER,
-        description: "The visible opacity of the notification.",
+        description: "通知の不透明度。",
         default: 100,
         markers: makeRange(10, 100, 10)
     },
     maxNotifications: {
         type: OptionType.SLIDER,
-        description: "Maximum number of notifications displayed at once.",
+        description: "同時に表示される通知の最大数。",
         default: 3,
         markers: makeRange(1, 5, 1)
     },
     disableInStreamerMode: {
         type: OptionType.BOOLEAN,
-        description: "Do not show notifications when streamer mode is enabled.",
+        description: "配信者モードが有効なときは通知を表示しない。",
         default: true
     },
     respectDoNotDisturb: {
         type: OptionType.BOOLEAN,
-        description: "Do not show notifications when your status is Do Not Disturb.",
+        description: "ステータスが取り込み中のときは通知を表示しない。",
         default: false
     },
     directMessages: {
         type: OptionType.BOOLEAN,
-        description: "Show notifications for direct messages.",
+        description: "ダイレクトメッセージの通知を表示する。",
         default: true
     },
     groupMessages: {
         type: OptionType.BOOLEAN,
-        description: "Show notifications for group messages.",
+        description: "グループメッセージの通知を表示する。",
         default: true
     },
     friendServerNotifications: {
         type: OptionType.BOOLEAN,
-        description: "Show notifications when friends send messages in servers they share with you.",
+        description: "フレンドが共通のサーバーでメッセージを送信したときに通知を表示する。",
         default: true
     },
     ignoreUsers: {
         type: OptionType.STRING,
-        description: "A list of user IDs (separate by commas) to ignore displaying notifications for.",
+        description: "通知を表示しないユーザーIDのリスト（カンマ区切り）。",
         onChange: () => { ignoredUsers = parseIdList(settings.store.ignoreUsers); },
         default: "",
         placeholder: "000000000000000000,111111111111111111,222222222222222222"
     },
     notifyFor: {
         type: OptionType.STRING,
-        description: "A list of channel IDs (separate by commas) to always receive notifications from.",
+        description: "常に通知を受け取るチャンネルIDのリスト（カンマ区切り）。",
         onChange: () => { notifyFor = parseIdList(settings.store.notifyFor); },
         default: "",
         placeholder: "000000000000000000,111111111111111111,222222222222222222"
     },
     exampleButton: {
         type: OptionType.COMPONENT,
-        description: "Show an example toast notification.",
+        description: "サンプルのトースト通知を表示する。",
         component: () => <Button onClick={showExampleNotification}>Show Example Notification</Button>
     }
 });

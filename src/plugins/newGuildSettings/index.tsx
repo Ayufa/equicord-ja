@@ -41,52 +41,52 @@ const collapsedChannels = findByPropsLazy("toggleCollapseGuild");
 
 const settings = definePluginSettings({
     guild: {
-        description: "Mute Guild automatically",
+        description: "サーバーを自動的にミュートします",
         type: OptionType.BOOLEAN,
         default: true
     },
     messages: {
-        description: "Server Notification Settings",
+        description: "サーバーの通知設定",
         type: OptionType.SELECT,
         options: [
-            { label: "All messages", value: 0 },
-            { label: "Only @mentions", value: 1 },
-            { label: "Nothing", value: 2 },
-            { label: "Server default", value: 3, default: true }
+            { label: "すべてのメッセージ", value: 0 },
+            { label: "@メンションのみ", value: 1 },
+            { label: "なし", value: 2 },
+            { label: "サーバーのデフォルト", value: 3, default: true }
         ],
     },
     everyone: {
-        description: "Suppress @everyone and @here",
+        description: "@everyone と @here を抑制します",
         type: OptionType.BOOLEAN,
         default: true
     },
     role: {
-        description: "Suppress All Role @mentions",
+        description: "すべてのロールメンションを抑制します",
         type: OptionType.BOOLEAN,
         default: true
     },
     highlights: {
-        description: "Suppress Highlights automatically",
+        description: "ハイライトを自動的に抑制します",
         type: OptionType.BOOLEAN,
         default: true
     },
     events: {
-        description: "Mute New Events automatically",
+        description: "新しいイベントを自動的にミュートします",
         type: OptionType.BOOLEAN,
         default: true
     },
     showAllChannels: {
-        description: "Show all channels automatically",
+        description: "すべてのチャンネルを自動的に表示します",
         type: OptionType.BOOLEAN,
         default: true
     },
     mobilePush: {
-        description: "Mute Mobile Push Notifications automatically",
+        description: "モバイルプッシュ通知を自動的にミュートします",
         type: OptionType.BOOLEAN,
         default: true
     },
     voiceChannels: {
-        description: "Hide names in Voice channels automatically",
+        description: "ボイスチャンネルで名前を自動的に隠します",
         type: OptionType.BOOLEAN,
         default: false
     }

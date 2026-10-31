@@ -26,19 +26,19 @@ const settings = definePluginSettings({
     defaultVoiceMessageSpeed: {
         type: OptionType.SLIDER,
         default: 1,
-        description: "Voice messages",
+        description: "ボイスメッセージ",
         markers: speeds,
     },
     defaultVideoSpeed: {
         type: OptionType.SLIDER,
         default: 1,
-        description: "Videos",
+        description: "動画",
         markers: speeds,
     },
     defaultAudioSpeed: {
         type: OptionType.SLIDER,
         default: 1,
-        description: "Audios",
+        description: "音声",
         markers: speeds,
     },
 });

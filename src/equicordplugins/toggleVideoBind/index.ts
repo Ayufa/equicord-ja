@@ -21,23 +21,23 @@ const validKeycodes = [
 
 const settings = definePluginSettings({
     keyBind: {
-        description: "The key to toggle webcam when pressed.",
+        description: "押したときにウェブカメラを切り替えるキー。",
         type: OptionType.STRING,
         default: "KeyX",
         isValid: (value: string) => validKeycodes.includes(value),
     },
     reqCtrl: {
-        description: "Require control to be held.",
+        description: "Ctrlキーを押している必要がある。",
         type: OptionType.BOOLEAN,
         default: true,
     },
     reqShift: {
-        description: "Require shift to be held.",
+        description: "Shiftキーを押している必要がある。",
         type: OptionType.BOOLEAN,
         default: true,
     },
     reqAlt: {
-        description: "Require alt to be held.",
+        description: "Altキーを押している必要がある。",
         type: OptionType.BOOLEAN,
         default: false,
     },

@@ -29,16 +29,16 @@ const AppsIcon = findComponentByCodeLazy("2.95H20a2 2 0");
 export const settings = definePluginSettings({
     allowlistedChannels: {
         type: OptionType.STRING,
-        description: "Comma separated list of channels where the Install Plugin button should be displayed. It is always displayed in the Vencord Userplugin channels"
+        description: "「プラグインをインストール」ボタンを表示するチャンネルのカンマ区切りリスト。Vencordのユーザープラグインチャンネルでは常に表示されます"
     },
     notifyIfUpdate: {
         type: OptionType.BOOLEAN,
-        description: "Show a Vencord notification if UserPlugins need to be updated",
+        description: "ユーザープラグインの更新が必要なときにVencordの通知を表示する",
         default: true
     },
     neverNotifyForPlugins: {
         type: OptionType.STRING,
-        description: "Never show update notifications for these plugins (you can still update them from the UserPlugins tab)",
+        description: "これらのプラグインについては更新通知を表示しない（ユーザープラグインタブからは更新できます）",
         default: ""
     },
     setGitPath: {

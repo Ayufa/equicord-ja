@@ -14,13 +14,13 @@ import { ChannelStore, UserStore } from "@webpack/common";
 const settings = definePluginSettings({
     globalMention: {
         type: OptionType.BOOLEAN,
-        description: "Mention users from any server, not just the current one",
+        description: "現在のサーバーだけでなく、どのサーバーのユーザーでもメンションできるようにする",
         default: false,
         restartNeeded: true
     },
     onlyDMUsers: {
         type: OptionType.BOOLEAN,
-        description: "Only show users you've had DMs with",
+        description: "DMしたことのあるユーザーだけを表示する",
         default: false,
         restartNeeded: true
     }

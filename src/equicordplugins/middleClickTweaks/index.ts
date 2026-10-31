@@ -50,26 +50,26 @@ function handleMouseUp(event: MouseEvent) {
 const settings = definePluginSettings({
     openScope: {
         type: OptionType.SELECT,
-        description: "Prevent middle clicking on these content types from opening them.",
+        description: "これらのコンテンツタイプを中クリックで開かないようにします。",
         options: [
-            { label: "Links", value: "links" },
-            { label: "Media", value: "media" },
-            { label: "Links & Media", value: "both" },
-            { label: "None", value: "none", default: true },
+            { label: "リンク", value: "links" },
+            { label: "メディア", value: "media" },
+            { label: "リンクとメディア", value: "both" },
+            { label: "なし", value: "none", default: true },
         ],
         onChange(newValue) { updateListeners(newValue !== "none"); }
     },
     pasteScope: {
         type: OptionType.SELECT,
-        description: "Prevent middle click from pasting during these situations.",
+        description: "これらの状況で中クリックによる貼り付けを防止します。",
         options: [
-            { label: "Always Prevent Middle Click Pasting", value: "always", default: true },
-            { label: "Only Prevent When Text Area Not Focused", value: "focus" },
+            { label: "常に中クリック貼り付けを防止", value: "always", default: true },
+            { label: "テキストエリアにフォーカスがないときだけ防止", value: "focus" },
         ]
     },
     pasteThreshold: {
         type: OptionType.NUMBER,
-        description: "Milliseconds until pasting is enabled again after a middle click.",
+        description: "中クリック後に貼り付けが再び有効になるまでのミリ秒。",
         default: 100,
         onChange(newValue) { if (newValue < 1) { settings.store.pasteThreshold = 1; } }
     }

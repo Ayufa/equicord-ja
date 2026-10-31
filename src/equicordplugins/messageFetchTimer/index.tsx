@@ -26,17 +26,17 @@ const channelTimings: Map<string, { time: number; timestamp: Date; }> = new Map(
 const settings = definePluginSettings({
     showIcon: {
         type: OptionType.BOOLEAN,
-        description: "Show fetch time icon in message bar",
+        description: "メッセージバーに取得時間アイコンを表示",
         default: true,
     },
     showMs: {
         type: OptionType.BOOLEAN,
-        description: "Show milliseconds in timing",
+        description: "タイミングにミリ秒を表示",
         default: true,
     },
     iconColor: {
         type: OptionType.STRING,
-        description: "Icon color (CSS color value)",
+        description: "アイコンの色（CSS の色の値）",
         default: "#00d166",
     }
 });

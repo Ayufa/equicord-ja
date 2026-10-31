@@ -29,11 +29,11 @@ const enum Intensity {
 
 const settings = definePluginSettings({
     superIntensePartyMode: {
-        description: "Party intensity",
+        description: "パーティーの強度",
         type: OptionType.SELECT,
         options: [
-            { label: "Normal", value: Intensity.Normal, default: true },
-            { label: "Better", value: Intensity.Better },
+            { label: "通常", value: Intensity.Normal, default: true },
+            { label: "ベター", value: Intensity.Better },
             { label: "Project X", value: Intensity.ProjectX },
         ],
         restartNeeded: false,

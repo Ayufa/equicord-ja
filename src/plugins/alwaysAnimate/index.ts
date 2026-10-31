@@ -23,27 +23,27 @@ import definePlugin, { OptionType } from "@utils/types";
 const settings = definePluginSettings({
     icons: {
         type: OptionType.BOOLEAN,
-        description: "Always animate server icons, avatars, decor and more",
+        description: "サーバーアイコン、アバター、デコレーションなどを常にアニメーションさせる",
         default: true,
     },
     statusEmojis: {
         type: OptionType.BOOLEAN,
-        description: "Always animate status emojis",
+        description: "ステータス絵文字を常にアニメーションさせる",
         default: true,
     },
     serverBanners: {
         type: OptionType.BOOLEAN,
-        description: "Always animate server banners",
+        description: "サーバーバナーを常にアニメーションさせる",
         default: true,
     },
     nameplates: {
         type: OptionType.BOOLEAN,
-        description: "Always animate nameplates",
+        description: "ネームプレートを常にアニメーションさせる",
         default: true,
     },
     roleGradients: {
         type: OptionType.BOOLEAN,
-        description: "Always animate role gradients",
+        description: "ロールのグラデーションを常にアニメーションさせる",
         default: true,
     }
 });

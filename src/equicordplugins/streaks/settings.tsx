@@ -16,7 +16,7 @@ import { useStreaksStore } from "./stores/StreaksStore";
 export const settings = definePluginSettings({
     account: {
         type: OptionType.COMPONENT,
-        description: "Log in or out of the Streaks API.",
+        description: "Streaks APIにログイン/ログアウトします。",
         component() {
             const { isAuthorized, authorize, remove } = useAuthorizationStore();
 
@@ -48,37 +48,37 @@ export const settings = definePluginSettings({
     },
     eliteColor: {
         type: OptionType.STRING,
-        description: "Elite Streak Color (100+ days)",
+        description: "エリートストリークの色（100日以上）",
         default: "#9b39fe"
     },
     diamondColor: {
         type: OptionType.STRING,
-        description: "Diamond Streak Color (60+ days)",
+        description: "ダイヤモンドストリークの色（60日以上）",
         default: "#f7409c"
     },
     platinumColor: {
         type: OptionType.STRING,
-        description: "Platinum Streak Color (45+ days)",
+        description: "プラチナストリークの色（45日以上）",
         default: "#856bfe"
     },
     goldColor: {
         type: OptionType.STRING,
-        description: "Gold Streak Color (30+ days)",
+        description: "ゴールドストリークの色（30日以上）",
         default: "#f75340"
     },
     silverColor: {
         type: OptionType.STRING,
-        description: "Silver Streak Color (14+ days)",
+        description: "シルバーストリークの色（14日以上）",
         default: "#f57b0b"
     },
     bronzeColor: {
         type: OptionType.STRING,
-        description: "Bronze Streak Color (7+ days)",
+        description: "ブロンズストリークの色（7日以上）",
         default: "#b08d57"
     },
     defaultColor: {
         type: OptionType.STRING,
-        description: "Default Streak Color (1+ days)",
+        description: "デフォルトのストリークの色（1日以上）",
         default: "#f59e0b"
     }
 });

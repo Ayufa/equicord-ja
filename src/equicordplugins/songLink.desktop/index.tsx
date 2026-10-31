@@ -18,7 +18,7 @@ import SongLinker from "./SongLinker";
 export const settings = definePluginSettings({
     servicesSettings: {
         type: OptionType.CUSTOM,
-        description: "settings for services",
+        description: "サービスの設定",
         default: Object.fromEntries(Object.entries(Providers).map(([name, data]) => [name, {
             enabled: true,
             // @ts-ignore
@@ -27,12 +27,12 @@ export const settings = definePluginSettings({
     },
     userCountry: {
         type: OptionType.STRING,
-        description: "Country used for lookup (Two letter country code)",
+        description: "検索に使う国（2文字の国コード）",
         default: "US"
     },
     includeMetadata: {
         type: OptionType.BOOLEAN,
-        description: "Include the track title and artist name as a header.",
+        description: "曲名とアーティスト名をヘッダーとして含める。",
         default: true,
     },
     servicesComponent: {

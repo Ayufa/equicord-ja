@@ -12,18 +12,18 @@ const settings = definePluginSettings({
     defaultLayout: {
         type: OptionType.SELECT,
         options: [
-            { label: "List", value: 1, default: true },
-            { label: "Gallery", value: 2 }
+            { label: "リスト", value: 1, default: true },
+            { label: "ギャラリー", value: 2 }
         ],
-        description: "Which layout to use as default"
+        description: "デフォルトで使用するレイアウト"
     },
     defaultSortOrder: {
         type: OptionType.SELECT,
         options: [
-            { label: "Recently Active", value: 0, default: true },
-            { label: "Date Posted", value: 1 }
+            { label: "最近のアクティビティ", value: 0, default: true },
+            { label: "投稿日", value: 1 }
         ],
-        description: "Which sort order to use as default"
+        description: "デフォルトで使用する並び順"
     }
 });
 

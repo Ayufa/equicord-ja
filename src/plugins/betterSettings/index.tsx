@@ -37,19 +37,19 @@ const SECTION_ICONS: Record<string, Icon> = {
 
 const settings = definePluginSettings({
     disableFade: {
-        description: "Disable the crossfade animation",
+        description: "クロスフェードアニメーションを無効にする",
         type: OptionType.BOOLEAN,
         default: true,
         restartNeeded: true
     },
     organizeMenu: {
-        description: "Organizes the settings cog context menu into categories",
+        description: "設定の歯車のコンテキストメニューをカテゴリ別に整理する",
         type: OptionType.BOOLEAN,
         default: true,
         restartNeeded: true
     },
     eagerLoad: {
-        description: "Removes the loading delay when opening the menu for the first time",
+        description: "初回にメニューを開くときの読み込み遅延をなくす",
         type: OptionType.BOOLEAN,
         default: true,
         restartNeeded: true

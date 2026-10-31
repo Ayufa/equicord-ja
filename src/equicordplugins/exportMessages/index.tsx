@@ -22,12 +22,12 @@ import { ContactsList } from "./types";
 const settings = definePluginSettings({
     openFileAfterExport: {
         type: OptionType.BOOLEAN,
-        description: "Open the exported file in the default file handler after export",
+        description: "エクスポート後に、既定のファイルハンドラーでエクスポートしたファイルを開きます",
         default: true
     },
     exportContacts: {
         type: OptionType.BOOLEAN,
-        description: "Export a list of friends to your clipboard. Adds a new button to the menu bar for the friends tab.",
+        description: "フレンド一覧をクリップボードにエクスポートします。フレンドタブのメニューバーに新しいボタンを追加します。",
         default: false
     }
 });

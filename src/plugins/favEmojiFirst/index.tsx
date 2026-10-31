@@ -110,12 +110,12 @@ const aliasResultCache = new Map<string, EmojiResult | null>();
 const settings = definePluginSettings({
     aliases: {
         type: OptionType.COMPONENT,
-        description: "Manage your emoji aliases.",
+        description: "絵文字のエイリアスを管理します。",
         component: AliasListSetting
     },
     clearAll: {
         type: OptionType.COMPONENT,
-        description: "Delete all aliases.",
+        description: "すべてのエイリアスを削除します。",
         component: ClearAllAliasesSetting
     }
 });

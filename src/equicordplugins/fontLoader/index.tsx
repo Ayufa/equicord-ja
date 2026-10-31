@@ -175,13 +175,13 @@ function GoogleFontSearch({ onSelect }: { onSelect: (font: GoogleFontMetadata) =
 const settings = definePluginSettings({
     selectedFont: {
         type: OptionType.STRING,
-        description: "Currently selected font",
+        description: "現在選択中のフォント",
         default: "",
         hidden: true
     },
     fontSearch: {
         type: OptionType.COMPONENT,
-        description: "Search and select Google Fonts",
+        description: "Google Fontsを検索して選択",
         component: () => (
             <GoogleFontSearch
                 onSelect={font => {
@@ -193,7 +193,7 @@ const settings = definePluginSettings({
     },
     applyOnCodeBlocks: {
         type: OptionType.BOOLEAN,
-        description: "Apply the font to code blocks",
+        description: "コードブロックにもフォントを適用します",
         default: false
     }
 });

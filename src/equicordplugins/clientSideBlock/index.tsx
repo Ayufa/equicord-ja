@@ -14,52 +14,52 @@ import { ChannelStore, GuildMemberStore, GuildRoleStore, React, RelationshipStor
 const settings = definePluginSettings({
     hideVc: {
         type: OptionType.BOOLEAN,
-        description: "Hide voice channels containing blocked users.",
+        description: "ブロックしたユーザーがいるボイスチャンネルを非表示にします。",
         default: false,
         restartNeeded: true
     },
     usersToBlock: {
         type: OptionType.STRING,
-        description: "User IDs seperated by a comma and a space",
+        description: "ユーザーIDをカンマとスペースで区切って入力",
         restartNeeded: true,
         default: ""
     },
     hideBlockedUsers: {
         type: OptionType.BOOLEAN,
-        description: "Should blocked users should also be hidden everywhere",
+        description: "ブロックしたユーザーをあらゆる場所で非表示にするかどうか",
         default: true,
         restartNeeded: true
     },
     hideBlockedMessages: {
         type: OptionType.BOOLEAN,
-        description: "Should messages from blocked users should be hidden fully (same as the old noblockedmessages plugin)",
+        description: "ブロックしたユーザーのメッセージを完全に非表示にするかどうか（旧 noblockedmessages プラグインと同じ）",
         default: true,
         restartNeeded: true
     },
     hideEmptyRoles: {
         type: OptionType.BOOLEAN,
-        description: "Should role headers be hidden if all of their members are blocked",
+        description: "メンバー全員がブロックされている場合にロールヘッダーを非表示にするかどうか",
         restartNeeded: true,
         default: true
     },
     blockedReplyDisplay: {
         type: OptionType.SELECT,
-        description: "What should display instead of the message when someone replies to someone you have hidden",
+        description: "非表示にしたユーザーへの返信があったときに、メッセージの代わりに表示する内容",
         restartNeeded: true,
         options: [
-            { value: "displayText", label: "Display text saying a hidden message was replied to", default: true },
-            { value: "hideReply", label: "Literally nothing" }
+            { value: "displayText", label: "非表示のメッセージへの返信であることを示すテキストを表示", default: true },
+            { value: "hideReply", label: "何も表示しない" }
         ]
     },
     guildBlackList: {
         type: OptionType.STRING,
-        description: "Guild ids to disable functionality in",
+        description: "機能を無効にするサーバーID",
         restartNeeded: true,
         default: ""
     },
     guildWhiteList: {
         type: OptionType.STRING,
-        description: "Guild ids to enable functionality in",
+        description: "機能を有効にするサーバーID",
         restartNeeded: true,
         default: ""
     }

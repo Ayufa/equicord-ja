@@ -79,7 +79,7 @@ function setActivity(activity: Activity | null) {
 
 export const settings = definePluginSettings({
     scrobblerBackend: {
-        description: "The scrobbler backend to use.",
+        description: "使用するスクロブラーのバックエンド。",
         type: OptionType.SELECT,
         options: [
             {
@@ -98,133 +98,133 @@ export const settings = definePluginSettings({
         ] as const
     },
     instanceBaseURL: {
-        description: "The base url of your ListenBrainz instance.",
+        description: "ListenBrainz インスタンスのベース URL。",
         type: OptionType.STRING,
         placeholder: "https://example.org",
         onChange: invalidateListenBrainzCache
     },
     instanceAPIBaseUrl: {
-        description: "The base url of your ListenBrainz API.",
+        description: "ListenBrainz API のベース URL。",
         type: OptionType.STRING,
         placeholder: "https://api.example.org",
         onChange: invalidateListenBrainzCache
     },
     apiKey: {
-        displayName: "API Key",
-        description: "Last.fm API key. Not required but highly recommended to avoid rate limiting with our shared key",
+        displayName: "APIキー",
+        description: "Last.fm の API キー。必須ではありませんが、共有キーのレート制限を避けるため強く推奨します",
         type: OptionType.STRING,
     },
     username: {
-        description: "Username",
+        description: "ユーザー名",
         type: OptionType.STRING,
     },
     shareUsername: {
-        description: "Show link to scrobbler profile",
+        description: "スクロブラーのプロフィールへのリンクを表示します",
         type: OptionType.BOOLEAN,
         default: false,
     },
     clickableLinks: {
-        description: "Make track, artist and album names clickable links",
+        description: "曲名、アーティスト名、アルバム名をクリック可能なリンクにします",
         type: OptionType.BOOLEAN,
         default: true,
     },
     hideWithSpotify: {
-        description: "Hide presence if Spotify is running",
+        description: "Spotify が起動中の場合はプレゼンスを隠します",
         type: OptionType.BOOLEAN,
         default: true,
     },
     hideWithActivity: {
-        description: "Hide presence if you have any other presence",
+        description: "他のプレゼンスがある場合はプレゼンスを隠します",
         type: OptionType.BOOLEAN,
         default: false,
     },
     statusName: {
-        description: "Custom status text. You can use the following variables: {artist} | {album} | {title}",
+        description: "カスタムステータステキスト。次の変数が使えます: {artist} | {album} | {title}",
         type: OptionType.STRING,
         default: "some music",
     },
     statusDisplayType: {
-        description: "Show the track / artist name in the member list",
+        description: "メンバーリストに曲名 / アーティスト名を表示します",
         type: OptionType.SELECT,
         options: [
             {
-                label: "Don't show (shows generic listening message)",
+                label: "表示しない（一般的なリスニングメッセージが表示されます）",
                 value: "off"
             },
             {
-                label: "Show artist name",
+                label: "アーティスト名を表示",
                 value: "artist",
                 default: true
             },
             {
-                label: "Show track name",
+                label: "曲名を表示",
                 value: "track"
             }
         ]
     },
     nameFormat: {
-        description: "Show name of song and artist in status name",
+        description: "ステータス名に曲名とアーティスト名を表示します",
         type: OptionType.SELECT,
         options: [
             {
-                label: "Use custom status name",
+                label: "カスタムステータス名を使用",
                 value: NameFormat.StatusName,
                 default: true
             },
             {
-                label: "Use music service name (falls back to custom status text)",
+                label: "音楽サービス名を使用（カスタムステータステキストにフォールバックします）",
                 value: NameFormat.ServiceName
             },
             {
-                label: "Use format 'artist - song'",
+                label: "「アーティスト - 曲名」の形式を使用",
                 value: NameFormat.ArtistFirst
             },
             {
-                label: "Use format 'song - artist'",
+                label: "「曲名 - アーティスト」の形式を使用",
                 value: NameFormat.SongFirst
             },
             {
-                label: "Use artist name only",
+                label: "アーティスト名のみを使用",
                 value: NameFormat.ArtistOnly
             },
             {
-                label: "Use song name only",
+                label: "曲名のみを使用",
                 value: NameFormat.SongOnly
             },
             {
-                label: "Use album name (falls back to custom status text if song has no album)",
+                label: "アルバム名を使用（曲にアルバムがない場合はカスタムステータステキストにフォールバックします）",
                 value: NameFormat.AlbumName
             }
         ],
     },
     useListeningStatus: {
-        description: 'Show "Listening to" status instead of "Playing"',
+        description: '「Playing」ではなく「Listening to」ステータスを表示',
         type: OptionType.BOOLEAN,
         default: false,
     },
     missingArt: {
-        description: "When album or album art is missing",
+        description: "アルバムまたはアルバムアートがない場合",
         type: OptionType.SELECT,
         options: [
             {
-                label: "Use large scrobbler logo",
+                label: "大きなスクロブラーのロゴを使用",
                 value: "logo",
                 default: true
             },
             {
-                label: "Use generic placeholder",
+                label: "汎用のプレースホルダーを使用",
                 value: "placeholder"
             }
         ],
     },
     showLogo: {
-        displayName: "Show Scrobbler Logo",
-        description: "Show the scrobbler service logo by the album cover",
+        displayName: "スクロブラーのロゴを表示",
+        description: "アルバムカバーの横にスクロブラーサービスのロゴを表示します",
         type: OptionType.BOOLEAN,
         default: true,
     },
     showAlbumCover: {
-        description: "Show album cover. Disabling this will display a placeholder. Useful if your music has inappropriate art",
+        description: "アルバムカバーを表示します。無効にするとプレースホルダーが表示されます。音楽に不適切なアートがある場合に便利です",
         type: OptionType.BOOLEAN,
         default: true,
     }

@@ -21,7 +21,7 @@ import openQrModal from "./ui/modals/QrModal";
 const settings = definePluginSettings({
     scanQr: {
         type: OptionType.COMPONENT,
-        description: "Scan a QR code",
+        description: "QRコードをスキャン",
         component() {
             if (!plugins.LoginWithQR.started)
                 return (

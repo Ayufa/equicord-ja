@@ -96,7 +96,7 @@ const logger = new Logger("XSOverlay");
 const settings = definePluginSettings({
     webSocketPort: {
         type: OptionType.NUMBER,
-        description: "Websocket port",
+        description: "WebSocket ポート",
         default: 42070,
         async onChange() {
             await start();
@@ -105,71 +105,71 @@ const settings = definePluginSettings({
     preferUDP: {
         type: OptionType.BOOLEAN,
         displayName: "Prefer UDP",
-        description: "Enable if you use an older build of XSOverlay unable to connect through websockets. This setting is ignored on web.",
+        description: "WebSocket で接続できない古いビルドの XSOverlay を使う場合は有効にする。Web ではこの設定は無視されます。",
         default: false,
         disabled: () => IS_WEB
     },
     botNotifications: {
         type: OptionType.BOOLEAN,
-        description: "Allow bot notifications",
+        description: "Bot の通知を許可する",
         default: false
     },
     serverNotifications: {
         type: OptionType.BOOLEAN,
-        description: "Allow server notifications",
+        description: "サーバーの通知を許可する",
         default: true
     },
     dmNotifications: {
         type: OptionType.BOOLEAN,
         displayName: "DM Notifications",
-        description: "Allow Direct Message notifications",
+        description: "DM の通知を許可する",
         default: true
     },
     groupDmNotifications: {
         type: OptionType.BOOLEAN,
         displayName: "Group DM Notifications",
-        description: "Allow Group DM notifications",
+        description: "グループ DM の通知を許可する",
         default: true
     },
     callNotifications: {
         type: OptionType.BOOLEAN,
-        description: "Allow call notifications",
+        description: "通話の通知を許可する",
         default: true
     },
     pingColor: {
         type: OptionType.STRING,
-        description: "User mention color",
+        description: "ユーザーメンションの色",
         default: "#7289da"
     },
     channelPingColor: {
         type: OptionType.STRING,
-        description: "Channel mention color",
+        description: "チャンネルメンションの色",
         default: "#8a2be2"
     },
     soundPath: {
         type: OptionType.STRING,
-        description: "Notification sound (default/warning/error)",
+        description: "通知音（default/warning/error）",
         default: "default"
     },
     timeout: {
         type: OptionType.NUMBER,
-        description: "Notification duration (secs)",
+        description: "通知の表示時間（秒）",
         default: 3,
     },
     lengthBasedTimeout: {
         type: OptionType.BOOLEAN,
-        description: "Extend duration with message length",
+        description: "メッセージの長さに応じて表示時間を延ばす",
         default: true
     },
     opacity: {
         type: OptionType.SLIDER,
-        description: "Notif opacity",
+        description: "通知の不透明度",
         default: 1,
         markers: makeRange(0, 1, 0.1)
     },
     volume: {
         type: OptionType.SLIDER,
-        description: "Volume",
+        description: "音量",
         default: 0.2,
         markers: makeRange(0, 1, 0.1)
     },

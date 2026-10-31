@@ -16,12 +16,12 @@ const NumberBadge = findComponentByCodeLazy("BADGE_NOTIFICATION_BACKGROUND", "le
 
 const settings = definePluginSettings({
     showOnMutedChannels: {
-        description: "Show unread count on muted channels",
+        description: "ミュートしたチャンネルにも未読数を表示する",
         type: OptionType.BOOLEAN,
         default: false,
     },
     notificationCountLimit: {
-        description: "Show +99 instead of true amount",
+        description: "実際の数の代わりに +99 と表示する",
         type: OptionType.BOOLEAN,
         default: false,
     },

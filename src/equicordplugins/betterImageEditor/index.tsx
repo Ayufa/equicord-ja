@@ -62,19 +62,19 @@ const logger = new Logger("BetterImageEditor");
 const settings = definePluginSettings({
     librarySize: {
         type: OptionType.SLIDER,
-        description: "How many pictures to keep on each shelf.",
+        description: "各シェルフに保持する画像の数。",
         markers: [6, 12, 24, 48, 100],
         default: 24,
         stickToMarkers: true
     },
     rememberCrop: {
         type: OptionType.BOOLEAN,
-        description: "Restore the zoom and position you last used for a picture.",
+        description: "画像ごとに前回使用したズームと位置を復元します。",
         default: true
     },
     forgetFraming: {
         type: OptionType.COMPONENT,
-        description: "Drop every remembered crop and open each picture the way Discord would.",
+        description: "記憶したすべての切り抜きを破棄し、各画像をDiscordのデフォルトの方法で開きます。",
         component: () => (
             <Button
                 variant="secondary"
@@ -98,17 +98,17 @@ const settings = definePluginSettings({
     },
     saveCropped: {
         type: OptionType.BOOLEAN,
-        description: "Keep a copy of each picture after you crop it.",
+        description: "切り抜いた後も各画像のコピーを保持します。",
         default: true
     },
     askBeforeSavingCropped: {
         type: OptionType.BOOLEAN,
-        description: "Ask first, instead of keeping the cropped copy automatically.",
+        description: "切り抜いたコピーを自動的に保持せず、まず確認します。",
         default: false
     },
     transfer: {
         type: OptionType.COMPONENT,
-        description: "Carry your pictures, and how each one is framed, to another device.",
+        description: "画像とそのフレーミングを別のデバイスへ引き継ぎます。",
         component: () => (
             <div className={cl("buttons")}>
                 <Button variant="secondary" onClick={exportLibrary}>Export to a file</Button>
@@ -118,7 +118,7 @@ const settings = definePluginSettings({
     },
     clearLibrary: {
         type: OptionType.COMPONENT,
-        description: "Throw away every picture you have saved.",
+        description: "保存したすべての画像を破棄します。",
         component: () => (
             <Button
                 variant="secondary"

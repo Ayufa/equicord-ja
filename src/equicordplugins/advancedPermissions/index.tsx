@@ -74,17 +74,17 @@ const SimplifiedCard = ErrorBoundary.wrap(() => {
 const settings = definePluginSettings({
     simplifiedCard: {
         type: OptionType.SELECT,
-        description: "What to do with Discord's simplified permissions card",
+        description: "Discordの簡易権限カードの扱い",
         options: [
-            { label: "Hide it", value: "hide", default: true },
-            { label: "Make it collapsible", value: "collapse" },
-            { label: "Leave it visible", value: "show" },
+            { label: "非表示にする", value: "hide", default: true },
+            { label: "折りたたみ可能にする", value: "collapse" },
+            { label: "表示したままにする", value: "show" },
         ],
     },
     collapsedByDefault: {
         type: OptionType.BOOLEAN,
         default: false,
-        description: "Start the simplified permissions collapsed.",
+        description: "簡易権限を折りたたんだ状態で開始します。",
         disabled: () => settings.store.simplifiedCard !== "collapse",
     },
 });

@@ -18,23 +18,23 @@ const StatusSettings = getUserSettingLazy<string>("status", "status")!;
 const settings = definePluginSettings({
     statusToSet: {
         type: OptionType.SELECT,
-        description: "Status to set while in a voice channel.",
+        description: "ボイスチャンネル参加中に設定するステータス。",
         options: [
             {
-                label: "Online",
+                label: "オンライン",
                 value: "online",
             },
             {
-                label: "Idle",
+                label: "退席中",
                 value: "idle",
             },
             {
-                label: "Do Not Disturb",
+                label: "取り込み中",
                 value: "dnd",
                 default: true
             },
             {
-                label: "Invisible",
+                label: "オンライン状態を隠す",
                 value: "invisible",
             }
         ]

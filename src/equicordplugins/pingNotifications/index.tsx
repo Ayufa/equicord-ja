@@ -22,27 +22,27 @@ const settings = definePluginSettings({
     friends: {
         type: OptionType.BOOLEAN,
         default: false,
-        description: "Notify when friends send messages in servers"
+        description: "フレンドがサーバーでメッセージを送信したときに通知"
     },
     mentions: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Notify when someone @mentions you directly"
+        description: "誰かがあなたを直接 @メンションしたときに通知"
     },
     dms: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Notify for direct messages (DMs)"
+        description: "ダイレクトメッセージ（DM）を通知"
     },
     showInActive: {
         type: OptionType.BOOLEAN,
         default: false,
-        description: "Show notifications even for currently active channel"
+        description: "現在アクティブなチャンネルでも通知を表示"
     },
     ignoreMuted: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Skip notifications from muted servers, channels, or users"
+        description: "ミュートしたサーバー、チャンネル、ユーザーからの通知をスキップ"
     }
 });
 

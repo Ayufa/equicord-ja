@@ -135,31 +135,31 @@ function TypingIndicator({ channelId, guildId }: { channelId: string; guildId: s
 const settings = definePluginSettings({
     includeCurrentChannel: {
         type: OptionType.BOOLEAN,
-        description: "Whether to show the typing indicator for the currently selected channel",
+        description: "現在選択中のチャンネルの入力中インジケーターを表示するかどうか",
         default: true
     },
     includeMutedChannels: {
         type: OptionType.BOOLEAN,
-        description: "Whether to show the typing indicator for muted channels.",
+        description: "ミュートしたチャンネルの入力中インジケーターを表示するかどうか。",
         default: false
     },
     includeIgnoredUsers: {
         type: OptionType.BOOLEAN,
-        description: "Whether to show the typing indicator for ignored users.",
+        description: "無視したユーザーの入力中インジケーターを表示するかどうか。",
         default: false
     },
     includeBlockedUsers: {
         type: OptionType.BOOLEAN,
-        description: "Whether to show the typing indicator for blocked users.",
+        description: "ブロックしたユーザーの入力中インジケーターを表示するかどうか。",
         default: false
     },
     indicatorMode: {
         type: OptionType.SELECT,
-        description: "How should the indicator be displayed?",
+        description: "インジケーターの表示方法は？",
         options: [
-            { label: "Avatars and animated dots", value: IndicatorMode.Dots | IndicatorMode.Avatars, default: true },
-            { label: "Animated dots", value: IndicatorMode.Dots },
-            { label: "Avatars", value: IndicatorMode.Avatars },
+            { label: "アバターとアニメーションするドット", value: IndicatorMode.Dots | IndicatorMode.Avatars, default: true },
+            { label: "アニメーションするドット", value: IndicatorMode.Dots },
+            { label: "アバター", value: IndicatorMode.Avatars },
         ],
     }
 });

@@ -35,24 +35,24 @@ const settings = definePluginSettings({
     domain: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Remove the untrusted domain popup when opening links",
+        description: "リンクを開くときの、信頼できないドメインのポップアップを表示しない",
         restartNeeded: true
     },
     file: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Remove the 'Potentially Dangerous Download' popup when opening links",
+        description: "リンクを開くときの「危険な可能性のあるダウンロード」ポップアップを表示しない",
         restartNeeded: true
     },
     noDeleteSafety: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Removes the enter server name requirement when deleting a server",
+        description: "サーバー削除時にサーバー名の入力を不要にする",
         restartNeeded: true
     },
     confirmModal: {
         type: OptionType.BOOLEAN,
-        description: "Should a \"are you sure you want to delete\" modal be shown?",
+        description: "「本当に削除しますか？」という確認モーダルを表示するか",
         default: true
     },
 });

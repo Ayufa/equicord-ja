@@ -123,16 +123,16 @@ export const bookmarkFolderColors = {
 export const settings = definePluginSettings({
     onStartup: {
         type: OptionType.SELECT,
-        description: "On startup",
+        description: "起動時",
         options: [{
-            label: "Do nothing (open on the friends tab)",
+            label: "何もしない（フレンドタブを開く）",
             value: "nothing",
             default: true
         }, {
-            label: "Remember tabs from last session",
+            label: "前回セッションのタブを復元",
             value: "remember"
         }, {
-            label: "Open on a specific set of tabs",
+            label: "特定のタブセットを開く",
             value: "preset"
         }],
     },
@@ -143,12 +143,12 @@ export const settings = definePluginSettings({
     },
     bookmarks: {
         type: OptionType.CUSTOM,
-        description: "Saved bookmarks per account",
+        description: "アカウントごとに保存されたブックマーク",
         default: {} as Record<string, Bookmarks>,
         hidden: true
     },
     showStatusIndicators: {
-        description: "Show status indicators for DM's",
+        description: "DMのステータスインジケーターを表示",
         type: OptionType.BOOLEAN,
         default: true
     },
@@ -158,103 +158,103 @@ export const settings = definePluginSettings({
         default: true
     },
     bookmarkNotificationDot: {
-        description: "Show notification dot for bookmarks",
+        description: "ブックマークに通知ドットを表示",
         type: OptionType.BOOLEAN,
         default: true
     },
     persistUnreadCountFallback: {
-        description: "Persist unread badge fallbacks across reloads for tabs and bookmarks",
+        description: "タブとブックマークの未読バッジフォールバックを再読み込み後も保持",
         type: OptionType.BOOLEAN,
         default: true,
         restartNeeded: false
     },
     widerTabsAndBookmarks: {
-        description: "Extend the length of tabs and bookmarks for larger monitors",
+        description: "大きなモニター向けにタブとブックマークの長さを拡張",
         type: OptionType.BOOLEAN,
         default: false,
         restartNeeded: false
     },
     tabWidthScale: {
         type: OptionType.NUMBER,
-        description: "Tab width scale (percentage) - adjustable by dragging tab edges",
+        description: "タブ幅の倍率（パーセント） - タブの端をドラッグして調整可能",
         default: 100,
         hidden: true,
         restartNeeded: false
     },
     tabHeightScale: {
         type: OptionType.NUMBER,
-        description: "Tab height scale (percentage).",
+        description: "タブ高さの倍率（パーセント）。",
         default: 100,
         restartNeeded: false
     },
     renderAllTabs: {
         type: OptionType.BOOLEAN,
-        description: "Keep all tabs cached in memory for faster switching (caches scroll position and state)",
+        description: "切り替えを速くするためにすべてのタブをメモリにキャッシュ（スクロール位置と状態をキャッシュします）",
         default: false,
         restartNeeded: false
     },
     switchToExistingTab: {
         type: OptionType.BOOLEAN,
-        description: "Switch to tab if it already exists for the channel you're navigating to",
+        description: "移動先チャンネルのタブが既にある場合はそのタブに切り替え",
         default: false,
         restartNeeded: false
     },
     createNewTabIfNotExists: {
         type: OptionType.BOOLEAN,
-        description: "Create a new tab if one doesn't exist for the channel you're navigating to",
+        description: "移動先チャンネルのタブがない場合は新しいタブを作成",
         default: false,
         restartNeeded: false
     },
     enableRapidNavigation: {
         type: OptionType.BOOLEAN,
-        description: "Enable rapid navigation behavior - quickly navigating between channels will replace the current tab instead of creating new ones",
+        description: "高速ナビゲーションを有効化 - チャンネル間をすばやく移動すると、新しいタブを作らず現在のタブを置き換えます",
         default: false,
         restartNeeded: false
     },
     rapidNavigationThreshold: {
         type: OptionType.SLIDER,
-        description: "Time window (in seconds) for rapid navigation. Within this time, new channels replace the current tab instead of creating new ones.",
+        description: "高速ナビゲーションの時間枠（秒）。この時間内に移動した新しいチャンネルは、新規タブではなく現在のタブを置き換えます。",
         markers: [1, 2, 3, 5, 10, 20, 30, 40, 50, 60],
         default: 3,
         stickToMarkers: false,
     },
     tabBarPosition: {
         type: OptionType.SELECT,
-        description: "Where to show the tab bar.",
+        description: "タブバーを表示する場所。",
         options: [
-            { label: "Top", value: "top", default: true },
-            { label: "Bottom", value: "bottom" }
+            { label: "上", value: "top", default: true },
+            { label: "下", value: "bottom" }
         ],
         restartNeeded: true
     },
     enableNumberKeySwitching: {
         type: OptionType.BOOLEAN,
-        description: "Enable number keys (1-9) to switch tabs",
+        description: "数字キー（1〜9）でタブを切り替えるようにする",
         default: true,
         restartNeeded: false
     },
     numberKeySwitchCount: {
         type: OptionType.SLIDER,
-        description: "Number of tabs accessible via number keys (1-9)",
+        description: "数字キー（1〜9）でアクセスできるタブの数",
         markers: makeRange(1, 9, 1),
         default: 3,
         stickToMarkers: true,
     },
     enableCloseTabShortcut: {
         type: OptionType.BOOLEAN,
-        description: "Enable close tab keyboard shortcut",
+        description: "タブを閉じるキーボードショートカットを有効にする",
         default: true,
         restartNeeded: false
     },
     enableNewTabShortcut: {
         type: OptionType.BOOLEAN,
-        description: "Enable new tab keyboard shortcut",
+        description: "新しいタブのキーボードショートカットを有効にする",
         default: true,
         restartNeeded: false
     },
     enableTabCycleShortcut: {
         type: OptionType.BOOLEAN,
-        description: "Enable tab cycling keyboard shortcut",
+        description: "タブ切り替えのキーボードショートカットを有効にする",
         default: true,
         restartNeeded: false
     },
@@ -265,40 +265,40 @@ export const settings = definePluginSettings({
     // me when storage yes for keybinds
     closeTabKeybind: {
         type: OptionType.STRING,
-        description: "Keyboard shortcut to close the current tab",
+        description: "現在のタブを閉じるキーボードショートカット",
         default: "CTRL+W",
         hidden: true
     },
     newTabKeybind: {
         type: OptionType.STRING,
-        description: "Keyboard shortcut to open a new tab",
+        description: "新しいタブを開くキーボードショートカット",
         default: "CTRL+T",
         hidden: true
     },
     cycleTabForwardKeybind: {
         type: OptionType.STRING,
-        description: "Keyboard shortcut to cycle to the next tab",
+        description: "次のタブへ切り替えるキーボードショートカット",
         default: "CTRL+TAB",
         hidden: true
     },
     cycleTabBackwardKeybind: {
         type: OptionType.STRING,
-        description: "Keyboard shortcut to cycle to the previous tab",
+        description: "前のタブへ切り替えるキーボードショートカット",
         default: "CTRL+SHIFT+TAB",
         hidden: true
     },
     showTabNumbers: {
         type: OptionType.BOOLEAN,
-        description: "Show numbered badges on tabs to indicate keyboard shortcuts",
+        description: "キーボードショートカットを示す番号バッジをタブに表示",
         default: false,
         restartNeeded: false
     },
     tabNumberPosition: {
         type: OptionType.SELECT,
-        description: "Where to display the numbered badge on tabs",
+        description: "タブの番号バッジを表示する場所",
         options: [
-            { label: "Left side (before icon)", value: "left", default: true },
-            { label: "Right side (after content)", value: "right" }
+            { label: "左側（アイコンの前）", value: "left", default: true },
+            { label: "右側（コンテンツの後）", value: "right" }
         ],
         restartNeeded: false
     },
@@ -309,145 +309,145 @@ export const settings = definePluginSettings({
     // me when storage yes
     animationHover: {
         type: OptionType.BOOLEAN,
-        description: "Enable hover lift and scale effects",
+        description: "ホバー時の浮き上がりと拡大効果を有効にする",
         default: true,
         hidden: true
     },
     animationSelection: {
         type: OptionType.BOOLEAN,
-        description: "Enable selection animations (border glow, lift)",
+        description: "選択時のアニメーション（枠の発光、浮き上がり）を有効にする",
         default: true,
         hidden: true
     },
     animationDragDrop: {
         type: OptionType.BOOLEAN,
-        description: "Enable drag and drop ghost effects",
+        description: "ドラッグ＆ドロップのゴースト効果を有効にする",
         default: true,
         hidden: true
     },
     animationEnterExit: {
         type: OptionType.BOOLEAN,
-        description: "Enable tab creation/closing slide animations",
+        description: "タブの作成/終了時のスライドアニメーションを有効にする",
         default: true,
         hidden: true
     },
     animationIconPop: {
         type: OptionType.BOOLEAN,
-        description: "Enable icon scale-up animation on selection",
+        description: "選択時のアイコン拡大アニメーションを有効にする",
         default: true,
         hidden: true
     },
     animationCloseRotation: {
         type: OptionType.BOOLEAN,
-        description: "Enable rotation animation for close buttons",
+        description: "閉じるボタンの回転アニメーションを有効にする",
         default: true,
         hidden: true
     },
     animationPlusPulse: {
         type: OptionType.BOOLEAN,
-        description: "Enable pulse animation for plus button",
+        description: "プラスボタンのパルスアニメーションを有効にする",
         default: true,
         hidden: true
     },
     animationMentionGlow: {
         type: OptionType.BOOLEAN,
-        description: "Enable pulsing red glow for mentions",
+        description: "メンション時の赤いパルス発光を有効にする",
         default: true,
         hidden: true
     },
     animationCompactExpand: {
         type: OptionType.BOOLEAN,
-        description: "Enable smooth expansion for compact tabs",
+        description: "コンパクトタブのスムーズな展開を有効にする",
         default: true,
         hidden: true
     },
     animationSelectedBorder: {
         type: OptionType.BOOLEAN,
-        description: "Enable border and glow styling for selected tabs",
+        description: "選択中タブの枠と発光スタイルを有効にする",
         default: true,
         hidden: true
     },
     animationSelectedBackground: {
         type: OptionType.BOOLEAN,
-        description: "Enable background color change for selected tabs",
+        description: "選択中タブの背景色変更を有効にする",
         default: true,
         hidden: true
     },
     animationTabShadows: {
         type: OptionType.BOOLEAN,
-        description: "Enable shadow effects on tabs",
+        description: "タブの影効果を有効にする",
         default: true,
         hidden: true
     },
     animationTabPositioning: {
         type: OptionType.BOOLEAN,
-        description: "Enable smooth transitions when tabs move positions",
+        description: "タブの位置移動時のスムーズな遷移を有効にする",
         default: true,
         hidden: true
     },
     animationResizeHandle: {
         type: OptionType.BOOLEAN,
-        description: "Enable fade animation for resize handle",
+        description: "リサイズハンドルのフェードアニメーションを有効にする",
         default: true,
         hidden: true
     },
     animationQuestsActive: {
         type: OptionType.BOOLEAN,
-        description: "Enable gradient animations on Quests tab when quests are actively running",
+        description: "クエスト実行中のクエストタブのグラデーションアニメーションを有効にする",
         default: true,
         hidden: true
     },
     compactAutoExpandSelected: {
         type: OptionType.BOOLEAN,
-        description: "Automatically expand compact tabs when selected to show the full channel name",
+        description: "選択時にコンパクトタブを自動で展開し、チャンネル名をすべて表示",
         default: true,
         restartNeeded: false
     },
     compactAutoExpandOnHover: {
         type: OptionType.BOOLEAN,
-        description: "Automatically expand compact tabs on hover to show the full channel name",
+        description: "ホバー時にコンパクトタブを自動で展開し、チャンネル名をすべて表示",
         default: true,
         restartNeeded: false
     },
     openInNewTabAutoSwitch: {
         type: OptionType.BOOLEAN,
-        description: "Automatically switch to new tabs opened from 'Open in New Tab' context menu",
+        description: "「新しいタブで開く」コンテキストメニューから開いたタブへ自動で切り替え",
         default: true,
         restartNeeded: false
     },
     bookmarksIndependentFromTabs: {
         type: OptionType.BOOLEAN,
-        description: "Bookmarks navigate independently without affecting the active tabs bar",
+        description: "ブックマークはアクティブなタブバーに影響せず独立して移動",
         default: true,
         restartNeeded: false
     },
     showResizeHandle: {
         type: OptionType.BOOLEAN,
-        description: "Show resize handle when hovering over tabs to adjust tab width",
+        description: "タブにホバーしたときにタブ幅調整用のリサイズハンドルを表示",
         default: true,
         restartNeeded: false
     },
     openNewTabsInCompactMode: {
         type: OptionType.BOOLEAN,
-        description: "Open all newly created tabs in compact mode by default",
+        description: "新しく作成するタブをデフォルトでコンパクトモードで開く",
         default: false,
         restartNeeded: false
     },
     newTabButtonBehavior: {
         type: OptionType.BOOLEAN,
-        description: "New tab (+) button follows tabs instead of staying pinned to the right",
+        description: "新規タブ（+）ボタンが右端に固定されずタブに追従",
         default: true,
         restartNeeded: false
     },
     oneTabPerServer: {
         type: OptionType.BOOLEAN,
-        description: "Limit to one tab per server, so opening a new channel in that server will use the existing tab.",
+        description: "サーバーごとにタブを1つに制限し、そのサーバーの新しいチャンネルは既存のタブで開きます。",
         default: false,
         restartNeeded: false
     },
     maxOpenTabs: {
         type: OptionType.SLIDER,
-        description: "Maximum number of open tabs (0 = unlimited)",
+        description: "開けるタブの最大数（0 = 無制限）",
         markers: makeRange(0, 20, 1),
         default: 0,
         stickToMarkers: true,

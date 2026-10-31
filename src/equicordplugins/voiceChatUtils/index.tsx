@@ -159,13 +159,13 @@ const VoiceChannelContext: NavContextMenuPatchCallback = (children, { channel }:
 const settings = definePluginSettings({
     waitAfter: {
         type: OptionType.SLIDER,
-        description: "Amount of API actions to perform before waiting (to avoid rate limits)",
+        description: "待機するまでに実行するAPIアクションの数（レート制限回避のため）",
         default: 5,
         markers: makeRange(1, 20),
     },
     waitSeconds: {
         type: OptionType.SLIDER,
-        description: "Time to wait between each action (in seconds)",
+        description: "各アクションの間の待機時間（秒）",
         default: 2,
         markers: makeRange(1, 10, .5),
     }

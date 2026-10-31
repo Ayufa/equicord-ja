@@ -143,23 +143,23 @@ function DearrowButton({ component }: { component: Component<Props>; }) {
 
 const settings = definePluginSettings({
     hideButton: {
-        description: "Hides the Dearrow button from YouTube embeds",
+        description: "YouTube 埋め込みから Dearrow ボタンを隠す",
         type: OptionType.BOOLEAN,
         default: false,
         restartNeeded: true
     },
     replaceElements: {
-        description: "Choose which elements of the embed will be replaced",
+        description: "埋め込みのどの要素を置き換えるか選択する",
         type: OptionType.SELECT,
         restartNeeded: true,
         options: [
-            { label: "Everything (Titles & Thumbnails)", value: ReplaceElements.ReplaceAllElements, default: true },
-            { label: "Titles", value: ReplaceElements.ReplaceTitlesOnly },
-            { label: "Thumbnails", value: ReplaceElements.ReplaceThumbnailsOnly },
+            { label: "すべて（タイトルとサムネイル）", value: ReplaceElements.ReplaceAllElements, default: true },
+            { label: "タイトル", value: ReplaceElements.ReplaceTitlesOnly },
+            { label: "サムネイル", value: ReplaceElements.ReplaceThumbnailsOnly },
         ],
     },
     dearrowByDefault: {
-        description: "Dearrow videos automatically",
+        description: "Dearrow を動画に自動で適用する",
         type: OptionType.BOOLEAN,
         default: true,
         restartNeeded: false

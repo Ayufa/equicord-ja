@@ -19,8 +19,8 @@ import { JSX } from "react";
 const settings = definePluginSettings({
     showAtSymbol: {
         type: OptionType.BOOLEAN,
-        displayName: "Show @ Symbol",
-        description: "Whether the the @ symbol should be displayed on user mentions",
+        displayName: "@ 記号を表示",
+        description: "ユーザーメンションに @ 記号を表示するかどうか",
         default: true
     }
 });

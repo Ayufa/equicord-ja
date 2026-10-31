@@ -39,87 +39,87 @@ function triggerChatToggleRerender() {
 const settings = definePluginSettings({
     enabledGlobally: {
         type: OptionType.BOOLEAN,
-        description: "Toggle functionality of your own typing indicator globally.",
+        description: "自分の入力中インジケーターの機能を全体で切り替える。",
         default: true,
     },
     hideChatBoxTypingIndicators: {
         type: OptionType.BOOLEAN,
-        description: "Hide other users' typing indicators from above the chat bar.",
+        description: "チャットバーの上に表示される他のユーザーの入力中インジケーターを非表示にする。",
         default: false,
     },
     hideMembersListTypingIndicators: {
         type: OptionType.BOOLEAN,
-        description: "Hide other users' typing indicators from the members list.",
+        description: "メンバーリストの他のユーザーの入力中インジケーターを非表示にする。",
         default: false,
     },
     chatIcon: {
         type: OptionType.BOOLEAN,
-        description: "Show an icon in the chat bar for modifying the plugin on the go.",
+        description: "その場でプラグインを変更できるアイコンをチャットバーに表示する。",
         default: true,
     },
     chatIconLeftClickAction: {
         type: OptionType.SELECT,
-        description: "What to do when left clicking the chat icon.",
+        description: "チャットアイコンを左クリックしたときの動作。",
         options: [
-            { label: "Toggle Typing Globally", value: "global" },
-            { label: "Toggle Typing in Channel", value: "channel", default: true },
-            { label: "Toggle Typing in Guild", value: "guild" },
-            { label: "Open Plugin Settings", value: "settings" }
+            { label: "入力中表示を全体で切り替え", value: "global" },
+            { label: "入力中表示をチャンネルで切り替え", value: "channel", default: true },
+            { label: "入力中表示をサーバーで切り替え", value: "guild" },
+            { label: "プラグイン設定を開く", value: "settings" }
         ]
     },
     chatIconMiddleClickAction: {
         type: OptionType.SELECT,
-        description: "What to do when middle clicking the chat icon.",
+        description: "チャットアイコンを中クリックしたときの動作。",
         options: [
-            { label: "Toggle Typing Globally", value: "global" },
-            { label: "Toggle Typing in Channel", value: "channel" },
-            { label: "Toggle Typing in Guild", value: "guild" },
-            { label: "Open Plugin Settings", value: "settings", default: true }
+            { label: "入力中表示を全体で切り替え", value: "global" },
+            { label: "入力中表示をチャンネルで切り替え", value: "channel" },
+            { label: "入力中表示をサーバーで切り替え", value: "guild" },
+            { label: "プラグイン設定を開く", value: "settings", default: true }
         ]
     },
     chatIconRightClickAction: {
         type: OptionType.SELECT,
-        description: "What to do when right clicking the chat icon.",
+        description: "チャットアイコンを右クリックしたときの動作。",
         options: [
-            { label: "Toggle Typing Globally", value: "global", default: true },
-            { label: "Toggle Typing in Channel", value: "channel" },
-            { label: "Toggle Typing in Guild", value: "guild" },
-            { label: "Open Plugin Settings", value: "settings" }
+            { label: "入力中表示を全体で切り替え", value: "global", default: true },
+            { label: "入力中表示をチャンネルで切り替え", value: "channel" },
+            { label: "入力中表示をサーバーで切り替え", value: "guild" },
+            { label: "プラグイン設定を開く", value: "settings" }
         ]
     },
     chatContextMenu: {
         type: OptionType.BOOLEAN,
-        description: "Show a dropdown in the chat context menu to modify plugin settings on the go.",
+        description: "チャットのコンテキストメニューに、その場でプラグイン設定を変更できるドロップダウンを表示する。",
         default: true
     },
     defaultHidden: {
         type: OptionType.BOOLEAN,
-        description: "If enabled, the plugin will hide your typing from others in any DMs/channels/guilds not listed in \"Disabled Locations\" below. If disabled, the plugin will show your typing to others for any DMs/channels/guilds not listed in \"Enabled Locations\" below.",
+        description: "有効にすると、下の \"Disabled Locations\" に記載されていない DM／チャンネル／サーバーでは、あなたの入力中状態が他のユーザーから隠されます。無効にすると、下の \"Enabled Locations\" に記載されていない DM／チャンネル／サーバーでは、あなたの入力中状態が他のユーザーに表示されます。",
         default: true,
     },
     alwaysEnableInActiveVoiceChat: {
         type: OptionType.BOOLEAN,
-        description: "Always allow your typing indicator to show when typing in a voice channel you are connected to.",
+        description: "接続中のボイスチャンネルで入力しているときは、常に入力中インジケーターの表示を許可する。",
         default: false
     },
     temporaryEnableThresholdServers: {
         type: OptionType.NUMBER,
-        description: "Temporarily allow your typing indicator to show for this many seconds after sending a message in a server channel. If the typing indicator is already visible in the channel, this setting will have no effect.",
+        description: "サーバーのチャンネルでメッセージを送信した後、この秒数の間だけ入力中インジケーターの表示を一時的に許可する。そのチャンネルですでに入力中インジケーターが表示されている場合、この設定は効果がありません。",
         default: 0,
     },
     temporaryEnableThresholdDirectMessages: {
         type: OptionType.NUMBER,
-        description: "Temporarily allow your typing indicator to show for this many seconds after sending a message in a DM or Group DM. If the typing indicator is already visible in the channel, this setting will have no effect.",
+        description: "DM またはグループ DM でメッセージを送信した後、この秒数の間だけ入力中インジケーターの表示を一時的に許可する。そのチャンネルですでに入力中インジケーターが表示されている場合、この設定は効果がありません。",
         default: 0,
     },
     enabledLocations: {
         type: OptionType.STRING,
-        description: "Enable functionality for these IDs. Accepts a comma separated list of DM IDs, channel IDs, and guild IDs. Only used if \"Default Hidden\" is disabled.",
+        description: "これらの ID に対して機能を有効にする。DM ID、チャンネル ID、サーバー ID のカンマ区切りリストを受け付けます。\"Default Hidden\" が無効な場合にのみ使用されます。",
         default: "",
     },
     disabledLocations: {
         type: OptionType.STRING,
-        description: "Disable functionality for these IDs. Accepts a comma separated list of DM IDs, channel IDs, and guild IDs. Only used if \"Default Hidden\" is enabled.",
+        description: "これらの ID に対して機能を無効にする。DM ID、チャンネル ID、サーバー ID のカンマ区切りリストを受け付けます。\"Default Hidden\" が有効な場合にのみ使用されます。",
         default: "",
     },
 });

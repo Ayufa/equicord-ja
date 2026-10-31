@@ -25,7 +25,7 @@ const settings = definePluginSettings({
     uncollapseSettingsByDefault: {
         type: OptionType.BOOLEAN,
         default: false,
-        description: "Automatically uncollapse voice settings by default"
+        description: "デフォルトでボイス設定を自動的に展開する"
     },
     title2: {
         type: OptionType.COMPONENT,
@@ -35,27 +35,27 @@ const settings = definePluginSettings({
     outputVolume: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Show an output volume slider"
+        description: "出力音量スライダーを表示する"
     },
     inputVolume: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Show an input volume slider"
+        description: "入力音量スライダーを表示する"
     },
     outputDevice: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Show an output device selector"
+        description: "出力デバイスセレクターを表示する"
     },
     inputDevice: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Show an input device selector"
+        description: "入力デバイスセレクターを表示する"
     },
     camera: {
         type: OptionType.BOOLEAN,
         default: false,
-        description: "Show a camera selector"
+        description: "カメラセレクターを表示する"
     },
     title3: {
         type: OptionType.COMPONENT,
@@ -65,27 +65,27 @@ const settings = definePluginSettings({
     showOutputVolumeHeader: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Show header above output volume slider"
+        description: "出力音量スライダーの上にヘッダーを表示する"
     },
     showInputVolumeHeader: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Show header above input volume slider"
+        description: "入力音量スライダーの上にヘッダーを表示する"
     },
     showOutputDeviceHeader: {
         type: OptionType.BOOLEAN,
         default: false,
-        description: "Show header above output device selector"
+        description: "出力デバイスセレクターの上にヘッダーを表示する"
     },
     showInputDeviceHeader: {
         type: OptionType.BOOLEAN,
         default: false,
-        description: "Show header above input device selector"
+        description: "入力デバイスセレクターの上にヘッダーを表示する"
     },
     showVideoDeviceHeader: {
         type: OptionType.BOOLEAN,
         default: false,
-        description: "Show header above camera selector"
+        description: "カメラセレクターの上にヘッダーを表示する"
     },
 });
 

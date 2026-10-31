@@ -16,12 +16,12 @@ let intervalId: ReturnType<typeof setInterval> | null = null;
 
 const settings = definePluginSettings({
     isEnabled: {
-        description: "Enable automatic restart after idle",
+        description: "アイドル後の自動再起動を有効化します",
         type: OptionType.BOOLEAN,
         default: true,
     },
     idleMinutes: {
-        description: "Minutes of inactivity before restarting (when not in VC)",
+        description: "再起動前の非アクティブ時間（分）（VC中でないとき）",
         type: OptionType.SLIDER,
         markers: [5, 10, 15, 30, 60, 120],
         default: 30,

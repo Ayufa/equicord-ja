@@ -21,12 +21,12 @@ const NOTIFICATION_AUDIO_URL = "https://raw.githubusercontent.com/Equicord/Equib
 const settings = definePluginSettings({
     autoJoin: {
         type: OptionType.BOOLEAN,
-        description: "Join the channel immediately instead of showing a notice.",
+        description: "通知を表示せず、すぐにチャンネルに参加します。",
         default: false,
     },
     notificationSound: {
         type: OptionType.BOOLEAN,
-        description: "Play a sound when a slot becomes available.",
+        description: "空き枠が出たときに音を鳴らします。",
         default: true,
     },
 });

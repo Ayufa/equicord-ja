@@ -12,79 +12,79 @@ import { useEffect, UserStore, useState } from "@webpack/common";
 const settings = definePluginSettings({
     showEquicordDonor: {
         type: OptionType.BOOLEAN,
-        description: "Enable to show Equicord Donor badges in chat.",
+        description: "チャットに Equicord ドナーバッジを表示できるようにします。",
         hidden: true,
         default: true
     },
     EquicordDonorPosition: {
         type: OptionType.NUMBER,
-        description: "The position of the Equicord Donor badges.",
+        description: "Equicord ドナーバッジの位置。",
         hidden: true,
         default: 0
     },
     showEquicordContributor: {
         type: OptionType.BOOLEAN,
-        description: "Enable to show Equicord Contributor badges in chat.",
+        description: "チャットに Equicord コントリビューターバッジを表示できるようにします。",
         hidden: true,
         default: true
     },
     EquicordContributorPosition: {
         type: OptionType.NUMBER,
-        description: "The position of the Equicord Contributor badge.",
+        description: "Equicord コントリビューターバッジの位置。",
         hidden: true,
         default: 1
     },
     showVencordDonor: {
         type: OptionType.BOOLEAN,
-        description: "Enable to show Vencord donor badges in chat.",
+        description: "チャットに Vencord ドナーバッジを表示できるようにします。",
         hidden: true,
         default: true
     },
     VencordDonorPosition: {
         type: OptionType.NUMBER,
-        description: "The position of the Vencord Donor badges.",
+        description: "Vencord ドナーバッジの位置。",
         hidden: true,
         default: 4
     },
     showVencordContributor: {
         type: OptionType.BOOLEAN,
-        description: "Enable to show Vencord contributor badges in chat.",
+        description: "チャットに Vencord コントリビューターバッジを表示できるようにします。",
         hidden: true,
         default: true
     },
     VencordContributorPosition: {
         type: OptionType.NUMBER,
-        description: "The position of the Vencord Contributor badge.",
+        description: "Vencord コントリビューターバッジの位置。",
         hidden: true,
         default: 5
     },
     showDiscordProfile: {
         type: OptionType.BOOLEAN,
-        description: "Enable to show Discord profile badges in chat.",
+        description: "チャットに Discord プロフィールバッジを表示できるようにします。",
         hidden: true,
         default: true
     },
     DiscordProfilePosition: {
         type: OptionType.NUMBER,
-        description: "The position of the Discord profile badges.",
+        description: "Discord プロフィールバッジの位置。",
         hidden: true,
         default: 6
     },
     showDiscordNitro: {
         type: OptionType.BOOLEAN,
-        description: "Enable to show Discord Nitro badges in chat.",
+        description: "チャットに Discord Nitro バッジを表示できるようにします。",
         hidden: true,
         default: true
     },
     DiscordNitroPosition: {
         type: OptionType.NUMBER,
-        description: "The position of the Discord Nitro badge.",
+        description: "Discord Nitro バッジの位置。",
         hidden: true,
         default: 7
     },
     badgeSettings: {
         type: OptionType.COMPONENT,
-        description: "Setup badge layout and visibility",
+        description: "バッジのレイアウトと表示を設定",
         component: () => <BadgeSettings />
     }
 });

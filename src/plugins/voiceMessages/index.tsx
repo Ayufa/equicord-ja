@@ -70,12 +70,12 @@ const VoiceRecorder = IS_DISCORD_DESKTOP ? VoiceRecorderDesktop : VoiceRecorderW
 export const settings = definePluginSettings({
     noiseSuppression: {
         type: OptionType.BOOLEAN,
-        description: "Noise Suppression",
+        description: "ノイズ抑制",
         default: true,
     },
     echoCancellation: {
         type: OptionType.BOOLEAN,
-        description: "Echo Cancellation",
+        description: "エコーキャンセレーション",
         default: true,
     },
 });

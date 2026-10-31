@@ -31,7 +31,7 @@ const cl = classNameFactory("vc-friendship-ranks-");
 const settings = definePluginSettings({
     showFriendsInChat: {
         type: OptionType.BOOLEAN,
-        description: "Show a friend icon on messages from friends.",
+        description: "フレンドからのメッセージにフレンドアイコンを表示します。",
         default: false,
     },
 });

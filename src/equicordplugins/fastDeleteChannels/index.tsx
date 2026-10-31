@@ -49,23 +49,23 @@ function showIcon() {
 // TY ToggleVideoBind
 const settings = definePluginSettings({
     keyBind: {
-        description: "The key to toggle trash when pressed.",
+        description: "押したときにゴミ箱を切り替えるキー。",
         type: OptionType.STRING,
         default: "KeyZ",
         isValid: (value: string) => validKeycodes.includes(value),
     },
     reqCtrl: {
-        description: "Require control to be held.",
+        description: "Ctrlキーを押したままにする必要があります。",
         type: OptionType.BOOLEAN,
         default: true,
     },
     reqShift: {
-        description: "Require shift to be held.",
+        description: "Shiftキーを押したままにする必要があります。",
         type: OptionType.BOOLEAN,
         default: true,
     },
     reqAlt: {
-        description: "Require alt to be held.",
+        description: "Altキーを押したままにする必要があります。",
         type: OptionType.BOOLEAN,
         default: false,
     },

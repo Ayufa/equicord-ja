@@ -29,17 +29,17 @@ export const logger = new Logger("DevCompanion");
 
 export const settings = definePluginSettings({
     notifyOnAutoConnect: {
-        description: "Whether to notify when Dev Companion has automatically connected.",
+        description: "Dev Companion が自動接続したときに通知するか。",
         type: OptionType.BOOLEAN,
         default: true
     },
     usePatchedModule: {
-        description: "On extract requests, reply with the current patched module (if it is patched) instead of the original.",
+        description: "抽出リクエストに対して、オリジナルではなく現在のパッチ済みモジュール（パッチされている場合）を返信する。",
         default: true,
         type: OptionType.BOOLEAN,
     },
     reloadAfterToggle: {
-        description: "Reload after a disable/enable plugin command is recived.",
+        description: "プラグインの有効化/無効化コマンドを受け取ったあとにリロードする。",
         default: true,
         type: OptionType.BOOLEAN
     }

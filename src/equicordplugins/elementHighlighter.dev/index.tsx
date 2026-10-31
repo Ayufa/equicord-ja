@@ -94,48 +94,48 @@ function KeybindRecorder() {
 
 const settings = definePluginSettings({
     keybind: {
-        description: "Toggle Highlighter",
+        description: "ハイライターの切り替え",
         type: OptionType.COMPONENT,
         default: DEFAULT_KEYBIND,
         component: KeybindRecorder
     },
     showClasses: {
-        description: "Display the element's CSS class names in the tooltip",
+        description: "要素のCSSクラス名をツールチップに表示します",
         type: OptionType.BOOLEAN,
         default: false
     },
     showId: {
-        description: "Display the element's ID attribute in the tooltip",
+        description: "要素のID属性をツールチップに表示します",
         type: OptionType.BOOLEAN,
         default: false
     },
     showFont: {
-        description: "Display the computed font family and font size",
+        description: "計算されたフォントファミリーとフォントサイズを表示します",
         type: OptionType.BOOLEAN,
         default: false
     },
     showPadding: {
-        description: "Display the element's padding values",
+        description: "要素のpadding値を表示します",
         type: OptionType.BOOLEAN,
         default: false
     },
     showMargin: {
-        description: "Display the element's margin values",
+        description: "要素のmargin値を表示します",
         type: OptionType.BOOLEAN,
         default: false
     },
     showBorderRadius: {
-        description: "Display the element's border-radius values",
+        description: "要素のborder-radius値を表示します",
         type: OptionType.BOOLEAN,
         default: false
     },
     showPosition: {
-        description: "Display the element's CSS position type and z-index",
+        description: "要素のCSS positionタイプとz-indexを表示します",
         type: OptionType.BOOLEAN,
         default: false
     },
     showDisplay: {
-        description: "Display the element's display type along with flex or grid properties",
+        description: "要素のdisplayタイプとflexまたはgridプロパティを表示します",
         type: OptionType.BOOLEAN,
         default: false
     }

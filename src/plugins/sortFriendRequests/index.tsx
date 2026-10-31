@@ -45,7 +45,7 @@ function getSince(user: User) {
 const settings = definePluginSettings({
     showDates: {
         type: OptionType.BOOLEAN,
-        description: "Show dates on friend requests",
+        description: "フレンドリクエストに日付を表示する",
         default: false,
         restartNeeded: true
     }

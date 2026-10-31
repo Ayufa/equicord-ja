@@ -143,7 +143,7 @@ const settings = definePluginSettings({
     },
     onClick: {
         type: OptionType.BOOLEAN,
-        description: "Only show trigger content on click instead of hover",
+        description: "ホバーではなくクリックしたときだけトリガーコンテンツを表示します",
         default: false,
     }
 });

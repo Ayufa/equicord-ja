@@ -25,35 +25,35 @@ import { ChannelStore, GuildMemberStore } from "@webpack/common";
 const settings = definePluginSettings({
     userList: {
         description:
-            "List of user ids to allow or exempt pings for (separated by commas or spaces)",
+            "メンションを許可または免除するユーザー ID のリスト（カンマまたはスペース区切り）",
         type: OptionType.STRING,
         default: "1234567890123445,1234567890123445",
         multiline: true
     },
     roleList: {
         description:
-            "List of role ids to allow or exempt pings for (separated by commas or spaces)",
+            "メンションを許可または免除するロール ID のリスト（カンマまたはスペース区切り）",
         type: OptionType.STRING,
         default: "1234567890123445,1234567890123445",
         multiline: true
     },
     shouldPingListed: {
-        description: "Behaviour",
+        description: "動作",
         type: OptionType.SELECT,
         options: [
             {
-                label: "Do not ping the listed users / roles",
+                label: "リストにあるユーザー / ロールにはメンションしません",
                 value: false,
             },
             {
-                label: "Only ping the listed users / roles",
+                label: "リストにあるユーザー / ロールにのみメンションします",
                 value: true,
                 default: true,
             },
         ],
     },
     inverseShiftReply: {
-        description: "Invert Discord's shift replying behaviour (enable to make shift reply mention user)",
+        description: "Discord の Shift 返信の動作を反転します（有効にすると Shift 返信でユーザーにメンションします）",
         type: OptionType.BOOLEAN,
         default: false,
     }

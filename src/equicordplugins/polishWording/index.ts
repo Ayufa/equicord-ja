@@ -21,40 +21,40 @@ const presendObject: MessageSendListener = (channelId, msg) => {
 const settings = definePluginSettings({
     quickDisable: {
         type: OptionType.BOOLEAN,
-        description: "Quick disable. Turns off message modifying without requiring a client reload.",
+        description: "クイック無効化。クライアントの再読み込みなしでメッセージの変更をオフにします。",
         default: false,
     },
 
     blockedWords: {
         type: OptionType.STRING,
-        description: "Words that will not be capitalized (comma separated).",
+        description: "大文字化しない単語（カンマ区切り）。",
         default: "",
     },
     // fixApostrophes is the only one that defaults to enabled because in the version before this one,
     //   the other features did not exist / had a bug making them not work.
     fixApostrophes: {
         type: OptionType.BOOLEAN,
-        description: "Ensure contractions contain apostrophes.",
+        description: "短縮形にアポストロフィが含まれるようにします。",
         default: true,
     },
     expandContractions: {
         type: OptionType.BOOLEAN,
-        description: "Expand contractions.",
+        description: "短縮形を展開します。",
         default: false,
     },
     fixCapitalization: {
         type: OptionType.BOOLEAN,
-        description: "Capitalize sentences.",
+        description: "文を大文字で始めます。",
         default: false,
     },
     fixPunctuation: {
         type: OptionType.BOOLEAN,
-        description: "Punctate sentences.",
+        description: "文に句読点を付けます。",
         default: false,
     },
     fixPunctuationFrequency: {
         type: OptionType.SLIDER,
-        description: "Percent period frequency (this majorly annoys some people).",
+        description: "ピリオドの頻度（パーセント）（これは一部の人をかなりイライラさせます）。",
         markers: makeRange(0, 100, 10),
         stickToMarkers: false,
         default: 100,

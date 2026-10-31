@@ -12,19 +12,19 @@ import { MessageActions, PinActions } from "@webpack/common";
 const settings = definePluginSettings({
     noShiftDelete: {
         type: OptionType.BOOLEAN,
-        description: "Remove requirement to hold shift for deleting a message.",
+        description: "メッセージを削除するときに Shift を押し続ける必要をなくす。",
         default: true,
     },
     noShiftPin: {
         type: OptionType.BOOLEAN,
-        description: "Remove requirement to hold shift for pinning a message.",
+        description: "メッセージをピン留めするときに Shift を押し続ける必要をなくす。",
         default: true,
     },
     noQuickReacts: {
         default: true,
         restartNeeded: true,
         type: OptionType.BOOLEAN,
-        description: "Hide quick reacts. By default, showing the full menu hides quick react buttons.",
+        description: "クイックリアクトを非表示にする。デフォルトでは、フルメニューを表示するとクイックリアクトボタンは非表示になります。",
     },
 });
 

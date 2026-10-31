@@ -17,42 +17,42 @@ const createBotMessage = findByCodeLazy('username:"Clyde"');
 const settings = definePluginSettings({
     friendDirectMessages: {
         type: OptionType.BOOLEAN,
-        description: "Recieve notifications in your friends' DMs when they join a voice channel",
+        description: "フレンドがボイスチャンネルに参加したときに、そのフレンドとのDMで通知を受け取る",
         default: true
     },
     friendDirectMessagesShowMembers: {
         type: OptionType.BOOLEAN,
-        description: "Show a list of other members in the voice channel when recieving a DM notification of your friend joining a voice channel",
+        description: "フレンドのボイスチャンネル参加をDMで通知するとき、そのチャンネルの他のメンバー一覧を表示する",
         default: true
     },
     friendDirectMessagesShowMemberCount: {
         type: OptionType.BOOLEAN,
-        description: "Show the count of other members in the voice channel when recieving a DM notification of your friend joining a voice channel",
+        description: "フレンドのボイスチャンネル参加をDMで通知するとき、そのチャンネルの他のメンバーの人数を表示する",
         default: false
     },
     friendDirectMessagesSelf: {
         type: OptionType.BOOLEAN,
-        description: "Recieve notifications in your friends' DMs even if you are in the same voice channel as them",
+        description: "自分が同じボイスチャンネルにいる場合でも、フレンドとのDMで通知を受け取る",
         default: false
     },
     friendDirectMessagesSilent: {
         type: OptionType.BOOLEAN,
-        description: "Join messages in your friends DMs will be silent",
+        description: "フレンドとのDMの参加メッセージをサイレントにする",
         default: false
     },
     allowedFriends: {
         type: OptionType.STRING,
-        description: "Comma or space separated list of friends' user IDs you want to recieve join messages from",
+        description: "参加メッセージを受け取りたいフレンドのユーザーIDのリスト（カンマまたはスペース区切り）",
         default: ""
     },
     ignoredFriends: {
         type: OptionType.STRING,
-        description: "Comma or space separated list of friends' user IDs you do NOT want to recieve join messages from",
+        description: "参加メッセージを受け取りたくないフレンドのユーザーIDのリスト（カンマまたはスペース区切り）",
         default: ""
     },
     ignoreBlockedUsers: {
         type: OptionType.BOOLEAN,
-        description: "Do not send messages about blocked users joining/leaving/moving voice channels",
+        description: "ブロックしたユーザーのボイスチャンネルへの参加/退出/移動についてはメッセージを送信しない",
         default: true
     },
 });

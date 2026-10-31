@@ -40,12 +40,12 @@ export const settings = definePluginSettings({
     baseUrl: {
         type: OptionType.STRING,
         hidden: true,
-        description: "Decor api url",
+        description: "Decor API の URL",
         default: "https://decor.fieryflames.dev"
     },
     agreedToGuidelines: {
         type: OptionType.BOOLEAN,
-        description: "Agreed to guidelines",
+        description: "ガイドラインに同意しました",
         hidden: true,
         default: false
     }

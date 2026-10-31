@@ -12,17 +12,17 @@ import { DraftType, UploadAttachmentStore, UploadManager, UserSettingsActionCrea
 export const settings = definePluginSettings({
     addFreakyEnding: {
         type: OptionType.BOOLEAN,
-        description: "Add 👅 or ❤️ at the end",
+        description: "末尾に 👅 または ❤️ を追加",
         default: false
     },
     uwuEveryMessage: {
-        description: "Make every single message uwuified",
+        description: "すべてのメッセージを uwu 化する",
         type: OptionType.BOOLEAN,
         default: false,
         restartNeeded: false
     },
     uwuEverything: {
-        description: "Makes *all* text uwuified - really bad idea",
+        description: "*すべて* のテキストを uwu 化します - 本当におすすめしません",
         type: OptionType.BOOLEAN,
         default: false,
         restartNeeded: true

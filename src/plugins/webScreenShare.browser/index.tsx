@@ -241,25 +241,25 @@ const StreamContentHint = ["motion", "detail", ""] as const;
 const settings = definePluginSettings({
     resolution: {
         type: OptionType.SELECT,
-        description: "Resolution",
+        description: "解像度",
         hidden: true,
         options: StreamResolution.map(res => ({ label: res, value: res, default: res === "1080" }))
     },
     frameRate: {
         type: OptionType.SELECT,
-        description: "Frame Rate",
+        description: "フレームレート",
         hidden: true,
         options: StreamFps.map(fps => ({ label: fps, value: fps, default: fps === "60" }))
     },
     contentHint: {
         type: OptionType.SELECT,
-        description: "Content Hint",
+        description: "コンテンツヒント",
         hidden: true,
         options: StreamContentHint.map(hint => ({ label: hint, value: hint, default: hint === "motion" }))
     },
     systemAudio: {
         type: OptionType.BOOLEAN,
-        description: "Mute system audio",
+        description: "システム音声をミュートする",
         hidden: true
     }
 });

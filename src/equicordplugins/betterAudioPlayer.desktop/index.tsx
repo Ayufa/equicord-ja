@@ -207,33 +207,33 @@ function Visualizer({ mediaRef, playing }: { mediaRef: PlayerInstance["mediaRef"
 const settings = definePluginSettings({
     oscilloscope: {
         type: OptionType.BOOLEAN,
-        description: "Enable oscilloscope visualizer.",
+        description: "オシロスコープビジュアライザーを有効にします。",
         default: true,
     },
     spectrograph: {
         type: OptionType.BOOLEAN,
-        description: "Enable spectrograph visualizer.",
+        description: "スペクトログラフビジュアライザーを有効にします。",
         default: true,
     },
     oscilloscopeSolidColor: {
         type: OptionType.BOOLEAN,
-        description: "Use a solid color for the oscilloscope.",
+        description: "オシロスコープに単色を使います。",
         default: false,
     },
     oscilloscopeColor: {
         type: OptionType.STRING,
-        description: "Color for the oscilloscope (R, G, B or #hex).",
+        description: "オシロスコープの色（R, G, B または #hex）。",
         default: "255, 255, 255",
         onChange: value => validateColor(value, "oscilloscopeColor", "255, 255, 255"),
     },
     spectrographSolidColor: {
         type: OptionType.BOOLEAN,
-        description: "Use a solid color for the spectrograph.",
+        description: "スペクトログラフに単色を使います。",
         default: false,
     },
     spectrographColor: {
         type: OptionType.STRING,
-        description: "Color for the spectrograph (R, G, B or #hex).",
+        description: "スペクトログラフの色（R, G, B または #hex）。",
         default: "33, 150, 243",
         onChange: value => validateColor(value, "spectrographColor", "33, 150, 243"),
     },

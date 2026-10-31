@@ -11,7 +11,7 @@ import definePlugin, { makeRange, OptionType } from "@utils/types";
 const settings = definePluginSettings({
     zoomMultiplier: {
         type: OptionType.SLIDER,
-        description: "Zoom multiplier",
+        description: "ズーム倍率",
         markers: makeRange(2, 16),
         default: 4,
     },

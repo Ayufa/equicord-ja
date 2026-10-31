@@ -32,14 +32,14 @@ import {
 export const settings = definePluginSettings({
     maxMessagesPerMinute: {
         type: OptionType.SLIDER,
-        description: "Max scheduled messages per channel that can fire in the same minute.",
+        description: "同じ分に送信できるチャンネルごとの予約メッセージの最大数。",
         markers: [1, 2, 3, 4, 5],
         default: 3,
         stickToMarkers: true
     },
     checkIntervalSeconds: {
         type: OptionType.SLIDER,
-        description: "How often to check for messages to send (seconds).",
+        description: "送信するメッセージをチェックする頻度（秒）。",
         markers: [5, 10, 15, 30, 60],
         default: 10,
         stickToMarkers: true,
@@ -50,12 +50,12 @@ export const settings = definePluginSettings({
     },
     showNotifications: {
         type: OptionType.BOOLEAN,
-        description: "Show toast notifications when messages are sent.",
+        description: "メッセージが送信されたときにトースト通知を表示します。",
         default: true
     },
     showPhantomMessages: {
         type: OptionType.BOOLEAN,
-        description: "Show scheduled messages as phantom messages in chat.",
+        description: "予約メッセージをチャットにファントムメッセージとして表示します。",
         default: true
     }
 });

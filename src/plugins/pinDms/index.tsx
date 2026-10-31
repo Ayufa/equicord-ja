@@ -105,29 +105,29 @@ export const enum PinOrder {
 export const settings = definePluginSettings({
     pinOrder: {
         type: OptionType.SELECT,
-        description: "Which order should pinned DMs be displayed in?",
+        description: "ピン留めした DM をどの順序で表示しますか？",
         options: [
-            { label: "Most recent message", value: PinOrder.LastMessage, default: true },
-            { label: "Custom (right click channels to reorder)", value: PinOrder.Custom }
+            { label: "最新のメッセージ", value: PinOrder.LastMessage, default: true },
+            { label: "カスタム（チャンネルを右クリックして並べ替え）", value: PinOrder.Custom }
         ],
         onChange: () => FluxDispatcher.dispatch({ type: "FRIENDS_LIST_TEAR_DOWN" })
     },
     canCollapseDmSection: {
         type: OptionType.BOOLEAN,
-        displayName: "Can Collapse DM Section",
-        description: "Allow uncategorised DMs section to be collapsable",
+        displayName: "DMセクションを折りたたみ可能にする",
+        description: "カテゴリなし DM セクションを折りたたみ可能にします",
         default: false
     },
     dmSectionCollapsed: {
         type: OptionType.BOOLEAN,
-        displayName: "DM Section Collapsed",
-        description: "Collapse DM section",
+        displayName: "DMセクションを折りたたむ",
+        description: "DM セクションを折りたたみます",
         default: false,
         hidden: true
     },
     friendsSidebarGroupDms: {
         type: OptionType.BOOLEAN,
-        description: "Show pinned group DMs in the friends sidebar.",
+        description: "フレンドサイドバーにピン留めしたグループ DM を表示します。",
         default: true,
         onChange: () => FluxDispatcher.dispatch({ type: "FRIENDS_LIST_TEAR_DOWN" })
     },

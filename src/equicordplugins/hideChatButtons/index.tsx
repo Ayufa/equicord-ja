@@ -16,12 +16,12 @@ let hidechatbuttonsopen: boolean | undefined;
 const settings = definePluginSettings({
     color: {
         type: OptionType.BOOLEAN,
-        description: "Color it red on open", // something extra
+        description: "開いたときに赤くします", // something extra
         default: false,
     },
     open: {
         type: OptionType.BOOLEAN,
-        description: "opened by default",
+        description: "デフォルトで開いておく",
         default: false,
         onChange: (store: { open: boolean; }) => {
             hidechatbuttonsopen = store.open;

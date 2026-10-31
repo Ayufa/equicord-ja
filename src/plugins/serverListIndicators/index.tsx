@@ -118,17 +118,17 @@ function ServersIndicator() {
 
 export const settings = definePluginSettings({
     mode: {
-        description: "Mode",
+        description: "モード",
         type: OptionType.SELECT,
         options: [
-            { label: "Only online friend count", value: IndicatorType.FRIEND, default: true },
-            { label: "Only server count", value: IndicatorType.SERVER },
-            { label: "Both server and online friend counts", value: IndicatorType.BOTH },
+            { label: "オンラインのフレンド数のみ", value: IndicatorType.FRIEND, default: true },
+            { label: "サーバー数のみ", value: IndicatorType.SERVER },
+            { label: "サーバー数とオンラインのフレンド数の両方", value: IndicatorType.BOTH },
         ],
         restartNeeded: true // Restart needed just to force update
     },
     useCompact: {
-        description: "Makes the indicator appear with only text",
+        description: "インジケーターをテキストのみで表示する",
         type: OptionType.BOOLEAN,
         default: false,
         restartNeeded: true // Restart needed just to force update

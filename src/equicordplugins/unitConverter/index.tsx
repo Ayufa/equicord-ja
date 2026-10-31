@@ -30,15 +30,15 @@ import { conversions, ConverterAccessory, ConvertIcon } from "./ConverterAccesso
 export const settings = definePluginSettings({
     myUnits: {
         type: OptionType.SELECT,
-        description: "the units you use and want things converted to. defaults to imperial",
+        description: "自分が使い、変換先にしたい単位系。デフォルトは帝国単位です",
         options: [
             {
                 default: true,
-                label: "Imperial",
+                label: "帝国単位",
                 value: "imperial",
             },
             {
-                label: "Metric",
+                label: "メートル法",
                 value: "metric"
             }
         ]

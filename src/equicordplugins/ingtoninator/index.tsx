@@ -20,13 +20,13 @@ const settings = definePluginSettings({
     showIcon: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Show a button to toggle the Ingtoninator plugin",
+        description: "Ingtoninatorプラグインを切り替えるボタンを表示します",
         restartNeeded: true
     },
     isEnabled: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Enable or disable the Ingtoninator"
+        description: "Ingtoninatorを有効化／無効化します"
     }
 });
 

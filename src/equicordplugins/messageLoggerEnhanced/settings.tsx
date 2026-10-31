@@ -62,30 +62,30 @@ export const settings = definePluginSettings({
     saveMessages: {
         default: true,
         type: OptionType.BOOLEAN,
-        description: "Whether to save the deleted and edited messages.",
+        description: "削除・編集されたメッセージを保存するかどうか。",
     },
 
     saveImages: {
         type: OptionType.BOOLEAN,
-        description: "Save deleted attachments.",
+        description: "削除された添付ファイルを保存します。",
         default: false
     },
 
     sortNewest: {
         default: true,
         type: OptionType.BOOLEAN,
-        description: "Sort logs by newest.",
+        description: "ログを新しい順に並べ替えます。",
     },
 
     cacheMessagesFromServers: {
         default: false,
         type: OptionType.BOOLEAN,
-        description: "Usually message logger only logs from whitelisted ids and dms, enabling this would mean it would log messages from all servers as well. Note that this may cause the cache to exceed its limit, resulting in some messages being missed. If you are in a lot of servers, this may significantly increase the chances of messages being logged, which can result in a large message record and the inclusion of irrelevant messages.",
+        description: "通常、メッセージロガーはホワイトリストに登録された ID と DM のみを記録します。これを有効にすると、すべてのサーバーのメッセージも記録するようになります。キャッシュの上限を超えて一部のメッセージを取りこぼす可能性があることに注意してください。多くのサーバーに参加している場合、メッセージが記録される可能性が大幅に上がり、記録が大きくなったり無関係なメッセージが含まれたりすることがあります。",
     },
 
     ignoreBots: {
         type: OptionType.BOOLEAN,
-        description: "Whether to ignore messages by bots",
+        description: "ボットのメッセージを無視するかどうか",
         default: false,
         onChange() {
             // we will be handling the ignoreBots now (enabled or not) so the original messageLogger shouldnt
@@ -95,13 +95,13 @@ export const settings = definePluginSettings({
 
     ignoreWebhooks: {
         type: OptionType.BOOLEAN,
-        description: "Whether to ignore messages by webhooks",
+        description: "ウェブフックのメッセージを無視するかどうか",
         default: false,
     },
 
     ignoreSelf: {
         type: OptionType.BOOLEAN,
-        description: "Whether to ignore messages by yourself",
+        description: "自分のメッセージを無視するかどうか",
         default: false,
         onChange() {
             Settings.plugins.MessageLogger.ignoreSelf = false;
@@ -111,86 +111,86 @@ export const settings = definePluginSettings({
     ignoreMutedGuilds: {
         default: false,
         type: OptionType.BOOLEAN,
-        description: "Messages in muted guilds will not be logged. Whitelisted users/channels in muted guilds will still be logged."
+        description: "ミュートしたサーバーのメッセージは記録されません。ミュートしたサーバー内でも、ホワイトリストに登録されたユーザー/チャンネルは記録されます。"
     },
 
     ignoreMutedCategories: {
         default: false,
         type: OptionType.BOOLEAN,
-        description: "Messages in channels belonging to muted categories will not be logged. Whitelisted users/channels in muted guilds will still be logged."
+        description: "ミュートしたカテゴリに属するチャンネルのメッセージは記録されません。ミュートしたサーバー内でも、ホワイトリストに登録されたユーザー/チャンネルは記録されます。"
     },
 
     ignoreMutedChannels: {
         default: false,
         type: OptionType.BOOLEAN,
-        description: "Messages in muted channels will not be logged. Whitelisted users/channels in muted guilds will still be logged."
+        description: "ミュートしたチャンネルのメッセージは記録されません。ミュートしたサーバー内でも、ホワイトリストに登録されたユーザー/チャンネルは記録されます。"
     },
 
     alwaysLogDirectMessages: {
         default: true,
         type: OptionType.BOOLEAN,
-        description: "Always log DMs",
+        description: "常に DM を記録",
     },
 
     alwaysLogCurrentChannel: {
         default: true,
         type: OptionType.BOOLEAN,
-        description: "Always log current selected channel. Blacklisted channels/users will still be ignored.",
+        description: "現在選択中のチャンネルを常に記録します。ブラックリストに登録されたチャンネル/ユーザーは引き続き無視されます。",
     },
 
     permanentlyRemoveLogByDefault: {
         default: false,
         type: OptionType.BOOLEAN,
-        description: "Vencord's base MessageLogger remove log button wiil delete logs permanently",
+        description: "Vencord 標準の MessageLogger のログ削除ボタンはログを完全に削除します",
     },
 
     hideMessageFromMessageLoggers: {
         default: false,
         type: OptionType.BOOLEAN,
-        description: "When enabled, a context menu button will be added to messages to allow you to delete messages without them being logged by other loggers. Might not be safe, use at your own risk."
+        description: "有効にすると、メッセージにコンテキストメニューボタンが追加され、他のロガーに記録されずにメッセージを削除できるようになります。安全でない可能性があるため、自己責任で使用してください。"
     },
 
     ShowLogsButton: {
         default: true,
         type: OptionType.BOOLEAN,
-        description: "Toggle to whenever show the toolbox or not",
+        description: "ツールボックスを表示するかどうか",
         restartNeeded: true,
     },
 
     ShowWhereMessageIsFrom: {
         default: false,
         type: OptionType.BOOLEAN,
-        description: "Show message channel/author name and server name",
+        description: "メッセージのチャンネル/投稿者名とサーバー名を表示",
     },
 
     messagesToDisplayAtOnceInLogs: {
         default: 100,
         type: OptionType.NUMBER,
-        description: "Number of messages to display at once in logs & number of messages to load when loading more messages in logs.",
+        description: "ログに一度に表示するメッセージ数と、ログでさらに読み込むときに読み込むメッセージ数。",
     },
 
     hideMessageFromMessageLoggersDeletedMessage: {
         default: "redacted eh",
         type: OptionType.STRING,
-        description: "The message content to replace the message with when using the hide message from message loggers feature.",
+        description: "メッセージロガーからメッセージを隠す機能を使うときに、メッセージを置き換える内容。",
     },
 
     messageLimit: {
         default: 200,
         type: OptionType.NUMBER,
-        description: "Maximum number of messages to save. Older messages are deleted when the limit is reached. 0 means there is no limit"
+        description: "保存するメッセージの最大数。上限に達すると古いメッセージが削除されます。0 は無制限を意味します"
     },
 
     attachmentSizeLimitInMegabytes: {
         default: 12,
         type: OptionType.NUMBER,
-        description: "Maximum size of an attachment in megabytes to save. Attachments larger than this size will not be saved."
+        description: "保存する添付ファイルの最大サイズ（MB）。このサイズより大きい添付ファイルは保存されません。"
     },
 
     attachmentFileExtensions: {
         default: "png,jpg,jpeg,gif,webp,mp4,webm,mp3,ogg,wav",
         type: OptionType.STRING,
-        description: "Comma separated list of file extensions to save. Attachments with file extensions not in this list will not be saved.",
+        description: "保存するファイル拡張子のカンマ区切りリスト。このリストにない拡張子の添付ファイルは保存されません。",
         onChange: (value: string) => {
             let processedValue = "";
 
@@ -216,67 +216,67 @@ export const settings = definePluginSettings({
     cacheLimit: {
         default: 1000,
         type: OptionType.NUMBER,
-        description: "Maximum number of messages to store in the cache. Older messages are deleted when the limit is reached. This helps reduce memory usage and improve performance. 0 means there is no limit",
+        description: "キャッシュに保存するメッセージの最大数。上限に達すると古いメッセージが削除されます。メモリ使用量の削減とパフォーマンスの向上に役立ちます。0 は無制限を意味します",
     },
 
     timeBasedCleanupMinutes: {
         default: 0,
         type: OptionType.NUMBER,
-        description: "Automatically remove messages from servers that are older than this many minutes. Set to 0 to disable time-based cleanup.",
+        description: "この分数より古いサーバーのメッセージを自動的に削除します。0 に設定すると時間ベースのクリーンアップが無効になります。",
     },
 
     preserveCurrentChannel: {
         default: true,
         type: OptionType.BOOLEAN,
-        description: "When enabled, messages in your currently selected channel are not affected by time-based cleanup.",
+        description: "有効にすると、現在選択中のチャンネルのメッセージは時間ベースのクリーンアップの影響を受けません。",
     },
 
     whitelistedIds: {
         default: "",
         type: OptionType.STRING,
-        description: "Server, channel, or user IDs to always show in message log."
+        description: "メッセージログに常に表示するサーバー、チャンネル、またはユーザー ID。"
     },
 
     blacklistedIds: {
         default: "",
         type: OptionType.STRING,
-        description: "Server, channel, or user IDs to never show in message log."
+        description: "メッセージログに決して表示しないサーバー、チャンネル、またはユーザー ID。"
     },
 
     imageCacheDir: {
         type: OptionType.COMPONENT,
-        description: "Select saved images directory",
+        description: "保存した画像のディレクトリを選択",
         component: ErrorBoundary.wrap(ImageCacheDir) as any
     },
 
     logsDir: {
         type: OptionType.COMPONENT,
-        description: "Select logs directory",
+        description: "ログのディレクトリを選択",
         component: ErrorBoundary.wrap(LogsDir) as any
     },
 
     importLogs: {
         type: OptionType.COMPONENT,
-        description: "Import Logs From File",
+        description: "ファイルからログをインポート",
         component: ImportLogsButton
     },
 
     exportLogs: {
         type: OptionType.COMPONENT,
-        description: "Export Logs From IndexedDB",
+        description: "IndexedDB からログをエクスポート",
         component: ExportLogsButton
     },
 
     clearLogsOnRestart: {
         type: OptionType.BOOLEAN,
-        description: "Clear logs when Discord restarts.",
+        description: "Discord の再起動時にログをクリアします。",
         default: false,
         restartNeeded: true,
     },
 
     openLogs: {
         type: OptionType.COMPONENT,
-        description: "Open Logs",
+        description: "ログを開く",
         component: () =>
             <Button onClick={() => openLogModal()}>
                 Open Logs
@@ -284,7 +284,7 @@ export const settings = definePluginSettings({
     },
     openImageCacheFolder: {
         type: OptionType.COMPONENT,
-        description: "Opens the image cache directory",
+        description: "画像キャッシュのディレクトリを開きます",
         component: () =>
             <Button
                 disabled={
@@ -300,7 +300,7 @@ export const settings = definePluginSettings({
 
     clearLogs: {
         type: OptionType.COMPONENT,
-        description: "Clear Logs",
+        description: "ログをクリア",
         component: () => <ClearLogsButton />
     },
 

@@ -74,12 +74,12 @@ function SoundIdInput() {
 const settings = definePluginSettings({
     soundGuildId: {
         type: OptionType.COMPONENT,
-        description: "Select the server containing the sound.",
+        description: "サウンドのあるサーバーを選択してください。",
         component: GuildSelector
     },
     soundId: {
         type: OptionType.COMPONENT,
-        description: "Enter the ID of the sound you want to play.",
+        description: "再生したいサウンドのIDを入力してください。",
         component: SoundIdInput
     }
 });

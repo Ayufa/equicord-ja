@@ -36,22 +36,22 @@ export const settings = definePluginSettings({
     },
     notifyReviews: {
         type: OptionType.BOOLEAN,
-        description: "Notify about new reviews on startup",
+        description: "起動時に新しいレビューを通知する",
         default: true,
     },
     showWarning: {
         type: OptionType.BOOLEAN,
-        description: "Display warning to be respectful at the top of the reviews list",
+        description: "レビュー一覧の上部に、礼儀正しくするよう促す警告を表示する",
         default: true,
     },
     hideTimestamps: {
         type: OptionType.BOOLEAN,
-        description: "Hide timestamps on reviews",
+        description: "レビューのタイムスタンプを非表示にする",
         default: false,
     },
     hideBlockedUsers: {
         type: OptionType.BOOLEAN,
-        description: "Hide reviews from blocked users",
+        description: "ブロックしたユーザーのレビューを非表示にする",
         default: true,
     },
     buttons: {

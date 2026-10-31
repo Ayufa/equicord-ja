@@ -48,17 +48,17 @@ function shouldEdit(channel: Channel, message: Message, timePeriod: number, shou
 const settings = definePluginSettings({
     timePeriod: {
         type: OptionType.NUMBER,
-        description: "The duration of bursts (in seconds).",
+        description: "バーストの持続時間（秒）。",
         default: 3
     },
     shouldMergeWithAttachment: {
         type: OptionType.BOOLEAN,
-        description: "Should the message be merged if the last message has an attachment?",
+        description: "最後のメッセージに添付ファイルがある場合もメッセージを統合しますか？",
         default: false
     },
     useSpace: {
         type: OptionType.BOOLEAN,
-        description: "Whether to add a space between messages when merging instead of new lines.",
+        description: "統合するときに改行ではなくスペースをメッセージ間に追加するかどうか。",
         default: false
     }
 });

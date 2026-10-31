@@ -84,29 +84,29 @@ function RegexHelper() {
 const settings = definePluginSettings({
     blockedWords: {
         type: OptionType.STRING,
-        description: "Comma-separated list of words to block",
+        description: "ブロックする単語のカンマ区切りリスト",
         default: "",
         restartNeeded: true
     },
     useRegex: {
         type: OptionType.BOOLEAN,
-        description: "Use each value as a regular expression when checking message content (advanced)",
+        description: "メッセージ内容のチェック時に各値を正規表現として扱います（高度な設定）",
         default: false,
         restartNeeded: true
     },
     regexHelper: {
         type: OptionType.COMPONENT,
-        description: "Test your regular expressions against a sample input",
+        description: "サンプル入力に対して正規表現をテストします",
         component: () => <ErrorBoundary noop><RegexHelper /></ErrorBoundary>,
     },
     caseSensitive: {
         type: OptionType.BOOLEAN,
-        description: "Whether to use a case sensitive search or not",
+        description: "大文字・小文字を区別して検索するかどうか",
         default: false,
         restartNeeded: true
     },
     ignoreBlockedMessages: {
-        description: "Completely ignores (recent) new messages bar",
+        description: "「新着メッセージ」バーを完全に無視します",
         type: OptionType.BOOLEAN,
         default: true,
         restartNeeded: true,

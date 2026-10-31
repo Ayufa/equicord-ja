@@ -56,27 +56,27 @@ const getSpacingPx = (spacing: Spacing | undefined) => (spacing ?? Spacing.COMPA
 const settings = definePluginSettings({
     iconSize: {
         type: OptionType.NUMBER,
-        description: "Icon size (px)",
+        description: "アイコンサイズ（px）",
         default: 32
     },
     iconSpacing: {
         type: OptionType.SELECT,
-        description: "Icon margin",
+        description: "アイコンの余白",
         default: Spacing.COZY,
         options: [
-            { label: "Compact", value: Spacing.COMPACT },
-            { label: "Cozy", value: Spacing.COZY }, // US Spelling :/
-            { label: "Roomy", value: Spacing.ROOMY }
+            { label: "コンパクト", value: Spacing.COMPACT },
+            { label: "コージー", value: Spacing.COZY }, // US Spelling :/
+            { label: "ルーミー", value: Spacing.ROOMY }
         ]
     },
     showGithubOrgs: {
         type: OptionType.BOOLEAN,
-        description: "Show GitHub organizations the user is a member of",
+        description: "ユーザーが所属する GitHub organization を表示する",
         default: true
     },
     showOnModal: {
         type: OptionType.BOOLEAN,
-        description: "Show connected accounts in the full-size profile modal",
+        description: "フルサイズのプロフィールモーダルに接続済みアカウントを表示する",
         default: true
     }
 });

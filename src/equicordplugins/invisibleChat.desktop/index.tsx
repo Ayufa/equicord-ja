@@ -99,7 +99,7 @@ const settings = definePluginSettings({
     savedPasswords: {
         type: OptionType.STRING,
         default: "password, Password",
-        description: "Saved Passwords (Seperated with a , )"
+        description: "保存したパスワード（カンマ区切り）"
     }
 });
 

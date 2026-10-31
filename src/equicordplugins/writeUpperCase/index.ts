@@ -13,7 +13,7 @@ const settings = definePluginSettings(
     {
         blockedWords: {
             type: OptionType.STRING,
-            description: "Strings not to capitilise (seperate with a comma)",
+            description: "大文字化しない文字列（カンマ区切り）",
             default: "http, https, ok"
         }
     }

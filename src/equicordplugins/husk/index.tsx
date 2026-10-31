@@ -69,17 +69,17 @@ export function Husk(props: IconProps) {
 
 const settings = definePluginSettings({
     findInServer: {
-        description: "Attempt to find emoji of same name in server before using ID in settings (useful if no nitro)",
+        description: "設定のIDを使う前に、サーバー内で同じ名前の絵文字を探します（Nitroがない場合に便利）",
         type: OptionType.BOOLEAN,
         default: true
     },
     emojiName: {
-        description: "Emoji name (default (from Vencord Server): husk)",
+        description: "絵文字名（デフォルト（Vencordサーバー）: husk）",
         type: OptionType.STRING,
         default: "husk"
     },
     emojiID: {
-        description: "Emoji ID (default (from Vencord Server): 1026532993923293184)",
+        description: "絵文字ID（デフォルト（Vencordサーバー）: 1026532993923293184）",
         type: OptionType.BIGINT,
         default: 1026532993923293184n
     }

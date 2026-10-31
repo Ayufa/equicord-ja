@@ -21,31 +21,31 @@ const Millis = {
 const settings = definePluginSettings({
     showForeverOnTop: {
         type: OptionType.BOOLEAN,
-        description: "Show the Forever option at the top of the list instead of the bottom.",
+        description: "「無期限」オプションをリストの一番下ではなく一番上に表示します。",
         restartNeeded: true,
         default: true
     },
     extraSeconds: {
         type: OptionType.STRING,
-        description: "Extra seconds to add, separated by a comma (e.g. 5, 10, 30)",
+        description: "追加する秒数。カンマ区切りで入力（例: 5, 10, 30）",
         restartNeeded: true,
         default: "15, 30, 45"
     },
     extraMinutes: {
         type: OptionType.STRING,
-        description: "Extra minutes to add, separated by a comma (e.g. 5, 10, 30)",
+        description: "追加する分数。カンマ区切りで入力（例: 5, 10, 30）",
         restartNeeded: true,
         default: "5, 10, 30"
     },
     extraHours: {
         type: OptionType.STRING,
-        description: "Extra hours to add, separated by a comma (e.g. 2, 4, 6, 12)",
+        description: "追加する時間数。カンマ区切りで入力（例: 2, 4, 6, 12）",
         restartNeeded: true,
         default: "2, 4, 6, 12"
     },
     extraDays: {
         type: OptionType.STRING,
-        description: "Extra days to add, separated by a comma (e.g. 1, 2)",
+        description: "追加する日数。カンマ区切りで入力（例: 1, 2）",
         restartNeeded: true,
         default: "1, 2"
     },

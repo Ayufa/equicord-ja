@@ -15,7 +15,7 @@ interface ToggleableDescriptionProps { embed: Embed, original: () => any; }
 
 const settings = definePluginSettings({
     youtubeDescription: {
-        description: "Adds descriptions to youtube video embeds",
+        description: "YouTube 動画の埋め込みに説明文を追加する",
         type: OptionType.BOOLEAN,
         default: false,
         restartNeeded: true

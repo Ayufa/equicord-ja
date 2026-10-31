@@ -25,7 +25,7 @@ function play() {
 const settings = definePluginSettings({
     amount: {
         type: OptionType.NUMBER,
-        description: "amount of clicks to trigger crossant",
+        description: "クロワッサンを発生させるクリック回数",
         default: 10,
     }
 });

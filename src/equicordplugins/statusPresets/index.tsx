@@ -117,7 +117,7 @@ const StatusSubMenuComponent = () => {
 const settings = definePluginSettings({
     StatusPresets: {
         type: OptionType.COMPONENT,
-        description: "Status Presets",
+        description: "ステータスプリセット",
         component: () => <></>,
         default: {}
     }

@@ -46,62 +46,62 @@ const locale = findByPropsLazy("getLocale");
 export const settings = definePluginSettings({
     showOwnTimezone: {
         type: OptionType.BOOLEAN,
-        description: "Show your own timezone in profiles and message headers",
+        description: "プロフィールとメッセージヘッダーに自分のタイムゾーンを表示する",
         default: true
     },
 
     twentyFourHourFormat: {
         type: OptionType.BOOLEAN,
         displayName: "24h Time",
-        description: "Show time in 24h format",
+        description: "時刻を24時間形式で表示する",
         default: false
     },
 
     showTimezoneInfo: {
         type: OptionType.BOOLEAN,
-        description: "Show timezone info next to time",
+        description: "時刻の横にタイムゾーン情報を表示する",
         default: true
     },
 
     showMessageHeaderTime: {
         type: OptionType.BOOLEAN,
-        description: "Show time in message headers",
+        description: "メッセージヘッダーに時刻を表示する",
         default: true
     },
 
     recipientTimezoneInDms: {
         type: OptionType.BOOLEAN,
-        description: "In DMs, show the recipient's timezone on your messages",
+        description: "DMで、自分のメッセージに相手のタイムゾーンを表示する",
         default: false
     },
 
     showProfileTime: {
         type: OptionType.BOOLEAN,
-        description: "Show time in profiles",
+        description: "プロフィールに時刻を表示する",
         default: true
     },
 
     useDatabase: {
         type: OptionType.BOOLEAN,
-        description: "Enable database for getting user timezones",
+        description: "ユーザーのタイムゾーン取得にデータベースを有効にする",
         default: true
     },
 
     preferDatabaseOverLocal: {
         type: OptionType.BOOLEAN,
-        description: "Prefer database over local storage for timezones",
+        description: "タイムゾーンについてローカルストレージよりデータベースを優先する",
         default: true
     },
 
     showLocalTimezone: {
         type: OptionType.BOOLEAN,
-        description: "Show Local Timezone instead of just local",
+        description: "単に「ローカル」と表示する代わりに、現地のタイムゾーンを表示する",
         default: false,
     },
 
     databaseUrl: {
         type: OptionType.STRING,
-        description: "Database URL for timezone storage",
+        description: "タイムゾーン保存用データベースのURL",
         default: "https://timezone.creations.works"
     },
 
@@ -111,7 +111,7 @@ export const settings = definePluginSettings({
     },
 
     setDatabaseTimezone: {
-        description: "Set your timezone on the database",
+        description: "データベースに自分のタイムゾーンを設定する",
         type: OptionType.COMPONENT,
         component: () => (
             <Button onClick={() => {
@@ -123,7 +123,7 @@ export const settings = definePluginSettings({
     },
 
     resetDatabaseTimezone: {
-        description: "Reset your timezone on the database",
+        description: "データベース上の自分のタイムゾーンをリセットする",
         type: OptionType.COMPONENT,
         component: () => (
             <Button
@@ -145,7 +145,7 @@ export const settings = definePluginSettings({
 
     askedTimezone: {
         type: OptionType.BOOLEAN,
-        description: "Whether the user has been asked to set their timezone",
+        description: "ユーザーにタイムゾーン設定を促したかどうか",
         hidden: true,
         default: false
     }

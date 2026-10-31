@@ -24,13 +24,13 @@ import { SettingsRouter } from "@webpack/common";
 const settings = definePluginSettings({
     showNavigationButtons: {
         type: OptionType.BOOLEAN,
-        description: "Show the back/forward navigation buttons in the title bar.",
+        description: "タイトルバーに「戻る／進む」ナビゲーションボタンを表示する。",
         default: true,
         restartNeeded: true
     },
     overrideCommonKeybinds: {
         type: OptionType.BOOLEAN,
-        description: "Allows discord to override the most common tab navigation keybinds (ctrl+t, ctrl+shift+t, ctrl+tab, ctrl+shift+tab, ctrl+n). Only works in a few select browsers that allow website keybinds to take priority over native ones.",
+        description: "Discord が一般的なタブ操作のキーバインド（ctrl+t、ctrl+shift+t、ctrl+tab、ctrl+shift+tab、ctrl+n）を上書きできるようにする。ウェブサイトのキーバインドをネイティブより優先できる一部のブラウザでのみ動作します。",
         default: IS_VESKTOP || IS_EQUIBOP,
         restartNeeded: true,
     }

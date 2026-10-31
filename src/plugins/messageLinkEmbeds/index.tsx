@@ -75,46 +75,46 @@ const messageFetchQueue = new Queue();
 
 const settings = definePluginSettings({
     messageBackgroundColor: {
-        description: "Background color for messages in rich embeds",
+        description: "リッチ埋め込み内のメッセージの背景色",
         type: OptionType.BOOLEAN
     },
     automodEmbeds: {
-        description: "Use automod embeds instead of rich embeds (smaller but less info)",
+        description: "リッチ埋め込みの代わりに AutoMod 埋め込みを使用します（小さくなりますが情報は少なくなります）",
         type: OptionType.SELECT,
         options: [
             {
-                label: "Always use automod embeds",
+                label: "常に AutoMod 埋め込みを使用します",
                 value: "always"
             },
             {
-                label: "Prefer automod embeds, but use rich embeds if some content can't be shown",
+                label: "AutoMod 埋め込みを優先しますが、一部のコンテンツが表示できない場合はリッチ埋め込みを使用します",
                 value: "prefer"
             },
             {
-                label: "Never use automod embeds",
+                label: "AutoMod 埋め込みを一切使用しません",
                 value: "never",
                 default: true
             }
         ]
     },
     listMode: {
-        description: "Whether to use ID list as blacklist or whitelist",
+        description: "ID リストをブラックリストとして使うかホワイトリストとして使うか",
         type: OptionType.SELECT,
         options: [
             {
-                label: "Blacklist",
+                label: "ブラックリスト",
                 value: "blacklist",
                 default: true
             },
             {
-                label: "Whitelist",
+                label: "ホワイトリスト",
                 value: "whitelist"
             }
         ]
     },
     idList: {
-        displayName: "ID List",
-        description: "Guild/channel/user IDs to blacklist or whitelist (separate with comma)",
+        displayName: "IDリスト",
+        description: "ブラックリストまたはホワイトリストに登録するサーバー/チャンネル/ユーザー ID（カンマ区切り）",
         type: OptionType.STRING,
         default: "",
         multiline: true,

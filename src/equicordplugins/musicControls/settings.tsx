@@ -90,26 +90,26 @@ function LyricsProviderSettings() {
 
 export const settings = definePluginSettings({
     hoverControls: {
-        description: "Show controls on hover",
+        description: "ホバー時にコントロールを表示",
         type: OptionType.BOOLEAN,
         default: false,
         onChange: v => toggleHoverControls(v)
     },
     showMusicNoteOnNoLyrics: {
-        description: "Show a music note icon when no lyrics are found",
+        description: "歌詞が見つからないときに音符アイコンを表示",
         type: OptionType.BOOLEAN,
         default: true,
     },
     lyricsPosition: {
-        description: "Position of the lyrics",
+        description: "歌詞の位置",
         type: OptionType.SELECT,
         options: [
-            { value: "above", label: "Above Player(s)" },
-            { value: "below", label: "Below  Player(s)", default: true },
+            { value: "above", label: "プレイヤーの上" },
+            { value: "below", label: "プレイヤーの下", default: true },
         ],
     },
     lyricsProvider: {
-        description: "Where lyrics are fetched from",
+        description: "歌詞の取得元",
         type: OptionType.SELECT,
         options: [
             { value: Provider.Lrclib, label: "LRCLIB", default: true },
@@ -119,7 +119,7 @@ export const settings = definePluginSettings({
     },
     spotifyLyricsApiUrl: {
         type: OptionType.STRING,
-        description: "Spotify lyrics API base URL.",
+        description: "Spotify 歌詞 API のベース URL。",
         hidden: true,
         default: "https://spotify-lyrics-api-pi.vercel.app",
         onChange: async () => {
@@ -132,7 +132,7 @@ export const settings = definePluginSettings({
         component: LyricsProviderSettings,
     },
     translateTo: {
-        description: "Translate lyrics to - Changing this will clear existing translations",
+        description: "歌詞の翻訳先 - 変更すると既存の翻訳がクリアされます",
         type: OptionType.SELECT,
         options: languages,
         onChange: async () => {
@@ -141,21 +141,21 @@ export const settings = definePluginSettings({
         }
     },
     lyricsConversion: {
-        description: "Automatically translate or romanize lyrics",
+        description: "歌詞を自動的に翻訳またはローマ字化",
         type: OptionType.SELECT,
         options: [
-            { value: Provider.None, label: "None", default: true },
-            { value: Provider.Translated, label: "Translate" },
-            { value: Provider.Romanized, label: "Romanize" },
+            { value: Provider.None, label: "なし", default: true },
+            { value: Provider.Translated, label: "翻訳" },
+            { value: Provider.Romanized, label: "ローマ字化" },
         ]
     },
     fallbackProvider: {
-        description: "When a lyrics provider fails, try other providers",
+        description: "歌詞プロバイダーが失敗したら、他のプロバイダーを試す",
         type: OptionType.BOOLEAN,
         default: true,
     },
     showFailedToasts: {
-        description: "Hide toasts when lyrics fail to fetch",
+        description: "歌詞の取得に失敗したときにトーストを隠す",
         type: OptionType.BOOLEAN,
         default: true,
     },
@@ -166,7 +166,7 @@ export const settings = definePluginSettings({
         ...sliderOptions
     },
     purgeLyricsCache: {
-        description: "Purge the lyrics cache",
+        description: "歌詞キャッシュを削除",
         type: OptionType.COMPONENT,
         component: () => (
             <Button
@@ -189,23 +189,23 @@ export const settings = definePluginSettings({
         )
     },
     showSpotifyControls: {
-        description: "Show Spotify Controls",
+        description: "Spotify コントロールを表示",
         type: OptionType.BOOLEAN,
         default: false,
     },
     showSpotifyLyrics: {
-        description: "Show Spotify Lyrics",
+        description: "Spotify の歌詞を表示",
         type: OptionType.BOOLEAN,
         default: false,
     },
     useSpotifyUris: {
         type: OptionType.BOOLEAN,
-        description: "Open Spotify URIs instead of Spotify URLs. Will only work if you have Spotify installed and might not work on all platforms",
+        description: "Spotify URL の代わりに Spotify URI を開きます。Spotify がインストールされている場合のみ動作し、プラットフォームによっては動作しないことがあります",
         default: false
     },
     previousButtonRestartsTrack: {
         type: OptionType.BOOLEAN,
-        description: "Restart currently playing track when pressing the previous button if playtime is >3s",
+        description: "再生時間が 3 秒を超えている場合に「前へ」ボタンを押すと、再生中のトラックを最初から再生し直す",
         default: true
     },
 
@@ -222,18 +222,18 @@ export const settings = definePluginSettings({
         component: () => <InstallInstructions />
     },
     showTidalControls: {
-        description: "Show Tidal Player",
+        description: "Tidal プレイヤーを表示",
         type: OptionType.BOOLEAN,
         default: false,
     },
     showTidalLyrics: {
-        description: "Show Tidal Controls",
+        description: "Tidal コントロールを表示",
         type: OptionType.BOOLEAN,
         default: false,
     },
     websocketURL: {
         type: OptionType.STRING,
-        description: "Default is ws://localhost:24123",
+        description: "デフォルトは ws://localhost:24123",
         default: "ws://localhost:24123",
         restartNeeded: true,
     }

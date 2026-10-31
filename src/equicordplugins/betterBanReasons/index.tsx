@@ -94,14 +94,14 @@ function ReasonsComponent() {
 
 const settings = definePluginSettings({
     reasons: {
-        description: "Your custom reasons",
+        description: "カスタム理由",
         type: OptionType.COMPONENT,
         default: [] as BanReason[],
         component: ReasonsComponent,
     },
     isTextInputDefault: {
         type: OptionType.BOOLEAN,
-        description: 'Shows a text input instead of a select menu by default. (Equivalent to clicking the "Other" option)'
+        description: 'デフォルトで選択メニューではなくテキスト入力を表示します。（「その他」オプションをクリックするのと同等です）'
     }
 });
 

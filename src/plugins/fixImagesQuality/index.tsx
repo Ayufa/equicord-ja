@@ -16,7 +16,7 @@ import definePlugin, { OptionType } from "@utils/types";
 const settings = definePluginSettings({
     originalImagesInChat: {
         type: OptionType.BOOLEAN,
-        description: "Also load the original image in Chat. WARNING: Read the caveats above",
+        description: "チャットでも元の画像を読み込む。警告: 上記の注意事項を読んでください",
         default: false,
     }
 });

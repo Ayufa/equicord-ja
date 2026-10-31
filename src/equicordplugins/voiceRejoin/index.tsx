@@ -19,31 +19,31 @@ const logger = new Logger("VoiceRejoin");
 const settings = definePluginSettings({
     rejoinDelay: {
         type: OptionType.SLIDER,
-        description: "Set Delay before rejoining voice channel.",
+        description: "ボイスチャンネルに再参加するまでの遅延を設定します。",
         markers: makeRange(1, 10, 1),
         default: 2,
         stickToMarkers: true,
     },
     rejoinTimeout: {
         type: OptionType.SLIDER,
-        description: "Don't attempt to rejoin after this many seconds have passed since disconnecting.",
+        description: "切断からこの秒数が経過したら再参加を試みません。",
         markers: makeRange(5, 120, 5),
         default: 30,
         stickToMarkers: true,
     },
     preventReconnectIfCallEnded: {
         type: OptionType.SELECT,
-        description: "Do not reconnect if the call has ended or the voice channel is empty or does not exist.",
+        description: "通話が終了している場合、またはボイスチャンネルが空か存在しない場合は再接続しません。",
         options: [
-            { label: "None", value: "none", default: false },
-            { label: "DMs only", value: "dms", default: false },
-            { label: "Servers only", value: "servers", default: false },
-            { label: "DMs and Servers", value: "both", default: true },
+            { label: "なし", value: "none", default: false },
+            { label: "DMのみ", value: "dms", default: false },
+            { label: "サーバーのみ", value: "servers", default: false },
+            { label: "DMとサーバー", value: "both", default: true },
         ],
     },
     applyOnlyToDms: {
         type: OptionType.BOOLEAN,
-        description: "Only apply to DMs.",
+        description: "DMにのみ適用します。",
         default: false,
     }
 });

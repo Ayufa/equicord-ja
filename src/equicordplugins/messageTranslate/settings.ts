@@ -10,70 +10,70 @@ import { makeRange, OptionType } from "@utils/types";
 export const settings = definePluginSettings({
     targetLanguage: {
         type: OptionType.STRING,
-        description: "Target language code for translations (e.g. en, es, fr, de, ja).",
+        description: "翻訳先の言語コード（例: en、es、fr、de、ja）。",
         default: "en",
     },
     excludedLanguages: {
         type: OptionType.STRING,
-        description: "Language codes to exclude from translation (e.g. en, es, fr, de, ja).",
+        description: "翻訳から除外する言語コード（例: en、es、fr、de、ja）。",
         default: "en",
     },
     confidenceRequirement: {
         type: OptionType.SLIDER,
-        description: "Minimum confidence (0 to 1) required to show a translation.",
+        description: "翻訳を表示するために必要な最小の信頼度（0 から 1）。",
         markers: makeRange(0, 1, 0.1),
         default: 0.8,
     },
     autoTranslate: {
         type: OptionType.BOOLEAN,
-        description: "Automatically translate messages as they appear.",
+        description: "メッセージが表示されたら自動的に翻訳します。",
         default: true,
     },
     skipOwnMessages: {
         type: OptionType.BOOLEAN,
-        description: "Do not translate your own messages.",
+        description: "自分のメッセージは翻訳しません。",
         default: true,
     },
     skipBotMessages: {
         type: OptionType.BOOLEAN,
-        description: "Do not translate bot messages.",
+        description: "ボットのメッセージは翻訳しません。",
         default: false,
     },
     ignoredGuilds: {
         type: OptionType.STRING,
-        description: "Comma-separated list of server IDs to not translate in.",
+        description: "翻訳しないサーバー ID のカンマ区切りリスト。",
         default: "",
     },
     ignoredChannels: {
         type: OptionType.STRING,
-        description: "Comma-separated list of channel IDs to not translate in.",
+        description: "翻訳しないチャンネル ID のカンマ区切りリスト。",
         default: "",
     },
     ignoredUsers: {
         type: OptionType.STRING,
-        description: "Comma-separated list of user IDs to not translate.",
+        description: "翻訳しないユーザー ID のカンマ区切りリスト。",
         default: "",
     },
     showIndicator: {
         type: OptionType.BOOLEAN,
-        description: "Append a small (translated) indicator to translated messages.",
+        description: "翻訳されたメッセージに小さな（翻訳済み）インジケーターを追加します。",
         default: true,
     },
     showOriginal: {
         type: OptionType.SELECT,
-        description: "Show the original and translated text.",
+        description: "原文と翻訳文を表示します。",
         options: [
             {
-                label: "Don't show original.",
+                label: "原文を表示しない。",
                 value: "no-orig",
                 default: true,
             },
             {
-                label: "Show original in subtext",
+                label: "原文をサブテキストで表示",
                 value: "orig-in-subtext",
             },
             {
-                label: "Show original message, translation in subtext",
+                label: "原文を表示し、翻訳をサブテキストで表示",
                 value: "trans-in-subtext",
             },
         ]

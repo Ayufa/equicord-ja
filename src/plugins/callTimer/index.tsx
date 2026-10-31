@@ -19,7 +19,7 @@ import { Timer } from "./Timer";
 export const settings = definePluginSettings({
     format: {
         type: OptionType.SELECT,
-        description: "Compact or human readable format:",
+        description: "コンパクト表示か、人間が読みやすい形式か：",
         options: [
             {
                 label: "30:23:00:42",
@@ -34,37 +34,37 @@ export const settings = definePluginSettings({
     },
     allCallTimers: {
         type: OptionType.BOOLEAN,
-        description: "Add call timer to all users in a server voice channel",
+        description: "サーバーのボイスチャンネルにいる全ユーザーに通話タイマーを追加する",
         restartNeeded: true,
         default: false
     },
     showWithoutHover: {
         type: OptionType.BOOLEAN,
-        description: "Always show the timer without needing to hover",
+        description: "ホバーしなくても常にタイマーを表示する",
         restartNeeded: true,
         default: false
     },
     showRoleColor: {
         type: OptionType.BOOLEAN,
-        description: "Show the user's role color (if this plugin in enabled)",
+        description: "ユーザーのロールカラーを表示する（このプラグインが有効な場合）",
         restartNeeded: false,
         default: false
     },
     trackSelf: {
         type: OptionType.BOOLEAN,
-        description: "Also track yourself",
+        description: "自分も記録対象にする",
         restartNeeded: false,
         default: false
     },
     showSeconds: {
         type: OptionType.BOOLEAN,
-        description: "Show seconds in the timer",
+        description: "タイマーに秒を表示する",
         restartNeeded: false,
         default: false
     },
     watchLargeGuilds: {
         type: OptionType.BOOLEAN,
-        description: "Track users in large guilds. This may cause lag if you're in a lot of large guilds with active voice users. Tested with up to 2000 active voice users with no issues.",
+        description: "大規模サーバーでもユーザーを記録する。アクティブなボイスユーザーが多い大規模サーバーにたくさん参加している場合、重くなることがあります。最大で同時に 2000 人のアクティブなボイスユーザーでも問題ないことを確認済みです。",
         restartNeeded: true,
         default: false
     }

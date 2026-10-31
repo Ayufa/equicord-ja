@@ -12,7 +12,7 @@ import { MessageActions, MessageStore, PendingReplyStore, UserStore } from "@web
 const sedRegex = /^s(?<sep>[/|$#@!])(?<match>(?!\1)(?:(?![^\\]\1).)*.|)\1(?<replace>(?!\1)(?:(?![^\\]\1).)*.|)\1?(?<modes>[rgmisudyv]*)$/;
 const settings = definePluginSettings({
     regexByDefault: {
-        description: "Inverts the `r` flag, so using the `r` flag enables non-regex mode, and omitting it uses regex mode.",
+        description: "`r` フラグを反転します。`r` フラグを使うと非正規表現モードになり、省略すると正規表現モードになります。",
         type: OptionType.BOOLEAN,
         default: false
     }

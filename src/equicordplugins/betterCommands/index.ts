@@ -12,7 +12,7 @@ import { FluxDispatcher, UserStore } from "@webpack/common";
 
 const settings = definePluginSettings({
     autoFillArguments: {
-        description: "Automatically fill command with all arguments instead of just required ones.",
+        description: "必須の引数だけでなく、すべての引数をコマンドに自動入力します。",
         type: OptionType.BOOLEAN,
         default: true,
     },

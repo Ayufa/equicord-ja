@@ -25,28 +25,28 @@ const splitModes = new Set<SplitMode>(["characters", "spaces", "newlines"]);
 const settings = definePluginSettings({
     sendDelay: {
         type: OptionType.SLIDER,
-        description: "Minimum delay between each chunk in seconds.",
+        description: "各チャンク間の最小遅延（秒）。",
         markers: makeRange(0.5, 10, 0.5),
         default: 1,
         stickToMarkers: true,
     },
     splitMode: {
         type: OptionType.SELECT,
-        description: "Prefer this boundary when splitting a message.",
+        description: "メッセージを分割するときに優先する区切り。",
         options: [
-            { value: "newlines", label: "Newlines", default: true },
-            { value: "spaces", label: "Spaces" },
-            { value: "characters", label: "Strict character limit" },
+            { value: "newlines", label: "改行", default: true },
+            { value: "spaces", label: "スペース" },
+            { value: "characters", label: "厳密な文字数制限" },
         ],
     },
     splitInSlowmode: {
         type: OptionType.BOOLEAN,
-        description: "Allow splitting in slowmode when its delay is within the configured maximum.",
+        description: "低速モードの遅延が設定した上限以内なら分割を許可する。",
         default: false,
     },
     slowmodeMax: {
         type: OptionType.SLIDER,
-        description: "Maximum slowmode duration allowed when splitting messages.",
+        description: "メッセージ分割時に許可する低速モードの最大時間。",
         markers: makeRange(1, 30, 1),
         default: 5,
         stickToMarkers: true,

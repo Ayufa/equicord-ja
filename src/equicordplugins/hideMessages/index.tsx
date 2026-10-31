@@ -94,7 +94,7 @@ const userCtxPatch: NavContextMenuPatchCallback = (children, { channel }: UserCo
 const settings = definePluginSettings({
     hidePopoverButton: {
         type: OptionType.BOOLEAN,
-        description: "Hide the hide button in the message popover.",
+        description: "メッセージポップオーバーの非表示ボタンを隠します。",
         default: false
     }
 });

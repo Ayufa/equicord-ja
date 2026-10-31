@@ -99,23 +99,23 @@ function SettingsComponent() {
 
 export const settings = definePluginSettings({
     dontShowForBots: {
-        description: "Don't show extra tags for bots (excluding webhooks)",
+        description: "ボット用の追加タグを表示しない（ウェブフックを除く）",
         type: OptionType.BOOLEAN,
         default: false
     },
     dontShowBotTag: {
-        description: "Only show extra tags for bots / Hide [APP] text",
+        description: "ボット用の追加タグのみ表示 / [APP] テキストを隠す",
         type: OptionType.BOOLEAN,
         default: false,
         restartNeeded: true
     },
     showWebhookTagFully: {
-        description: "Show Webhook tag in followed channels like announcements",
+        description: "アナウンスなどフォロー中のチャンネルで Webhook タグを表示",
         type: OptionType.BOOLEAN,
         default: false
     },
     noAppsAllowed: {
-        description: "Replaces app for bot",
+        description: "ボットの app 表記を置き換えます",
         type: OptionType.BOOLEAN,
         default: false,
         restartNeeded: true
@@ -123,6 +123,6 @@ export const settings = definePluginSettings({
     tagSettings: {
         type: OptionType.COMPONENT,
         component: SettingsComponent,
-        description: "fill me"
+        description: "入力してください"
     }
 });

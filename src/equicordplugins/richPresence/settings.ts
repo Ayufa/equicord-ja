@@ -15,7 +15,7 @@ export function setOnServiceChange(fn: (() => void) | null) { onServiceChange = 
 
 export const settings = definePluginSettings({
     enabled: {
-        description: "Enable rich presence services.",
+        description: "リッチプレゼンスサービスを有効にします。",
         type: OptionType.BOOLEAN,
         default: true,
         restartNeeded: false,
@@ -23,48 +23,48 @@ export const settings = definePluginSettings({
     },
     serviceSettings: {
         type: OptionType.COMPONENT,
-        description: "Service configuration.",
+        description: "サービスの設定。",
         component: SettingsPanel,
     },
 
     // Per-service enable toggles
     abs_enabled: {
-        description: "Enable AudioBookShelf presence.",
+        description: "AudioBookShelf のプレゼンスを有効にします。",
         type: OptionType.BOOLEAN,
         default: false,
         hidden: true,
         onChange: () => onServiceChange?.(),
     },
     tosu_enabled: {
-        description: "Enable osu! (tosu) presence.",
+        description: "osu! (tosu) のプレゼンスを有効にします。",
         type: OptionType.BOOLEAN,
         default: false,
         hidden: true,
         onChange: () => onServiceChange?.(),
     },
     sfm_enabled: {
-        description: "Enable stats.fm presence.",
+        description: "stats.fm のプレゼンスを有効にします。",
         type: OptionType.BOOLEAN,
         default: false,
         hidden: true,
         onChange: () => onServiceChange?.(),
     },
     jf_enabled: {
-        description: "Enable Jellyfin presence.",
+        description: "Jellyfin のプレゼンスを有効にします。",
         type: OptionType.BOOLEAN,
         default: false,
         hidden: true,
         onChange: () => onServiceChange?.(),
     },
     gr_enabled: {
-        description: "Enable Gensokyo Radio presence.",
+        description: "Gensokyo Radio のプレゼンスを有効にします。",
         type: OptionType.BOOLEAN,
         default: false,
         hidden: true,
         onChange: () => onServiceChange?.(),
     },
     nd_enabled: {
-        description: "Enable Navidrome presence.",
+        description: "Navidrome のプレゼンスを有効にします。",
         type: OptionType.BOOLEAN,
         default: false,
         hidden: true,
@@ -73,19 +73,19 @@ export const settings = definePluginSettings({
 
     // AudioBookShelf
     abs_serverUrl: {
-        description: "AudioBookShelf server URL.",
+        description: "AudioBookShelf のサーバー URL。",
         type: OptionType.STRING,
         default: "",
         hidden: true,
     },
     abs_username: {
-        description: "AudioBookShelf username.",
+        description: "AudioBookShelf のユーザー名。",
         type: OptionType.STRING,
         default: "",
         hidden: true,
     },
     abs_password: {
-        description: "AudioBookShelf password.",
+        description: "AudioBookShelf のパスワード。",
         type: OptionType.STRING,
         default: "",
         hidden: true,
@@ -93,77 +93,77 @@ export const settings = definePluginSettings({
 
     // stats.fm
     sfm_username: {
-        description: "Stats.fm username.",
+        description: "stats.fm のユーザー名。",
         type: OptionType.STRING,
         default: "",
         hidden: true,
     },
     sfm_shareUsername: {
-        description: "Show link to stats.fm profile.",
+        description: "stats.fm プロフィールへのリンクを表示します。",
         type: OptionType.BOOLEAN,
         default: false,
         hidden: true,
     },
     sfm_shareSong: {
-        description: "Show link to song on stats.fm.",
+        description: "stats.fm の曲へのリンクを表示します。",
         type: OptionType.BOOLEAN,
         default: true,
         hidden: true,
     },
     sfm_hideWithSpotify: {
-        description: "Hide stats.fm presence if Spotify is running.",
+        description: "Spotify が動作中の場合は stats.fm のプレゼンスを隠します。",
         type: OptionType.BOOLEAN,
         default: false,
         hidden: true,
     },
     sfm_hideWithExternalRPC: {
-        description: "Hide stats.fm presence if an external RPC is running.",
+        description: "外部 RPC が動作中の場合は stats.fm のプレゼンスを隠します。",
         type: OptionType.BOOLEAN,
         default: false,
         hidden: true,
     },
     sfm_statusName: {
-        description: "Custom status text.",
+        description: "カスタムステータステキスト。",
         type: OptionType.STRING,
         default: "Stats.fm",
         hidden: true,
     },
     sfm_nameFormat: {
-        description: "Name format.",
+        description: "名前の形式。",
         type: OptionType.SELECT,
         options: [
-            { label: "Use custom status name", value: NameFormat.StatusName, default: true },
-            { label: "Use format 'artist - song'", value: NameFormat.ArtistFirst },
-            { label: "Use format 'song - artist'", value: NameFormat.SongFirst },
-            { label: "Use artist name only", value: NameFormat.ArtistOnly },
-            { label: "Use song name only", value: NameFormat.SongOnly },
-            { label: "Use album name", value: NameFormat.AlbumName },
+            { label: "カスタムステータス名を使う", value: NameFormat.StatusName, default: true },
+            { label: "'artist - song' 形式を使う", value: NameFormat.ArtistFirst },
+            { label: "'song - artist' 形式を使う", value: NameFormat.SongFirst },
+            { label: "アーティスト名のみ使う", value: NameFormat.ArtistOnly },
+            { label: "曲名のみ使う", value: NameFormat.SongOnly },
+            { label: "アルバム名を使う", value: NameFormat.AlbumName },
         ],
         hidden: true,
     },
     sfm_useListeningStatus: {
-        description: "Show listening status.",
+        description: "再生ステータスを表示します。",
         type: OptionType.BOOLEAN,
         default: true,
         hidden: true,
     },
     sfm_missingArt: {
-        description: "Fallback when art is missing.",
+        description: "アートがない場合のフォールバック。",
         type: OptionType.SELECT,
         options: [
-            { label: "Use large Stats.fm logo", value: "StatsFmLogo", default: true },
-            { label: "Use generic placeholder", value: "placeholder" },
+            { label: "大きな Stats.fm ロゴを使う", value: "StatsFmLogo", default: true },
+            { label: "汎用プレースホルダを使う", value: "placeholder" },
         ],
         hidden: true,
     },
     sfm_showLogo: {
-        description: "Show Stats.fm logo next to album art.",
+        description: "アルバムアートの横に Stats.fm ロゴを表示します。",
         type: OptionType.BOOLEAN,
         default: true,
         hidden: true,
     },
     sfm_alwaysHideArt: {
-        description: "Disable downloading album art.",
+        description: "アルバムアートのダウンロードを無効にします。",
         type: OptionType.BOOLEAN,
         default: false,
         hidden: true,
@@ -171,84 +171,84 @@ export const settings = definePluginSettings({
 
     // Jellyfin
     jf_serverUrl: {
-        description: "Jellyfin server URL.",
+        description: "Jellyfin のサーバー URL。",
         type: OptionType.STRING,
         default: "",
         hidden: true,
     },
     jf_apiKey: {
-        description: "Jellyfin API key.",
+        description: "Jellyfin の API キー。",
         type: OptionType.STRING,
         default: "",
         hidden: true,
     },
     jf_userId: {
-        description: "Jellyfin user ID.",
+        description: "Jellyfin のユーザー ID。",
         type: OptionType.STRING,
         default: "",
         hidden: true,
     },
     jf_nameDisplay: {
-        description: "Name display format.",
+        description: "名前の表示形式。",
         type: OptionType.SELECT,
         options: [
-            { label: "Series/Movie Name", value: "default", default: true },
-            { label: "Series - Episode/Track/Movie Name", value: "full" },
-            { label: "Custom", value: "custom" },
+            { label: "シリーズ/映画名", value: "default", default: true },
+            { label: "シリーズ - エピソード/トラック/映画名", value: "full" },
+            { label: "カスタム", value: "custom" },
         ],
         hidden: true,
     },
     jf_customName: {
-        description: "Custom name template.",
+        description: "カスタム名テンプレート。",
         type: OptionType.STRING,
         default: "",
         hidden: true,
     },
     jf_coverType: {
-        description: "Cover type for TV shows.",
+        description: "TV 番組のカバータイプ。",
         type: OptionType.SELECT,
         options: [
-            { label: "Series Cover", value: "series", default: true },
-            { label: "Episode Cover", value: "episode" },
+            { label: "シリーズカバー", value: "series", default: true },
+            { label: "エピソードカバー", value: "episode" },
         ],
         hidden: true,
     },
     jf_episodeFormat: {
-        description: "Episode number format.",
+        description: "エピソード番号の形式。",
         type: OptionType.SELECT,
         options: [
             { label: "S01E01", value: "long", default: true },
             { label: "1x01", value: "short" },
-            { label: "Season 1 Episode 1", value: "fulltext" },
+            { label: "シーズン1 エピソード1", value: "fulltext" },
         ],
         hidden: true,
     },
     jf_showEpisodeName: {
-        description: "Show episode name after season/episode info.",
+        description: "シーズン/エピソード情報の後にエピソード名を表示します。",
         type: OptionType.BOOLEAN,
         default: false,
         hidden: true,
     },
     jf_overrideType: {
-        description: "Override rich presence type.",
+        description: "リッチプレゼンスのタイプを上書きします。",
         type: OptionType.SELECT,
         options: [
-            { label: "Off", value: "off", default: true },
-            { label: "Listening", value: "2" },
-            { label: "Playing", value: "0" },
-            { label: "Streaming", value: "1" },
-            { label: "Watching", value: "3" },
+            { label: "オフ", value: "off", default: true },
+            { label: "再生中", value: "2" },
+            { label: "プレイ中", value: "0" },
+            { label: "配信中", value: "1" },
+            { label: "視聴中", value: "3" },
         ],
         hidden: true,
     },
     jf_showPausedState: {
-        description: "Show presence when media is paused.",
+        description: "メディアが一時停止中のときもプレゼンスを表示します。",
         type: OptionType.BOOLEAN,
         default: true,
         hidden: true,
     },
     jf_privacyMode: {
-        description: "Hide media details.",
+        description: "メディアの詳細を隠します。",
         type: OptionType.BOOLEAN,
         default: false,
         hidden: true,
@@ -256,7 +256,7 @@ export const settings = definePluginSettings({
 
     // Gensokyo Radio
     gr_refreshInterval: {
-        description: "Refresh interval in seconds.",
+        description: "更新間隔（秒）。",
         type: OptionType.SLIDER,
         markers: [1, 2, 2.5, 3, 5, 10, 15],
         default: 15,
@@ -265,60 +265,60 @@ export const settings = definePluginSettings({
 
     // Navidrome
     nd_serverUrl: {
-        description: "Navidrome Server URL (e.g. https://navidrome.example.com)",
+        description: "Navidrome のサーバー URL（例: https://navidrome.example.com）",
         type: OptionType.STRING,
         default: "",
         hidden: true,
     },
 
     nd_username: {
-        description: "Navidrome Username",
+        description: "Navidrome のユーザー名",
         type: OptionType.STRING,
         default: "",
         hidden: true,
     },
     nd_password: {
-        description: "Navidrome Password",
+        description: "Navidrome のパスワード",
         type: OptionType.STRING,
         default: "",
         hidden: true,
     },
     nd_clientId: {
-        description: "Optional Discord Application Client ID",
+        description: "オプションの Discord アプリケーションクライアント ID",
         type: OptionType.STRING,
         default: "",
         hidden: true,
     },
     nd_showSmallImage: {
-        description: "Show Navidrome logo in bottom right of album art.",
+        description: "アルバムアートの右下に Navidrome ロゴを表示します。",
         type: OptionType.BOOLEAN,
         default: false,
         hidden: true,
     },
     nd_showAlbum: {
-        description: "Show album name in presence.",
+        description: "プレゼンスにアルバム名を表示します。",
         type: OptionType.BOOLEAN,
         default: true,
         hidden: true,
     },
     nd_albumArtMode: {
-        description: "How to fetch album art.",
+        description: "アルバムアートの取得方法。",
         type: OptionType.SELECT,
         options: [
-            { label: "None", value: "none", default: true },
-            { label: "Navidrome Instance (Exposes Server URL to Discord, no auth sent)", value: "instance" },
-            { label: "Last.fm API (Sends track metadata to Last.fm)", value: "lastfm" },
+            { label: "なし", value: "none", default: true },
+            { label: "Navidrome インスタンス（サーバー URL が Discord に公開されます。認証情報は送信されません）", value: "instance" },
+            { label: "Last.fm API（トラックのメタデータを Last.fm に送信します）", value: "lastfm" },
         ],
         hidden: true,
     },
     nd_lastfmApiKey: {
-        description: "Optional Last.fm API Key",
+        description: "オプションの Last.fm API キー",
         type: OptionType.STRING,
         default: "",
         hidden: true,
     },
     nd_refreshInterval: {
-        description: "Refresh interval in seconds.",
+        description: "更新間隔（秒）。",
         type: OptionType.SLIDER,
         markers: [1, 2, 5, 10, 15],
         default: 10,
@@ -326,60 +326,60 @@ export const settings = definePluginSettings({
     },
     nd_activityType: {
         type: OptionType.SELECT,
-        description: "Which type of activity",
+        description: "アクティビティのタイプ",
         options: [
-            { label: "Listening", value: 2, default: true },
-            { label: "Playing (Fixes hidden lines)", value: 0 },
-            { label: "Watching", value: 3 }
+            { label: "再生中", value: 2, default: true },
+            { label: "プレイ中（隠れた行を修正）", value: 0 },
+            { label: "視聴中", value: 3 }
         ],
         hidden: true,
     },
     nd_nameString: {
         type: OptionType.STRING,
-        description: "Activity name format string",
+        description: "アクティビティ名の形式文字列",
         default: "Navidrome",
         hidden: true,
     },
     nd_detailsString: {
         type: OptionType.STRING,
-        description: "Activity details format string",
+        description: "アクティビティ詳細の形式文字列",
         default: "{song}",
         hidden: true,
     },
     nd_stateString: {
         type: OptionType.STRING,
-        description: "Activity state format string",
+        description: "アクティビティ状態の形式文字列",
         default: "{artist}",
         hidden: true,
     },
     nd_largeTextString: {
         type: OptionType.STRING,
-        description: "Activity large text format string",
+        description: "アクティビティの大きなテキストの形式文字列",
         default: "{album}",
         hidden: true,
     },
     nd_statusDisplayType: {
-        description: "Show the track / artist name in the member list",
+        description: "メンバーリストにトラック/アーティスト名を表示",
         type: OptionType.SELECT,
         options: [
             {
-                label: "Don't show (shows generic listening message)",
+                label: "表示しない（汎用の再生中メッセージを表示）",
                 value: "off"
             },
             {
-                label: "Show artist name",
+                label: "アーティスト名を表示",
                 value: "artist",
                 default: true
             },
             {
-                label: "Show track name",
+                label: "トラック名を表示",
                 value: "track"
             }
         ],
         hidden: true,
     },
     nd_hideOnPause: {
-        description: "Hide Rich Presence when music is paused",
+        description: "音楽が一時停止中はリッチプレゼンスを隠す",
         type: OptionType.BOOLEAN,
         default: true,
         hidden: true,

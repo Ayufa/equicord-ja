@@ -81,7 +81,7 @@ function OnekoColorSettings() {
 
 const settings = definePluginSettings({
     buddy: {
-        description: "Pick a cursor buddy",
+        description: "カーソルバディを選択します",
         type: OptionType.SELECT,
         options: [
             {
@@ -97,14 +97,14 @@ const settings = definePluginSettings({
         onChange: load,
     },
     speed: {
-        description: "Speed of your buddy",
+        description: "バディの速度",
         type: OptionType.NUMBER,
         default: 10,
         isValid: (value: number) => value >= 0 || "Speed must be bigger than 0",
         onChange: load,
     },
     fps: {
-        description: "Framerate of your buddy",
+        description: "バディのフレームレート",
         type: OptionType.NUMBER,
         default: 24,
         isValid: (value: number) => value > 0 || "Framerate must be bigger than 0",
@@ -125,14 +125,14 @@ const settings = definePluginSettings({
         component: OnekoColorSettings,
     },
     furColor: {
-        description: "Fur hex color for Oneko",
+        description: "Oneko の毛色（16進数カラー）",
         type: OptionType.STRING,
         default: "#FFFFFF",
         onChange: load,
         hidden: true,
     },
     outlineColor: {
-        description: "Outline hex color for Oneko",
+        description: "Oneko の輪郭色（16進数カラー）",
         type: OptionType.STRING,
         default: "#000000",
         onChange: load,
@@ -149,26 +149,26 @@ const settings = definePluginSettings({
         ),
     },
     size: {
-        description: "Size of the fatass horse",
+        description: "Fatass Horse のサイズ",
         type: OptionType.NUMBER,
         default: 120,
         isValid: (value: number) => value > 0 || "Size must be bigger than 0",
         onChange: load
     },
     fade: {
-        description: "If the horse should fade when the cursor is near",
+        description: "カーソルが近づいたときに馬をフェードさせるかどうか",
         type: OptionType.BOOLEAN,
         default: true,
         onChange: load
     },
     freeroam: {
-        description: "If the horse should roam freely when idle",
+        description: "アイドル時に馬が自由に歩き回るかどうか",
         type: OptionType.BOOLEAN,
         default: true,
         onChange: load
     },
     shake: {
-        description: "If the horse should shake the window when it's walking",
+        description: "馬が歩いているときにウィンドウを揺らすかどうか",
         type: OptionType.BOOLEAN,
         default: false,
         onChange: load,

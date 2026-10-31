@@ -19,7 +19,7 @@ import { createQuoteImage, ensureFontLoaded, generateFileNamePreview, getFileExt
 const settings = definePluginSettings({
     quoteFont: {
         type: OptionType.SELECT,
-        description: "Font for quote text (author/username always use M PLUS Rounded 1c)",
+        description: "引用テキストのフォント（投稿者/ユーザー名は常に M PLUS Rounded 1c を使用）",
         options: [
             { label: "M PLUS Rounded 1c", value: QuoteFont.MPlusRounded, default: true },
             { label: "Open Sans", value: QuoteFont.OpenSans },
@@ -30,24 +30,24 @@ const settings = definePluginSettings({
     },
     watermark: {
         type: OptionType.STRING,
-        description: "Custom watermark text (max 32 characters)",
+        description: "カスタム透かしテキスト（最大32文字）",
         default: "Made with Equicord"
     },
     grayscale: {
         type: OptionType.BOOLEAN,
-        description: "Enable grayscale by default",
+        description: "デフォルトでグレースケールを有効化",
         default: true,
         hidden: true
     },
     showWatermark: {
         type: OptionType.BOOLEAN,
-        description: "Show watermark by default",
+        description: "デフォルトで透かしを表示",
         default: false,
         hidden: true
     },
     saveAsGif: {
         type: OptionType.BOOLEAN,
-        description: "Save as GIF by default",
+        description: "デフォルトで GIF として保存",
         default: false,
         hidden: true
     }

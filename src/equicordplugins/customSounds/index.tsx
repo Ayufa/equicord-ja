@@ -204,7 +204,7 @@ const soundSettings = Object.fromEntries(
         type.id,
         {
             type: OptionType.STRING,
-            description: `Override for ${type.name}`,
+            description: `${type.name} 用のオーバーライド設定`,
             default: JSON.stringify(makeEmptyOverride()),
             hidden: true
         }
@@ -215,10 +215,10 @@ const settings = definePluginSettings({
     ...soundSettings,
     soundpack: {
         type: OptionType.SELECT,
-        description: "Soundpack to use instead of the one set in Discord.",
+        description: "Discordで設定されているものの代わりに使用するサウンドパック。",
         get options() {
             return [
-                { label: "Discord Default", value: "", default: true },
+                { label: "Discordのデフォルト", value: "", default: true },
                 ...Object.entries(Soundpacks).map(([key, value]) => ({
                     label: key.toLowerCase().replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase()),
                     value

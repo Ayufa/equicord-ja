@@ -27,48 +27,48 @@ const cl = classNameFactory("vc-rdms-");
 const settings = definePluginSettings({
     visualStyle: {
         type: OptionType.SELECT,
-        description: "Visual indicator style while cycling",
+        description: "切り替え中の視覚インジケーターのスタイル",
         options: [
-            { label: "Overlay (Alt+Tab style)", value: "overlay", default: true },
-            { label: "Toast (status message)", value: "toast" },
-            { label: "Off", value: "off" }
+            { label: "オーバーレイ（Alt+Tab スタイル）", value: "overlay", default: true },
+            { label: "トースト（ステータスメッセージ）", value: "toast" },
+            { label: "オフ", value: "off" }
         ]
     },
     overlayMode: {
         type: OptionType.SELECT,
-        description: "Overlay content",
+        description: "オーバーレイの内容",
         options: [
-            { label: "Row of recent", value: "row", default: true },
-            { label: "Current only", value: "current" }
+            { label: "最近のものを横並びに表示", value: "row", default: true },
+            { label: "現在のもののみ", value: "current" }
         ]
     },
     amountOfUsers: {
         type: OptionType.SLIDER,
-        description: "Number of users to show in overlay",
+        description: "オーバーレイに表示するユーザー数",
         markers: makeRange(10, 50, 10),
         stickToMarkers: true,
         default: 20,
     },
     overlayRowLength: {
         type: OptionType.SLIDER,
-        description: "Number of recent DMs to show in row",
+        description: "横並びに表示する最近の DM の数",
         markers: [3, 4, 5, 6, 7],
         default: 5
     },
     overlayShowAvatars: {
         type: OptionType.BOOLEAN,
-        description: "Show avatars in overlay",
+        description: "オーバーレイにアバターを表示",
         default: true
     },
     toastDurationMs: {
         type: OptionType.SLIDER,
-        description: "Toast hide delay (ms)",
+        description: "トーストが消えるまでの遅延（ミリ秒）",
         markers: [300, 500, 600, 800, 1000, 1500, 2000],
         default: 600
     },
     clearRdms: {
         type: OptionType.COMPONENT,
-        description: "Testing utility: Clear RDMS list",
+        description: "テスト用ユーティリティ: RDMS リストをクリア",
         component: () => (
             <Button
                 variant="dangerPrimary"

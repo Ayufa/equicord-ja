@@ -36,15 +36,15 @@ interface UsrbgApiReturn {
 
 const settings = definePluginSettings({
     nitroFirst: {
-        description: "Banner to use if both Nitro and USRBG banners are present",
+        description: "Nitro バナーと USRBG バナーの両方がある場合に使うバナー",
         type: OptionType.SELECT,
         options: [
-            { label: "Nitro banner", value: true, default: true },
-            { label: "USRBG banner", value: false },
+            { label: "Nitro バナー", value: true, default: true },
+            { label: "USRBG バナー", value: false },
         ]
     },
     voiceBackground: {
-        description: "Use USRBG banners as voice chat backgrounds",
+        description: "USRBG バナーをボイスチャットの背景として使う",
         type: OptionType.BOOLEAN,
         default: true,
         restartNeeded: true

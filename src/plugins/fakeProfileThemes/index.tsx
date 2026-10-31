@@ -74,11 +74,11 @@ function decode(bio: string): Array<number> | null {
 
 const settings = definePluginSettings({
     nitroFirst: {
-        description: "Default color source if both are present",
+        description: "両方がある場合のデフォルトの色の取得元",
         type: OptionType.SELECT,
         options: [
-            { label: "Nitro colors", value: true, default: true },
-            { label: "Fake colors", value: false },
+            { label: "Nitro カラー", value: true, default: true },
+            { label: "フェイクカラー", value: false },
         ]
     }
 });

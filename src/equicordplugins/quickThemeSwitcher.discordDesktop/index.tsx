@@ -60,34 +60,34 @@ const debouncedRefresh = debounce(() => refreshThemeList(), 500);
 const settings = definePluginSettings({
     includeLocal: {
         type: OptionType.BOOLEAN,
-        description: "Include local themes",
+        description: "ローカルテーマを含める",
         default: true,
         onChange: refreshThemeList,
     },
     includeOnline: {
         type: OptionType.BOOLEAN,
-        description: "Include online themes",
+        description: "オンラインテーマを含める",
         default: true,
         onChange: refreshThemeList,
     },
     sortOrder: {
         type: OptionType.SELECT,
-        description: "Sort method",
+        description: "並べ替え方法",
         options: [
             { label: "A-Z", value: "alphabetical", default: true },
             { label: "Z-A", value: "reverse" },
-            { label: "Recent", value: "recent" },
+            { label: "最近", value: "recent" },
         ],
         onChange: refreshThemeList,
     },
     autoRefresh: {
         type: OptionType.BOOLEAN,
-        description: "Auto-refresh theme list when changes are detected",
+        description: "変更が検出されたらテーマリストを自動更新",
         default: true,
     },
     showNotifications: {
         type: OptionType.BOOLEAN,
-        description: "Show notifications when themes are added/removed",
+        description: "テーマが追加/削除されたときに通知を表示",
         default: true,
     },
 });

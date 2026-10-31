@@ -12,38 +12,38 @@ import definePlugin, { makeRange, OptionType } from "@utils/types";
 
 const settings = definePluginSettings({
     reactionCount: {
-        description: "Number of reactions (0-42)",
+        description: "リアクションの数（0〜42）",
         type: OptionType.NUMBER,
         restartNeeded: true,
         default: 5
     },
     frequentEmojis: {
-        description: "Use frequently used emojis instead of favorite emojis",
+        description: "お気に入りの絵文字の代わりによく使う絵文字を使用します",
         type: OptionType.BOOLEAN,
         restartNeeded: true,
         default: true
     },
     rows: {
-        description: "Rows of quick reactions to display",
+        description: "表示するクイックリアクションの行数",
         type: OptionType.SLIDER,
         default: 2,
         markers: makeRange(1, 16, 1),
         stickToMarkers: true
     },
     columns: {
-        description: "Columns of quick reactions to display",
+        description: "表示するクイックリアクションの列数",
         type: OptionType.SLIDER,
         default: 4,
         markers: makeRange(1, 12, 1),
         stickToMarkers: true
     },
     compactMode: {
-        description: "Scales the buttons to 75% of their original scale, whilst increasing the inner emoji to 125% scale. Emojis will be 93.75% of the original size. Recommended to have a minimum of 5 columns",
+        description: "ボタンを元の75%の大きさに縮小し、内側の絵文字を125%に拡大します。絵文字は元の93.75%の大きさになります。列数は最低5列が推奨です",
         type: OptionType.BOOLEAN,
         default: false
     },
     scroll: {
-        description: "Enable scrolling the list of emojis",
+        description: "絵文字リストのスクロールを有効にします",
         type: OptionType.BOOLEAN,
         default: true
     }

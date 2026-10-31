@@ -34,14 +34,14 @@ const ShowCurrentGame = getUserSettingLazy<boolean>("status", "showCurrentGame")
 const settings = definePluginSettings({
     oldIcon: {
         type: OptionType.BOOLEAN,
-        description: "Use the old icon style before Discord icon redesign",
+        description: "Discord のアイコンデザイン変更前の、古いアイコンスタイルを使う",
         default: false
     },
     location: {
         type: OptionType.SELECT,
-        description: "Where to show the game activity toggle button",
+        description: "ゲームアクティビティの切り替えボタンを表示する場所",
         options: [
-            { label: "Next to Mute/Deafen", value: "PANEL", default: true },
+            { label: "ミュート/スピーカーオフの隣", value: "PANEL", default: true },
             { label: "Equicord Toolbox", value: "TOOLBOX" }
         ],
         get hidden() {

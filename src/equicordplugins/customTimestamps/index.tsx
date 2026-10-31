@@ -74,7 +74,7 @@ const TimeRow = (props: TimeRowProps) => {
 const settings = definePluginSettings({
     formats: {
         type: OptionType.COMPONENT,
-        description: "Customize the timestamp formats",
+        description: "タイムスタンプの形式をカスタマイズします",
         component: componentProps => {
             const [settingsState, setSettingsState] = useState(useSettings().plugins?.CustomTimestamps?.formats ?? {});
 

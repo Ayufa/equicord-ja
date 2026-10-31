@@ -105,7 +105,7 @@ function assignSounds(volume: number, pack: "operagx" | "osu") {
 
 const settings = definePluginSettings({
     volume: {
-        description: "Volume of the keyboard sounds.",
+        description: "キーボードサウンドの音量。",
         type: OptionType.SLIDER,
         markers: [0, 25, 50, 75, 100],
         stickToMarkers: false,
@@ -113,7 +113,7 @@ const settings = definePluginSettings({
         onChange: value => { assignSounds(value, settings.store.soundPack); }
     },
     soundPack: {
-        description: "Sound pack to use.",
+        description: "使用するサウンドパック。",
         type: OptionType.SELECT,
         options: [
             { label: "OperaGX", value: "operagx" as "operagx", default: true },

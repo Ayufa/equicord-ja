@@ -40,37 +40,37 @@ export const tarExtMatcher = /\.tar\.\w+$/;
 
 const settings = definePluginSettings({
     anonymiseByDefault: {
-        description: "Whether to anonymise file names by default",
+        description: "ファイル名をデフォルトで匿名化するか",
         type: OptionType.BOOLEAN,
         default: true,
     },
     spoilerMessages: {
-        description: "Spoiler messages",
+        description: "スポイラーメッセージも匿名化する",
         type: OptionType.BOOLEAN,
         default: false,
     },
     method: {
-        description: "Anonymising method",
+        description: "匿名化の方法",
         type: OptionType.SELECT,
         options: [
-            { label: "Random Characters", value: Methods.Random, default: true },
-            { label: "Consistent", value: Methods.Consistent },
-            { label: "Timestamp", value: Methods.Timestamp },
-            { label: "Date", value: Methods.Date },
+            { label: "ランダムな文字列", value: Methods.Random, default: true },
+            { label: "固定の名前", value: Methods.Consistent },
+            { label: "タイムスタンプ", value: Methods.Timestamp },
+            { label: "日付", value: Methods.Date },
         ],
     },
     randomisedLength: {
-        description: "Random characters length",
+        description: "ランダム文字列の長さ",
         type: OptionType.NUMBER,
         default: 7
     },
     consistent: {
-        description: "Consistent filename",
+        description: "固定のファイル名",
         type: OptionType.STRING,
         default: "image"
     },
     dateFormat: {
-        description: "Date format (YYYY, MM, DD, HH, mm, ss, SSS are supported)",
+        description: "日付フォーマット（YYYY、MM、DD、HH、mm、ss、SSS が使用できます）",
         type: OptionType.STRING,
         default: "YYYY-MM-DD_HH-mm-ss-SSS"
     }

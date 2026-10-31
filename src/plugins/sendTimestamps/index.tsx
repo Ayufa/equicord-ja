@@ -32,7 +32,7 @@ import { Modal, openModal, Parser, Select, useMemo, useState } from "@webpack/co
 
 const settings = definePluginSettings({
     replaceMessageContents: {
-        description: "Replace timestamps in message contents",
+        description: "メッセージ内容のタイムスタンプを置き換える",
         type: OptionType.BOOLEAN,
         default: true,
     },

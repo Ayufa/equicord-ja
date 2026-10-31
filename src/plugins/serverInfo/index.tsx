@@ -30,19 +30,19 @@ const makePatch: (showIcon: boolean) => NavContextMenuPatchCallback = showIcon =
 export const settings = definePluginSettings({
     sorting: {
         type: OptionType.SELECT,
-        description: "Username or if applicable Display Name",
+        description: "ユーザー名、または該当する場合は表示名",
         options: [
             {
-                label: "Username",
+                label: "ユーザー名",
                 value: "username"
             },
             {
-                label: "Display Name",
+                label: "表示名",
                 value: "displayname",
                 default: true
             },
             {
-                label: "Dont Sort",
+                label: "並べ替えない",
                 value: "none",
             }
         ]

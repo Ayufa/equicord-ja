@@ -14,7 +14,7 @@ import { Tooltip } from "@webpack/common";
 
 const settings = definePluginSettings({
     loop: {
-        description: "Whether to make the PiP video loop or not",
+        description: "PiP 動画をループ再生するかどうか",
         type: OptionType.BOOLEAN,
         default: true,
         restartNeeded: false

@@ -25,12 +25,12 @@ const SETTINGS_KEYS: (keyof typeof settings.store)[] = ["showBots", "useRoleColo
 const settings = definePluginSettings({
     showBots: {
         type: OptionType.BOOLEAN,
-        description: "Whether to show the highest role on bots.",
+        description: "ボットに最上位のロールを表示するかどうか。",
         default: false
     },
     useRoleColor: {
         type: OptionType.BOOLEAN,
-        description: "Use the role's color for the icon.",
+        description: "アイコンにロールの色を使う。",
         default: true
     }
 }).withPrivateSettings<{ excludedRoles?: string[]; }>();

@@ -12,7 +12,7 @@ import { FluxDispatcher } from "@webpack/common";
 const settings = definePluginSettings({
     mutedUserIds: {
         type: OptionType.STRING,
-        description: "Comma-separated Discord user IDs to silence pings and server badges.",
+        description: "メンション通知とサーバーバッジを無効化するDiscordユーザーID（カンマ区切り）。",
         default: "",
         restartNeeded: false,
     },

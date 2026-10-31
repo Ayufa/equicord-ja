@@ -44,7 +44,7 @@ function getEmojiMarkdown(target: Target, copyUnicode: boolean): string {
 const settings = definePluginSettings({
     copyUnicode: {
         type: OptionType.BOOLEAN,
-        description: "Copy the raw unicode character instead of :name: for default emojis (👽)",
+        description: "デフォルト絵文字では :name: の代わりに生の Unicode 文字をコピーする (👽)",
         default: true,
     },
 });

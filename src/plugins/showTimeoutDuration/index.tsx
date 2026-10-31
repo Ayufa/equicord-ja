@@ -28,11 +28,11 @@ const enum DisplayStyle {
 
 const settings = definePluginSettings({
     displayStyle: {
-        description: "How to display the timeout duration",
+        description: "タイムアウト時間の表示方法",
         type: OptionType.SELECT,
         options: [
-            { label: "In the Tooltip", value: DisplayStyle.Tooltip },
-            { label: "Next to the timeout icon", value: DisplayStyle.Inline, default: true },
+            { label: "ツールチップ内", value: DisplayStyle.Tooltip },
+            { label: "タイムアウトアイコンの横", value: DisplayStyle.Inline, default: true },
         ],
     }
 });

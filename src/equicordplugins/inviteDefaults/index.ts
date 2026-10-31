@@ -11,22 +11,22 @@ import definePlugin, { OptionType } from "@utils/types";
 const settings = definePluginSettings({
     inviteDuration: {
         type: OptionType.SELECT,
-        description: "Invite Duration",
+        description: "招待の有効期間",
         options: [
-            { label: "30 minutes", value: 1800 },
-            { label: "1 hour", value: 3600 },
-            { label: "6 hours", value: 21600 },
-            { label: "12 hours", value: 43200 },
-            { label: "1 day", value: 86400 },
-            { label: "7 days", value: 604800 },
-            { label: "Forever", value: 0, default: true },
+            { label: "30分", value: 1800 },
+            { label: "1時間", value: 3600 },
+            { label: "6時間", value: 21600 },
+            { label: "12時間", value: 43200 },
+            { label: "1日", value: 86400 },
+            { label: "7日", value: 604800 },
+            { label: "無期限", value: 0, default: true },
         ],
     },
     maxUses: {
         type: OptionType.SELECT,
-        description: "Invite Use Count",
+        description: "招待の使用回数",
         options: [
-            { label: "Infinite", value: 0, default: true },
+            { label: "無限", value: 0, default: true },
             { label: "1", value: 1 },
             { label: "5", value: 5 },
             { label: "10", value: 10 },
@@ -38,7 +38,7 @@ const settings = definePluginSettings({
     temporaryMembership: {
         type: OptionType.BOOLEAN,
         default: false,
-        description: "Temporary Membership",
+        description: "一時メンバーシップ",
     },
 });
 

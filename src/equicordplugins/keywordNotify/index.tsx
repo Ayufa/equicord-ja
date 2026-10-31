@@ -136,18 +136,18 @@ function highlightKeywords(str: string, entries: Array<KeywordEntry>) {
 const settings = definePluginSettings({
     ignoreBots: {
         type: OptionType.BOOLEAN,
-        description: "Ignore messages from bots",
+        description: "ボットからのメッセージを無視します",
         default: true,
         hidden: true,
     },
     amountToKeep: {
         type: OptionType.NUMBER,
-        description: "Amount of messages to keep in the log",
+        description: "ログに保持するメッセージの数",
         default: 50
     },
     keywords: {
         type: OptionType.COMPONENT,
-        description: "Manage keywords",
+        description: "キーワードを管理",
         component: () => <KeywordEntries />
     }
 });

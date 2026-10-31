@@ -25,12 +25,12 @@ export const cl = classNameFactory("vc-github-repos-");
 export const settings = definePluginSettings({
     showStars: {
         type: OptionType.BOOLEAN,
-        description: "Show repository stars",
+        description: "リポジトリのスターを表示します",
         default: true
     },
     showLanguage: {
         type: OptionType.BOOLEAN,
-        description: "Show repository language",
+        description: "リポジトリの言語を表示します",
         default: true
     },
 });

@@ -22,7 +22,7 @@ interface MessageCreatePayload {
 const settings = definePluginSettings({
     users: {
         type: OptionType.STRING,
-        description: "Comma separated list of user ids to get message toasts for",
+        description: "メッセージトーストを受け取るユーザー ID のカンマ区切りリスト",
         default: "",
         isValid(value: string) {
             if (value === "") return true;

@@ -51,11 +51,11 @@ const enum MenuItemParentType {
 
 export const settings = definePluginSettings({
     permissionsSortOrder: {
-        description: "The sort method used for defining which role grants an user a certain permission",
+        description: "ユーザーにある権限がどのロールによって付与されたかを定義する際の並び替え方法",
         type: OptionType.SELECT,
         options: [
-            { label: "Highest Role", value: PermissionsSortOrder.HighestRole, default: true },
-            { label: "Lowest Role", value: PermissionsSortOrder.LowestRole }
+            { label: "最も高いロール", value: PermissionsSortOrder.HighestRole, default: true },
+            { label: "最も低いロール", value: PermissionsSortOrder.LowestRole }
         ]
     },
 });

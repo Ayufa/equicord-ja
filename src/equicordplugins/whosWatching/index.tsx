@@ -72,7 +72,7 @@ function Watching({ userIds, guildId }: WatchingProps): JSX.Element {
 
 const settings = definePluginSettings({
     showPanel: {
-        description: "Show spectators under screenshare panel",
+        description: "画面共有パネルの下に視聴者を表示する",
         type: OptionType.BOOLEAN,
         default: true,
         restartNeeded: true

@@ -18,7 +18,7 @@ let isRecordingGlobal: boolean = false;
 
 export const settings = definePluginSettings({
     hotkey: {
-        description: "The hotkey to open the command palette.",
+        description: "コマンドパレットを開くホットキー。",
         type: OptionType.COMPONENT,
         default: ["Control", "Shift", "P"],
         component: () => {
@@ -77,7 +77,7 @@ export const settings = definePluginSettings({
         }
     },
     allowMouseControl: {
-        description: "Allow the mouse to control the command palette.",
+        description: "コマンドパレットをマウスで操作できるようにします。",
         type: OptionType.BOOLEAN,
         default: true
     }

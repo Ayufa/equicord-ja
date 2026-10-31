@@ -43,7 +43,7 @@ interface GroupDMContextProps {
 const settings = definePluginSettings({
     format: {
         type: OptionType.SELECT,
-        description: "Choose the image format to use for non-animated images. Animated images will always use .webp",
+        description: "アニメーションでない画像に使う画像形式を選択。アニメーション画像は常時 .webp を使用します",
         options: [
             {
                 label: "webp",
@@ -63,7 +63,7 @@ const settings = definePluginSettings({
     imgSize: {
         type: OptionType.SELECT,
         displayName: "Image Size",
-        description: "The image size to use",
+        description: "使用する画像サイズ",
         options: ["128", "256", "512", "1024", "2048", "4096"].map(n => ({ label: n, value: n, default: n === "1024" }))
     }
 });

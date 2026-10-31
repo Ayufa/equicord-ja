@@ -19,11 +19,11 @@ const extraFramerates = [45, 90, 120, 144, 165, 240];
 const settings = definePluginSettings({
     richPresenceTagging: {
         type: OptionType.SELECT,
-        description: "When should clips be tagged with the current Rich Presence?",
+        description: "クリップに現在のRich Presenceをタグ付けするタイミング",
         options: [
-            { label: "Always", value: "always" },
-            { label: "Only when beginning or end of activity name matches", value: "whenMatched", default: true },
-            { label: "Never", value: "never" },
+            { label: "常時", value: "always" },
+            { label: "アクティビティ名の先頭または末尾が一致するときのみ", value: "whenMatched", default: true },
+            { label: "しない", value: "never" },
         ]
     },
     clipsLink: {

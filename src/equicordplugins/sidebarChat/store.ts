@@ -17,12 +17,12 @@ interface IFlux extends TFlux {
 export const settings = definePluginSettings({
     persistSidebar: {
         type: OptionType.BOOLEAN,
-        description: "Keep the sidebar chat open across Discord restarts",
+        description: "Discordを再起動してもサイドバーチャットを開いたままにする",
         default: true,
     },
     persistPopoutWindows: {
         type: OptionType.BOOLEAN,
-        description: "Restore open popout chats after Discord restarts.",
+        description: "Discordの再起動後に開いていたポップアウトチャットを復元する。",
         default: true,
         onChange: value => {
             if (!value) {
@@ -35,13 +35,13 @@ export const settings = definePluginSettings({
     },
     persistedPopoutWindowIds: {
         type: OptionType.CUSTOM,
-        description: "Persisted popout chat channel IDs.",
+        description: "永続化されたポップアウトチャットのチャンネルID。",
         default: [] as string[],
         hidden: true
     },
     popoutAlwaysOnTop: {
         type: OptionType.BOOLEAN,
-        description: "Keep popout chat windows above all others.",
+        description: "ポップアウトチャットウィンドウを常に最前面に表示する。",
         default: true,
         onChange: value => {
             setAlwaysOnTopForOpenPopouts(value);

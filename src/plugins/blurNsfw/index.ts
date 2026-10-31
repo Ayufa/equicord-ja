@@ -15,13 +15,13 @@ let style: HTMLStyleElement;
 const settings = definePluginSettings({
     blurAmount: {
         type: OptionType.NUMBER,
-        description: "Blur Amount (in pixels)",
+        description: "ぼかしの量（ピクセル）",
         default: 10,
         onChange: setCss
     },
     blurAllChannels: {
         type: OptionType.BOOLEAN,
-        description: "Blur attachments in all channels (not just NSFW)",
+        description: "すべてのチャンネルで添付ファイルをぼかす（NSFW チャンネル以外も）",
         default: false
     },
 });

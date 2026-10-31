@@ -68,19 +68,19 @@ function findReplies(message: Message) {
 const settings = definePluginSettings({
     includePings: {
         type: OptionType.BOOLEAN,
-        description: "Will also search for messages that @ the author directly",
+        description: "投稿者を直接メンションしたメッセージも検索します",
         default: false,
         restartNeeded: false
     },
     includeAuthor: {
         type: OptionType.BOOLEAN,
-        description: "Will also search for messages that reply to the author in general, not just that exact message",
+        description: "そのメッセージそのものだけでなく、投稿者への返信全般も検索します",
         default: false,
         restartNeeded: false
     },
     hideButtonIfNoReply: {
         type: OptionType.BOOLEAN,
-        description: "Hides the button if there are no replies to the message",
+        description: "メッセージへの返信がない場合にボタンを隠します",
         default: true,
         restartNeeded: true
     }

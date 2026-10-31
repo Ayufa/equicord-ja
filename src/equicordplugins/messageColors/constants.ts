@@ -22,26 +22,26 @@ export const enum BlockDisplayType {
 export const settings = definePluginSettings({
     renderType: {
         type: OptionType.SELECT,
-        description: "How to render colors",
+        description: "色のレンダリング方法",
         options: [
             {
-                label: "Text color",
+                label: "文字色",
                 value: RenderType.FOREGROUND,
                 default: true,
             },
             {
-                label: "Block nearby",
+                label: "ブロックを隣に表示",
                 value: RenderType.BLOCK,
             },
             {
-                label: "Background color",
+                label: "背景色",
                 value: RenderType.BACKGROUND
             },
         ]
     },
     enableShortHexCodes: {
         type: OptionType.BOOLEAN,
-        description: "Enable 3 char hex-code like #39f",
+        description: "#39f のような3文字の16進コードを有効化します",
         default: true,
         // Regex are created on the start, so without restart nothing would change
         restartNeeded: true
@@ -49,19 +49,19 @@ export const settings = definePluginSettings({
     blockView: {
         type: OptionType.SELECT,
         disabled: () => settings.store.renderType !== RenderType.BLOCK,
-        description: "Where to display colored block",
+        description: "色付きブロックの表示位置",
         options: [
             {
-                label: "Right side",
+                label: "右側",
                 value: BlockDisplayType.RIGHT,
                 default: true
             },
             {
-                label: "Left side",
+                label: "左側",
                 value: BlockDisplayType.LEFT
             },
             {
-                label: "Both sides",
+                label: "両側",
                 value: BlockDisplayType.BOTH
             }
         ]

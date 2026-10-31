@@ -56,32 +56,32 @@ const MOYAI_URL_HD = "https://github.com/Equicord/Equibored/raw/main/sounds/moya
 
 const settings = definePluginSettings({
     volume: {
-        description: "Volume of the 🗿🗿🗿",
+        description: "🗿🗿🗿 の音量",
         type: OptionType.SLIDER,
         markers: makeRange(0, 1, 0.1),
         default: 0.5,
         stickToMarkers: false
     },
     quality: {
-        description: "Quality of the 🗿🗿🗿",
+        description: "🗿🗿🗿 の品質",
         type: OptionType.SELECT,
         options: [
-            { label: "Normal", value: "Normal", default: true },
+            { label: "通常", value: "Normal", default: true },
             { label: "HD", value: "HD" }
         ],
     },
     triggerWhenUnfocused: {
-        description: "Trigger the 🗿 even when the window is unfocused",
+        description: "ウィンドウがフォーカスされていないときも 🗿 をトリガーする",
         type: OptionType.BOOLEAN,
         default: true
     },
     ignoreBots: {
-        description: "Ignore bots",
+        description: "ボットを無視",
         type: OptionType.BOOLEAN,
         default: true
     },
     ignoreBlocked: {
-        description: "Ignore blocked users",
+        description: "ブロックしたユーザーを無視",
         type: OptionType.BOOLEAN,
         default: true
     }

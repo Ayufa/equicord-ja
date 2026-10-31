@@ -21,12 +21,12 @@ import { cl, FFmpegStateContext, loadFFmpeg } from "./utils";
 export const settings = definePluginSettings({
     promptToUpload: {
         type: OptionType.BOOLEAN,
-        description: "Inserts the sticker into your chatbar instead of sending immediately",
+        description: "すぐに送信せず、スタンプをチャットバーに挿入します",
         default: false
     },
     packs: {
         type: OptionType.COMPONENT,
-        description: "Packs",
+        description: "パック",
         component: Packs
     }
 });

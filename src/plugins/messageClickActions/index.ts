@@ -138,72 +138,72 @@ let secondMouseDownTime = 0;
 export const settings = definePluginSettings({
     singleClickAction: {
         type: OptionType.SELECT,
-        description: "Action on single click (your messages)",
+        description: "シングルクリック時のアクション（自分のメッセージ）",
         options: actions,
         default: "DELETE"
     },
     singleClickModifier: {
         type: OptionType.SELECT,
-        description: "Modifier required for single click action (your messages)",
+        description: "シングルクリックアクションに必要な修飾キー（自分のメッセージ）",
         options: singleClickModifiers,
         default: "BACKSPACE"
     },
     singleClickOthersAction: {
         type: OptionType.SELECT,
-        description: "Action on single click (others' messages)",
+        description: "シングルクリック時のアクション（他人のメッセージ）",
         options: actions,
         default: "DELETE"
     },
     singleClickOthersModifier: {
         type: OptionType.SELECT,
-        description: "Modifier required for single click action (others' messages)",
+        description: "シングルクリックアクションに必要な修飾キー（他人のメッセージ）",
         options: singleClickModifiers,
         default: "BACKSPACE"
     },
     doubleClickAction: {
         type: OptionType.SELECT,
-        description: "Action on double-click (your messages)",
+        description: "ダブルクリック時のアクション（自分のメッセージ）",
         options: doubleClickOwnActions,
         default: "EDIT"
     },
     doubleClickOthersAction: {
         type: OptionType.SELECT,
-        description: "Action on double-click (others' messages)",
+        description: "ダブルクリック時のアクション（他人のメッセージ）",
         options: doubleClickOthersActions,
         default: "REPLY"
     },
     doubleClickModifier: {
         type: OptionType.SELECT,
-        description: "Modifier required for double-click action",
+        description: "ダブルクリックアクションに必要な修飾キー",
         options: modifiers,
         default: "NONE"
     },
     tripleClickAction: {
         type: OptionType.SELECT,
-        description: "Action on triple-click",
+        description: "トリプルクリック時のアクション",
         options: actions,
         default: "REACT"
     },
     tripleClickModifier: {
         type: OptionType.SELECT,
-        description: "Modifier required for triple-click action",
+        description: "トリプルクリックアクションに必要な修飾キー",
         options: modifiers,
         default: "NONE"
     },
     reactEmoji: {
         type: OptionType.COMPONENT,
-        description: "Emoji to use for react actions.",
+        description: "リアクションアクションに使用する絵文字。",
         component: ReactEmojiSetting,
         default: "💀"
     },
     addAdditionalReacts: {
         type: OptionType.BOOLEAN,
-        description: "Also add additional configured reaction emojis",
+        description: "設定した追加のリアクション絵文字も追加します",
         default: false
     },
     additionalReactEmojis: {
         type: OptionType.COMPONENT,
-        description: `Additional emojis to add when using React action (comma/newline separated, max ${MAX_ADDITIONAL_REACT_EMOJIS})`,
+        description: `React アクション使用時に追加する絵文字（カンマ/改行区切り、最大 ${MAX_ADDITIONAL_REACT_EMOJIS} 個）`,
         component: AdditionalReactEmojisSetting,
         get hidden() {
             return !settings.store.addAdditionalReacts;
@@ -212,45 +212,45 @@ export const settings = definePluginSettings({
     },
     disableInDms: {
         type: OptionType.BOOLEAN,
-        description: "Disable all click actions in direct messages",
+        description: "DMですべてのクリックアクションを無効にします",
         default: false
     },
     disableInSystemDms: {
         type: OptionType.BOOLEAN,
-        description: "Disable all click actions in system DMs",
+        description: "システム DM ですべてのクリックアクションを無効にします",
         default: true
     },
     clickTimeout: {
         type: OptionType.NUMBER,
-        description: "Timeout to distinguish double/triple clicks (ms)",
+        description: "ダブルクリック/トリプルクリックを区別するタイムアウト（ミリ秒）",
         markers: makeRange(100, 500, 50),
         default: 300
     },
     doubleClickHoldThreshold: {
         type: OptionType.NUMBER,
-        description: "Max hold time for double-click actions (ms). Holding longer allows text selection",
+        description: "ダブルクリックアクションの最大長押し時間（ミリ秒）。これより長く押すとテキスト選択ができます",
         markers: makeRange(50, 500, 50),
         default: 150
     },
     deferDoubleClickForTriple: {
         type: OptionType.BOOLEAN,
-        description: "Delay double-click to allow triple-click actions (disables triple-click when off)",
+        description: "トリプルクリックアクションを許可するためにダブルクリックを遅延させます（オフにするとトリプルクリックが無効になります）",
         default: false
     },
     selectionHoldTimeout: {
         type: OptionType.NUMBER,
-        description: "Timeout to allow text selection (ms)",
+        description: "テキスト選択を許可するタイムアウト（ミリ秒）",
         markers: makeRange(100, 1000, 100),
         default: 300
     },
     quoteWithReply: {
         type: OptionType.BOOLEAN,
-        description: "When quoting, also reply to the message",
+        description: "引用時に、メッセージへの返信も行います",
         default: true
     },
     useSelectionForQuote: {
         type: OptionType.BOOLEAN,
-        description: "When quoting, use selected text if available",
+        description: "引用時に、選択中のテキストがあればそれを使用します",
         default: false
     }
 });

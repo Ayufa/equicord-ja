@@ -38,23 +38,23 @@ const settings = definePluginSettings({
     showAvatars: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Show avatars in the typing indicator"
+        description: "入力中インジケーターにアバターを表示する"
     },
     showRoleColors: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Show role colors in the typing indicator"
+        description: "入力中インジケーターにロールカラーを表示する"
     },
     alternativeFormatting: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Show a more useful message when several users are typing"
+        description: "複数のユーザーが入力中のときに、より分かりやすいメッセージを表示する"
     },
     amITyping: {
         type: OptionType.BOOLEAN,
         default: false,
         restartNeeded: true,
-        description: "Shows you if other people can see you typing"
+        description: "他の人があなたの入力中状態を見られるかどうかを表示する"
     }
 });
 

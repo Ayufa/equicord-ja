@@ -76,7 +76,7 @@ export const settings = definePluginSettings({
         component: HotkeyRecorder
     },
     closeAfterExecute: {
-        description: "Close the palette after running a command.",
+        description: "コマンドを実行したらパレットを閉じます。",
         type: OptionType.BOOLEAN,
         default: true
     }

@@ -12,7 +12,7 @@ import { FluxDispatcher } from "@webpack/common";
 
 const settings = definePluginSettings({
     idleTimeout: {
-        description: "Minutes before Discord goes idle (0 to disable auto-idle)",
+        description: "Discord が退席中になるまでの分数（0 で自動退席を無効化）",
         type: OptionType.SLIDER,
         markers: makeRange(0, 60, 5),
         default: 10,
@@ -20,7 +20,7 @@ const settings = definePluginSettings({
         restartNeeded: true // Because of the setInterval patch
     },
     remainInIdle: {
-        description: "When you come back to Discord, remain idle until you confirm you want to go online",
+        description: "Discord に戻ってきたとき、オンラインに戻すことを確認するまで退席中のままにする",
         type: OptionType.BOOLEAN,
         default: true
     }

@@ -16,12 +16,12 @@ import ToneIndicator from "./ToneIndicator";
 const settings = definePluginSettings({
     prefix: {
         type: OptionType.STRING,
-        description: "Prefix character(s) for tone indicators.",
+        description: "トーンインジケーターのプレフィックス文字。",
         default: "/",
     },
     customIndicators: {
         type: OptionType.STRING,
-        description: "Custom tone indicators (format: jk=Joking; srs=Serious)",
+        description: "カスタムトーンインジケーター（形式: jk=Joking; srs=Serious）",
         default: "",
     },
 });

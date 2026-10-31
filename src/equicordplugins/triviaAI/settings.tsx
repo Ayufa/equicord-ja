@@ -25,36 +25,36 @@ function EndpointNotice() {
 export const settings = definePluginSettings({
     apiKey: {
         type: OptionType.STRING,
-        description: "API Key.",
+        description: "APIキー。",
         default: "",
-        placeholder: "Enter API Key here for your AI endpoint.",
+        placeholder: "AIエンドポイントのAPIキーをここに入力してください。",
         componentProps: {
             type: "password"
         }
     },
     model: {
         type: OptionType.STRING,
-        description: "AI Model to use.",
+        description: "使用するAIモデル。",
         default: "google/gemini-3-flash-preview",
-        placeholder: "e.g. google/gemini-3-flash-preview, inception/mercury, openai/gpt-5.2-chat, etc."
+        placeholder: "例: google/gemini-3-flash-preview、inception/mercury、openai/gpt-5.2-chat など"
     },
     systemPrompt: {
         type: OptionType.STRING,
-        description: "System Prompt for the AI. Placeholders: {current_user}, {current_time}",
+        description: "AIのシステムプロンプト。プレースホルダ: {current_user}、{current_time}",
         default: "You are a helpful assistant who answers questions for the user in a concise and short way while using the least amount of words and punctuation.\nCurrent user: {current_user}\nCurrent time: {current_time}",
-        placeholder: "Enter system prompt.",
+        placeholder: "システムプロンプトを入力してください。",
         multiline: true
     },
     maxTokens: {
         type: OptionType.NUMBER,
-        description: "Maximum number of tokens in the response.",
+        description: "応答の最大トークン数。",
         default: 500
     },
     endpoint: {
         type: OptionType.STRING,
-        description: "OpenAI Compatible AI Endpoint.",
+        description: "OpenAI互換のAIエンドポイント。",
         default: "https://openrouter.ai/api/v1/chat/completions",
-        placeholder: "Enter your OpenAI compatible AI endpoint here."
+        placeholder: "OpenAI互換のAIエンドポイントをここに入力してください。"
     },
     endpointPermission: {
         type: OptionType.COMPONENT,
@@ -62,36 +62,36 @@ export const settings = definePluginSettings({
     },
     context: {
         type: OptionType.NUMBER,
-        description: "Number of previous messages to include as context.",
+        description: "コンテキストに含める過去のメッセージ数。",
         default: 0
     },
     passMessageAuthorName: {
         type: OptionType.BOOLEAN,
-        description: "Prepend the author's name to the message content when passing it to the AI. This can help the AI distinguish between different users in a conversation.",
+        description: "AIに渡すとき、メッセージ内容の前に送信者名を付けます。会話内のユーザーをAIが区別しやすくなります。",
         default: true
     },
     treatSelfAsAssistant: {
         type: OptionType.BOOLEAN,
-        description: "When enabled, your own messages will be treated as assistant messages in the context. This causes some models to start generating fanfic.",
+        description: "有効にすると、自分のメッセージがコンテキスト内でアシスタントのメッセージとして扱われます。一部のモデルが二次創作を生成し始めることがあります。",
         default: false
     },
     mode: {
         type: OptionType.SELECT,
-        description: "How should answers be handled?",
+        description: "回答の扱い方",
         options: [
-            { label: "Auto Reply", value: "autoreply" },
-            { label: "Replace Chatbar Text", value: "chatbar", default: true },
+            { label: "自動返信", value: "autoreply" },
+            { label: "チャットバーのテキストを置き換え", value: "chatbar", default: true },
             { label: "Clyde", value: "bot" }
         ]
     },
     supportImages: {
         type: OptionType.BOOLEAN,
-        description: "Pass images to the AI for context (if any). This is not supported by all models.",
+        description: "画像がある場合、コンテキストとしてAIに渡します。すべてのモデルが対応しているわけではありません。",
         default: true
     },
     sendImagesAsBase64: {
         type: OptionType.BOOLEAN,
-        description: "Send images to the AI as base64.",
+        description: "画像をBase64としてAIに送信します。",
         default: false
     }
 });

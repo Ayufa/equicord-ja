@@ -38,20 +38,20 @@ const enum MentionOptions {
 const settings = definePluginSettings({
     shouldMention: {
         type: OptionType.SELECT,
-        description: "Ping reply by default",
+        description: "デフォルトで返信時にメンションします",
         options: [
             {
-                label: "Follow NoReplyMention plugin (if enabled)",
+                label: "NoReplyMention プラグインに従う（有効な場合）",
                 value: MentionOptions.NO_REPLY_MENTION_PLUGIN,
                 default: true
             },
-            { label: "Enabled", value: MentionOptions.ENABLED },
-            { label: "Disabled", value: MentionOptions.DISABLED },
+            { label: "有効", value: MentionOptions.ENABLED },
+            { label: "無効", value: MentionOptions.DISABLED },
         ]
     },
     ignoreBlockedAndIgnored: {
         type: OptionType.BOOLEAN,
-        description: "Ignore messages by blocked/ignored users when navigating",
+        description: "移動時にブロック/無視したユーザーのメッセージを無視します",
         default: true
     }
 });

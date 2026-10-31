@@ -37,12 +37,12 @@ const BlobMask = findComponentByCodeLazy("!1,lowerBadgeSize:");
 const settings = definePluginSettings({
     backgroundCheck: {
         type: OptionType.BOOLEAN,
-        description: "Check for new sessions in the background, and display notifications when they are detected",
+        description: "バックグラウンドで新しいセッションを確認し、検出したら通知を表示する",
         default: false,
         restartNeeded: true
     },
     checkInterval: {
-        description: "How often to check for new sessions in the background (if enabled), in minutes",
+        description: "バックグラウンドで新しいセッションを確認する間隔（分。有効な場合）",
         type: OptionType.NUMBER,
         default: 20,
         restartNeeded: true

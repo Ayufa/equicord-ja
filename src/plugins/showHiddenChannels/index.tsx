@@ -48,28 +48,28 @@ const CONNECT = 1n << 20n;
 
 export const settings = definePluginSettings({
     channelStyle: {
-        description: "The style used to display hidden channels.",
+        description: "非表示チャンネルの表示スタイル。",
         type: OptionType.SELECT,
         options: [
-            { label: "Classic", value: ChannelStyle.Classic, default: true },
-            { label: "Muted", value: ChannelStyle.Muted },
-            { label: "Show Unreads", value: ChannelStyle.Unread },
-            { label: "Muted and Show Unreads", value: ChannelStyle.MutedUnread }
+            { label: "クラシック", value: ChannelStyle.Classic, default: true },
+            { label: "ミュート表示", value: ChannelStyle.Muted },
+            { label: "未読を表示", value: ChannelStyle.Unread },
+            { label: "ミュート表示＋未読を表示", value: ChannelStyle.MutedUnread }
         ],
         restartNeeded: true
     },
     showMode: {
-        description: "The mode used to display hidden channels.",
+        description: "非表示チャンネルの表示モード。",
         type: OptionType.SELECT,
         options: [
-            { label: "Lock Icon replacing channel icon", value: ShowMode.LockIcon, default: true },
-            { label: "Eye icon on the right", value: ShowMode.EyeIconRight },
-            { label: "Lock icon on the right", value: ShowMode.LockIconRight }
+            { label: "チャンネルアイコンの代わりに鍵アイコン", value: ShowMode.LockIcon, default: true },
+            { label: "右側に目アイコン", value: ShowMode.EyeIconRight },
+            { label: "右側に鍵アイコン", value: ShowMode.LockIconRight }
         ],
         restartNeeded: true
     },
     defaultAllowedUsersAndRolesDropdownState: {
-        description: "Whether the allowed users and roles dropdown on hidden channels should be open by default",
+        description: "非表示チャンネルの「許可されたユーザーとロール」のドロップダウンをデフォルトで開いておくかどうか",
         type: OptionType.BOOLEAN,
         default: true
     }

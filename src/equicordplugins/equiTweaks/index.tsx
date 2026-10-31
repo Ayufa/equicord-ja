@@ -84,102 +84,102 @@ const listener = async (channelId, msg) => {
 const settings = definePluginSettings({
     noMirroredCamera: {
         type: OptionType.BOOLEAN,
-        description: "Prevents the camera from being mirrored on your screen",
+        description: "自分の画面でカメラが鏡像表示されるのを防ぎます",
         restartNeeded: true,
         default: false,
     },
     removeActivitySection: {
         type: OptionType.BOOLEAN,
-        description: "Removes the activity section above member list",
+        description: "メンバーリスト上のアクティビティセクションを削除します",
         restartNeeded: true,
         default: false,
     },
     showYourOwnActivityButtons: {
         type: OptionType.BOOLEAN,
-        description: "Discord hides your own activity buttons for some reason",
+        description: "Discordはなぜか自分のアクティビティボタンを隠します",
         restartNeeded: true,
         default: false,
     },
     refreshSlashCommands: {
         type: OptionType.BOOLEAN,
-        description: "Refreshes Slash Commands to show newly added commands without restarting your client.",
+        description: "クライアントを再起動せずに、新しく追加されたコマンドを表示するようスラッシュコマンドを更新します。",
         default: false,
     },
     forceRoleIcon: {
         type: OptionType.BOOLEAN,
-        description: "Forces role icons to display next to messages in compact mode",
+        description: "コンパクトモードでメッセージの横にロールアイコンを強制表示します",
         restartNeeded: true,
         default: false
     },
     accountStandingButton: {
         type: OptionType.BOOLEAN,
-        description: "Show an account standing button in the header bar",
+        description: "ヘッダーバーにアカウント状態ボタンを表示します",
         restartNeeded: true,
         default: false,
     },
     restoreFileDownloadButton: {
         type: OptionType.BOOLEAN,
-        description: "Adds back the Download button at the top right corner of files",
+        description: "ファイルの右上にダウンロードボタンを復活させます",
         restartNeeded: true,
         default: false
     },
     noBulletPoints: {
         type: OptionType.BOOLEAN,
-        description: "Stops you from typing markdown bullet points (stinky)",
+        description: "Markdownの箇条書きを入力するのを止めます（臭い）",
         restartNeeded: true,
         default: false
     },
     noModalAnimation: {
         type: OptionType.BOOLEAN,
-        description: "Remove the 300ms long animation when opening or closing modals",
+        description: "モーダルを開閉するときの300msのアニメーションを削除します",
         restartNeeded: true,
         default: false
     },
     disableAdoptTagPrompt: {
         type: OptionType.BOOLEAN,
-        description: "Disable the prompt to adopt tags",
+        description: "タグを引き継ぐ確認プロンプトを無効化します",
         restartNeeded: true,
         default: false,
     },
     disableHolidayNotifications: {
         type: OptionType.BOOLEAN,
-        description: "Always use Discord's default notification sounds",
+        description: "常にDiscordのデフォルト通知音を使用します",
         restartNeeded: true,
         default: false,
     },
     jsonGateway: {
         type: OptionType.BOOLEAN,
-        description: "Forces JSON on gateway reconnect",
+        description: "ゲートウェイ再接続時にJSONを強制します",
         restartNeeded: true,
         default: false,
     },
     hideVoiceIndicatorForMutedChannels: {
         type: OptionType.BOOLEAN,
-        description: "Hide voice indicator in server list when only active channels are muted",
+        description: "アクティブなチャンネルだけがミュートされているとき、サーバーリストのボイスインジケーターを隠します",
         restartNeeded: true,
         default: false,
     },
     noOnboarding: {
         type: OptionType.BOOLEAN,
-        description: "Skips the server onboarding by gaslighting it",
+        description: "サーバーを言いくるめてオンボーディングをスキップします",
         restartNeeded: true,
         default: false,
     },
     showAllBadges: {
         type: OptionType.BOOLEAN,
-        description: "Shows every profile badge instead of collapsing the rest behind +n",
+        description: "残りを +n に折りたたまず、すべてのプロフィールバッジを表示します",
         restartNeeded: true,
         default: false,
     },
     enableAutoCorrect: {
         type: OptionType.BOOLEAN,
-        description: "Adds a chat box context menu toggle for native autocorrection and text replacements",
+        description: "チャットボックスのコンテキストメニューに、ネイティブの自動修正とテキスト置換の切り替えを追加します",
         restartNeeded: true,
         default: false
     },
     autoCorrect: {
         type: OptionType.BOOLEAN,
-        description: "Use native autocorrection and text replacements in message editors",
+        description: "メッセージエディターでネイティブの自動修正とテキスト置換を使用します",
         hidden: true,
         default: false
     }

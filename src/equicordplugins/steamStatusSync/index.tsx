@@ -34,51 +34,51 @@ interface SettingsProto {
 export const settings = definePluginSettings({
     onlineStatus: {
         type: OptionType.SELECT,
-        description: "Steam status when on Online",
+        description: "オンラインのときのSteamステータス",
         options: [
-            { label: "Online", value: SteamStatus.Online, default: true },
-            { label: "Away", value: SteamStatus.Away },
-            { label: "Invisible", value: SteamStatus.Invisible },
-            { label: "Offline (Disconnect Steam Chat)", value: SteamStatus.Offline },
-            { label: "Disabled", value: SteamStatus.None }
+            { label: "オンライン", value: SteamStatus.Online, default: true },
+            { label: "退席中", value: SteamStatus.Away },
+            { label: "オンライン状態を隠す", value: SteamStatus.Invisible },
+            { label: "オフライン（Steamチャットを切断）", value: SteamStatus.Offline },
+            { label: "無効", value: SteamStatus.None }
         ],
     },
     idleStatus: {
         type: OptionType.SELECT,
-        description: "Steam status when on Idle",
+        description: "退席中のときのSteamステータス",
         options: [
-            { label: "Online", value: SteamStatus.Online },
-            { label: "Away", value: SteamStatus.Away, default: true },
-            { label: "Invisible", value: SteamStatus.Invisible },
-            { label: "Offline (Disconnect Steam Chat)", value: SteamStatus.Offline },
-            { label: "Disabled", value: SteamStatus.None }
+            { label: "オンライン", value: SteamStatus.Online },
+            { label: "退席中", value: SteamStatus.Away, default: true },
+            { label: "オンライン状態を隠す", value: SteamStatus.Invisible },
+            { label: "オフライン（Steamチャットを切断）", value: SteamStatus.Offline },
+            { label: "無効", value: SteamStatus.None }
         ],
     },
     dndStatus: {
         type: OptionType.SELECT,
-        description: "Steam status when on Do Not Disturb",
+        description: "取り込み中のときのSteamステータス",
         options: [
-            { label: "Online", value: SteamStatus.Online },
-            { label: "Away", value: SteamStatus.Away },
-            { label: "Invisible", value: SteamStatus.Invisible },
-            { label: "Offline (Disconnect Steam Chat)", value: SteamStatus.Offline },
-            { label: "Disabled", value: SteamStatus.None, default: true }
+            { label: "オンライン", value: SteamStatus.Online },
+            { label: "退席中", value: SteamStatus.Away },
+            { label: "オンライン状態を隠す", value: SteamStatus.Invisible },
+            { label: "オフライン（Steamチャットを切断）", value: SteamStatus.Offline },
+            { label: "無効", value: SteamStatus.None, default: true }
         ],
     },
     invisibleStatus: {
         type: OptionType.SELECT,
-        description: "Steam status when on Invisible",
+        description: "オンライン状態を隠しているときのSteamステータス",
         options: [
-            { label: "Online", value: SteamStatus.Online },
-            { label: "Away", value: SteamStatus.Away },
-            { label: "Invisible", value: SteamStatus.Invisible, default: true },
-            { label: "Offline (Disconnect Steam Chat)", value: SteamStatus.Offline },
-            { label: "Disabled", value: SteamStatus.None }
+            { label: "オンライン", value: SteamStatus.Online },
+            { label: "退席中", value: SteamStatus.Away },
+            { label: "オンライン状態を隠す", value: SteamStatus.Invisible, default: true },
+            { label: "オフライン（Steamチャットを切断）", value: SteamStatus.Offline },
+            { label: "無効", value: SteamStatus.None }
         ],
     },
     goInvisibleIfActivityIsHidden: {
         type: OptionType.BOOLEAN,
-        description: "Always go invisible if hiding game activity on Discord"
+        description: "Discordでゲームアクティビティを隠している場合は常にオンライン状態を隠す"
     }
 });
 

@@ -165,7 +165,7 @@ function TagConfigurationComponent() {
 const settings = definePluginSettings({
     tagConfiguration: {
         type: OptionType.COMPONENT,
-        description: "The tag configuration component",
+        description: "タグ設定コンポーネント",
         component: () => {
             return (
                 <TagConfigurationComponent />

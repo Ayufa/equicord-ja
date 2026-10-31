@@ -35,7 +35,7 @@ const ONE_HOUR_MS = 60 * 60 * 1000;
 const settings = definePluginSettings({
     hideMuted: {
         type: OptionType.BOOLEAN,
-        description: "Hide message previews and timestamps for muted DMs and group chats.",
+        description: "ミュートした DM とグループチャットのメッセージプレビューとタイムスタンプを隠します。",
         default: false
     }
 });

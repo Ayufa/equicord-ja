@@ -52,7 +52,7 @@ const settings = definePluginSettings({
     // menu handler instead of the web one, which breaks the other menus that aren't enabled
     addBack: {
         type: OptionType.BOOLEAN,
-        description: "Add back the Discord context menus for images, links and the chat input bar",
+        description: "画像、リンク、チャット入力バーの Discord コンテキストメニューを復活させる",
         default: hideSetting,
         restartNeeded: true,
         // Web slate menu has proper spellcheck suggestions and image context menu is also pretty good,

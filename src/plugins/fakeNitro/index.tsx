@@ -83,13 +83,13 @@ const DEFAULT_STICKER_SIZE = 160;
 
 const settings = definePluginSettings({
     enableEmojiBypass: {
-        description: "Allows sending fake emojis (also bypasses missing permission to use custom emojis)",
+        description: "偽の絵文字を送信できるようにする（カスタム絵文字の使用権限がなくても使えます）",
         type: OptionType.BOOLEAN,
         default: true,
         restartNeeded: true
     },
     emojiSize: {
-        description: "Size of the emojis when sending",
+        description: "送信時の絵文字のサイズ",
         type: OptionType.SELECT,
         default: DEFAULT_EMOJI_SIZE,
         options: mediaSizes.map(size => ({
@@ -98,19 +98,19 @@ const settings = definePluginSettings({
         }))
     },
     transformEmojis: {
-        description: "Whether to transform fake emojis into real ones",
+        description: "偽の絵文字を本物の絵文字に変換するか",
         type: OptionType.BOOLEAN,
         default: true,
         restartNeeded: true
     },
     enableStickerBypass: {
-        description: "Allows sending fake stickers (also bypasses missing permission to use stickers)",
+        description: "偽のスタンプを送信できるようにする（スタンプの使用権限がなくても使えます）",
         type: OptionType.BOOLEAN,
         default: true,
         restartNeeded: true
     },
     stickerSize: {
-        description: "Size of the stickers when sending",
+        description: "送信時のスタンプのサイズ",
         type: OptionType.SELECT,
         default: DEFAULT_STICKER_SIZE,
         options: mediaSizes.map(size => ({
@@ -119,39 +119,39 @@ const settings = definePluginSettings({
         }))
     },
     transformStickers: {
-        description: "Whether to transform fake stickers into real ones",
+        description: "偽のスタンプを本物のスタンプに変換するか",
         type: OptionType.BOOLEAN,
         default: true,
         restartNeeded: true
     },
     transformCompoundSentence: {
-        description: "Whether to transform fake stickers and emojis in compound sentences (sentences with more content than just the fake emoji or sticker link)",
+        description: "複合文（偽の絵文字やスタンプのリンク以外の内容を含む文）の中の偽のスタンプと絵文字も変換するか",
         type: OptionType.BOOLEAN,
         default: false
     },
     enableStreamQualityBypass: {
-        description: "Allow streaming in nitro quality",
+        description: "Nitro 品質での配信を許可する",
         type: OptionType.BOOLEAN,
         default: true,
         restartNeeded: true
     },
     useStickerHyperLinks: {
-        description: "Whether to use hyperlinks when sending fake stickers",
+        description: "偽のスタンプを送信するときにハイパーリンクを使うか",
         type: OptionType.BOOLEAN,
         default: true
     },
     useEmojiHyperLinks: {
-        description: "Whether to use hyperlinks when sending fake emojis",
+        description: "偽の絵文字を送信するときにハイパーリンクを使うか",
         type: OptionType.BOOLEAN,
         default: true
     },
     hyperLinkText: {
-        description: "What text the hyperlink should use. {{NAME}} will be replaced with the emoji/sticker name.",
+        description: "ハイパーリンクに使うテキスト。{{NAME}} は絵文字/スタンプの名前に置き換えられます。",
         type: OptionType.STRING,
         default: "{{NAME}}"
     },
     disableEmbedPermissionCheck: {
-        description: "Whether to disable the embed permission check when sending fake emojis and stickers",
+        description: "偽の絵文字とスタンプを送信するときに、埋め込み権限のチェックを無効にするか",
         type: OptionType.BOOLEAN,
         default: false
     },

@@ -11,7 +11,7 @@ import definePlugin, { OptionType } from "@utils/types";
 const settings = definePluginSettings({
     notificationVolume: {
         type: OptionType.SLIDER,
-        description: "Notification volume",
+        description: "通知音量",
         markers: [0, 25, 50, 75, 100],
         default: 100,
         stickToMarkers: false

@@ -11,7 +11,7 @@ import definePlugin, { makeRange, OptionType } from "@utils/types";
 const settings = definePluginSettings({
     volume: {
         type: OptionType.SLIDER,
-        description: "The volume % to set for spotify embeds. Anything above 10% is veeeery loud",
+        description: "Spotify 埋め込みに設定する音量 %。10% を超えると音がとても大きくなります",
         markers: makeRange(0, 100, 10),
         stickToMarkers: false,
         default: 10

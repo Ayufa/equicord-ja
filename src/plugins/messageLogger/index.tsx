@@ -347,77 +347,77 @@ export function parseEditContent(content: string, message: Message, previousCont
 export const settings = definePluginSettings({
     deleteStyle: {
         type: OptionType.SELECT,
-        description: "The style of deleted messages",
+        description: "削除されたメッセージのスタイル",
         default: "text",
         options: [
-            { label: "Red text", value: "text", default: true },
-            { label: "Red overlay", value: "overlay" },
+            { label: "赤いテキスト", value: "text", default: true },
+            { label: "赤いオーバーレイ", value: "overlay" },
         ],
         onChange: () => addDeleteStyle(),
     },
     logDeletes: {
         type: OptionType.BOOLEAN,
-        description: "Whether to log deleted messages",
+        description: "削除されたメッセージを記録するかどうか",
         default: true,
     },
     collapseDeleted: {
         type: OptionType.BOOLEAN,
-        description: "Whether to collapse deleted messages, similar to blocked messages",
+        description: "ブロックされたメッセージのように、削除されたメッセージを折りたたむかどうか",
         default: false,
         restartNeeded: true,
     },
     logEdits: {
         type: OptionType.BOOLEAN,
-        description: "Whether to log edited messages",
+        description: "編集されたメッセージを記録するかどうか",
         default: true,
     },
     logDeletedAttachments: {
         type: OptionType.BOOLEAN,
-        description: "Whether to log deleted attachments",
+        description: "削除された添付ファイルを記録するかどうか",
         default: true,
         restartNeeded: true,
     },
     inlineEdits: {
         type: OptionType.BOOLEAN,
-        description: "Whether to display edit history as part of message content",
+        description: "編集履歴をメッセージ本文の一部として表示するかどうか",
         default: true,
     },
     ignoreBots: {
         type: OptionType.BOOLEAN,
-        description: "Whether to ignore messages by bots",
+        description: "Bot のメッセージを無視するかどうか",
         default: true,
     },
     ignoreSelf: {
         type: OptionType.BOOLEAN,
-        description: "Whether to ignore messages by yourself",
+        description: "自分のメッセージを無視するかどうか",
         default: false,
     },
     ignoreSelfEdits: {
         type: OptionType.BOOLEAN,
-        description: "Whether to ignore edits by yourself",
+        description: "自分の編集を無視するかどうか",
         default: false,
     },
     ignoreUsers: {
         type: OptionType.STRING,
-        description: "Comma-separated list of user IDs to ignore",
+        description: "無視するユーザー ID のカンマ区切りリスト",
         default: "",
         multiline: true,
     },
     ignoreChannels: {
         type: OptionType.STRING,
-        description: "Comma-separated list of channel IDs to ignore",
+        description: "無視するチャンネル ID のカンマ区切りリスト",
         default: "",
         multiline: true,
     },
     ignoreGuilds: {
         type: OptionType.STRING,
-        description: "Comma-separated list of guild IDs to ignore",
+        description: "無視するサーバー ID のカンマ区切りリスト",
         default: "",
         multiline: true,
     },
     showEditDiffs: {
         type: OptionType.BOOLEAN,
-        description: "Show visual differences between edited message versions",
+        description: "編集前後のメッセージの視覚的な差分を表示します",
         default: false,
         onChange: value => {
             if (!value && settings.store.separatedDiffs) {
@@ -427,7 +427,7 @@ export const settings = definePluginSettings({
     },
     separatedDiffs: {
         type: OptionType.BOOLEAN,
-        description: "Separate addition and removals in diffs for a more readable differential",
+        description: "読みやすい差分にするため、差分内の追加と削除を分けます",
         default: false,
     },
 }, {

@@ -13,7 +13,7 @@ const settings = definePluginSettings({
     onlyWhenUnfocused: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Only automatically jump to messages when Discord's window is unfocused.",
+        description: "Discordのウィンドウがフォーカスされていないときだけ、メッセージへ自動でジャンプします。",
     },
 });
 

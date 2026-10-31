@@ -136,25 +136,25 @@ const openViewRawModalMessage = (msg: Message) => openViewRawModal(cleanMessage(
 
 const settings = definePluginSettings({
     clickMethod: {
-        description: "Change the button to view the raw content/data of any message.",
+        description: "任意のメッセージの生コンテンツ／データを表示するボタンを変更する。",
         type: OptionType.SELECT,
         options: [
-            { label: "Left Click to view the raw content.", value: "Left", default: true },
-            { label: "Right click to view the raw content.", value: "Right" }
+            { label: "左クリックで生コンテンツを表示。", value: "Left", default: true },
+            { label: "右クリックで生コンテンツを表示。", value: "Right" }
         ]
     },
     messageContextMenu: {
-        description: "Show in message context menu",
+        description: "メッセージのコンテキストメニューに表示する",
         type: OptionType.BOOLEAN,
         default: false
     },
     sortKeys: {
-        description: "Alphabetically sort the keys of the raw data.",
+        description: "生データのキーをアルファベット順に並べ替える。",
         type: OptionType.BOOLEAN,
         default: true
     },
     stripSensitiveData: {
-        description: "Remove sensitive data from the raw data, such as your email and phone number.",
+        description: "メールアドレスや電話番号などの機密データを生データから取り除く。",
         type: OptionType.BOOLEAN,
         default: true
     }

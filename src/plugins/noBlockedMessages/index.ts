@@ -46,38 +46,38 @@ migratePluginSetting("NoBlockedMessages", "alsoHideIgnoredUsers", "applyToIgnore
 
 const settings = definePluginSettings({
     alsoHideIgnoredUsers: {
-        description: "Also hide messages from ignored users.",
+        description: "無視したユーザーのメッセージも非表示にします。",
         type: OptionType.BOOLEAN,
         default: true,
         restartNeeded: false
     },
     disableNotifications: {
-        description: "Hide new message notifications for blocked users. Always true if \"Default Hide Users\" is enabled below and the user triggering the notification is not exempted in \"Override Users\".",
+        description: "ブロックしたユーザーからの新着メッセージ通知を非表示にします。下の \"Default Hide Users\" が有効で、通知のきっかけとなったユーザーが \"Override Users\" で例外指定されていない場合は常に有効です。",
         type: OptionType.BOOLEAN,
         default: false,
         restartNeeded: false
     },
     allowAutoModMessages: {
-        description: "Allow messages sent by AutoMod to bypass filtering.",
+        description: "AutoMod が送信したメッセージはフィルタリングを回避できるようにします。",
         type: OptionType.BOOLEAN,
         default: true,
         restartNeeded: false,
     },
     hideBlockedUserReplies: {
-        description: "Hide replies to blocked users.",
+        description: "ブロックしたユーザーへの返信を非表示にします。",
         type: OptionType.BOOLEAN,
         default: false,
         restartNeeded: false,
     },
     defaultHideUsers: {
         type: OptionType.BOOLEAN,
-        description: "If enabled, messages from blocked users will be completely hidden and any messages from user IDs in the override list will be collapsed (default Discord behavior) instead. If disabled, messages from blocked users will be collapsed and any messages from user IDs in the override list will be completely hidden instead.",
+        description: "有効にすると、ブロックしたユーザーのメッセージは完全に非表示になり、上書きリストにあるユーザー ID のメッセージは代わりに折りたたまれます（Discord のデフォルトの動作）。無効にすると、ブロックしたユーザーのメッセージは折りたたまれ、上書きリストにあるユーザー ID のメッセージは代わりに完全に非表示になります。",
         default: true,
         restartNeeded: false,
     },
     overrideUsers: {
         type: OptionType.STRING,
-        description: "Comma separated list of user IDs which will be hidden or collapsed instead of the default behavior selected above.",
+        description: "デフォルトの動作の代わりに非表示または折りたたみの対象となるユーザー ID のカンマ区切りリスト。",
         restartNeeded: false,
         default: ""
     },

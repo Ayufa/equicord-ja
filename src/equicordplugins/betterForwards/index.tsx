@@ -58,13 +58,13 @@ const getId = ({ id, type }: { id: string; type: string; }) => {
 // Taken From Signature :)
 const settings = definePluginSettings({
     resendOnFail: {
-        description: "This will attempt to resend a forwarded message if the forward fails. Could cause unintentional pings or text spam. Bypasses NSFW restrictions.",
+        description: "転送に失敗した場合、転送メッセージの再送信を試みます。意図しないメンションやテキストの連投を引き起こす可能性があります。NSFW制限を回避します。",
         type: OptionType.BOOLEAN,
         default: true,
         restartNeeded: true
     },
     forwardPreface: {
-        description: "What should the forwarded message be prefaced with",
+        description: "転送メッセージの先頭に付ける文字列",
         type: OptionType.SELECT,
         hidden: () => !settings.store.resendOnFail,
         options: [
@@ -73,14 +73,14 @@ const settings = definePluginSettings({
         ]
     },
     dontFollowForwards: {
-        description: "After forwarding a single message, don't jump to it. Hold shift to ignore this behavior.",
-        displayName: "Don't Follow Forwards",
+        description: "単一のメッセージを転送した後、そのメッセージへ移動しません。Shiftキーを押しながら転送すると、この動作を無視します。",
+        displayName: "転送をたどらない",
         type: OptionType.BOOLEAN,
         default: false,
         restartNeeded: true
     },
     selfForward: {
-        description: "Show the current channel in the forward list popup.",
+        description: "転送リストのポップアップに現在のチャンネルを表示します。",
         type: OptionType.BOOLEAN,
         default: false,
         restartNeeded: true

@@ -150,34 +150,34 @@ migratePluginSetting("PlatformIndicators", "profiles", "badges");
 const settings = definePluginSettings({
     list: {
         type: OptionType.BOOLEAN,
-        description: "Show indicators in the member list",
+        description: "メンバーリストにインジケーターを表示します",
         default: true,
     },
     profiles: {
         type: OptionType.BOOLEAN,
-        description: "Show indicators in user profiles",
+        description: "ユーザープロフィールにインジケーターを表示します",
         default: true,
     },
     messages: {
         type: OptionType.BOOLEAN,
-        description: "Show indicators inside messages",
+        description: "メッセージ内にインジケーターを表示します",
         default: true,
     },
     colorMobileIndicator: {
         type: OptionType.BOOLEAN,
-        description: "Whether to make the mobile indicator match the color of the user status.",
+        description: "モバイルインジケーターをユーザーステータスの色に合わせるかどうか。",
         default: true,
         restartNeeded: true
     },
     showBots: {
         type: OptionType.BOOLEAN,
-        description: "Whether to show platform indicators on bots",
+        description: "Bot にプラットフォームインジケーターを表示するかどうか",
         default: false,
         restartNeeded: false
     },
     ConsoleIcon: {
         type: OptionType.SELECT,
-        description: "What console icon to use",
+        description: "使用するコンソールアイコン",
         restartNeeded: true,
         options: [
             {

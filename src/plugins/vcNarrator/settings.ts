@@ -37,61 +37,61 @@ export const settings = definePluginSettings({
     },
     volume: {
         type: OptionType.SLIDER,
-        description: "Narrator Volume",
+        description: "ナレーターの音量",
         default: 1,
         markers: [0, 0.25, 0.5, 0.75, 1],
         stickToMarkers: false
     },
     rate: {
         type: OptionType.SLIDER,
-        description: "Narrator Speed",
+        description: "ナレーターの速度",
         default: 1,
         markers: [0.1, 0.5, 1, 2, 5, 10],
         stickToMarkers: false
     },
     sayOwnName: {
-        description: "Say own name",
+        description: "自分の名前を読み上げる",
         type: OptionType.BOOLEAN,
         default: false
     },
     latinOnly: {
-        description: "Strip non latin characters from names before saying them",
+        description: "名前を読み上げる前に、ラテン文字以外を取り除く",
         type: OptionType.BOOLEAN,
         default: false
     },
     joinMessage: {
         type: OptionType.STRING,
-        description: "Join Message",
+        description: "参加時のメッセージ",
         default: "{{USER}} joined"
     },
     leaveMessage: {
         type: OptionType.STRING,
-        description: "Leave Message",
+        description: "退出時のメッセージ",
         default: "{{USER}} left"
     },
     moveMessage: {
         type: OptionType.STRING,
-        description: "Move Message",
+        description: "移動時のメッセージ",
         default: "{{USER}} moved to {{CHANNEL}}"
     },
     muteMessage: {
         type: OptionType.STRING,
-        description: "Mute Message (only self for now)",
+        description: "ミュート時のメッセージ（現在は自分のみ）",
         default: "{{USER}} muted"
     },
     unmuteMessage: {
         type: OptionType.STRING,
-        description: "Unmute Message (only self for now)",
+        description: "ミュート解除時のメッセージ（現在は自分のみ）",
         default: "{{USER}} unmuted"
     },
     deafenMessage: {
         type: OptionType.STRING,
-        description: "Deafen Message (only self for now)",
+        description: "スピーカーミュート時のメッセージ（現在は自分のみ）",
         default: "{{USER}} deafened"
     },
     undeafenMessage: {
         type: OptionType.STRING,
-        description: "Undeafen Message (only self for now)",
+        description: "スピーカーミュート解除時のメッセージ（現在は自分のみ）",
         default: "{{USER}} undeafened"
     }
 });

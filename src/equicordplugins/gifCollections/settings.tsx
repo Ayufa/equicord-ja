@@ -26,63 +26,63 @@ export const SortingOptions = {
 
 export const settings = definePluginSettings({
     itemPrefix: {
-        description: "The prefix for gif items.",
+        description: "GIFアイテムのプレフィックス。",
         type: OptionType.STRING,
         default: "gc-item:",
         restartNeeded: true,
     },
     collectionPrefix: {
-        description: "The prefix for collections.",
+        description: "コレクションのプレフィックス。",
         type: OptionType.STRING,
         default: "gc:",
         restartNeeded: true,
     },
     onlyShowCollections: {
-        description: "Only show collections in the GIF picker.",
+        description: "GIFピッカーにコレクションだけを表示します。",
         type: OptionType.BOOLEAN,
         default: false,
         restartNeeded: true,
     },
     stopWarnings: {
-        description: "Skip deletion confirmation dialogs.",
+        description: "削除確認ダイアログをスキップします。",
         type: OptionType.BOOLEAN,
         default: false,
     },
     showCopyImageLink: {
-        description: "Show copy image link option in context menus.",
+        description: "コンテキストメニューに画像リンクをコピーするオプションを表示します。",
         type: OptionType.BOOLEAN,
         default: false,
     },
     preventDuplicates: {
-        description: "Prevent adding the same GIF to a collection multiple times.",
+        description: "同じGIFをコレクションに複数回追加するのを防ぎます。",
         type: OptionType.BOOLEAN,
         default: false,
     },
     defaultEmptyCollectionImage: {
-        description: "The image shown when a collection has no images.",
+        description: "コレクションに画像がないときに表示される画像。",
         type: OptionType.STRING,
         default: "https://c.tenor.com/YEG33HsLEaIAAAAC/parksandrec-oops.gif",
     },
     collectionsSortType: {
-        description: "The type of sorting for collections.",
+        description: "コレクションの並び替えの種類。",
         type: OptionType.NUMBER,
         default: SortingOptions.NAME,
         hidden: true,
     },
     collectionsSortOrder: {
-        description: "The order of sorting for collections.",
+        description: "コレクションの並び順。",
         type: OptionType.STRING,
         default: "asc",
         hidden: true,
     },
     collectionsSort: {
         type: OptionType.COMPONENT,
-        description: "Decide how to sort collections.",
+        description: "コレクションの並び替え方法を決めます。",
         component: SortSettingsComponent,
     },
     importGifs: {
         type: OptionType.COMPONENT,
-        description: "Import collections.",
+        description: "コレクションをインポートします。",
         component: () =>
             <Button onClick={async () =>
                 (await getCollections()).length ? Alerts.show({
@@ -98,7 +98,7 @@ export const settings = definePluginSettings({
     },
     exportGifs: {
         type: OptionType.COMPONENT,
-        description: "Export collections.",
+        description: "コレクションをエクスポートします。",
         component: () =>
             <Button onClick={downloadCollections}>
                 Export Collections
@@ -106,7 +106,7 @@ export const settings = definePluginSettings({
     },
     resetCollections: {
         type: OptionType.COMPONENT,
-        description: "Reset collections.",
+        description: "コレクションをリセットします。",
         component: () =>
             <Button onClick={() =>
                 Alerts.show({

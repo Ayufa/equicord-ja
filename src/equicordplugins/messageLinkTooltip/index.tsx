@@ -22,38 +22,38 @@ const ChannelMessage = findComponentByCodeLazy("isFirstMessageInForumPost", "tra
 
 const settings = definePluginSettings({
     onLink: {
-        description: "Show tooltip when hovering over message links",
+        description: "メッセージリンクにホバーしたときにツールチップを表示",
         type: OptionType.BOOLEAN,
         default: true,
         restartNeeded: true,
     },
     onReply: {
-        description: "Show tooltip when hovering over message replies",
+        description: "メッセージの返信にホバーしたときにツールチップを表示",
         type: OptionType.BOOLEAN,
         default: true,
         restartNeeded: true,
     },
     onForward: {
-        description: "Show tooltip when hovering over forwarded messages",
+        description: "転送されたメッセージにホバーしたときにツールチップを表示",
         type: OptionType.BOOLEAN,
         default: true,
         restartNeeded: true,
     },
     display: {
-        description: "Display style",
+        description: "表示スタイル",
         type: OptionType.SELECT,
         options: [
             {
-                label: "Same as message",
+                label: "メッセージと同じ",
                 value: "auto",
                 default: true
             },
             {
-                label: "Compact",
+                label: "コンパクト",
                 value: "compact"
             },
             {
-                label: "Cozy",
+                label: "コージー",
                 value: "cozy"
             },
         ]

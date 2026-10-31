@@ -86,11 +86,11 @@ function openDecodedBase64Modal(decodedContent) {
 
 const settings = definePluginSettings({
     clickMethod: {
-        description: "Change the button to decode base64 content of any message.",
+        description: "任意のメッセージのBase64コンテンツをデコードするボタンを変更します。",
         type: OptionType.SELECT,
         options: [
-            { label: "Left Click to decode the base64 content.", value: "Left", default: true },
-            { label: "Right click to decode the base64 content.", value: "Right" }
+            { label: "左クリックでBase64コンテンツをデコードします。", value: "Left", default: true },
+            { label: "右クリックでBase64コンテンツをデコードします。", value: "Right" }
         ]
     }
 });

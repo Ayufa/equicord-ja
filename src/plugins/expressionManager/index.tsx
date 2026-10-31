@@ -43,17 +43,17 @@ export const logger = new Logger("ExpressionManager");
 export const settings = definePluginSettings({
     editAndDelete: {
         type: OptionType.BOOLEAN,
-        description: 'Add "Edit" and "Delete" options to the expression picker context menu',
+        description: '絵文字ピッカーのコンテキストメニューに「編集」と「削除」の選択肢を追加する',
         default: true
     },
     stickerCopyAndOpen: {
         type: OptionType.BOOLEAN,
-        description: 'Add "Copy Sticker Link" and "Open Sticker Link" options to the sticker context menu',
+        description: 'スタンプのコンテキストメニューに「スタンプのリンクをコピー」と「スタンプのリンクを開く」の選択肢を追加する',
         default: true
     },
     recents: {
         type: OptionType.BOOLEAN,
-        description: 'Add "Remove from Recents" option to the context menu of frequently used expressions',
+        description: 'よく使う表現のコンテキストメニューに「最近使ったものから削除」の選択肢を追加する',
         default: true
     }
 });

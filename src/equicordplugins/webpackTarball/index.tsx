@@ -24,7 +24,7 @@ export const settings = definePluginSettings({
     patched: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Include patched modules",
+        description: "パッチ適用済みモジュールを含める",
         restartNeeded: true,
     },
 });

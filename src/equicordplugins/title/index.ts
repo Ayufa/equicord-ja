@@ -16,7 +16,7 @@ export const settings = definePluginSettings({
     title: {
         type: OptionType.STRING,
         default: "Equicord",
-        description: "Window title prefix",
+        description: "ウィンドウタイトルのプレフィックス",
         onChange: setTitle,
     },
 });

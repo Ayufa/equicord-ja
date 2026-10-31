@@ -98,28 +98,28 @@ const SNOWFLAKE_SVGS = [
 
 const settings = definePluginSettings({
     typeOfSnow: {
-        description: "Change the type of snow displayed (Affects performance).",
+        description: "表示する雪の種類を変更します（パフォーマンスに影響します）。",
         type: OptionType.SELECT,
         options: [
-            { label: "Solid (Highest Performance)", value: "solid" },
-            { label: "Text (Medium Performance)", value: "text", default: true },
-            { label: "Image (Lowest Performance)", value: "image" }
+            { label: "単色（最高パフォーマンス）", value: "solid" },
+            { label: "テキスト（中パフォーマンス）", value: "text", default: true },
+            { label: "画像（最低パフォーマンス）", value: "image" }
         ],
     },
     maxSize: {
-        description: "Maximum snowflake size",
+        description: "雪片の最大サイズ",
         type: OptionType.SLIDER,
         default: 30,
         markers: [10, 20, 30, 40, 50]
     },
     speed: {
-        description: "Snowfall speed (higher = faster fall)",
+        description: "降雪速度（大きいほど速く落ちます）",
         type: OptionType.SLIDER,
         default: 50,
         markers: [50, 100, 200, 300, 400, 500]
     },
     flakesPerSecond: {
-        description: "Snowflakes per second (higher = denser snowfall)",
+        description: "1秒あたりの雪片数（大きいほど密に降ります）",
         type: OptionType.SLIDER,
         default: 5,
         markers: [1, 5, 10, 20, 40, 60],

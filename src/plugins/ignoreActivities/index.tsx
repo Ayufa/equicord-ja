@@ -205,15 +205,15 @@ const settings = definePluginSettings({
     },
     listMode: {
         type: OptionType.SELECT,
-        description: "Change the mode of the filter list",
+        description: "フィルター一覧のモードを変更します",
         options: [
             {
-                label: "Whitelist",
+                label: "ホワイトリスト",
                 value: FilterMode.Whitelist,
                 default: true
             },
             {
-                label: "Blacklist",
+                label: "ブラックリスト",
                 value: FilterMode.Blacklist,
             }
         ],
@@ -231,31 +231,31 @@ const settings = definePluginSettings({
     },
     ignorePlaying: {
         type: OptionType.BOOLEAN,
-        description: "Ignore all playing activities (These are usually game and RPC activities)",
+        description: "すべてのプレイ中アクティビティを無視します（通常はゲームや RPC のアクティビティです）",
         default: false,
         onChange: recalculateActivities
     },
     ignoreStreaming: {
         type: OptionType.BOOLEAN,
-        description: "Ignore all streaming activities",
+        description: "すべての配信アクティビティを無視します",
         default: false,
         onChange: recalculateActivities
     },
     ignoreListening: {
         type: OptionType.BOOLEAN,
-        description: "Ignore all listening activities (These are usually Spotify activities)",
+        description: "すべてのリスニングアクティビティを無視します（通常は Spotify のアクティビティです）",
         default: false,
         onChange: recalculateActivities
     },
     ignoreWatching: {
         type: OptionType.BOOLEAN,
-        description: "Ignore all watching activities",
+        description: "すべての視聴アクティビティを無視します",
         default: false,
         onChange: recalculateActivities
     },
     ignoreCompeting: {
         type: OptionType.BOOLEAN,
-        description: "Ignore all competing activities (These are normally special game activities)",
+        description: "すべての対戦アクティビティを無視します（通常は特別なゲームアクティビティです）",
         default: false,
         onChange: recalculateActivities
     },

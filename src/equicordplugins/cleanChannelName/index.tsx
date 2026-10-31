@@ -24,7 +24,7 @@ let editingChannelId: string | null = null;
 const settings = definePluginSettings({
     ignoredChannels: {
         type: OptionType.STRING,
-        description: "Comma separated list of channel IDs to leave untouched.",
+        description: "変更を加えないチャンネルIDのカンマ区切りリスト。",
         default: "",
     },
 });

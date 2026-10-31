@@ -80,7 +80,7 @@ export interface RpcConfig {
 export const settings = definePluginSettings({
     enablePresence: {
         type: OptionType.BOOLEAN,
-        description: "Whether to show the presence",
+        description: "プレゼンスを表示するか",
         default: true,
         onChange: v => setRpc(!v)
     },

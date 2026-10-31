@@ -11,27 +11,27 @@ import { CodecInfo } from "@vencord/discord-types";
 
 const settings = definePluginSettings({
     disableAv1Codec: {
-        description: "Make Discord not consider using AV1 for streaming and cameras.",
+        description: "配信とカメラでDiscordがAV1を使わないようにします。",
         type: OptionType.BOOLEAN,
         default: false
     },
     disableH265Codec: {
-        description: "Make Discord not consider using H265 for streaming and cameras.",
+        description: "配信とカメラでDiscordがH265を使わないようにします。",
         type: OptionType.BOOLEAN,
         default: false
     },
     disableH264Codec: {
-        description: "Make Discord not consider using H264 for streaming and cameras.",
+        description: "配信とカメラでDiscordがH264を使わないようにします。",
         type: OptionType.BOOLEAN,
         default: false
     },
     disableVP8Codec: {
-        description: "Make Discord not consider using VP8 for streaming and cameras.",
+        description: "配信とカメラでDiscordがVP8を使わないようにします。",
         type: OptionType.BOOLEAN,
         default: false
     },
     disableVP9Codec: {
-        description: "Make Discord not consider using VP9 for streaming and cameras.",
+        description: "配信とカメラでDiscordがVP9を使わないようにします。",
         type: OptionType.BOOLEAN,
         default: false
     },

@@ -31,42 +31,42 @@ const settings = definePluginSettings({
     chatMentions: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Show role colors in chat mentions (including in the message box)",
+        description: "チャットのメンションにロールカラーを表示する（メッセージボックス内を含む）",
         restartNeeded: true
     },
     memberList: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Show role colors in member list role headers",
+        description: "メンバーリストのロール見出しにロールカラーを表示する",
         restartNeeded: true
     },
     voiceUsers: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Show role colors in the voice chat user list",
+        description: "ボイスチャットのユーザーリストにロールカラーを表示する",
         restartNeeded: true
     },
     reactorsList: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Show role colors in the reactors list",
+        description: "リアクションしたユーザーのリストにロールカラーを表示する",
         restartNeeded: true
     },
     pollResults: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Show role colors in the poll results",
+        description: "投票結果にロールカラーを表示する",
         restartNeeded: true
     },
     colorChatMessages: {
         type: OptionType.BOOLEAN,
         default: false,
-        description: "Color chat messages based on the author's role color",
+        description: "送信者のロールカラーに基づいてチャットメッセージを色付けする",
         restartNeeded: true,
     },
     messageSaturation: {
         type: OptionType.SLIDER,
-        description: "Intensity of message coloring.",
+        description: "メッセージの色付けの強さ。",
         markers: makeRange(0, 100, 10),
         default: 30
     }

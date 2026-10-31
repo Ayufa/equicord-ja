@@ -83,7 +83,7 @@ const ContextMenuPatch: NavContextMenuPatchCallback = (children, { channel }: { 
 const settings = definePluginSettings({
     permanentlyIgnoredUsers: {
         type: OptionType.STRING,
-        description: "User IDs (comma + space) who should be permanetly ignored",
+        description: "永久に無視するユーザーID（カンマとスペース区切り）",
         restartNeeded: true,
         default: "",
     },

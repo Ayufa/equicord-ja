@@ -43,12 +43,12 @@ const { ModalStack, DraftManager } = proxyLazyWebpack(() => {
 const settings = definePluginSettings({
     attemptToPreventCrashes: {
         type: OptionType.BOOLEAN,
-        description: "Whether to attempt to prevent Discord crashes.",
+        description: "Discord のクラッシュを防止しようとするか。",
         default: true
     },
     attemptToNavigateToHome: {
         type: OptionType.BOOLEAN,
-        description: "Whether to attempt to navigate to the home when preventing Discord crashes.",
+        description: "Discord のクラッシュを防止する際に、ホームへ移動しようとするか。",
         default: false
     }
 });

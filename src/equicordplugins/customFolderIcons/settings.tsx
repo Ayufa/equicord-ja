@@ -17,12 +17,12 @@ export const settings = definePluginSettings({
     solidIcon: {
         type: OptionType.BOOLEAN,
         default: false,
-        description: "Use a solid background on the background of the image"
+        description: "画像の背景に単色の背景を使います"
     },
     folderIcons: {
         type: OptionType.COMPONENT,
         hidden: true,
-        description: "folder icon settings",
+        description: "フォルダアイコンの設定",
         component: () => <></>
     }
 });

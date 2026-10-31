@@ -32,12 +32,12 @@ const settings = definePluginSettings({
     onlyWhenInVoice: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Only follow the user when you are in a voice channel"
+        description: "自分がボイスチャンネルにいるときだけ相手について行きます"
     },
     leaveWhenUserLeaves: {
         type: OptionType.BOOLEAN,
         default: false,
-        description: "Leave the voice channel when the user leaves. (That can cause you to sometimes enter infinite leave/join loop)"
+        description: "相手が退出したらボイスチャンネルから退出します。（無限の退出／参加ループに入ることがあります）"
     }
 });
 

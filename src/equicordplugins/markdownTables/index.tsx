@@ -24,7 +24,7 @@ const settings = definePluginSettings({
     hideToggle: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Hide the Table/Raw toggle and always show rendered tables.",
+        description: "表／Raw切り替えを隠し、常にレンダリングされた表を表示します。",
     },
 });
 

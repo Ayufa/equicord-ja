@@ -27,12 +27,12 @@ interface Nameplate {
 
 const settings = definePluginSettings({
     animate: {
-        description: "Animate banners",
+        description: "バナーをアニメーションさせる",
         type: OptionType.BOOLEAN,
         default: false
     },
     preferNameplate: {
-        description: "prefer nameplate over banner",
+        description: "バナーよりネームプレートを優先する",
         type: OptionType.BOOLEAN,
         default: false
     },

@@ -75,12 +75,12 @@ const settings = definePluginSettings({
     maxWidth: {
         type: OptionType.NUMBER,
         default: 1024,
-        description: "Maximum auto-fit width."
+        description: "自動フィットの最大の幅。"
     },
     maxHeight: {
         type: OptionType.NUMBER,
         default: 576,
-        description: "Maximum auto-fit height."
+        description: "自動フィットの最大の高さ。"
     },
 });
 

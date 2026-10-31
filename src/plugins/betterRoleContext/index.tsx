@@ -69,7 +69,7 @@ function RoleMembersIcon() {
 const settings = definePluginSettings({
     roleIconFileFormat: {
         type: OptionType.SELECT,
-        description: "File format to use when viewing role icons",
+        description: "ロールアイコンを表示するときのファイル形式",
         options: [
             {
                 label: "png",

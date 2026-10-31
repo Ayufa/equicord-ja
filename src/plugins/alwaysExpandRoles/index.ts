@@ -24,7 +24,7 @@ const settings = definePluginSettings({
     hideArrow: {
         type: OptionType.BOOLEAN,
         default: false,
-        description: "Hide Arrow",
+        description: "矢印を非表示にする",
         restartNeeded: true
     },
 });

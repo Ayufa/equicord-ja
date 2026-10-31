@@ -33,37 +33,37 @@ import managedStyle from "./styles.css?managed";
 export const settings = definePluginSettings({
     saveZoomValues: {
         type: OptionType.BOOLEAN,
-        description: "Whether to save zoom and lens size values",
+        description: "ズームとレンズサイズの値を保存するかどうか",
         default: true,
     },
 
     invertScroll: {
         type: OptionType.BOOLEAN,
-        description: "Invert scroll",
+        description: "スクロールを反転します",
         default: true,
     },
 
     nearestNeighbour: {
         type: OptionType.BOOLEAN,
-        description: "Use Nearest Neighbour Interpolation when scaling images",
+        description: "画像の拡大時に最近傍補間を使用します",
         default: false,
     },
 
     square: {
         type: OptionType.BOOLEAN,
-        description: "Make the lens square",
+        description: "レンズを正方形にします",
         default: false,
     },
 
     zoom: {
-        description: "Zoom of the lens",
+        description: "レンズのズーム倍率",
         type: OptionType.SLIDER,
         markers: [1, 5, 10, 20, 30, 40, 50],
         default: 2,
         stickToMarkers: false,
     },
     size: {
-        description: "Radius / Size of the lens",
+        description: "レンズの半径 / サイズ",
         type: OptionType.SLIDER,
         markers: [50, 100, 250, 500, 750, 1000],
         default: 100,
@@ -71,7 +71,7 @@ export const settings = definePluginSettings({
     },
 
     zoomSpeed: {
-        description: "How fast the zoom / lens size changes",
+        description: "ズーム / レンズサイズの変化速度",
         type: OptionType.SLIDER,
         markers: [0.1, 0.5, 1, 2, 3, 4, 5],
         default: 0.5,

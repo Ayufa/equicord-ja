@@ -48,17 +48,17 @@ const searchEngines = {
 const settings = definePluginSettings({
     hyperlink: {
         type: OptionType.BOOLEAN,
-        description: "If the sent link should hyperlink with the query as the label",
+        description: "送信したリンクを、クエリをラベルとしてハイパーリンクにするかどうか",
         default: false
     },
     embed: {
         type: OptionType.BOOLEAN,
-        description: "If the sent link should render an embed",
+        description: "送信したリンクを埋め込み表示するかどうか",
         default: true
     },
     defaultEngine: {
         type: OptionType.SELECT,
-        description: "The search engine to use",
+        description: "使用する検索エンジン",
         options: Object.keys(searchEngines).map((key, index) => ({
             label: key,
             value: key,
@@ -66,7 +66,7 @@ const settings = definePluginSettings({
         }))
     },
     customEngineURL: {
-        description: "The URL of the Engine you wish to use",
+        description: "使用したいエンジンのURL",
         type: OptionType.STRING,
         placeholder: ""
     }

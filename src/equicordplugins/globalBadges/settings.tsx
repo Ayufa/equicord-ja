@@ -77,17 +77,17 @@ function ApiUrlNotice() {
 export const settings = definePluginSettings({
     showModStyle: {
         type: OptionType.SELECT,
-        description: "Mod Style",
+        description: "Modの表示スタイル",
         default: "none",
         options: [
-            { label: "Don't Show Mod", value: "none" },
-            { label: "Show Mod as Prefix", value: "prefix" },
-            { label: "Show Mod as Suffix", value: "suffix" },
+            { label: "Modを表示しない", value: "none" },
+            { label: "Modをプレフィックスとして表示", value: "prefix" },
+            { label: "Modをサフィックスとして表示", value: "suffix" },
         ]
     },
     apiUrl: {
         type: OptionType.STRING,
-        description: "API to use",
+        description: "使用するAPI",
         default: "https://badges.equicord.org/",
         restartNeeded: false,
         isValid: (value => {
@@ -105,112 +105,112 @@ export const settings = definePluginSettings({
     },
     showCustom: {
         type: OptionType.BOOLEAN,
-        description: "Show Custom Badges",
+        description: "Customバッジを表示",
         default: true,
         restartNeeded: false,
         hidden: true
     },
     showNekocord: {
         type: OptionType.BOOLEAN,
-        description: "Show Nekocord Badges",
+        description: "Nekocordバッジを表示",
         default: true,
         restartNeeded: false,
         hidden: true
     },
     showReviewDB: {
         type: OptionType.BOOLEAN,
-        description: "Show ReviewDB Badges",
+        description: "ReviewDBバッジを表示",
         default: true,
         restartNeeded: false,
         hidden: true
     },
     showAero: {
         type: OptionType.BOOLEAN,
-        description: "Show Aero Badges",
+        description: "Aeroバッジを表示",
         default: true,
         restartNeeded: false,
         hidden: true
     },
     showAliucord: {
         type: OptionType.BOOLEAN,
-        description: "Show Aliucord Badges",
+        description: "Aliucordバッジを表示",
         default: true,
         restartNeeded: false,
         hidden: true
     },
     showRaincord: {
         type: OptionType.BOOLEAN,
-        description: "Show Raincord Badges",
+        description: "Raincordバッジを表示",
         default: true,
         restartNeeded: false,
         hidden: true
     },
     showVelocity: {
         type: OptionType.BOOLEAN,
-        description: "Show Velocity Badges",
+        description: "Velocityバッジを表示",
         default: true,
         restartNeeded: false,
         hidden: true
     },
     showEnmity: {
         type: OptionType.BOOLEAN,
-        description: "Show Enmity Badges",
+        description: "Enmityバッジを表示",
         default: true,
         restartNeeded: false,
         hidden: true
     },
     showPaicord: {
         type: OptionType.BOOLEAN,
-        description: "Show Paicord Badges",
+        description: "Paicordバッジを表示",
         default: true,
         restartNeeded: false,
         hidden: true
     },
     showBunny: {
         type: OptionType.BOOLEAN,
-        description: "Show Bunny Badges",
+        description: "Bunnyバッジを表示",
         default: true,
         restartNeeded: false,
         hidden: true
     },
     showGooseMod: {
         type: OptionType.BOOLEAN,
-        description: "Show GooseMod Badges",
+        description: "GooseModバッジを表示",
         default: true,
         restartNeeded: false,
         hidden: true
     },
     showReplugged: {
         type: OptionType.BOOLEAN,
-        description: "Show Replugged Badges",
+        description: "Repluggedバッジを表示",
         default: true,
         restartNeeded: false,
         hidden: true
     },
     showBetterDiscord: {
         type: OptionType.BOOLEAN,
-        description: "Show BetterDiscord Badges",
+        description: "BetterDiscordバッジを表示",
         default: true,
         restartNeeded: false,
         hidden: true
     },
     showVendroidEnhanced: {
         type: OptionType.BOOLEAN,
-        description: "Show Vendroid Enhanced Badges",
+        description: "Vendroid Enhancedバッジを表示",
         default: true,
         restartNeeded: false,
         hidden: true
     },
     showRevenge: {
         type: OptionType.BOOLEAN,
-        description: "Show Revenge Badges",
+        description: "Revengeバッジを表示",
         default: true,
         restartNeeded: false,
         hidden: true
     },
     showReCord: {
         type: OptionType.BOOLEAN,
-        description: "Show ReCord Badges",
+        description: "ReCordバッジを表示",
         default: true,
         restartNeeded: false,
         hidden: true

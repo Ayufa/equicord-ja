@@ -22,7 +22,7 @@ import definePlugin, { makeRange, OptionType } from "@utils/types";
 
 const settings = definePluginSettings({
     multiplier: {
-        description: "Volume Multiplier",
+        description: "音量の倍率",
         type: OptionType.SLIDER,
         markers: makeRange(1, 5, 0.5),
         default: 2,

@@ -16,7 +16,7 @@ const logger = new Logger("AutoZipper");
 const settings = definePluginSettings({
     extensions: {
         type: OptionType.STRING,
-        description: "Comma-separated list of file extensions to auto-zip (e.g., .psd,.blend,.exe,.dmg)",
+        description: "自動でzip化するファイル拡張子のカンマ区切りリスト（例: .psd,.blend,.exe,.dmg）",
         default: ".psd,.blend,.exe,.dmg,.app,.apk,.iso",
         onChange: () => {
             extensionsToZip.clear();

@@ -34,41 +34,41 @@ const scrollManagers = new Set<ScrollManager>();
 const settings = definePluginSettings({
     imageScrollMargin: {
         type: OptionType.STRING,
-        displayName: "Image Preload Distance",
-        description: "How far ahead to load images, in pixels (300-3000).",
+        displayName: "画像の先読み距離",
+        description: "画像を先読みする距離（ピクセル、300〜3000）。",
         default: "1500",
         isValid: value => validateInteger(value, 300, 3000),
         restartNeeded: true
     },
     messageLoadBuffer: {
         type: OptionType.STRING,
-        displayName: "Message Load Buffer",
-        description: "How far ahead to fetch more messages, in pixels (500-3000).",
+        displayName: "メッセージ読み込みバッファ",
+        description: "追加のメッセージを取得し始める距離（ピクセル、500〜3000）。",
         default: "1500",
         isValid: value => validateInteger(value, 500, 3000),
         restartNeeded: true
     },
     useDiscordMessageCount: {
         type: OptionType.BOOLEAN,
-        displayName: "Use Discord's Dynamic Message Count",
-        description: "Let Discord choose how many messages to fetch based on your window and chat settings.",
+        displayName: "Discordの動的メッセージ件数を使う",
+        description: "ウィンドウやチャット設定に応じて、取得するメッセージ数をDiscordに決めさせます。",
         default: true
     },
     messageCount: {
         type: OptionType.STRING,
-        displayName: "Custom Message Count",
-        description: "How many messages to fetch per history request when the dynamic count is disabled (30-100).",
+        displayName: "カスタムメッセージ件数",
+        description: "動的件数が無効なときに、履歴リクエストごとに取得するメッセージ数（30〜100）。",
         default: "50",
         isValid: value => validateInteger(value, 30, 100)
     },
     channelOpenScrollMode: {
         type: OptionType.SELECT,
-        displayName: "Channel Opening Position",
-        description: "Open unread channels at the saved position (or bottom), always the bottom, or defer to default unread behavior.",
+        displayName: "チャンネルを開いたときの位置",
+        description: "未読チャンネルを保存した位置（または最下部）で開くか、常に最下部で開くか、未読時のデフォルト動作に従います。",
         options: [
-            { label: "Discord Default", value: "default" },
-            { label: "Always Bottom", value: "bottom" },
-            { label: "Saved Position", value: "saved", default: true }
+            { label: "Discordのデフォルト", value: "default" },
+            { label: "常に最下部", value: "bottom" },
+            { label: "保存した位置", value: "saved", default: true }
         ]
     }
 }, {

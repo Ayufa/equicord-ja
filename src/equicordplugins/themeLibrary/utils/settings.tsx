@@ -23,12 +23,12 @@ export const settings = definePluginSettings({
     hideWarningCard: {
         type: OptionType.BOOLEAN,
         default: false,
-        description: "Hide the warning card displayed at the top of the theme library tab",
+        description: "テーマライブラリタブの上部に表示される警告カードを非表示にする",
         restartNeeded: false,
     },
     buttons: {
         type: OptionType.COMPONENT,
-        description: "ThemeLibrary Buttons",
+        description: "ThemeLibrary ボタン",
         component: () => {
             const handleClick = async () => {
                 const token = await DataStore.get("ThemeLibrary_uniqueToken");

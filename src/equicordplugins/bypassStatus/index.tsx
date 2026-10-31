@@ -111,58 +111,58 @@ function ContextCallback(name: "guild" | "user" | "channel"): NavContextMenuPatc
 const settings = definePluginSettings({
     guilds: {
         type: OptionType.STRING,
-        description: "Guilds to let bypass (notified when pinged anywhere in guild)",
+        description: "バイパス対象のサーバー（サーバー内のどこでメンションされても通知されます）",
         default: "",
-        placeholder: "Separate with commas",
+        placeholder: "カンマで区切って入力",
         onChange: value => settings.store.guilds = processIds(value)
     },
     channels: {
         type: OptionType.STRING,
-        description: "Channels to let bypass (notified when pinged in that channel)",
+        description: "バイパス対象のチャンネル（そのチャンネルでメンションされたら通知されます）",
         default: "",
-        placeholder: "Separate with commas",
+        placeholder: "カンマで区切って入力",
         onChange: value => settings.store.channels = processIds(value)
     },
     users: {
         type: OptionType.STRING,
-        description: "Users to let bypass (notified for all messages sent in DMs)",
+        description: "バイパス対象のユーザー（DMで送られたすべてのメッセージを通知します）",
         default: "",
-        placeholder: "Separate with commas",
+        placeholder: "カンマで区切って入力",
         onChange: value => settings.store.users = processIds(value)
     },
     allowOutsideOfDms: {
         type: OptionType.BOOLEAN,
-        description: "Allow selected users to bypass status outside of DMs too (acts like a channel/guild bypass, but it's for all messages sent by the selected users)"
+        description: "選択したユーザーがDM以外でもステータスをバイパスできるようにします（チャンネル/サーバーのバイパスと同様ですが、選択したユーザーが送信したすべてのメッセージが対象です）"
     },
     notificationSound: {
         type: OptionType.BOOLEAN,
-        description: "Whether the notification sound should be played",
+        description: "通知音を鳴らすかどうか",
         default: true,
     },
     respectSilentPings: {
         type: OptionType.BOOLEAN,
-        description: "Respect silent pings (@silent / suppress notifications)",
+        description: "サイレントメンション（@silent / 通知を抑制）を尊重します",
         default: true
     },
     statusToUse: {
         type: OptionType.SELECT,
-        description: "Status to use for whitelist",
+        description: "ホワイトリストに使用するステータス",
         options: [
             {
-                label: "Online",
+                label: "オンライン",
                 value: "online",
             },
             {
-                label: "Idle",
+                label: "退席中",
                 value: "idle",
             },
             {
-                label: "Do Not Disturb",
+                label: "取り込み中",
                 value: "dnd",
                 default: true
             },
             {
-                label: "Invisible",
+                label: "表示しない",
                 value: "invisible",
             }
         ]

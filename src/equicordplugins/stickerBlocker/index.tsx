@@ -22,25 +22,25 @@ const MessageContentClasses = findCssClassesLazy("messageContent", "messageConte
 const settings = definePluginSettings({
     showGif: {
         type: OptionType.BOOLEAN,
-        description: "Whether to show a snazzy cat gif",
+        description: "おしゃれな猫のGIFを表示するかどうか",
         default: true,
         restartNeeded: true
     },
     showMessage: {
         type: OptionType.BOOLEAN,
-        description: "Whether to show a message detailing which id was blocked",
+        description: "どのIDがブロックされたかを示すメッセージを表示するかどうか",
         default: false,
         restartNeeded: true
     },
     showButton: {
         type: OptionType.BOOLEAN,
-        description: "Whether to show a button to unblock the gif",
+        description: "GIFのブロックを解除するボタンを表示するかどうか",
         default: true,
         restartNeeded: true
     },
     blockedStickers: {
         type: OptionType.STRING,
-        description: "The list of blocked sticker IDs (don't edit unless you know what you're doing)",
+        description: "ブロックされたステッカーIDのリスト（内容を理解していない場合は編集しないでください）",
         default: ""
     }
 });

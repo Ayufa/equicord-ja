@@ -32,22 +32,22 @@ const enum ReplacementEngineValue {
 
 const settings = definePluginSettings({
     customEngineName: {
-        description: "Name of the custom search engine",
+        description: "カスタム検索エンジンの名前",
         type: OptionType.STRING,
         placeholder: "Google"
     },
     customEngineURL: {
         displayName: "Custom Engine URL",
-        description: "The URL of your Engine",
+        description: "使用する検索エンジンのURL",
         type: OptionType.STRING,
         placeholder: "https://google.com/search?q="
     },
     replacementEngine: {
-        description: "Replace with a specific search engine instead of adding a menu",
+        description: "メニューを追加する代わりに、特定の検索エンジンに置き換える",
         type: OptionType.SELECT,
         options: [
-            { label: "Off", value: ReplacementEngineValue.OFF, default: true },
-            { label: "Custom Engine", value: ReplacementEngineValue.CUSTOM },
+            { label: "オフ", value: ReplacementEngineValue.OFF, default: true },
+            { label: "カスタムエンジン", value: ReplacementEngineValue.CUSTOM },
             ...Object.keys(DefaultEngines).map(engine => ({ label: engine, value: engine }))
         ]
     }

@@ -15,7 +15,7 @@ import ExampleWiggle from "./ui/components/ExampleWiggle";
 const settings = definePluginSettings({
     intensity: {
         type: OptionType.SLIDER,
-        description: "Animation intensity in px",
+        description: "アニメーションの強さ（px）",
         markers: makeRange(1, 10, 1),
         default: 4,
         stickToMarkers: true,

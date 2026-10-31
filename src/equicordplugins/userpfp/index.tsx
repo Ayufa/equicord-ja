@@ -36,11 +36,11 @@ export const data = { avatars: {} as Record<string, string> };
 const settings = definePluginSettings({
     overrideServerAvatars: {
         type: OptionType.BOOLEAN,
-        description: "Override server avatars with custom avatars or the default user avatar if no custom avatar is set.",
+        description: "サーバーアバターをカスタムアバターで上書きします。カスタムアバターが未設定の場合はデフォルトのユーザーアバターを使います。",
         default: true
     },
     preferNitro: {
-        description: "Which avatar to use if both default animated (Nitro) pfp and UserPFP avatars are present",
+        description: "デフォルトのアニメーション（Nitro）アバターとUserPFPアバターの両方がある場合に使うアバター",
         type: OptionType.SELECT,
         options: [
             { label: "UserPFP", value: false },
@@ -48,7 +48,7 @@ const settings = definePluginSettings({
         ],
     },
     databaseSource: {
-        description: "URL to load database from",
+        description: "データベースを読み込むURL",
         type: OptionType.STRING,
         default: "https://userpfp.github.io/UserPFP/source/data.json",
         hidden: !IS_DEV,

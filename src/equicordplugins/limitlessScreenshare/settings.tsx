@@ -16,7 +16,7 @@ export const MIN_RESOLUTION = 3;
 
 export const settings = definePluginSettings({
     maxFPS: {
-        description: "Max FPS for the range slider",
+        description: "範囲スライダーの最大FPS",
         default: 120,
         type: OptionType.NUMBER,
         isValid: (value: number) => value >= MIN_FPS
@@ -26,7 +26,7 @@ export const settings = definePluginSettings({
         component: () => SettingsPresetList(false)
     },
     maxResolution: {
-        description: "Max Resolution for the range slider",
+        description: "範囲スライダーの最大解像度",
         default: 1080,
         type: OptionType.NUMBER,
         isValid: (value: number) => {
@@ -40,7 +40,7 @@ export const settings = definePluginSettings({
         component: () => SettingsPresetList(true)
     },
     roundResolution: {
-        description: "Round resolution to the nearest 10p",
+        description: "解像度を最も近い10p単位に丸めます",
         default: false,
         type: OptionType.BOOLEAN
     },

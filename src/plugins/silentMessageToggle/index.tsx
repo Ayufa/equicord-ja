@@ -30,11 +30,11 @@ export { lastState };
 const settings = definePluginSettings({
     persistState: {
         type: OptionType.SELECT,
-        description: "How to persist the silent message toggle state",
+        description: "サイレントメッセージの切り替え状態の保持方法",
         options: [
-            { label: "Don't persist (reset on channel change)", value: "none", default: true },
-            { label: "Persist between channels", value: "channels" },
-            { label: "Persist between channels and restarts", value: "restarts" }
+            { label: "保持しない（チャンネル変更時にリセット）", value: "none", default: true },
+            { label: "チャンネル間で保持", value: "channels" },
+            { label: "チャンネル間と再起動後も保持", value: "restarts" }
         ],
         onChange(newValue: string) {
             lastState = newValue !== "none" && lastState;
@@ -42,7 +42,7 @@ const settings = definePluginSettings({
     },
     autoDisable: {
         type: OptionType.BOOLEAN,
-        description: "Automatically disable the silent message toggle again after sending one",
+        description: "1回送信したら、サイレントメッセージの切り替えを自動でオフに戻す",
         default: true
     }
 });

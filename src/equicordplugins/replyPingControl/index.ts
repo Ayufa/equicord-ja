@@ -13,18 +13,18 @@ import { MessageStore, UserStore } from "@webpack/common";
 export const settings = definePluginSettings({
     alwaysPingOnReply: {
         type: OptionType.BOOLEAN,
-        description: "Always get pinged when someone replies to your messages",
+        description: "自分のメッセージに返信があったときに常に通知を受ける",
         default: false,
     },
     replyPingWhitelist: {
         type: OptionType.STRING,
-        description: "Comma-separated list of User IDs to always receive reply pings from",
+        description: "返信通知を常時受け取るユーザー ID のカンマ区切りリスト",
         default: "",
         disabled: () => settings.store.alwaysPingOnReply,
     },
     replyPingBlacklist: {
         type: OptionType.STRING,
-        description: "Comma-separated list of User IDs to never receive reply pings from",
+        description: "返信通知を決して受け取らないユーザー ID のカンマ区切りリスト",
         default: "",
     }
 });

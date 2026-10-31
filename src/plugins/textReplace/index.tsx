@@ -97,12 +97,12 @@ const settings = definePluginSettings({
     stringRules: {
         type: OptionType.CUSTOM,
         default: makeEmptyRuleArray(),
-        description: "Rules for replacing text using string matching."
+        description: "文字列マッチングでテキストを置換するルール。"
     },
     regexRules: {
         type: OptionType.CUSTOM,
         default: makeEmptyRuleArray(),
-        description: "Rules for replacing text using regular expressions."
+        description: "正規表現でテキストを置換するルール。"
     }
 });
 

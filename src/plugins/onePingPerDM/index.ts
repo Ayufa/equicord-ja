@@ -14,32 +14,32 @@ import { ChannelStore, ReadStateStore, UserStore } from "@webpack/common";
 const settings = definePluginSettings({
     channelToAffect: {
         type: OptionType.SELECT,
-        description: "Select the type of DM for the plugin to affect",
+        description: "プラグインが影響を与える DM の種類を選択します",
         options: [
-            { label: "Both", value: "both_dms", default: true },
-            { label: "User DMs", value: "user_dm" },
-            { label: "Group DMs", value: "group_dm" },
+            { label: "両方", value: "both_dms", default: true },
+            { label: "ユーザー DM", value: "user_dm" },
+            { label: "グループ DM", value: "group_dm" },
         ]
     },
     allowMentions: {
         type: OptionType.BOOLEAN,
-        description: "Receive audio pings for @mentions",
+        description: "@メンションで音声通知を受け取ります",
         default: false,
     },
     allowEveryone: {
         type: OptionType.BOOLEAN,
-        description: "Receive audio pings for @everyone and @here in group DMs",
+        description: "グループ DM の @everyone と @here で音声通知を受け取ります",
         default: false,
     },
     ignoreUsers: {
         type: OptionType.STRING,
-        description: "User IDs (comma + space) whose pings should NEVER be throttled",
+        description: "通知間隔の制限を絶対に受けないユーザー ID（カンマ + スペース区切り）",
         restartNeeded: true,
         default: ""
     },
     alwaysPlaySound: {
         type: OptionType.BOOLEAN,
-        description: "Play the message notification sound even when its disabled",
+        description: "メッセージ通知音が無効になっている場合でも再生します",
         restartNeeded: true,
         default: false
     }

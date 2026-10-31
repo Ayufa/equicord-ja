@@ -13,7 +13,7 @@ import { UserStore } from "@webpack/common";
 const settings = definePluginSettings({
     platform: {
         type: OptionType.SELECT,
-        description: "What platform to pretend you're on.",
+        description: "どのプラットフォームにいるように見せかけるか。",
         restartNeeded: true,
         options: [
             {

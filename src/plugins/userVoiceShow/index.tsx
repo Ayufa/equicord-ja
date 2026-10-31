@@ -27,19 +27,19 @@ import { VoiceChannelIndicator } from "./components";
 const settings = definePluginSettings({
     showInUserProfileModal: {
         type: OptionType.BOOLEAN,
-        description: "Show a user's Voice Channel indicator in their profile next to the name",
+        description: "プロフィールで名前の横にユーザーのボイスチャンネルインジケーターを表示する",
         default: true,
         restartNeeded: true
     },
     showInMemberList: {
         type: OptionType.BOOLEAN,
-        description: "Show a user's Voice Channel indicator in the member and DMs list",
+        description: "メンバーと DM のリストにユーザーのボイスチャンネルインジケーターを表示する",
         default: true,
         restartNeeded: true
     },
     showInMessages: {
         type: OptionType.BOOLEAN,
-        description: "Show a user's Voice Channel indicator in messages",
+        description: "メッセージにユーザーのボイスチャンネルインジケーターを表示する",
         default: true,
         restartNeeded: true
     }

@@ -332,34 +332,34 @@ const resetEmojis = () => withWriteLock(async () => {
 const settings = definePluginSettings({
     defaultEmojis: {
         type: OptionType.BOOLEAN,
-        description: "Hide default Unicode emojis from the autocomplete unless whitelisted.",
+        description: "ホワイトリストに登録されていないデフォルトのUnicode絵文字を自動補完から隠します。",
         default: true
     },
     serverEmojis: {
         type: OptionType.BOOLEAN,
-        description: "Hide custom server emojis from the autocomplete unless whitelisted.",
+        description: "ホワイトリストに登録されていないカスタムサーバー絵文字を自動補完から隠します。",
         default: true
     },
     disableToasts: {
         type: OptionType.BOOLEAN,
-        description: "Don't show toasts when adding or removing emojis.",
+        description: "絵文字の追加や削除のときにトーストを表示しません。",
         default: false
     },
     whiteListedEmojis: {
         type: OptionType.COMPONENT,
-        description: "Whitelisted Emojis",
+        description: "ホワイトリスト登録済み絵文字",
         component: WhiteListedEmojisComponent
     },
     exportEmojis: {
         type: OptionType.COMPONENT,
-        description: "Export Emojis",
+        description: "絵文字をエクスポート",
         component: () => (
             <Button onClick={exportEmojis}>Export Emojis</Button>
         )
     },
     importEmojis: {
         type: OptionType.COMPONENT,
-        description: "Import Emojis",
+        description: "絵文字をインポート",
         component: () => (
             <Button onClick={() =>
                 Alerts.show({
@@ -376,7 +376,7 @@ const settings = definePluginSettings({
     },
     resetEmojis: {
         type: OptionType.COMPONENT,
-        description: "Reset Emojis",
+        description: "絵文字をリセット",
         component: () => (
             <Button onClick={() =>
                 Alerts.show({

@@ -36,42 +36,42 @@ const UrlReplacementRules: Record<string, URLReplacementRule> = {
     spotify: {
         match: /^https:\/\/open\.spotify\.com\/(?:intl-[a-z]{2}\/)?(track|album|artist|playlist|user|episode|prerelease)\/(.+)(?:\?.+?)?$/,
         replace: (_, type, id) => `spotify://${type}/${id}`,
-        description: "Open Spotify links in the Spotify app",
+        description: "Spotify のリンクを Spotify アプリで開きます",
         shortlinkMatch: /^https:\/\/spotify\.link\/.+$/,
         accountViewReplace: userId => `spotify:user:${userId}`,
     },
     steam: {
         match: /^https:\/\/(steamcommunity\.com|(?:help|store)\.steampowered\.com)\/.+$/,
         replace: match => `steam://openurl/${match}`,
-        description: "Open Steam links in the Steam app",
+        description: "Steam のリンクを Steam アプリで開きます",
         shortlinkMatch: /^https:\/\/s.team\/.+$/,
         accountViewReplace: userId => `steam://openurl/https://steamcommunity.com/profiles/${userId}`,
     },
     epic: {
         match: /^https:\/\/store\.epicgames\.com\/(.+)$/,
         replace: (_, id) => `com.epicgames.launcher://store/${id}`,
-        description: "Open Epic Games links in the Epic Games Launcher",
+        description: "Epic Games のリンクを Epic Games Launcher で開きます",
     },
     tidal: {
         match: /^https:\/\/(?:listen\.)?tidal\.com\/(?:browse\/)?(track|album|artist|playlist|user|video|mix)\/([a-f0-9-]+).*/,
         replace: (_, type, id) => `tidal://${type}/${id}`,
-        description: "Open Tidal links in the Tidal app",
+        description: "Tidal のリンクを Tidal アプリで開きます",
     },
     itunes: {
         match: /^https:\/\/(?:geo\.)?music\.apple\.com\/([a-z]{2}\/)?(album|artist|playlist|song|curator)\/([^/?#]+)\/?([^/?#]+)?(?:\?.*)?(?:#.*)?$/,
         replace: (_, lang, type, name, id) => id ? `itunes://music.apple.com/us/${type}/${name}/${id}` : `itunes://music.apple.com/us/${type}/${name}`,
         displayName: "iTunes",
-        description: "Open Apple Music links in the iTunes app"
+        description: "Apple Music のリンクを iTunes アプリで開きます"
     },
     vrcx: {
         match: /^https:\/\/vrchat.com\/home\/(user|avatar|world|group)\/(.+)$/,
         replace: (_, type, id) => `vrcx://${type}/${id}`,
-        description: "Open VRChat links in the VRCX app"
+        description: "VRChat のリンクを VRCX アプリで開きます"
     },
     telegram: {
         match: /^https:\/\/t\.me\/([a-zA-Z0-9_]+)$/,
         replace: (_, username) => `tg://resolve?domain=${username}`,
-        description: "Open Telegram links in the Telegram app"
+        description: "Telegram のリンクを Telegram アプリで開きます"
     }
 };
 

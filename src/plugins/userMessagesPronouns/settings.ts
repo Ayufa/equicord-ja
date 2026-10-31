@@ -27,22 +27,22 @@ export const enum PronounsFormat {
 export const settings = definePluginSettings({
     pronounsFormat: {
         type: OptionType.SELECT,
-        description: "The format for pronouns to appear in chat",
+        description: "チャットに表示する代名詞の形式",
         options: [
             {
-                label: "Lowercase",
+                label: "小文字",
                 value: PronounsFormat.Lowercase,
                 default: true
             },
             {
-                label: "Capitalized",
+                label: "先頭を大文字",
                 value: PronounsFormat.Capitalized
             }
         ]
     },
     showSelf: {
         type: OptionType.BOOLEAN,
-        description: "Enable or disable showing pronouns for yourself",
+        description: "自分の代名詞の表示を有効／無効にする",
         default: true
     }
 });

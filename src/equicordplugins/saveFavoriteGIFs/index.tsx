@@ -102,7 +102,7 @@ async function saveWorkingGifs() {
 
 const settings = definePluginSettings({
     showToolboxButton: {
-        description: "Show 'Save Favorite GIFs' button in Equicord Toolbox (Requires Reload)",
+        description: "Equicord Toolbox に「Save Favorite GIFs」ボタンを表示（再読み込みが必要）",
         type: OptionType.BOOLEAN,
         default: true,
         restartNeeded: true,

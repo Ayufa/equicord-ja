@@ -34,7 +34,7 @@ interface SoundboardSoundPayload {
 const settings = definePluginSettings({
     port: {
         type: OptionType.NUMBER,
-        description: "Port to connect to",
+        description: "接続先ポート",
         default: 6888,
         restartNeeded: true
     },

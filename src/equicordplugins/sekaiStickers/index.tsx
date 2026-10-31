@@ -16,7 +16,7 @@ import { kanadeSvg } from "./kanade.svg";
 const settings = definePluginSettings({
     AutoCloseModal: {
         type: OptionType.BOOLEAN,
-        description: "Auto close modal when done",
+        description: "完了したらモーダルを自動的に閉じる",
         default: true
     }
 });

@@ -18,7 +18,7 @@ const logger = new Logger("DownloadAllAttachments");
 const settings = definePluginSettings({
     downloadAllFileTypes: {
         type: OptionType.BOOLEAN,
-        description: "Also download non-media attachments. Only enable this if you trust what people send you.",
+        description: "メディア以外の添付ファイルもダウンロードします。相手から送られるものを信頼できる場合のみ有効にしてください。",
         default: false
     }
 });

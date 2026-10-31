@@ -67,319 +67,319 @@ const encryptingHostUrlStyleOptions = [
 export const settings = definePluginSettings({
     serviceType: {
         type: OptionType.SELECT,
-        description: "Selected uploader service",
+        description: "選択したアップローダーサービス",
         options: serviceOptions,
         hidden: true
     },
     serviceUrl: {
         type: OptionType.STRING,
-        description: "Zipline service URL",
+        description: "ZiplineサービスURL",
         default: "",
         hidden: true
     },
     ziplineToken: {
         type: OptionType.STRING,
-        description: "Zipline auth token",
+        description: "Zipline認証トークン",
         default: "",
         hidden: true
     },
     folderId: {
         type: OptionType.STRING,
-        description: "Optional Zipline folder ID",
+        description: "任意のZiplineフォルダID",
         default: "",
         hidden: true
     },
     ezHostKey: {
         type: OptionType.STRING,
-        description: "E-Z Host API key",
+        description: "E-Z Host APIキー",
         default: "",
         hidden: true
     },
     nestToken: {
         type: OptionType.STRING,
-        description: "Nest API token",
+        description: "Nest APIトークン",
         default: "",
         hidden: true
     },
     encryptingHostKey: {
         type: OptionType.STRING,
-        description: "Encrypting.host API key",
+        description: "Encrypting.host APIキー",
         default: "",
         hidden: true
     },
     encryptingHostUrlStyle: {
         type: OptionType.SELECT,
-        description: "Encrypting.host URL style",
+        description: "Encrypting.host URLスタイル",
         options: encryptingHostUrlStyleOptions,
         default: "query",
         hidden: true
     },
     encryptingHostDomains: {
         type: OptionType.STRING,
-        description: "Encrypting.host domains JSON list",
+        description: "Encrypting.host ドメインJSONリスト",
         default: "[\"offensive\"]",
         hidden: true
     },
     encryptingHostTitle: {
         type: OptionType.STRING,
-        description: "Optional Encrypting.host embed title",
+        description: "任意のEncrypting.host埋め込みタイトル",
         default: "",
         hidden: true
     },
     encryptingHostColor: {
         type: OptionType.STRING,
-        description: "Optional Encrypting.host embed color",
+        description: "任意のEncrypting.host埋め込みカラー",
         default: "",
         hidden: true
     },
     encryptingHostFakelink: {
         type: OptionType.STRING,
-        description: "Optional Encrypting.host fake link",
+        description: "任意のEncrypting.host偽リンク",
         default: "",
         hidden: true
     },
     s3Endpoint: {
         type: OptionType.STRING,
-        description: "S3-compatible endpoint URL",
+        description: "S3互換エンドポイントURL",
         default: "",
         hidden: true
     },
     s3Bucket: {
         type: OptionType.STRING,
-        description: "S3 bucket name",
+        description: "S3バケット名",
         default: "",
         hidden: true
     },
     s3Region: {
         type: OptionType.STRING,
-        description: "S3 region (use auto for R2)",
+        description: "S3リージョン（R2では auto を使用）",
         default: "auto",
         hidden: true
     },
     s3AccessKeyId: {
         type: OptionType.STRING,
-        description: "S3 access key ID",
+        description: "S3アクセスキーID",
         default: "",
         hidden: true
     },
     s3SecretAccessKey: {
         type: OptionType.STRING,
-        description: "S3 secret access key",
+        description: "S3シークレットアクセスキー",
         default: "",
         hidden: true
     },
     s3SessionToken: {
         type: OptionType.STRING,
-        description: "Optional S3 session token",
+        description: "任意のS3セッショントークン",
         default: "",
         hidden: true
     },
     s3PublicUrl: {
         type: OptionType.STRING,
-        description: "Optional public base URL",
+        description: "任意の公開ベースURL",
         default: "",
         hidden: true
     },
     s3Prefix: {
         type: OptionType.STRING,
-        description: "Optional S3 object key prefix",
+        description: "任意のS3オブジェクトキープレフィックス",
         default: "",
         hidden: true
     },
     s3ForcePathStyle: {
         type: OptionType.BOOLEAN,
-        description: "Use path-style S3 URLs",
+        description: "パス形式のS3 URLを使用します",
         default: true,
         hidden: true
     },
     litterboxExpiry: {
         type: OptionType.SELECT,
-        description: "Litterbox retention window",
+        description: "Litterboxの保持期間",
         options: litterboxOptions,
         default: "24h",
         hidden: true
     },
     catboxUserhash: {
         type: OptionType.STRING,
-        description: "Catbox userhash for account binding",
+        description: "アカウント連携用のCatbox userhash",
         default: "",
         hidden: true
     },
     sharexConfig: {
         type: OptionType.STRING,
-        description: "ShareX custom uploader JSON",
+        description: "ShareXカスタムアップローダーJSON",
         default: "",
         hidden: true
     },
     disableFallbacks: {
         type: OptionType.BOOLEAN,
-        description: "Disable fallback upload services",
+        description: "フォールバックのアップロードサービスを無効化します",
         default: false,
         hidden: true
     },
     autoSend: {
         type: OptionType.BOOLEAN,
-        description: "Insert uploaded URL in chat input",
+        description: "アップロードしたURLをチャット入力に挿入します",
         default: false,
         hidden: true
     },
     autoFormat: {
         type: OptionType.BOOLEAN,
-        description: "Wrap inserted URL in angle brackets",
+        description: "挿入したURLを山かっこで囲みます",
         default: false,
         hidden: true
     },
     bypassDiscordUpload: {
         type: OptionType.BOOLEAN,
-        description: "Bypass Discord uploads and use FileUpload instead.",
+        description: "Discordのアップロードを使わず、代わりにFileUploadを使用します。",
         default: true,
         hidden: true
     },
     bypassDiscordUploadOnlyOverLimit: {
         type: OptionType.BOOLEAN,
-        description: "Only use FileUpload if the file(s) exceed the file size limit.",
+        description: "ファイルがサイズ上限を超えた場合だけFileUploadを使用します。",
         default: true,
         hidden: true
     },
     customDiscordFileSizeLimitMB: {
         type: OptionType.NUMBER,
-        description: "Manual Discord file size limit in MB. 0 means automatic detection.",
+        description: "Discordのファイルサイズ上限を手動指定（MB）。0は自動検出です。",
         default: 0,
         hidden: true
     },
     gofileToken: {
         type: OptionType.STRING,
-        description: "Optional GoFile API token",
+        description: "任意のGoFile APIトークン",
         default: "",
         hidden: true
     },
     fallbackOrder: {
         type: OptionType.STRING,
-        description: "Fallback uploader order",
+        description: "フォールバックアップローダーの順序",
         default: defaultFallbackOrder,
         hidden: true
     },
     pixelVaultKey: {
         type: OptionType.STRING,
-        description: "PixelVault upload key",
+        description: "PixelVaultアップロードキー",
         default: "",
         hidden: true
     },
     pixelDrainKey: {
         type: OptionType.STRING,
-        description: "Optional PixelDrain API key",
+        description: "任意のPixelDrain APIキー",
         default: "",
         hidden: true
     },
     uploadTimeoutMs: {
         type: OptionType.NUMBER,
-        description: "Upload timeout in milliseconds",
+        description: "アップロードのタイムアウト（ミリ秒）",
         default: 300000,
         hidden: true
     },
     stripQueryParams: {
         type: OptionType.BOOLEAN,
-        description: "Strip query params from uploaded URLs",
+        description: "アップロードしたURLからクエリパラメータを取り除きます",
         default: false,
         hidden: true
     },
     embedProxyEnabled: {
         type: OptionType.BOOLEAN,
-        description: "Proxy uploaded video links through an embed helper service.",
+        description: "アップロードした動画リンクを埋め込みヘルパーサービス経由にします。",
         default: false,
         hidden: true
     },
     embedProxyService: {
         type: OptionType.SELECT,
-        description: "Embed helper service to wrap uploaded video links.",
+        description: "アップロードした動画リンクをラップする埋め込みヘルパーサービス。",
         options: embedProxyOptions,
         default: "nfp",
         hidden: true
     },
     corsProxyUrl: {
         type: OptionType.STRING,
-        description: "Optional CORS proxy URL used for browser uploads",
+        description: "ブラウザアップロードに使う任意のCORSプロキシURL",
         default: "",
         hidden: true
     },
     apngToGif: {
         type: OptionType.BOOLEAN,
-        description: "Convert APNG uploads to GIF",
+        description: "APNGのアップロードをGIFに変換します",
         default: false,
         hidden: true
     },
     preserveOriginalFilename: {
         type: OptionType.BOOLEAN,
-        description: "Preserve the original filename when uploading.",
+        description: "アップロード時に元のファイル名を保持します。",
         default: true,
         hidden: true
     },
     autoCopy: {
         type: OptionType.BOOLEAN,
-        description: "Auto copy upload URL",
+        description: "アップロードURLを自動でコピーします",
         default: true,
         hidden: true
     },
     autoUploadPastedFiles: {
         type: OptionType.BOOLEAN,
-        description: "Automatically upload files from clipboard to image host when pasting in chat input.",
+        description: "チャット入力に貼り付けたとき、クリップボードのファイルを画像ホストへ自動でアップロードします。",
         default: false
     },
     webdavUrl: {
         type: OptionType.STRING,
-        description: "WebDAV server URL",
+        description: "WebDAVサーバーURL",
         default: "",
         hidden: true
     },
     webdavUsername: {
         type: OptionType.STRING,
-        description: "WebDAV username",
+        description: "WebDAVユーザー名",
         default: "",
         hidden: true
     },
     webdavPassword: {
         type: OptionType.STRING,
-        description: "WebDAV password or app token",
+        description: "WebDAVパスワードまたはアプリトークン",
         default: "",
         hidden: true
     },
     webdavDirectory: {
         type: OptionType.STRING,
-        description: "Optional subdirectory on the WebDAV server",
+        description: "WebDAVサーバー上の任意のサブディレクトリ",
         default: "",
         hidden: true
     },
     webdavServerType: {
         type: OptionType.SELECT,
-        description: "WebDAV server type",
+        description: "WebDAVサーバーの種類",
         options: [
             { label: "Nextcloud", value: "nextcloud", default: true },
             { label: "ownCloud", value: "owncloud" },
-            { label: "Generic WebDAV", value: "generic" }
+            { label: "汎用 WebDAV", value: "generic" }
         ],
         default: "nextcloud",
         hidden: true
     },
     webdavShareType: {
         type: OptionType.SELECT,
-        description: "WebDAV share link format",
+        description: "WebDAV共有リンクの形式",
         options: [
-            { label: "Share Page", value: "share-page", default: true },
-            { label: "Direct Download", value: "direct-download" },
-            { label: "Markdown Link", value: "markdown" }
+            { label: "共有ページ", value: "share-page", default: true },
+            { label: "直接ダウンロード", value: "direct-download" },
+            { label: "Markdownリンク", value: "markdown" }
         ],
         default: "share-page",
         hidden: true
     },
     uploadAllowedFileTypes: {
         type: OptionType.STRING,
-        description: "Comma-separated list of allowed file extensions (e.g. png,jpg,gif,mp4). Leave empty to allow all files.",
+        description: "許可するファイル拡張子のカンマ区切りリスト（例: png,jpg,gif,mp4）。空欄にするとすべてのファイルを許可します。",
         default: "",
         hidden: true
     },
     settingsComponent: {
         type: OptionType.COMPONENT,
-        description: "Settings",
+        description: "設定",
         component: SettingsComponent
     }
 });

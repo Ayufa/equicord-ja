@@ -18,7 +18,7 @@ const cl = classNameFactory("vc-charCounter-");
 const settings = definePluginSettings({
     colorEffects: {
         type: OptionType.BOOLEAN,
-        description: "Enable yellow/red colouring as you get closer to the character limit",
+        description: "文字数制限に近づくにつれて黄色/赤色で表示する",
         default: true,
     }
 });

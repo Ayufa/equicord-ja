@@ -71,19 +71,19 @@ const AllowLevelSettings = ErrorBoundary.wrap(() => {
 const settings = definePluginSettings({
     disableLoggers: {
         type: OptionType.BOOLEAN,
-        description: "Disables Discords loggers",
+        description: "Discord のロガーを無効にする",
         default: false,
         restartNeeded: true
     },
     disableSpotifyLogger: {
         type: OptionType.BOOLEAN,
-        description: "Disable the Spotify logger, which leaks account information and access token",
+        description: "アカウント情報とアクセストークンを漏らす Spotify のロガーを無効にする",
         default: true,
         restartNeeded: true
     },
     whitelistedLoggers: {
         type: OptionType.STRING,
-        description: "Semicolon (;) separated list of loggers to allow even if others are hidden",
+        description: "他が非表示でも許可するロガーのリスト（セミコロン ; 区切り）",
         default: "GatewaySocket; Routing/Utils",
         multiline: true,
         onChange(newVal: string) {

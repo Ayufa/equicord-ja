@@ -30,9 +30,9 @@ const opt = (description: string) => ({
 } satisfies PluginSettingDef);
 
 const settings = definePluginSettings({
-    showTimeouts: opt("Show member timeout icons in chat."),
-    showInvitesPaused: opt("Show the invites paused tooltip in the server list."),
-    showModView: opt("Show the member mod view context menu item in all servers.")
+    showTimeouts: opt("チャットにメンバーのタイムアウトアイコンを表示する。"),
+    showInvitesPaused: opt("サーバーリストに招待停止のツールチップを表示する。"),
+    showModView: opt("すべてのサーバーでメンバーのモデレーションビューのコンテキストメニュー項目を表示する。")
 });
 
 export default definePlugin({

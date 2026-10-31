@@ -31,10 +31,10 @@ const settings = definePluginSettings({
     greetMode: {
         type: OptionType.SELECT,
         options: [
-            { label: "Greet (you can only greet 3 times)", value: GreetMode.Greet, default: true },
-            { label: "Normal Message (you can greet spam)", value: GreetMode.NormalMessage }
+            { label: "挨拶（挨拶は3回までです）", value: GreetMode.Greet, default: true },
+            { label: "通常メッセージ（挨拶を連投できます）", value: GreetMode.NormalMessage }
         ],
-        description: "Choose the greet mode"
+        description: "挨拶モードを選択します"
     }
 }).withPrivateSettings<{
     multiGreetChoices?: string[];

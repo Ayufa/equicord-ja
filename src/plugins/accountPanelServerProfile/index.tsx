@@ -61,7 +61,7 @@ const AccountPanelContextMenu = ErrorBoundary.wrap(() => {
 const settings = definePluginSettings({
     prioritizeServerProfile: {
         type: OptionType.BOOLEAN,
-        description: "Prioritize Server Profile when left clicking your account panel",
+        description: "アカウントパネルを左クリックしたときにサーバープロフィールを優先する",
         default: false
     }
 });

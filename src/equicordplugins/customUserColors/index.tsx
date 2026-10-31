@@ -88,12 +88,12 @@ export function getCustomColorString(id: string | undefined, withHash?: boolean)
 const settings = definePluginSettings({
     dmList: {
         type: OptionType.BOOLEAN,
-        description: "Users with custom colors defined will have their name in the dm list colored",
+        description: "カスタムカラーが定義されているユーザーは、DMリストの名前がその色で表示されます",
         default: true,
     },
     colorInServers: {
         type: OptionType.BOOLEAN,
-        description: "If name colors should be changed within servers",
+        description: "サーバー内でも名前の色を変更するかどうか",
         default: true,
     }
 });

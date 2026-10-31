@@ -24,13 +24,13 @@ import definePlugin, { OptionType } from "@utils/types";
 const settings = definePluginSettings({
     bothStyles: {
         type: OptionType.BOOLEAN,
-        description: "Show both role dot and coloured names",
+        description: "ロールドットと色付きの名前の両方を表示する",
         restartNeeded: true,
         default: false,
     },
     copyRoleColorInProfilePopout: {
         type: OptionType.BOOLEAN,
-        description: "Allow click on role dot in profile popout to copy role color",
+        description: "プロフィールのポップアウトでロールドットをクリックして、ロールカラーをコピーできるようにする",
         restartNeeded: true,
         default: false
     }

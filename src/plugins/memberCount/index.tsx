@@ -29,19 +29,19 @@ import { MemberCount } from "./MemberCount";
 export const settings = definePluginSettings({
     toolTip: {
         type: OptionType.BOOLEAN,
-        description: "Show member count on the server tooltip",
+        description: "サーバーのツールチップにメンバー数を表示します",
         default: true,
         restartNeeded: true
     },
     memberList: {
         type: OptionType.BOOLEAN,
-        description: "Show member count in the member list",
+        description: "メンバーリストにメンバー数を表示します",
         default: true,
         restartNeeded: true
     },
     voiceActivity: {
         type: OptionType.BOOLEAN,
-        description: "Show voice activity with member count in the member list",
+        description: "メンバーリストにメンバー数と一緒にボイスアクティビティを表示します",
         default: true
     }
 });

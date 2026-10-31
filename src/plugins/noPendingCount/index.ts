@@ -24,19 +24,19 @@ import { MessageRequestStore } from "@webpack/common";
 const settings = definePluginSettings({
     hideFriendRequestsCount: {
         type: OptionType.BOOLEAN,
-        description: "Hide incoming friend requests count",
+        description: "フレンド申請の受信数を非表示にします",
         default: true,
         restartNeeded: true
     },
     hideMessageRequestsCount: {
         type: OptionType.BOOLEAN,
-        description: "Hide message requests count",
+        description: "メッセージリクエスト数を非表示にします",
         default: true,
         restartNeeded: true
     },
     hidePremiumOffersCount: {
         type: OptionType.BOOLEAN,
-        description: "Hide nitro offers count",
+        description: "Nitro のオファー数を非表示にします",
         default: true,
         restartNeeded: true
     }

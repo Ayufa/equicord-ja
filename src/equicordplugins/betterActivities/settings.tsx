@@ -11,32 +11,32 @@ import { React } from "@webpack/common";
 export const settings = definePluginSettings({
     memberList: {
         type: OptionType.BOOLEAN,
-        description: "Show activity icons in the member list",
+        description: "メンバーリストにアクティビティアイコンを表示します",
         default: true,
         restartNeeded: true,
     },
     iconSize: {
         type: OptionType.SLIDER,
-        description: "Size of the activity icons",
+        description: "アクティビティアイコンのサイズ",
         markers: [10, 15, 20],
         default: 15,
         stickToMarkers: false,
     },
     specialFirst: {
         type: OptionType.BOOLEAN,
-        description: "Show special activities first (Currently Spotify and Twitch)",
+        description: "特別なアクティビティを最初に表示します（現在は Spotify と Twitch）",
         default: true,
         restartNeeded: false,
     },
     renderGifs: {
         type: OptionType.BOOLEAN,
-        description: "Allow rendering GIFs",
+        description: "GIFの描画を許可します",
         default: true,
         restartNeeded: false,
     },
     removeGameActivityStatus: {
         type: OptionType.BOOLEAN,
-        description: "Remove game activity icon and status",
+        description: "ゲームアクティビティのアイコンとステータスを削除します",
         default: false,
         restartNeeded: true,
     },
@@ -55,26 +55,26 @@ export const settings = definePluginSettings({
     },
     userPopout: {
         type: OptionType.BOOLEAN,
-        description: "Show all activities in the profile popout/sidebar",
+        description: "プロフィールのポップアウト/サイドバーにすべてのアクティビティを表示します",
         default: true,
         restartNeeded: true,
     },
     hideTooltip: {
         type: OptionType.BOOLEAN,
-        description: "Hides activities in various places",
+        description: "さまざまな場所でアクティビティを非表示にします",
         default: true,
     },
     allActivitiesStyle: {
         type: OptionType.SELECT,
-        description: "Style for showing all activities",
+        description: "すべてのアクティビティの表示スタイル",
         options: [
             {
                 default: true,
-                label: "Carousel",
+                label: "カルーセル",
                 value: "carousel",
             },
             {
-                label: "List",
+                label: "リスト",
                 value: "list",
             },
         ]

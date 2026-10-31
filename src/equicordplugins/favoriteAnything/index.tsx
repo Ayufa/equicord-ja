@@ -19,7 +19,7 @@ export const settings = definePluginSettings({
     localThumbnails: {
         type: OptionType.BOOLEAN,
         default: false,
-        description: "Generate file thumbnails locally instead of using an external service (placeholder.nin0.dev). Not compatible with mobile. Toggling this option will not affect existing favorites.",
+        description: "外部サービス（placeholder.nin0.dev）を使わず、ファイルのサムネイルをローカルで生成します。モバイルには対応していません。このオプションを切り替えても既存のお気に入りには影響しません。",
     }
 });
 

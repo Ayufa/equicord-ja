@@ -85,18 +85,18 @@ const PatternsComponent = ErrorBoundary.wrap(() => {
 const settings = definePluginSettings({
     patterns: {
         type: OptionType.COMPONENT,
-        description: "URL patterns to highlight using glob patterns.",
+        description: "globパターンを使った、ハイライトするURLパターン。",
         default: [] as PatternEntry[],
         component: PatternsComponent
     },
     boldUrls: {
         type: OptionType.BOOLEAN,
-        description: "Make highlighted URLs bold.",
+        description: "ハイライトしたURLを太字にする。",
         default: false
     },
     highlightEmbeds: {
         type: OptionType.BOOLEAN,
-        description: "Also highlight URLs in embed content.",
+        description: "埋め込みコンテンツ内のURLもハイライトする。",
         default: false
     }
 });

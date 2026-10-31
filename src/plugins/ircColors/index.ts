@@ -33,25 +33,25 @@ function calculateNameColorForUser(id?: string) {
 
 const settings = definePluginSettings({
     lightness: {
-        description: "Lightness, in %. Change if the colors are too light or too dark",
+        description: "明度（%）。色が明るすぎる・暗すぎる場合は変更してください",
         type: OptionType.NUMBER,
         default: 70,
     },
     memberListColors: {
-        description: "Replace role colors in the member list",
+        description: "メンバーリストでロールカラーを置き換えます",
         restartNeeded: true,
         type: OptionType.BOOLEAN,
         default: true
     },
     applyColorOnlyToUsersWithoutColor: {
-        description: "Apply colors only to users who don't have a predefined color",
+        description: "定義済みカラーがないユーザーにのみ色を適用します",
         restartNeeded: false,
         type: OptionType.BOOLEAN,
         default: false
     },
     applyColorOnlyInDms: {
-        displayName: "Apply Color Only In DMs",
-        description: "Apply colors only in direct messages; do not apply colors in servers.",
+        displayName: "DMでのみ色を適用",
+        description: "DMでのみ色を適用し、サーバーでは適用しません。",
         restartNeeded: false,
         type: OptionType.BOOLEAN,
         default: false

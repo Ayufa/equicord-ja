@@ -53,26 +53,26 @@ function ModelOption({ option }: { option: { label: string; value: string; }; })
 export const settings = definePluginSettings({
     embed: {
         type: OptionType.BOOLEAN,
-        description: "Display transcription directly in the voice message attachment instead of a modal.",
+        description: "文字起こしをモーダルではなくボイスメッセージの添付部分に直接表示します。",
         default: false,
         restartNeeded: false
     },
     maintainHorizontal: {
         type: OptionType.BOOLEAN,
-        description: "Maintain horizontal size for the embedded transcription box and expand vertically.",
+        description: "埋め込み文字起こしボックスの横幅を維持し、縦に広げます。",
         default: false,
         restartNeeded: false
     },
     selectedModel: {
         type: OptionType.SELECT,
-        description: "Model size.",
+        description: "モデルのサイズ。",
         options: [
             {
-                label: "Tiny (Fastest, lowest accuracy)",
+                label: "Tiny（最速・最低精度）",
                 value: "onnx-community/whisper-tiny",
             },
             {
-                label: "Base (Recommended)",
+                label: "Base（推奨）",
                 value: "onnx-community/whisper-base",
                 default: true
             },
@@ -81,7 +81,7 @@ export const settings = definePluginSettings({
                 value: "onnx-community/whisper-small"
             },
             {
-                label: "Large v3 Turbo (Best accuracy, GPU recommended)",
+                label: "Large v3 Turbo（最高精度・GPU推奨）",
                 value: "onnx-community/whisper-large-v3-turbo"
             }
         ],
@@ -93,19 +93,19 @@ export const settings = definePluginSettings({
     },
     useGpu: {
         type: OptionType.BOOLEAN,
-        description: "Run the model on your GPU (WebGPU) when supported. Much faster, and makes the larger models usable. Falls back to CPU if unavailable.",
+        description: "対応している場合はGPU（WebGPU）でモデルを実行します。はるかに高速で、大きなモデルも使えるようになります。利用できない場合はCPUにフォールバックします。",
         default: true,
         restartNeeded: false
     },
     quantized: {
         type: OptionType.BOOLEAN,
-        description: "Use quantized models when running on CPU (smaller size, slight quality loss).",
+        description: "CPUで実行するときに量子化モデルを使います（サイズが小さくなり、品質はわずかに低下します）。",
         default: true,
         restartNeeded: false
     },
     deleteModalFiles: {
         type: OptionType.COMPONENT,
-        description: "Delete cached files from storage.",
+        description: "ストレージからキャッシュファイルを削除します。",
         component: DeleteCacheButton
     }
 });

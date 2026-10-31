@@ -12,51 +12,51 @@ import { SelectedChannelStore, UserStore } from "@webpack/common";
 const settings = definePluginSettings({
     volume: {
         type: OptionType.SLIDER,
-        description: "Volume of the animalese sound",
+        description: "どうぶつ語サウンドの音量",
         default: 0.5,
         markers: [0, 0.1, 0.25, 0.5, 0.6, 0.75, 1],
     },
     speed: {
         type: OptionType.SLIDER,
-        description: "Speed of the animalese sound",
+        description: "どうぶつ語サウンドの速度",
         default: 1,
         markers: [0.5, 0.75, 1, 1.25, 1.5],
     },
     pitch: {
         type: OptionType.SLIDER,
-        description: "Pitch multiplier",
+        description: "ピッチの倍率",
         default: 1,
         markers: [0.75, 0.8, 0.85, 1, 1.15, 1.25, 1.35, 1.5],
     },
     messageLengthLimit: {
         type: OptionType.NUMBER,
-        description: "Maximum length of message to process",
+        description: "処理するメッセージの最大長",
         default: 50,
     },
     processOwnMessages: {
         type: OptionType.BOOLEAN,
-        description: "Enable to yap your own messages too",
+        description: "自分のメッセージでも鳴らすようにします",
         default: true,
     },
     soundQuality: {
         type: OptionType.SELECT,
-        description: "Quality of sound to use",
+        description: "使用するサウンドの品質",
         options: [
             {
-                label: "High",
+                label: "高",
                 value: "high",
                 default: true
             },
             {
-                label: "Medium",
+                label: "中",
                 value: "med"
             },
             {
-                label: "Low",
+                label: "低",
                 value: "low"
             },
             {
-                label: "Lowest",
+                label: "最低",
                 value: "low"
             }
         ]

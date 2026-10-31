@@ -25,42 +25,42 @@ export const cl = classNameFactory("vc-boo-");
 export const settings = definePluginSettings({
     showIndicator: {
         type: OptionType.BOOLEAN,
-        description: "Show the ghost counter at the top of the server list",
+        description: "サーバーリストの上部にゴーストカウンターを表示します",
         default: true,
         restartNeeded: false
     },
     showDmIcons: {
         type: OptionType.BOOLEAN,
-        description: "Show ghost icons next to individual DMs",
+        description: "個別のDMの横にゴーストアイコンを表示します",
         default: true,
         restartNeeded: false
     },
     ignoreGroupDms: {
         type: OptionType.BOOLEAN,
-        description: "Exclude all group dms from ghosting",
+        description: "すべてのグループDMをゴースト化から除外します",
         default: false
     },
     exemptedChannels: {
         type: OptionType.STRING,
-        description: "Comma-separated list of channel IDs to exempt from ghosting (right-click a DM channel to copy its ID)",
+        description: "ゴースト化から除外するチャンネルIDのカンマ区切りリスト（DMチャンネルを右クリックしてIDをコピー）",
         default: "",
         restartNeeded: false
     },
     ignoreBots: {
         type: OptionType.BOOLEAN,
-        description: "Ignore DMs from bots",
+        description: "ボットからのDMを無視します",
         default: true,
         restartNeeded: false
     },
     maxInactiveTimeMs: {
         type: OptionType.SELECT,
-        description: "Only ghost DMs active within this timeframe",
+        description: "この期間内にアクティブなDMだけをゴースト化します",
         options: [
-            { label: "No limit", value: 0, default: true },
-            { label: "1 hour", value: 60 * 60 * 1000 },
-            { label: "1 day", value: 24 * 60 * 60 * 1000 },
-            { label: "1 week", value: 7 * 24 * 60 * 60 * 1000 },
-            { label: "1 month", value: 30 * 24 * 60 * 60 * 1000 },
+            { label: "無制限", value: 0, default: true },
+            { label: "1時間", value: 60 * 60 * 1000 },
+            { label: "1日", value: 24 * 60 * 60 * 1000 },
+            { label: "1週間", value: 7 * 24 * 60 * 60 * 1000 },
+            { label: "1か月", value: 30 * 24 * 60 * 60 * 1000 },
         ],
         restartNeeded: false
     }
