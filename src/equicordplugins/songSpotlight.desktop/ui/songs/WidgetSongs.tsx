@@ -49,7 +49,7 @@ export default function WidgetSongs({ user }: WidgetSongsProps) {
     } else if (!data?.[0]) {
         full = (
             <>
-                <BaseText size="lg" weight="semibold">Looks like there's nothing here!</BaseText>
+                <BaseText size="lg" weight="semibold">ここには何もありません！</BaseText>
                 <BaseText size="md" weight="normal">
                     {owned
                         ? "Well? What are you waiting for? Go add some songs to your Song Spotlight!"

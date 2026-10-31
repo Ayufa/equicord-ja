@@ -39,7 +39,7 @@ export function Settings() {
                     gap: 4
                 }}>
                     <FormSwitch
-                        title="Show if available"
+                        title="利用可能なら表示"
                         hideBorder={true}
                         key={`${provider[0]}-visible`}
                         value={blazinglyFastSettings.servicesSettings[provider[0]].enabled}
@@ -48,7 +48,7 @@ export function Settings() {
                     {
                         /* @ts-ignore */
                         provider[1].native && <FormSwitch
-                            title="Open in desktop app"
+                            title="デスクトップアプリで開く"
                             hideBorder={true}
                             key={`${provider[0]}-native`}
                             value={blazinglyFastSettings.servicesSettings[provider[0]].openInNative}

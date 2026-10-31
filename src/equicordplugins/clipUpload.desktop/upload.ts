@@ -329,7 +329,7 @@ function shouldRetryWithFFmpeg(error: unknown) {
 
 export async function uploadClipFile(file: File, options: ClipUploadOptions) {
     try {
-        showToast({ text: "Checking clip file." });
+        showToast({ text: "クリップファイルを確認中。" });
 
         const uploadFile = await prepareClipFile(file, options.fileName);
 
@@ -338,11 +338,11 @@ export async function uploadClipFile(file: File, options: ClipUploadOptions) {
         } catch (error) {
             if (!shouldRetryWithFFmpeg(error)) throw error;
 
-            showToast({ text: "Converting clip file." });
+            showToast({ text: "クリップファイルを変換中。" });
             await sendClipUpload(await stampVideoFile(await convertClipToMp4(file, options.fileName), options.fileName), options);
         }
 
-        showToast({ text: "Clip uploaded.", variant: "success" });
+        showToast({ text: "クリップをアップロードしました。", variant: "success" });
         return true;
     } catch (error) {
         logger.error(error);
@@ -354,7 +354,7 @@ export async function uploadClipFile(file: File, options: ClipUploadOptions) {
 export function getErrorMessage(error: unknown): string {
     if (error instanceof DOMException && error.name === "AbortError") return "Upload canceled.";
     if (error instanceof Error) return error.message;
-    return "Failed to upload clip.";
+    return "クリップのアップロードに失敗しました。";
 }
 
 function parseJSON<T>(text?: string): T | null {

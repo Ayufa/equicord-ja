@@ -62,7 +62,7 @@ const settings = definePluginSettings({
     },
     imgSize: {
         type: OptionType.SELECT,
-        displayName: "Image Size",
+        displayName: "画像サイズ",
         description: "使用する画像サイズ",
         options: ["128", "256", "512", "1024", "2048", "4096"].map(n => ({ label: n, value: n, default: n === "1024" }))
     }
@@ -113,7 +113,7 @@ const UserContext: NavContextMenuPatchCallback = (children, { user, guildId }: U
         <Menu.MenuGroup>
             <Menu.MenuItem
                 id="view-avatar"
-                label="View Avatar"
+                label="アバターを表示"
                 action={() => openAvatar(IconUtils.getUserAvatarURL(user, true))}
                 icon={ImageIcon}
                 leadingAccessory={{ type: "icon", icon: ImageIcon }}
@@ -121,7 +121,7 @@ const UserContext: NavContextMenuPatchCallback = (children, { user, guildId }: U
             {memberAvatar && (
                 <Menu.MenuItem
                     id="view-server-avatar"
-                    label="View Server Avatar"
+                    label="サーバーアバターを表示"
                     action={() => openAvatar(IconUtils.getGuildMemberAvatarURLSimple({
                         userId: user.id,
                         avatar: memberAvatar,
@@ -135,7 +135,7 @@ const UserContext: NavContextMenuPatchCallback = (children, { user, guildId }: U
             {avatarDecoration && (
                 <Menu.MenuItem
                     id="view-avatar-decoration"
-                    label="View Avatar Decoration"
+                    label="アバターデコレーションを表示"
                     action={() => openAvatar(IconUtils.getAvatarDecorationURL({
                         avatarDecoration,
                         size: 1024,
@@ -160,7 +160,7 @@ const GuildContext: NavContextMenuPatchCallback = (children, { guild }: GuildCon
             {icon ? (
                 <Menu.MenuItem
                     id="view-icon"
-                    label="View Icon"
+                    label="アイコンを表示"
                     action={() =>
                         openAvatar(IconUtils.getGuildIconURL({
                             id,
@@ -175,7 +175,7 @@ const GuildContext: NavContextMenuPatchCallback = (children, { guild }: GuildCon
             {banner ? (
                 <Menu.MenuItem
                     id="view-banner"
-                    label="View Banner"
+                    label="バナーを表示"
                     action={() =>
                         openBanner(IconUtils.getGuildBannerURL(guild, true)!)
                     }
@@ -194,7 +194,7 @@ const GroupDMContext: NavContextMenuPatchCallback = (children, { channel }: Grou
         <Menu.MenuGroup>
             <Menu.MenuItem
                 id="view-group-channel-icon"
-                label="View Icon"
+                label="アイコンを表示"
                 action={() =>
                     openAvatar(IconUtils.getChannelIconURL(channel)!)
                 }

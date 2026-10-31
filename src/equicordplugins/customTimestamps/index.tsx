@@ -92,7 +92,7 @@ const settings = definePluginSettings({
                             {key === "sameDayFormat" && (
                                 <div className={Margins.bottom20}>
                                     <Divider style={{ marginBottom: "10px" }} />
-                                    <Heading tag="h1">Calendar formats</Heading>
+                                    <Heading tag="h1">カレンダー形式</Heading>
                                     <Paragraph>
                                         How to format the [calendar] value if used in the above timestamps.
                                     </Paragraph>

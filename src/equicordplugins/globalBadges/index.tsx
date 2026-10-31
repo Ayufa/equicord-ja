@@ -32,7 +32,7 @@ export default definePlugin({
                 className={cl("settings-button")}
                 onClick={() => openInviteModal(INVITE_LINK)}
             >
-                Join GlobalBadges Server
+                GlobalBadgesサーバーに参加
             </Button>
         </>
     ),
@@ -47,7 +47,7 @@ export default definePlugin({
     toolboxActions: {
         async "Refetch Global Badges"() {
             await loadBadges();
-            showToast({ text: "Successfully refetched global badges!", variant: "success" });
+            showToast({ text: "グローバルバッジを再取得しました！", variant: "success" });
         }
     },
     get GlobalBadges() {

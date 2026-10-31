@@ -143,9 +143,9 @@ function RolesAndUsersPermissionsComponent({ permissions, guild, modalProps, hea
                                         <Paragraph size="md" className={cl("modal-list-item-text")}>
                                             {
                                                 permission.type === PermissionOverwriteType.ROLE
-                                                    ? role?.name ?? "Unknown Role"
+                                                    ? role?.name ?? "不明なロール"
                                                     : permission.type === PermissionOverwriteType.MEMBER
-                                                        ? (user != null && getUniqueUsername(user)) ?? "Unknown User"
+                                                        ? (user != null && getUniqueUsername(user)) ?? "不明なユーザー"
                                                         : (
                                                             <Flex gap="0.2em">
                                                                 @owner
@@ -223,7 +223,7 @@ function RoleContextMenu({ guild, roleId, onClose }: { guild: Guild; roleId: str
         <Menu.Menu
             navId={cl("role-context-menu")}
             onClose={ContextMenuApi.closeContextMenu}
-            aria-label="Role Options"
+            aria-label="ロールのオプション"
         >
             {before}
 
@@ -267,7 +267,7 @@ function UserContextMenu({ userId }: { userId: string; }) {
         <Menu.Menu
             navId={cl("user-context-menu")}
             onClose={ContextMenuApi.closeContextMenu}
-            aria-label="User Options"
+            aria-label="ユーザーのオプション"
         >
             <Menu.MenuItem
                 id={cl("copy-user-id")}

@@ -50,11 +50,11 @@ export default definePlugin({
             const username = RelationshipStore.getNickname(message.author.id) ?? message.author.globalName ?? message.author.username;
             const guild = GuildStore.getGuild(guildId);
             const channel = ChannelStore.getChannel(channelId);
-            const locationName = guild ? `${guild.name}#${channel.name}` : channel?.name ?? "their dms";
+            const locationName = guild ? `${guild.name}#${channel.name}` : channel?.name ?? "DM";
 
             Notifications.showNotification({
-                title: `${username} sent a message`,
-                body: `Click to jump to ${locationName}`,
+                title: `${username} がメッセージを送信しました`,
+                body: `クリックして ${locationName} に移動`,
                 onClick() {
                     NavigationRouter.transitionTo(`/channels/${guild?.id ?? "@me"}/${channel.id}/${message.id}`);
                 },

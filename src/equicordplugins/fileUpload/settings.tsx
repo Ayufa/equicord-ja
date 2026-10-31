@@ -46,22 +46,22 @@ const serviceOptions = [
 ];
 
 const litterboxOptions = [
-    { label: "1 hour", value: "1h" },
-    { label: "12 hours", value: "12h" },
-    { label: "24 hours", value: "24h", default: true },
-    { label: "72 hours", value: "72h" }
+    { label: "1時間", value: "1h" },
+    { label: "12時間", value: "12h" },
+    { label: "24時間", value: "24h", default: true },
+    { label: "72時間", value: "72h" }
 ];
 
 const embedProxyOptions = [
-    { label: "CORS Proxy", value: "cors" },
+    { label: "CORSプロキシ", value: "cors" },
     { label: "discord.nfp.is", value: "nfp", default: true }
 ];
 
 const encryptingHostUrlStyleOptions = [
-    { label: "Query", value: "query", default: true },
-    { label: "Param", value: "param" },
-    { label: "Fake Link", value: "fakelink" },
-    { label: "Embed", value: "embed" }
+    { label: "クエリ", value: "query", default: true },
+    { label: "パラメータ", value: "param" },
+    { label: "偽リンク", value: "fakelink" },
+    { label: "埋め込み", value: "embed" }
 ];
 
 export const settings = definePluginSettings({
@@ -479,7 +479,7 @@ function FallbackOrderSettings() {
     };
 
     return (
-        <SettingsSection id="fallback-order" name="Fallback Order" description="Drag hosts to reorder fallback attempts. The selected host is tried first, then this order is used.">
+        <SettingsSection id="fallback-order" name="フォールバック順序" description="ホストをドラッグしてフォールバックの順序を変更します。選択したホストが最初に試され、次にこの順序が使われます。">
             <div className={cl("fallback-order-list")}>
                 {order.map((service, index) => (
                     <div
@@ -510,13 +510,13 @@ function FallbackOrderSettings() {
                         data-dragging={dragIndex === index}
                     >
                         <span className={cl("fallback-order-label")}>{serviceLabels[service]}</span>
-                        <span className={cl("fallback-order-handle")}>Drag</span>
+                        <span className={cl("fallback-order-handle")}>ドラッグ</span>
                     </div>
                 ))}
             </div>
             <div className={cl("fallback-order-actions")}>
                 <Button size="small" onClick={() => commitOrder(fallbackServiceOrder)}>
-                    Reset to default
+                    デフォルトに戻す
                 </Button>
             </div>
         </SettingsSection>
@@ -536,8 +536,8 @@ function AllowHostNotice({ url }: { url?: string; }) {
     if (isAllowed || !url) return null;
 
     return (
-        <Notice variant="warning" action={<Button size="small" variant="secondary" onClick={allow}>Allow Host</Button>}>
-            Connections to {URL.parse(url)?.host} are blocked. Allow this host if you trust it, then restart Discord.
+        <Notice variant="warning" action={<Button size="small" variant="secondary" onClick={allow}>ホストを許可</Button>}>
+            {URL.parse(url)?.host} への接続はブロックされています。信頼できる場合のみこのホストを許可し、Discordを再起動してください。
         </Notice>
     );
 }
@@ -551,7 +551,7 @@ export function SettingsComponent() {
     const validateShareXConfig = () => {
         try {
             parseShareXConfig(settings.store.sharexConfig || "");
-            showToast({ text: "ShareX config is valid", variant: "success" });
+            showToast({ text: "ShareX設定は有効です", variant: "success" });
         } catch (error) {
             const message = error instanceof Error ? error.message : "Invalid ShareX config";
             showToast({ text: message, variant: "critical" });
@@ -573,7 +573,7 @@ export function SettingsComponent() {
                 const parsed = parseShareXConfig(content);
                 settings.store.sharexConfig = JSON.stringify(parsed, null, 2);
                 update();
-                showToast({ text: "Imported ShareX config", variant: "success" });
+                showToast({ text: "ShareX設定をインポートしました", variant: "success" });
             } catch (error) {
                 const message = error instanceof Error ? error.message : "Failed to import ShareX config";
                 showToast({ text: message, variant: "critical" });
@@ -585,7 +585,7 @@ export function SettingsComponent() {
 
     return (
         <>
-            <SettingsSection id="upload-service" name="Upload Service" description="Choose where FileUpload sends new files.">
+            <SettingsSection id="upload-service" name="アップロードサービス" description="FileUploadが新しいファイルを送信する場所を選択します。">
                 <ServicePicker
                     value={settings.store.serviceType as ServiceType}
                     onChange={service => {
@@ -596,66 +596,66 @@ export function SettingsComponent() {
             </SettingsSection>
 
             {serviceType === ServiceType.ZIPLINE && (
-                <SettingGroup name="Zipline" description="Connection details for your Zipline instance.">
+                <SettingGroup name="Zipline" description="Ziplineインスタンスの接続情報。">
                     <SettingTextInput
-                        name="Service URL"
-                        description="The URL of your Zipline instance"
+                        name="サービスURL"
+                        description="ZiplineインスタンスのURL"
                         value={settings.store.serviceUrl}
                         onChange={v => settings.store.serviceUrl = v}
                         placeholder="https://your-zipline-instance.com"
                     />
                     <AllowHostNotice url={serviceUrl} />
                     <SettingTextInput
-                        name="Zipline Token"
-                        description="Your Zipline API authorization token"
+                        name="Ziplineトークン"
+                        description="あなたのZipline API認証トークン"
                         value={settings.store.ziplineToken}
                         onChange={v => settings.store.ziplineToken = v}
-                        placeholder="Your Zipline API token"
+                        placeholder="あなたのZipline APIトークン"
                     />
                     <SettingTextInput
-                        name="Folder ID"
-                        description="Folder ID for uploads (leave empty for no folder)"
+                        name="フォルダーID"
+                        description="アップロード先のフォルダーID（フォルダーなしの場合は空欄）"
                         value={settings.store.folderId}
                         onChange={v => settings.store.folderId = v}
-                        placeholder="Leave empty for no folder"
+                        placeholder="フォルダーなしの場合は空欄"
                     />
                 </SettingGroup>
             )}
 
             {serviceType === ServiceType.EZHOST && (
-                <SettingGroup name="E-Z Host" description="Connection details for E-Z Host uploads.">
+                <SettingGroup name="E-Z Host" description="E-Z Hostアップロードの接続情報。">
                     <SettingTextInput
-                        name="E-Z Host API Key"
-                        description="Your E-Z Host API key"
+                        name="E-Z Host APIキー"
+                        description="あなたのE-Z Host APIキー"
                         value={settings.store.ezHostKey}
                         onChange={v => settings.store.ezHostKey = v}
-                        placeholder="Your E-Z Host API key"
+                        placeholder="あなたのE-Z Host APIキー"
                     />
                 </SettingGroup>
             )}
 
             {serviceType === ServiceType.NEST && (
-                <SettingGroup name="Nest" description="Connection details for Nest uploads.">
+                <SettingGroup name="Nest" description="Nestアップロードの接続情報。">
                     <SettingTextInput
-                        name="Nest Token"
-                        description="Your Nest API authorization token"
+                        name="Nestトークン"
+                        description="あなたのNest API認証トークン"
                         value={settings.store.nestToken}
                         onChange={v => settings.store.nestToken = v}
-                        placeholder="Your Nest API token"
+                        placeholder="あなたのNest APIトークン"
                     />
                 </SettingGroup>
             )}
 
             {serviceType === ServiceType.ENCRYPTINGHOST && (
-                <SettingGroup name="Encrypting.host" description="Connection details for Encrypting.host uploads.">
+                <SettingGroup name="Encrypting.host" description="Encrypting.hostアップロードの接続情報。">
                     <SettingTextInput
-                        name="Encrypting.host API Key"
-                        description="Your Encrypting.host API key"
+                        name="Encrypting.host APIキー"
+                        description="あなたのEncrypting.host APIキー"
                         value={(settings.store as { encryptingHostKey?: string; }).encryptingHostKey || ""}
                         onChange={v => (settings.store as { encryptingHostKey?: string; }).encryptingHostKey = v}
-                        placeholder="Your Encrypting.host API key"
+                        placeholder="あなたのEncrypting.host APIキー"
                     />
-                    <SettingsSection id="url-style" name="URL Style" description="How Encrypting.host should format returned links.">
+                    <SettingsSection id="url-style" name="URLスタイル" description="Encrypting.hostが返すリンクの形式。">
                         <Select
                             options={encryptingHostUrlStyleOptions}
                             isSelected={v => v === (settings.store as { encryptingHostUrlStyle?: string; }).encryptingHostUrlStyle}
@@ -664,10 +664,10 @@ export function SettingsComponent() {
                                 update();
                             }}
                             serialize={v => v}
-                            placeholder="Select URL style"
+                            placeholder="URLスタイルを選択"
                         />
                     </SettingsSection>
-                    <SettingsSection id="domains-json" name="Domains JSON" description={"JSON array of domains to use, for example [\"offensive\"]."}>
+                    <SettingsSection id="domains-json" name="ドメインJSON" description={"JSON array of domains to use, for example [\"offensive\"]."}>
                         <TextArea
                             value={(settings.store as { encryptingHostDomains?: string; }).encryptingHostDomains || ""}
                             rows={3}
@@ -676,90 +676,90 @@ export function SettingsComponent() {
                         />
                     </SettingsSection>
                     <SettingTextInput
-                        name="Embed Title"
-                        description="Optional title for embed style responses."
+                        name="埋め込みタイトル"
+                        description="埋め込みスタイルのレスポンス用の任意のタイトル。"
                         value={(settings.store as { encryptingHostTitle?: string; }).encryptingHostTitle || ""}
                         onChange={v => (settings.store as { encryptingHostTitle?: string; }).encryptingHostTitle = v}
-                        placeholder="Optional title"
+                        placeholder="任意のタイトル"
                     />
                     <SettingTextInput
-                        name="Embed Color"
-                        description="Optional color for embed style responses."
+                        name="埋め込みカラー"
+                        description="埋め込みスタイルのレスポンス用の任意の色。"
                         value={(settings.store as { encryptingHostColor?: string; }).encryptingHostColor || ""}
                         onChange={v => (settings.store as { encryptingHostColor?: string; }).encryptingHostColor = v}
-                        placeholder="Optional color"
+                        placeholder="任意の色"
                     />
                     <SettingTextInput
-                        name="Fake Link"
-                        description="Optional fake link value for fakelink style responses."
+                        name="偽リンク"
+                        description="偽リンクスタイルのレスポンス用の任意の偽リンク値。"
                         value={(settings.store as { encryptingHostFakelink?: string; }).encryptingHostFakelink || ""}
                         onChange={v => (settings.store as { encryptingHostFakelink?: string; }).encryptingHostFakelink = v}
-                        placeholder="Optional fake link"
+                        placeholder="任意の偽リンク"
                     />
                 </SettingGroup>
             )}
 
             {serviceType === ServiceType.S3 && (
-                <SettingGroup name="S3-Compatible Storage" description="Connection details and object naming for your bucket.">
+                <SettingGroup name="S3互換ストレージ" description="バケットの接続情報とオブジェクト名の設定。">
                     <SettingTextInput
-                        name="S3 Endpoint URL"
-                        description="S3-compatible endpoint (e.g. https://<accountid>.r2.cloudflarestorage.com)"
+                        name="S3エンドポイントURL"
+                        description="S3互換エンドポイント（例: https://<accountid>.r2.cloudflarestorage.com）"
                         value={settings.store.s3Endpoint}
                         onChange={v => settings.store.s3Endpoint = v}
                         placeholder="https://your-endpoint.example.com"
                     />
                     <SettingTextInput
-                        name="Bucket Name"
-                        description="Bucket to upload into"
+                        name="バケット名"
+                        description="アップロード先のバケット"
                         value={settings.store.s3Bucket}
                         onChange={v => settings.store.s3Bucket = v}
                         placeholder="my-bucket"
                     />
                     <SettingTextInput
-                        name="Region"
-                        description="AWS region or auto for Cloudflare R2"
+                        name="リージョン"
+                        description="AWSリージョン、またはCloudflare R2の場合は auto"
                         value={settings.store.s3Region}
                         onChange={v => settings.store.s3Region = v}
                         placeholder="auto"
                     />
                     <SettingTextInput
-                        name="Access Key ID"
-                        description="S3-compatible access key"
+                        name="アクセスキーID"
+                        description="S3互換アクセスキー"
                         value={settings.store.s3AccessKeyId}
                         onChange={v => settings.store.s3AccessKeyId = v}
-                        placeholder="Your access key ID"
+                        placeholder="あなたのアクセスキーID"
                     />
                     <SettingTextInput
-                        name="Secret Access Key"
-                        description="S3-compatible secret key"
+                        name="シークレットアクセスキー"
+                        description="S3互換シークレットキー"
                         value={settings.store.s3SecretAccessKey}
                         onChange={v => settings.store.s3SecretAccessKey = v}
-                        placeholder="Your secret access key"
+                        placeholder="あなたのシークレットアクセスキー"
                     />
                     <SettingTextInput
-                        name="Session Token"
-                        description="Optional temporary credential token"
+                        name="セッショントークン"
+                        description="任意の一時認証トークン"
                         value={settings.store.s3SessionToken}
                         onChange={v => settings.store.s3SessionToken = v}
-                        placeholder="Optional session token"
+                        placeholder="任意のセッショントークン"
                     />
                     <SettingTextInput
-                        name="Public Base URL"
-                        description="Optional public URL base to use for returned links"
+                        name="公開ベースURL"
+                        description="返すリンクに使用する任意の公開URLベース"
                         value={settings.store.s3PublicUrl}
                         onChange={v => settings.store.s3PublicUrl = v}
                         placeholder="https://cdn.example.com"
                     />
                     <SettingTextInput
-                        name="Object Key Prefix"
-                        description="Optional folder/prefix inside the bucket"
+                        name="オブジェクトキープレフィックス"
+                        description="バケット内の任意のフォルダー／プレフィックス"
                         value={settings.store.s3Prefix}
                         onChange={v => settings.store.s3Prefix = v}
                         placeholder="uploads/discord"
                     />
                     <SettingSwitch
-                        name="Use Path-Style Endpoint"
-                        description="Use endpoint/bucket/key format, recommended for R2."
+                        name="パススタイルのエンドポイントを使用"
+                        description="endpoint/bucket/key 形式を使用します（R2で推奨）。"
                         checked={settings.store.s3ForcePathStyle}
                         onChange={v => settings.store.s3ForcePathStyle = v}
                     />
@@ -767,19 +767,19 @@ export function SettingsComponent() {
             )}
 
             {serviceType === ServiceType.CATBOX && (
-                <SettingGroup name="Catbox" description="Optional account binding for Catbox uploads.">
+                <SettingGroup name="Catbox" description="Catboxアップロード用の任意のアカウント連携。">
                     <SettingTextInput
-                        name="Catbox Userhash"
-                        description="Your Catbox userhash for account binding, leave empty for anonymous uploads."
+                        name="Catboxユーザーハッシュ"
+                        description="アカウント連携用のCatboxユーザーハッシュ。匿名アップロードの場合は空欄にしてください。"
                         value={settings.store.catboxUserhash}
                         onChange={v => settings.store.catboxUserhash = v}
-                        placeholder="Your Catbox userhash"
+                        placeholder="あなたのCatboxユーザーハッシュ"
                     />
                 </SettingGroup>
             )}
 
             {serviceType === ServiceType.LITTERBOX && (
-                <SettingsSection id="litterbox-expiry" name="Litterbox Expiry" description="How long uploads are retained">
+                <SettingsSection id="litterbox-expiry" name="Litterboxの有効期限" description="アップロードが保持される期間">
                     <Select
                         options={litterboxOptions}
                         isSelected={v => v === settings.store.litterboxExpiry}
@@ -788,53 +788,53 @@ export function SettingsComponent() {
                             update();
                         }}
                         serialize={v => v}
-                        placeholder="Select expiry"
+                        placeholder="有効期限を選択"
                     />
                 </SettingsSection>
             )}
 
             {serviceType === ServiceType.GOFILE && (
-                <SettingGroup name="GoFile" description="Optional account binding for GoFile uploads.">
+                <SettingGroup name="GoFile" description="GoFileアップロード用の任意のアカウント連携。">
                     <SettingTextInput
-                        name="GoFile Token"
-                        description="Optional GoFile token to upload into your account."
+                        name="GoFileトークン"
+                        description="アカウントにアップロードするための任意のGoFileトークン。"
                         value={settings.store.gofileToken}
                         onChange={v => settings.store.gofileToken = v}
-                        placeholder="Optional GoFile token"
+                        placeholder="任意のGoFileトークン"
                     />
                 </SettingGroup>
             )}
 
             {serviceType === ServiceType.PIXELVAULT && (
-                <SettingGroup name="PixelVault" description="Connection details for PixelVault uploads.">
+                <SettingGroup name="PixelVault" description="PixelVaultアップロードの接続情報。">
                     <SettingTextInput
-                        name="PixelVault Upload Key"
-                        description="Your PixelVault authorization key."
+                        name="PixelVaultアップロードキー"
+                        description="あなたのPixelVault認証キー。"
                         value={settings.store.pixelVaultKey}
                         onChange={v => settings.store.pixelVaultKey = v}
-                        placeholder="Your PixelVault upload key"
+                        placeholder="あなたのPixelVaultアップロードキー"
                     />
                 </SettingGroup>
             )}
 
             {serviceType === ServiceType.PIXELDRAIN && (
-                <SettingGroup name="PixelDrain" description="Optional account binding for PixelDrain uploads.">
+                <SettingGroup name="PixelDrain" description="PixelDrainアップロード用の任意のアカウント連携。">
                     <SettingTextInput
-                        name="PixelDrain API Key"
-                        description="Optional PixelDrain API key for authenticated uploads. Leave empty for anonymous uploads."
+                        name="PixelDrain APIキー"
+                        description="認証付きアップロード用の任意のPixelDrain APIキー。匿名アップロードの場合は空欄にしてください。"
                         value={settings.store.pixelDrainKey}
                         onChange={v => settings.store.pixelDrainKey = v}
-                        placeholder="Your PixelDrain API key"
+                        placeholder="あなたのPixelDrain APIキー"
                     />
                 </SettingGroup>
             )}
 
             {serviceType === ServiceType.SHAREX && (
-                <SettingGroup name="ShareX Custom Uploader" description="Paste, import, or validate a ShareX custom uploader config.">
+                <SettingGroup name="ShareX Custom Uploader" description="ShareXカスタムアップローダーの設定を貼り付け、インポート、または検証します。">
                     <SettingsSection
                         id="sharex-custom-uploader-config"
-                        name="ShareX Custom Uploader Config"
-                        description="Paste your ShareX custom uploader JSON (.sxcu/.json). DestinationType must include FileUploader or ImageUploader."
+                        name="ShareXカスタムアップローダー設定"
+                        description="ShareXカスタムアップローダーのJSON（.sxcu/.json）を貼り付けてください。DestinationType には FileUploader または ImageUploader を含める必要があります。"
                     >
                         <TextArea
                             value={settings.store.sharexConfig}
@@ -843,10 +843,10 @@ export function SettingsComponent() {
                             onChange={v => settings.store.sharexConfig = v}
                         />
                     </SettingsSection>
-                    <SettingsSection id="sharex-config-actions" name="ShareX Config Actions" description="Import from file or validate pasted config">
+                    <SettingsSection id="sharex-config-actions" name="ShareX設定アクション" description="ファイルからインポート、または貼り付けた設定を検証">
                         <div className={cl("actions")}>
-                            <Button size="small" onClick={triggerShareXFileUpload}>Import .sxcu/.json</Button>
-                            <Button size="small" onClick={validateShareXConfig}>Validate</Button>
+                            <Button size="small" onClick={triggerShareXFileUpload}>.sxcu/.jsonをインポート</Button>
+                            <Button size="small" onClick={validateShareXConfig}>検証</Button>
                         </div>
                         <input
                             ref={sharexFileInputRef}
@@ -861,41 +861,41 @@ export function SettingsComponent() {
             )}
 
             {serviceType === ServiceType.WEBDAV && (
-                <SettingGroup name="WebDAV" description="Connection details for WebDAV servers (Nextcloud, Owncloud, etc.).">
+                <SettingGroup name="WebDAV" description="WebDAVサーバー（Nextcloud、ownCloudなど）の接続情報。">
                     <SettingTextInput
-                        name="Server URL"
-                        description="Base WebDAV URL (e.g. https://nextcloud.example.com/remote.php/dav/files/username)"
+                        name="サーバーURL"
+                        description="WebDAVのベースURL（例: https://nextcloud.example.com/remote.php/dav/files/username）"
                         value={settings.store.webdavUrl}
                         onChange={v => settings.store.webdavUrl = v}
                         placeholder="https://nextcloud.example.com/remote.php/dav/files/username"
                     />
                     <SettingTextInput
-                        name="Username"
-                        description="WebDAV username"
+                        name="ユーザー名"
+                        description="WebDAVのユーザー名"
                         value={settings.store.webdavUsername}
                         onChange={v => settings.store.webdavUsername = v}
                         placeholder="username"
                     />
                     <SettingTextInput
-                        name="Password or App Token"
-                        description="WebDAV password or app token"
+                        name="パスワードまたはアプリトークン"
+                        description="WebDAVのパスワードまたはアプリトークン"
                         value={settings.store.webdavPassword}
                         onChange={v => settings.store.webdavPassword = v}
-                        placeholder="password or app token"
+                        placeholder="パスワードまたはアプリトークン"
                     />
                     <SettingTextInput
-                        name="Upload Directory"
-                        description="Optional subdirectory on the server to upload into (e.g. uploads)"
+                        name="アップロードディレクトリ"
+                        description="サーバー上のアップロード先の任意のサブディレクトリ（例: uploads）"
                         value={settings.store.webdavDirectory}
                         onChange={v => settings.store.webdavDirectory = v}
-                        placeholder="Leave empty for root directory"
+                        placeholder="ルートディレクトリの場合は空欄"
                     />
-                    <SettingsSection id="server-type" name="Server Type" description="Select your WebDAV server type. Nextcloud and ownCloud will create a public share link. Generic returns the raw file URL.">
+                    <SettingsSection id="server-type" name="サーバーの種類" description="WebDAVサーバーの種類を選択します。NextcloudとownCloudでは公開共有リンクが作成されます。汎用では生のファイルURLが返されます。">
                         <Select
                             options={[
                                 { label: "Nextcloud", value: "nextcloud", default: true },
                                 { label: "ownCloud", value: "owncloud" },
-                                { label: "Generic WebDAV", value: "generic" }
+                                { label: "汎用WebDAV", value: "generic" }
                             ]}
                             isSelected={v => v === settings.store.webdavServerType}
                             select={v => {
@@ -903,16 +903,16 @@ export function SettingsComponent() {
                                 update();
                             }}
                             serialize={v => v}
-                            placeholder="Select server type"
+                            placeholder="サーバーの種類を選択"
                         />
                     </SettingsSection>
                     {settings.store.webdavServerType !== "generic" && (
-                        <SettingsSection id="share-link-format" name="Share Link Format" description="How to return the public share link. Share Page links to a web page; Direct Download links straight to the file; Markdown Link wraps the share page in a clickable filename.">
+                        <SettingsSection id="share-link-format" name="共有リンクの形式" description="公開共有リンクの返し方。共有ページはWebページへのリンク、直接ダウンロードはファイルへの直接リンク、Markdownリンクは共有ページをクリック可能なファイル名で囲みます。">
                             <Select
                                 options={[
-                                    { label: "Share Page", value: "share-page", default: true },
-                                    { label: "Direct Download", value: "direct-download" },
-                                    { label: "Markdown Link", value: "markdown" }
+                                    { label: "共有ページ", value: "share-page", default: true },
+                                    { label: "直接ダウンロード", value: "direct-download" },
+                                    { label: "Markdownリンク", value: "markdown" }
                                 ]}
                                 isSelected={v => v === settings.store.webdavShareType}
                                 select={v => {
@@ -920,24 +920,24 @@ export function SettingsComponent() {
                                     update();
                                 }}
                                 serialize={v => v}
-                                placeholder="Select share link format"
+                                placeholder="共有リンクの形式を選択"
                             />
                         </SettingsSection>
                     )}
                 </SettingGroup>
             )}
 
-            <SettingGroup name="Upload Behavior" description="Control what FileUpload does after a host returns a URL.">
+            <SettingGroup name="アップロード時の動作" description="ホストがURLを返した後にFileUploadが行う動作を制御します。">
                 <SettingSwitch
-                    name="Strip Query Parameters"
-                    description="Strip query parameters from the uploaded file URL."
+                    name="クエリパラメータを除去"
+                    description="アップロードされたファイルURLからクエリパラメータを除去します。"
                     checked={settings.store.stripQueryParams}
                     onChange={v => settings.store.stripQueryParams = v}
                 />
 
                 <SettingSwitch
-                    name="Use Embed Proxy"
-                    description="Wrap uploaded video links with an embed proxy service for better Discord previews."
+                    name="埋め込みプロキシを使用"
+                    description="Discordでのプレビューを改善するため、アップロードした動画リンクを埋め込みプロキシサービスでラップします。"
                     checked={settings.store.embedProxyEnabled}
                     onChange={v => {
                         settings.store.embedProxyEnabled = v;
@@ -946,7 +946,7 @@ export function SettingsComponent() {
                 />
 
                 {settings.store.embedProxyEnabled && (
-                    <SettingsSection id="embed-proxy-service" name="Embed Proxy Service" description="Choose which embed proxy service to use for uploaded video links">
+                    <SettingsSection id="embed-proxy-service" name="埋め込みプロキシサービス" description="アップロードした動画リンクに使用する埋め込みプロキシサービスを選択します">
                         <Select
                             options={embedProxyOptions}
                             isSelected={v => v === settings.store.embedProxyService}
@@ -955,111 +955,111 @@ export function SettingsComponent() {
                                 update();
                             }}
                             serialize={v => v}
-                            placeholder="Select an embed proxy service"
+                            placeholder="埋め込みプロキシサービスを選択"
                         />
                     </SettingsSection>
                 )}
 
                 <SettingSwitch
-                    name="Convert APNG to GIF"
-                    description="Convert APNG files to GIF format."
+                    name="APNGをGIFに変換"
+                    description="APNGファイルをGIF形式に変換します。"
                     checked={settings.store.apngToGif}
                     onChange={v => settings.store.apngToGif = v}
                 />
 
                 <SettingSwitch
-                    name="Preserve Original Filename"
-                    description="Use the original filename instead of naming uploads as upload.ext."
+                    name="元のファイル名を保持"
+                    description="アップロード名を upload.ext とせず、元のファイル名を使用します。"
                     checked={Boolean((settings.store as { preserveOriginalFilename?: boolean; }).preserveOriginalFilename)}
                     onChange={v => (settings.store as { preserveOriginalFilename?: boolean; }).preserveOriginalFilename = v}
                 />
 
                 <SettingSwitch
-                    name="Auto Copy URL"
-                    description="Automatically copy the uploaded file URL to clipboard."
+                    name="URLを自動コピー"
+                    description="アップロードしたファイルのURLをクリップボードに自動でコピーします。"
                     checked={settings.store.autoCopy}
                     onChange={v => settings.store.autoCopy = v}
                 />
 
                 <SettingSwitch
-                    name="Disable Fallback Uploaders"
-                    description="Only use the selected uploader without trying fallback hosts."
+                    name="フォールバックアップローダーを無効化"
+                    description="フォールバックホストを試さず、選択したアップローダーのみを使用します。"
                     checked={settings.store.disableFallbacks}
                     onChange={v => settings.store.disableFallbacks = v}
                 />
 
                 <SettingSwitch
-                    name="Insert URL into Chat Input"
-                    description="After upload, insert the resulting URL into the current chat input."
+                    name="URLをチャット入力に挿入"
+                    description="アップロード後、生成されたURLを現在のチャット入力に挿入します。"
                     checked={settings.store.autoSend}
                     onChange={v => settings.store.autoSend = v}
                 />
 
                 <SettingSwitch
-                    name="Format Inserted URL"
-                    description="Wrap inserted URLs in angle brackets to avoid Discord preview embedding."
+                    name="挿入するURLを整形"
+                    description="Discordのプレビュー埋め込みを避けるため、挿入するURLを山括弧で囲みます。"
                     checked={settings.store.autoFormat}
                     onChange={v => settings.store.autoFormat = v}
                 />
             </SettingGroup>
 
-            <SettingGroup name="Discord Integration" description="Choose when FileUpload takes over Discord file handling.">
+            <SettingGroup name="Discord連携" description="FileUploadがDiscordのファイル処理を引き継ぐタイミングを選択します。">
                 <SettingSwitch
-                    name="Bypass Discord Upload Button"
-                    description="Use FileUpload when uploading through Discord's file picker."
+                    name="Discordのアップロードボタンをバイパス"
+                    description="Discordのファイルピッカーからアップロードする際にFileUploadを使用します。"
                     checked={Boolean((settings.store as { bypassDiscordUpload?: boolean; }).bypassDiscordUpload)}
                     onChange={v => (settings.store as { bypassDiscordUpload?: boolean; }).bypassDiscordUpload = v}
                 />
 
                 <SettingSwitch
-                    name="Auto Upload Pasted Files"
-                    description="Automatically upload files from clipboard to image host when pasting in chat input."
+                    name="貼り付けたファイルを自動アップロード"
+                    description="チャット入力に貼り付けたとき、クリップボードのファイルを画像ホストに自動でアップロードします。"
                     checked={settings.store.autoUploadPastedFiles}
                     onChange={v => settings.store.autoUploadPastedFiles = v}
                 />
 
                 <SettingSwitch
-                    name="Respect Discord File Size Limit"
-                    description="Use FileUpload only for files larger than your current Discord upload limit."
+                    name="Discordのファイルサイズ制限を尊重"
+                    description="現在のDiscordアップロード上限より大きいファイルにのみFileUploadを使用します。"
                     checked={settings.store.bypassDiscordUploadOnlyOverLimit}
                     onChange={v => settings.store.bypassDiscordUploadOnlyOverLimit = v}
                 />
 
                 <SettingTextInput
-                    name="Discord Limit Override (MB)"
-                    description="Manual Discord file size limit in MB, used when automatic detection is wrong. Leave empty for automatic."
+                    name="Discord上限の上書き（MB）"
+                    description="MB単位の手動のDiscordファイルサイズ上限。自動検出が正しくない場合に使用します。自動の場合は空欄にしてください。"
                     value={settings.store.customDiscordFileSizeLimitMB > 0 ? String(settings.store.customDiscordFileSizeLimitMB) : ""}
                     onChange={v => settings.store.customDiscordFileSizeLimitMB = v.trim() === "" ? 0 : Number(v)}
-                    placeholder="Auto"
+                    placeholder="自動"
                 />
 
                 <SettingTextInput
-                    name="Allowed File Types"
-                    description="Comma-separated list of extensions (e.g. png,jpg,gif). Leave empty to allow all."
+                    name="許可するファイル形式"
+                    description="拡張子のカンマ区切りリスト（例: png,jpg,gif）。すべて許可する場合は空欄にしてください。"
                     value={settings.store.uploadAllowedFileTypes}
                     onChange={v => settings.store.uploadAllowedFileTypes = v}
                     placeholder="png,jpg,gif,mp4,webp"
                 />
             </SettingGroup>
 
-            <SettingGroup name="Network" description="Configure browser upload proxying and timeouts.">
+            <SettingGroup name="ネットワーク" description="ブラウザアップロードのプロキシとタイムアウトを設定します。">
                 <SettingTextInput
-                    name="CORS Proxy URL"
-                    description="Optional CORS proxy for uploads that can't go through the desktop app. The proxy sees every file and token sent through it, so only use one you trust. Leave empty to upload directly."
+                    name="CORSプロキシURL"
+                    description="デスクトップアプリを経由できないアップロード用の任意のCORSプロキシ。プロキシは経由するすべてのファイルとトークンを見ることができるため、信頼できるものだけを使用してください。直接アップロードする場合は空欄にしてください。"
                     value={settings.store.corsProxyUrl || ""}
                     onChange={v => settings.store.corsProxyUrl = v}
                     placeholder="https://your-cors-proxy.example.com"
                 />
                 <AllowHostNotice url={corsProxyUrl} />
 
-                <SettingsSection id="upload-timeout" name="Upload Timeout" description="Maximum time to wait per upload attempt before switching to fallback">
+                <SettingsSection id="upload-timeout" name="アップロードタイムアウト" description="フォールバックに切り替える前に1回のアップロード試行で待つ最大時間">
                     <Select
                         options={[
-                            { label: "30 seconds", value: 30000 },
-                            { label: "1 minute", value: 60000 },
-                            { label: "2 minutes", value: 120000 },
-                            { label: "5 minutes", value: 300000, default: true },
-                            { label: "10 minutes", value: 600000 }
+                            { label: "30秒", value: 30000 },
+                            { label: "1分", value: 60000 },
+                            { label: "2分", value: 120000 },
+                            { label: "5分", value: 300000, default: true },
+                            { label: "10分", value: 600000 }
                         ]}
                         isSelected={v => v === (settings.store.uploadTimeoutMs || 300000)}
                         select={v => {
@@ -1067,20 +1067,20 @@ export function SettingsComponent() {
                             update();
                         }}
                         serialize={v => v}
-                        placeholder="Select timeout"
+                        placeholder="タイムアウトを選択"
                     />
                 </SettingsSection>
 
                 {Native && (
-                    <SettingsSection id="approved-servers" name="Approved Servers" description="S3 and WebDAV servers you allowed FileUpload to upload to. Resetting will ask again on the next upload.">
+                    <SettingsSection id="approved-servers" name="承認済みサーバー" description="FileUploadのアップロードを許可したS3およびWebDAVサーバー。リセットすると次回のアップロードで再度確認されます。">
                         <Button
                             size="small"
                             onClick={async () => {
                                 await Native.clearApprovedOrigins();
-                                showToast({ text: "Approved servers reset" });
+                                showToast({ text: "承認済みサーバーをリセットしました" });
                             }}
                         >
-                            Reset Approved Servers
+                            承認済みサーバーをリセット
                         </Button>
                     </SettingsSection>
                 )}

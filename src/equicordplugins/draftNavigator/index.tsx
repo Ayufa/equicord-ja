@@ -99,28 +99,28 @@ function DraftPanel(props: RenderModalProps) {
     const results = query ? drafts.filter(draft =>
         [draft.name, draft.location, draft.content, draft.channelId].some(value => value.toLocaleLowerCase().includes(query))
     ) : drafts;
-    const count = query ? `${results.length} of ${drafts.length}` : drafts.length;
-    const emptyMessage = drafts.length ? "No matching drafts." : "No unsent drafts.";
+    const count = query ? `${results.length}／${drafts.length}` : drafts.length;
+    const emptyMessage = drafts.length ? "一致する下書きがありません。" : "未送信の下書きがありません。";
 
     return (
         <Modal
             {...props}
             size="md"
-            title="Draft Navigator"
-            actions={[{ text: "Close", variant: "secondary", onClick: props.onClose }]}
+            title="下書きナビゲーター"
+            actions={[{ text: "閉じる", variant: "secondary", onClick: props.onClose }]}
         >
             <div className="vc-draftNavigator-panel">
                 <TextInput
                     autoFocus
-                    aria-label="Search drafts"
-                    placeholder="Search channels, servers, or draft text"
+                    aria-label="下書きを検索"
+                    placeholder="チャンネル、サーバー、下書きの内容を検索"
                     value={search}
                     onChange={setSearch}
                 />
                 <div className="vc-draftNavigator-count" role="status">
-                    {count} {drafts.length === 1 ? "draft" : "drafts"}
+                    {count} {drafts.length === 1 ? "件の下書き" : "件の下書き"}
                 </div>
-                <ul className="vc-draftNavigator-list" aria-label="Unsent drafts">
+                <ul className="vc-draftNavigator-list" aria-label="未送信の下書き">
                     {results.map(draft => <DraftRow key={draft.channelId} draft={draft} onClose={props.onClose} />)}
                 </ul>
                 {results.length === 0 ? <div className="vc-draftNavigator-empty">{emptyMessage}</div> : null}
@@ -158,7 +158,7 @@ export default definePlugin({
         "Open Draft Navigator": openDraftNavigator
     },
 
-    settingsAboutComponent: ErrorBoundary.wrap(() => <Button onClick={openDraftNavigator}>Open Draft Navigator</Button>, { noop: true }),
+    settingsAboutComponent: ErrorBoundary.wrap(() => <Button onClick={openDraftNavigator}>下書きナビゲーターを開く</Button>, { noop: true }),
 
     stop() {
         closeModal(modalKey);

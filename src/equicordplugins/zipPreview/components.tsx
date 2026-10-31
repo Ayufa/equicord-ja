@@ -99,7 +99,7 @@ export function ZipPreviewInline(props: ZipPreviewAttachmentProps) {
                 .catch(error => {
                     if (loadRequestIdRef.current !== loadRequestId) return;
 
-                    const message = error instanceof Error ? error.message : "Failed to preview ZIP.";
+                    const message = error instanceof Error ? error.message : "ZIPのプレビューに失敗しました。";
                     setCacheState({ status: "rejected", message });
                 });
         }
@@ -139,7 +139,7 @@ export function ZipPreviewInline(props: ZipPreviewAttachmentProps) {
                 className={cl("toggle")}
                 type="button"
                 aria-expanded={isExpanded}
-                aria-label={isExpanded ? "Collapse ZIP preview" : "Expand ZIP preview"}
+                aria-label={isExpanded ? "ZIPプレビューを折りたたむ" : "ZIPプレビューを展開"}
                 onClick={event => {
                     event.preventDefault();
                     event.stopPropagation();
@@ -162,7 +162,7 @@ function ZipPreviewContent({
     onNavigate: (path: string) => void;
 }) {
     if (!cacheState || cacheState.status === "pending") {
-        return <div className={cl("state")}>Loading ZIP preview...</div>;
+        return <div className={cl("state")}>ZIPプレビューを読み込んでいます...</div>;
     }
 
     if (cacheState.status === "rejected") {
@@ -171,13 +171,13 @@ function ZipPreviewContent({
 
     const { entries, truncated } = cacheState.result;
     if (entries.length === 0) {
-        return <div className={cl("state")}>This ZIP is empty.</div>;
+        return <div className={cl("state")}>このZIPは空です。</div>;
     }
 
     return (
         <>
             <ZipPreviewBreadcrumb path={currentPath} onNavigate={onNavigate} />
-            {truncated && <div className={cl("state")}>Only showing first {MAX_ENTRIES} entries.</div>}
+            {truncated && <div className={cl("state")}>最初の {MAX_ENTRIES} 件のみ表示しています。</div>}
             <div className={cl("entries")}>
                 <ZipPreviewFileList entries={entries} currentPath={currentPath} onNavigate={onNavigate} />
             </div>
@@ -243,7 +243,7 @@ function ZipPreviewFileList({ entries, currentPath, onNavigate }: { entries: Zip
     const { directories, files } = useMemo(() => getVisibleEntries(entries, currentPath), [entries, currentPath]);
 
     if (directories.length === 0 && files.length === 0) {
-        return <div className={cl("state")}>This folder is empty.</div>;
+        return <div className={cl("state")}>このフォルダは空です。</div>;
     }
 
     return (
@@ -316,12 +316,12 @@ function openTextEntryModal(entry: ZipEntry) {
                 title={entry.name}
                 actions={[
                     {
-                        text: "Copy",
+                        text: "コピー",
                         variant: "secondary",
-                        onClick: () => copyWithToast(content, "File contents copied to clipboard!")
+                        onClick: () => copyWithToast(content, "ファイルの内容をクリップボードにコピーしました！")
                     },
                     {
-                        text: "Download",
+                        text: "ダウンロード",
                         variant: "primary",
                         onClick: () => makeDownload(entry)
                     }
@@ -344,7 +344,7 @@ function openImageEntryModal(entry: ZipEntry) {
                 title={entry.name}
                 actions={[
                     {
-                        text: "Download",
+                        text: "ダウンロード",
                         variant: "primary",
                         onClick: () => makeDownload(entry)
                     }

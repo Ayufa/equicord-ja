@@ -35,12 +35,12 @@ export function ReposModal({ groups, initialActiveKey, username, rootProps }: Re
             title={`${username}'s GitHub Repositories`}
             actions={[
                 {
-                    text: "View on GitHub",
+                    text: "GitHubで表示",
                     variant: "link",
                     onClick: () => window.open(`https://github.com/${username}?tab=repositories`, "_blank")
                 },
                 {
-                    text: "Close",
+                    text: "閉じる",
                     variant: "secondary",
                     onClick: rootProps.onClose
                 }

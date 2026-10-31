@@ -14,8 +14,8 @@ export const MAX_ZIP_BYTES = 50 * 1024 * 1024;
 export const MAX_ENTRIES = 1000;
 export const MAX_PREVIEW_BYTES = 10 * 1024 * 1024;
 
-const CANCELLED_PREVIEW_MESSAGE = "ZIP preview was cancelled.";
-const NATIVE_UNAVAILABLE_MESSAGE = "Native helper is unavailable.";
+const CANCELLED_PREVIEW_MESSAGE = "ZIPプレビューがキャンセルされました。";
+const NATIVE_UNAVAILABLE_MESSAGE = "ネイティブヘルパーが利用できません。";
 const IMAGE_EXTENSIONS = new Set(["png", "jpg", "jpeg", "gif", "webp", "avif", "bmp"]);
 const DISCORD_ATTACHMENT_HOSTS = new Set(["cdn.discordapp.com", "media.discordapp.net"]);
 const TEXT_EXTENSIONS = new Set([
@@ -100,7 +100,7 @@ export function getCachedZip(url: string): ZipPreviewCacheState {
             return result;
         })
         .catch(error => {
-            const message = error instanceof Error ? error.message : "Failed to preview ZIP.";
+            const message = error instanceof Error ? error.message : "ZIPのプレビューに失敗しました。";
             if (message === CANCELLED_PREVIEW_MESSAGE || message === NATIVE_UNAVAILABLE_MESSAGE) zipCache.delete(url);
             else zipCache.set(url, { status: "rejected", message });
             throw error;
@@ -150,23 +150,23 @@ async function loadZip(url: string): Promise<ZipPreviewResult> {
     if (attachmentPath) {
         const nativeResult = await fetchNativeDiscordAttachment(attachmentPath);
         if (nativeResult.success && nativeResult.data) {
-            if (nativeResult.data.byteLength > MAX_ZIP_BYTES) throw new Error("ZIP is too large to preview.");
+            if (nativeResult.data.byteLength > MAX_ZIP_BYTES) throw new Error("ZIPが大きすぎてプレビューできません。");
             return parseZipBuffer(nativeResult.data);
         }
 
-        throw new Error(nativeResult.error || "Could not fetch ZIP through native Discord attachment fetch.");
+        throw new Error(nativeResult.error || "ネイティブのDiscord添付ファイル取得でZIPを取得できませんでした。");
     }
 
     const response = await fetch(url);
-    if (!response.ok) throw new Error("Could not fetch ZIP.");
+    if (!response.ok) throw new Error("ZIPを取得できませんでした。");
 
     const contentLength = Number(response.headers.get("content-length"));
     if (Number.isFinite(contentLength) && contentLength > MAX_ZIP_BYTES) {
-        throw new Error("ZIP is too large to preview.");
+        throw new Error("ZIPが大きすぎてプレビューできません。");
     }
 
     const buffer = await response.arrayBuffer();
-    if (buffer.byteLength > MAX_ZIP_BYTES) throw new Error("ZIP is too large to preview.");
+    if (buffer.byteLength > MAX_ZIP_BYTES) throw new Error("ZIPが大きすぎてプレビューできません。");
 
     return parseZipBuffer(buffer);
 }
@@ -174,7 +174,7 @@ async function loadZip(url: string): Promise<ZipPreviewResult> {
 async function fetchNativeDiscordAttachment(attachmentPath: string): Promise<NativeFetchResult> {
     if (!Native) return { success: false, error: NATIVE_UNAVAILABLE_MESSAGE };
     if (typeof Native.fetchDiscordAttachment === "function") return Native.fetchDiscordAttachment(attachmentPath);
-    return { success: false, error: "Native helper does not support attachment fetch." };
+    return { success: false, error: "ネイティブヘルパーが添付ファイル取得に対応していません。" };
 }
 
 export function getDiscordAttachmentPath(url: string): string | null {

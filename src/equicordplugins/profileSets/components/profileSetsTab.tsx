@@ -55,7 +55,7 @@ function ProfileSetsTab() {
                     <SearchableSelect
                         options={guildOptions}
                         value={guildId}
-                        placeholder="Select a server"
+                        placeholder="サーバーを選択"
                         clearable={false}
                         closeOnSelect={true}
                         onChange={v => setGuildId(v as string)}
@@ -64,7 +64,7 @@ function ProfileSetsTab() {
             )}
 
             {section === "server" && !guildId ? (
-                <p className={cl("empty-state")}>You are not in any servers yet.</p>
+                <p className={cl("empty-state")}>まだどのサーバーにも参加していません。</p>
             ) : (
                 <PresetManager section={section} guildId={section === "server" ? guildId : undefined} />
             )}

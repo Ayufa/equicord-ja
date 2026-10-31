@@ -26,10 +26,10 @@ const UserSummaryItem = findComponentByCodeLazy("defaultRenderUser", "showDefaul
 async function downloadTheme(theme: Theme) {
     try {
         await Native.downloadTheme(theme);
-        showToast({ text: `Downloaded ${theme.name}!`, variant: "success" });
+        showToast({ text: `${theme.name} をダウンロードしました！`, variant: "success" });
     } catch (err: unknown) {
         logger.error(err);
-        showToast({ text: `Failed to download ${theme.name}! (check console)`, variant: "critical" });
+        showToast({ text: `${theme.name} のダウンロードに失敗しました！（コンソールを確認してください）`, variant: "critical" });
     }
 }
 
@@ -50,15 +50,15 @@ export const ThemeInfoModal: React.FC<ThemeInfoModalProps> = ({ author, theme, .
         <Modal
             {...props}
             size="md"
-            title={`${name} details`}
+            title={`${name} の詳細`}
             actions={[
                 {
-                    text: "Close",
+                    text: "閉じる",
                     variant: "secondary",
                     onClick: () => props.onClose()
                 },
                 {
-                    text: "Download",
+                    text: "ダウンロード",
                     variant: "primary",
                     disabled: !theme.content || theme.id === "preview",
                     onClick: async () => {
@@ -70,10 +70,10 @@ export const ThemeInfoModal: React.FC<ThemeInfoModalProps> = ({ author, theme, .
                                 <Modal
                                     {...modalProps}
                                     size="sm"
-                                    title="Conflict!"
+                                    title="競合！"
                                     actions={[
                                         {
-                                            text: "Overwrite",
+                                            text: "上書き",
                                             variant: "dangerPrimary",
                                             onClick: async () => {
                                                 await downloadTheme(theme);
@@ -81,7 +81,7 @@ export const ThemeInfoModal: React.FC<ThemeInfoModalProps> = ({ author, theme, .
                                             }
                                         },
                                         {
-                                            text: "Keep my file",
+                                            text: "自分のファイルを保持",
                                             variant: "positive",
                                             onClick: () => modalProps.onClose()
                                         }
@@ -89,7 +89,7 @@ export const ThemeInfoModal: React.FC<ThemeInfoModalProps> = ({ author, theme, .
                                 >
                                     <Paragraph style={{ padding: "8px" }}>
                                         <div style={{ display: "flex", flexDirection: "column" }}>
-                                            <p>A theme with the same name <b>already exists</b> in your themes directory! Do you want to overwrite it?</p>
+                                            <p>同じ名前のテーマがテーマフォルダに<b>すでに存在します</b>！上書きしますか？</p>
                                             <div className="vce-overwrite-modal">
                                                 <code style={{ wordWrap: "break-word" }}>
                                                     {fileName}
@@ -106,7 +106,7 @@ export const ThemeInfoModal: React.FC<ThemeInfoModalProps> = ({ author, theme, .
                 }
             ]}
         >
-            <Heading style={{ marginTop: "10px" }}>{authors.length > 1 ? "Authors" : "Author"}</Heading>
+            <Heading style={{ marginTop: "10px" }}>{authors.length > 1 ? "作者" : "作者"}</Heading>
             <div style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
                 <div>
                     <div style={{ display: "flex", alignItems: "center" }}>
@@ -127,19 +127,19 @@ export const ThemeInfoModal: React.FC<ThemeInfoModalProps> = ({ author, theme, .
                     </div>
                     {version && (
                         <>
-                            <Heading style={{ marginTop: "10px" }}>Version</Heading>
+                            <Heading style={{ marginTop: "10px" }}>バージョン</Heading>
                             <Paragraph>
                                 {version}
                             </Paragraph>
                         </>
                     )}
-                    <Heading style={{ marginTop: "10px" }}>Likes</Heading>
+                    <Heading style={{ marginTop: "10px" }}>いいね</Heading>
                     <Paragraph>
                         {likes === 0 ? `Nobody liked this ${type} yet.` : `${likes} users liked this ${type}!`}
                     </Paragraph>
                     {donate && (
                         <>
-                            <Heading style={{ marginTop: "10px" }}>Donate</Heading>
+                            <Heading style={{ marginTop: "10px" }}>寄付</Heading>
                             <Paragraph>
                                 You can support the author by donating below!
                             </Paragraph>
@@ -153,7 +153,7 @@ export const ThemeInfoModal: React.FC<ThemeInfoModalProps> = ({ author, theme, .
                     )}
                     {(guild || invite) && (
                         <>
-                            <Heading style={{ marginTop: "10px" }}>Support Server</Heading>
+                            <Heading style={{ marginTop: "10px" }}>サポートサーバー</Heading>
                             {guild && (
                                 <Paragraph>
                                     {guild.name}
@@ -166,7 +166,7 @@ export const ThemeInfoModal: React.FC<ThemeInfoModalProps> = ({ author, theme, .
                                     onClick={async e => {
                                         e.preventDefault();
                                         const useInvite = guild ? guild.invite_link?.split("discord.gg/")[1] : invite;
-                                        useInvite != null && openInviteModal(useInvite).catch(() => showToast({ text: "Invalid or expired invite!", variant: "critical" }));
+                                        useInvite != null && openInviteModal(useInvite).catch(() => showToast({ text: "招待が無効か期限切れです！", variant: "critical" }));
                                     }}
                                 >
                                     Join Discord Server
@@ -174,7 +174,7 @@ export const ThemeInfoModal: React.FC<ThemeInfoModalProps> = ({ author, theme, .
                             </Paragraph>
                         </>
                     )}
-                    <Heading style={{ marginTop: "10px" }}>Source</Heading>
+                    <Heading style={{ marginTop: "10px" }}>ソース</Heading>
                     <Paragraph>
                         <Button
                             disabled={!theme.content || theme.id === "preview"}
@@ -182,19 +182,19 @@ export const ThemeInfoModal: React.FC<ThemeInfoModalProps> = ({ author, theme, .
                                 <Modal
                                     {...modalProps}
                                     size="lg"
-                                    title="Theme Source"
+                                    title="テーマのソース"
                                     actions={[
                                         {
-                                            text: "Close",
+                                            text: "閉じる",
                                             variant: "dangerPrimary",
                                             onClick: () => modalProps.onClose()
                                         },
                                         {
-                                            text: "Copy to Clipboard",
+                                            text: "クリップボードにコピー",
                                             variant: "primary",
                                             onClick: () => {
                                                 copyToClipboard(themeContent);
-                                                showToast({ text: "Copied to Clipboard", variant: "success" });
+                                                showToast({ text: "クリップボードにコピーしました", variant: "success" });
                                             }
                                         }
                                     ]}
@@ -210,7 +210,7 @@ export const ThemeInfoModal: React.FC<ThemeInfoModalProps> = ({ author, theme, .
                     </Paragraph>
                     {tags && (
                         <>
-                            <Heading style={{ marginTop: "10px" }}>Tags</Heading>
+                            <Heading style={{ marginTop: "10px" }}>タグ</Heading>
                             <Paragraph>
                                 {tags.map(tag => (
                                     <span className="vce-theme-info-tag" key={"vce-theme-info-tag"}>
@@ -222,7 +222,7 @@ export const ThemeInfoModal: React.FC<ThemeInfoModalProps> = ({ author, theme, .
                     )}
                     {requiresThemeAttributes && (
                         <Paragraph style={{ marginTop: "10px" }}>
-                            <WarningIcon /> This theme requires the <b>ThemeAttributes</b> plugin!
+                            <WarningIcon /> このテーマには <b>ThemeAttributes</b> プラグインが必要です！
                         </Paragraph>
                     )}
                     {last_updated && (

@@ -26,21 +26,21 @@ import { FluxDispatcher, MessageActions, PendingReplyStore, SpotifyStore } from 
 function makeCommand(name: string, formatUrl: (track: SpotifyTrack) => string): Command {
     return {
         name,
-        description: `Share your current Spotify ${name} in chat`,
+        description: `現在再生中のSpotifyの${name}をチャットで共有します`,
         inputType: ApplicationCommandInputType.BUILT_IN,
         options: [OptionalMessageOption],
         execute(options, { channel }) {
             const track = SpotifyStore.getTrack();
             if (!track) {
                 return sendBotMessage(channel.id, {
-                    content: "You're not listening to any music."
+                    content: "音楽を再生していません。"
                 });
             }
 
             // local tracks have an id of null
             if (track.id == null) {
                 return sendBotMessage(channel.id, {
-                    content: "Failed to find the track on spotify."
+                    content: "Spotifyで曲が見つかりませんでした。"
                 });
             }
 

@@ -37,20 +37,20 @@ export async function authorizeUser(triggerModal: boolean = true) {
                         await DataStore.set("ThemeLibrary_uniqueToken", token);
                         showNotification({
                             title: "ThemeLibrary",
-                            body: "Successfully authorized with ThemeLibrary!"
+                            body: "ThemeLibraryの認証に成功しました！"
                         });
                     } else {
                         logger.debug("Tried to authorize via OAuth2, but no token returned");
                         showNotification({
                             title: "ThemeLibrary",
-                            body: "Failed to authorize, check console"
+                            body: "認証に失敗しました。コンソールを確認してください"
                         });
                     }
                 } catch (e: any) {
                     logger.error("Failed to authorize", e);
                     showNotification({
                         title: "ThemeLibrary",
-                        body: "Failed to authorize, check console"
+                        body: "認証に失敗しました。コンソールを確認してください"
                     });
                 }
             }
@@ -65,7 +65,7 @@ export async function deauthorizeUser() {
     const uniqueToken = await DataStore.get<Record<string, string>>("ThemeLibrary_uniqueToken");
 
     if (!uniqueToken) return showToast({
-        text: "No uniqueToken present, try authorizing first!",
+        text: "uniqueTokenがありません。先に認証してください！",
         variant: "critical",
         duration: 2e3,
         position: "bottom"
@@ -84,7 +84,7 @@ export async function deauthorizeUser() {
         await DataStore.del("ThemeLibrary_uniqueToken");
         showNotification({
             title: "ThemeLibrary",
-            body: "Successfully deauthorized from ThemeLibrary!"
+            body: "ThemeLibraryの認証を解除しました！"
         });
     } else {
         // try to delete anyway
@@ -94,7 +94,7 @@ export async function deauthorizeUser() {
             logger.error("Failed to delete token", e);
             showNotification({
                 title: "ThemeLibrary",
-                body: "Failed to deauthorize, check console"
+                body: "認証解除に失敗しました。コンソールを確認してください"
             });
         }
     }

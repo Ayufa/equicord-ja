@@ -105,7 +105,7 @@ function TarModal({ modalProps }: { modalProps: RenderModalProps; }) {
             title="Webpack Tarball"
             actions={[
                 {
-                    text: "Create",
+                    text: "作成",
                     variant: "primary",
                     onClick: () => {
                         saveTar(patched);
@@ -117,7 +117,7 @@ function TarModal({ modalProps }: { modalProps: RenderModalProps; }) {
             <div style={{ marginBottom: "16px" }}>
                 <BaseText size="md">
                     <Timestamp timestamp={new Date(builtAt)} isInline={false}>
-                        {"Build number "}
+                        {"ビルド番号 "}
                         {buildNumber}
                     </Timestamp>
                 </BaseText>
@@ -125,7 +125,7 @@ function TarModal({ modalProps }: { modalProps: RenderModalProps; }) {
 
             <div style={{ marginTop: "8px", marginBottom: "24px" }}>
                 <Heading>
-                    Lazy chunks
+                    遅延読み込みチャンク
                 </Heading>
                 <Flex alignItems="center">
                     <BaseText
@@ -133,7 +133,7 @@ function TarModal({ modalProps }: { modalProps: RenderModalProps; }) {
                         style={{ flexGrow: 1 }}
                     >
                         {loaded}/{all}
-                        {errored ? ` (${errored} errors)` : null}
+                        {errored ? `（${errored}件のエラー）` : null}
                     </BaseText>
                     <Button
                         disabled={loading === all || isLoading}
@@ -145,7 +145,7 @@ function TarModal({ modalProps }: { modalProps: RenderModalProps; }) {
                             });
                         }}
                     >
-                        {loaded === all ? "Loaded" : loading === all ? "Loading" : "Load all"}
+                        {loaded === all ? "読み込み済み" : loading === all ? "読み込み中" : "すべて読み込む"}
                     </Button>
                 </Flex>
             </div>

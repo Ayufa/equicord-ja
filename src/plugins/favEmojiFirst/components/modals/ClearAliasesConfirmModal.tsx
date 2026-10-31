@@ -14,10 +14,10 @@ export function ClearAliasesConfirmModal({ modalProps, onConfirm }: ClearAliases
         <Modal
             {...modalProps}
             size="sm"
-            title="Delete all aliases"
+            title="すべてのエイリアスを削除"
             actions={[
                 {
-                    text: "Delete all aliases",
+                    text: "すべてのエイリアスを削除",
                     variant: "danger-primary",
                     onClick: async () => {
                         await onConfirm();
@@ -26,7 +26,7 @@ export function ClearAliasesConfirmModal({ modalProps, onConfirm }: ClearAliases
                 }
             ]}
         >
-            <Paragraph>This will remove every emoji alias you saved.</Paragraph>
+            <Paragraph>保存したすべての絵文字エイリアスが削除されます。</Paragraph>
         </Modal>
     );
 }

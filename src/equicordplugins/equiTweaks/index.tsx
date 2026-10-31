@@ -28,11 +28,11 @@ migratePluginToSettings(true, "EquiTweaks", "ShowAllBadges", "showAllBadges");
 const fetchSafetyHub: () => Promise<void> = findByCodeLazy("SAFETY_HUB_FETCH_START");
 
 const StandingConfig: Record<number, { label: string; hoverColor: string; Icon: ComponentType<any>; }> = {
-    [StandingState.ALL_GOOD]: { label: "All good!", hoverColor: "var(--status-positive)", Icon: ShieldIcon },
-    [StandingState.LIMITED]: { label: "Limited", hoverColor: "var(--status-warning)", Icon: WarningIcon },
-    [StandingState.VERY_LIMITED]: { label: "Very limited", hoverColor: "var(--orange-345)", Icon: WarningIcon },
-    [StandingState.AT_RISK]: { label: "At risk", hoverColor: "var(--status-danger)", Icon: WarningIcon },
-    [StandingState.SUSPENDED]: { label: "Suspended", hoverColor: "var(--interactive-muted)", Icon: WarningIcon },
+    [StandingState.ALL_GOOD]: { label: "問題なし！", hoverColor: "var(--status-positive)", Icon: ShieldIcon },
+    [StandingState.LIMITED]: { label: "制限あり", hoverColor: "var(--status-warning)", Icon: WarningIcon },
+    [StandingState.VERY_LIMITED]: { label: "大幅な制限あり", hoverColor: "var(--orange-345)", Icon: WarningIcon },
+    [StandingState.AT_RISK]: { label: "停止の危険あり", hoverColor: "var(--status-danger)", Icon: WarningIcon },
+    [StandingState.SUSPENDED]: { label: "停止中", hoverColor: "var(--interactive-muted)", Icon: WarningIcon },
 };
 
 function StandingButton() {
@@ -69,7 +69,7 @@ const addAutoCorrectMenuItem: NavContextMenuPatchCallback = children => {
     group.splice(idx + 1, 0,
         <Menu.MenuCheckboxItem
             id="vc-enable-autocorrect"
-            label="Enable Autocorrect"
+            label="自動修正を有効化"
             checked={autoCorrect}
             action={() => settings.store.autoCorrect = !settings.store.autoCorrect}
         />
@@ -401,17 +401,17 @@ export default definePlugin({
     commands: [
         {
             name: "refresh-commands",
-            description: "Refresh Slash Commands",
+            description: "スラッシュコマンドを更新",
             inputType: ApplicationCommandInputType.BUILT_IN,
             predicate: () => settings.store.refreshSlashCommands,
             execute: async (opts, ctx) => {
                 try {
                     ApplicationCommandIndexStore.indices = {};
-                    sendBotMessage(ctx.channel.id, { content: "Slash Commands refreshed successfully." });
+                    sendBotMessage(ctx.channel.id, { content: "スラッシュコマンドを更新しました。" });
                 }
                 catch (e) {
                     console.error("[refreshSlashCommands] Failed to refresh commands:", e);
-                    sendBotMessage(ctx.channel.id, { content: "Failed to refresh commands. Check console for details." });
+                    sendBotMessage(ctx.channel.id, { content: "コマンドの更新に失敗しました。詳細はコンソールを確認してください。" });
                 }
             }
         }

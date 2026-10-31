@@ -78,7 +78,7 @@ export const SpotifyLrcStore = proxyLazyWebpack(() => {
                     providers.map(p => currentInfo?.lyricsVersions[p]).find(Boolean);
 
                 if (!originalLyrics || !currentInfo) {
-                    showNotif("No lyrics", `No lyrics to ${provider === Provider.Translated ? "translate" : "romanize"}`);
+                    showNotif("歌詞がありません", provider === Provider.Translated ? "翻訳する歌詞がありません" : "ローマ字化する歌詞がありません");
                     return;
                 }
 
@@ -99,7 +99,7 @@ export const SpotifyLrcStore = proxyLazyWebpack(() => {
                 const fetchResult = await lyricsAlternativeFetchers[provider](originalLyrics);
 
                 if (!fetchResult) {
-                    showNotif("Lyrics fetch failed", `Failed to fetch ${provider === Provider.Translated ? "translation" : "romanization"}`);
+                    showNotif("歌詞の取得に失敗しました", provider === Provider.Translated ? "翻訳の取得に失敗しました" : "ローマ字化の取得に失敗しました");
                     return;
                 }
 
@@ -120,7 +120,7 @@ export const SpotifyLrcStore = proxyLazyWebpack(() => {
 
             const newLyricsInfo = await lyricFetchers[e.provider](track);
             if (!newLyricsInfo) {
-                showNotif("Lyrics fetch failed", `Failed to fetch ${e.provider} lyrics`);
+                showNotif("歌詞の取得に失敗しました", `${e.provider} の歌詞の取得に失敗しました`);
                 return;
             }
 

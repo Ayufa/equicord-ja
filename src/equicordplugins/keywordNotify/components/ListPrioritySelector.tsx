@@ -12,10 +12,10 @@ export function ListPrioritySelector({ listType, setListPriority }: { listType: 
     return (
         <Select
             options={[
-                { label: "Whitelist", value: ListType.Whitelist },
-                { label: "Blacklist", value: ListType.BlackList }
+                { label: "ホワイトリスト", value: ListType.Whitelist },
+                { label: "ブラックリスト", value: ListType.BlackList }
             ]}
-            placeholder={"Select a list type"}
+            placeholder={"リストの種類を選択"}
             isSelected={v => v === listType}
             closeOnSelect={true}
             select={setListPriority}

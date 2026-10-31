@@ -153,9 +153,9 @@ export default definePlugin({
     settingsAboutComponent: () => {
         return (
             <React.Fragment>
-                <HeadingSecondary>More Information</HeadingSecondary>
+                <HeadingSecondary>詳細情報</HeadingSecondary>
                 <BaseText size="md">
-                    You can open Discord's DevTools via {" "}
+                    Discord の DevTools は次のキーで開けます: {" "}
                     <div className={KbdStyles.combo} style={{ display: "inline-flex" }}>
                         <kbd className={KbdStyles.key}>{modKey}</kbd>{" "}
                         <kbd className={KbdStyles.key}>{altKey}</kbd>{" "}
@@ -168,20 +168,20 @@ export default definePlugin({
 
     WarningCard: ErrorBoundary.wrap(() => (
         <ErrorCard id="vc-experiments-warning-card" className={Margins.bottom16}>
-            <HeadingPrimary>Hold on!!</HeadingPrimary>
+            <HeadingPrimary>ちょっと待って！！</HeadingPrimary>
 
             <Paragraph>
-                Experiments are unreleased Discord features. They might not work, or even break your client or get your account disabled.
+                Experiments（実験機能）は未公開の Discord 機能です。動作しない可能性があり、クライアントが壊れたり、アカウントが無効化されたりすることもあります。
             </Paragraph>
 
             <Paragraph className={Margins.top8}>
-                Only use experiments if you know what you're doing. Equicord is not responsible for any damage caused by enabling experiments.
+                自分が何をしているか分かっている場合にのみ実験機能を使ってください。実験機能を有効にして生じた損害について、Equicord は責任を負いません。
 
-                If you don't know what an experiment does, ignore it. Do not ask us what experiments do either, we probably don't know.
+                実験機能が何をするものか分からない場合は、無視してください。私たちに聞かれても、おそらく分かりません。
             </Paragraph>
 
             <Paragraph className={Margins.top8}>
-                No, you cannot use server-side features like checking the "Send to Client" box.
+                「Send to Client」チェックボックスのようなサーバー側の機能は使えません。
             </Paragraph>
         </ErrorCard>
     ), { noop: true })

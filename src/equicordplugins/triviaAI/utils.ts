@@ -271,7 +271,7 @@ export async function getResponse(payload: ApiMessage[]): Promise<string> {
         return response;
     } catch (e) {
         logger.error("Error getting response from AI model", e);
-        showToast({ text: "Error getting response from AI model", variant: "critical" });
+        showToast({ text: "AIモデルからの応答取得でエラーが発生しました", variant: "critical" });
         return "";
     }
 }

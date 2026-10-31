@@ -122,8 +122,8 @@ function ChangeDecorationModal(props: RenderModalProps) {
 
     const data = [
         {
-            title: "Your Decorations",
-            subtitle: "You can delete your own decorations by right clicking on them.",
+            title: "あなたのデコレーション",
+            subtitle: "自分のデコレーションは右クリックで削除できます。",
             sectionKey: "ownDecorations",
             items: ["none", ...ownDecorations, "create"]
         },
@@ -138,16 +138,16 @@ function ChangeDecorationModal(props: RenderModalProps) {
 
     return <Modal
         {...props}
-        title="Change Decoration"
+        title="デコレーションを変更"
         size="lg"
         actions={[
             {
-                text: "Cancel",
+                text: "キャンセル",
                 variant: "secondary",
                 onClick: props.onClose
             },
             {
-                text: "Apply",
+                text: "適用",
                 variant: "primary",
                 onClick: () => {
                     selectDecoration(tryingDecoration!).then(props.onClose);
@@ -157,7 +157,7 @@ function ChangeDecorationModal(props: RenderModalProps) {
         ]}
         preview={
             <div className={cl("modal-footer-btn-container", Margins.top8)}>
-                <Tooltip text="Join Decor's Discord Server for notifications on your decoration's review, and when new presets are released">
+                <Tooltip text="デコレーションの審査に関する通知や、新しいプリセットのリリース情報を受け取るには、Decor の Discord サーバーに参加してください">
                     {tooltipProps => <Button
                         {...tooltipProps}
                         onClick={async () => {
@@ -175,16 +175,16 @@ function ChangeDecorationModal(props: RenderModalProps) {
                         }}
                         variant="link"
                     >
-                        Discord Server
+                        Discord サーバー
                     </Button>}
                 </Tooltip>
                 <Button
                     onClick={() => {
                         confirmAction({
-                            title: "Log Out",
-                            subtitle: "Are you sure you want to log out of Decor?",
-                            confirmText: "Log Out",
-                            cancelText: "Cancel",
+                            title: "ログアウト",
+                            subtitle: "Decor からログアウトしてもよろしいですか？",
+                            confirmText: "ログアウト",
+                            cancelText: "キャンセル",
                             onConfirm() {
                                 useAuthorizationStore.getState().remove(UserStore.getCurrentUser().id);
                                 props.onClose();
@@ -193,7 +193,7 @@ function ChangeDecorationModal(props: RenderModalProps) {
                     }}
                     variant="dangerSecondary"
                 >
-                    Log Out
+                    ログアウト
                 </Button>
             </div>
         }
@@ -210,7 +210,7 @@ function ChangeDecorationModal(props: RenderModalProps) {
                                     onSelect={() => setTryingDecoration(null)}
                                 />;
                             case "create":
-                                return <Tooltip text="You already have a decoration pending review" shouldShow={hasDecorationPendingReview}>
+                                return <Tooltip text="審査待ちのデコレーションが既にあります" shouldShow={hasDecorationPendingReview}>
                                     {tooltipProps => <DecorationGridCreate
                                         className={cl("change-decoration-modal-decoration")}
                                         {...tooltipProps}
@@ -219,7 +219,7 @@ function ChangeDecorationModal(props: RenderModalProps) {
                                 </Tooltip>;
                         }
                     } else {
-                        return <Tooltip text={"Pending review"} shouldShow={item.reviewed === false}>
+                        return <Tooltip text={"審査待ち"} shouldShow={item.reviewed === false}>
                             {tooltipProps => (
                                 <DecorDecorationGridDecoration
                                     {...tooltipProps}

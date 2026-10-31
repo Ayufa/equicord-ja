@@ -106,7 +106,7 @@ function VerifyModal({
     }, [state]);
 
     return (
-        <Modal size="sm" {...props} title="Verify Login">
+        <Modal size="sm" {...props} title="ログインの確認">
             <div className={cl("device-content")}>
                 {state === VerifyState.LoggedIn ? (
                     <>

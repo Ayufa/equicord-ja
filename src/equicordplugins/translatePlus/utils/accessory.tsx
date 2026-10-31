@@ -32,7 +32,7 @@ export function Accessory({ message }: { message: Message; }) {
             <Icon height={16} width={16} />
             {Parser.parse(translation.text)}
             {" "}
-            (translated from {languages[translation.src] ?? translation.src} - <button onClick={() => setTranslation(undefined)} className={cl("dismiss")}>Dismiss</button>)
+            （{languages[translation.src] ?? translation.src} から翻訳 - <button onClick={() => setTranslation(undefined)} className={cl("dismiss")}>閉じる</button>)
         </div>
     );
 }

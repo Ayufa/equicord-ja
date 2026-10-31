@@ -49,7 +49,7 @@ async function rdbRequest<T = unknown>(path: string, options: RequestInit = {}):
         ...options,
         headers,
     }).catch(err => {
-        showToast({ text: "Network error: Failed to connect to ReviewDB.", variant: "critical" });
+        showToast({ text: "ネットワークエラー：ReviewDBに接続できませんでした。", variant: "critical" });
         return null;
     });
 
@@ -142,7 +142,7 @@ export async function addReview(review: { userid: string; comment: string; }): P
 
     const token = await getToken();
     if (!token) {
-        showToast({ text: "Please authorize to add a review.", variant: "critical" });
+        showToast({ text: "レビューを追加するには認証してください。", variant: "critical" });
         authorize();
         return null;
     }
@@ -179,7 +179,7 @@ export async function reportReview(id: number) {
 export async function voteReview(id: number, isUpvote: boolean) {
     const token = await getToken();
     if (!token) {
-        showToast({ text: "Please authorize to vote on reviews.", variant: "critical" });
+        showToast({ text: "レビューに投票するには認証してください。", variant: "critical" });
         authorize();
         return false;
     }
@@ -197,7 +197,7 @@ export async function voteReview(id: number, isUpvote: boolean) {
 export async function deleteReviewVote(id: number) {
     const token = await getToken();
     if (!token) {
-        showToast({ text: "Please authorize to vote on reviews.", variant: "critical" });
+        showToast({ text: "レビューに投票するには認証してください。", variant: "critical" });
         authorize();
         return false;
     }
@@ -222,7 +222,7 @@ async function patchBlock(action: "block" | "unblock", userId: string) {
 
     if (!data) return;
 
-    showToast({ text: `Successfully ${action}ed user`, variant: "success" });
+    showToast({ text: action === "block" ? "ユーザーをブロックしました" : "ユーザーのブロックを解除しました", variant: "success" });
 
     if (Auth?.user?.blockedUsers) {
         const newBlockedUsers = action === "block"

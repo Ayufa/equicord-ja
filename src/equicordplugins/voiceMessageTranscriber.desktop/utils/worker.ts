@@ -301,13 +301,13 @@ function getWorker() {
     created.onmessage = event => handleMessage(created, event);
     created.onerror = event => {
         event.preventDefault();
-        terminateWorker(event.message || "Transcription worker crashed");
+        terminateWorker(event.message || "文字起こしワーカーがクラッシュしました");
     };
 
     return worker = created;
 }
 
-export function terminateWorker(reason = "Transcription worker was stopped") {
+export function terminateWorker(reason = "文字起こしワーカーが停止しました") {
     worker?.terminate();
     worker = null;
 

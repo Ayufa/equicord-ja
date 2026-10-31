@@ -25,10 +25,10 @@ export function VoiceChannelLogModal({ channel, props }: { channel: Channel; pro
         <Modal
             {...props}
             size="lg"
-            title={`${channel.name} logs`}
+            title={`${channel.name} のログ`}
             actions={[
                 {
-                    text: "Clear logs",
+                    text: "ログを消去",
                     variant: "dangerPrimary",
                     onClick: () => clearLogs(channel.id)
                 }
@@ -52,7 +52,7 @@ export function VoiceChannelLogModal({ channel, props }: { channel: Channel; pro
 
                     return elements;
                 }) : (
-                    <div className={cl("empty")}>No logs to display.</div>
+                    <div className={cl("empty")}>表示するログがありません。</div>
                 )}
             </ScrollerThin>
         </Modal>

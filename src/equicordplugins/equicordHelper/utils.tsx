@@ -20,17 +20,17 @@ function showErrorToast(message: string) {
 function restartPrompt(): Promise<boolean> {
     return new Promise(resolve => {
         Alerts.show({
-            title: "Restart Required",
+            title: "再起動が必要です",
             body: (
                 <>
                     <p style={{ textAlign: "center" }}>
-                        Some plugins require a restart to fully disable.
+                        一部のプラグインは完全に無効化するために再起動が必要です。
                     </p>
-                    <p style={{ textAlign: "center" }}>Would you like to restart now?</p>
+                    <p style={{ textAlign: "center" }}>今すぐ再起動しますか？</p>
                 </>
             ),
-            confirmText: "Restart Now",
-            cancelText: "Later",
+            confirmText: "今すぐ再起動",
+            cancelText: "後で",
             onConfirm: () => resolve(true),
             onCancel: () => resolve(false),
         });
@@ -65,7 +65,7 @@ export async function toggleEnabled(name: string) {
         const { restartNeeded, failures } = startDependenciesRecursive(plugin);
         if (failures.length) {
             console.error(`Failed to start dependencies for ${plugin.name}: ${failures.join(", ")}`);
-            showNotice("Failed to start dependencies: " + failures.join(", "), "Close", () => null);
+            showNotice("依存関係の開始に失敗しました: " + failures.join(", "), "閉じる", () => null);
             return false;
         } else if (restartNeeded) {
             settings.enabled = true;

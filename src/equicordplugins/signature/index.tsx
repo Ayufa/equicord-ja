@@ -52,7 +52,7 @@ const SignatureToggle: ChatBarButtonFactory = ({ isMainChat }) => {
 
     return (
         <ChatBarButton
-            tooltip={isEnabled ? "Disable Signature" : "Enable Signature"}
+            tooltip={isEnabled ? "署名を無効化" : "署名を有効化"}
             onClick={toggle}
         >
             <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 21.333">
@@ -90,7 +90,7 @@ const ChatBarContextCheckbox: NavContextMenuPatchCallback = children => {
     group.splice(idx + 1, 0,
         <Menu.MenuCheckboxItem
             id="vc-Signature"
-            label="Enable Signature"
+            label="署名を有効化"
             checked={isEnabled}
             action={() => settings.store.isEnabled = !settings.store.isEnabled}
         />
@@ -131,12 +131,12 @@ export default definePlugin({
     commands: [
         {
             name: "signature",
-            description: "Toggle your signature",
+            description: "署名のオン/オフを切り替え",
             inputType: ApplicationCommandInputType.BUILT_IN,
             options: [
                 {
                     name: "value",
-                    description: "Toggle your signature (default is toggle)",
+                    description: "署名のオン/オフを切り替え（デフォルトは切り替え）",
                     required: false,
                     type: ApplicationCommandOptionType.BOOLEAN,
                 },
@@ -144,7 +144,7 @@ export default definePlugin({
             execute: async (args, ctx) => {
                 settings.store.isEnabled = !!findOption(args, "value", !settings.store.isEnabled);
                 sendBotMessage(ctx.channel.id, {
-                    content: settings.store.isEnabled ? "Signature enabled!" : "Signature disabled!",
+                    content: settings.store.isEnabled ? "署名を有効にしました！" : "署名を無効にしました！",
                 });
             },
         }

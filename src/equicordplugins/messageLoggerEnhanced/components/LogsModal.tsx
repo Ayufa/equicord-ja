@@ -40,6 +40,12 @@ export enum LogTabs {
     GHOST_PING = "Ghost Pinged"
 }
 
+const LogTabLabels: Record<LogTabs, string> = {
+    [LogTabs.DELETED]: "削除済み",
+    [LogTabs.EDITED]: "編集済み",
+    [LogTabs.GHOST_PING]: "ゴーストピング"
+};
+
 interface Props {
     modalProps: RenderModalProps;
     initalQuery?: string;
@@ -75,29 +81,29 @@ export function LogsModal({ modalProps, initalQuery }: Props) {
                             className={cl("modal-tab-bar-item")}
                             id={LogTabs.DELETED}
                         >
-                            Deleted
+                            削除済み
                         </TabBar.Item>
                         <TabBar.Item
                             className={cl("modal-tab-bar-item")}
                             id={LogTabs.EDITED}
                         >
-                            Edited
+                            編集済み
                         </TabBar.Item>
                         <TabBar.Item
                             className={cl("modal-tab-bar-item")}
                             id={LogTabs.GHOST_PING}
                         >
-                            Ghost Pinged
+                            ゴーストピング
                         </TabBar.Item>
                     </TabBar>
                     <div className={cl("modal-filter")}>
-                        <TextInput value={queryEh} onChange={e => setQuery(e)} placeholder="Filter Messages" />
+                        <TextInput value={queryEh} onChange={e => setQuery(e)} placeholder="メッセージをフィルター" />
                     </div>
                 </div>
             }
             actions={[
                 {
-                    text: `Sort ${sortNewest ? "Oldest First" : "Newest First"}`,
+                    text: `${sortNewest ? "古い順" : "新しい順"}に並び替え`,
                     variant: "secondary",
                     onClick: () => {
                         setSortNewest(e => {
@@ -109,15 +115,15 @@ export function LogsModal({ modalProps, initalQuery }: Props) {
                     }
                 },
                 {
-                    text: "Clear Visible Logs",
+                    text: "表示中のログをクリア",
                     variant: "critical-secondary",
                     disabled: messages?.length === 0,
                     onClick: () => Alerts.show({
-                        title: "Clear Logs",
-                        body: `Are you sure you want to clear ${messages.length} logs`,
-                        confirmText: "Clear",
+                        title: "ログをクリア",
+                        body: `${messages.length} 件のログをクリアしてもよろしいですか？`,
+                        confirmText: "クリア",
                         confirmVariant: "critical-primary",
-                        cancelText: "Cancel",
+                        cancelText: "キャンセル",
                         onConfirm: async () => {
                             await deleteMessagesBulkIDB(messages.map(e => e.message_id));
                             reset();
@@ -125,14 +131,14 @@ export function LogsModal({ modalProps, initalQuery }: Props) {
                     })
                 },
                 {
-                    text: "Clear All Logs",
+                    text: "すべてのログをクリア",
                     variant: "critical-primary",
                     onClick: () => Alerts.show({
-                        title: "Clear Logs",
-                        body: "Are you sure you want to clear all the logs",
-                        confirmText: "Clear",
+                        title: "ログをクリア",
+                        body: "すべてのログをクリアしてもよろしいですか？",
+                        confirmText: "クリア",
                         confirmVariant: "critical-primary",
-                        cancelText: "Cancel",
+                        cancelText: "キャンセル",
                         onConfirm: async () => {
                             await clearLogs();
                             reset();
@@ -203,7 +209,7 @@ function LogsContent({ visibleMessages, canLoadMore, sortNewest, tab, reset, han
                     style={{ marginTop: "1rem", width: "100%" }}
                     size="small" onClick={() => handleLoadMore()}
                 >
-                    Load More
+                    さらに読み込む
                 </Button>
             }
         </div>
@@ -231,10 +237,10 @@ function NoResults({ tab }: { tab: LogTabs; }) {
     return (
         <div className={cl("modal-empty-logs", "modal-content-inner")} style={{ textAlign: "center" }}>
             <BaseText size="lg">
-                No results in <b>{tab}</b>.
+                <b>{LogTabLabels[tab]}</b> には結果がありません。
             </BaseText>
             <BaseText size="lg" style={{ marginTop: "0.2rem" }}>
-                Maybe try <b>{nextTab}</b> or <b>{lastTab}</b>
+                <b>{LogTabLabels[nextTab as LogTabs]}</b> や <b>{LogTabLabels[lastTab as LogTabs]}</b> を試してみてください
             </BaseText>
         </div>
     );
@@ -246,12 +252,12 @@ function EmptyLogs({ hasQuery, reset: forceUpdate }: { hasQuery: boolean; reset:
             <Flex flexDirection="column" style={{ position: "relative" }}>
 
                 <BaseText size="lg">
-                    Empty eh
+                    空っぽです
                 </BaseText>
 
                 {!hasQuery && (
                     <>
-                        <Tooltip text="ML Enhanced now stores logs in indexeddb. You need to import your old logs from the logs directory. Importing wont overwrite existing logs">
+                        <Tooltip text="ML Enhanced はログを IndexedDB に保存するようになりました。ログフォルダーから古いログをインポートする必要があります。インポートしても既存のログは上書きされません">
                             {({ onMouseEnter, onMouseLeave }) => (
                                 <div
                                     className={cl("modal-info-icon")}
@@ -264,7 +270,7 @@ function EmptyLogs({ hasQuery, reset: forceUpdate }: { hasQuery: boolean; reset:
                         </Tooltip>
 
                         <Button onClick={() => importLogs().then(() => forceUpdate())}>
-                            Import Logs
+                            ログをインポート
                         </Button>
                     </>
                 )}
@@ -278,7 +284,7 @@ function LoadingLogs({ tab }: { tab: LogTabs; }) {
         <div className={cl("modal-empty-logs", "modal-content-inner")} style={{ textAlign: "center" }}>
             <Flex flexDirection="column" style={{ position: "relative" }}>
                 <BaseText size="lg">
-                    Loading {tab} Logs...
+                    {LogTabLabels[tab]} のログを読み込み中...
                 </BaseText>
             </Flex>
         </div>
@@ -312,7 +318,7 @@ function LMessage({ log, isGroupStart, reset, }: LMessageProps) {
                         <Menu.MenuItem
                             key="jump-to-message"
                             id="jump-to-message"
-                            label="Jump To Message"
+                            label="メッセージへ移動"
                             action={() => {
                                 NavigationRouter.transitionTo(`/channels/${ChannelStore.getChannel(message.channel_id)?.guild_id ?? "@me"}/${message.channel_id}${message.id ? "/" + message.id : ""}`);
                                 closeAllModals();
@@ -321,7 +327,7 @@ function LMessage({ log, isGroupStart, reset, }: LMessageProps) {
                         <Menu.MenuItem
                             key="open-user-profile"
                             id="open-user-profile"
-                            label="Open user profile"
+                            label="ユーザープロフィールを開く"
                             action={() => {
                                 closeAllModals();
                                 openUserProfile(message.author.id);
@@ -331,28 +337,28 @@ function LMessage({ log, isGroupStart, reset, }: LMessageProps) {
                         <Menu.MenuItem
                             key="copy-content"
                             id="copy-content"
-                            label="Copy Content"
+                            label="内容をコピー"
                             action={() => copyWithToast(message.content)}
                         />
 
                         <Menu.MenuItem
                             key="copy-user-id"
                             id="copy-user-id"
-                            label="Copy User ID"
+                            label="ユーザー ID をコピー"
                             action={() => copyWithToast(message.author.id)}
                         />
 
                         <Menu.MenuItem
                             key="copy-message-id"
                             id="copy-message-id"
-                            label="Copy Message ID"
+                            label="メッセージ ID をコピー"
                             action={() => copyWithToast(message.id)}
                         />
 
                         <Menu.MenuItem
                             key="copy-channel-id"
                             id="copy-channel-id"
-                            label="Copy Channel ID"
+                            label="チャンネル ID をコピー"
                             action={() => copyWithToast(message.channel_id)}
                         />
 
@@ -362,7 +368,7 @@ function LMessage({ log, isGroupStart, reset, }: LMessageProps) {
                                 <Menu.MenuItem
                                     key="copy-server-id"
                                     id="copy-server-id"
-                                    label="Copy Server ID"
+                                    label="サーバー ID をコピー"
                                     action={() => copyWithToast(log.message.guildId!)}
                                 />
                             )
@@ -371,7 +377,7 @@ function LMessage({ log, isGroupStart, reset, }: LMessageProps) {
                         <Menu.MenuItem
                             key="delete-log"
                             id="delete-log"
-                            label="Delete Log"
+                            label="ログを削除"
                             color="danger"
                             action={() =>
                                 deleteMessageIDB(log.message.id).then(() => reset())
@@ -391,13 +397,13 @@ function LMessage({ log, isGroupStart, reset, }: LMessageProps) {
                 hideSimpleEmbedContent={false}
             />
             {settings.store.ShowWhereMessageIsFrom && channel?.isDM() && message?.author && (
-                <span className={`${cl("modal-from")} ${message.deleted ? cl("modal-from-deleted") : cl("modal-from-edited")}`}>From {message.author.username}'s DMs</span>
+                <span className={`${cl("modal-from")} ${message.deleted ? cl("modal-from-deleted") : cl("modal-from-edited")}`}>{message.author.username} の DM から</span>
             )}
             {settings.store.ShowWhereMessageIsFrom && channel?.isGroupDM() && channel?.name && (
-                <span className={`${cl("modal-from")} ${message.deleted ? cl("modal-from-deleted") : cl("modal-from-edited")}`}>From {channel.name} Group DM</span>
+                <span className={`${cl("modal-from")} ${message.deleted ? cl("modal-from-deleted") : cl("modal-from-edited")}`}>{channel.name} グループ DM から</span>
             )}
             {settings.store.ShowWhereMessageIsFrom && !channel?.isDM() && !channel?.isGroupDM() && channel?.name && guild?.name && (
-                <span className={`${cl("modal-from")} ${message.deleted ? cl("modal-from-deleted") : cl("modal-from-edited")}`}>From {channel.name} in {guild.name}</span>
+                <span className={`${cl("modal-from")} ${message.deleted ? cl("modal-from-deleted") : cl("modal-from-edited")}`}>{guild.name} の {channel.name} から</span>
             )}
         </div>
     );

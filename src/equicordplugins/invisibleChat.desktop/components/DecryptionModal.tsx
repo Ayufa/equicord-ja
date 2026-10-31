@@ -37,23 +37,23 @@ export function DecModal(props: RenderModalProps & { message: any; }) {
         <Modal
             {...props}
             size="sm"
-            title="Decrypt Message"
+            title="メッセージを復号"
             actions={[
                 {
-                    text: "Decrypt",
+                    text: "復号",
                     variant: "primary",
                     onClick: onDecrypt
                 },
                 {
-                    text: "Cancel",
+                    text: "キャンセル",
                     variant: "secondary",
                     onClick: props.onClose
                 }
             ]}
         >
-            <Heading style={{ marginTop: "10px" }}>Message with Encryption</Heading>
+            <Heading style={{ marginTop: "10px" }}>暗号化されたメッセージ</Heading>
             <TextInput defaultValue={encryptedMessage} disabled={true}></TextInput>
-            <Heading style={{ marginTop: "10px" }}>Password</Heading>
+            <Heading style={{ marginTop: "10px" }}>パスワード</Heading>
             <TextInput
                 style={{ marginBottom: "20px" }}
                 onChange={setPassword}

@@ -108,7 +108,7 @@ export const settings = definePluginSettings({
     exampleButton: {
         type: OptionType.COMPONENT,
         description: "サンプルのトースト通知を表示する。",
-        component: () => <Button onClick={showExampleNotification}>Show Example Notification</Button>
+        component: () => <Button onClick={showExampleNotification}>サンプル通知を表示</Button>
     }
 });
 
@@ -222,8 +222,8 @@ function shouldNotifyForGuildMessage(message: Message, channel: Channel): boolea
 
 function showExampleNotification(): Promise<void> {
     return showNotification({
-        title: "Example Notification",
-        body: "This is an example toast notification!",
+        title: "サンプル通知",
+        body: "これはサンプルのトースト通知です！",
         icon: IconUtils.getUserAvatarURL(UserStore.getCurrentUser()),
         permanent: false
     });

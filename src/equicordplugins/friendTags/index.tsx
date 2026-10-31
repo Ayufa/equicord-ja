@@ -100,12 +100,12 @@ function TagConfigCard(props) {
 
     return (
         <>
-            <BaseText size="md" tag="h5">Name</BaseText>
+            <BaseText size="md" tag="h5">名前</BaseText>
             <TextInput value={tagName} onChange={setTagName}></TextInput>
-            <BaseText size="md" tag="h5">Users (Seperated by comma)</BaseText>
+            <BaseText size="md" tag="h5">ユーザー（カンマ区切り）</BaseText>
             <TextInput value={userIds} onChange={setUserIDs}></TextInput>
             <div className={"vc-friend-tags-user-header-container"}>
-                <BaseText>User List (Click A User To Remove)</BaseText>
+                <BaseText>ユーザーリスト（ユーザーをクリックで削除）</BaseText>
                 <div className={"vc-friend-tags-user-header-btns"}>
                     {
                         userIds.split(", ").map(user => {
@@ -129,7 +129,7 @@ function TagConfigCard(props) {
                 }}
                 variant="dangerPrimary"
             >
-                Remove
+                削除
             </Button>
         </>
     );
@@ -157,7 +157,7 @@ function TagConfigurationComponent() {
                     });
                 SetData();
                 update();
-            }}>Add</Button>
+            }}>追加</Button>
         </>
     );
 }
@@ -188,14 +188,14 @@ const userPatch: NavContextMenuPatchCallback = (children, { user }) => {
     const buttonElement =
         <Menu.MenuItem
             id="vc-tag-group"
-            label="Tag"
+            label="タグ"
         >
             {SavedData.map(tag => {
                 const isTagged = SavedData.filter(e => e.tagName === tag.tagName)[0].userIds.includes(user.id);
 
                 return (
                     <Menu.MenuItem
-                        label={`${isTagged ? "Remove from" : "Add to"} ${tag.tagName}`}
+                        label={`${tag.tagName}${isTagged ? "から削除" : "に追加"}`}
                         key={`vc-tag-${tag.tagName}`}
                         id={`vc-tag-${tag.tagName}`}
                         action={() => { UserToTagID(user.id, tag.tagName, isTagged); }}

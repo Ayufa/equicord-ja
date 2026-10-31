@@ -63,7 +63,7 @@ const messageCtxPatch: NavContextMenuPatchCallback = (children, { message }: { m
     group.splice(group.findIndex(c => c?.props?.id === "copy-text") + 1, 0, (
         <Menu.MenuItem
             id="vc-hidemessages"
-            label="Hide"
+            label="非表示にする"
             icon={EyeIcon}
             leadingAccessory={{ type: "icon", icon: EyeIcon }}
             action={() => hideMessage(message.id, message.channel_id)}
@@ -176,7 +176,7 @@ export default definePlugin({
         render(message: Message) {
             if (settings.store.hidePopoverButton) return null;
             return {
-                label: "Hide",
+                label: "非表示にする",
                 icon: EyeIcon,
                 message,
                 channel: ChannelStore.getChannel(message.channel_id),

@@ -20,7 +20,7 @@ function togglePlugin(plugin: Plugin) {
     if (!wasEnabled) {
         const { restartNeeded, failures } = startDependenciesRecursive(plugin);
         if (failures.length) {
-            showToast({ text: `Failed to start dependencies: ${failures.join(", ")}`, variant: "critical" });
+            showToast({ text: `依存プラグインの起動に失敗しました: ${failures.join(", ")}`, variant: "critical" });
             return;
         }
         if (restartNeeded) {
@@ -32,25 +32,25 @@ function togglePlugin(plugin: Plugin) {
 
     if (pluginRequiresRestart(plugin)) {
         pluginSettings.enabled = !wasEnabled;
-        showToast({ text: `${plugin.name} ${wasEnabled ? "disabled" : "enabled"}. Restart to apply.` });
+        showToast({ text: `${plugin.name} を${wasEnabled ? "無効化" : "有効化"}しました。再起動すると適用されます。` });
         return;
     }
 
     if (wasEnabled && !plugin.started) {
         pluginSettings.enabled = false;
-        showToast({ text: `${plugin.name} disabled.`, variant: "success" });
+        showToast({ text: `${plugin.name} を無効化しました。`, variant: "success" });
         return;
     }
 
     const result = wasEnabled ? stopPlugin(plugin) : startPlugin(plugin);
     if (!result) {
         pluginSettings.enabled = false;
-        showToast({ text: `Error while ${wasEnabled ? "stopping" : "starting"} ${plugin.name}.`, variant: "critical" });
+        showToast({ text: `${plugin.name} の${wasEnabled ? "停止" : "起動"}中にエラーが発生しました。`, variant: "critical" });
         return;
     }
 
     pluginSettings.enabled = !wasEnabled;
-    showToast({ text: `${plugin.name} ${wasEnabled ? "disabled" : "enabled"}.`, variant: "success" });
+    showToast({ text: `${plugin.name} を${wasEnabled ? "無効化" : "有効化"}しました。`, variant: "success" });
 }
 
 function pluginItems(): PaletteListItem[] {
@@ -62,18 +62,18 @@ function pluginItems(): PaletteListItem[] {
             return {
                 id: plugin.name,
                 label: plugin.name,
-                sublabel: enabled ? "Enabled" : "Disabled",
+                sublabel: enabled ? "有効" : "無効",
                 icon: PlugIcon,
                 actions: [
                     {
                         id: "toggle",
-                        label: enabled ? "Disable Plugin" : "Enable Plugin",
+                        label: enabled ? "プラグインを無効化" : "プラグインを有効化",
                         keepOpen: true,
                         run: () => togglePlugin(plugin)
                     },
                     {
                         id: "settings",
-                        label: "Open Plugin Settings",
+                        label: "プラグイン設定を開く",
                         icon: GearIcon,
                         run: () => openPluginModal(plugin)
                     }
@@ -85,14 +85,14 @@ function pluginItems(): PaletteListItem[] {
 export const pluginCommands: PaletteCommand[] = [
     {
         id: "plugins.manage",
-        title: "Manage Plugins",
-        section: "Plugins",
+        title: "プラグインを管理",
+        section: "プラグイン",
         keywords: ["plugins", "enable", "disable", "toggle"],
         icon: PlugIcon,
         page: () => ({
-            title: "Manage Plugins",
+            title: "プラグインを管理",
             icon: PlugIcon,
-            spec: { type: "list", placeholder: "Search plugins...", items: pluginItems }
+            spec: { type: "list", placeholder: "プラグインを検索...", items: pluginItems }
         })
     }
 ];

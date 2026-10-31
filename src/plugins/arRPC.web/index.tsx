@@ -49,9 +49,9 @@ export default definePlugin({
 
     settingsAboutComponent: () => (
         <>
-            <HeadingSecondary>How to use arRPC</HeadingSecondary>
+            <HeadingSecondary>arRPC の使い方</HeadingSecondary>
             <Paragraph>
-                <Link href="https://github.com/OpenAsar/arrpc/tree/main#server">Follow the instructions in the GitHub repo</Link> to get the server running, and then enable the plugin.
+                <Link href="https://github.com/OpenAsar/arrpc/tree/main#server">GitHub リポジトリの手順</Link>に従ってサーバーを起動し、このプラグインを有効にしてください。
             </Paragraph>
         </>
     ),
@@ -84,7 +84,7 @@ export default definePlugin({
 
         const connectionSuccessful = await new Promise(res => setTimeout(() => res(ws.readyState === WebSocket.OPEN), 5000)); // check if open after 5s
         if (!connectionSuccessful) {
-            showNotice("Failed to connect to arRPC, is it running?", "Retry", () => {
+            showNotice("arRPC に接続できませんでした。arRPC は起動していますか？", "再試行", () => {
                 // show notice about failure to connect, with retry/ignore
                 popNotice();
                 this.start();
@@ -92,7 +92,7 @@ export default definePlugin({
             return;
         }
 
-        showToast({ text: "Connected to arRPC", variant: "success" });
+        showToast({ text: "arRPC に接続しました", variant: "success" });
     },
 
     stop() {

@@ -110,7 +110,7 @@ function IconsTab() {
                 <TooltipContainer text="Search by function context">
                     <Button
                         size="small"
-                        aria-label="Search by function context"
+                        aria-label="関数のコンテキストで検索"
                         className="vc-icon-search-func-btn"
                         variant={searchByFunction ? "positive" : "primary"}
                         onClick={() => setSearchByFunction(!searchByFunction)}

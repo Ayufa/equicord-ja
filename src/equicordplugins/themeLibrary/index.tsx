@@ -20,7 +20,7 @@ export default definePlugin({
     authors: [EquicordDevs.Fafa],
     settings,
     toolboxActions: {
-        "Open Theme Library": () => {
+        "テーマライブラリを開く": () => {
             SettingsRouter.openUserSettings("equicord_theme_library_panel");
         },
     },
@@ -28,7 +28,7 @@ export default definePlugin({
     start() {
         SettingsPlugin.customEntries.push({
             key: "equicord_theme_library",
-            title: "Theme Library",
+            title: "テーマライブラリ",
             Component: require("./components/ThemeTab").default,
             Icon: ColorPaletteIcon
         });

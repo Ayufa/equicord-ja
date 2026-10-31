@@ -32,9 +32,9 @@ export function toggleHoverControls(value: boolean) {
 function InstallInstructions() {
     return (
         <section>
-            <HeadingSecondary>How to install</HeadingSecondary>
+            <HeadingSecondary>インストール方法</HeadingSecondary>
             <Paragraph>
-                Install <MaskedLink href="https://github.com/Inrixia/TidaLuna#installation">TidaLuna</MaskedLink> from here, then go to TidalLuna settings &rarr; Plugin stores &rarr; Install <code>@vmohammad/api</code>
+                <MaskedLink href="https://github.com/Inrixia/TidaLuna#installation">TidaLuna</MaskedLink> をこちらからインストールし、TidalLuna の設定 &rarr; Plugin stores &rarr; <code>@vmohammad/api</code> をインストールしてください
             </Paragraph>
         </section>
     );
@@ -46,7 +46,7 @@ function LyricsProviderSettings() {
 
     return (
         <>
-            <SettingsSection id="lyrics-provider" name="Lyrics Provider" description="Where lyrics are fetched from.">
+            <SettingsSection id="lyrics-provider" name="歌詞プロバイダー" description="歌詞の取得元です。">
                 <Select
                     options={[
                         { value: Provider.Lrclib, label: "LRCLIB", default: true },
@@ -55,15 +55,15 @@ function LyricsProviderSettings() {
                     isSelected={v => v === settings.store.lyricsProvider}
                     select={v => { settings.store.lyricsProvider = v as Provider; }}
                     serialize={v => v}
-                    placeholder="Select a lyrics provider"
+                    placeholder="歌詞プロバイダーを選択"
                 />
             </SettingsSection>
 
             {settings.store.lyricsProvider === Provider.Spotify && (
                 <SettingsSection
                     id="spotify-lyrics-provider"
-                    name="Spotify Lyrics API Base URL"
-                    description="Custom instance base URL (for example: http://localhost:8080)."
+                    name="Spotify 歌詞 API のベース URL"
+                    description="カスタムインスタンスのベース URL（例: http://localhost:8080）。"
                 >
                     <TextInput
                         type="text"
@@ -71,7 +71,7 @@ function LyricsProviderSettings() {
                         onChange={v => {
                             settings.store.spotifyLyricsApiUrl = v;
                             void clearLyricsCache();
-                            showToast({ text: "Lyrics cache purged", variant: "success" });
+                            showToast({ text: "歌詞キャッシュを消去しました", variant: "success" });
                         }}
                         placeholder="https://spotify-lyrics-api-pi.vercel.app"
                         maxLength={null}
@@ -80,8 +80,8 @@ function LyricsProviderSettings() {
             )}
 
             {!isLyricsServerAllowed && settings.store.lyricsProvider === Provider.Spotify && (
-                <Notice variant="warning" action={<Button size="small" variant="secondary" onClick={allowLyricsServer}>Allow Host</Button>}>
-                    Connections to {URL.parse(spotifyLyricsApiUrl.trim())?.host} are blocked. Allow this host if you trust it, then restart Discord.
+                <Notice variant="warning" action={<Button size="small" variant="secondary" onClick={allowLyricsServer}>ホストを許可</Button>}>
+                    {URL.parse(spotifyLyricsApiUrl.trim())?.host} への接続がブロックされています。信頼できる場合はこのホストを許可し、Discord を再起動してください。
                 </Notice>
             )}
         </>
@@ -124,7 +124,7 @@ export const settings = definePluginSettings({
         default: "https://spotify-lyrics-api-pi.vercel.app",
         onChange: async () => {
             await clearLyricsCache();
-            showToast({ text: "Lyrics cache purged", variant: "success" });
+            showToast({ text: "歌詞キャッシュを消去しました", variant: "success" });
         }
     },
     lyricsProviderSettings: {
@@ -137,7 +137,7 @@ export const settings = definePluginSettings({
         options: languages,
         onChange: async () => {
             await removeTranslations();
-            showToast({ text: "Translations cleared", variant: "success" });
+            showToast({ text: "翻訳をクリアしました", variant: "success" });
         }
     },
     lyricsConversion: {
@@ -173,10 +173,10 @@ export const settings = definePluginSettings({
                 variant="dangerPrimary"
                 onClick={() => {
                     clearLyricsCache();
-                    showToast({ text: "Lyrics cache purged", variant: "success" });
+                    showToast({ text: "歌詞キャッシュを消去しました", variant: "success" });
                 }}
             >
-                Purge Cache
+                キャッシュを消去
             </Button>
         ),
     },

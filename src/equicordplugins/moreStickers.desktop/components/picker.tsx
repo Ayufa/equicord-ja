@@ -443,7 +443,7 @@ export const PickerHeader = ({ onQueryChange }: PickerHeaderProps) => {
                         <TextInput
                             style={{ height: "30px", border: "none" }}
 
-                            placeholder="Search stickers"
+                            placeholder="スタンプを検索"
                             autoFocus={true}
                             value={query}
 

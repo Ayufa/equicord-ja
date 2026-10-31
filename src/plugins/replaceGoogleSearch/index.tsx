@@ -37,7 +37,7 @@ const settings = definePluginSettings({
         placeholder: "Google"
     },
     customEngineURL: {
-        displayName: "Custom Engine URL",
+        displayName: "カスタムエンジンのURL",
         description: "使用する検索エンジンのURL",
         type: OptionType.STRING,
         placeholder: "https://google.com/search?q="
@@ -76,7 +76,7 @@ function makeSearchItem(src: string) {
 
         return (
             <Menu.MenuItem
-                label={`Search with ${name}`}
+                label={`${name} で検索`}
                 key="search-custom-engine"
                 id="vc-search-custom-engine"
                 action={() => search(src, Engines[name!])}
@@ -86,7 +86,7 @@ function makeSearchItem(src: string) {
 
     return (
         <Menu.MenuItem
-            label="Search Text"
+            label="テキストを検索"
             key="search-text"
             id="vc-search-text"
             leadingAccessory={{ type: "icon", icon: SearchIcon }}

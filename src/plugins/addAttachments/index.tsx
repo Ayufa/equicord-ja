@@ -7,7 +7,6 @@
 import { ChatBarButton } from "@api/ChatButtons";
 import { ClockIcon, UploadIcon } from "@components/Icons";
 import { Devs } from "@utils/constants";
-import { pluralise } from "@utils/misc";
 import definePlugin from "@utils/types";
 import { Message } from "@vencord/discord-types";
 import { MessageFlags, MessageType } from "@vencord/discord-types/enums";
@@ -39,15 +38,15 @@ async function addAttachments(channelId: string, messageId: string, existingAtta
     if (files.length + existingAttachmentCount > 10) {
         const remaining = 10 - existingAttachmentCount;
         if (remaining <= 0) {
-            showToast({ text: "You cannot add more attachments to this message.", variant: "critical" });
+            showToast({ text: "このメッセージにはこれ以上添付ファイルを追加できません。", variant: "critical" });
             return;
         }
 
-        showToast({ text: `You can only add ${pluralise(remaining, "more attachment")} to this message.`, variant: "critical" });
+        showToast({ text: `このメッセージにはあと ${remaining} 件まで添付ファイルを追加できます。`, variant: "critical" });
         return;
     }
 
-    showToast({ text: "Uploading, this can take a while...", icon: ClockIcon, iconColor: "var(--text-default)" });
+    showToast({ text: "アップロード中です。少し時間がかかる場合があります...", icon: ClockIcon, iconColor: "var(--text-default)" });
 
     const { body: { attachments } } = await RestAPI.post({
         url: `/channels/${channelId}/attachments`,
@@ -86,7 +85,7 @@ async function addAttachments(channelId: string, messageId: string, existingAtta
         }
     });
 
-    showToast({ text: `${files.length === 1 ? "Attachment" : "Attachments"} added successfully!`, variant: "success" });
+    showToast({ text: "添付ファイルを追加しました！", variant: "success" });
 }
 
 function canAddAttachments(msg: Message) {
@@ -131,7 +130,7 @@ export default definePlugin({
             if (!channel.isPrivate() && !PermissionStore.can(PermissionsBits.SEND_MESSAGES, channel)) return null;
 
             return {
-                label: "Add Attachments",
+                label: "添付ファイルを追加",
                 icon: UploadIcon,
                 onClick: () => chooseAttachments(msg.channel_id, msg.id, msg.attachments.length)
             };
@@ -148,7 +147,7 @@ export default definePlugin({
 
             return (
                 <ChatBarButton
-                    tooltip="Add Attachments"
+                    tooltip="添付ファイルを追加"
                     onClick={() => chooseAttachments(msg.channel_id, msg.id, msg.attachments.length)}
                 >
                     <UploadIcon height={18} width={18} />

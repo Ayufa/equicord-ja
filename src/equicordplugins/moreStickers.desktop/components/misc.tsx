@@ -25,7 +25,7 @@ const mutex = new Mutex();
 
 // The ID of recent sticker and recent sticker pack
 export const RECENT_STICKERS_ID = "recent";
-export const RECENT_STICKERS_TITLE = "Recently Used";
+export const RECENT_STICKERS_TITLE = "最近使ったもの";
 
 const KEY = "MoreStickers:RecentStickers";
 
@@ -60,7 +60,7 @@ const StickerPackMetadata = ({ meta, hoveredStickerPackId, setHoveredStickerPack
                     try {
                         await deleteStickerPack(meta.id);
                         showToast({
-                            text: "Sticker Pack deleted",
+                            text: "スタンプパックを削除しました",
                             variant: "success",
                             duration: 1000
                         });
@@ -75,7 +75,7 @@ const StickerPackMetadata = ({ meta, hoveredStickerPackId, setHoveredStickerPack
                 }}
             >
                 <svg width="24" height="24" viewBox="0 0 24 24" style={{ fill: "var(--status-danger)" }}>
-                    <title>Delete</title>
+                    <title>削除</title>
                     <path d="M15 3.999V2H9V3.999H3V5.999H21V3.999H15Z" />
                     <path d="M5 6.99902V18.999C5 20.101 5.897 20.999 7 20.999H17C18.103 20.999 19 20.101 19 18.999V6.99902H5ZM11 17H9V11H11V17ZM15 17H13V11H15V17Z" />
                 </svg>
@@ -122,7 +122,7 @@ export const Packs = () => {
 
             {tab === SettingsTabsKey.ADD_STICKER_PACK_URL &&
                 <div className="section">
-                    <Heading>Add Sticker Pack from URL</Heading>
+                    <Heading>URL からスタンプパックを追加</Heading>
                     <Paragraph>
                         <p>
                             Currently LINE stickers/emojis supported only. <br />
@@ -150,9 +150,9 @@ export const Packs = () => {
                                         return true;
                                     } catch (e: any) { }
 
-                                    return "Invalid URL";
+                                    return "無効な URL です";
                                 }}
-                                placeholder="Sticker Pack URL"
+                                placeholder="スタンプパックの URL"
                             />
                         </span>
                         <Button
@@ -211,20 +211,20 @@ export const Packs = () => {
                                     });
                                 } else {
                                     showToast({
-                                        text: "Sticker Pack added",
+                                        text: "スタンプパックを追加しました",
                                         variant: "success",
                                         duration: 1000
                                     });
                                 }
 
                             }}
-                        >Insert</Button>
+                        >挿入</Button>
                     </Flex>
                 </div>
             }
             {tab === SettingsTabsKey.ADD_STICKER_PACK_HTML &&
                 <div className="section">
-                    <Heading>Add Sticker Pack from HTML</Heading>
+                    <Heading>HTML からスタンプパックを追加</Heading>
                     <Paragraph>
                         <p>
                             When encountering errors while adding a sticker pack, you can try to add it using the HTML source code of the sticker pack page.<br />
@@ -242,7 +242,7 @@ export const Packs = () => {
                             <TextArea
                                 value={addStickerHtml}
                                 onChange={setAddStickerHtml}
-                                placeholder="Paste HTML here"
+                                placeholder="HTML をここに貼り付け"
                                 rows={1}
                             />
                         </span>
@@ -283,20 +283,20 @@ export const Packs = () => {
                                     });
                                 } else {
                                     showToast({
-                                        text: "Sticker Pack added",
+                                        text: "スタンプパックを追加しました",
                                         variant: "success",
                                         duration: 1000
                                     });
                                 }
                             }}
-                        >Insert from HTML</Button>
+                        >HTML から挿入</Button>
                     </Flex>
                 </div>
             }
             {
                 tab === SettingsTabsKey.ADD_STICKER_PACK_FILE &&
                 <div className="section">
-                    <Heading>Add Sticker Pack from File</Heading>
+                    <Heading>ファイルからスタンプパックを追加</Heading>
 
                     <Button
                         size="small"
@@ -323,7 +323,7 @@ export const Packs = () => {
                                     }
 
                                     showToast({
-                                        text: "Sticker Packs added",
+                                        text: "スタンプパックを追加しました",
                                         variant: "success",
                                         duration: 1000
                                     });
@@ -339,14 +339,14 @@ export const Packs = () => {
                             input.click();
                         }}
                     >
-                        Open Sticker Pack File
+                        スタンプパックファイルを開く
                     </Button>
                 </div>
             }
             {
                 tab === SettingsTabsKey.MISC &&
                 <div className="section">
-                    <Heading>Misc tools</Heading>
+                    <Heading>その他のツール</Heading>
 
                     <Flex flexDirection="row" style={{
                         alignItems: "center",
@@ -372,12 +372,12 @@ export const Packs = () => {
                                 setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
 
                                 showToast({
-                                    text: "Sticker Packs exported",
+                                    text: "スタンプパックをエクスポートしました",
                                     variant: "success",
                                     duration: 1000
                                 });
                             }}
-                        >Export Sticker Packs</Button>
+                        >スタンプパックをエクスポート</Button>
                         <Button
                             size="small"
                             onClick={async e => {
@@ -386,7 +386,7 @@ export const Packs = () => {
                             style={{
                                 display: _isV1 ? "unset" : "none"
                             }}
-                        >Migrate from v1</Button>
+                        >v1 から移行</Button>
                     </Flex>
                 </div>
             }
@@ -394,7 +394,7 @@ export const Packs = () => {
                 marginTop: "8px",
                 marginBottom: "8px"
             }} />
-            <Heading>Stickers Management</Heading>
+            <Heading>スタンプ管理</Heading>
 
             <div className="section">
                 <div style={{

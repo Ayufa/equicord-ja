@@ -45,7 +45,7 @@ const patchChannelContextMenu: NavContextMenuPatchCallback = (children, { channe
     children.push(
         <Menu.MenuItem
             id="vc-view-voice-channel-logs"
-            label="View Voice Channel Logs"
+            label="ボイスチャンネルのログを表示"
             action={() => openVoiceChannelLog(channel)}
         />
     );
@@ -63,7 +63,7 @@ export default definePlugin({
     },
 
     toolboxActions: {
-        "Voice Channel Logs"() {
+        "ボイスチャンネルのログ"() {
             const channelId = SelectedChannelStore.getVoiceChannelId();
             if (!channelId) return;
             const channel = ChannelStore.getChannel(channelId);
@@ -221,7 +221,7 @@ export default definePlugin({
             if (app) {
                 logWithName(app.name);
             } else {
-                fetchApplication(appId).then(fetched => logWithName(fetched?.name ?? "Unknown activity")).catch(() => logWithName("Unknown activity"));
+                fetchApplication(appId).then(fetched => logWithName(fetched?.name ?? "不明なアクティビティ")).catch(() => logWithName("不明なアクティビティ"));
             }
         },
 

@@ -38,7 +38,7 @@ export function SetTimezoneModal({ userId, modalProps, database }: { userId: str
 
     const actions = [
         {
-            text: "Save",
+            text: "保存",
             variant: "primary",
             disabled: currentValue === null,
             onClick: async () => {
@@ -58,7 +58,7 @@ export function SetTimezoneModal({ userId, modalProps, database }: { userId: str
 
     if (!database) {
         actions.unshift({
-            text: "Delete Timezone",
+            text: "タイムゾーンを削除",
             variant: "dangerPrimary",
             disabled: false,
             onClick: async () => {
@@ -72,18 +72,18 @@ export function SetTimezoneModal({ userId, modalProps, database }: { userId: str
         <Modal
             {...modalProps}
             size="sm"
-            title="Timezones"
+            title="タイムゾーン"
             actions={actions}
         >
             <section className={Margins.bottom16}>
                 <HeadingSecondary>
-                    Select Timezone
+                    タイムゾーンを選択
                 </HeadingSecondary>
 
                 <SearchableSelect
                     options={options}
                     value={options.find(o => o.value === currentValue)?.value}
-                    placeholder={"Select a Timezone"}
+                    placeholder={"タイムゾーンを選択"}
                     maxVisibleItems={5}
                     closeOnSelect={true}
                     onChange={v => setCurrentValue(v)}

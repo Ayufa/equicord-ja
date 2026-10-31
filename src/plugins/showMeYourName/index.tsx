@@ -792,8 +792,8 @@ function renderUsername(
     if (!outputs.length) {
         outputs.push({
             prefix: "",
-            name: username || "Unknown",
-            wrapped: username || "Unknown",
+            name: username || "不明",
+            wrapped: username || "不明",
             suffix: "",
             style: resolvedUsernameColor
         });
@@ -1113,10 +1113,10 @@ function CustomNicknameModal({ modalProps, user }: { modalProps: RenderModalProp
         <Modal
             {...modalProps}
             size="sm"
-            title={customNicknames[user.id] ? "Change SMYN Nickname" : "Add SMYN Nickname"}
+            title={customNicknames[user.id] ? "SMYNニックネームを変更" : "SMYNニックネームを追加"}
             actions={[
                 {
-                    text: "Save",
+                    text: "保存",
                     variant: "primary",
                     onClick: async () => {
                         const trimmed = value.trim().slice(0, 32).trim();
@@ -1133,18 +1133,18 @@ function CustomNicknameModal({ modalProps, user }: { modalProps: RenderModalProp
                     }
                 },
                 {
-                    text: "Cancel",
+                    text: "キャンセル",
                     variant: "secondary",
                     onClick: modalProps.onClose
                 }
             ]}
         >
             <Heading tag="h3" style={{ marginBottom: 8, fontSize: "16px", fontWeight: "400", lineHeight: "1.25", color: "var(--text-subtle)" }}>
-                {"Set a custom SMYN nickname for this user. Make use of it by specifying {custom} in the SMYN template settings."}
+                {"このユーザー用のカスタムSMYNニックネームを設定します。SMYNのテンプレート設定で {custom} を指定することで利用できます。"}
             </Heading>
             <div style={{ paddingTop: "10px", flexGrow: 0 }}></div>
             <Heading tag="h3" style={{ marginBottom: 8, fontSize: "14px", fontWeight: 600 }}>
-                SMYN Nickname
+                SMYNニックネーム
             </Heading>
             <TextInput
                 value={value}
@@ -1162,7 +1162,7 @@ function CustomNicknameModal({ modalProps, user }: { modalProps: RenderModalProp
                     triggerNameRerender();
                 }}
             >
-                Reset SMYN Nickname
+                SMYNニックネームをリセット
             </TextButton>
             <div style={{ paddingTop: "10px", flexGrow: 0 }}></div>
         </Modal>
@@ -1181,7 +1181,7 @@ const userContextPatch: NavContextMenuPatchCallback = (children, { user }) => {
     (group || children).push(
         <Menu.MenuItem
             id="smyn-custom-nickname"
-            label={customNicknames[user.id] ? "Change SMYN Nickname" : "Add SMYN Nickname"}
+            label={customNicknames[user.id] ? "SMYNニックネームを変更" : "SMYNニックネームを追加"}
             action={() => openModal(props => (
                 <ErrorBoundary>
                     <CustomNicknameModal modalProps={props} user={user} />
@@ -1299,7 +1299,7 @@ const settings = definePluginSettings({
     alwaysAnimateEffects: {
         type: OptionType.BOOLEAN,
         default: false,
-        displayName: "Always Animate Effects",
+        displayName: "エフェクトを常にアニメーション表示",
         description: "ホバーしなくても、表示名エフェクトが表示される場面では強制的にアニメーションさせる。",
     },
     gradientGlow: {

@@ -94,9 +94,9 @@ function RoleMembersList({ roleId, guildId, closePopout, setPopoutRef }: { roleI
             </div>
             <ScrollerThin className={cl("list")} fade>
                 {loading ? (
-                    <div className={cl("empty")}>Loading members...</div>
+                    <div className={cl("empty")}>メンバーを読み込み中...</div>
                 ) : users.length === 0 ? (
-                    <div className={cl("empty")}>No members found.</div>
+                    <div className={cl("empty")}>メンバーが見つかりません。</div>
                 ) : users.map(user => (
                     <div
                         key={user.id}

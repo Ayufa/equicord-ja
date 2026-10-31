@@ -22,7 +22,7 @@ export const EmojiURLRegex = /^https:\/\/cdn\.discordapp\.com\/emojis\/(\d+)\.\w
 export const formatEmojiURL = (emoji: Emoji, size: number) => `${location.protocol}//${window.GLOBAL_ENV.CDN_HOST}/emojis/${emoji.id}.webp?size=${size}&lossless=true&animated=true`;
 
 export const buildCloneEmojiItem = (emoji: Emoji) =>
-    buildCloneItem("Emoji", () => openEmojiUploadModal(formatEmojiURL(emoji, 128), emoji.name));
+    buildCloneItem("絵文字", () => openEmojiUploadModal(formatEmojiURL(emoji, 128), emoji.name));
 
 export const editEmoji = (emoji: Emoji, guildId: string) =>
     openEmojiStudioModal({
@@ -63,7 +63,7 @@ export async function openEmojiUploadModal(url: string, filename?: string) {
         });
     } catch (e) {
         logger.error("Failed to open Emoji Modal", e);
-        showToast({ text: `Failed to open Emoji Modal: ${e}`, variant: "critical" });
+        showToast({ text: `絵文字モーダルを開けませんでした: ${e}`, variant: "critical" });
     }
 }
 

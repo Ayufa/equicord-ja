@@ -74,7 +74,7 @@ export const useAuthorizationStore = proxyLazy(() => zustandCreate(
                                 resolve(void 0);
                             } catch (e) {
                                 if (e instanceof Error) {
-                                    showToast({ text: `Failed to authorize: ${e.message}`, variant: "critical" });
+                                    showToast({ text: `認可に失敗しました: ${e.message}`, variant: "critical" });
                                     new Logger("Decor").error("Failed to authorize", e);
                                     reject(e);
                                 }

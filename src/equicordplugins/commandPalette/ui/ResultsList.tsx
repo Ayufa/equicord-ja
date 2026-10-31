@@ -96,7 +96,7 @@ export function ResultsList({ sections, selectedIndex, onSelect, onRun }: Result
                 </div>
             ))}
             {sections.length === 0 && (
-                <div className={cl("empty")}>No results</div>
+                <div className={cl("empty")}>結果がありません</div>
             )}
         </div>
     );

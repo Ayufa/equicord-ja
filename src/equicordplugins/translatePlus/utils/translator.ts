@@ -96,7 +96,7 @@ async function google(target: string, text: string) {
         };
     } catch (error) {
         console.error("[TranslatePlus] Google Translate request failed:", error);
-        return { src: "en", text: "Translation failed due to an error." };
+        return { src: "en", text: "エラーにより翻訳に失敗しました。" };
     }
 }
 

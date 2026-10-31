@@ -103,7 +103,7 @@ export default function AudioPlayer({ audioRef, list, playing, setPlaying, setLo
                 node.currentTime = audio.previewStart ? audio.previewStart / 1000 : 0;
                 node.volume = BASE_VOLUME * (settings.store.previewVolume / 100);
                 node.play().catch(error => {
-                    showToast({ text: "Failed to play song preview!", variant: "critical" });
+                    showToast({ text: "曲のプレビューの再生に失敗しました！", variant: "critical" });
                     logger.error("Failed to play audio", error);
                     setPlaying(undefined);
                 });

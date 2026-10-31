@@ -20,19 +20,19 @@ export const settings = definePluginSettings({
         type: OptionType.COMPONENT,
         component({ closePluginSettings }) {
             if (!DecorPlugin.started) return <Paragraph>
-                Enable Decor and restart your client to change your avatar decoration.
+                アバターのデコレーションを変更するには、Decor を有効にしてクライアントを再起動してください。
             </Paragraph>;
 
             return <div>
                 <DecorSection hideTitle hideDivider noMargin />
                 <Paragraph className={classes(Margins.top8, Margins.bottom8)}>
-                    You can also access Decor decorations from the <TextButton
+                    Decor のデコレーションには、<TextButton
                         variant="link"
                         onClick={async () => {
                             closePluginSettings();
                             SettingsRouter.openUserSettings("profile_panel");
                         }}
-                    >Profiles</TextButton> page.
+                    >プロフィール</TextButton>ページからもアクセスできます。
                 </Paragraph>
             </div>;
         }

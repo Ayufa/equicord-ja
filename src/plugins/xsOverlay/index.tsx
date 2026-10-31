@@ -104,7 +104,7 @@ const settings = definePluginSettings({
     },
     preferUDP: {
         type: OptionType.BOOLEAN,
-        displayName: "Prefer UDP",
+        displayName: "UDPを優先",
         description: "WebSocket で接続できない古いビルドの XSOverlay を使う場合は有効にする。Web ではこの設定は無視されます。",
         default: false,
         disabled: () => IS_WEB
@@ -121,13 +121,13 @@ const settings = definePluginSettings({
     },
     dmNotifications: {
         type: OptionType.BOOLEAN,
-        displayName: "DM Notifications",
+        displayName: "DMの通知",
         description: "DM の通知を許可する",
         default: true
     },
     groupDmNotifications: {
         type: OptionType.BOOLEAN,
-        displayName: "Group DM Notifications",
+        displayName: "グループDMの通知",
         description: "グループ DM の通知を許可する",
         default: true
     },
@@ -202,7 +202,7 @@ export default definePlugin({
         CALL_UPDATE({ call }: { call: Call; }) {
             if (call?.ringing?.includes(UserStore.getCurrentUser().id) && settings.store.callNotifications) {
                 const channel = ChannelStore.getChannel(call.channel_id);
-                sendOtherNotif("Incoming call", `${channel.name} is calling you...`);
+                sendOtherNotif("着信", `${channel.name} さんがあなたを呼んでいます...`);
             }
         },
         MESSAGE_CREATE({ message, optimistic }: { message: Message; optimistic: boolean; }) {
@@ -310,7 +310,7 @@ export default definePlugin({
     settingsAboutComponent: () => (
         <>
             <Button onClick={() => sendOtherNotif("This is a test notification! explode", "Hello from Vendor!")}>
-                Send test notification
+                テスト通知を送信
             </Button>
         </>
     )

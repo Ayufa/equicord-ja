@@ -48,11 +48,11 @@ function AutoTranslateConfirmModal(props: RenderModalProps) {
     return (
         <ConfirmModal
             {...props}
-            title="Vencord Auto-Translate Enabled"
-            subtitle="You just enabled Auto Translate! Any message will automatically be translated before being sent."
-            confirmText="Disable Auto-Translate"
+            title="Vencordの自動翻訳が有効になりました"
+            subtitle="自動翻訳を有効にしました！すべてのメッセージは送信前に自動で翻訳されます。"
+            confirmText="自動翻訳を無効にする"
             onConfirm={() => settings.store.autoTranslate = false}
-            cancelText="Got it"
+            cancelText="OK"
             variant="primary"
             checkboxProps={{
                 checked: s.dismissedAutoTranslateAlert === true,
@@ -82,7 +82,7 @@ export const TranslateChatBarIcon: ChatBarButtonFactory = ({ isMainChat }) => {
 
     const button = (
         <ChatBarButton
-            tooltip="Open Translate Modal"
+            tooltip="翻訳モーダルを開く"
             onClick={e => {
                 if (e.shiftKey) return toggle();
                 else openTranslateModal();
@@ -98,7 +98,7 @@ export const TranslateChatBarIcon: ChatBarButtonFactory = ({ isMainChat }) => {
 
     if (shouldShowTranslateEnabledTooltip && settings.store.showAutoTranslateTooltip)
         return (
-            <TooltipContainer text="Auto Translate Enabled" forceOpen>
+            <TooltipContainer text="自動翻訳が有効です" forceOpen>
                 {button}
             </TooltipContainer>
         );

@@ -43,14 +43,14 @@ function ScheduleTimeModalInner({ channelId, content, attachments, rootProps, cl
         if (scheduleType === "delay") {
             const minutes = parseInt(delayMinutes, 10);
             if (isNaN(minutes) || minutes < 1) {
-                setError("Please enter a valid delay (minimum 1 minute)");
+                setError("有効な遅延を入力してください（最低1分）");
                 return;
             }
             scheduledTime = Date.now() + minutes * 60 * 1000;
         } else {
             const dateTime = new Date(scheduledDateTime).getTime();
             if (isNaN(dateTime) || dateTime <= Date.now()) {
-                setError("Please select a future date and time");
+                setError("未来の日時を選択してください");
                 return;
             }
             scheduledTime = dateTime;
@@ -61,10 +61,10 @@ function ScheduleTimeModalInner({ channelId, content, attachments, rootProps, cl
         if (result.success) {
             ComponentDispatch.dispatchToLastSubscribed("CLEAR_TEXT");
             UploadManager.clearAll(channelId, DraftType.ChannelMessage);
-            showToast({ text: "Message scheduled!", variant: "success" });
+            showToast({ text: "メッセージを予約しました！", variant: "success" });
             close();
         } else {
-            setError(result.error ?? "Failed to schedule message");
+            setError(result.error ?? "メッセージの予約に失敗しました");
         }
     };
 
@@ -72,15 +72,15 @@ function ScheduleTimeModalInner({ channelId, content, attachments, rootProps, cl
         <Modal
             {...rootProps}
             size="sm"
-            title="Schedule Message"
+            title="メッセージを予約"
             actions={[
                 {
-                    text: "Schedule",
+                    text: "予約する",
                     variant: "primary",
                     onClick: handleSchedule
                 },
                 {
-                    text: "Cancel",
+                    text: "キャンセル",
                     variant: "secondary",
                     onClick: close
                 }
@@ -89,31 +89,31 @@ function ScheduleTimeModalInner({ channelId, content, attachments, rootProps, cl
             <div className={cl("channel-info")}>
                 {avatar && <img src={avatar} className={cl("channel-avatar")} alt="" />}
                 <span className={cl("channel-text")}>
-                    Scheduling for: <strong>{isDM ? name : `#${name}`}</strong>
+                    予約先：<strong>{isDM ? name : `#${name}`}</strong>
                 </span>
             </div>
 
-            <Heading tag="h5" className={cl("field-label")}>Schedule Type</Heading>
+            <Heading tag="h5" className={cl("field-label")}>予約タイプ</Heading>
             <div className={cl("schedule-type-buttons")}>
                 <Button
                     size="small"
                     variant={scheduleType === "delay" ? "primary" : "secondary"}
                     onClick={() => setScheduleType("delay")}
                 >
-                    Delay
+                    遅延
                 </Button>
                 <Button
                     size="small"
                     variant={scheduleType === "time" ? "primary" : "secondary"}
                     onClick={() => setScheduleType("time")}
                 >
-                    Specific Time
+                    日時を指定
                 </Button>
             </div>
 
             {scheduleType === "delay" ? (
                 <>
-                    <Heading tag="h5" className={cl("field-label")}>Delay (minutes)</Heading>
+                    <Heading tag="h5" className={cl("field-label")}>遅延（分）</Heading>
                     <TextInput
                         value={delayMinutes}
                         onChange={setDelayMinutes}
@@ -123,7 +123,7 @@ function ScheduleTimeModalInner({ channelId, content, attachments, rootProps, cl
                 </>
             ) : (
                 <>
-                    <Heading tag="h5" className={cl("field-label")}>Date & Time</Heading>
+                    <Heading tag="h5" className={cl("field-label")}>日時</Heading>
                     <input
                         type="datetime-local"
                         className={cl("datetime-input")}

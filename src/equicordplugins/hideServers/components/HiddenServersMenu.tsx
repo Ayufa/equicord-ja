@@ -21,7 +21,7 @@ const IconClasses = findCssClassesLazy("icon", "acronym", "childWrapper");
 function HiddenServersModal({ modalProps, close }: { modalProps: RenderModalProps; close(): void; }) {
     const guilds = useStateFromStores([HiddenServersStore], () => HiddenServersStore.hiddenGuildsDetail());
     return (
-        <Modal {...modalProps} size="lg" title="Hidden Servers">
+        <Modal {...modalProps} size="lg" title="非表示のサーバー">
             <HiddenServersMenu guilds={guilds} />
         </Modal>
     );
@@ -132,7 +132,7 @@ export function HiddenServersMenu({ guilds }: { guilds: Guild[]; }) {
             );
         })}
 
-        <BaseText size="sm" weight="medium">Guilds</BaseText>
+        <BaseText size="sm" weight="medium">サーバー</BaseText>
         {guildsWithoutFolder.map(guild => (
             <GuildRow
                 key={guild.id}
@@ -140,7 +140,7 @@ export function HiddenServersMenu({ guilds }: { guilds: Guild[]; }) {
             />
         ))}
 
-        {hiddenGuilds.length === 0 && <BaseText size="sm" weight="medium">No hidden servers</BaseText>}
+        {hiddenGuilds.length === 0 && <BaseText size="sm" weight="medium">非表示のサーバーはありません</BaseText>}
     </div>;
 }
 

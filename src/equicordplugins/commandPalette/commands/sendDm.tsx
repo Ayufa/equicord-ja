@@ -50,29 +50,29 @@ async function resolveDmChannel(userId: string): Promise<string | null> {
 
 export const sendDmCommand: PaletteCommand = {
     id: "messaging.sendDm",
-    title: "Send DM",
-    section: "Messaging",
+    title: "DMを送信",
+    section: "メッセージ",
     keywords: ["dm", "message", "send", "direct message"],
     icon: SendIcon,
     page: () => ({
-        title: "Send DM",
+        title: "DMを送信",
         icon: SendIcon,
         spec: {
             type: "form",
-            submitLabel: "Send DM",
+            submitLabel: "DMを送信",
             fields: [
-                { key: "recipient", label: "Recipient", type: "picker", placeholder: "Search friends...", suggestions: friendOptions },
-                { key: "message", label: "Message", type: "textarea", placeholder: "Message content", markdown: true, attachments: true },
+                { key: "recipient", label: "宛先", type: "picker", placeholder: "フレンドを検索...", suggestions: friendOptions },
+                { key: "message", label: "メッセージ", type: "textarea", placeholder: "メッセージ内容", markdown: true, attachments: true },
             ],
             validate(values, extras?: FormSubmitExtras) {
-                if (!UserStore.getUser(values.recipient)) return "Pick a recipient from the suggestions.";
+                if (!UserStore.getUser(values.recipient)) return "候補から宛先を選んでください。";
                 const files = extras?.files?.message ?? [];
-                if (!values.message.trim() && files.length === 0) return "Add a message or a file.";
+                if (!values.message.trim() && files.length === 0) return "メッセージまたはファイルを追加してください。";
                 return null;
             },
             async submit(values, ctx, extras) {
                 const channelId = await resolveDmChannel(values.recipient);
-                if (!channelId) throw new Error("Unable to open a DM with that user.");
+                if (!channelId) throw new Error("そのユーザーとのDMを開けませんでした。");
 
                 const files = extras?.files?.message ?? [];
                 const uploads = files.map(file => new CloudUploader({ file, platform: CloudUploadPlatform.WEB }, channelId));
@@ -82,7 +82,7 @@ export const sendDmCommand: PaletteCommand = {
                 });
 
                 const user = UserStore.getUser(values.recipient);
-                showToast({ text: `Message sent to ${user.globalName || user.username}.`, variant: "success" });
+                showToast({ text: `${user.globalName || user.username} にメッセージを送信しました。`, variant: "success" });
                 ctx.close();
             }
         }

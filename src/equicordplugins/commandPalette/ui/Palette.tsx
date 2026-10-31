@@ -40,7 +40,7 @@ function commandToRow(command: PaletteCommand): RowItem | null {
         ? [
             {
                 id: `${command.id}.open`,
-                label: "Open Command",
+                label: "コマンドを開く",
                 icon: command.icon,
                 keepOpen: true,
                 run: context => context.push(page())
@@ -64,7 +64,7 @@ function commandToRow(command: PaletteCommand): RowItem | null {
         accessory: (
             <>
                 {alias && <span className={cl("alias-chip")}>{alias}</span>}
-                {hotkey ? <Shortcut combo={hotkey} /> : <span className={cl("row-kind")}>Command</span>}
+                {hotkey ? <Shortcut combo={hotkey} /> : <span className={cl("row-kind")}>コマンド</span>}
             </>
         )
     };
@@ -87,9 +87,9 @@ function calculatorRow(query: string): RowItem | null {
     const expression = query.trim();
     const copyAction: PaletteAction = {
         id: "calculator.copy",
-        label: "Copy Answer",
+        label: "答えをコピー",
         icon: CopyIcon,
-        run: () => copyWithToast(result.plain, "Answer copied to clipboard.")
+        run: () => copyWithToast(result.plain, "答えをクリップボードにコピーしました。")
     };
 
     return {
@@ -97,29 +97,29 @@ function calculatorRow(query: string): RowItem | null {
         label: result.formatted,
         sublabel: `${expression} =`,
         icon: CalculatorIcon,
-        accessory: <span className={cl("row-kind")}>Calculator</span>,
+        accessory: <span className={cl("row-kind")}>電卓</span>,
         actions: [
             copyAction,
             {
                 id: "calculator.details",
-                label: "Open Details",
+                label: "詳細を開く",
                 icon: CalculatorIcon,
                 keepOpen: true,
                 run: context => context.push({
-                    title: "Calculator",
+                    title: "電卓",
                     icon: CalculatorIcon,
                     spec: {
                         type: "detail",
                         heading: result.formatted,
                         rows: [
-                            { label: "Expression", value: expression },
-                            { label: "Result", value: result.plain }
+                            { label: "式", value: expression },
+                            { label: "結果", value: result.plain }
                         ],
                         actions: [copyAction, {
                             id: "calculator.copyExpression",
-                            label: "Copy Expression",
+                            label: "式をコピー",
                             icon: CopyIcon,
-                            run: () => copyWithToast(`${expression} = ${result.plain}`, "Calculation copied to clipboard.")
+                            run: () => copyWithToast(`${expression} = ${result.plain}`, "計算結果をクリップボードにコピーしました。")
                         }]
                     }
                 })
@@ -215,7 +215,7 @@ export function Palette({ onClose, initialPage }: PaletteProps) {
 
         if (trimmed) {
             const calc = calculatorRow(query);
-            if (calc) sections.push({ label: "Calculator", items: [calc] });
+            if (calc) sections.push({ label: "電卓", items: [calc] });
 
             const ranked = rankCommands(trimmed, commands)
                 .map(entry => ({ row: commandToRow(entry.command), section: entry.command.section }))
@@ -230,7 +230,7 @@ export function Palette({ onClose, initialPage }: PaletteProps) {
                 .filter((c): c is PaletteCommand => c != null)
                 .map(c => { shown.add(c.id); return commandToRow(c); })
                 .filter((row): row is RowItem => row !== null);
-            if (pinnedRows.length) sections.push({ label: "Pinned", items: pinnedRows });
+            if (pinnedRows.length) sections.push({ label: "ピン留め", items: pinnedRows });
 
             const suggestionRows = topFrecent(SUGGESTION_LIMIT + shown.size)
                 .map(id => byId.get(id))
@@ -238,7 +238,7 @@ export function Palette({ onClose, initialPage }: PaletteProps) {
                 .slice(0, SUGGESTION_LIMIT)
                 .map(c => { shown.add(c.id); return commandToRow(c); })
                 .filter((row): row is RowItem => row !== null);
-            if (suggestionRows.length) sections.push({ label: "Suggestions", items: suggestionRows });
+            if (suggestionRows.length) sections.push({ label: "候補", items: suggestionRows });
 
             const rest = commands
                 .filter(c => !shown.has(c.id))
@@ -300,27 +300,27 @@ export function Palette({ onClose, initialPage }: PaletteProps) {
             ...base,
             {
                 id: "builtin.pin",
-                label: isPinned(commandId) ? "Unpin Command" : "Pin Command",
+                label: isPinned(commandId) ? "コマンドのピン留めを外す" : "コマンドをピン留め",
                 icon: PinIcon,
                 keepOpen: true,
                 run: () => togglePin(commandId)
             },
             {
                 id: "builtin.alias",
-                label: "Set Alias",
+                label: "エイリアスを設定",
                 icon: PencilIcon,
                 keepOpen: true,
                 run: context => context.push({
-                    title: "Set Alias",
+                    title: "エイリアスを設定",
                     icon: PencilIcon,
                     spec: {
                         type: "form",
-                        submitLabel: "Save Alias",
+                        submitLabel: "エイリアスを保存",
                         fields: [{
                             key: "alias",
                             label: `Alias for ${selectedRow.label}`,
                             type: "text",
-                            placeholder: "Leave empty to remove",
+                            placeholder: "空欄にすると削除されます",
                             initial: getAlias(commandId) ?? ""
                         }],
                         submit(values, context) {
@@ -332,7 +332,7 @@ export function Palette({ onClose, initialPage }: PaletteProps) {
             },
             {
                 id: "builtin.hotkey",
-                label: getHotkey(commandId) ? "Change Hotkey" : "Record Hotkey",
+                label: getHotkey(commandId) ? "ホットキーを変更" : "ホットキーを記録",
                 icon: KeyboardIcon,
                 keepOpen: true,
                 run: () => setRecordingFor(commandId)
@@ -475,13 +475,13 @@ export function Palette({ onClose, initialPage }: PaletteProps) {
     const primaryLabel = recordingFor
         ? null
         : pageType === "form"
-            ? (currentPage?.spec.type === "form" ? currentPage.spec.submitLabel ?? "Submit" : null)
+            ? (currentPage?.spec.type === "form" ? currentPage.spec.submitLabel ?? "送信" : null)
             : pageType === "detail"
                 ? (currentPage?.spec.type === "detail" ? currentPage.spec.actions?.[0]?.label ?? null : null)
                 : selectedRow?.actions[0]?.label ?? null;
 
     const footerHint = recordingFor
-        ? "Press a key combo, Backspace to clear, Esc to cancel"
+        ? "キーの組み合わせを押してください。Backspace でクリア、Esc でキャンセル"
         : currentPage?.title ?? "Equicord";
 
     return (
@@ -520,8 +520,8 @@ export function Palette({ onClose, initialPage }: PaletteProps) {
                             className={cl("input")}
                             value={query}
                             placeholder={currentPage?.spec.type === "list"
-                                ? currentPage.spec.placeholder ?? `Search ${currentPage.title.toLowerCase()}...`
-                                : "Search for commands..."}
+                                ? currentPage.spec.placeholder ?? `${currentPage.title}を検索...`
+                                : "コマンドを検索..."}
                             onChange={e => ctx.setQuery(e.target.value)}
                             onMouseDown={e => e.stopPropagation()}
                             onBlur={() => {

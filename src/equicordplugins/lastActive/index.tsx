@@ -33,17 +33,17 @@ async function findLastMessageFromUser(guildId: string, channelId: string, userI
         if (messageId) return messageId;
     } catch (error) {
         console.error("Error finding last message:", error);
-        showToast({ text: "Failed to find messages. Check console for details.", variant: "critical" });
+        showToast({ text: "メッセージが見つかりませんでした。詳細はコンソールを確認してください。", variant: "critical" });
         return null;
     }
 
-    showToast({ text: "Couldn't find any recent messages from this user.", variant: "critical" });
+    showToast({ text: "このユーザーの最近のメッセージが見つかりませんでした。", variant: "critical" });
     return null;
 }
 
 async function jumpToLastActive(channel: Channel, targetUserId?: string) {
     if (!channel) {
-        showToast({ text: "Channel information not available.", variant: "critical" });
+        showToast({ text: "チャンネル情報を利用できません。", variant: "critical" });
         return;
     }
 
@@ -57,7 +57,7 @@ async function jumpToLastActive(channel: Channel, targetUserId?: string) {
         }
     } catch (error) {
         console.error("Error in jumpToLastActive:", error);
-        showToast({ text: "Failed to jump to message. Check console for details.", variant: "critical" });
+        showToast({ text: "メッセージへの移動に失敗しました。詳細はコンソールを確認してください。", variant: "critical" });
     }
 }
 
@@ -65,7 +65,7 @@ const ChannelContextMenuPatch: NavContextMenuPatchCallback = (children, { channe
     children.push(
         <Menu.MenuItem
             id="LastActive"
-            label={<span style={{ color: "#aa6746" }}>Your Last Message</span>}
+            label={<span style={{ color: "#aa6746" }}>あなたの最後のメッセージ</span>}
             icon={LastActiveIcon}
             leadingAccessory={{ type: "icon", icon: LastActiveIcon }}
             action={() => {
@@ -81,7 +81,7 @@ const UserContextMenuPatch: NavContextMenuPatchCallback = (children, { user, cha
     children.push(
         <Menu.MenuItem
             id="LastActive"
-            label={<span style={{ color: "#aa6746" }}>User's Last Message</span>}
+            label={<span style={{ color: "#aa6746" }}>ユーザーの最後のメッセージ</span>}
             icon={UserLastActiveIcon}
             leadingAccessory={{ type: "icon", icon: UserLastActiveIcon }}
             action={() => {

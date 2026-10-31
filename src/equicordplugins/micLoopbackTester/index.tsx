@@ -99,7 +99,7 @@ function MicLoopbackButton({ iconForeground, hideTooltips, nameplate }: UserArea
 
     return (
         <UserAreaButton
-            tooltipText={hideTooltips ? void 0 : "Mic Test Loopback"}
+            tooltipText={hideTooltips ? void 0 : "マイクテストのループバック"}
             icon={<MicLoopbackIcon active={loopbackActive} className={iconForeground} />}
             role="switch"
             aria-checked={!loopbackActive}

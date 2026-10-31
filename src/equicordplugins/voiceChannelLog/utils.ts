@@ -45,7 +45,7 @@ export function formatElapsedTime(startTime: Date | null, eventTime: Date): stri
     const hours = Math.floor(totalMinutes / 60);
     const minutes = totalMinutes % 60;
 
-    if (hours > 0) return `${hours}h ${minutes}m into the call`;
-    if (minutes > 0) return `${minutes}m into the call`;
-    return "start of call";
+    if (hours > 0) return `通話開始から${hours}時間${minutes}分`;
+    if (minutes > 0) return `通話開始から${minutes}分`;
+    return "通話開始時";
 }

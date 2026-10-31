@@ -53,11 +53,11 @@ function openCategoryMenu(e: React.MouseEvent, category: Category) {
             navId="vc-pindms-header-menu"
             onClose={() => FluxDispatcher.dispatch({ type: "CONTEXT_MENU_CLOSE" })}
             color="danger"
-            aria-label="Pin DMs Category Menu"
+            aria-label="DMピン留めカテゴリー メニュー"
         >
             <Menu.MenuItem
                 id="vc-pindms-edit-category"
-                label="Edit Category"
+                label="カテゴリーを編集"
                 action={() => openCategoryModal(category.id, null)}
             />
 
@@ -67,14 +67,14 @@ function openCategoryMenu(e: React.MouseEvent, category: Category) {
                         {
                             canMoveCategoryInDirection(category.id, -1) && <Menu.MenuItem
                                 id="vc-pindms-move-category-up"
-                                label="Move Up"
+                                label="上へ移動"
                                 action={() => moveCategory(category.id, -1)}
                             />
                         }
                         {
                             canMoveCategoryInDirection(category.id, 1) && <Menu.MenuItem
                                 id="vc-pindms-move-category-down"
-                                label="Move Down"
+                                label="下へ移動"
                                 action={() => moveCategory(category.id, 1)}
                             />
                         }
@@ -87,7 +87,7 @@ function openCategoryMenu(e: React.MouseEvent, category: Category) {
             <Menu.MenuItem
                 id="vc-pindms-delete-category"
                 color="danger"
-                label="Delete Category"
+                label="カテゴリーを削除"
                 action={() => removeCategory(category.id)}
             />
 

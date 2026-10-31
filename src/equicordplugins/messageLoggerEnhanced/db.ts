@@ -275,7 +275,7 @@ export async function clearMessagesIDB(toast = true) {
 
     if (!toast) return;
 
-    showToast({ text: "Cleared message log database and cache." });
+    showToast({ text: "メッセージログのデータベースとキャッシュをクリアしました" });
 }
 
 // faster than db.clear on large dbs

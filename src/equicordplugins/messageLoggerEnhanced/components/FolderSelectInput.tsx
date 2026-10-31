@@ -43,8 +43,8 @@ function createDirSelector(settingKey: "logsDir" | "imageCacheDir", successMessa
     };
 }
 
-export const ImageCacheDir = createDirSelector("imageCacheDir", "Successfully updated Image Cache Dir");
-export const LogsDir = createDirSelector("logsDir", "Successfully updated Logs Dir");
+export const ImageCacheDir = createDirSelector("imageCacheDir", "画像キャッシュフォルダーを更新しました");
+export const LogsDir = createDirSelector("logsDir", "ログフォルダーを更新しました");
 
 interface Props {
     settingsKey: "imageCacheDir" | "logsDir",
@@ -67,21 +67,21 @@ export function SelectFolderInput({ settingsKey, successMessage }: Props) {
 
             return showToast({ text: successMessage, variant: "success" });
         } catch (err) {
-            showToast({ text: "Failed to update directory", variant: "critical" });
+            showToast({ text: "フォルダーの更新に失敗しました", variant: "critical" });
         }
     }
 
     return (
         <div className={classes(cl("folder-upload-container"), inputClasses.input)}>
             <div onClick={() => copyWithToast(path)} className={cl("folder-upload-input")}>
-                {path == null || path === DEFAULT_IMAGE_CACHE_DIR ? "Choose Folder" : getDirName(path)}
+                {path == null || path === DEFAULT_IMAGE_CACHE_DIR ? "フォルダーを選択" : getDirName(path)}
             </div>
             <Button
                 className={cl("folder-upload-button")}
                 size="small"
                 onClick={onFolderSelect}
             >
-                Browse
+                参照
             </Button>
         </div >
     );

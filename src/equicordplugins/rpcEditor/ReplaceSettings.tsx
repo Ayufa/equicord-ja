@@ -32,10 +32,10 @@ export function ReplaceTutorial() {
     const activities: Activity[] = PresenceStore.getActivities(UserStore.getCurrentUser().id);
     return (
         <>
-            <HeadingSecondary>IDs of currently running activities</HeadingSecondary>
+            <HeadingSecondary>現在実行中のアクティビティの ID</HeadingSecondary>
             {
                 activities.length === 0
-                    ? <Paragraph>No running activities</Paragraph>
+                    ? <Paragraph>実行中のアクティビティはありません</Paragraph>
                     : activities.map(activity => {
                         const isSpotify = (activity.flags & (ActivityFlags.SYNC | ActivityFlags.PLAY)) === (ActivityFlags.SYNC | ActivityFlags.PLAY);
                         return !isSpotify
@@ -43,22 +43,22 @@ export function ReplaceTutorial() {
                             : null;
                     })
             }
-            <HeadingSecondary className={Margins.top8}>Available variables</HeadingSecondary>
+            <HeadingSecondary className={Margins.top8}>使用できる変数</HeadingSecondary>
             <Paragraph>
-                In all fields (except stream URL), you can put in variables that'll automatically be replaced by their original content:
+                すべてのフィールド（ストリーム URL を除く）で、元の内容に自動で置き換えられる変数を使えます：
                 <pre style={{ fontFamily: "monospace" }}>
                     :name:, :details:, :state:
                     <br />
                     :large_image:, :large_text:, :small_image:, :small_text:
                 </pre>
             </Paragraph>
-            <HeadingSecondary className={Margins.top8}>More details</HeadingSecondary>
+            <HeadingSecondary className={Margins.top8}>詳細</HeadingSecondary>
             <Paragraph>
-                Leave a field empty to leave it as is.
+                フィールドを空のままにすると、そのまま保持されます。
                 <br />
-                Set a field to "null" to hide it on the presence.
+                フィールドに "null" と入力すると、プレゼンス上で非表示になります。
                 <br />
-                You may need to reload Discord for changes to apply.
+                変更を適用するには Discord の再読み込みが必要な場合があります。
             </Paragraph>
         </>
     );
@@ -83,35 +83,35 @@ export function ReplaceSettings({ appIds, update, save }: SettingsProps) {
                         {
                             isValidSnowflake(setting.appId) ?
                                 <FormSwitch
-                                    title="Apply edits to app"
+                                    title="このアプリに編集を適用"
                                     value={setting.enabled}
                                     onChange={value => {
                                         onChange(value, i, "enabled");
                                     }}
                                     className={Margins.bottom8}
                                     hideBorder={true}
-                                /> : <HeadingSecondary>Add new application</HeadingSecondary>
+                                /> : <HeadingSecondary>新しいアプリケーションを追加</HeadingSecondary>
                         }
-                        <Heading className={`${Margins.top8} ${Margins.bottom8}`}>Application ID</Heading>
+                        <Heading className={`${Margins.top8} ${Margins.bottom8}`}>アプリケーション ID</Heading>
                         <CheckedTextInput
                             initialValue={setting.appId}
                             onChange={async v => {
                                 onChange(v, i, "appId");
                             }}
                             validate={v =>
-                                !v || isValidSnowflake(v) || "Invalid application ID"
+                                !v || isValidSnowflake(v) || "無効なアプリケーション ID です"
                             }
                         />
                         {
                             isValidSnowflake(setting.appId) && <>
-                                <Heading className={Margins.top8}>New activity type</Heading>
+                                <Heading className={Margins.top8}>新しいアクティビティタイプ</Heading>
                                 <Select
                                     options={[
-                                        { label: "Playing", value: ActivityType.PLAYING },
-                                        { label: "Watching", value: ActivityType.WATCHING },
-                                        { label: "Listening", value: ActivityType.LISTENING },
-                                        { label: "Competing", value: ActivityType.COMPETING },
-                                        { label: "Streaming", value: ActivityType.STREAMING }
+                                        { label: "プレイ中", value: ActivityType.PLAYING },
+                                        { label: "視聴中", value: ActivityType.WATCHING },
+                                        { label: "リスニング中", value: ActivityType.LISTENING },
+                                        { label: "対戦中", value: ActivityType.COMPETING },
+                                        { label: "配信中", value: ActivityType.STREAMING }
                                     ]}
                                     select={value => {
                                         onChange(value, i, "newActivityType");
@@ -123,14 +123,14 @@ export function ReplaceSettings({ appIds, update, save }: SettingsProps) {
                                 {
                                     setting.newActivityType === ActivityType.STREAMING &&
                                     <>
-                                        <Heading className={`${Margins.top8} ${Margins.bottom8}`}>Stream URL (must be YouTube or Twitch)</Heading>
+                                        <Heading className={`${Margins.top8} ${Margins.bottom8}`}>ストリーム URL（YouTube または Twitch のもの）</Heading>
                                         <CheckedTextInput
                                             initialValue={setting.newStreamUrl}
                                             onChange={async v => {
                                                 onChange(v, i, "newStreamUrl");
                                             }}
                                             validate={v => {
-                                                return /https?:\/\/(www\.)?(twitch\.tv|youtube\.com)\/\w+/.test(v) || "Invalid stream URL";
+                                                return /https?:\/\/(www\.)?(twitch\.tv|youtube\.com)\/\w+/.test(v) || "無効なストリーム URL です";
                                             }}
                                         />
 
@@ -139,7 +139,7 @@ export function ReplaceSettings({ appIds, update, save }: SettingsProps) {
                                 {
                                     setting.newActivityType !== ActivityType.STREAMING &&
                                     <>
-                                        <Heading className={Margins.top8}>New name {setting.newActivityType === ActivityType.PLAYING && "(first line)"}</Heading>
+                                        <Heading className={Margins.top8}>新しい名前 {setting.newActivityType === ActivityType.PLAYING && "（1行目）"}</Heading>
                                         <TextInput
                                             className={Margins.top8}
                                             value={setting.newName}
@@ -149,7 +149,7 @@ export function ReplaceSettings({ appIds, update, save }: SettingsProps) {
                                         />
                                     </>
                                 }
-                                <Heading className={Margins.top8}>New details {setting.newActivityType === ActivityType.PLAYING ? "(second line)" : "(first line)"}</Heading>
+                                <Heading className={Margins.top8}>新しい詳細 {setting.newActivityType === ActivityType.PLAYING ? "（2行目）" : "（1行目）"}</Heading>
                                 <TextInput
                                     className={Margins.top8}
                                     value={setting.newDetails}
@@ -157,7 +157,7 @@ export function ReplaceSettings({ appIds, update, save }: SettingsProps) {
                                         onChange(v, i, "newDetails");
                                     }}
                                 />
-                                <Heading className={Margins.top8}>New state {setting.newActivityType === ActivityType.PLAYING ? "(third line)" : "(second line)"}</Heading>
+                                <Heading className={Margins.top8}>新しい状態 {setting.newActivityType === ActivityType.PLAYING ? "（3行目）" : "（2行目）"}</Heading>
                                 <TextInput
                                     className={Margins.top8}
                                     value={setting.newState}
@@ -168,8 +168,8 @@ export function ReplaceSettings({ appIds, update, save }: SettingsProps) {
                                 {
                                     !setting.disableAssets &&
                                     <>
-                                        <Paragraph style={{ fontSize: "1.05rem", fontWeight: "500" }} className={Margins.top8}>Large image</Paragraph>
-                                        <Heading className={Margins.top8}>Text {setting.newActivityType !== ActivityType.PLAYING && "(also third line)"}</Heading>
+                                        <Paragraph style={{ fontSize: "1.05rem", fontWeight: "500" }} className={Margins.top8}>大きい画像</Paragraph>
+                                        <Heading className={Margins.top8}>テキスト {setting.newActivityType !== ActivityType.PLAYING && "（3行目）"}</Heading>
                                         <TextInput
                                             className={Margins.top8}
                                             value={setting.newLargeImageText}
@@ -185,8 +185,8 @@ export function ReplaceSettings({ appIds, update, save }: SettingsProps) {
                                                 onChange(v, i, "newLargeImageUrl");
                                             }}
                                         />
-                                        <Paragraph style={{ fontSize: "1.05rem", fontWeight: "500" }} className={Margins.top8}>Small image</Paragraph>
-                                        <Heading className={Margins.top8}>Text</Heading>
+                                        <Paragraph style={{ fontSize: "1.05rem", fontWeight: "500" }} className={Margins.top8}>小さい画像</Paragraph>
+                                        <Heading className={Margins.top8}>テキスト</Heading>
                                         <TextInput
                                             className={Margins.top8}
                                             value={setting.newSmallImageText}
@@ -205,7 +205,7 @@ export function ReplaceSettings({ appIds, update, save }: SettingsProps) {
                                     </>
                                 }
                                 <FormSwitch
-                                    title="Hide assets (large & small images)"
+                                    title="アセット（大・小の画像）を隠す"
                                     value={setting.disableAssets}
                                     onChange={value => {
                                         onChange(value, i, "disableAssets");
@@ -214,7 +214,7 @@ export function ReplaceSettings({ appIds, update, save }: SettingsProps) {
                                     hideBorder={true}
                                 />
                                 <FormSwitch
-                                    title="Hide timestamps"
+                                    title="タイムスタンプを隠す"
                                     value={setting.disableTimestamps}
                                     onChange={value => {
                                         onChange(value, i, "disableTimestamps");

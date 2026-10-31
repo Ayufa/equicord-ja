@@ -50,7 +50,7 @@ function LyricsDisplay({ scroll = true }: { scroll?: boolean; }) {
                     </BaseText>
                 </div>
             )) : showMusicNoteOnNoLyrics ? (
-                <TooltipContainer text="No synced lyrics found">
+                <TooltipContainer text="同期した歌詞が見つかりません">
                     <NoteSvg />
                 </TooltipContainer>
             ) : null}

@@ -99,8 +99,8 @@ export default definePlugin({
                     try {
                         showNotification({
                             color: "#eed202",
-                            title: "Discord has crashed!",
-                            body: "Awn :( Discord has crashed two times rapidly, not attempting to recover.",
+                            title: "Discord がクラッシュしました！",
+                            body: "Discord が短時間に2回続けてクラッシュしたため、復旧は試みません。",
                             noPersist: true,
                         });
                     } catch { }
@@ -116,7 +116,7 @@ export default definePlugin({
             try {
                 if (!hasCrashedOnce) {
                     hasCrashedOnce = true;
-                    maybePromptToUpdate("Uh oh, Discord has just crashed... but good news, there is a Equicord update available that might fix this issue! Would you like to update now?", true);
+                    maybePromptToUpdate("Discord がクラッシュしました。でも良い知らせです。この問題を修正できる可能性のある Equicord のアップデートがあります。今すぐアップデートしますか？", true);
                 }
             } catch { }
 
@@ -134,8 +134,8 @@ export default definePlugin({
         try {
             showNotification({
                 color: "#eed202",
-                title: "Discord has crashed!",
-                body: "Attempting to recover...",
+                title: "Discord がクラッシュしました！",
+                body: "復旧を試みています...",
                 noPersist: true,
             });
         } catch { }

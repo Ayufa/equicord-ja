@@ -45,14 +45,14 @@ export default function RemixModal({ modalProps, close, url }: Props) {
                 {
                     text: (
                         <span style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                            <SendIcon /> Send
+                            <SendIcon /> 送信
                         </span>
                     ) as any,
                     variant: "primary",
                     onClick: () => closeModal(close, true)
                 },
                 {
-                    text: "Close",
+                    text: "閉じる",
                     variant: "dangerPrimary",
                     onClick: () => closeModal(close)
                 }

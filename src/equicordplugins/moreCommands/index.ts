@@ -72,7 +72,7 @@ export default definePlugin({
     commands: [
         {
             name: "systeminfo",
-            description: "Shows system information",
+            description: "システム情報を表示します",
             options: [],
             execute: async (opts, ctx) => {
                 try {
@@ -104,7 +104,7 @@ export default definePlugin({
         },
         {
             name: "getuptime",
-            description: "Returns the system uptime",
+            description: "システムの稼働時間を返します",
             execute: async () => {
                 const uptime = performance.now() / 1000;
                 const uptimeInfo = `> **System Uptime**: ${Math.floor(uptime / 60)} minutes`;
@@ -113,7 +113,7 @@ export default definePlugin({
         },
         {
             name: "gettime",
-            description: "Returns the current server time",
+            description: "現在のサーバー時刻を返します",
             execute: async () => {
                 const currentTime = new Date().toLocaleString();
                 return { content: `> **Current Time**: ${currentTime}` };
@@ -121,11 +121,11 @@ export default definePlugin({
         },
         {
             name: "choose",
-            description: "Randomly chooses from provided options",
+            description: "指定した選択肢からランダムに選びます",
             options: [
                 {
                     name: "choices",
-                    description: "Comma-separated list of choices",
+                    description: "カンマ区切りの選択肢リスト",
                     type: ApplicationCommandOptionType.STRING,
                     required: true
                 }
@@ -140,7 +140,7 @@ export default definePlugin({
         },
         {
             name: "rolldice",
-            description: "Roll a die with the specified number of sides",
+            description: "指定した面数のサイコロを振ります",
             options: [RequiredMessageOption],
             execute: opts => {
                 const sides = parseInt(findOption(opts, "message", "6"));
@@ -152,7 +152,7 @@ export default definePlugin({
         },
         {
             name: "flipcoin",
-            description: "Flips a coin and returns heads or tails",
+            description: "コインを投げて表か裏を返します",
             options: [],
             execute: (opts, ctx) => {
                 const flip = Math.random() < 0.5 ? "Heads" : "Tails";
@@ -163,7 +163,7 @@ export default definePlugin({
         },
         {
             name: "ask",
-            description: "Ask a yes/no question and get an answer",
+            description: "はい/いいえで答えられる質問をして回答を得ます",
             options: [RequiredMessageOption],
             execute: opts => {
                 const question = findOption(opts, "message", "");
@@ -176,16 +176,16 @@ export default definePlugin({
         },
         {
             name: "randomanimal",
-            description: "Get a random cat picture",
+            description: "ランダムな猫の画像を取得します",
             options: [
                 {
                     name: "animal",
-                    description: "pick your animal",
+                    description: "動物を選んでください",
                     type: ApplicationCommandOptionType.STRING,
                     required: true,
                     choices: [
-                        { name: "cat", value: "cat", label: "cat" },
-                        { name: "dog", value: "dog", label: "dog" },
+                        { name: "cat", value: "cat", label: "猫" },
+                        { name: "dog", value: "dog", label: "犬" },
                     ]
                 }
             ],
@@ -215,17 +215,17 @@ export default definePlugin({
         },
         {
             name: "randomnumber",
-            description: "Generates a random number between two values",
+            description: "2つの値の間の乱数を生成します",
             options: [
                 {
                     name: "min",
-                    description: "Minimum value",
+                    description: "最小値",
                     type: ApplicationCommandOptionType.INTEGER,
                     required: true
                 },
                 {
                     name: "max",
-                    description: "Maximum value",
+                    description: "最大値",
                     type: ApplicationCommandOptionType.INTEGER,
                     required: true
                 }
@@ -241,17 +241,17 @@ export default definePlugin({
         },
         {
             name: "transform",
-            description: "Transform your text with the specified option",
+            description: "指定したオプションでテキストを変換します",
             options: [
                 {
                     name: "text",
-                    description: "TEXT TO UPPERCASE",
+                    description: "変換するテキスト",
                     type: ApplicationCommandOptionType.STRING,
                     required: true
                 },
                 {
                     name: "transformation",
-                    description: "transformation to apply to your text",
+                    description: "テキストに適用する変換",
                     type: ApplicationCommandOptionType.STRING,
                     required: true,
                     choices: [
@@ -259,24 +259,24 @@ export default definePlugin({
                         { name: "toUpperCase", value: "toUpperCase", label: "toUpperCase" },
                         { name: "toLocaleLowerCase", value: "toLocaleLowerCase", label: "toLocaleLowerCase" },
                         { name: "toLocaleUpperCase", value: "toLocaleUpperCase", label: "toLocaleUpperCase" },
-                        { name: "stay the same", value: "same", label: "stay the same" }
+                        { name: "stay the same", value: "same", label: "そのまま" }
                     ]
                 },
                 {
                     name: "repeat",
-                    description: "how many times to repeat",
+                    description: "繰り返す回数",
                     type: ApplicationCommandOptionType.INTEGER,
                     required: false
                 },
                 {
                     name: "reverse",
-                    description: "reverse your text",
+                    description: "テキストを反転します",
                     type: ApplicationCommandOptionType.BOOLEAN,
                     required: false
                 },
                 {
                     name: "normalize",
-                    description: "which normailze option to use",
+                    description: "使用する正規化オプション",
                     type: ApplicationCommandOptionType.STRING,
                     required: false,
                     choices: [
@@ -306,7 +306,7 @@ export default definePlugin({
         },
         {
             name: "wordcount",
-            description: "Counts the number of words in a message",
+            description: "メッセージ内の単語数を数えます",
             options: [RequiredMessageOption],
             inputType: ApplicationCommandInputType.BOT,
             execute: (opts, ctx) => {
@@ -319,11 +319,11 @@ export default definePlugin({
         },
         {
             name: "countdown",
-            description: "Starts a countdown from a specified number",
+            description: "指定した数からカウントダウンを開始します",
             options: [
                 {
                     name: "number",
-                    description: "Number to countdown from (max 10)",
+                    description: "カウントダウンを開始する数（最大10）",
                     type: ApplicationCommandOptionType.INTEGER,
                     required: true
                 }
@@ -350,18 +350,18 @@ export default definePlugin({
         },
         {
             name: "nekos",
-            description: "Send Neko",
+            description: "ネコ画像を送信します",
             execute: async () => ({
                 content: await getCuteNeko()
             })
         },
         {
             name: "anime-boys",
-            description: "Send cute anime boys",
+            description: "かわいいアニメ男子の画像を送信します",
             options: [
                 {
                     name: "cat",
-                    description: "If set, this will send exclusively cute anime cat boys",
+                    description: "設定すると、かわいいアニメ猫男子だけを送信します",
                     type: ApplicationCommandOptionType.BOOLEAN,
                     required: false,
                 },
@@ -375,7 +375,7 @@ export default definePlugin({
         },
         {
             name: "ping",
-            description: "Pings the bot to check if it's responding",
+            description: "ボットに応答があるか ping します",
             options: [],
             inputType: ApplicationCommandInputType.BOT,
             execute: (opts, ctx) => {
@@ -386,7 +386,7 @@ export default definePlugin({
         },
         {
             name: "echo",
-            description: "Sends a message as Clyde (locally)",
+            description: "Clyde としてメッセージを送信します（ローカルのみ）",
             options: [OptionalMessageOption],
             inputType: ApplicationCommandInputType.BOT,
             execute: (opts, ctx) => {
@@ -396,7 +396,7 @@ export default definePlugin({
         },
         {
             name: "lenny",
-            description: "Sends a lenny face",
+            description: "レニーフェイスを送信します",
             options: [OptionalMessageOption],
             execute: opts => ({
                 content: findOption(opts, "message", "") + " ( ͡° ͜ʖ ͡°)"
@@ -404,7 +404,7 @@ export default definePlugin({
         },
         {
             name: "mock",
-            description: "mOcK PeOpLe",
+            description: "テキストをモック調（大文字・小文字混じり）に変換します",
             options: [RequiredMessageOption],
             execute: opts => ({
                 content: mock(findOption(opts, "message", ""))
@@ -413,10 +413,10 @@ export default definePlugin({
         {
             inputType: ApplicationCommandInputType.BUILT_IN_TEXT,
             name: "slap",
-            description: "Slap someone/something.",
+            description: "誰か/何かを叩きます",
             options: [{
                 name: "victim",
-                description: "Thing to slap",
+                description: "叩く相手/もの",
                 required: true,
                 type: ApplicationCommandOptionType.STRING,
             }],
@@ -427,11 +427,11 @@ export default definePlugin({
         },
         {
             name: "freaky",
-            description: "it's freaky.",
+            description: "テキストを freaky な書体に変換します",
             inputType: ApplicationCommandInputType.BUILT_IN,
             options: [{
                 name: "message",
-                description: "yoooo freaky",
+                description: "変換するテキスト",
                 type: ApplicationCommandOptionType.STRING,
                 required: true
             }],
@@ -442,11 +442,11 @@ export default definePlugin({
         {
             inputType: ApplicationCommandInputType.BUILT_IN_TEXT,
             name: "morse",
-            description: "Translate to or from Morse code",
+            description: "モールス信号への変換、またはモールス信号からの変換",
             options: [
                 {
                     name: "text",
-                    description: "Text to convert",
+                    description: "変換するテキスト",
                     type: ApplicationCommandOptionType.STRING,
                     required: true
                 }
@@ -461,7 +461,7 @@ export default definePlugin({
         },
         {
             name: "uwuify",
-            description: "uwuifies your messages",
+            description: "メッセージを uwu 化します",
             options: [RequiredMessageOption],
             execute: opts => ({
                 content: uwuify(findOption(opts, "message", "")),
@@ -469,7 +469,7 @@ export default definePlugin({
         },
         {
             name: "gifroulette",
-            description: "Tempt fate and send a gif",
+            description: "運試しで GIF を送信します",
             execute: (opts, other) => {
                 if (GUILD_IDS.includes(other?.guild?.id ?? "")) return sendBotMessage(other.channel.id, {
                     content: "This command is restricted in this server."
@@ -483,11 +483,11 @@ export default definePlugin({
         {
             inputType: ApplicationCommandInputType.BUILT_IN,
             name: "friendcloud",
-            description: "Display user you most interact with in a cloud",
+            description: "最もやり取りの多いユーザーをクラウド表示します",
             options: [
                 {
                     name: "count",
-                    description: "Number of users to display",
+                    description: "表示するユーザー数",
                     type: ApplicationCommandOptionType.NUMBER,
                     required: false
                 }
@@ -598,21 +598,21 @@ export default definePlugin({
         {
             inputType: ApplicationCommandInputType.BUILT_IN,
             name: "imgtogif",
-            description: "Allows you to turn an image to a gif",
+            description: "画像を GIF に変換できます",
             options: [
                 {
                     name: "image",
-                    description: "Image attachment to use",
+                    description: "使用する画像の添付ファイル",
                     type: ApplicationCommandOptionType.ATTACHMENT
                 },
                 {
                     name: "width",
-                    description: "Width of the gif",
+                    description: "GIF の幅",
                     type: ApplicationCommandOptionType.INTEGER
                 },
                 {
                     name: "height",
-                    description: "Height of the gif",
+                    description: "GIF の高さ",
                     type: ApplicationCommandOptionType.INTEGER
                 }
             ],

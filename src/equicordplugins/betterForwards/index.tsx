@@ -263,9 +263,9 @@ export default definePlugin({
                     {message && message.embeds.length + message.attachments.length > 0 && (
                         <Flex className={Margins.top16}>
                             <Checkbox value={!hasOpts} onChange={() => setOpts(!hasOpts ? defaultOpts : {})} size={20}>
-                                <BaseText size="sm">Forward everything</BaseText>
+                                <BaseText size="sm">すべて転送</BaseText>
                             </Checkbox>
-                            <Tooltip text="Message text will not be forwarded when this option is disabled">
+                            <Tooltip text="このオプションを無効にすると、メッセージのテキストは転送されません">
                                 {props => <InfoIcon {...props} color="var(--text-muted)" width={20} height={20} />}
                             </Tooltip>
                         </Flex>

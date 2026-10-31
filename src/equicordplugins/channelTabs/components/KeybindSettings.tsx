@@ -75,7 +75,7 @@ function KeybindInput({ label, description, settingKey, enabledKey }: KeybindInp
             );
 
             if (conflictKey) {
-                setError(`This keybind is already used by: ${conflictKey[0]}`);
+                setError(`このキーバインドは既に使われています: ${conflictKey[0]}`);
                 setTimeout(() => setError(null), 3000);
                 setIsListening(false);
                 return;
@@ -139,7 +139,7 @@ function KeybindInput({ label, description, settingKey, enabledKey }: KeybindInp
                     onClick={() => setIsListening(true)}
                     disabled={!isEnabled}
                 >
-                    {isListening ? "Press any key..." : formatKeybind(currentKeybind)}
+                    {isListening ? "キーを押してください..." : formatKeybind(currentKeybind)}
                 </button>
                 <Button
                     size="small"
@@ -183,35 +183,35 @@ export function KeybindSettings(): JSX.Element {
         <ErrorBoundary>
             <Divider />
             <div className="channelTabs-keybind-settings">
-                <Heading>Keyboard Shortcuts</Heading>
+                <Heading>キーボードショートカット</Heading>
                 <Paragraph>
                     Click a button and press your desired key combination. Modifiers like CTRL, SHIFT, and ALT are supported.
                 </Paragraph>
 
                 <KeybindInput
-                    label="Close Tab"
-                    description="Close the currently active tab"
+                    label="タブを閉じる"
+                    description="現在アクティブなタブを閉じます"
                     settingKey="closeTabKeybind"
                     enabledKey="enableCloseTabShortcut"
                 />
 
                 <KeybindInput
-                    label="New Tab"
-                    description="Open a new tab with the current channel"
+                    label="新しいタブ"
+                    description="現在のチャンネルで新しいタブを開きます"
                     settingKey="newTabKeybind"
                     enabledKey="enableNewTabShortcut"
                 />
 
                 <KeybindInput
-                    label="Cycle Tabs Forward"
-                    description="Switch to the next tab (wraps around to first)"
+                    label="タブを次へ切り替え"
+                    description="次のタブに切り替えます（最後の次は最初に戻ります）"
                     settingKey="cycleTabForwardKeybind"
                     enabledKey="enableTabCycleShortcut"
                 />
 
                 <KeybindInput
-                    label="Cycle Tabs Backward"
-                    description="Switch to the previous tab (wraps around to last)"
+                    label="タブを前へ切り替え"
+                    description="前のタブに切り替えます（最初の前は最後に戻ります）"
                     settingKey="cycleTabBackwardKeybind"
                     enabledKey="enableTabCycleShortcut"
                 />

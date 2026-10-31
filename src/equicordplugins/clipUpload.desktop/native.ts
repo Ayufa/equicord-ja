@@ -69,7 +69,7 @@ async function parseClipMetadata(filePath: string): Promise<RawClipAttachment[] 
 export async function chooseVideoFile(_: IpcMainInvokeEvent): Promise<{ token: string; name: string; type: string; } | null> {
     try {
         const { filePaths, canceled } = await dialog.showOpenDialog({
-            title: "Select clip file",
+            title: "クリップファイルを選択",
             filters: [{ name: "MP4 Video", extensions: ["mp4", "m4v"] }],
             properties: ["openFile"],
         });

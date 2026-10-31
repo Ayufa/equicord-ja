@@ -129,7 +129,7 @@ export function cancelCurrentUpload() {
     activeXhr?.abort();
     setUploadState({
         phase: "cancelled",
-        status: "Upload cancelled.",
+        status: "アップロードをキャンセルしました。",
         canCancel: false,
         percent: 0
     });
@@ -1303,19 +1303,19 @@ function getFilenameExtension(filename: string): string | undefined {
 async function notifyUploadSuccess(finalUrl: string, forceSend?: boolean): Promise<void> {
     if (settings.store.autoCopy) {
         if (!finalUrl || !finalUrl.trim()) {
-            showToast({ text: "Upload successful, but no URL was available to copy" });
+            showToast({ text: "アップロード成功しましたが、コピーできるURLがありませんでした" });
             return;
         }
 
         try {
             await copyToClipboard(finalUrl);
-            showToast({ text: "Upload successful, URL copied to clipboard", variant: "success" });
+            showToast({ text: "アップロード成功、URLをクリップボードにコピーしました", variant: "success" });
         } catch (error) {
             logger.warn("Upload succeeded but clipboard copy failed", error);
-            showToast({ text: "Upload successful, but failed to copy URL" });
+            showToast({ text: "アップロード成功しましたが、URLのコピーに失敗しました" });
         }
     } else {
-        showToast({ text: "Upload successful", variant: "success" });
+        showToast({ text: "アップロード成功", variant: "success" });
     }
 
     const autoSend = forceSend || Boolean((settings.store as { autoSend?: boolean; }).autoSend);
@@ -1338,7 +1338,7 @@ async function uploadWithFallbacks(fileBlob: Blob, filename: string, primary: Se
         percent: 5,
         transferredBytes: 0,
         totalBytes: fileBlob.size,
-        status: `Starting upload via ${serviceLabels[uploadOrder[0]]}...`,
+        status: `${serviceLabels[uploadOrder[0]]} 経由でアップロードを開始しています...`,
         currentService: uploadOrder[0],
         currentServiceLabel: serviceLabels[uploadOrder[0]],
         canCancel: true
@@ -1365,7 +1365,7 @@ async function uploadWithFallbacks(fileBlob: Blob, filename: string, primary: Se
         try {
             const uploadedUrl = await uploadToService(service, fileBlob, filename);
             if (attempted.length) {
-                showToast({ text: `Upload succeeded with ${serviceLabels[service]} after fallback`, variant: "success" });
+                showToast({ text: `フォールバックの結果、${serviceLabels[service]} でアップロードに成功しました`, variant: "success" });
             }
 
             setUploadState({
@@ -1374,7 +1374,7 @@ async function uploadWithFallbacks(fileBlob: Blob, filename: string, primary: Se
                 attempt,
                 currentService: service,
                 currentServiceLabel: serviceLabels[service],
-                status: `Uploaded successfully via ${serviceLabels[service]}.`,
+                status: `${serviceLabels[service]} 経由でアップロードに成功しました。`,
                 canCancel: false
             });
 
@@ -1394,7 +1394,7 @@ async function uploadWithFallbacks(fileBlob: Blob, filename: string, primary: Se
                 attempt,
                 currentService: service,
                 currentServiceLabel: serviceLabels[service],
-                status: `${serviceLabels[service]} failed: ${message}`,
+                status: `${serviceLabels[service]} で失敗しました: ${message}`,
                 percent: Math.min(95, 10 + Math.round((attempt / uploadOrder.length) * 80))
             });
         }
@@ -1402,7 +1402,7 @@ async function uploadWithFallbacks(fileBlob: Blob, filename: string, primary: Se
 
     setUploadState({
         phase: "failed",
-        status: `All upload services failed. Last error: ${lastError}`,
+        status: `すべてのアップロードサービスが失敗しました。最後のエラー: ${lastError}`,
         canCancel: false,
         percent: 0
     });
@@ -1432,7 +1432,7 @@ async function normalizeUploadBlob(blob: Blob, sourceUrl?: string): Promise<{ bl
             blob = gifBlob;
             ext = "gif";
         } else {
-            showToast({ text: "APNG to GIF conversion failed, uploading as APNG", variant: "critical" });
+            showToast({ text: "APNGからGIFへの変換に失敗しました。APNGのままアップロードします", variant: "critical" });
         }
     }
 
@@ -1453,7 +1453,7 @@ async function normalizeUploadBlob(blob: Blob, sourceUrl?: string): Promise<{ bl
 async function uploadPreparedBlob(blob: Blob, sourceUrl?: string, forceSend?: boolean): Promise<string> {
     const primary = settings.store.serviceType as ServiceType;
     const { blob: normalizedBlob, filename } = await normalizeUploadBlob(blob, sourceUrl);
-    setUploadState({ fileName: filename, status: "File ready, starting upload...", percent: 4 });
+    setUploadState({ fileName: filename, status: "ファイルの準備ができました。アップロードを開始します...", percent: 4 });
     const uploadedUrl = await uploadWithFallbacks(normalizedBlob, filename, primary);
     const finalUrl = applyEmbedProxy(finalizeUploadedUrl(uploadedUrl));
     await notifyUploadSuccess(finalUrl, forceSend);
@@ -1462,12 +1462,12 @@ async function uploadPreparedBlob(blob: Blob, sourceUrl?: string, forceSend?: bo
 
 export async function uploadFile(url: string): Promise<void> {
     if (isUploading) {
-        showToast({ text: "Upload already in progress" });
+        showToast({ text: "すでにアップロードが進行中です" });
         return;
     }
 
     if (!isConfigured()) {
-        showToast({ text: "Please configure FileUpload settings first", variant: "critical" });
+        showToast({ text: "先にFileUploadの設定を行ってください", variant: "critical" });
         return;
     }
 
@@ -1481,7 +1481,7 @@ export async function uploadFile(url: string): Promise<void> {
         attempt: 0,
         totalAttempts: 0,
         percent: 1,
-        status: "Preparing upload...",
+        status: "アップロードを準備中...",
         canCancel: true
     });
 
@@ -1526,12 +1526,12 @@ export async function uploadFile(url: string): Promise<void> {
     } catch (error) {
         const message = error instanceof Error ? error.message : "Unknown error";
         if (isUploadCancelledError(error)) {
-            showToast({ text: "Upload cancelled" });
-            setUploadState({ phase: "cancelled", status: "Upload cancelled.", canCancel: false, percent: 0 });
+            showToast({ text: "アップロードをキャンセルしました" });
+            setUploadState({ phase: "cancelled", status: "アップロードをキャンセルしました。", canCancel: false, percent: 0 });
         } else {
-            showToast({ text: `Upload failed: ${message}`, variant: "critical" });
+            showToast({ text: `アップロードに失敗しました: ${message}`, variant: "critical" });
             logger.error("Upload error", error);
-            setUploadState({ phase: "failed", status: `Upload failed: ${message}`, canCancel: false, percent: 0 });
+            setUploadState({ phase: "failed", status: `アップロードに失敗しました: ${message}`, canCancel: false, percent: 0 });
         }
     } finally {
         isUploading = false;
@@ -1546,7 +1546,7 @@ export async function uploadPickedFile(): Promise<void> {
     if (!file) return;
 
     if (!isFileTypeAllowed(file)) {
-        showToast({ text: "File type not allowed by current filter", variant: "critical" });
+        showToast({ text: "現在のフィルターで許可されていないファイル形式です", variant: "critical" });
         return;
     }
 
@@ -1555,12 +1555,12 @@ export async function uploadPickedFile(): Promise<void> {
 
 export async function uploadProvidedFiles(files: readonly File[], forceSend?: boolean): Promise<void> {
     if (isUploading) {
-        showToast({ text: "Upload already in progress" });
+        showToast({ text: "すでにアップロードが進行中です" });
         return;
     }
 
     if (!isConfigured()) {
-        showToast({ text: "Please configure FileUpload settings first", variant: "critical" });
+        showToast({ text: "先にFileUploadの設定を行ってください", variant: "critical" });
         return;
     }
 
@@ -1586,7 +1586,7 @@ export async function uploadProvidedFiles(files: readonly File[], forceSend?: bo
                 attempt: 0,
                 totalAttempts: 0,
                 percent: 2,
-                status: `Preparing ${file.name}${suffix}...`,
+                status: `${file.name}${suffix} を準備中...`,
                 canCancel: true
             });
 
@@ -1595,12 +1595,12 @@ export async function uploadProvidedFiles(files: readonly File[], forceSend?: bo
     } catch (error) {
         const message = error instanceof Error ? error.message : "Unknown error";
         if (isUploadCancelledError(error)) {
-            showToast({ text: "Upload cancelled" });
-            setUploadState({ phase: "cancelled", status: "Upload cancelled.", canCancel: false, percent: 0 });
+            showToast({ text: "アップロードをキャンセルしました" });
+            setUploadState({ phase: "cancelled", status: "アップロードをキャンセルしました。", canCancel: false, percent: 0 });
         } else {
-            showToast({ text: `Upload failed: ${message}`, variant: "critical" });
+            showToast({ text: `アップロードに失敗しました: ${message}`, variant: "critical" });
             logger.error("Manual upload error", error);
-            setUploadState({ phase: "failed", status: `Upload failed: ${message}`, canCancel: false, percent: 0 });
+            setUploadState({ phase: "failed", status: `アップロードに失敗しました: ${message}`, canCancel: false, percent: 0 });
         }
     } finally {
         isUploading = false;

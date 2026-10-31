@@ -33,7 +33,7 @@ function ImportLogsButton() {
                 }
             }}
         >
-            {loading ? "Importing..." : "Import Logs"}
+            {loading ? "インポート中..." : "ログをインポート"}
         </Button>
     );
 }
@@ -53,7 +53,7 @@ function ExportLogsButton() {
                 }
             }}
         >
-            {loading ? "Exporting..." : "Export Logs"}
+            {loading ? "エクスポート中..." : "ログをエクスポート"}
         </Button>
     );
 }
@@ -279,7 +279,7 @@ export const settings = definePluginSettings({
         description: "ログを開く",
         component: () =>
             <Button onClick={() => openLogModal()}>
-                Open Logs
+                ログを開く
             </Button>
     },
     openImageCacheFolder: {
@@ -294,7 +294,7 @@ export const settings = definePluginSettings({
                 }
                 onClick={() => Native.showItemInFolder()}
             >
-                Open Image Cache Folder
+                画像キャッシュフォルダーを開く
             </Button>
     },
 

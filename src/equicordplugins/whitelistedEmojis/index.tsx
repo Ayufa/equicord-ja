@@ -144,7 +144,7 @@ const buildGuildContextPatch = (guild: { id: string; name: string; }) => {
             <Menu.MenuItem
                 id="add-white-list-guild-emojis"
                 key="add-white-list-guild-emojis"
-                label="Add All Guild Emojis"
+                label="サーバーの絵文字をすべて追加"
                 action={() => {
                     const emojis = EmojiStore.getGuildEmoji(guild.id);
                     addBulkToAllowedList(emojis.map(emoji => ({
@@ -157,7 +157,7 @@ const buildGuildContextPatch = (guild: { id: string; name: string; }) => {
             <Menu.MenuItem
                 id="remove-white-list-guild-emojis"
                 key="remove-white-list-guild-emojis"
-                label="Remove All Guild Emojis"
+                label="サーバーの絵文字をすべて削除"
                 action={() => {
                     const emojis = EmojiStore.getGuildEmoji(guild.id);
                     removeBulkFromAllowedList(emojis.map(emoji => ({
@@ -179,7 +179,7 @@ function buildMenuItems(emoji: ContextMenuEmoji) {
             <Menu.MenuItem
                 id="white-list-emoji"
                 key="white-list-emoji"
-                label={isInList ? "Remove from Whitelist" : "Add to Whitelist"}
+                label={isInList ? "ホワイトリストから削除" : "ホワイトリストに追加"}
                 action={() => isInList ? removeFromAllowedList(emoji) : addToAllowedList(emoji)}
             />
         </>
@@ -229,7 +229,7 @@ const WhiteListedEmojisComponent = (): JSX.Element => {
                 <div key={guildId} className="guild-section">
                     <div className="guild-header">
                         <h3 className="guild-name" onClick={() => toggleGroupCollapse(guildId)}>
-                            {guildId === "default" ? "Default Emojis" : `${GuildStore.getGuild(guildId)?.name || `Guild ${guildId}`} Emojis`}
+                            {guildId === "default" ? "デフォルトの絵文字" : `${GuildStore.getGuild(guildId)?.name || `サーバー ${guildId}`} の絵文字`}
                         </h3>
                         <Button
                             className="remove-all-button"
@@ -269,7 +269,7 @@ const WhiteListedEmojisComponent = (): JSX.Element => {
                 </div>
             ))}
             {whitelistedEmojis.length === 0 && (
-                <span className="no-emoji-message">No emojis in the whitelist.</span>
+                <span className="no-emoji-message">ホワイトリストに絵文字がありません。</span>
             )}
         </div>
     );
@@ -286,7 +286,7 @@ const exportEmojis = async () => {
         DiscordNative.fileManager.saveWithDialog(new TextEncoder().encode(json), fileName);
     }
 
-    showToast("Successfully exported emojis");
+    showToast("絵文字をエクスポートしました");
 };
 
 const uploadEmojis = async () => {
@@ -299,7 +299,7 @@ const uploadEmojis = async () => {
     } else {
         const [file] = await DiscordNative.fileManager.openFiles({
             filters: [
-                { name: "Whitelisted Emojis", extensions: ["json"] },
+                { name: "ホワイトリストの絵文字", extensions: ["json"] },
                 { name: "all", extensions: ["*"] }
             ]
         });
@@ -315,18 +315,18 @@ const importEmojis = (data: string) => withWriteLock(async () => {
         const parsed = JSON.parse(data);
         if (parsed && typeof parsed === "object" && Array.isArray(parsed.emojis)) {
             await setAllowedList(parsed.emojis);
-            showToast("Successfully imported emojis");
+            showToast("絵文字をインポートしました");
         } else {
-            showToast("Invalid JSON data", "critical");
+            showToast("無効なJSONデータ", "critical");
         }
     } catch (err) {
-        showToast(`Failed to import emojis: ${err}`, "critical");
+        showToast(`絵文字のインポートに失敗しました: ${err}`, "critical");
     }
 });
 
 const resetEmojis = () => withWriteLock(async () => {
     await setAllowedList([]);
-    showToast("Reset emojis");
+    showToast("絵文字をリセットしました");
 });
 
 const settings = definePluginSettings({
@@ -354,7 +354,7 @@ const settings = definePluginSettings({
         type: OptionType.COMPONENT,
         description: "絵文字をエクスポート",
         component: () => (
-            <Button onClick={exportEmojis}>Export Emojis</Button>
+            <Button onClick={exportEmojis}>絵文字をエクスポート</Button>
         )
     },
     importEmojis: {
@@ -363,14 +363,14 @@ const settings = definePluginSettings({
         component: () => (
             <Button onClick={() =>
                 Alerts.show({
-                    title: "Are you sure?",
-                    body: "This will overwrite your current whitelist.",
-                    confirmText: "Import",
+                    title: "本当によろしいですか？",
+                    body: "現在のホワイトリストが上書きされます。",
+                    confirmText: "インポート",
                     confirmColor: "danger",
-                    cancelText: "Cancel",
+                    cancelText: "キャンセル",
                     onConfirm: uploadEmojis
                 })}>
-                Import Emojis
+                絵文字をインポート
             </Button>
         )
     },
@@ -380,14 +380,14 @@ const settings = definePluginSettings({
         component: () => (
             <Button onClick={() =>
                 Alerts.show({
-                    title: "Are you sure?",
-                    body: "This will remove all emojis from your whitelist.",
-                    confirmText: "Reset",
+                    title: "本当によろしいですか？",
+                    body: "ホワイトリストからすべての絵文字が削除されます。",
+                    confirmText: "リセット",
                     confirmColor: "danger",
-                    cancelText: "Cancel",
+                    cancelText: "キャンセル",
                     onConfirm: resetEmojis
                 })}>
-                Reset Emojis
+                絵文字をリセット
             </Button>
         )
     }

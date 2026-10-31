@@ -100,7 +100,7 @@ export default definePlugin({
             const replies = findReplies(message);
             if (settings.store.hideButtonIfNoReply && !replies.length) return null;
             return {
-                label: "Jump to Reply",
+                label: "返信へジャンプ",
                 icon: FindReplyIcon,
                 message,
                 channel: ChannelStore.getChannel(message.channel_id),
@@ -115,10 +115,10 @@ export default definePlugin({
                             jumpType: "INSTANT"
                         });
                         if (replies.length > 1) {
-                            showToast({ text: "Use the bottom panel to navigate between replies." });
+                            showToast({ text: "下部のパネルを使って返信間を移動してください。" });
                             const container = document.querySelector("[class*=channelBottomBarArea_]");
                             if (!container) {
-                                showToast({ text: "Couldn't find the container element.", variant: "critical" });
+                                showToast({ text: "コンテナ要素が見つかりませんでした。", variant: "critical" });
                                 return;
                             }
 
@@ -131,7 +131,7 @@ export default definePlugin({
                             root!.render(<ReplyNavigator replies={replies} />);
                         }
                     } else {
-                        showToast({ text: "Couldn't find a reply.", variant: "critical" });
+                        showToast({ text: "返信が見つかりませんでした。", variant: "critical" });
                     }
                 }
             };

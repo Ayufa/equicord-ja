@@ -28,9 +28,9 @@ const OWNER = "CommandPalette.custom";
 const store = createPersistedValue<CustomCommandData[]>("customCommands", []);
 
 const KIND_OPTIONS = [
-    { value: "url", label: "Open URL", icon: LinkIcon },
-    { value: "settings", label: "Open Settings Page", icon: GearIcon },
-    { value: "message", label: "Insert Text in Chat", icon: TextIcon }
+    { value: "url", label: "URLを開く", icon: LinkIcon },
+    { value: "settings", label: "設定ページを開く", icon: GearIcon },
+    { value: "message", label: "チャットにテキストを挿入", icon: TextIcon }
 ];
 
 const KIND_ICONS: Record<CustomCommandKind, PaletteCommand["icon"]> = {
@@ -56,10 +56,10 @@ function runCustomCommand(data: CustomCommandData) {
 function commandForm(existing: CustomCommandData | null): PageEntry {
     const spec: FormPageSpec = {
         type: "form",
-        submitLabel: existing ? "Save Command" : "Create Command",
+        submitLabel: existing ? "コマンドを保存" : "コマンドを作成",
         fields: [
-            { key: "name", label: "Name", type: "text", placeholder: "Command name", initial: existing?.name ?? "" },
-            { key: "kind", label: "Action", type: "select", options: KIND_OPTIONS, initial: existing?.kind ?? "url" },
+            { key: "name", label: "名前", type: "text", placeholder: "コマンド名", initial: existing?.name ?? "" },
+            { key: "kind", label: "アクション", type: "select", options: KIND_OPTIONS, initial: existing?.kind ?? "url" },
             {
                 key: "url",
                 label: "URL",
@@ -70,28 +70,28 @@ function commandForm(existing: CustomCommandData | null): PageEntry {
             },
             {
                 key: "route",
-                label: "Settings page",
+                label: "設定ページ",
                 type: "picker",
-                placeholder: "Search settings pages...",
+                placeholder: "設定ページを検索...",
                 initial: existing?.kind === "settings" ? existing.value : "",
                 suggestions: query => filterOptions(query, DISCORD_SETTINGS_ROUTES.map(entry => ({ value: entry.route, label: entry.label }))),
                 visible: values => values.kind === "settings"
             },
             {
                 key: "text",
-                label: "Text",
+                label: "テキスト",
                 type: "textarea",
-                placeholder: "Text to insert into the chat box",
+                placeholder: "チャット欄に挿入するテキスト",
                 initial: existing?.kind === "message" ? existing.value : "",
                 visible: values => values.kind === "message"
             }
         ],
         validate(values) {
-            if (!values.name.trim()) return "Name is required.";
+            if (!values.name.trim()) return "名前は必須です。";
             const kind = values.kind as CustomCommandKind;
-            if (kind === "url" && !parseUrl(values.url)) return "Enter a valid URL.";
-            if (kind === "settings" && !DISCORD_SETTINGS_ROUTES.some(entry => entry.route === values.route)) return "Pick a settings page from the suggestions.";
-            if (kind === "message" && !values.text.trim()) return "Text is required.";
+            if (kind === "url" && !parseUrl(values.url)) return "有効なURLを入力してください。";
+            if (kind === "settings" && !DISCORD_SETTINGS_ROUTES.some(entry => entry.route === values.route)) return "候補から設定ページを選んでください。";
+            if (kind === "message" && !values.text.trim()) return "テキストは必須です。";
             return null;
         },
         submit(values, ctx) {
@@ -109,13 +109,13 @@ function commandForm(existing: CustomCommandData | null): PageEntry {
                 : [...store.get(), next]);
             registerCustomCommands();
 
-            showToast({ text: existing ? "Command saved." : "Command created.", variant: "success" });
+            showToast({ text: existing ? "コマンドを保存しました。" : "コマンドを作成しました。", variant: "success" });
             ctx.pop();
         }
     };
 
     return {
-        title: existing ? "Edit Custom Command" : "Create Custom Command",
+        title: existing ? "カスタムコマンドを編集" : "カスタムコマンドを作成",
         icon: existing ? PencilIcon : PlusIcon,
         spec
     };
@@ -125,20 +125,20 @@ function toCommand(data: CustomCommandData): PaletteCommand {
     const extraActions: PaletteAction[] = [
         {
             id: "edit",
-            label: "Edit Command",
+            label: "コマンドを編集",
             icon: PencilIcon,
             keepOpen: true,
             run: ctx => ctx.push(commandForm(data))
         },
         {
             id: "delete",
-            label: "Delete Command",
+            label: "コマンドを削除",
             icon: TrashIcon,
             keepOpen: true,
             run() {
                 store.set(store.get().filter(entry => entry.id !== data.id));
                 registerCustomCommands();
-                showToast({ text: "Command deleted.", variant: "success" });
+                showToast({ text: "コマンドを削除しました。", variant: "success" });
             }
         }
     ];
@@ -147,12 +147,12 @@ function toCommand(data: CustomCommandData): PaletteCommand {
         id: `custom.${data.id}`,
         title: data.name,
         subtitle: KIND_OPTIONS.find(option => option.value === data.kind)?.label,
-        section: "Custom",
+        section: "カスタム",
         icon: KIND_ICONS[data.kind],
         actions: [
             {
                 id: "run",
-                label: "Run Command",
+                label: "コマンドを実行",
                 icon: BoltIcon,
                 run: () => runCustomCommand(data)
             },
@@ -167,8 +167,8 @@ export function registerCustomCommands() {
     registerCommands(OWNER, [
         {
             id: "custom.create",
-            title: "Create Custom Command",
-            section: "Custom",
+            title: "カスタムコマンドを作成",
+            section: "カスタム",
             keywords: ["custom", "create", "new", "command"],
             icon: PlusIcon,
             page: () => commandForm(null)

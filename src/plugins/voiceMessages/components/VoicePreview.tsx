@@ -21,7 +21,7 @@ import { useTimer } from "@utils/react";
 import { cl, VoiceMessage } from "..";
 
 const PREVIEW_IDLE_LABEL = "----";
-const PREVIEW_RECORDING_LABEL = "RECORDING";
+const PREVIEW_RECORDING_LABEL = "録音中";
 
 export interface VoiceMessageProps {
     src: string;

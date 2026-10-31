@@ -39,24 +39,24 @@ function ImportButton({ overwrite, pending, setPending, onImport }: ImportButton
             json = JSON.parse(await readClipboard());
         } catch {
             setPending(false);
-            return showToast({ text: "No JSON in clipboard!", variant: "critical" });
+            return showToast({ text: "クリップボードにJSONがありません！", variant: "critical" });
         }
 
         const { error, data } = UserDataSchema.max(apiConstants.songLimit).safeParse(json);
         if (error) {
             setPending(false);
-            return showToast({ text: "Invalid Song Spotlight data in clipboard!", variant: "critical" });
+            return showToast({ text: "クリップボード内のSong Spotlightデータが無効です！", variant: "critical" });
         }
 
         const validated = await Promise.allSettled(data.map(song => Native.validateSong(song)));
         if (!validated.every(x => x.status === "fulfilled" && x.value)) {
             setPending(false);
-            return showToast({ text: "One or more imported songs were invalid.", variant: "critical" });
+            return showToast({ text: "インポートした曲の一部が無効でした。", variant: "critical" });
         }
 
         onImport(data);
         setPending(false);
-        showToast({ text: "Imported songs from clipboard!", variant: "success" });
+        showToast({ text: "クリップボードから曲をインポートしました！", variant: "success" });
     }, [pending]);
 
     return (
@@ -65,17 +65,17 @@ function ImportButton({ overwrite, pending, setPending, onImport }: ImportButton
             onClick={async () => {
                 if (overwrite) {
                     Alerts.show({
-                        title: "Are you sure?",
-                        body: "This will overwrite your current songs.",
+                        title: "本当によろしいですか？",
+                        body: "現在の曲が上書きされます。",
                         onConfirm: checkClipboard,
-                        confirmText: "Continue",
-                        cancelText: "Nevermind",
+                        confirmText: "続ける",
+                        cancelText: "やめる",
                     });
                 } else checkClipboard();
             }}
             disabled={pending}
         >
-            Import from clipboard
+            クリップボードからインポート
         </Button>
     );
 }
@@ -106,22 +106,22 @@ export default function Settings({ templateData }: SettingsProps) {
         if (isAuthorized() && !localData) getData().then(() => setPending(false));
     }, [isAuthorized()]);
 
-    if (!isAuthorized()) return <Button onClick={() => presentOAuth2Modal()}>Sign in to Song Spotlight</Button>;
+    if (!isAuthorized()) return <Button onClick={() => presentOAuth2Modal()}>Song Spotlightにサインイン</Button>;
 
     return (
         <Flex flexDirection="column" gap="20px">
             <BaseText size="md" weight="normal">
-                You can also view your songs via the {Parser.parse("</songspotlight:1468320979938971802>")} command!
+                あなたの曲は {Parser.parse("</songspotlight:1468320979938971802>")} コマンドでも確認できます！
             </BaseText>
             {localData
                 ? (
                     <Flex flexDirection="column" gap="12px">
                         <Flex flexDirection="column" gap={0}>
-                            <BaseText size="lg" weight="semibold">Songs</BaseText>
+                            <BaseText size="lg" weight="semibold">曲</BaseText>
                             {self?.at
                                 && (
                                     <BaseText size="xs" weight="normal" className={cl("sub")}>
-                                        Last updated <b>{Intl.DateTimeFormat().format(new Date(self.at))}</b>
+                                        最終更新 <b>{Intl.DateTimeFormat().format(new Date(self.at))}</b>
                                     </BaseText>
                                 )}
                         </Flex>
@@ -138,7 +138,7 @@ export default function Settings({ templateData }: SettingsProps) {
                                     onClick={() => copyWithToast(JSON.stringify(localData))}
                                     disabled={pending}
                                 >
-                                    Copy to clipboard
+                                    クリップボードにコピー
                                 </Button>
                                 <ImportButton
                                     overwrite={!!localData[0]}
@@ -153,56 +153,56 @@ export default function Settings({ templateData }: SettingsProps) {
                                     setPending(true);
                                     try {
                                         await saveData(localData);
-                                        showToast({ text: "Successfully saved songs!", variant: "success" });
+                                        showToast({ text: "曲を保存しました！", variant: "success" });
                                     } finally {
                                         setPending(false);
                                     }
                                 }}
                                 disabled={isSame || pending}
                             >
-                                Save
+                                保存
                             </Button>
                         </Flex>
                     </Flex>
                 )
                 : <Spinner type={Spinner.Type.WANDERING_CUBES} />}
             <Flex flexDirection="column" gap="12px">
-                <BaseText size="lg" weight="semibold">Authorization</BaseText>
+                <BaseText size="lg" weight="semibold">認証</BaseText>
                 <div className={cl("twin-buttons")}>
                     <Button
                         variant="dangerPrimary"
                         onClick={() => {
                             deleteTokens();
-                            showToast({ text: "Successfully signed out!", variant: "success" });
+                            showToast({ text: "サインアウトしました！", variant: "success" });
                         }}
                         disabled={pending}
                     >
-                        Sign out
+                        サインアウト
                     </Button>
                     <Button
                         variant="dangerSecondary"
                         onClick={() =>
                             Alerts.show({
-                                title: "Are you sure?",
-                                body: "This will permanently delete all of your songs.",
+                                title: "本当によろしいですか？",
+                                body: "すべての曲が完全に削除されます。",
                                 onConfirm: async () => {
                                     setPending(true);
                                     try {
                                         await deleteData();
                                         deleteTokens();
 
-                                        showToast({ text: "Successfully deleted songs!", variant: "success" });
+                                        showToast({ text: "曲を削除しました！", variant: "success" });
                                     } finally {
                                         setPending(false);
                                     }
                                 },
                                 confirmColor: "danger",
-                                confirmText: "Delete",
-                                cancelText: "Nevermind",
+                                confirmText: "削除",
+                                cancelText: "やめる",
                             })}
                         disabled={!self?.data[0] || pending}
                     >
-                        Delete songs
+                        曲を削除
                     </Button>
                 </div>
             </Flex>

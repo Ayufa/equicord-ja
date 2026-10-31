@@ -62,12 +62,12 @@ function DecorTile({ disabled, onClick, onRemove }: { disabled?: boolean; onClic
         <EditTile
             variant="square"
             affordance={onRemove
-                ? { type: "remove", onClick: onRemove, accessibleLabel: "Remove Decor decoration" }
+                ? { type: "remove", onClick: onRemove, accessibleLabel: "Decor デコレーションを削除" }
                 : asset ? undefined : "add"
             }
             onClick={onClick}
             accessibleLabel="Decor"
-            accessibleValue={asset ? "Decor decoration" : "None"}
+            accessibleValue={asset ? "Decor デコレーション" : "なし"}
             aria-haspopup="dialog"
             disabled={disabled}
             renderPreview={(isInteracting: boolean) => <DecorTilePreview asset={asset} isInteracting={isInteracting} />}

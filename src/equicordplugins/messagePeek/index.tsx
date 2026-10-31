@@ -54,9 +54,9 @@ const Icons: Record<IconType, React.ComponentType<{ size: string; className: str
 
 const ATTACHMENT_LABELS: Record<AttachmentType, string> = {
     gif: "GIF",
-    image: "image",
-    video: "video",
-    file: "file"
+    image: "画像",
+    video: "動画",
+    file: "ファイル"
 };
 
 interface ActivityCheckProps {
@@ -118,13 +118,13 @@ function formatRelativeTime(timestamp: number): string {
 function getMessageContent(message: Message): MessageContent | null {
     if (message.content) {
         if (/https?:\/\/(\S+\.gif|tenor\.com|giphy\.com|klipy\.com)/i.test(message.content)) {
-            return { text: "sent a GIF", icon: "gif" };
+            return { text: "GIF を送信しました", icon: "gif" };
         }
         return { text: Parser.parseInlineReply(message.content) };
     }
 
     if (message.flags & MessageFlags.IS_VOICE_MESSAGE) {
-        return { text: "voice message", icon: "voice" };
+        return { text: "ボイスメッセージ", icon: "voice" };
     }
 
     if (message.attachments?.length) {
@@ -134,9 +134,9 @@ function getMessageContent(message: Message): MessageContent | null {
         const allSameType = types.every(t => t === firstType);
 
         if (allSameType) {
-            return { text: pluralize(count, ATTACHMENT_LABELS[firstType]), icon: firstType };
+            return { text: pluralize(count, ATTACHMENT_LABELS[firstType], ATTACHMENT_LABELS[firstType]), icon: firstType };
         }
-        return { text: pluralize(count, "file"), icon: "file" };
+        return { text: pluralize(count, "ファイル", "ファイル"), icon: "file" };
     }
 
     if (message.stickerItems?.length) {

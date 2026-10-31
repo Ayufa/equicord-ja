@@ -49,7 +49,7 @@ const ContextMenuPatch: NavContextMenuPatchCallback = (children, { channel }: { 
             <Menu.MenuSeparator />
             <Menu.MenuCheckboxItem
                 id="vc-ignore-calls-temp"
-                label="Temporarily Ignore Calls"
+                label="一時的に通話を無視"
                 checked={tempChecked}
                 action={() => {
                     if (tempChecked)
@@ -62,7 +62,7 @@ const ContextMenuPatch: NavContextMenuPatchCallback = (children, { channel }: { 
             />
             <Menu.MenuCheckboxItem
                 id="vc-ignore-calls-perm"
-                label="Permanently Ignore Calls"
+                label="永久に通話を無視"
                 checked={permChecked}
                 action={() => {
                     let updated = permanentlyIgnoredUsers.slice();

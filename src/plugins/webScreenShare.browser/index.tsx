@@ -170,7 +170,7 @@ function ModalComponent({ modalProps, submit, close, options }: {
                 <div>
                     <div className={cl("flex", "padding")}>
                         <section className={cl("quality-section")}>
-                            <Heading tag="h2">Resolution</Heading>
+                            <Heading tag="h2">解像度</Heading>
                             <OptionRadio
                                 options={StreamResolution}
                                 settings={liveSettings}
@@ -180,7 +180,7 @@ function ModalComponent({ modalProps, submit, close, options }: {
                         </section>
 
                         <section className={cl("quality-section")}>
-                            <Heading tag="h2">Frame Rate</Heading>
+                            <Heading tag="h2">フレームレート</Heading>
                             <OptionRadio
                                 options={StreamFps}
                                 settings={liveSettings}
@@ -190,11 +190,11 @@ function ModalComponent({ modalProps, submit, close, options }: {
                         </section>
                     </div>
                     <div>
-                        <Heading tag="h2">Stream Mode</Heading>
+                        <Heading tag="h2">配信モード</Heading>
                         <div>
                             <OptionRadio
                                 options={StreamContentHint}
-                                labels={["Smoother video", "Cleaner text", "Custom"]}
+                                labels={["滑らかな動画", "文字をくっきり", "カスタム"]}
                                 settings={liveSettings}
                                 settingsKey="contentHint"
                                 onChange={option => (liveSettings.contentHint = option)}
@@ -209,8 +209,8 @@ function ModalComponent({ modalProps, submit, close, options }: {
                             shape="box"
                             reverse={true}>
                             <div className={cl("control-content")}>
-                                <Heading tag="h2">Mute Stream Audio</Heading>
-                                <Paragraph style={{ color: "var(--text-subtle, var(--text-default))" }}>Prevents system audio from being included in your stream.</Paragraph>
+                                <Heading tag="h2">配信音声をミュート</Heading>
+                                <Paragraph style={{ color: "var(--text-subtle, var(--text-default))" }}>システム音声が配信に含まれないようにします。</Paragraph>
                             </div>
                         </Checkbox>
                     </div>
@@ -221,8 +221,8 @@ function ModalComponent({ modalProps, submit, close, options }: {
                             shape="box"
                             reverse={true}>
                             <div className={cl("control-content")}>
-                                <Heading tag="h2">Show Stream Previews</Heading>
-                                <Paragraph style={{ color: "var(--text-subtle, var(--text-default))" }}>Allows others to see a preview of your stream before they join.</Paragraph>
+                                <Heading tag="h2">配信プレビューを表示</Heading>
+                                <Paragraph style={{ color: "var(--text-subtle, var(--text-default))" }}>他のユーザーが参加前にあなたの配信のプレビューを見られるようにします。</Paragraph>
                             </div>
                         </Checkbox>
                     </div>

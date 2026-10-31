@@ -64,7 +64,7 @@ const FetchTimeButton: ChatBarButtonFactory = ({ isMainChat }) => {
 
     return (
         <ChatBarButton
-            tooltip={`Messages loaded in ${Math.round(time)}ms (${timeAgo})`}
+            tooltip={`${Math.round(time)}ms でメッセージを読み込みました（${timeAgo}）`}
             onClick={() => { }}
         >
             <div style={{
@@ -107,13 +107,13 @@ function formatTimeAgo(timestamp: Date): string {
     const days = Math.floor(hours / 24);
 
     if (days > 0) {
-        return `${days} day${days > 1 ? "s" : ""} ago`;
+        return `${days}日前`;
     } else if (hours > 0) {
-        return `${hours} hour${hours > 1 ? "s" : ""} ago`;
+        return `${hours}時間前`;
     } else if (minutes > 0) {
-        return `${minutes} minute${minutes > 1 ? "s" : ""} ago`;
+        return `${minutes}分前`;
     } else {
-        return "just now";
+        return "たった今";
     }
 }
 

@@ -131,12 +131,12 @@ function fallbackToGoogle(text: string, sourceLang: string, targetLang: string):
 }
 
 const showDeeplApiQuotaToast = onlyOnce(
-    () => showToast({ text: "Deepl API quota exceeded. Falling back to Google Translate", variant: "critical" })
+    () => showToast({ text: "DeepL APIのクォータを超過しました。Google翻訳に切り替えます", variant: "critical" })
 );
 
 async function deeplTranslate(text: string, sourceLang: string, targetLang: string): Promise<TranslationValue> {
     if (!settings.store.deeplApiKey) {
-        showToast({ text: "DeepL API key is not set. Resetting to Google", variant: "critical" });
+        showToast({ text: "DeepL APIキーが設定されていません。Google翻訳にリセットします", variant: "critical" });
 
         settings.store.service = "google";
         resetLanguageDefaults();

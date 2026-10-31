@@ -19,38 +19,38 @@ export const isWebhook = (message: Message, user: User) => {
 export const tags = [
     {
         name: "WEBHOOK",
-        displayName: "Webhook",
-        description: "Messages sent by webhooks",
+        displayName: "ウェブフック",
+        description: "ウェブフックから送信されたメッセージ",
         condition: isWebhook
     }, {
         name: "OWNER",
-        displayName: "Owner",
-        description: "Owns the server",
+        displayName: "所有者",
+        description: "サーバーの所有者",
         condition: (_, user, channel) => GuildStore.getGuild(channel?.guild_id)?.ownerId === user.id
     }, {
         name: "ADMINISTRATOR",
-        displayName: "Admin",
-        description: "Has the administrator permission",
+        displayName: "管理者",
+        description: "管理者権限を持っています",
         permissions: ["ADMINISTRATOR"]
     }, {
         name: "MODERATOR_STAFF",
-        displayName: "Staff",
-        description: "Can manage the server, channels or roles",
+        displayName: "スタッフ",
+        description: "サーバー、チャンネル、ロールを管理できます",
         permissions: ["MANAGE_GUILD", "MANAGE_CHANNELS", "MANAGE_ROLES"]
     }, {
         name: "MODERATOR",
-        displayName: "Mod",
-        description: "Can manage messages or kick/ban people",
+        displayName: "モデレーター",
+        description: "メッセージの管理や、キック/BAN ができます",
         permissions: ["MANAGE_MESSAGES", "KICK_MEMBERS", "BAN_MEMBERS"]
     }, {
         name: "VOICE_MODERATOR",
-        displayName: "VC Mod",
-        description: "Can manage voice chats",
+        displayName: "VCモデレーター",
+        description: "ボイスチャットを管理できます",
         permissions: ["MOVE_MEMBERS", "MUTE_MEMBERS", "DEAFEN_MEMBERS"]
     }, {
         name: "CHAT_MODERATOR",
-        displayName: "Chat Mod",
-        description: "Can timeout people",
+        displayName: "チャットモデレーター",
+        description: "ユーザーをタイムアウトできます",
         permissions: ["MODERATE_MEMBERS"]
     }
 ] as const satisfies ITag[];

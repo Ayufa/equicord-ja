@@ -248,7 +248,7 @@ const settings = definePluginSettings({
                 });
                 dataUriCache.clear();
                 setResetTrigger(prev => prev + 1);
-                showToast({ text: "All overrides reset successfully!" });
+                showToast({ text: "すべての上書き設定をリセットしました！" });
             };
 
             const triggerFileUpload = () => {
@@ -280,10 +280,10 @@ const settings = definePluginSettings({
                             }
 
                             setResetTrigger(prev => prev + 1);
-                            showToast({ text: "Settings imported successfully!" });
+                            showToast({ text: "設定をインポートしました！" });
                         } catch (error) {
                             console.error("Error importing settings:", error);
-                            showToast({ text: "Error importing settings. Check console for details." });
+                            showToast({ text: "設定のインポートエラー。詳細はコンソールを確認してください。" });
                         }
                     };
 
@@ -317,7 +317,7 @@ const settings = definePluginSettings({
                 a.click();
                 URL.revokeObjectURL(url);
 
-                showToast({ text: `Exported ${overrides.length} settings (audio files not included)` });
+                showToast({ text: `${overrides.length} 件の設定をエクスポートしました（音声ファイルは含まれません）` });
             };
 
             const filteredSoundTypes = allSoundTypes.filter(type =>
@@ -328,10 +328,10 @@ const settings = definePluginSettings({
             return (
                 <div>
                     <div className="vc-custom-sounds-buttons">
-                        <Button variant="primary" onClick={triggerFileUpload}>Import</Button>
-                        <Button variant="secondary" onClick={downloadSettings}>Export</Button>
-                        <Button variant="dangerPrimary" onClick={resetOverrides}>Reset All</Button>
-                        <Button variant="overlayPrimary" onClick={debugCustomSounds}>Debug</Button>
+                        <Button variant="primary" onClick={triggerFileUpload}>インポート</Button>
+                        <Button variant="secondary" onClick={downloadSettings}>エクスポート</Button>
+                        <Button variant="dangerPrimary" onClick={resetOverrides}>すべてリセット</Button>
+                        <Button variant="overlayPrimary" onClick={debugCustomSounds}>デバッグ</Button>
                         <input
                             className={cl("file-input")}
                             ref={fileInputRef}
@@ -342,11 +342,11 @@ const settings = definePluginSettings({
                     </div>
 
                     <div className={cl("search")}>
-                        <Heading>Search Sounds</Heading>
+                        <Heading>サウンドを検索</Heading>
                         <TextInput
                             value={searchQuery}
                             onChange={e => setSearchQuery(e)}
-                            placeholder="Search by name or ID"
+                            placeholder="名前または ID で検索"
                         />
                     </div>
 
@@ -368,7 +368,7 @@ const settings = definePluginSettings({
                                                 await ensureDataURICached(currentOverride.selectedFileId);
                                             } catch (error) {
                                                 console.error(`[CustomSounds] Failed to cache data URI for ${type.id}:`, error);
-                                                showToast({ text: "Error loading custom sound file" });
+                                                showToast({ text: "カスタムサウンドファイルの読み込みエラー" });
                                             }
                                         }
 

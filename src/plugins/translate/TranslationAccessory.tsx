@@ -43,7 +43,7 @@ function Dismiss({ onDismiss }: { onDismiss: () => void; }) {
             onClick={onDismiss}
             className={cl("dismiss")}
         >
-            Dismiss
+            閉じる
         </button>
     );
 }
@@ -71,7 +71,7 @@ export function TranslationAccessory({ message }: { message: Message; }) {
             <TranslateIcon width={16} height={16} className={cl("accessory-icon")} />
             {Parser.parse(translation.text)}
             <br />
-            (translated from {translation.sourceLanguage} - <Dismiss onDismiss={() => setTranslation(undefined)} />)
+            ({translation.sourceLanguage} から翻訳 - <Dismiss onDismiss={() => setTranslation(undefined)} />)
         </span>
     );
 }

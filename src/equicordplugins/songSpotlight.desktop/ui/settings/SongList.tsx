@@ -66,7 +66,7 @@ function EditableSong({ index, song, insert, setSongRef, onDrag, onDrop, onRemov
                     >
                         <Menu.MenuItem
                             id="copy-link"
-                            label="Copy link"
+                            label="リンクをコピー"
                             icon={LinkIcon}
                             leadingAccessory={{ type: "icon", icon: LinkIcon }}
                             action={() => render && copyWithToast(render.link)}
@@ -75,7 +75,7 @@ function EditableSong({ index, song, insert, setSongRef, onDrag, onDrop, onRemov
                         <Menu.MenuItem
                             id="remove-song"
                             color="danger"
-                            label="Remove song"
+                            label="曲を削除"
                             icon={TrashIcon}
                             leadingAccessory={{ type: "icon", icon: TrashIcon }}
                             action={() => onRemove(song)}
@@ -94,7 +94,7 @@ function EditableSong({ index, song, insert, setSongRef, onDrag, onDrop, onRemov
             <Flex alignItems="center" gap="12px" className={cl("editable-song")}>
                 <ServiceIcon width={28} height={28} service={song.service} />
                 {failed
-                    ? <BaseText size="md" weight="normal" className={cl("errored")}>Failed to load!</BaseText>
+                    ? <BaseText size="md" weight="normal" className={cl("errored")}>読み込みに失敗しました！</BaseText>
                     : (
                         <Flex flexDirection="column" justifyContent="center" gap={0}>
                             <BaseText size="md" weight="medium" className={cl("clamped")}>
@@ -193,10 +193,10 @@ export default function SongList({ localData, setLocalData }: SongListProps) {
     }, [localData, insert]);
 
     const handleAdd = useCallback((song: Song) => {
-        if (localData.length >= apiConstants.songLimit) return "Not enough space";
-        if (localData.some(x => sid(x) === sid(song))) return "You've already added this song";
+        if (localData.length >= apiConstants.songLimit) return "空きが不足しています";
+        if (localData.some(x => sid(x) === sid(song))) return "この曲はすでに追加されています";
 
-        showToast({ text: "Added song!" });
+        showToast({ text: "曲を追加しました！" });
         setLocalData([
             ...localData,
             song,
@@ -207,7 +207,7 @@ export default function SongList({ localData, setLocalData }: SongListProps) {
         const i = localData.indexOf(song);
         if (i === -1) return;
 
-        showToast({ text: "Removed song!" });
+        showToast({ text: "曲を削除しました！" });
         setLocalData(localData.toSpliced(i, 1));
     }, [localData]);
 

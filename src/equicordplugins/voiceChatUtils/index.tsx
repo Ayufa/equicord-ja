@@ -77,21 +77,21 @@ const VoiceChannelContext: NavContextMenuPatchCallback = (children, { channel }:
         -1,
         0,
         <Menu.MenuItem
-            label="Voice Tools"
+            label="ボイスツール"
             key="voice-tools"
             id="voice-tools"
         >
             <Menu.MenuItem
                 key="voice-tools-mention-all"
                 id="voice-tools-mention-all"
-                label="Mention all Users"
+                label="全ユーザーにメンション"
                 action={() => mentionVoiceUsers(channel)}
             />
 
             <Menu.MenuItem
                 key="voice-tools-disconnect-all"
                 id="voice-tools-disconnect-all"
-                label="Disconnect all"
+                label="全員を切断"
                 action={() => sendPatch(channel, {
                     channel_id: null,
                 })}
@@ -100,7 +100,7 @@ const VoiceChannelContext: NavContextMenuPatchCallback = (children, { channel }:
             <Menu.MenuItem
                 key="voice-tools-mute-all"
                 id="voice-tools-mute-all"
-                label="Mute all"
+                label="全員をミュート"
                 action={() => sendPatch(channel, {
                     mute: true,
                 })}
@@ -109,7 +109,7 @@ const VoiceChannelContext: NavContextMenuPatchCallback = (children, { channel }:
             <Menu.MenuItem
                 key="voice-tools-unmute-all"
                 id="voice-tools-unmute-all"
-                label="Unmute all"
+                label="全員のミュートを解除"
                 action={() => sendPatch(channel, {
                     mute: false,
                 })}
@@ -118,7 +118,7 @@ const VoiceChannelContext: NavContextMenuPatchCallback = (children, { channel }:
             <Menu.MenuItem
                 key="voice-tools-deafen-all"
                 id="voice-tools-deafen-all"
-                label="Deafen all"
+                label="全員をスピーカーミュート"
                 action={() => sendPatch(channel, {
                     deaf: true,
                 })}
@@ -127,14 +127,14 @@ const VoiceChannelContext: NavContextMenuPatchCallback = (children, { channel }:
             <Menu.MenuItem
                 key="voice-tools-undeafen-all"
                 id="voice-tools-undeafen-all"
-                label="Undeafen all"
+                label="全員のスピーカーミュートを解除"
                 action={() => sendPatch(channel, {
                     deaf: false,
                 })}
             />
 
             <Menu.MenuItem
-                label="Move all"
+                label="全員を移動"
                 key="voice-tools-move-all"
                 id="voice-tools-move-all"
             >

@@ -23,7 +23,7 @@ const messageCtxPatch: NavContextMenuPatchCallback = (children, { message }: { m
     group.splice(group.findIndex(c => c?.props?.id === "copy-text") + 1, 0, (
         <Menu.MenuItem
             id="vc-trivia-ai"
-            label="Answer With AI"
+            label="AIで回答"
             icon={RobotIcon}
             leadingAccessory={{ type: "icon", icon: RobotIcon }}
             action={async () => {
@@ -53,7 +53,7 @@ export default definePlugin({
             if (!message.content.trim() && !message.embeds.length && (!settings.store.supportImages || !message.attachments.some(att => att.content_type?.startsWith("image/")))) return null;
 
             return {
-                label: "Answer With AI",
+                label: "AIで回答",
                 icon: RobotIcon,
                 message,
                 channel: ChannelStore.getChannel(message.channel_id),

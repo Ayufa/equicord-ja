@@ -203,7 +203,7 @@ export default definePlugin({
             <Menu.Menu
                 navId="gif-picker-category"
                 onClose={() => FluxDispatcher.dispatch({ type: "CONTEXT_MENU_CLOSE" })}
-                aria-label="GIF Picker Category Options"
+                aria-label="GIFピッカーのカテゴリオプション"
             >
                 {children}
             </Menu.Menu>

@@ -76,7 +76,7 @@ function NewPluginsModal({ modalProps, newPlugins, newSettings }: ModalComponent
 
         if (isRequired) {
             const tooltipText = p.required
-                ? "This plugin is required for Equicord to function."
+                ? "このプラグインは Equicord の動作に必要です。"
                 : <PluginDependencyList deps={depMap[p.name]?.filter(d => settings.plugins[d].enabled)} />;
 
             requiredPluginCards.push(
@@ -124,31 +124,31 @@ function NewPluginsModal({ modalProps, newPlugins, newSettings }: ModalComponent
             title={
                 <div className={cl("header-content")}>
                     <BaseText size="lg" weight="semibold" className={cl("title")}>
-                        New Plugins and Settings ({totalCount})
+                        新しいプラグインと設定（{totalCount}）
                     </BaseText>
                 </div>
             }
             subtitle={
                 <>
                     <BaseText size="sm" className={cl("description")}>
-                        New plugins have been added since your last visit. Enable any you'd like or continue to dismiss.
+                        前回の訪問以降、新しいプラグインが追加されています。使いたいものを有効化するか、そのまま続行して閉じてください。
                     </BaseText>
                     <br />
                     <Notice.Info className={cl("notice")}>
-                        Equicord is Open Source Software. If you enjoy using it, consider supporting us <Link href="https://github.com/sponsors/thororen1234" target="_blank" rel="noopener noreferrer">here</Link>.
+                        Equicord はオープンソースソフトウェアです。気に入っていただけたなら、<Link href="https://github.com/sponsors/thororen1234" target="_blank" rel="noopener noreferrer">こちら</Link>から支援をご検討ください。
                     </Notice.Info>
                 </>
             }
             actions={[
                 {
-                    text: "Don't show this again",
+                    text: "今後表示しない",
                     onClick: () => {
                         Settings.plugins.NewPluginsManager.enabled = !settings?.plugins?.NewPluginsManager?.enabled;
                     },
                     variant: "secondary"
                 },
                 {
-                    text: changes.hasChanges ? "Restart" : "Continue",
+                    text: changes.hasChanges ? "再起動" : "続行",
                     onClick: handleContinue,
                     variant: "primary"
                 }

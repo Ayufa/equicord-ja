@@ -34,7 +34,7 @@ export const settings = definePluginSettings({
                 const token = await DataStore.get("ThemeLibrary_uniqueToken");
 
                 if (!token) return showToast({
-                    text: "No token to copy, try authorizing first!",
+                    text: "コピーするトークンがありません。先に認証してください！",
                     variant: "critical",
                     duration: 2.5e3,
                     position: "bottom"
@@ -43,7 +43,7 @@ export const settings = definePluginSettings({
                 copyToClipboard(token);
 
                 showToast({
-                    text: "Copied to Clipboard!",
+                    text: "クリップボードにコピーしました！",
                     variant: "success",
                     duration: 2.5e3,
                     position: "bottom"
@@ -52,23 +52,23 @@ export const settings = definePluginSettings({
 
             return (
                 <section>
-                    <HeadingSecondary style={{ marginTop: 0, marginBottom: 8 }}>ThemeLibrary Auth</HeadingSecondary>
+                    <HeadingSecondary style={{ marginTop: 0, marginBottom: 8 }}>ThemeLibrary 認証</HeadingSecondary>
                     <div className={cl("button-grid")}>
                         <Button onClick={() => authorizeUser()}>
-                            Authorize with ThemeLibrary
+                            ThemeLibraryで認証
                         </Button>
                         <Button onClick={handleClick}>
-                            Copy ThemeLibrary Token
+                            ThemeLibraryトークンをコピー
                         </Button>
                         <Button variant="dangerPrimary" onClick={() => deauthorizeUser()}>
-                            Deauthorize ThemeLibrary
+                            ThemeLibraryの認証を解除
                         </Button>
                     </div>
-                    <HeadingSecondary style={{ marginTop: 8, marginBottom: 8 }}>Theme Removal</HeadingSecondary>
-                    <Paragraph style={{ marginTop: 0, marginBottom: 8 }}> All Theme Authors are given credit in the theme info, no source has been modified, if you wish your theme to be removed anyway, open an Issue by clicking below.</Paragraph>
+                    <HeadingSecondary style={{ marginTop: 8, marginBottom: 8 }}>テーマの削除</HeadingSecondary>
+                    <Paragraph style={{ marginTop: 0, marginBottom: 8 }}>すべてのテーマ作者はテーマ情報にクレジットされており、ソースは改変されていません。それでもテーマの削除を希望する場合は、下のボタンからIssueを作成してください。</Paragraph>
                     <div className={cl("button-grid")}>
                         <Button onClick={() => VencordNative.native.openExternal("https://github.com/Faf4a/plugins/issues/new?labels=removal&projects=&template=request_removal.yml&title=Theme+Removal")}>
-                            Request Theme Removal <OpenExternalIcon height={16} width={16} />
+                            テーマの削除をリクエスト <OpenExternalIcon height={16} width={16} />
                         </Button>
                     </div>
                 </section>

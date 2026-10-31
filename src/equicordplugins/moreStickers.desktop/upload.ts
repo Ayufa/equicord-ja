@@ -169,7 +169,7 @@ export async function sendSticker({ channelId, sticker, ctrlKey, shiftKey, ffmpe
         });
     });
 
-    upload.on("error", () => showToast({ text: "Failed to upload sticker", variant: "critical" }));
+    upload.on("error", () => showToast({ text: "スタンプのアップロードに失敗しました", variant: "critical" }));
 
     upload.upload();
 }

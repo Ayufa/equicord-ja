@@ -32,7 +32,7 @@ export async function createCollection(name: string, gifs: Gif[]): Promise<void>
     const fullName = `${settings.store.collectionPrefix}${name}`;
 
     if (collections.some(c => c.name === fullName)) {
-        showToast({ text: "That collection already exists", variant: "critical", duration: 3000, position: "bottom" });
+        showToast({ text: "そのコレクションはすでに存在します", variant: "critical", duration: 3000, position: "bottom" });
         return;
     }
 
@@ -56,7 +56,7 @@ export async function addToCollection(name: string, gif: Gif): Promise<void> {
     if (!collection) return void logger.warn("Collection not found");
 
     if (settings.store.preventDuplicates && collection.gifs.some(g => g.url === gif.url)) {
-        showToast({ text: "This GIF is already in the collection", variant: "critical", duration: 3000, position: "bottom" });
+        showToast({ text: "このGIFはすでにコレクションに含まれています", variant: "critical", duration: 3000, position: "bottom" });
         return;
     }
 

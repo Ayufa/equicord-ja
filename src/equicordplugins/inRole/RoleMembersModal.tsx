@@ -32,7 +32,7 @@ export function showInRoleModal(members: GuildMember[], roleId: string, channelI
                                     {Parser.parse(`<@${member.userId}>`, true, { channelId, viewingChannelId: channelId })}
                                 </Paragraph>
                             </React.Fragment>
-                        ) : <Paragraph>Looks like no online cached members with that role were found. Try scrolling down on your member list to cache more users!</Paragraph>
+                        ) : <Paragraph>そのロールを持つオンラインのキャッシュ済みメンバーは見つかりませんでした。メンバーリストを下にスクロールして、より多くのユーザーをキャッシュしてみてください！</Paragraph>
                     }
                 </div>
             </Modal>

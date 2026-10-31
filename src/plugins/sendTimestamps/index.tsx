@@ -70,9 +70,9 @@ function PickerModal(props: RenderModalProps) {
     return (
         <Modal
             {...props}
-            title="Timestamp Picker"
+            title="タイムスタンプ選択"
             actions={[{
-                text: "Insert",
+                text: "挿入",
                 variant: "primary",
                 onClick() {
                     insertTextIntoChatInputBox(formatted + " ");
@@ -90,7 +90,7 @@ function PickerModal(props: RenderModalProps) {
                 }}
             />
 
-            <Heading tag="h5">Timestamp Format</Heading>
+            <Heading tag="h5">タイムスタンプの形式</Heading>
             <div className={cl("format-select")}>
                 <Select
                     options={
@@ -111,7 +111,7 @@ function PickerModal(props: RenderModalProps) {
                 />
             </div>
 
-            <Heading tag="h5" className={Margins.bottom8}>Preview</Heading>
+            <Heading tag="h5" className={Margins.bottom8}>プレビュー</Heading>
             <Paragraph className={cl("preview-text")}>
                 {rendered} ({formatted})
             </Paragraph>
@@ -143,7 +143,7 @@ const SendTimestampButton: ChatBarButtonFactory = ({ isAnyChat }) => {
 
     return (
         <ChatBarButton
-            tooltip="Insert Timestamp"
+            tooltip="タイムスタンプを挿入"
             onClick={() => openModal(props => <PickerModal {...props} />)}
             buttonProps={{ "aria-haspopup": "dialog" }}
         >
@@ -184,14 +184,14 @@ export default definePlugin({
         return (
             <>
                 <Paragraph>
-                    To quickly send time only timestamps, include timestamps formatted as `HH:MM` (including the backticks!) in your message
+                    時刻だけのタイムスタンプを素早く送信するには、メッセージに `HH:MM` 形式のタイムスタンプを含めてください（バッククォートも必要です！）
                 </Paragraph>
                 <Paragraph>
-                    See below for examples.
-                    If you need anything more specific, use the Date button in the chat bar!
+                    例は以下をご覧ください。
+                    もっと細かく指定したい場合は、チャットバーの日付ボタンを使ってください！
                 </Paragraph>
                 <Paragraph>
-                    Examples:
+                    例：
                     <ul>
                         {samples.map(s => (
                             <li key={s}>

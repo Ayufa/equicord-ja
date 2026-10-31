@@ -126,7 +126,7 @@ export function toggleEnabled(name: string, beforeReload: (error?: string) => vo
                 window.location.reload();
             }
             showToast({
-                text: "Reload Needed",
+                text: "再読み込みが必要です",
                 duration: 5000,
                 position: "top"
             });
@@ -145,7 +145,7 @@ export function toggleEnabled(name: string, beforeReload: (error?: string) => vo
         const { restartNeeded, failures } = startDependenciesRecursive(plugin);
         if (failures.length) {
             console.error(`Failed to start dependencies for ${plugin.name}: ${failures.join(", ")}`);
-            showNotice("Failed to start dependencies: " + failures.join(", "), "Close", () => null);
+            showNotice("依存関係の開始に失敗しました: " + failures.join(", "), "閉じる", () => null);
             beforeReturn();
             return;
         } else if (restartNeeded) {

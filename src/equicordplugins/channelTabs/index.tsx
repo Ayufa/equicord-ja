@@ -26,7 +26,7 @@ const contextMenuPatch: NavContextMenuPatchCallback = (children, props: { channe
 
     const menuItem = (
         <Menu.MenuItem
-            label="Open in New Tab"
+            label="新しいタブで開く"
             id="open-link-in-tab"
             icon={LinkIcon}
             leadingAccessory={{ type: "icon", icon: LinkIcon }}

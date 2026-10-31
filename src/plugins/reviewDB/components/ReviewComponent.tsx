@@ -38,7 +38,7 @@ const BotTagClasses = findCssClassesLazy("botTagVerified", "botTagRegular", "bot
 
 const dateFormat = new Intl.DateTimeFormat();
 
-const ensureToken = async () => await getToken() || showToast({ text: "You must be logged in to perform this action!", variant: "critical" });
+const ensureToken = async () => await getToken() || showToast({ text: "この操作を行うにはログインが必要です！", variant: "critical" });
 
 export default function ReviewComponent({ review, refetch, profileId }: { review: Review; refetch(): void; profileId: string; }) {
     const [showAll, setShowAll] = useState(false);
@@ -59,10 +59,10 @@ export default function ReviewComponent({ review, refetch, profileId }: { review
         if (!await ensureToken()) return;
 
         await confirmAction({
-            title: "Are you sure?",
-            subtitle: "Do you really want to delete this review?",
-            confirmText: "Delete",
-            cancelText: "Nevermind",
+            title: "本当によろしいですか？",
+            subtitle: "本当にこのレビューを削除しますか？",
+            confirmText: "削除",
+            cancelText: "やめる",
             async onConfirm() {
                 const res = await deleteReview(review.id);
                 if (res) refetch();
@@ -74,10 +74,10 @@ export default function ReviewComponent({ review, refetch, profileId }: { review
         if (!await ensureToken()) return;
 
         await confirmAction({
-            title: "Are you sure?",
-            subtitle: "Do you really want to report this review?",
-            confirmText: "Report",
-            cancelText: "Nevermind",
+            title: "本当によろしいですか？",
+            subtitle: "本当にこのレビューを通報しますか？",
+            confirmText: "通報",
+            cancelText: "やめる",
             async onConfirm() {
                 await reportReview(review.id);
             },
@@ -93,10 +93,10 @@ export default function ReviewComponent({ review, refetch, profileId }: { review
             return unblockUser(review.sender.discordID);
 
         await confirmAction({
-            title: "Are you sure?",
-            subtitle: "Do you really want to block this user? They will be unable to leave further reviews on your profile. You can unblock users in the plugin settings.",
-            confirmText: "Block",
-            cancelText: "Nevermind",
+            title: "本当によろしいですか？",
+            subtitle: "本当にこのユーザーをブロックしますか？ブロックすると、あなたのプロフィールにそれ以上レビューを残せなくなります。プラグイン設定でブロックを解除できます。",
+            confirmText: "ブロック",
+            cancelText: "やめる",
             async onConfirm() {
                 await blockUser(review.sender.discordID);
             },
@@ -107,7 +107,7 @@ export default function ReviewComponent({ review, refetch, profileId }: { review
         if (isVoting) return;
 
         if (review.sender.discordID === Auth.user?.discordID) {
-            return showToast({ text: "You cannot vote on your own review.", variant: "critical" });
+            return showToast({ text: "自分のレビューには投票できません。", variant: "critical" });
         }
 
         setIsVoting(true);
@@ -201,8 +201,8 @@ export default function ReviewComponent({ review, refetch, profileId }: { review
             </div>
             {isAuthorBlocked && (
                 <ReviewBadge
-                    name="You have blocked this user"
-                    description="You have blocked this user"
+                    name="このユーザーをブロックしています"
+                    description="このユーザーをブロックしています"
                     icon="/assets/aaee57e0090991557b66.svg"
                     type={0}
                     onClick={() => openBlockModal()}
@@ -222,7 +222,7 @@ export default function ReviewComponent({ review, refetch, profileId }: { review
                         <>
                             {Parser.parseGuildEventDescription(review.comment.substring(0, 200))}...
                             <br />
-                            <a onClick={() => setShowAll(true)}>Read more</a>
+                            <a onClick={() => setShowAll(true)}>続きを読む</a>
                         </>
                     )
                     : Parser.parseGuildEventDescription(review.comment)}

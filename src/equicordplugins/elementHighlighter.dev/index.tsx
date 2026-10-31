@@ -79,7 +79,7 @@ function KeybindRecorder() {
                 className={cl("keybind-button", isListening ? "listening" : "")}
                 onClick={() => setIsListening(true)}
             >
-                {isListening ? "Recording..." : <KeybindShortcut shortcut={currentKeybind.join("+")} />}
+                {isListening ? "記録中..." : <KeybindShortcut shortcut={currentKeybind.join("+")} />}
             </button>
             <Button
                 size="small"
@@ -354,7 +354,7 @@ function onClick(e: MouseEvent) {
     if (!el || el === overlay || el === tooltip) return;
 
     const colorVar = getColorVar(el);
-    if (colorVar) copyWithToast(colorVar, "Copied color to clipboard!");
+    if (colorVar) copyWithToast(colorVar, "色をクリップボードにコピーしました！");
 }
 
 function onKeyDown(e: KeyboardEvent) {

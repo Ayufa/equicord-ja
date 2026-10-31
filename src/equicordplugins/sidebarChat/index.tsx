@@ -88,7 +88,7 @@ const requireForumView = extractAndLoadChunksLazy(
 );
 
 function getChannelTitle(channel: Channel | null | undefined) {
-    if (!channel) return "Chat";
+    if (!channel) return "チャット";
 
     if (channel.isPrivate()) {
         const recipientId = channel.getRecipientId?.();
@@ -102,7 +102,7 @@ function getChannelTitle(channel: Channel | null | undefined) {
         return channel.name || "DM";
     }
 
-    return channel.name || "Chat";
+    return channel.name || "チャット";
 }
 
 function canOpenPopout(channel: Channel) {
@@ -119,7 +119,7 @@ function getMainChatChannelId() {
 }
 
 function getPopoutMenuLabel(channelId: string) {
-    return isPopoutWindowOpen(channelId) ? "Close popout chat" : "Popout chat";
+    return isPopoutWindowOpen(channelId) ? "ポップアウトチャットを閉じる" : "ポップアウトチャット";
 }
 
 let restorePersistedPopoutsInterval: number | null = null;
@@ -246,7 +246,7 @@ const createSidebarChatContextMenuItem = (id: string, guildId: string | null) =>
     return (
         <Menu.MenuItem
             id={`vc-sidebar-chat-${id}`}
-            label={"Open Sidebar Chat"}
+            label={"サイドバーチャットを開く"}
             action={() => {
                 FluxDispatcher.dispatch({
                     // @ts-ignore
@@ -283,7 +283,7 @@ const UserContextPatch: NavContextMenuPatchCallback = (children, args: { user: U
     children.push(createSidebarChatContextMenuItem(args.user.id, null));
     children.push(createPopoutChatContextMenuItem(
         args.user.id,
-        isOpen ? "Close popout chat" : "Popout chat",
+        isOpen ? "ポップアウトチャットを閉じる" : "ポップアウトチャット",
         () => {
             if (channelId && isOpen) {
                 closePopout(channelId);
@@ -356,7 +356,7 @@ export default definePlugin({
     },
 
     toolboxActions: {
-        "Open Previous Chat"() {
+        "前のチャットを開く"() {
             FluxDispatcher.dispatch({
                 // @ts-ignore
                 type: "VC_SIDEBAR_CHAT_PREVIOUS",
@@ -517,15 +517,15 @@ const Header = ({ guild, channel }: { guild: Guild; channel: Channel; }) => {
         <HeaderBar
             toolbar={
                 <>
-                    <HeaderBarButton icon={ArrowsLeftRightIcon} tooltip="Switch channels" onClick={switchChannels} />
+                    <HeaderBarButton icon={ArrowsLeftRightIcon} tooltip="チャンネルを切り替え" onClick={switchChannels} />
                     <HeaderBarButton
                         key={`${channel.id}-${isPopoutOpen ? "open" : "closed"}`}
                         icon={isPopoutOpen ? XSmallIcon : WindowLaunchIcon}
-                        tooltip={isPopoutOpen ? "Close popout chat" : "Popout chat"}
+                        tooltip={isPopoutOpen ? "ポップアウトチャットを閉じる" : "ポップアウトチャット"}
                         selected={isPopoutOpen}
                         onClick={openPopoutClick}
                     />
-                    <HeaderBarButton icon={XSmallIcon} tooltip="Close Sidebar Chat" onClick={closeSidebar} />
+                    <HeaderBarButton icon={XSmallIcon} tooltip="サイドバーチャットを閉じる" onClick={closeSidebar} />
                 </>
             }
         >
@@ -591,8 +591,8 @@ function PopoutHeaderButton() {
         <HeaderBarButton
             key={`${channel.id}-${isOpen ? "open" : "closed"}`}
             icon={isOpen ? XSmallIcon : WindowLaunchIcon}
-            tooltip={isOpen ? "Close popout chat" : `Popout chat for ${label}`}
-            aria-label="Popout chat"
+            tooltip={isOpen ? "ポップアウトチャットを閉じる" : `${label} のポップアウトチャット`}
+            aria-label="ポップアウトチャット"
             selected={isOpen}
             onClick={() => openPopout(channel.id)}
         />

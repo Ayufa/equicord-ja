@@ -15,38 +15,38 @@ export async function fetchDiscordAttachment(
 ): Promise<{ success: boolean; data?: ArrayBuffer; error?: string; }> {
     try {
         const attachmentUrl = getDiscordAttachmentUrl(pathAndQuery);
-        if (!attachmentUrl) return { success: false, error: "Invalid Discord attachment path" };
+        if (!attachmentUrl) return { success: false, error: "無効なDiscord添付ファイルパス" };
 
         const previewDialog = await dialog.showMessageBox({
-            title: "Preview ZIP attachment",
-            message: "Discord is about to fetch this ZIP attachment for preview.",
+            title: "ZIP添付ファイルのプレビュー",
+            message: "Discordがプレビュー用にこのZIP添付ファイルを取得しようとしています。",
             type: "question",
-            detail: `Attachment: ${getAttachmentFileName(pathAndQuery)}\n\nIf you did not request this intentionally, choose Cancel.`,
-            buttons: ["Cancel", "Preview ZIP"]
+            detail: `添付ファイル: ${getAttachmentFileName(pathAndQuery)}\n\n意図した操作でない場合は「キャンセル」を選んでください。`,
+            buttons: ["キャンセル", "ZIPをプレビュー"]
         });
-        if (previewDialog.response !== 1) return { success: false, error: "ZIP preview was cancelled." };
+        if (previewDialog.response !== 1) return { success: false, error: "ZIPプレビューがキャンセルされました。" };
 
         const response = await fetch(attachmentUrl);
-        if (!response.ok) return { success: false, error: `Fetch failed: ${response.status} ${response.statusText}` };
+        if (!response.ok) return { success: false, error: `取得に失敗しました: ${response.status} ${response.statusText}` };
 
         return {
             success: true,
             data: await readLimitedResponse(response)
         };
     } catch (error) {
-        return { success: false, error: error instanceof Error ? error.message : "Unknown error" };
+        return { success: false, error: error instanceof Error ? error.message : "不明なエラー" };
     }
 }
 
 async function readLimitedResponse(response: Response): Promise<ArrayBuffer> {
     const contentLength = Number(response.headers.get("content-length"));
     if (Number.isFinite(contentLength) && contentLength > MAX_ZIP_BYTES) {
-        throw new Error("ZIP is too large to preview.");
+        throw new Error("ZIPが大きすぎてプレビューできません。");
     }
 
     if (!response.body) {
         const buffer = await response.arrayBuffer();
-        if (buffer.byteLength > MAX_ZIP_BYTES) throw new Error("ZIP is too large to preview.");
+        if (buffer.byteLength > MAX_ZIP_BYTES) throw new Error("ZIPが大きすぎてプレビューできません。");
         return buffer;
     }
 
@@ -62,7 +62,7 @@ async function readLimitedResponse(response: Response): Promise<ArrayBuffer> {
         totalBytes += value.byteLength;
         if (totalBytes > MAX_ZIP_BYTES) {
             await reader.cancel();
-            throw new Error("ZIP is too large to preview.");
+            throw new Error("ZIPが大きすぎてプレビューできません。");
         }
 
         chunks.push(value);
@@ -81,7 +81,7 @@ async function readLimitedResponse(response: Response): Promise<ArrayBuffer> {
 function getAttachmentFileName(pathAndQuery: string): string {
     const path = pathAndQuery.split("?", 1)[0];
     const fileName = path.split("/").at(-1);
-    return fileName ? decodeURIComponent(fileName) : "Unknown attachment";
+    return fileName ? decodeURIComponent(fileName) : "不明な添付ファイル";
 }
 
 function getDiscordAttachmentUrl(pathAndQuery: string): URL | null {

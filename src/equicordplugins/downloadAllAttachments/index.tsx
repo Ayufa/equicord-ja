@@ -8,7 +8,6 @@ import { definePluginSettings } from "@api/Settings";
 import { CloudDownloadIcon } from "@components/Icons";
 import { EquicordDevs } from "@utils/constants";
 import { Logger } from "@utils/Logger";
-import { pluralize } from "@utils/misc";
 import definePlugin, { OptionType } from "@utils/types";
 import { Message, MessageAttachment } from "@vencord/discord-types";
 import { ChannelStore, showToast } from "@webpack/common";
@@ -71,9 +70,9 @@ async function downloadAll(attachments: MessageAttachment[]) {
     const succeeded = attachments.length - failed;
 
     if (failed === 0)
-        showToast({ text: `Downloaded ${pluralize(succeeded, "attachment")}.`, variant: "success" });
+        showToast({ text: `${succeeded} 件の添付ファイルをダウンロードしました。`, variant: "success" });
     else
-        showToast({ text: `Downloaded ${succeeded} of ${attachments.length} attachments. ${failed} failed.`, variant: "critical" });
+        showToast({ text: `${attachments.length} 件中 ${succeeded} 件の添付ファイルをダウンロードしました。${failed} 件失敗しました。`, variant: "critical" });
 }
 
 export default definePlugin({
@@ -88,7 +87,7 @@ export default definePlugin({
         render(message: Message) {
             if (!message.attachments.length) return null;
             return {
-                label: "Download All Attachments",
+                label: "添付ファイルをすべてダウンロード",
                 icon: CloudDownloadIcon,
                 message,
                 channel: ChannelStore.getChannel(message.channel_id),

@@ -56,7 +56,7 @@ export default definePlugin({
         render(message) {
             if (!message.content) return null;
             return {
-                label: "Convert Units",
+                label: "単位を変換",
                 icon: ConvertIcon,
                 message,
                 channel: ChannelStore.getChannel(message.channel_id),

@@ -86,24 +86,24 @@ export function KeywordEntries() {
                         onChange={() => {
                             setIgnoreCase(i, !values[i].ignoreCase);
                         }}
-                        title="Ignore Case"
+                        title="大文字小文字を区別しない"
                         className={cl("ignoreCaseSwitch")} />
                     <FormSwitch
                         value={values[i].ignoreBots ?? false}
                         onChange={() => {
                             setIgnoreBots(i, !values[i].ignoreBots);
                         }}
-                        title="Ignore Bots"
-                        description="Ignore messages from bots"
+                        title="ボットを無視"
+                        description="ボットからのメッセージを無視します"
                         className={cl("ignoreCaseSwitch")} />
                     <Flex flexDirection="row">
                         <div style={{ flexGrow: 1 }}>
-                            <Heading tag="h5">Whitelist</Heading>
+                            <Heading tag="h5">ホワイトリスト</Heading>
                         </div>
                         <Button onClick={() => {
                             values[i].whitelist.push("");
                             update();
-                        }}>Add ID</Button>
+                        }}>IDを追加</Button>
                     </Flex>
                     {!!values[i].whitelist.length && <>
                         <div className={classes(Margins.top8, Margins.bottom8)} />
@@ -116,12 +116,12 @@ export function KeywordEntries() {
                     <div className={classes(Margins.top8, Margins.bottom8)} />
                     <Flex flexDirection="row">
                         <div style={{ flexGrow: 1 }}>
-                            <Heading tag="h5">Blacklist</Heading>
+                            <Heading tag="h5">ブラックリスト</Heading>
                         </div>
                         <Button onClick={() => {
                             values[i].blacklist.push("");
                             update();
-                        }}>Add ID</Button>
+                        }}>IDを追加</Button>
                     </Flex>
                     {!!values[i].blacklist.length && <>
                         <div className={classes(Margins.top8, Margins.bottom8)} />
@@ -133,7 +133,7 @@ export function KeywordEntries() {
                     </>}
                     <div className={classes(Margins.top8, Margins.bottom8)} />
                     <FormGenericLabel
-                        title="List priority (Advanced)"
+                        title="リストの優先度（高度な設定）"
                         description={<>
                             <Paragraph>
                                 Which list to prioritize in case a message triggers both lists
@@ -154,7 +154,7 @@ export function KeywordEntries() {
     return (
         <>
             {elements}
-            <div><Button onClick={() => addKeywordEntry(update)}>Add Keyword Entry</Button></div>
+            <div><Button onClick={() => addKeywordEntry(update)}>キーワードエントリを追加</Button></div>
         </>
     );
 }

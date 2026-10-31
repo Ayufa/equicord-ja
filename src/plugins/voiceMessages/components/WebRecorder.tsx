@@ -85,7 +85,7 @@ export const VoiceRecorderWeb: VoiceRecorder = ({ setAudioBlob, onRecordingChang
     return (
         <>
             <Button onClick={toggleRecording}>
-                {recording ? "Stop" : "Start"} recording
+                {recording ? "録音を停止" : "録音を開始"}
             </Button>
 
             <Button
@@ -96,7 +96,7 @@ export const VoiceRecorderWeb: VoiceRecorder = ({ setAudioBlob, onRecordingChang
                     else recorder?.pause();
                 }}
             >
-                {paused ? "Resume" : "Pause"} recording
+                {paused ? "録音を再開" : "録音を一時停止"}
             </Button>
         </>
     );

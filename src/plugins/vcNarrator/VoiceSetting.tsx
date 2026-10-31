@@ -35,7 +35,7 @@ function SimplePicker({ voice, voices }: PickerProps) {
 
     return (
         <SearchableSelect
-            placeholder="Select a voice"
+            placeholder="音声を選択"
             maxVisibleItems={5}
             options={options}
             value={options.find(o => o.value === voice)?.value}
@@ -87,7 +87,7 @@ function ComplexPicker({ voice, voices }: PickerProps) {
         <>
             <Heading>Language</Heading>
             <SearchableSelect
-                placeholder="Select a language"
+                placeholder="言語を選択"
                 options={languageOptions}
                 value={languageOptions.find(l => l.value === selectedLanguage)?.value}
                 onChange={v => setSelectedLanguage(v)}

@@ -47,11 +47,11 @@ export default definePlugin({
     commands: [
         {
             name: "refresh",
-            description: "Refreshes the specified applications commands locally",
+            description: "指定したアプリケーションのコマンドをローカルで更新します",
             options: [
                 {
                     name: "user",
-                    description: "specific user to try and refresh",
+                    description: "更新を試す特定のユーザー",
                     type: ApplicationCommandOptionType.USER,
                 }
             ],
@@ -63,7 +63,7 @@ export default definePlugin({
                     const user = findOption(opts, "user") as string;
 
                     sendBotMessage(ctx.channel.id, {
-                        content: "Refreshing application commands...",
+                        content: "アプリケーションコマンドを更新中...",
                     });
 
                     fetchIndex({ type: "channel", channelId });
@@ -80,12 +80,12 @@ export default definePlugin({
                     }
 
                     sendBotMessage(ctx.channel.id, {
-                        content: "Commands refreshed successfully!",
+                        content: "コマンドを更新しました！",
                     });
                 } catch (err) {
                     console.error("[Refresh Command] Error refreshing commands:", err);
                     sendBotMessage(ctx.channel.id, {
-                        content: "Failed to refresh commands. Check the console for details.",
+                        content: "コマンドの更新に失敗しました。詳細はコンソールを確認してください。",
                     });
                 }
             },

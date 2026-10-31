@@ -36,7 +36,7 @@ const messageCtxPatch: NavContextMenuPatchCallback = (children, { message }) => 
     group.splice(group.findIndex(c => c?.props?.id === "copy-text") + 1, 0, (
         <Menu.MenuItem
             id="ec-trans"
-            label="Translate"
+            label="翻訳"
             icon={Icon}
             leadingAccessory={{ type: "icon", icon: Icon }}
             action={() => handleTranslate(message)}
@@ -60,7 +60,7 @@ export default definePlugin({
         render(message) {
             if (!message.content) return null;
             return {
-                label: "Translate",
+                label: "翻訳",
                 icon: Icon,
                 message: message,
                 channel: ChannelStore.getChannel(message.channel_id),

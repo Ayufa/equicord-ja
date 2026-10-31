@@ -16,7 +16,7 @@ export function FormatSetting(setValue) {
 
     function handleChange(newValue) {
         if (!newValue.trim()) {
-            setError("Format cannot be empty.");
+            setError("形式を空にすることはできません。");
             return;
         }
         setError(null);

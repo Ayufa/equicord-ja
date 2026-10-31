@@ -84,7 +84,7 @@ function ColorContextMenu({ colorKeys }: { colorKeys: string[]; }) {
         <Menu.Menu
             navId="vc-ic-colors-menu"
             onClose={() => FluxDispatcher.dispatch({ type: "CONTEXT_MENU_CLOSE" })}
-            aria-label="Icon Viewer Colors"
+            aria-label="アイコンビューアーの色"
         >
             <Menu.MenuControlItem
                 id="vc-ic-colors-search"
@@ -158,16 +158,16 @@ function OtherContextMenu({ iconName, Icon, color }: { iconName: string; Icon: I
         <Menu.Menu
             navId="vc-ic-other-menu"
             onClose={() => FluxDispatcher.dispatch({ type: "CONTEXT_MENU_CLOSE" })}
-            aria-label="Icon Options"
+            aria-label="アイコンのオプション"
         >
             <Menu.MenuItem
                 id="log-console"
-                label="Log to Console"
+                label="コンソールにログ出力"
                 icon={BugIcon}
                 leadingAccessory={{ type: "icon", icon: BugIcon }}
                 action={() => logger.info(Icon)}
             />
-            <Menu.MenuItem id="save" label="Save As...">
+            <Menu.MenuItem id="save" label="名前を付けて保存...">
                 <Menu.MenuItem
                     id="save-png"
                     label="PNG"
@@ -238,7 +238,7 @@ function IconModal({ iconName, Icon, onClose, transitionState }: { iconName: str
             title={iconName}
             actions={[
                 {
-                    text: "Actions",
+                    text: "アクション",
                     variant: "primary",
                     onClick: openOtherMenu
                 }
@@ -269,8 +269,8 @@ function IconModal({ iconName, Icon, onClose, transitionState }: { iconName: str
                 </Flex>
             </Flex>
             <div className="vc-ic-use-as">
-                <BaseText size="md" weight="semibold">Usage</BaseText>
-                <BaseText size="sm" color="text-muted">Click to copy</BaseText>
+                <BaseText size="md" weight="semibold">使い方</BaseText>
+                <BaseText size="sm" color="text-muted">クリックでコピー</BaseText>
             </div>
             {/* for some reason i cant make this shit codeblock full width, FF 15 */}
             <Clickable className="vc-ic-codeblock-wrapper" onClick={() => copyWithToast(findCode, "Copied!")}>
@@ -287,18 +287,18 @@ export function openIconModal(iconName: string, Icon: Icon) {
 export function SettingsAbout() {
     return (
         <>
-            <HeadingSecondary>Features</HeadingSecondary>
+            <HeadingSecondary>機能</HeadingSecondary>
             <Paragraph>
                 <ul className="vc-ic-unordered-list">
-                    <li>Preview icons</li>
-                    <li>Copy icon names and CSS variables</li>
-                    <li>Download icons in different formats (SVG, PNG, GIF, etc.)</li>
-                    <li>Copy pre-made icon finds for your plugins</li>
-                    <li>Find icons by function context</li>
-                    <li>Search for colors by right-clicking the color name</li>
+                    <li>アイコンのプレビュー</li>
+                    <li>アイコン名とCSS変数をコピー</li>
+                    <li>さまざまな形式（SVG、PNG、GIFなど）でアイコンをダウンロード</li>
+                    <li>プラグイン用に用意されたアイコンの検索コードをコピー</li>
+                    <li>関数のコンテキストでアイコンを検索</li>
+                    <li>色名を右クリックして色を検索</li>
                 </ul>
             </Paragraph>
-            <HeadingSecondary>Special thanks</HeadingSecondary>
+            <HeadingSecondary>謝辞</HeadingSecondary>
             <Paragraph>
                 <ul className="vc-ic-unordered-list">
                     <li>krystalskullofficial._.</li>

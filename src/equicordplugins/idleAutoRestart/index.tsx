@@ -44,7 +44,7 @@ export default definePlugin({
         return (
             <Menu.MenuItem
                 id="auto-idle-restart-toggle-toolbox"
-                label={settings.store.isEnabled ? "Disable Auto Idle Restart" : "Enable Auto Idle Restart"}
+                label={settings.store.isEnabled ? "自動アイドル再起動を無効化" : "自動アイドル再起動を有効化"}
                 action={() => {
                     settings.store.isEnabled = !settings.store.isEnabled;
                 }}

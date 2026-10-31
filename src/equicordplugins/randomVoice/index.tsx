@@ -45,28 +45,28 @@ interface ToggleOption<K extends string> {
 }
 
 const operationOptions: OperationOption[] = [
-    { label: "More than", value: "<", default: false },
-    { label: "Less than", value: ">", default: false },
-    { label: "Equal to", value: "==", default: true },
+    { label: "より多い", value: "<", default: false },
+    { label: "より少ない", value: ">", default: false },
+    { label: "等しい", value: "==", default: true },
 ];
 
 const stateFilters: ToggleOption<StateFilterKey>[] = [
-    { key: "mute", label: "Muted" },
-    { key: "deafen", label: "Deafened" },
-    { key: "video", label: "Camera" },
-    { key: "stream", label: "Stream" },
+    { key: "mute", label: "ミュート中" },
+    { key: "deafen", label: "スピーカーミュート中" },
+    { key: "video", label: "カメラ" },
+    { key: "stream", label: "配信中" },
 ];
 
 const selfSettings: ToggleOption<SelfSettingKey>[] = [
-    { key: "selfMute", label: "Auto Mute" },
-    { key: "selfDeafen", label: "Auto Deafen" },
-    { key: "autoCamera", label: "Auto Camera" },
-    { key: "autoStream", label: "Auto Stream" },
-    { key: "leaveEmpty", label: "Leave when Empty" },
-    { key: "autoNavigate", label: "Auto Navigate" },
-    { key: "prioritizeFriends", label: "Prioritize Friends" },
-    { key: "avoidStages", label: "Avoid Stage" },
-    { key: "avoidAfk", label: "Avoid AFK" },
+    { key: "selfMute", label: "自動ミュート" },
+    { key: "selfDeafen", label: "自動スピーカーミュート" },
+    { key: "autoCamera", label: "自動カメラ" },
+    { key: "autoStream", label: "自動配信" },
+    { key: "leaveEmpty", label: "空になったら退出" },
+    { key: "autoNavigate", label: "自動で移動" },
+    { key: "prioritizeFriends", label: "フレンドを優先" },
+    { key: "avoidStages", label: "ステージを避ける" },
+    { key: "avoidAfk", label: "AFK を避ける" },
 ];
 
 interface RandomVoiceStateLike {
@@ -110,15 +110,15 @@ function RandomVoiceKeybindSettings() {
 
     return (
         <div className={cl("record")}>
-            <div className={cl("keybind")}>Keybind</div>
+            <div className={cl("keybind")}>キーバインド</div>
             <Switch checked={keybindEnabled} onChange={value => { settings.store.keybindEnabled = value; }} />
             {keybindEnabled && (
                 <div className={cl("recording")}>
                     <Button type="button" variant="secondary" onClick={() => setIsListening(true)} disabled={isListening}>
-                        {isListening ? "Recording..." : formatKeybind(keybind)}
+                        {isListening ? "記録中..." : formatKeybind(keybind)}
                     </Button>
                     <Button type="button" variant="secondary" onClick={() => { settings.store.keybind = DEFAULT_KEYBIND; }} disabled={isListening}>
-                        Reset
+                        リセット
                     </Button>
                 </div>
             )}
@@ -589,13 +589,13 @@ function runAfterVoiceJoin(channelId: string, callbacks: PostJoinAction[]) {
 async function joinRandomVoice() {
     const channelId = pickRandomChannel();
     if (!channelId) {
-        showToast("Failed to find a voice channel.");
+        showToast("ボイスチャンネルが見つかりませんでした。");
         return;
     }
 
     const channel = ChannelStore.getChannel(channelId);
     if (!channel) {
-        showToast("Voice channel is unavailable.", "critical");
+        showToast("ボイスチャンネルを利用できません。", "critical");
         return;
     }
 
@@ -673,18 +673,18 @@ function RandomVoiceMenu({ onClose }: { onClose(): void; }) {
 
     return (
         <Menu.Menu navId="random-voice" onClose={onClose} aria-label="Random Voice">
-            <Menu.MenuItem id="random-voice-servers" label="Servers">
+            <Menu.MenuItem id="random-voice-servers" label="サーバー">
                 <>
                     <Menu.MenuCheckboxItem
                         id="random-voice-select-all-servers"
-                        label="Select All"
+                        label="すべて選択"
                         checked={selectedServerIds.length === allServerIds.length}
                         disabled={selectedServerIds.length === allServerIds.length}
                         action={selectAllServers}
                     />
                     <Menu.MenuCheckboxItem
                         id="random-voice-reset-servers"
-                        label="Reset"
+                        label="リセット"
                         checked={selectedServerIds.length === 0}
                         disabled={!selectedServerIds.length}
                         action={resetServers}
@@ -702,7 +702,7 @@ function RandomVoiceMenu({ onClose }: { onClose(): void; }) {
                 </>
             </Menu.MenuItem>
 
-            <Menu.MenuItem id="random-voice-state-filters" label="State Filters">
+            <Menu.MenuItem id="random-voice-state-filters" label="状態フィルター">
                 <>
                     {stateFilters.map(({ key, label }) => (
                         <Menu.MenuCheckboxItem
@@ -716,14 +716,14 @@ function RandomVoiceMenu({ onClose }: { onClose(): void; }) {
                     <Menu.MenuSeparator />
                     <Menu.MenuCheckboxItem
                         id="random-voice-include-states"
-                        label="Include Filters"
+                        label="含めるフィルター"
                         checked={settings.store.includeStates}
                         disabled={settings.store.avoidStates || !hasStateFilters(settings.store)}
                         action={() => toggle("includeStates")}
                     />
                     <Menu.MenuCheckboxItem
                         id="random-voice-avoid-states"
-                        label="Avoid Filters"
+                        label="避けるフィルター"
                         checked={settings.store.avoidStates}
                         disabled={settings.store.includeStates || !hasStateFilters(settings.store)}
                         action={() => toggle("avoidStates")}
@@ -735,7 +735,7 @@ function RandomVoiceMenu({ onClose }: { onClose(): void; }) {
 
             {renderOperationGroup({
                 id: "users",
-                label: "User Amount",
+                label: "ユーザー数",
                 sliderKey: "UserAmount",
                 operationKey: "UserAmountOperation",
                 sliderValue: settings.store.UserAmount,
@@ -748,7 +748,7 @@ function RandomVoiceMenu({ onClose }: { onClose(): void; }) {
 
             {renderOperationGroup({
                 id: "spaces-left",
-                label: "Spaces Left",
+                label: "空き枠",
                 sliderKey: "spacesLeft",
                 operationKey: "spacesLeftOperation",
                 sliderValue: settings.store.spacesLeft,
@@ -761,7 +761,7 @@ function RandomVoiceMenu({ onClose }: { onClose(): void; }) {
 
             {renderOperationGroup({
                 id: "voice-limit",
-                label: "Voice Limit",
+                label: "ボイス上限",
                 sliderKey: "vcLimit",
                 operationKey: "vcLimitOperation",
                 sliderValue: settings.store.vcLimit,
@@ -772,7 +772,7 @@ function RandomVoiceMenu({ onClose }: { onClose(): void; }) {
 
             <Menu.MenuSeparator />
 
-            <Menu.MenuItem id="random-voice-self-settings" label="Join Settings">
+            <Menu.MenuItem id="random-voice-self-settings" label="参加設定">
                 <>
                     {selfSettings.map(({ key, label }) => (
                         <Menu.MenuCheckboxItem
@@ -825,7 +825,7 @@ function renderOperationGroup({
                     />
                 )}
             />
-            <Menu.MenuItem id={`random-voice-operation-${operationKey}`} label="Parameters">
+            <Menu.MenuItem id={`random-voice-operation-${operationKey}`} label="パラメーター">
                 <>
                     {operationOptions.map(option => (
                         <Menu.MenuRadioItem

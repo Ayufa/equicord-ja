@@ -83,27 +83,27 @@ export default definePlugin({
         const extra = [
             ...seconds.map(s => ({
                 duration: s * Millis.SECOND,
-                label: () => `For ${s} ${s === 1 ? "Second" : "Seconds"}`
+                label: () => `${s} 秒間`
             })),
             ...minutes.map(m => ({
                 duration: m * Millis.MINUTE,
-                label: () => `For ${m} ${m === 1 ? "Minute" : "Minutes"}`
+                label: () => `${m} 分間`
             })),
             ...hours.map(h => ({
                 duration: h * Millis.HOUR,
-                label: () => `For ${h} ${h === 1 ? "Hour" : "Hours"}`
+                label: () => `${h} 時間`
             })),
             ...days.map(d => ({
                 duration: d * Millis.DAY,
-                label: () => `For ${d} ${d === 1 ? "Day" : "Days"}`
+                label: () => `${d} 日間`
             })),
             ...weeks.map(w => ({
                 duration: w * Millis.WEEK,
-                label: () => `For ${w} ${w === 1 ? "Week" : "Weeks"}`
+                label: () => `${w} 週間`
             })),
             ...months.map(m => ({
                 duration: m * Millis.DAYS_30,
-                label: () => `For ${m} ${m === 1 ? "Month" : "Months"}`
+                label: () => `${m} か月間`
             })),
         ];
 

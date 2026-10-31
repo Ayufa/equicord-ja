@@ -144,7 +144,7 @@ function EmojiPickerButton({
                     ref={triggerRef}
                     className={cl("emoji-trigger")}
                 >
-                    {children ?? "Pick Emoji"}
+                    {children ?? "絵文字を選択"}
                 </div>
             )}
         </Popout>
@@ -171,7 +171,7 @@ function addEmojiToList(list: string, emoji: string) {
 
 function EmojiPreview({ value }: { value: string; }) {
     const renderedEmoji = toRenderedEmoji(value);
-    if (!renderedEmoji) return <>Pick Emoji</>;
+    if (!renderedEmoji) return <>絵文字を選択</>;
 
     if (renderedEmoji.kind === "custom") {
         return (
@@ -191,7 +191,7 @@ export function ReactEmojiSetting({ setValue }: PluginSettingComponentProps) {
 
     return (
         <div>
-            <Heading>Select Emoji For Reactions</Heading>
+            <Heading>リアクション用絵文字を選択</Heading>
             <div className={cl("primary-emoji-picker")}>
                 <EmojiPickerButton
                     onSelect={newValue => {
@@ -214,7 +214,7 @@ export function AdditionalReactEmojisSetting({ setValue }: PluginSettingComponen
 
     return (
         <div>
-            <Heading>Select Additional Emojis</Heading>
+            <Heading>追加の絵文字を選択</Heading>
             <div
                 style={{
                     marginTop: 8,

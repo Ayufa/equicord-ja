@@ -8,7 +8,7 @@
 export default [
     {
         value: "auto",
-        label: "Detect language"
+        label: "言語を自動検出"
     },
     {
         value: "af",

@@ -333,12 +333,12 @@ async function handleUploadFileFromDraft(upload: CloudUpload) {
     if (!file) return;
 
     if (!isFileTypeAllowed(file)) {
-        showToast({ text: "File type not allowed by current filter", variant: "critical" });
+        showToast({ text: "現在のフィルターで許可されていないファイル形式です", variant: "critical" });
         return;
     }
 
     if (!isConfigured()) {
-        showToast({ text: "Please configure FileUpload settings first", variant: "critical" });
+        showToast({ text: "先にFileUploadの設定を行ってください", variant: "critical" });
         return;
     }
 
@@ -366,7 +366,7 @@ const channelAttachMenuPatch: NavContextMenuPatchCallback = (children, props) =>
             <Menu.MenuItem
                 id="file-upload-uploads"
                 key="file-upload-uploads"
-                label="Upload to Host"
+                label="ホストにアップロード"
                 iconLeft={ExternalIcon}
                 leadingAccessory={{
                     type: "icon",
@@ -385,7 +385,7 @@ const channelAttachMenuPatch: NavContextMenuPatchCallback = (children, props) =>
                 <Menu.MenuItem
                     id="file-upload-manual"
                     key="file-upload-manual"
-                    label="Choose File..."
+                    label="ファイルを選択..."
                     action={() => uploadPickedFile()}
                 />
             </Menu.MenuItem>
@@ -395,7 +395,7 @@ const channelAttachMenuPatch: NavContextMenuPatchCallback = (children, props) =>
             <Menu.MenuItem
                 id="file-upload-manual"
                 key="file-upload-manual"
-                label="Upload to Host"
+                label="ホストにアップロード"
                 iconLeft={ExternalIcon}
                 leadingAccessory={{
                     type: "icon",

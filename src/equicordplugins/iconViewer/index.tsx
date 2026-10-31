@@ -32,7 +32,7 @@ export default definePlugin({
     start() {
         SettingsPlugin.customEntries.push({
             key: "equicord_icon_viewer",
-            title: "Icon Finder",
+            title: "アイコン検索",
             Component: IconsTab,
             Icon: MagnifyingGlassIcon
         });

@@ -345,7 +345,7 @@ export function ChannelTabsPreview(p: { setValue: (v: TabSet) => void; }) {
 
     return (
         <>
-            <Heading>Startup tabs</Heading>
+            <Heading>起動時のタブ</Heading>
             <Flex flexDirection="row" style={{ gap: "2px" }}>
                 {currentTabs.map(t => <>
                     <PreviewTab {...t} />
@@ -357,7 +357,7 @@ export function ChannelTabsPreview(p: { setValue: (v: TabSet) => void; }) {
                         setCurrentTabs([...openedTabs]);
                         setValue({ ...tabSet, [id]: [...openedTabs] });
                     }}
-                >Set to currently open tabs</Button>
+                >現在開いているタブに設定</Button>
             </Flex>
         </>
     );

@@ -27,7 +27,7 @@ export function OpenLogsButton() {
         <HeaderBarButton
             className={cl("toolbox-btn")}
             onClick={() => openLogModal()}
-            tooltip={"Open Logs"}
+            tooltip={"ログを開く"}
             icon={LogsIcon}
         />
     );

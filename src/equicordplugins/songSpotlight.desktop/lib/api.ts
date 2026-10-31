@@ -65,13 +65,13 @@ export async function authFetch(url: string | URL, options?: RequestInit, retrie
             if (retry) return await authFetch(url, options, true);
             else {
                 useAuthorizationStore.getState().deleteTokens();
-                showToast({ text: "You have been signed out from Song Spotlight. Please sign in again.", variant: "critical" });
+                showToast({ text: "Song Spotlightからサインアウトされました。再度サインインしてください。", variant: "critical" });
             }
         } else {
             showToast({
                 text: !text.includes("<body>") && res.status >= 400 && res.status <= 599
                     ? `Song Spotlight: ${text}`
-                    : `Song Spotlight fetch error at ${url.pathname}`,
+                    : `Song Spotlightの取得エラー: ${url.pathname}`,
                 variant: "critical"
             });
         }

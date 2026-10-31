@@ -127,7 +127,7 @@ export function MessageMarkdownPreview({ content, channelId, files }: {
 
     return (
         <div className={cl("markdown-preview")}>
-            <div className={cl("markdown-preview-label")}>Preview</div>
+            <div className={cl("markdown-preview-label")}>プレビュー</div>
             <div className={cl("markdown-preview-body")}>
                 {content.trim() && message && (
                     <ErrorBoundary noop>

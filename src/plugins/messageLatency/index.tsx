@@ -152,9 +152,9 @@ export default definePlugin({
 
             let text: string;
             if (!d.delta) {
-                text = "User is suspected to be on an old Discord Android client";
+                text = "このユーザーは古いDiscord Androidクライアントを使用している可能性があります";
             } else {
-                text = (d.ahead ? `This user's clock is ${d.delta} ahead.` : `This message was sent with a delay of ${d.delta}.`) + (d.isDiscordKotlin ? " User is suspected to be on an old Discord Android client." : "");
+                text = (d.ahead ? `このユーザーの時計は ${d.delta} 進んでいます。` : `このメッセージは ${d.delta} の遅延で送信されました。`) + (d.isDiscordKotlin ? " このユーザーは古いDiscord Androidクライアントを使用している可能性があります。" : "");
             }
 
             return <Tooltip
@@ -187,7 +187,7 @@ export default definePlugin({
             role="img"
             fill="none"
             style={{ marginRight: "8px", verticalAlign: -1 }}
-            aria-label={delta ?? "Old Discord Android client"}
+            aria-label={delta ?? "古いDiscord Androidクライアント"}
             aria-hidden="false"
             {...props}
         >

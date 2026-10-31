@@ -54,7 +54,7 @@ function makeToggleRoleItem(roleId: string) {
             id="toggle"
             icon={isExcluded ? EyeIcon : EyeSlashIcon}
             leadingAccessory={{ type: "icon", icon: isExcluded ? EyeIcon : EyeSlashIcon }}
-            label={isExcluded ? "Show Role in Chat" : "Hide Role in Chat"}
+            label={isExcluded ? "チャットでロールを表示" : "チャットでロールを隠す"}
             action={() => toggleRole(roleId)}
         />
     );
@@ -93,12 +93,12 @@ const HighestRoleIndicator = ErrorBoundary.wrap(({ user, channelId, isCompact }:
             const hiddenRoles = GuildRoleStore.getSortedRoles(guildId).filter(r => excluded.includes(r.id) && userRoles.includes(r.id));
 
             return (
-                <Menu.Menu navId="vc-sric-context" onClose={ContextMenuApi.closeContextMenu} aria-label="Chat Role Actions">
+                <Menu.Menu navId="vc-sric-context" onClose={ContextMenuApi.closeContextMenu} aria-label="チャットのロール操作">
                     <Menu.MenuGroup>
                         {makeToggleRoleItem(role.id)}
 
                         {hiddenRoles.length > 0 && (
-                            <Menu.MenuItem id="unhide-menu" label="Unhide Roles in Chat">
+                            <Menu.MenuItem id="unhide-menu" label="チャットのロールを再表示">
                                 {hiddenRoles.map(r => (
                                     <Menu.MenuItem
                                         key={r.id}

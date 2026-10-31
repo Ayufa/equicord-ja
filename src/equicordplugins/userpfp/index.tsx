@@ -115,7 +115,7 @@ export default definePlugin({
             children.push(
                 <Menu.MenuSeparator />,
                 <Menu.MenuItem
-                    label="Set Avatar"
+                    label="アバターを設定"
                     id="set-avatar"
                     icon={PencilIcon}
                     leadingAccessory={{ type: "icon", icon: PencilIcon }}

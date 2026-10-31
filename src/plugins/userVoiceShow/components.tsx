@@ -99,7 +99,7 @@ function VoiceChannelTooltip({ channel, isLocked }: VoiceChannelTooltipProps) {
     const Icon = isLocked ? LockedSpeakerIcon : SpeakerIcon;
     return (
         <>
-            <Paragraph weight="bold">In Voice Chat</Paragraph>
+            <Paragraph weight="bold">ボイスチャット中</Paragraph>
             <Paragraph weight="bold">{Parser.parse(`<#${channel.id}>`)}</Paragraph>
             <div className={cl("vc-members")}>
                 <Icon size={18} />
@@ -155,7 +155,7 @@ export const VoiceChannelIndicator = ErrorBoundary.wrap(({ userId, isProfile, is
 
         if (e.detail > 1) {
             if (!isDM && !PermissionStore.can(PermissionsBits.CONNECT, channel)) {
-                showToast({ text: "You cannot join the user's Voice Channel", variant: "critical" });
+                showToast({ text: "そのユーザーのボイスチャンネルには参加できません", variant: "critical" });
                 return;
             }
 

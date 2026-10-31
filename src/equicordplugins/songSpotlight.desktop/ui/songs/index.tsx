@@ -56,29 +56,29 @@ function SongEntry({ entry, number, isLoaded, isPlaying, big, onClick }: SongEnt
                     >
                         <Menu.MenuItem
                             id="copy-link"
-                            label="Copy link"
+                            label="リンクをコピー"
                             icon={LinkIcon}
                             leadingAccessory={{ type: "icon", icon: LinkIcon }}
                             action={() => copyWithToast(entry.link)}
                         />
                         <Menu.MenuItem
                             id="steal-song"
-                            label="Steal song"
+                            label="曲を盗む"
                             icon={PuzzlePieceIcon}
                             leadingAccessory={{ type: "icon", icon: PuzzlePieceIcon }}
                             action={async () => {
                                 const self = useSongStore.getState().self?.data ?? [];
                                 if (self.length >= apiConstants.songLimit) {
-                                    return showToast({ text: "You don't have enough space!" });
+                                    return showToast({ text: "空きが不足しています！" });
                                 }
 
                                 const song = await Native.parseLink(entry.link);
                                 if (!song) {
-                                    return showToast({ text: "Uh oh, this song doesn't exist!", variant: "critical" });
+                                    return showToast({ text: "おっと、この曲は存在しません！", variant: "critical" });
                                 }
 
                                 if (self.find(x => sid(x) === sid(song))) {
-                                    return showToast({ text: "You already have this song added!" });
+                                    return showToast({ text: "この曲はすでに追加されています！" });
                                 }
 
                                 openSettingsModal([...self, song]);
@@ -172,7 +172,7 @@ function SongInfo({ owned, song, render, big }: SongInfoProps) {
                                         >
                                             <Menu.MenuItem
                                                 id="copy-link"
-                                                label="Copy link"
+                                                label="リンクをコピー"
                                                 icon={LinkIcon}
                                                 leadingAccessory={{ type: "icon", icon: LinkIcon }}
                                                 action={() => copyWithToast(render.link)}
@@ -181,16 +181,16 @@ function SongInfo({ owned, song, render, big }: SongInfoProps) {
                                                 ? (
                                                     <Menu.MenuItem
                                                         id="steal-song"
-                                                        label="Steal song"
+                                                        label="曲を盗む"
                                                         icon={PuzzlePieceIcon}
                                                         leadingAccessory={{ type: "icon", icon: PuzzlePieceIcon }}
                                                         action={() => {
                                                             const self = useSongStore.getState().self?.data ?? [];
                                                             if (self.length >= apiConstants.songLimit) {
-                                                                return showToast({ text: "You don't have enough space!" });
+                                                                return showToast({ text: "空きが不足しています！" });
                                                             }
                                                             if (self.find(x => sid(x) === sid(song))) {
-                                                                return showToast({ text: "You already have this song added!" });
+                                                                return showToast({ text: "この曲はすでに追加されています！" });
                                                             }
 
                                                             openSettingsModal([...self, song]);
@@ -201,7 +201,7 @@ function SongInfo({ owned, song, render, big }: SongInfoProps) {
                                                     <Menu.MenuItem
                                                         id="remove-song"
                                                         color="danger"
-                                                        label="Remove song"
+                                                        label="曲を削除"
                                                         icon={TrashIcon}
                                                         leadingAccessory={{ type: "icon", icon: TrashIcon }}
                                                         action={() => {
@@ -209,7 +209,7 @@ function SongInfo({ owned, song, render, big }: SongInfoProps) {
 
                                                             const i = self.findIndex(x => sid(x) === sid(song));
                                                             if (i === -1) {
-                                                                return showToast({ text: "You... don't have this song added?" });
+                                                                return showToast({ text: "え…この曲は追加されていません？" });
                                                             }
 
                                                             openSettingsModal(self.toSpliced(i, 1));

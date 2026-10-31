@@ -6,56 +6,56 @@
 
 const defaultIndicators = new Map(
     Object.entries({
-        j: "Joking",
-        hj: "Half Joking",
-        s: "Sarcastic",
-        _sarc: "Sarcastic", // Alias for s
-        gen: "Genuine",
-        _g: "Genuine", // Alias for gen,
-        genq: "Genuine Question",
-        _gq: "Genuine Question", // Alias for genq
-        srs: "Serious",
-        nsrs: "Non-Serious",
-        pos: "Positive Connotation",
-        _pc: "Positive Connotation", // Alias for pos
-        neu: "Neutral Connotation",
-        neg: "Negative Connotation",
-        _nc: "Negative Connotation", // Alias for neg
-        p: "Platonic",
-        r: "Romantic",
-        a: "Alterous",
-        c: "Copypasta",
-        l: "Lyrics",
-        _ly: "Lyrics", // Alias for l
-        lh: "Light-Hearted",
-        nm: "Not Mad",
-        lu: "A Little Upset",
-        nbh: "Not Directed At Anybody Here",
-        nay: "Not Directed At You",
-        ay: "Directed At You",
-        nsb: "Not Subtweeting",
-        x: "Sexual Intent",
-        _sx: "Sexual Intent", // Alias for x
-        nx: "Non-Sexual Intent",
-        _nsx: "Non-Sexual Intent", // Alias for nx
-        rh: "Rhetorical Question",
-        _rt: "Rhetorical Question", // Alias for rh
-        t: "Teasing",
-        ij: "Inside Joke",
-        m: "Metaphorically",
-        li: "Literally",
-        hyp: "Hyperbole",
-        ex: "Exaggeration",
-        f: "Fake",
-        q: "Quote",
-        th: "Threat",
-        cb: "Clickbait",
-        ref: "Reference",
-        nf: "Not Forced",
-        nbr: "Not Being Rude",
-        ot: "Off-Topic",
-        nj: "Not Joking",
-        naj: "Not A Joke",
+        j: "冗談",
+        hj: "半分冗談",
+        s: "皮肉",
+        _sarc: "皮肉", // Alias for s
+        gen: "本気",
+        _g: "本気", // Alias for gen,
+        genq: "本気の質問",
+        _gq: "本気の質問", // Alias for genq
+        srs: "真剣",
+        nsrs: "真剣ではない",
+        pos: "肯定的な含み",
+        _pc: "肯定的な含み", // Alias for pos
+        neu: "中立的な含み",
+        neg: "否定的な含み",
+        _nc: "否定的な含み", // Alias for neg
+        p: "プラトニック",
+        r: "ロマンチック",
+        a: "アルテラス",
+        c: "コピペネタ",
+        l: "歌詞",
+        _ly: "歌詞", // Alias for l
+        lh: "軽い気持ちで",
+        nm: "怒っていない",
+        lu: "少し不快",
+        nbh: "ここの誰に向けたものでもない",
+        nay: "あなたに向けたものではない",
+        ay: "あなた宛て",
+        nsb: "当てつけではない",
+        x: "性的な意図あり",
+        _sx: "性的な意図あり", // Alias for x
+        nx: "性的な意図なし",
+        _nsx: "性的な意図なし", // Alias for nx
+        rh: "修辞疑問",
+        _rt: "修辞疑問", // Alias for rh
+        t: "からかい",
+        ij: "内輪ネタ",
+        m: "比喩的に",
+        li: "文字通りの意味で",
+        hyp: "誇張表現",
+        ex: "誇張",
+        f: "フェイク",
+        q: "引用",
+        th: "脅し",
+        cb: "クリックベイト",
+        ref: "リファレンス",
+        nf: "強制ではない",
+        nbr: "無礼なつもりはない",
+        ot: "脱線",
+        nj: "冗談ではない",
+        naj: "冗談ではない",
     }),
 );
 

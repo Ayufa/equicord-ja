@@ -41,7 +41,7 @@ function UploadClipFileModal({ modalProps, channelId, clip }: { modalProps: Rend
 
     const canUpload = Boolean(file && fileName.trim() && title.trim() && isValidDate(createdAt)) && !uploading;
     const notice = createdAt && !isValidDate(createdAt)
-        ? { message: "Created at must be a valid date.", type: "critical" as const }
+        ? { message: "作成日時には有効な日付を指定してください。", type: "critical" as const }
         : undefined;
 
     useEffect(() => abortActiveClipUploads, []);
@@ -106,17 +106,17 @@ function UploadClipFileModal({ modalProps, channelId, clip }: { modalProps: Rend
     return (
         <Modal
             {...modalProps}
-            title="Upload Clip File"
+            title="クリップファイルをアップロード"
             notice={notice}
             actions={[
                 {
-                    text: "Cancel",
+                    text: "キャンセル",
                     variant: "secondary",
                     onClick: modalProps.onClose,
                     disabled: uploading
                 },
                 {
-                    text: uploading ? "Uploading" : "Upload",
+                    text: uploading ? "アップロード中" : "アップロード",
                     variant: "primary",
                     onClick: () => void submit(),
                     disabled: !canUpload
@@ -125,12 +125,12 @@ function UploadClipFileModal({ modalProps, channelId, clip }: { modalProps: Rend
         >
             <Flex flexDirection="column" gap={12}>
                 <section>
-                    <Heading tag="h5">File</Heading>
+                    <Heading tag="h5">ファイル</Heading>
                     <Flex alignItems="center" gap={8}>
                         <Button onClick={() => void chooseClipFile()} disabled={uploading}>
                             Select File
                         </Button>
-                        <Paragraph>{file?.name ?? "No file selected"}</Paragraph>
+                        <Paragraph>{file?.name ?? "ファイルが選択されていません"}</Paragraph>
                     </Flex>
                     <Checkbox
                         value={parseMetadata}
@@ -142,17 +142,17 @@ function UploadClipFileModal({ modalProps, channelId, clip }: { modalProps: Rend
                     </Checkbox>
                 </section>
 
-                <TextField title="File name" value={fileName} onChange={setFileName} placeholder="my_clip.mp4" disabled={uploading} />
-                <TextField title="Title" value={title} onChange={setTitle} placeholder="Epic Moment" disabled={uploading} />
+                <TextField title="ファイル名" value={fileName} onChange={setFileName} placeholder="my_clip.mp4" disabled={uploading} />
+                <TextField title="タイトル" value={title} onChange={setTitle} placeholder="Epic Moment" disabled={uploading} />
                 <ParticipantField value={participants} onChange={setParticipants} disabled={uploading} />
                 <DateTimeField value={createdAt} onChange={setCreatedAt} disabled={uploading} />
-                <TextField title="Message" value={message} onChange={setMessage} placeholder="Check out this clip!" disabled={uploading} multiline />
+                <TextField title="メッセージ" value={message} onChange={setMessage} placeholder="このクリップを見て！" disabled={uploading} multiline />
                 <ApplicationField value={applicationId} onChange={setApplicationId} disabled={uploading} />
 
                 <Flex flexDirection="column" gap={8}>
-                    <BooleanField label="Spoiler" value={spoiler} onChange={setSpoiler} disabled={uploading} />
-                    <BooleanField label="Remix" value={remix} onChange={setRemix} disabled={uploading} />
-                    <BooleanField label="Thumbnail" value={thumbnail} onChange={setThumbnail} disabled={uploading} />
+                    <BooleanField label="スポイラー" value={spoiler} onChange={setSpoiler} disabled={uploading} />
+                    <BooleanField label="リミックス" value={remix} onChange={setRemix} disabled={uploading} />
+                    <BooleanField label="サムネイル" value={thumbnail} onChange={setThumbnail} disabled={uploading} />
                 </Flex>
             </Flex>
         </Modal>

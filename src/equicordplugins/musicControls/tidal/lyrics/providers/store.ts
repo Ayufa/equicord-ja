@@ -45,7 +45,7 @@ export const TidalLrcStore = proxyLazyWebpack(() => {
             .then(l => { lyrics = l; store.emitChange(); })
             .catch(() => {
                 lyrics = null;
-                showNotif("Tidal Lyrics", "Failed to fetch lyrics");
+                showNotif("Tidal Lyrics", "歌詞の取得に失敗しました");
                 store.emitChange();
             });
     }

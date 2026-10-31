@@ -58,7 +58,7 @@ export const useAuthorizationStore = proxyLazy(() => zustandCreate(
                 get().remove(id);
                 useStreaksStore.getState().clear();
                 showToast({
-                    text: "Streaks authorization expired. Reauthorize in the Streaks plugin settings.",
+                    text: "Streaksの認証が期限切れです。Streaksプラグインの設定で再認証してください。",
                     variant: "critical"
                 });
             },
@@ -90,7 +90,7 @@ export const useAuthorizationStore = proxyLazy(() => zustandCreate(
                                     resolve(void 0);
                                 } catch (e) {
                                     if (e instanceof Error) {
-                                        showToast({ text: `Failed to authorize: ${e.message}`, variant: "critical" });
+                                        showToast({ text: `認証に失敗しました: ${e.message}`, variant: "critical" });
                                         new Logger("Streaks").error("Failed to authorize", e);
                                         reject(e);
                                     }

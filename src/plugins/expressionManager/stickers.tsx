@@ -115,15 +115,15 @@ async function doClone(guildId: string, sticker: PartialSticker) {
             }
         });
 
-        showToast({ text: `Successfully cloned ${sticker.name} to ${GuildStore.getGuild(guildId)?.name ?? "your server"}!`, variant: "success" });
+        showToast({ text: `${sticker.name} を ${GuildStore.getGuild(guildId)?.name ?? "あなたのサーバー"} に複製しました！`, variant: "success" });
     } catch (e: any) {
-        let message = "Something went wrong (check console!)";
+        let message = "問題が発生しました（コンソールを確認してください）";
         try {
             message = JSON.parse(e.text).message;
         } catch { }
 
         logger.error(`Failed to clone ${sticker.name} to guild ${guildId}`, e);
-        showToast({ text: `Failed to clone: ${message}`, variant: "critical" });
+        showToast({ text: `複製に失敗しました: ${message}`, variant: "critical" });
     }
 }
 
@@ -243,7 +243,7 @@ function openCloneStickerModal(stickerData: PartialSticker) {
 }
 
 export const buildCloneStickerItem = (sticker: StickerItem) =>
-    buildCloneItem("Sticker", () => openCloneStickerModal(sticker));
+    buildCloneItem("スタンプ", () => openCloneStickerModal(sticker));
 
 export const editSticker = (sticker: StickerItem, guildId: string) =>
     openModalLazy(async () => {

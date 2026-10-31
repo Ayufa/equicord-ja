@@ -32,7 +32,7 @@ async function fetchMediaData(): Promise<JfMediaData | null> {
     if (!jf_serverUrl || !jf_apiKey || !jf_userId) {
         if (!hasShownError) {
             logger.warn("Jellyfin server URL, API key, or user ID is not set.");
-            showToast({ text: "Jellyfin RPC is not configured.", variant: "critical", duration: 15000 });
+            showToast({ text: "Jellyfin RPC が設定されていません。", variant: "critical", duration: 15000 });
             hasShownError = true;
         }
         return null;
@@ -53,7 +53,7 @@ async function fetchMediaData(): Promise<JfMediaData | null> {
         if (!contentType.includes("application/json")) {
             if (!hasShownError) {
                 logger.error("Jellyfin returned non-JSON response. Check your server URL and API key.");
-                showToast({ text: "Jellyfin returned an invalid response. Your API key may be wrong.", variant: "critical", duration: 15000 });
+                showToast({ text: "Jellyfin から無効な応答が返されました。API キーが間違っている可能性があります。", variant: "critical", duration: 15000 });
                 hasShownError = true;
             }
             return null;

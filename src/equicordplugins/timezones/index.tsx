@@ -52,7 +52,7 @@ export const settings = definePluginSettings({
 
     twentyFourHourFormat: {
         type: OptionType.BOOLEAN,
-        displayName: "24h Time",
+        displayName: "24時間表示",
         description: "時刻を24時間形式で表示する",
         default: false
     },
@@ -117,7 +117,7 @@ export const settings = definePluginSettings({
             <Button onClick={() => {
                 openModal(modalProps => <SetTimezoneModal userId={UserStore.getCurrentUser().id} modalProps={modalProps} database={true} />);
             }}>
-                Set Timezone on Database
+                データベースにタイムゾーンを設定
             </Button>
         )
     },
@@ -134,11 +134,11 @@ export const settings = definePluginSettings({
                         await deleteTimezone();
                     } catch (error) {
                         console.error("Error resetting database timezone:", error);
-                        showToast({ text: "Failed to reset database timezone", variant: "critical" });
+                        showToast({ text: "データベースのタイムゾーンのリセットに失敗しました", variant: "critical" });
                     }
                 }}
             >
-                Reset Database Timezone
+                データベースのタイムゾーンをリセット
             </Button>
         )
     },
@@ -264,7 +264,7 @@ const userContextMenuPatch: NavContextMenuPatchCallback = (children, { user }: {
 
     const setTimezoneItem = (
         <Menu.MenuItem
-            label="Set Local Timezone"
+            label="ローカルのタイムゾーンを設定"
             id="set-timezone"
             action={() => openModal(modalProps => <SetTimezoneModal userId={user.id} modalProps={modalProps} />)}
         />
@@ -311,22 +311,22 @@ export default definePlugin({
     ],
 
     toolboxActions: {
-        "Set Database Timezone": () => {
+        "データベースのタイムゾーンを設定": () => {
             openModal(modalProps => <SetTimezoneModal userId={UserStore.getCurrentUser().id} modalProps={modalProps} database={true} />);
         },
-        "Refresh Database Timezones": async () => {
+        "データベースのタイムゾーンを更新": async () => {
             try {
                 const good = await loadDatabaseTimezones();
 
                 if (good) {
-                    showToast({ text: "Timezones refreshed successfully!", variant: "success" });
+                    showToast({ text: "タイムゾーンを更新しました！", variant: "success" });
                 } else {
-                    showToast({ text: "Timezones Failed to refresh!", variant: "critical" });
+                    showToast({ text: "タイムゾーンの更新に失敗しました！", variant: "critical" });
                 }
             }
             catch (error) {
                 console.error("Failed to refresh timezone:", error);
-                showToast({ text: "Failed to refresh timezones.", variant: "critical" });
+                showToast({ text: "タイムゾーンの更新に失敗しました。", variant: "critical" });
             }
         }
     },
@@ -340,7 +340,7 @@ export default definePlugin({
             if (!settings.store.askedTimezone) {
                 showNotification({
                     title: "Timezones",
-                    body: "Want to save your timezone to the database? Click here to set it.",
+                    body: "タイムゾーンをデータベースに保存しますか？クリックして設定してください。",
                     onClick: () => openModal(modalProps => <SetTimezoneModal userId={UserStore.getCurrentUser().id} modalProps={modalProps} database={true} />)
                 });
                 settings.store.askedTimezone = true;

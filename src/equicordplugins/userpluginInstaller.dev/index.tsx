@@ -46,7 +46,7 @@ export const settings = definePluginSettings({
         component: () => <Button onClick={() => {
             Native.openGitPathModal();
         }} variant="secondary">
-            Set Git path
+            Gitのパスを設定
         </Button>
     }
 });
@@ -57,8 +57,8 @@ export default definePlugin({
     tags: ["Developers"],
     settingsAboutComponent: () => (
         <Notice.Warning>
-            Equicord does not moderate userplugins and takes no responsibility for anything that may result from installing them.
-            Only install userplugins from developers you trust. Doing so is entirely at your own risk.
+            Equicordはユーザープラグインを審査しておらず、インストールによって生じた結果について一切の責任を負いません。
+            信頼できる開発者のユーザープラグインだけをインストールしてください。インストールは完全に自己責任です。
         </Notice.Warning>
     ),
     async checkPluginUpdates() {
@@ -80,20 +80,20 @@ export default definePlugin({
     },
     section: {
         key: "vencord_userplugins",
-        title: "UserPlugins",
-        panelTitle: "UserPlugins",
+        title: "ユーザープラグイン",
+        panelTitle: "ユーザープラグイン",
         Component: SettingsTab,
         Icon: AppsIcon
     },
     async start() {
         if (!VencordNative.pluginHelpers.UserpluginInstaller) return void Alerts.show({
-            title: "UserpluginInstaller not fully loaded",
-            body: "You need to restart to allow the native to be loaded :)",
-            confirmText: "Restart now",
+            title: "UserpluginInstallerが完全に読み込まれていません",
+            body: "ネイティブを読み込むには再起動が必要です :)",
+            confirmText: "今すぐ再起動",
             onConfirm() {
                 relaunch();
             },
-            cancelText: "Later"
+            cancelText: "後で"
         });
 
         await Native.ensurePluginsDirectory();
@@ -107,8 +107,8 @@ export default definePlugin({
             this.pluginsWithUpdates.deregisterCallback(id);
             if (settings.store.notifyIfUpdate)
                 showNotification({
-                    title: "Some UserPlugins are out of date!",
-                    body: "Click to open the UserPlugin Updater",
+                    title: "一部のユーザープラグインが古くなっています！",
+                    body: "クリックしてユーザープラグインアップデーターを開く",
                     noPersist: true,
                     permanent: true,
                     onClick() {

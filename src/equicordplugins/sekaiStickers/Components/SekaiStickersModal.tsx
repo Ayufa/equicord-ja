@@ -102,14 +102,14 @@ export default function SekaiStickersModal({ modalProps, settings }: { modalProp
             title="Sekai Stickers"
             actions={[
                 {
-                    text: "Switch Character",
+                    text: "キャラクターを切り替え",
                     variant: "primary",
                     onClick: () => {
                         openModal(props => <CharSelectModal modalProps={props} setCharacter={setChracter} />);
                     }
                 },
                 {
-                    text: "Upload as Attachment",
+                    text: "添付ファイルとしてアップロード",
                     variant: "primary",
                     onClick: () => {
                         if (settings.store.AutoCloseModal) modalProps.onClose();
@@ -138,7 +138,7 @@ export default function SekaiStickersModal({ modalProps, settings }: { modalProp
                     <Slider minValue={10} asValueChanges={val => setFontSize(Math.round(val))} maxValue={100} initialValue={fontSize} keyboardStep={1} orientation={"horizontal"} onValueRender={(v: number) => String(Math.round(v))} />
                     <Heading>Spacing</Heading>
                     <Slider markers={[18, 36, 72, 100]} stickToMarkers={false} minValue={18} maxValue={100} initialValue={spaceSize} asValueChanges={e => setSpaceSize(e)} onValueRender={e => String(Math.round(e))} />
-                    <FormSwitch title="Enable curve" value={curve} onChange={val => setCurve(val)} />
+                    <FormSwitch title="カーブを有効化" value={curve} onChange={val => setCurve(val)} />
                 </div>
             </Flex>
         </Modal>

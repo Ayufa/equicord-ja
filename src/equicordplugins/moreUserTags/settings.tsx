@@ -51,7 +51,7 @@ function SettingsComponent() {
                                         onMouseEnter={onMouseEnter}
                                         onMouseLeave={onMouseLeave}
                                     >
-                                        {t.displayName} Tag
+                                        {t.displayName} タグ
                                     </div>
                                 )}
                             </Tooltip>
@@ -63,7 +63,7 @@ function SettingsComponent() {
                                 display: "inline",
                                 paddingRight: "8px"
                             }}>
-                                Example:
+                                例：
                             </Paragraph>
                             <Tag type={localTags[t.name]} />
                         </div>
@@ -72,20 +72,20 @@ function SettingsComponent() {
                             <TextInput
                                 type="text"
                                 value={tagSettings[t.name]?.text ?? t.displayName}
-                                placeholder={`Text on tag (default: ${t.displayName})`}
+                                placeholder={`タグのテキスト（デフォルト: ${t.displayName}）`}
                                 onChange={v => tagSettings[t.name].text = v}
                             />
                         </div>
 
                         <FormSwitch
-                            title="Show in messages"
+                            title="メッセージに表示"
                             value={tagSettings[t.name]?.showInChat ?? true}
                             onChange={v => tagSettings[t.name].showInChat = v}
                             hideBorder
                         />
 
                         <FormSwitch
-                            title="Show in member list and profiles"
+                            title="メンバーリストとプロフィールに表示"
                             value={tagSettings[t.name]?.showInNotChat ?? true}
                             onChange={v => tagSettings[t.name].showInNotChat = v}
                             hideBorder

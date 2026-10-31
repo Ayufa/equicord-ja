@@ -118,7 +118,7 @@ export function FilePicker({ onSelectItem }: FilePickerProps) {
     return (
         <div id="files-picker-tab-panel" role="tabpanel" aria-labelledby="files-picker-tab" className={cl("container")}>
             <div className={cl("container-header")}>
-                <ManaSearchBar autoFocus placeholder="Search files" query={query} onChange={handleChange} onClear={handleClear} />
+                <ManaSearchBar autoFocus placeholder="ファイルを検索" query={query} onChange={handleChange} onClear={handleClear} />
             </div>
             {count > 0 ? (
                 <div className={cl("container-body")}>
@@ -134,7 +134,7 @@ export function FilePicker({ onSelectItem }: FilePickerProps) {
 }
 
 function EmptyList() {
-    return <BaseText className={cl("info-text")}>No files match your search.</BaseText>;
+    return <BaseText className={cl("info-text")}>検索に一致するファイルがありません。</BaseText>;
 }
 
 const demoAttachment: MessageAttachment = {

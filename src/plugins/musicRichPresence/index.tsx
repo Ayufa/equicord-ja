@@ -249,16 +249,16 @@ function CustomInstanceAboutComponent() {
     if (!instanceAPIBaseUrl || !instanceBaseURL)
         return (
             <Card variant="danger">
-                <Heading>Invalid ListenBrainz compatible instance</Heading>
-                <Paragraph>Provide both the <b>API Base URL</b> and the <b>Instance Base URL</b> for your custom ListenBrainz instance or switch back to ListenBrainz/Last.FM</Paragraph>
+                <Heading>ListenBrainz互換インスタンスが無効です</Heading>
+                <Paragraph>カスタムListenBrainzインスタンスの <b>API Base URL</b> と <b>Instance Base URL</b> の両方を入力するか、ListenBrainz/Last.FMに戻してください</Paragraph>
             </Card>
         );
 
     if (!cspAllowed)
         return (
             <Card variant="warning">
-                <Heading>Allow Vencord to connect to ListenBrainz instance</Heading>
-                <Paragraph>To use your custom ListenBrainz instance, you must first allow Vencord to connect to it.</Paragraph>
+                <Heading>VencordがListenBrainzインスタンスに接続することを許可</Heading>
+                <Paragraph>カスタムListenBrainzインスタンスを使うには、まずVencordがそのインスタンスに接続することを許可する必要があります。</Paragraph>
                 <Button
                     size="small"
                     className={Margins.top8}
@@ -272,7 +272,7 @@ function CustomInstanceAboutComponent() {
                         promptToRestart("relaunch");
                     }}
                 >
-                    Allow Instance
+                    インスタンスを許可
                 </Button>
             </Card>
         );
@@ -296,9 +296,9 @@ export default definePlugin({
             return (
                 <Card>
                     <Heading tag="h2">Last.FM</Heading>
-                    <Heading>How to create an API key</Heading>
-                    <Paragraph>Set <strong>Application name</strong> and <strong>Application description</strong> to anything and leave the rest blank.</Paragraph>
-                    <LinkButton size="small" href="https://www.last.fm/api/account/create" className={Margins.top8}>Create API Key</LinkButton>
+                    <Heading>APIキーの作成方法</Heading>
+                    <Paragraph><strong>Application name</strong> と <strong>Application description</strong> には任意の値を設定し、それ以外は空欄のままにしてください。</Paragraph>
+                    <LinkButton size="small" href="https://www.last.fm/api/account/create" className={Margins.top8}>APIキーを作成</LinkButton>
                 </Card>
             );
 

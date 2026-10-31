@@ -24,48 +24,48 @@ const logger = new Logger("MessageClickActions");
 const ADDITIONAL_REACTION_DELAY_MS = 300; // discord seems to rate limit this for 300ms but that might not be constant
 
 const actions: { label: string; value: ClickAction; }[] = [
-    { label: "None", value: "NONE" },
-    { label: "Delete", value: "DELETE" },
-    { label: "Copy Link", value: "COPY_LINK" },
-    { label: "Copy ID", value: "COPY_ID" },
-    { label: "Copy Content", value: "COPY_CONTENT" },
-    { label: "Copy User ID", value: "COPY_USER_ID" },
-    { label: "Edit", value: "EDIT" },
-    { label: "Reply", value: "REPLY" },
-    { label: "React", value: "REACT" },
-    { label: "Open Thread", value: "OPEN_THREAD" },
-    { label: "Open Tab", value: "OPEN_TAB" }
+    { label: "なし", value: "NONE" },
+    { label: "削除", value: "DELETE" },
+    { label: "リンクをコピー", value: "COPY_LINK" },
+    { label: "IDをコピー", value: "COPY_ID" },
+    { label: "内容をコピー", value: "COPY_CONTENT" },
+    { label: "ユーザーIDをコピー", value: "COPY_USER_ID" },
+    { label: "編集", value: "EDIT" },
+    { label: "返信", value: "REPLY" },
+    { label: "リアクション", value: "REACT" },
+    { label: "スレッドを開く", value: "OPEN_THREAD" },
+    { label: "タブを開く", value: "OPEN_TAB" }
 ];
 
 const doubleClickOwnActions: { label: string; value: ClickAction; }[] = [
-    { label: "None", value: "NONE" },
-    { label: "Delete", value: "DELETE" },
-    { label: "Reply", value: "REPLY" },
-    { label: "Edit", value: "EDIT" },
-    { label: "Quote", value: "QUOTE" },
-    { label: "Copy Content", value: "COPY_CONTENT" },
-    { label: "Copy Link", value: "COPY_LINK" },
-    { label: "Copy ID", value: "COPY_ID" },
-    { label: "Copy User ID", value: "COPY_USER_ID" },
-    { label: "React", value: "REACT" },
-    { label: "Pin", value: "PIN" }
+    { label: "なし", value: "NONE" },
+    { label: "削除", value: "DELETE" },
+    { label: "返信", value: "REPLY" },
+    { label: "編集", value: "EDIT" },
+    { label: "引用", value: "QUOTE" },
+    { label: "内容をコピー", value: "COPY_CONTENT" },
+    { label: "リンクをコピー", value: "COPY_LINK" },
+    { label: "IDをコピー", value: "COPY_ID" },
+    { label: "ユーザーIDをコピー", value: "COPY_USER_ID" },
+    { label: "リアクション", value: "REACT" },
+    { label: "ピン留め", value: "PIN" }
 ];
 
 const doubleClickOthersActions: { label: string; value: ClickAction; }[] = [
-    { label: "None", value: "NONE" },
-    { label: "Delete", value: "DELETE" },
-    { label: "Reply", value: "REPLY" },
-    { label: "Quote", value: "QUOTE" },
-    { label: "Copy Content", value: "COPY_CONTENT" },
-    { label: "Copy Link", value: "COPY_LINK" },
-    { label: "Copy ID", value: "COPY_ID" },
-    { label: "Copy User ID", value: "COPY_USER_ID" },
-    { label: "React", value: "REACT" },
-    { label: "Pin", value: "PIN" }
+    { label: "なし", value: "NONE" },
+    { label: "削除", value: "DELETE" },
+    { label: "返信", value: "REPLY" },
+    { label: "引用", value: "QUOTE" },
+    { label: "内容をコピー", value: "COPY_CONTENT" },
+    { label: "リンクをコピー", value: "COPY_LINK" },
+    { label: "IDをコピー", value: "COPY_ID" },
+    { label: "ユーザーIDをコピー", value: "COPY_USER_ID" },
+    { label: "リアクション", value: "REACT" },
+    { label: "ピン留め", value: "PIN" }
 ];
 
 const modifiers: { label: string; value: Modifier; }[] = [
-    { label: "None", value: "NONE" },
+    { label: "なし", value: "NONE" },
     { label: "Shift", value: "SHIFT" },
     { label: "Ctrl", value: "CTRL" },
     { label: "Alt", value: "ALT" }
@@ -326,7 +326,7 @@ async function toggleReaction(channelId: string, messageId: string, emoji: strin
     if (!emojiParam) return;
 
     if (channel.guild_id && (!PermissionStore.can(PermissionsBits.ADD_REACTIONS, channel) || !PermissionStore.can(PermissionsBits.READ_MESSAGE_HISTORY, channel))) {
-        showWarning("Cannot react: Missing permissions");
+        showWarning("リアクションできません：権限がありません");
         return;
     }
 
@@ -357,7 +357,7 @@ async function addReaction(channelId: string, messageId: string, emoji: string, 
     if (!emojiParam) return;
 
     if (channel.guild_id && (!PermissionStore.can(PermissionsBits.ADD_REACTIONS, channel) || !PermissionStore.can(PermissionsBits.READ_MESSAGE_HISTORY, channel))) {
-        showWarning("Cannot react: Missing permissions");
+        showWarning("リアクションできません：権限がありません");
         return;
     }
 
@@ -393,7 +393,7 @@ function copyLink(msg: Message, channel: Channel) {
 
 function togglePin(channel: Channel, msg: Message) {
     if (!PermissionStore.can(PermissionsBits.MANAGE_MESSAGES, channel)) {
-        showWarning("Cannot pin: Missing permissions");
+        showWarning("ピン留めできません：権限がありません");
         return;
     }
 
@@ -406,7 +406,7 @@ function togglePin(channel: Channel, msg: Message) {
 
 function quoteMessage(channel: Channel, msg: Message) {
     if (!canReply(msg)) {
-        showWarning("Cannot quote this message type");
+        showWarning("このメッセージタイプは引用できません");
         return;
     }
 

@@ -45,7 +45,7 @@ function renderContextHeader(channel: MessageNotification["channel"]): React.Rea
             <div className={cl("context-header")}>
                 {icon && <img className={cl("context-header-icon")} src={icon} alt="" />}
                 <span className={cl("context-header-name")}>
-                    {guild?.name ?? "Unknown Server"}
+                    {guild?.name ?? "不明なサーバー"}
                     {channel.name && (
                         <>
                             <span className={cl("context-header-separator")}>{" \u203A "}</span>
@@ -121,7 +121,7 @@ export default ErrorBoundary.wrap(function NotificationComponent(props: Notifica
             }}
         >
             <svg width="24" height="24" viewBox="0 0 24 24" role="img" aria-labelledby="vc-toast-notifications-dismiss-title">
-                <title id="vc-toast-notifications-dismiss-title">Dismiss Notification</title>
+                <title id="vc-toast-notifications-dismiss-title">通知を閉じる</title>
                 <path fill="currentColor" d="M18.4 4L12 10.4L5.6 4L4 5.6L10.4 12L4 18.4L5.6 20L12 13.6L18.4 20L20 18.4L13.6 12L20 5.6L18.4 4Z" />
             </svg>
         </button>

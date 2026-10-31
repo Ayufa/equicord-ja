@@ -49,7 +49,7 @@ function Indicator() {
         <Tooltip text="This message has a hidden message! (InvisibleChat)">
             {({ onMouseEnter, onMouseLeave }) => (
                 <img
-                    aria-label="Hidden Message Indicator (InvisibleChat)"
+                    aria-label="隠しメッセージインジケーター（InvisibleChat）"
                     onMouseEnter={onMouseEnter}
                     onMouseLeave={onMouseLeave}
                     src="https://github.com/SammCheese/invisible-chat/raw/NewReplugged/src/assets/lock.png"
@@ -181,7 +181,7 @@ export default definePlugin({
         render(message) {
             return INV_REGEX.test(message?.content)
                 ? {
-                    label: "Decrypt Message",
+                    label: "メッセージを復号",
                     icon: PopOverIcon,
                     message: message,
                     channel: ChannelStore.getChannel(message.channel_id),

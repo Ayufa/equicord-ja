@@ -113,7 +113,7 @@ const messageCtxPatch: NavContextMenuPatchCallback = (children, { msg }: { msg: 
     group.splice(group.findIndex(c => c?.props?.id === "reply") + 1, 0, (
         <Menu.MenuItem
             id="vc-repeat"
-            label={shift ? "Repeat and Reply" : "Repeat"}
+            label={shift ? "返信して繰り返す" : "繰り返す"}
             icon={RepeatMessageIcon}
             leadingAccessory={{ type: "icon", icon: RepeatMessageIcon }}
             action={async () => repeatMessage(msg)}
@@ -144,7 +144,7 @@ export default definePlugin({
         render(msg) {
             if (!msg) return null;
             return {
-                label: "Repeat (Click) / Repeat and Reply (Shift + Click)",
+                label: "繰り返す（クリック）/ 返信して繰り返す（Shift + クリック）",
                 icon: RepeatMessageIcon,
                 message: msg,
                 channel: ChannelStore.getChannel(msg.channel_id),

@@ -67,7 +67,7 @@ export const addViewStreamContext: NavContextMenuPatchCallback = (children, { us
 
     const streamPreviewItem = (
         <Menu.MenuItem
-            label="View Stream Preview"
+            label="配信プレビューを表示"
             id="view-stream-preview"
             icon={ScreenshareIcon}
             leadingAccessory={{ type: "icon", icon: ScreenshareIcon }}

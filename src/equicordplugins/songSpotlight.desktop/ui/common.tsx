@@ -49,7 +49,7 @@ export const Spinner = findByCodeLazy('"pulsingEllipsis"') as unknown as Spinner
 // basic components
 export function ExplicitTag({ className }: HTMLAttributes<HTMLDivElement>) {
     return (
-        <Tooltip text="Explicit">
+        <Tooltip text="露骨な表現あり">
             {tooltipProps => (
                 <BaseText
                     {...tooltipProps}

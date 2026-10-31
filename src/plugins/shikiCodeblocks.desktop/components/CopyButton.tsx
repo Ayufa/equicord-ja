@@ -34,7 +34,7 @@ export function CopyButton({ content, ...props }: CopyButtonProps) {
             }}
             onClick={() => copy(content)}
         >
-            {copyCooldown ? "Copied!" : "Copy"}
+            {copyCooldown ? "コピーしました！" : "コピー"}
         </button>
 
     );

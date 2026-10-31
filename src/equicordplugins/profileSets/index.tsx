@@ -35,7 +35,7 @@ export default definePlugin({
     authors: [EquicordDevs.omaw, EquicordDevs.justjxke],
     settings,
     toolboxActions: {
-        "Open Profile Sets": () => {
+        "Profile Sets を開く": () => {
             SettingsRouter.openUserSettings("equicord_profile_sets_panel");
         },
     },

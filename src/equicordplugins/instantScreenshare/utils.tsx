@@ -102,7 +102,7 @@ function StreamSimplePicker({ streamMediaSelection, streamMedia }: PickerProps) 
 
     return (
         <SearchableSelect
-            placeholder="Select a media source to stream "
+            placeholder="ストリーミングするメディアソースを選択 "
             maxVisibleItems={5}
             options={options}
             value={options.find(o => o.value === streamMedia)?.value}
@@ -147,8 +147,8 @@ function ScreenSetting() {
         return () => { active = false; };
     }, [includeVideoDevices]);
 
-    if (loading) return <Paragraph>Loading media sources...</Paragraph>;
-    if (!streamMediaSelection.length) return <Paragraph>No Media found.</Paragraph>;
+    if (loading) return <Paragraph>メディアソースを読み込み中...</Paragraph>;
+    if (!streamMediaSelection.length) return <Paragraph>メディアが見つかりません。</Paragraph>;
 
     return <StreamSimplePicker streamMediaSelection={streamMediaSelection} streamMedia={streamMedia} />;
 }
@@ -156,8 +156,8 @@ function ScreenSetting() {
 function SettingSection() {
     return (
         <section>
-            <Heading>Media source to stream</Heading>
-            <Paragraph className={Margins.bottom20}>Resets to main screen if not found</Paragraph>
+            <Heading>ストリーミングするメディアソース</Heading>
+            <Paragraph className={Margins.bottom20}>見つからない場合はメイン画面にリセットされます</Paragraph>
             <ScreenSetting />
         </section>
     );

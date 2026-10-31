@@ -134,7 +134,7 @@ function makeContextItem(props) {
     return <Menu.MenuItem
         id="ec-ghosted-clear"
         key="ec-ghosted-clear"
-        label="unghost"
+        label="ゴースト解除"
         action={() => {
             clearChannelFromGhost(props.channel.id);
         }}

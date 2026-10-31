@@ -98,21 +98,21 @@ export function TranscriptionModal(props: { modalProps: RenderModalProps, src: s
         <Modal
             {...modalProps}
             size="md"
-            title={options.task === "translate" ? "Voice Message Translation" : "Voice Message Transcription"}
+            title={options.task === "translate" ? "ボイスメッセージの翻訳" : "ボイスメッセージの文字起こし"}
             actions={[
                 ...(error ? [{
-                    text: "Retry",
+                    text: "再試行",
                     variant: "primary" as const,
                     onClick: () => setRetryCount(c => c + 1)
                 }] : []),
                 ...(result ? [
                     {
-                        text: showTimestamps ? "Hide Timestamps" : "Show Timestamps",
+                        text: showTimestamps ? "タイムスタンプを隠す" : "タイムスタンプを表示",
                         variant: "secondary" as const,
                         onClick: () => setShowTimestamps(!showTimestamps)
                     },
                     {
-                        text: copied ? "Copied!" : "Copy Text",
+                        text: copied ? "コピーしました！" : "テキストをコピー",
                         variant: "secondary" as const,
                         onClick: handleCopy
                     }
@@ -122,7 +122,7 @@ export function TranscriptionModal(props: { modalProps: RenderModalProps, src: s
             <div className={cl("content")}>
                 {error ? (
                     <Flex flexDirection="column" alignItems="center" gap={12} style={{ padding: "32px 16px" }}>
-                        <Heading tag="h3" style={{ color: "var(--red-360)" }}>Transcription Failed</Heading>
+                        <Heading tag="h3" style={{ color: "var(--red-360)" }}>文字起こしに失敗しました</Heading>
                         <BaseText size="sm" color="text-muted" style={{ textAlign: "center" }}>
                             {error}
                         </BaseText>
@@ -134,10 +134,10 @@ export function TranscriptionModal(props: { modalProps: RenderModalProps, src: s
                 ) : (
                     <Flex flexDirection="column" alignItems="center" justifyContent="center" gap={16} style={{ height: "200px" }}>
                         <Heading tag="h3">
-                            {status === "downloading_audio" && "Downloading Audio..."}
-                            {status === "processing_audio" && "Processing Audio..."}
-                            {status === "loading" && "Loading Model..."}
-                            {status === "transcribing" && "Transcribing..."}
+                            {status === "downloading_audio" && "音声をダウンロード中..."}
+                            {status === "processing_audio" && "音声を処理中..."}
+                            {status === "loading" && "モデルを読み込み中..."}
+                            {status === "transcribing" && "文字起こし中..."}
                         </Heading>
                     </Flex>
                 )}

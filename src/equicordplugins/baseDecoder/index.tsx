@@ -66,15 +66,15 @@ function openDecodedBase64Modal(decodedContent) {
             <Modal
                 {...props}
                 size="lg"
-                title="Decoded Base64 Content"
+                title="デコードされた Base64 コンテンツ"
                 actions={decodedContent.map((content, index) => ({
-                    text: `Copy Decoded Content ${index + 1}`,
+                    text: `デコードしたコンテンツ ${index + 1} をコピー`,
                     variant: "primary",
-                    onClick: () => copyWithToast(content, "Decoded content copied to clipboard!")
+                    onClick: () => copyWithToast(content, "デコードした内容をクリップボードにコピーしました！")
                 }))}
             >
                 <div style={{ padding: "16px 0" }}>
-                    <Heading>Decoded Content</Heading>
+                    <Heading>デコードされたコンテンツ</Heading>
                     {decodedContent.map((content, index) => (
                         <CodeBlock key={index} content={content} lang="" />
                     ))}
@@ -130,8 +130,8 @@ export default definePlugin({
             };
 
             const label = settings.store.clickMethod === "Right"
-                ? "Copy Decoded (Left Click) / Decode Base64 (Right Click)"
-                : "Decode Base64 (Left Click) / Copy Decoded (Right Click)";
+                ? "デコード結果をコピー（左クリック）/ Base64 をデコード（右クリック）"
+                : "Base64 をデコード（左クリック）/ デコード結果をコピー（右クリック）";
 
             return {
                 label,

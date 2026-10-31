@@ -47,35 +47,35 @@ function EncModal(props: RenderModalProps) {
         <Modal
             {...props}
             size="sm"
-            title="Encrypt Message"
+            title="メッセージを暗号化"
             actions={[
                 {
-                    text: "Send",
+                    text: "送信",
                     variant: "primary",
                     disabled: !isValid,
                     onClick: onSend
                 },
                 {
-                    text: "Cancel",
+                    text: "キャンセル",
                     variant: "secondary",
                     onClick: props.onClose
                 }
             ]}
         >
-            <Heading style={{ marginTop: "10px" }}>Secret</Heading>
+            <Heading style={{ marginTop: "10px" }}>シークレット</Heading>
             <TextInput
                 onChange={(e: string) => {
                     setSecret(e);
                 }}
             />
-            <Heading style={{ marginTop: "10px" }}>Cover (2 or more Words!!)</Heading>
+            <Heading style={{ marginTop: "10px" }}>カバー（2単語以上！！）</Heading>
             <TextInput
                 disabled={noCover}
                 onChange={(e: string) => {
                     setCover(e);
                 }}
             />
-            <Heading style={{ marginTop: "10px" }}>Password</Heading>
+            <Heading style={{ marginTop: "10px" }}>パスワード</Heading>
             <TextInput
                 style={{ marginBottom: "20px" }}
                 defaultValue={"password"}
@@ -84,7 +84,7 @@ function EncModal(props: RenderModalProps) {
                 }}
             />
             <FormSwitch
-                title="Don't use a Cover"
+                title="カバーを使わない"
                 value={noCover}
                 onChange={(e: boolean) => {
                     setNoCover(e);

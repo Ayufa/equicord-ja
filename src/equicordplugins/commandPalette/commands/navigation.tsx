@@ -11,7 +11,7 @@ import type { PaletteCommand, PaletteListItem } from "../api/types";
 import { CompassIcon, GearIcon, HashIcon, HomeIcon, ServerIcon, UserIcon } from "../ui/icons";
 import { DISCORD_SETTINGS_ROUTES, openSettingsPage } from "./openSettings";
 
-const SECTION = "Navigation";
+const SECTION = "移動";
 
 function guildItems(): PaletteListItem[] {
     return Object.values(GuildStore.getGuilds()).map(guild => ({
@@ -20,7 +20,7 @@ function guildItems(): PaletteListItem[] {
         icon: IconUtils.getGuildIconURL({ id: guild.id, icon: guild.icon, size: 64 }) ?? ServerIcon,
         actions: [{
             id: "open",
-            label: "Open Server",
+            label: "サーバーを開く",
             run: () => NavigationRouter.transitionToGuild(guild.id)
         }]
     }));
@@ -36,7 +36,7 @@ function channelItems(): PaletteListItem[] {
         icon: HashIcon,
         actions: [{
             id: "open",
-            label: "Open Channel",
+            label: "チャンネルを開く",
             run: () => ChannelRouter.transitionToChannel(channel.id)
         }]
     }));
@@ -56,7 +56,7 @@ function friendItems(): PaletteListItem[] {
             icon: IconUtils.getUserAvatarURL(user, false, 64),
             actions: [{
                 id: "open",
-                label: "Open DM",
+                label: "DMを開く",
                 run: () => openPrivateChannel(user.id)
             }]
         }));
@@ -65,65 +65,65 @@ function friendItems(): PaletteListItem[] {
 export const navigationCommands: PaletteCommand[] = [
     {
         id: "navigation.home",
-        title: "Go Home",
+        title: "ホームへ移動",
         section: SECTION,
         keywords: ["friends", "dms", "home"],
         icon: HomeIcon,
         actions: [{
             id: "run",
-            label: "Go Home",
+            label: "ホームへ移動",
             run: () => NavigationRouter.transitionTo("/channels/@me")
         }]
     },
     {
         id: "navigation.server",
-        title: "Go to Server",
+        title: "サーバーへ移動",
         section: SECTION,
         keywords: ["guild", "server", "jump"],
         icon: ServerIcon,
         page: () => ({
-            title: "Go to Server",
+            title: "サーバーへ移動",
             icon: ServerIcon,
-            spec: { type: "list", placeholder: "Search servers...", items: guildItems }
+            spec: { type: "list", placeholder: "サーバーを検索...", items: guildItems }
         })
     },
     {
         id: "navigation.channel",
-        title: "Go to Channel",
+        title: "チャンネルへ移動",
         section: SECTION,
         keywords: ["channel", "jump"],
         icon: HashIcon,
         predicate: () => SelectedGuildStore.getGuildId() != null,
         page: () => ({
-            title: "Go to Channel",
+            title: "チャンネルへ移動",
             icon: HashIcon,
-            spec: { type: "list", placeholder: "Search channels...", items: channelItems }
+            spec: { type: "list", placeholder: "チャンネルを検索...", items: channelItems }
         })
     },
     {
         id: "navigation.dm",
-        title: "Open DM",
+        title: "DMを開く",
         section: SECTION,
         keywords: ["dm", "message", "friend"],
         icon: UserIcon,
         page: () => ({
-            title: "Open DM",
+            title: "DMを開く",
             icon: UserIcon,
-            spec: { type: "list", placeholder: "Search friends...", items: friendItems }
+            spec: { type: "list", placeholder: "フレンドを検索...", items: friendItems }
         })
     },
     {
         id: "navigation.settings",
-        title: "Open Settings Page",
+        title: "設定ページを開く",
         section: SECTION,
         keywords: ["settings", "preferences", "options"],
         icon: GearIcon,
         page: () => ({
-            title: "Open Settings Page",
+            title: "設定ページを開く",
             icon: GearIcon,
             spec: {
                 type: "list",
-                placeholder: "Search settings pages...",
+                placeholder: "設定ページを検索...",
                 items: () => DISCORD_SETTINGS_ROUTES.map(entry => ({
                     id: entry.route,
                     label: entry.label,
@@ -131,7 +131,7 @@ export const navigationCommands: PaletteCommand[] = [
                     icon: CompassIcon,
                     actions: [{
                         id: "open",
-                        label: "Open Settings Page",
+                        label: "設定ページを開く",
                         run: () => void openSettingsPage(entry.route, entry.label)
                     }]
                 }))

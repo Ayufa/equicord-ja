@@ -97,10 +97,10 @@ export interface PickerContentRowGrid {
 }
 
 export enum SettingsTabsKey {
-    ADD_STICKER_PACK_URL = "Add from URL",
-    ADD_STICKER_PACK_HTML = "Add from HTML",
-    ADD_STICKER_PACK_FILE = "Add from File",
-    MISC = "Misc",
+    ADD_STICKER_PACK_URL = "URL から追加",
+    ADD_STICKER_PACK_HTML = "HTML から追加",
+    ADD_STICKER_PACK_FILE = "ファイルから追加",
+    MISC = "その他",
 }
 
 export interface SidebarProps {

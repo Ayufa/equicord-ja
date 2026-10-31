@@ -99,7 +99,7 @@ const StatusSubMenuComponent = () => {
                     >
                         <Menu.MenuItem
                             id={"status-presets-delete-" + index}
-                            label="Delete Preset"
+                            label="プリセットを削除"
                             action={() => {
                                 const newPresets = JSON.parse(JSON.stringify(settings.store.StatusPresets));
                                 delete newPresets[status.text];
@@ -165,7 +165,7 @@ export default definePlugin({
                         action="PRESS_SET_STATUS"
                         onClick={openCustomStatusModalLazy}
                         icon={() => <div />}
-                        label="Set Custom Status"
+                        label="カスタムステータスを設定"
                         renderSubmenu={StatusSubMenuComponent}
                     />
                     :
@@ -176,7 +176,7 @@ export default definePlugin({
                         icon={() => status.emoji != null ? (
                             <EmojiComponent emoji={status.emoji} animate={false} hideTooltip={false} />
                         ) : null}
-                        label="Edit Custom Status"
+                        label="カスタムステータスを編集"
                         renderSubmenu={StatusSubMenuComponent}
                     />
                 }
@@ -185,11 +185,11 @@ export default definePlugin({
     },
     renderRememberButton(status: DiscordStatus) {
         return {
-            text: "Keep",
+            text: "保持",
             style: { marginLeft: "20px" },
             onClick: () => {
                 settings.store.StatusPresets[status.text] = status;
-                showToast({ text: "Successfully Saved Status", variant: "success" });
+                showToast({ text: "ステータスを保存しました", variant: "success" });
             }
         };
     },

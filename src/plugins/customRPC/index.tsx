@@ -315,22 +315,22 @@ export default definePlugin({
                 {!enablePresence && (
                     <Card variant="warning">
                         <Flex flexDirection="column" gap=".5em" alignItems="flex-start">
-                            <Paragraph size="md" weight="bold">Custom RPC disabled</Paragraph>
-                            <Paragraph>The "Enable Presence" setting is disabled, so your presence won't show. If this was unintentional, enable it below.</Paragraph>
+                            <Paragraph size="md" weight="bold">Custom RPC が無効です</Paragraph>
+                            <Paragraph>プレゼンス表示が無効になっているため、プレゼンスは表示されません。意図しない場合は、下の設定で有効にしてください。</Paragraph>
                         </Flex>
                     </Card>
                 )}
                 {!gameActivityEnabled && (
                     <Card variant="danger">
                         <Flex flexDirection="column" gap=".5em" alignItems="flex-start">
-                            <Paragraph size="md" weight="bold">Activity Sharing disabled</Paragraph>
-                            <Paragraph>Activity Sharing isn't enabled, so people won't be able to see your custom rich presence!</Paragraph>
+                            <Paragraph size="md" weight="bold">アクティビティ共有が無効です</Paragraph>
+                            <Paragraph>アクティビティ共有が有効でないため、カスタムリッチプレゼンスは他の人に表示されません！</Paragraph>
 
                             <Button
                                 variant="overlayPrimary"
                                 onClick={() => ShowCurrentGame.updateSetting(true)}
                             >
-                                Enable Activity Sharing
+                                アクティビティ共有を有効にする
                             </Button>
                         </Flex>
                     </Card>
@@ -338,20 +338,20 @@ export default definePlugin({
 
                 <Flex flexDirection="column" gap=".5em">
                     <Paragraph>
-                        Go to the <Link href="https://discord.com/developers/applications">Discord Developer Portal</Link> to create an application and
-                        get the application ID.
+                        Go to the <Link href="https://discord.com/developers/applications">Discord Developer Portal</Link> でアプリケーションを作成し、
+                        アプリケーション ID を取得してください。
                     </Paragraph>
                     <Paragraph>
-                        Upload images in the Rich Presence tab to get the image keys.
+                        Rich Presence タブで画像をアップロードすると、画像キーが取得できます。
                     </Paragraph>
                     <Paragraph>
-                        If you want to use an image link, download your image and reupload the image to <Link href="https://imgur.com">Imgur</Link> and get the image link by right-clicking the image and selecting "Copy image address".
+                        画像リンクを使いたい場合は、画像をダウンロードして <Link href="https://imgur.com">Imgur</Link> に再アップロードし、画像を右クリックして「画像アドレスをコピー」を選んで画像リンクを取得してください。
                     </Paragraph>
                     <Paragraph>
-                        You can't see your own buttons on your profile, but everyone else can see it fine.
+                        自分のプロフィールでは自分のボタンは見えませんが、他の人には問題なく表示されます。
                     </Paragraph>
                     <Paragraph>
-                        Some weird unicode text ("fonts" 𝖑𝖎𝖐𝖊 𝖙𝖍𝖎𝖘) may cause the rich presence to not show up, try using normal letters instead.
+                        一部の特殊な Unicode テキスト ("fonts" 𝖑𝖎𝖐𝖊 𝖙𝖍𝖎𝖘) はリッチプレゼンスが表示されなくなる原因になることがあります。通常の文字を使ってみてください。
                     </Paragraph>
                 </Flex>
 

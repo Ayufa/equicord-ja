@@ -26,14 +26,14 @@ async function saveContentToFile(content: string, filename: string) {
 
         showNotification({
             title: "Save Favorite GIFs",
-            body: `Saved GIFs successfully as ${filename}`,
+            body: `GIF を ${filename} として保存しました`,
             color: "var(--text-positive)",
         });
     } catch (error) {
         console.error(error);
         showNotification({
             title: "Save Favorite GIFs",
-            body: "Failed to save GIFs",
+            body: "GIF の保存に失敗しました",
             color: "var(--text-danger)",
         });
     }
@@ -48,7 +48,7 @@ async function saveAllGifs() {
     const gifUrls = getGifUrls();
 
     if (gifUrls.length === 0) {
-        showNotification({ title: "Save Favorite GIFs", body: "No favorite GIFs found..?" });
+        showNotification({ title: "Save Favorite GIFs", body: "お気に入りの GIF が見つかりませんでした" });
         return;
     }
 
@@ -60,13 +60,13 @@ async function saveWorkingGifs() {
     const gifUrls = getGifUrls();
 
     if (gifUrls.length === 0) {
-        showNotification({ title: "Save Favorite GIFs", body: "No favorite GIFs found?" });
+        showNotification({ title: "Save Favorite GIFs", body: "お気に入りの GIF が見つかりませんでした" });
         return;
     }
 
     showNotification({
         title: "Save Favorite GIFs",
-        body: `Testing ${gifUrls.length} GIFs.. This may take a moment...`,
+        body: `${gifUrls.length} 件の GIF をテスト中です.. しばらくお待ちください...`,
     });
 
     const workingUrls: string[] = [];
@@ -84,7 +84,7 @@ async function saveWorkingGifs() {
     }));
 
     if (workingUrls.length === 0) {
-        showNotification({ title: "Save Favorite GIFs", body: "None of your saved GIFs appear to be working." });
+        showNotification({ title: "Save Favorite GIFs", body: "保存した GIF はすべて使えないようです" });
         return;
     }
 
@@ -95,7 +95,7 @@ async function saveWorkingGifs() {
 
     showNotification({
         title: "Save Favorite GIFs",
-        body: `Filtered ${gifUrls.length - workingUrls.length} possibly broken GIFs. Saved ${workingUrls.length} working GIFs.`,
+        body: `壊れている可能性のある GIF を ${gifUrls.length - workingUrls.length} 件除外しました。使える GIF を ${workingUrls.length} 件保存しました。`,
         color: "var(--text-positive)",
     });
 }
@@ -122,13 +122,13 @@ export default definePlugin({
     commands: [
         {
             name: "savegifs",
-            description: "Save all favorite GIF urls to a text file",
+            description: "お気に入り GIF の URL をすべてテキストファイルに保存します",
             inputType: ApplicationCommandInputType.BUILT_IN,
             execute: saveAllGifs
         },
         {
             name: "saveworkinggifs",
-            description: "Test all favorite GIFs and only save the ones that are still working",
+            description: "お気に入り GIF をすべてテストし、まだ使えるものだけを保存します",
             inputType: ApplicationCommandInputType.BUILT_IN,
             execute: saveWorkingGifs
         }

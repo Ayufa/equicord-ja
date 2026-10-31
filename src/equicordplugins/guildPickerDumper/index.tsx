@@ -20,8 +20,8 @@ const Patch: NavContextMenuPatchCallback = (children, { guild }: { guild: Guild;
     if (group) {
         group.push(
             <>
-                <Menu.MenuItem id="emoji.download" label="Download Emojis" action={() => zipGuildAssets(guild, "emojis")}></Menu.MenuItem>
-                <Menu.MenuItem id="sticker.download" label="Download Stickers" action={() => zipGuildAssets(guild, "stickers")}></Menu.MenuItem>
+                <Menu.MenuItem id="emoji.download" label="絵文字をダウンロード" action={() => zipGuildAssets(guild, "emojis")}></Menu.MenuItem>
+                <Menu.MenuItem id="sticker.download" label="スタンプをダウンロード" action={() => zipGuildAssets(guild, "stickers")}></Menu.MenuItem>
             </>
         );
     }

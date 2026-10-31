@@ -49,9 +49,9 @@ const refreshThemeList = async (silent = false) => {
 
     if (!silent && themeList.length !== oldCount) {
         const diff = themeList.length - oldCount;
-        const action = diff > 0 ? "Added" : "Removed";
+        const action = diff > 0 ? "追加" : "削除";
         const count = Math.abs(diff);
-        showToast({ text: `${action} ${count} theme${count > 1 ? "s" : ""}`, variant: "success" });
+        showToast({ text: `${count} 件のテーマを${action}しました`, variant: "success" });
     }
 };
 
@@ -186,7 +186,7 @@ function toggleCurrentTheme(enable: boolean) {
 
 async function reloadThemes() {
     await refreshThemeList(true);
-    showToast({ text: `Reloaded ${themeList.length} themes`, variant: "success" });
+    showToast({ text: `テーマを ${themeList.length} 件再読み込みしました`, variant: "success" });
 }
 
 async function watchForLocalThemeChanges() {
@@ -202,9 +202,9 @@ async function watchForLocalThemeChanges() {
         await refreshThemeList();
 
         if (settings.store.showNotifications) {
-            const action = diff > 0 ? "Added" : "Removed";
+            const action = diff > 0 ? "追加" : "削除";
             const count = Math.abs(diff);
-            showToast({ text: `${action} ${count} local theme${count > 1 ? "s" : ""}`, variant: "success" });
+            showToast({ text: `${count} 件のローカルテーマを${action}しました`, variant: "success" });
         }
     }
 

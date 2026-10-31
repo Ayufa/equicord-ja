@@ -50,7 +50,7 @@ const UserContextMenuPatch: NavContextMenuPatchCallback = (children, { channel, 
         <Menu.MenuSeparator />,
         <Menu.MenuCheckboxItem
             id="fvu-follow-user"
-            label="Follow User"
+            label="ユーザーをフォロー"
             checked={checked}
             action={() => {
                 if (followedUserInfo?.userId === user.id) {
@@ -77,7 +77,7 @@ export default definePlugin({
     settings,
     settingsAboutComponent: () => (
         <Notice.Info>
-            This Plugin is used to follow a Friend/Friends into voice chat(s).
+            このプラグインは、フレンドがボイスチャットに参加したときに追随するために使用します。
         </Notice.Info>
     ),
     flux: {

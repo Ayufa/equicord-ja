@@ -81,14 +81,14 @@ async function exportMessage(message: Message) {
         }
 
         showNotification({
-            title: "Export Messages",
-            body: `Message exported successfully as ${filename}`,
+            title: "メッセージのエクスポート",
+            body: `${filename} として正常にエクスポートしました`,
             icon: "📄"
         });
     } catch (error) {
         showNotification({
-            title: "Export Messages",
-            body: "Failed to export message",
+            title: "メッセージのエクスポート",
+            body: "メッセージのエクスポートに失敗しました",
             icon: "❌"
         });
     }
@@ -110,7 +110,7 @@ const messageContextMenuPatch = (children: Array<React.ReactElement<any> | null>
     children.push(
         <Menu.MenuItem
             id="export-message"
-            label="Export Message"
+            label="メッセージをエクスポート"
             icon={Icon}
             leadingAccessory={{ type: "icon", icon: Icon }}
             action={() => exportMessage(message)}
@@ -169,14 +169,14 @@ export default definePlugin({
     },
     addExportButton() {
         return <ErrorBoundary noop key=".2">
-            <button className="export-contacts-button" onClick={() => { this.copyContactToClipboard(); console.log("clicked"); }}>Export</button>
+            <button className="export-contacts-button" onClick={() => { this.copyContactToClipboard(); console.log("clicked"); }}>エクスポート</button>
         </ErrorBoundary>;
     },
     copyContactToClipboard() {
         if (this.contactList) {
             copyToClipboard(JSON.stringify(this.contactList));
             showToast({
-                text: "Contacts copied to clipboard successfully.",
+                text: "連絡先をクリップボードにコピーしました。",
                 variant: "success",
                 duration: 3000,
                 position: "bottom"
@@ -187,7 +187,7 @@ export default definePlugin({
         // the request itself when you fetch all your friends. this is done to avoid sending a
         // manual request to discord, which may raise suspicion and might even get you terminated.
         showToast({
-            text: "Contact list is undefined. Click on the \"All\" tab before exporting.",
+            text: "連絡先リストが未定義です。エクスポートする前に「すべて」タブをクリックしてください。",
             variant: "critical",
             duration: 3000,
             position: "bottom"

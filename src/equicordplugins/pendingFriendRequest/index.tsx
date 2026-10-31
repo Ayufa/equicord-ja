@@ -28,7 +28,7 @@ const userContextPatch: NavContextMenuPatchCallback = (children, { user }) => {
     children.push(
         <Menu.MenuItem
             id="vc-cancel-outgoing-friend-request"
-            label="Cancel Outgoing Friend Request"
+            label="送信済みフレンドリクエストを取り消す"
             action={() => cancelOutgoingFriendRequest(user.id)}
         />
     );
@@ -76,7 +76,7 @@ export default definePlugin({
         return {
             variant: "critical-secondary",
             onClick: () => cancelOutgoingFriendRequest(userId),
-            text: "Cancel Outgoing Friend Request"
+            text: "送信済みフレンドリクエストを取り消す"
         };
     },
 
@@ -84,10 +84,10 @@ export default definePlugin({
         if (!this.isOutgoingButton(context)) return {};
 
         return {
-            "aria-label": "Cancel Outgoing Friend Request",
+            "aria-label": "送信済みフレンドリクエストを取り消す",
             disabled: false,
             icon: Icon ? (iconProps: Record<string, unknown>) => <Icon {...iconProps} color="var(--status-danger)" /> : undefined,
-            tooltipText: "Cancel Outgoing Friend Request",
+            tooltipText: "送信済みフレンドリクエストを取り消す",
             variant: "critical-secondary",
             onClick: () => cancelOutgoingFriendRequest(context?.user?.id)
         };

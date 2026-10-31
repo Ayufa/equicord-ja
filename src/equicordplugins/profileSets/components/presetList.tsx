@@ -124,7 +124,7 @@ export function PresetList({
                                             {preset.name}
                                         </div>
                                         <div className={cl("timestamp")}>
-                                            {formattedDate} at {formattedTime}
+                                            {formattedDate} {formattedTime}
                                         </div>
                                     </>
                                 )}
@@ -143,7 +143,7 @@ export function PresetList({
                                         <Menu.Menu navId="preset-options" onClose={ContextMenuApi.closeContextMenu}>
                                             <Menu.MenuItem
                                                 id="rename"
-                                                label="Rename"
+                                                label="名前を変更"
                                                 action={() => {
                                                     setRenaming(actualIndex);
                                                     setRenameText(preset.name);
@@ -151,7 +151,7 @@ export function PresetList({
                                             />
                                             <Menu.MenuItem
                                                 id="update"
-                                                label="Update"
+                                                label="更新"
                                                 action={async () => {
                                                     const profile = await getCurrentProfile(guildId, { isGuildProfile });
                                                     await Promise.all(
@@ -166,7 +166,7 @@ export function PresetList({
                                             {actualIndex > 0 && (
                                                 <Menu.MenuItem
                                                     id="move-up"
-                                                    label="Move Up"
+                                                    label="上へ移動"
                                                     action={() => {
                                                         movePreset(actualIndex, actualIndex - 1, section, guildId);
                                                         onUpdate();
@@ -176,7 +176,7 @@ export function PresetList({
                                             {actualIndex < allPresets.length - 1 && (
                                                 <Menu.MenuItem
                                                     id="move-down"
-                                                    label="Move Down"
+                                                    label="下へ移動"
                                                     action={() => {
                                                         movePreset(actualIndex, actualIndex + 1, section, guildId);
                                                         onUpdate();
@@ -186,7 +186,7 @@ export function PresetList({
                                             {currentPage > 1 && (
                                                 <Menu.MenuItem
                                                     id="move-to-page-1"
-                                                    label="Move to Page 1"
+                                                    label="1ページ目へ移動"
                                                     action={() => {
                                                         movePreset(actualIndex, 0, section, guildId);
                                                         onPageChange(1);
@@ -197,7 +197,7 @@ export function PresetList({
                                             {showMoveOptions && <Menu.MenuSeparator />}
                                             <Menu.MenuItem
                                                 id="delete"
-                                                label="Delete"
+                                                label="削除"
                                                 color="danger"
                                                 action={async () => {
                                                     await deletePreset(actualIndex, section, guildId);

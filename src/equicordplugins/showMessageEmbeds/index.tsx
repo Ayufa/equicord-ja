@@ -147,12 +147,12 @@ async function unfurlEmbed(url: string, message: Message) {
             urls: [url]
         }
     }).catch(e => {
-        showFailureToast("Failed to get embed");
+        showFailureToast("埋め込みの取得に失敗しました");
         logger.error("Failed to get embed", e);
     });
 
     if (!resp?.body?.embeds || resp.body.embeds.length === 0) {
-        showFailureToast("No embeds found");
+        showFailureToast("埋め込みが見つかりません");
         return;
     }
 
@@ -163,13 +163,13 @@ async function unfurlEmbed(url: string, message: Message) {
         try {
             const convertedEmbed = convertEmbed(channel.id, message.id, embed);
             if (!convertedEmbed) {
-                showFailureToast("Failed to get embed");
+                showFailureToast("埋め込みの取得に失敗しました");
                 logger.error("embed object couldn't be converted", embed);
                 continue;
             }
             convertedEmbeds.push(convertedEmbed);
         } catch (e) {
-            showFailureToast("Failed to get embed");
+            showFailureToast("埋め込みの取得に失敗しました");
             logger.error("Failed to convert embed", e);
         }
     }

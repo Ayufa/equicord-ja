@@ -98,10 +98,10 @@ function TimingSection({ title, logs, traceEnd }: TimingSectionProps) {
                     </div>
                 )}
                 <div style={{ color: "var(--text-strong)", display: "grid", gridTemplateColumns: "repeat(3, auto) 1fr", gap: "2px 10px", userSelect: "text" }}>
-                    <span>Start</span>
-                    <span>Interval</span>
-                    <span>Delta</span>
-                    <span style={{ marginBottom: 5 }}>Event</span>
+                    <span>開始</span>
+                    <span>間隔</span>
+                    <span>差分</span>
+                    <span style={{ marginBottom: 5 }}>イベント</span>
                     {AppStartPerformance.logs.map((log, i) => (
                         <TimerItem key={i} {...log} instance={timings[i]} />
                     ))}
@@ -140,7 +140,7 @@ function StartupTimingPage() {
     return (
         <React.Fragment>
             <TimingSection
-                title="Startup Timings"
+                title="起動タイミング"
                 logs={AppStartPerformance.logs}
                 traceEnd={AppStartPerformance.endTime_}
             />

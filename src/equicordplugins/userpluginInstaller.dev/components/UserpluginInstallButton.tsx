@@ -43,12 +43,12 @@ export default function UserpluginInstallButton({ props }: any) {
                     catch (e: any) {
                         if (e.toString().includes("silentStop")) return;
                         Alerts.show({
-                            title: "Install error",
+                            title: "インストールエラー",
                             body: e.toString()
                         });
                     }
                 }}>
-                {installed ? "Manage plugins" : "Install plugin"}
+                {installed ? "プラグインを管理" : "プラグインをインストール"}
             </Button>
         </div>
     </>;

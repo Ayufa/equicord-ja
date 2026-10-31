@@ -126,8 +126,8 @@ export function PresetManager({ section, guildId }: PresetManagerProps) {
             openModal(props => (
                 <ImportProfilesModal
                     {...props}
-                    title="Import Profiles"
-                    message={`You have ${existingCount} existing profiles in this section. Do you want to override them or merge with imported profiles?`}
+                    title="プロフィールをインポート"
+                    message={`このセクションには既存のプロフィールが ${existingCount} 件あります。上書きしますか、それともインポートしたプロフィールとマージしますか？`}
                     onOverride={() => resolve("override")}
                     onMerge={() => resolve("merge")}
                     onCancel={() => resolve("cancel")}
@@ -143,12 +143,12 @@ export function PresetManager({ section, guildId }: PresetManagerProps) {
     return (
         <div className={classes(cl("section"), isServerSection ? cl("section-server") : "")} >
             <Heading tag="h3" className={cl("heading")}>
-                Saved Profiles
+                保存済みプロフィール
             </Heading>
 
             <div className={cl("text")}>
                 <TextInput
-                    placeholder={searchMode ? "Search profiles..." : "Profile Name"}
+                    placeholder={searchMode ? "プロフィールを検索..." : "プロフィール名"}
                     value={presetName}
                     onChange={setPresetName}
                     className={cl("text-input")}
@@ -163,7 +163,7 @@ export function PresetManager({ section, guildId }: PresetManagerProps) {
                         onClick={handleSavePreset}
                         className={cl("search-button")}
                     >
-                        {isSaving ? "Saving..." : "Save Profile"}
+                        {isSaving ? "保存中..." : "プロフィールを保存"}
                     </Button>
                 )}
                 {hasPresets && (
@@ -175,7 +175,7 @@ export function PresetManager({ section, guildId }: PresetManagerProps) {
                             handlePageChange(1);
                         }}
                     >
-                        {searchMode ? "Cancel Search" : "Search"}
+                        {searchMode ? "検索をキャンセル" : "検索"}
                     </Button>
                 )}
                 <Button
@@ -184,7 +184,7 @@ export function PresetManager({ section, guildId }: PresetManagerProps) {
                     onClick={handleRandomPreset}
                     disabled={!presets.length || !canUseGuild}
                 >
-                    Random
+                    ランダム
                 </Button>
                 <Button
                     size="small"
@@ -192,14 +192,14 @@ export function PresetManager({ section, guildId }: PresetManagerProps) {
                     onClick={() => importPresets(forceUpdate, showImportPrompt, resolvedSection, resolvedGuildId)}
                     disabled={!canUseGuild}
                 >
-                    Import
+                    インポート
                 </Button>
                 <Button
                     size="small"
                     variant="secondary"
                     onClick={() => exportPresets(resolvedSection)}
                 >
-                    Export All
+                    すべてエクスポート
                 </Button>
             </div>
 

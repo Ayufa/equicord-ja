@@ -25,7 +25,7 @@ const iconClasses = findCssClassesLazy("button", "wrapper", "disabled", "separat
 
 export function DeleteButton({ onClick }: { onClick(): void; }) {
     return (
-        <Tooltip text="Delete Review">
+        <Tooltip text="レビューを削除">
             {props => (
                 <div
                     {...props}
@@ -42,7 +42,7 @@ export function DeleteButton({ onClick }: { onClick(): void; }) {
 
 export function ReportButton({ onClick }: { onClick(): void; }) {
     return (
-        <Tooltip text="Report Review">
+        <Tooltip text="レビューを通報">
             {props => (
                 <div
                     {...props}
@@ -64,7 +64,7 @@ export function ReportButton({ onClick }: { onClick(): void; }) {
 
 export function BlockButton({ onClick, isBlocked }: { onClick(): void; isBlocked: boolean; }) {
     return (
-        <Tooltip text={`${isBlocked ? "Unblock" : "Block"} user`}>
+        <Tooltip text={`${isBlocked ? "ユーザーのブロックを解除" : "ユーザーをブロック"}`}>
             {props => (
                 <div
                     {...props}

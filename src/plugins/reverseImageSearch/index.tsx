@@ -39,7 +39,7 @@ function search(src: string, engine: string) {
 function makeSearchItem(src: string) {
     return (
         <Menu.MenuItem
-            label="Search Image"
+            label="画像を検索"
             key="search-image"
             id="search-image"
             leadingAccessory={{ type: "icon", icon: SearchIcon }}
@@ -59,7 +59,7 @@ function makeSearchItem(src: string) {
             <Menu.MenuItem
                 key="search-image-all"
                 id="search-image-all"
-                label="All"
+                label="すべて"
                 leadingAccessory={{ type: "icon", icon: OpenExternalIcon }}
                 action={() => Object.values(Engines).forEach(e => search(src, e))}
             />

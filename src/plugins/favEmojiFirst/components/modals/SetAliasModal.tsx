@@ -23,17 +23,17 @@ export function SetAliasModal({
 
     const validationError = getValidationError(input);
     const duplicateAlias = isDuplicateAlias(input);
-    const finalError = duplicateAlias ? "Duplicate alias" : error ?? validationError;
+    const finalError = duplicateAlias ? "エイリアスが重複しています" : error ?? validationError;
     const canSave = !validationError && !duplicateAlias;
 
     return (
         <Modal
             {...modalProps}
             size="sm"
-            title="Set alias"
+            title="エイリアスを設定"
             actions={[
                 {
-                    text: "Save",
+                    text: "保存",
                     variant: "primary",
                     disabled: !canSave,
                     onClick: async () => {
@@ -47,14 +47,14 @@ export function SetAliasModal({
                 }
             ]}
         >
-            <Paragraph style={{ margin: 0, marginBottom: 8 }}>Set an alias for {emojiDisplayName}</Paragraph>
+            <Paragraph style={{ margin: 0, marginBottom: 8 }}>{emojiDisplayName} のエイリアスを設定</Paragraph>
             <TextInput
                 value={input}
                 onChange={value => {
                     setInput(value);
                     setError(null);
                 }}
-                placeholder='Alias, e.g. "sob"'
+                placeholder='エイリアス（例: "sob"）'
             />
             {finalError && (
                 <BaseText style={{ color: "var(--text-feedback-critical)", marginTop: 8 }}>

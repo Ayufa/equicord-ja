@@ -20,7 +20,7 @@ const formatTime = (time: number) => {
 
 function getTitleNode(track: Track | null) {
     if (!track) {
-        return <BaseText size="sm" weight="semibold">No track playing</BaseText>;
+        return <BaseText size="sm" weight="semibold">再生中の曲はありません</BaseText>;
     }
     return (
         <div className={cl("header-content")}>
@@ -71,7 +71,7 @@ export function LyricsModal({ props }: { props: RenderModalProps; }) {
                     ))
                 ) : (
                     <BaseText size="sm" className={cl("modal-no-lyrics")}>
-                        No lyrics available :(
+                        歌詞がありません :(
                     </BaseText>
                 )}
             </div>

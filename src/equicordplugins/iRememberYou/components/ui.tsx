@@ -51,18 +51,18 @@ function UsersCollectionRows({ usersCollection }: { usersCollection: Data["users
                                                     <Menu.Menu
                                                         navId="guild-id-context-menu"
                                                         onClose={ContextMenuApi.closeContextMenu}
-                                                        aria-label="Server Options"
+                                                        aria-label="サーバーのオプション"
                                                     >
                                                         <Menu.MenuItem
                                                             id="copy-server-id"
-                                                            label="Copy Server ID"
-                                                            action={() => copyWithToast(id, "Server ID copied to clipboard")}
+                                                            label="サーバーIDをコピー"
+                                                            action={() => copyWithToast(id, "サーバーIDをクリップボードにコピーしました")}
                                                         />
                                                     </Menu.Menu>
                                                 ));
                                             }}
                                         >
-                                            <Clickable onClick={() => copyWithToast(id, "Server ID copied to clipboard")}>
+                                            <Clickable onClick={() => copyWithToast(id, "サーバーIDをクリップボードにコピーしました")}>
                                                 ({id})
                                             </Clickable>
                                         </span>
@@ -92,7 +92,7 @@ function UserRow({ user, allowOwner = true }: { user: IStorageUser, allowOwner?:
                     <Tooltip text={tooltipText(user)}>
                         {props =>
                             <Paragraph {...props} className={cl("user-username")}>
-                                {user.tag} {allowOwner && user.extra?.isOwner && "(owner)"}
+                                {user.tag} {allowOwner && user.extra?.isOwner && "(オーナー)"}
                             </Paragraph>
                         }
                     </Tooltip>
@@ -106,16 +106,16 @@ function UserRow({ user, allowOwner = true }: { user: IStorageUser, allowOwner?:
                                     <Menu.Menu
                                         navId="user-context-menu"
                                         onClose={ContextMenuApi.closeContextMenu}
-                                        aria-label="User Options"
+                                        aria-label="ユーザーのオプション"
                                     >
                                         <Menu.MenuItem
                                             id="copy-user-id"
-                                            label="Copy User ID"
-                                            action={() => copyWithToast(user.id, "User ID copied to clipboard")}
+                                            label="ユーザーIDをコピー"
+                                            action={() => copyWithToast(user.id, "ユーザーIDをクリップボードにコピーしました")}
                                         />
                                         <Menu.MenuItem
                                             id="view-profile"
-                                            label="View Profile"
+                                            label="プロフィールを表示"
                                             action={() => openUserProfile(user.id)}
                                         />
                                     </Menu.Menu>
@@ -123,7 +123,7 @@ function UserRow({ user, allowOwner = true }: { user: IStorageUser, allowOwner?:
                             }
                         }}
                     >
-                        <Clickable onClick={() => copyWithToast(user.id, "User ID copied to clipboard")}>
+                        <Clickable onClick={() => copyWithToast(user.id, "ユーザーIDをクリップボードにコピーしました")}>
                             <Paragraph>
                                 {user.id}
                             </Paragraph>
@@ -141,7 +141,7 @@ function SearchElement({ usersCollection }: { usersCollection: Data["usersCollec
 
     return (
         <section className={cl("search")}>
-            <TextInput placeholder="Filter by tag, username" name="Filter" onChange={setCurrent} />
+            <TextInput placeholder="タグ、ユーザー名で絞り込み" name="Filter" onChange={setCurrent} />
             {current && (
                 <div className={cl("search-user")}>
                     {list.filter(user => user.tag.includes(current) || user.username.includes(current))

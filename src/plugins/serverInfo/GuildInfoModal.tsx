@@ -130,7 +130,7 @@ function GuildInfoModal({ guild, modalProps }: GuildProps & { modalProps: Render
                 >
                     <div style={{ textAlign: "center" }}>
                         <div>
-                            Server Info
+                            サーバー情報
                         </div>
                     </div>
                 </TabBar.Item>
@@ -140,7 +140,7 @@ function GuildInfoModal({ guild, modalProps }: GuildProps & { modalProps: Render
                 >
                     <div style={{ textAlign: "center" }}>
                         <div>
-                            Friends
+                            フレンド
                         </div>
                         {friendCount !== undefined ? ` (${friendCount})` : ""}
                     </div>
@@ -151,7 +151,7 @@ function GuildInfoModal({ guild, modalProps }: GuildProps & { modalProps: Render
                 >
                     <div style={{ textAlign: "center" }}>
                         <div>
-                            Mutual Users
+                            共通のユーザー
                         </div>{mutualMembersCount !== undefined ? ` (${mutualMembersCount})` : ""}
                     </div>
                 </TabBar.Item>
@@ -161,7 +161,7 @@ function GuildInfoModal({ guild, modalProps }: GuildProps & { modalProps: Render
                 >
                     <div style={{ textAlign: "center" }}>
                         <div>
-                            Blocked Users
+                            ブロック中のユーザー
                         </div>
                         {blockedCount !== undefined ? ` (${blockedCount})` : ""}
                     </div>
@@ -172,7 +172,7 @@ function GuildInfoModal({ guild, modalProps }: GuildProps & { modalProps: Render
                 >
                     <div style={{ textAlign: "center" }}>
                         <div>
-                            Ignored Users
+                            無視中のユーザー
                         </div>
                         {ignoredCount !== undefined ? `(${ignoredCount})` : ""}
 
@@ -227,15 +227,15 @@ function ServerInfoTab({ guild }: GuildProps) {
     });
 
     const Fields = {
-        "Server Owner": owner ? Owner(guild.id, owner) : "Loading...",
-        "Created At": renderTimestamp(SnowflakeUtils.extractTimestamp(guild.id)),
-        "Joined At": guild.joinedAt ? renderTimestamp(guild.joinedAt.getTime()) : "-", // Not available in lurked guild
-        "Vanity Link": guild.vanityURLCode ? (<a>{`discord.gg/${guild.vanityURLCode}`}</a>) : "-", // Making the anchor href valid would cause Discord to reload
-        "Preferred Locale": guild.preferredLocale || "-",
-        "Verification Level": ["None", "Low", "Medium", "High", "Highest"][guild.verificationLevel] || "?",
-        "Server Boosts": `${guild.premiumSubscriberCount ?? 0} (Level ${guild.premiumTier ?? 0})`,
-        "Channels": GuildChannelStore.getChannels(guild.id)?.count - 1 || "?", // - null category
-        "Roles": GuildRoleStore.getSortedRoles(guild.id).length - 1, // - @everyone
+        "サーバーの所有者": owner ? Owner(guild.id, owner) : "読み込み中...",
+        "作成日": renderTimestamp(SnowflakeUtils.extractTimestamp(guild.id)),
+        "参加日": guild.joinedAt ? renderTimestamp(guild.joinedAt.getTime()) : "-", // Not available in lurked guild
+        "バニティリンク": guild.vanityURLCode ? (<a>{`discord.gg/${guild.vanityURLCode}`}</a>) : "-", // Making the anchor href valid would cause Discord to reload
+        "優先ロケール": guild.preferredLocale || "-",
+        "認証レベル": ["なし", "低", "中", "高", "最高"][guild.verificationLevel] || "?",
+        "サーバーブースト": `${guild.premiumSubscriberCount ?? 0}（レベル ${guild.premiumTier ?? 0}）`,
+        "チャンネル": GuildChannelStore.getChannels(guild.id)?.count - 1 || "?", // - null category
+        "ロール": GuildRoleStore.getSortedRoles(guild.id).length - 1, // - @everyone
     };
 
     return (

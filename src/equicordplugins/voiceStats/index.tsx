@@ -99,7 +99,7 @@ const VoiceStatsSection = ErrorBoundary.wrap(({ userId, isSideBar }: { userId: s
     if (isSideBar) {
         return (
             <Section
-                heading="Voice Time"
+                heading="通話時間"
                 headingVariant="text-xs/semibold"
                 headingColor="text-strong"
             >
@@ -110,7 +110,7 @@ const VoiceStatsSection = ErrorBoundary.wrap(({ userId, isSideBar }: { userId: s
 
     return (
         <Section
-            heading="Voice Time"
+            heading="通話時間"
             headingVariant="text-xs/medium"
             headingColor="text-default"
             className="vc-voicestats-profile-section"

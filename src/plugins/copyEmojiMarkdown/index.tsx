@@ -63,11 +63,11 @@ export default definePlugin({
             children.push(
                 <Menu.MenuItem
                     id="vc-copy-emoji-markdown"
-                    label="Copy Emoji Markdown"
+                    label="絵文字の Markdown をコピー"
                     action={() => {
                         copyWithToast(
                             getEmojiMarkdown(target, settings.store.copyUnicode),
-                            "Success! Copied emoji markdown."
+                            "成功！絵文字の Markdown をコピーしました。"
                         );
                     }}
                     leadingAccessory={{ type: "icon", icon: CopyIcon }}

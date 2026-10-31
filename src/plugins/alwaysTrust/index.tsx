@@ -93,12 +93,12 @@ export default definePlugin({
     async HandleGuildDeleteModal(server) {
         if (settings.store.confirmModal) {
             return Alerts.show({
-                title: "Delete server?",
-                body: <p>It's permanent, if that wasn't obvious.</p>,
+                title: "サーバーを削除しますか？",
+                body: <p>当然ですが、この操作は元に戻せません。</p>,
                 confirmColor: "danger",
-                confirmText: "Delete",
+                confirmText: "削除",
                 onConfirm: () => GetPropsAndDeleteGuild(server.id),
-                cancelText: "Cancel"
+                cancelText: "キャンセル"
             });
         } else {
             return GetPropsAndDeleteGuild(server.id);

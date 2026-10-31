@@ -48,13 +48,13 @@ function FriendInviteCard({ invite }: { invite: FriendInvite; }) {
                         {invite.code}
                     </HeadingTertiary>
                     <span>
-                        Expires {Parser.parse(`<t:${new Date(invite.expires_at).getTime() / 1000}:R>`)} • {invite.uses}/{invite.max_uses} uses
+                        有効期限 {Parser.parse(`<t:${new Date(invite.expires_at).getTime() / 1000}:R>`)} • {invite.uses}/{invite.max_uses} 回使用
                     </span>
                 </div>
                 <Flex justifyContent="end">
                     <CopyButton
-                        copyText="Copy"
-                        copiedText="Copied!"
+                        copyText="コピー"
+                        copiedText="コピーしました！"
                         onClick={() => copyToClipboard(`https://discord.gg/${invite.code}`)}
                     />
                 </Flex>

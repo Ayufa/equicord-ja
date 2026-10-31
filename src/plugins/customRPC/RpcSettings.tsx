@@ -47,15 +47,15 @@ interface SelectOption<T> {
 }
 
 const makeValidator = (maxLength: number, isRequired = false) => (value: string) => {
-    if (isRequired && !value) return "This field is required.";
-    if (value.length > maxLength) return `Must be not longer than ${maxLength} characters.`;
+    if (isRequired && !value) return "この項目は必須です。";
+    if (value.length > maxLength) return `${maxLength} 文字以内で入力してください。`;
     return true;
 };
 
 const maxLength128 = makeValidator(128);
 
 function isAppIdValid(value: string) {
-    if (!/^\d{16,21}$/.test(value)) return "Must be a valid Discord ID.";
+    if (!/^\d{16,21}$/.test(value)) return "有効な Discord ID を入力してください。";
     return true;
 }
 
@@ -69,8 +69,8 @@ function isStreamLinkDisabled() {
 }
 
 function isStreamLinkValid(value: string) {
-    if (!isStreamLinkDisabled() && !/https?:\/\/(www\.)?(twitch\.tv|youtube\.com)\/\w+/.test(value)) return "Streaming link must be a valid URL.";
-    if (value && value.length > 512) return "Streaming link must be not longer than 512 characters.";
+    if (!isStreamLinkDisabled() && !/https?:\/\/(www\.)?(twitch\.tv|youtube\.com)\/\w+/.test(value)) return "配信リンクには有効な URL を入力してください。";
+    if (value && value.length > 512) return "配信リンクは512文字以内で入力してください。";
     return true;
 }
 
@@ -79,20 +79,20 @@ function parseNumber(value: string) {
 }
 
 function isNumberValid(value: number) {
-    if (isNaN(value)) return "Must be a number.";
-    if (value < 0) return "Must be a positive number.";
+    if (isNaN(value)) return "数値を入力してください。";
+    if (value < 0) return "正の数値を入力してください。";
     return true;
 }
 
 function isUrlValid(value: string) {
-    if (value && !/^https?:\/\/.+/.test(value)) return "Must be a valid URL.";
+    if (value && !/^https?:\/\/.+/.test(value)) return "有効な URL を入力してください。";
     return true;
 }
 
 function isImageKeyValid(value: string) {
-    if (/https?:\/\/(cdn|media)\.discordapp\.(com|net)\//.test(value)) return "Don't use a Discord link. Use an Imgur image link instead.";
-    if (/https?:\/\/(?!i\.)?imgur\.com\//.test(value)) return "Imgur link must be a direct link to the image (e.g. https://i.imgur.com/...). Right click the image and click 'Copy image address'";
-    if (/https?:\/\/(?!media\.)?tenor\.com\//.test(value)) return "Tenor link must be a direct link to the image (e.g. https://media.tenor.com/...). Right click the GIF and click 'Copy image address'";
+    if (/https?:\/\/(cdn|media)\.discordapp\.(com|net)\//.test(value)) return "Discord のリンクは使えません。代わりに Imgur の画像リンクを使ってください。";
+    if (/https?:\/\/(?!i\.)?imgur\.com\//.test(value)) return "Imgur のリンクは画像への直接リンクにしてください（例: https://i.imgur.com/...）。画像を右クリックして「画像アドレスをコピー」を選んでください";
+    if (/https?:\/\/(?!media\.)?tenor\.com\//.test(value)) return "Tenor のリンクは画像への直接リンクにしてください（例: https://media.tenor.com/...）。GIF を右クリックして「画像アドレスをコピー」を選んでください";
     return true;
 }
 
@@ -130,7 +130,7 @@ function SingleSetting<T>({ settingsKey, label, disabled, isValid, transform }: 
             <Heading>{label}</Heading>
             <TextInput
                 type="text"
-                placeholder={"Enter a value"}
+                placeholder={"値を入力"}
                 value={state}
                 onChange={handleChange}
                 disabled={disabled}
@@ -145,7 +145,7 @@ function SelectSetting<T>({ settingsKey, label, options, disabled }: SelectOptio
         <div className={cl("single", { disabled })}>
             <Heading>{label}</Heading>
             <Select
-                placeholder={"Select an option"}
+                placeholder={"選択してください"}
                 options={options}
                 maxVisibleItems={5}
                 closeOnSelect={true}
@@ -185,7 +185,7 @@ function PresetSettings({ onLoad }: { onLoad(): void; }) {
         await DataStore.set(PRESETS_KEY, nextPresets);
         setChangedPresets(nextPresets);
         setSelectedPreset(name);
-        showToast({ text: `Saved preset ${name}.`, variant: "success" });
+        showToast({ text: `プリセット ${name} を保存しました。`, variant: "success" });
     }
 
     function loadPreset() {
@@ -195,7 +195,7 @@ function PresetSettings({ onLoad }: { onLoad(): void; }) {
         Object.assign(settings.store, preset.config);
         onLoad();
         updateRPC();
-        showToast({ text: `Loaded preset ${preset.name}.`, variant: "success" });
+        showToast({ text: `プリセット ${preset.name} を読み込みました。`, variant: "success" });
     }
 
     async function deletePreset() {
@@ -205,36 +205,36 @@ function PresetSettings({ onLoad }: { onLoad(): void; }) {
         await DataStore.set(PRESETS_KEY, nextPresets);
         setChangedPresets(nextPresets);
         setSelectedPreset("");
-        showToast({ text: `Deleted preset ${selectedPreset}.`, variant: "success" });
+        showToast({ text: `プリセット ${selectedPreset} を削除しました。`, variant: "success" });
     }
 
     return (
         <div className={cl("presets")}>
-            <Heading tag="h5">Presets</Heading>
+            <Heading tag="h5">プリセット</Heading>
             <div className={cl("preset-create")}>
                 <TextInput
                     type="text"
-                    placeholder="Preset name"
+                    placeholder="プリセット名"
                     value={presetName}
                     onChange={setPresetName}
                 />
-                <Button disabled={!presetName.trim()} onClick={savePreset}>Save</Button>
+                <Button disabled={!presetName.trim()} onClick={savePreset}>保存</Button>
             </div>
             {presets.length ? (
                 <div className={cl("preset-actions")}>
                     <Select
-                        placeholder="Select a preset"
+                        placeholder="プリセットを選択"
                         options={presets.map(preset => ({ label: preset.name, value: preset.name }))}
                         closeOnSelect={true}
                         select={setSelectedPreset}
                         isSelected={value => value === selectedPreset}
                         serialize={String}
                     />
-                    <Button disabled={!selectedPreset} onClick={loadPreset}>Load</Button>
-                    <Button variant="dangerPrimary" disabled={!selectedPreset} onClick={deletePreset}>Delete</Button>
+                    <Button disabled={!selectedPreset} onClick={loadPreset}>読み込む</Button>
+                    <Button variant="dangerPrimary" disabled={!selectedPreset} onClick={deletePreset}>削除</Button>
                 </div>
             ) : (
-                <Paragraph>No saved presets yet.</Paragraph>
+                <Paragraph>保存済みのプリセットはまだありません。</Paragraph>
             )}
         </div>
     );
@@ -247,50 +247,50 @@ function RPCFields() {
         <>
             <SelectSetting
                 settingsKey="type"
-                label="Activity Type"
+                label="アクティビティの種類"
                 options={[
                     {
-                        label: "Playing",
+                        label: "プレイ中",
                         value: ActivityType.PLAYING,
                         default: true
                     },
                     {
-                        label: "Streaming",
+                        label: "配信中",
                         value: ActivityType.STREAMING
                     },
                     {
-                        label: "Listening",
+                        label: "聴いている",
                         value: ActivityType.LISTENING
                     },
                     {
-                        label: "Watching",
+                        label: "視聴中",
                         value: ActivityType.WATCHING
                     },
                     {
-                        label: "Competing",
+                        label: "対戦中",
                         value: ActivityType.COMPETING
                     }
                 ]}
             />
 
             <PairSetting data={[
-                { settingsKey: "appID", label: "Application ID", isValid: isAppIdValid },
-                { settingsKey: "appName", label: "Application Name", isValid: makeValidator(128, true) },
+                { settingsKey: "appID", label: "アプリケーション ID", isValid: isAppIdValid },
+                { settingsKey: "appName", label: "アプリケーション名", isValid: makeValidator(128, true) },
             ]} />
 
             <PairSetting data={[
-                { settingsKey: "details", label: "Detail (line 1)", isValid: maxLength128 },
-                { settingsKey: "detailsURL", label: "Detail URL", isValid: isUrlValid },
+                { settingsKey: "details", label: "詳細（1行目）", isValid: maxLength128 },
+                { settingsKey: "detailsURL", label: "詳細 URL", isValid: isUrlValid },
             ]} />
 
             <PairSetting data={[
-                { settingsKey: "state", label: "State (line 2)", isValid: maxLength128 },
-                { settingsKey: "stateURL", label: "State URL", isValid: isUrlValid },
+                { settingsKey: "state", label: "状態（2行目）", isValid: maxLength128 },
+                { settingsKey: "stateURL", label: "状態 URL", isValid: isUrlValid },
             ]} />
 
             <SingleSetting
                 settingsKey="streamLink"
-                label="Stream Link (Twitch or YouTube, only if activity type is Streaming)"
+                label="配信リンク（Twitch または YouTube、アクティビティの種類が配信中の場合のみ）"
                 disabled={type !== ActivityType.STREAMING}
                 isValid={isStreamLinkValid}
             />
@@ -298,14 +298,14 @@ function RPCFields() {
             <PairSetting data={[
                 {
                     settingsKey: "partySize",
-                    label: "Party Size",
+                    label: "パーティー人数",
                     transform: parseNumber,
                     isValid: isNumberValid,
                     disabled: type !== ActivityType.PLAYING,
                 },
                 {
                     settingsKey: "partyMaxSize",
-                    label: "Maximum Party Size",
+                    label: "パーティー最大人数",
                     transform: parseNumber,
                     isValid: isNumberValid,
                     disabled: type !== ActivityType.PLAYING,
@@ -315,49 +315,49 @@ function RPCFields() {
             <Divider />
 
             <PairSetting data={[
-                { settingsKey: "imageBig", label: "Large Image URL/Key", isValid: isImageKeyValid },
-                { settingsKey: "imageBigTooltip", label: "Large Image Text", isValid: maxLength128 },
+                { settingsKey: "imageBig", label: "大きい画像の URL/キー", isValid: isImageKeyValid },
+                { settingsKey: "imageBigTooltip", label: "大きい画像のテキスト", isValid: maxLength128 },
             ]} />
-            <SingleSetting settingsKey="imageBigURL" label="Large Image clickable URL" isValid={isUrlValid} />
+            <SingleSetting settingsKey="imageBigURL" label="大きい画像のクリック先 URL" isValid={isUrlValid} />
 
             <PairSetting data={[
-                { settingsKey: "imageSmall", label: "Small Image URL/Key", isValid: isImageKeyValid },
-                { settingsKey: "imageSmallTooltip", label: "Small Image Text", isValid: maxLength128 },
+                { settingsKey: "imageSmall", label: "小さい画像の URL/キー", isValid: isImageKeyValid },
+                { settingsKey: "imageSmallTooltip", label: "小さい画像のテキスト", isValid: maxLength128 },
             ]} />
-            <SingleSetting settingsKey="imageSmallURL" label="Small Image clickable URL" isValid={isUrlValid} />
+            <SingleSetting settingsKey="imageSmallURL" label="小さい画像のクリック先 URL" isValid={isUrlValid} />
 
             <Divider />
 
             <PairSetting data={[
-                { settingsKey: "buttonOneText", label: "Button1 Text", isValid: makeValidator(31) },
-                { settingsKey: "buttonOneURL", label: "Button1 URL", isValid: isUrlValid },
+                { settingsKey: "buttonOneText", label: "ボタン1のテキスト", isValid: makeValidator(31) },
+                { settingsKey: "buttonOneURL", label: "ボタン1の URL", isValid: isUrlValid },
             ]} />
             <PairSetting data={[
-                { settingsKey: "buttonTwoText", label: "Button2 Text", isValid: makeValidator(31) },
-                { settingsKey: "buttonTwoURL", label: "Button2 URL", isValid: isUrlValid },
+                { settingsKey: "buttonTwoText", label: "ボタン2のテキスト", isValid: makeValidator(31) },
+                { settingsKey: "buttonTwoURL", label: "ボタン2の URL", isValid: isUrlValid },
             ]} />
 
             <Divider />
 
             <SelectSetting
                 settingsKey="timestampMode"
-                label="Timestamp Mode"
+                label="タイムスタンプモード"
                 options={[
                     {
-                        label: "None",
+                        label: "なし",
                         value: TimestampMode.NONE,
                         default: true
                     },
                     {
-                        label: "Since discord open",
+                        label: "Discord を開いてから",
                         value: TimestampMode.NOW
                     },
                     {
-                        label: "Same as your current time (not reset after 24h)",
+                        label: "現在の時刻と同じ（24時間経ってもリセットされません）",
                         value: TimestampMode.TIME
                     },
                     {
-                        label: "Custom",
+                        label: "カスタム",
                         value: TimestampMode.CUSTOM
                     }
                 ]}
@@ -366,14 +366,14 @@ function RPCFields() {
             <PairSetting data={[
                 {
                     settingsKey: "startTime",
-                    label: "Start Timestamp (in milliseconds)",
+                    label: "開始タイムスタンプ（ミリ秒）",
                     transform: parseNumber,
                     isValid: isNumberValid,
                     disabled: timestampMode !== TimestampMode.CUSTOM,
                 },
                 {
                     settingsKey: "endTime",
-                    label: "End Timestamp (in milliseconds)",
+                    label: "終了タイムスタンプ（ミリ秒）",
                     transform: parseNumber,
                     isValid: isNumberValid,
                     disabled: timestampMode !== TimestampMode.CUSTOM,

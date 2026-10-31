@@ -38,7 +38,7 @@ export function initWs(isManual = false) {
     ws.addEventListener("open", () => {
         wasConnected = true;
 
-        logger.info("Connected to WebSocket");
+        logger.info("WebSocket に接続しました");
 
         // send module cache to vscode
         replyData({
@@ -66,7 +66,7 @@ export function initWs(isManual = false) {
         try {
             if (settings.store.notifyOnAutoConnect || isManual) {
                 showToast({
-                    text: "Connected to WebSocket",
+                    text: "WebSocket に接続しました",
                     variant: "success",
                     position: "top"
                 });
@@ -85,7 +85,7 @@ export function initWs(isManual = false) {
         logger.error("Dev Companion Error:", e);
 
         showToast({
-            text: "Dev Companion Error",
+            text: "Dev Companion でエラーが発生しました",
             variant: "critical",
             position: "top"
         });
@@ -97,7 +97,7 @@ export function initWs(isManual = false) {
         logger.info("Dev Companion Disconnected:", e.code, e.reason);
 
         showToast({
-            text: "Dev Companion Disconnected",
+            text: "Dev Companion が切断されました",
             variant: "critical",
             position: "top"
         });
@@ -488,8 +488,8 @@ const AllModulesNoti = ErrorBoundary.wrap(function ({ done, close }: AllModulesN
     done.then(setState.bind(null, 1)).catch(setState.bind(null, -1));
     if (state === 1) setTimeout(close, 5000);
     return (<>
-        {state === 0 && "Loading lazy modules, restarting could lead to errors"}
-        {state === 1 && "Loaded all lazy modules"}
-        {state === -1 && "Failed to load lazy modules, check console for errors"}
+        {state === 0 && "遅延モジュールを読み込み中です。再起動するとエラーが発生する可能性があります"}
+        {state === 1 && "すべての遅延モジュールを読み込みました"}
+        {state === -1 && "遅延モジュールの読み込みに失敗しました。コンソールでエラーを確認してください"}
     </>);
 }, { noop: true });

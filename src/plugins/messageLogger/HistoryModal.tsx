@@ -42,9 +42,9 @@ export function HistoryModal({ modalProps, message }: { modalProps: RenderModalP
         <Modal
             {...modalProps}
             size="lg"
-            title="Message Edit History"
+            title="メッセージ編集履歴"
         >
-            <FormSwitch title="Show Diff" value={showDiff} onChange={setShowDiff} />
+            <FormSwitch title="差分を表示" value={showDiff} onChange={setShowDiff} />
             <TabBar
                 type="top"
                 look="brand"
@@ -53,7 +53,7 @@ export function HistoryModal({ modalProps, message }: { modalProps: RenderModalP
                 onItemSelect={setCurrentTab}
             >
                 {message.firstEditTimestamp.getTime() !== message.timestamp.getTime() && (
-                    <TooltipContainer text="This edit state was not logged so it can't be displayed.">
+                    <TooltipContainer text="この編集状態は記録されていないため、表示できません。">
                         <TabBar.Item
                             className="vc-settings-tab-bar-item"
                             id={-1}

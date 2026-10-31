@@ -52,7 +52,7 @@ export function SetAvatarModal({ userId, modalProps }: { userId: string; modalPr
         if (!file.type.startsWith("image/")) return;
 
         if (file.type === "image/gif" || file.type === "image/webp") {
-            showToast({ text: "GIFs/WebP must be added via URL. Imgur, GitHub, Tenor, Giphy and Discord links work without extra setup.", variant: "critical" });
+            showToast({ text: "GIF/WebPはURLから追加する必要があります。Imgur、GitHub、Tenor、Giphy、Discordのリンクは追加設定なしで使えます。", variant: "critical" });
             return;
         }
 
@@ -79,7 +79,7 @@ export function SetAvatarModal({ userId, modalProps }: { userId: string; modalPr
 
     const actions = [
         {
-            text: "Save",
+            text: "保存",
             variant: "primary",
             onClick: saveUserAvatar
         }
@@ -87,7 +87,7 @@ export function SetAvatarModal({ userId, modalProps }: { userId: string; modalPr
 
     if (avatars[userId]) {
         actions.unshift({
-            text: "Delete",
+            text: "削除",
             variant: "dangerPrimary",
             onClick: deleteUserAvatar
         });
@@ -97,19 +97,19 @@ export function SetAvatarModal({ userId, modalProps }: { userId: string; modalPr
         <Modal
             {...modalProps}
             size="sm"
-            title="Custom Avatar"
+            title="カスタムアバター"
             actions={actions}
         >
             <div onKeyDown={handleKey}>
                 {/* Preview */}
                 <div className={cl("preview-row")}>
                     <div className={cl("preview-box")}>
-                        <span className={cl("preview-label")}>Original</span>
+                        <span className={cl("preview-label")}>オリジナル</span>
                         <img src={originalAvatar} className={cl("avatar")} alt="original" />
                     </div>
                     <span className={cl("arrow")}>→</span>
                     <div className={cl("preview-box")}>
-                        <span className={cl("preview-label")}>Local</span>
+                        <span className={cl("preview-label")}>ローカル</span>
                         <img
                             src={preview || originalAvatar}
                             className={`${cl("avatar")} ${preview ? cl("avatar-active") : ""}`}
@@ -120,10 +120,10 @@ export function SetAvatarModal({ userId, modalProps }: { userId: string; modalPr
 
                 {/* URL input */}
                 <section className={Margins.bottom8}>
-                    <Heading tag="h3">Enter PNG/GIF URL</Heading>
+                    <Heading tag="h3">PNG/GIFのURLを入力</Heading>
                     <TextInput
                         placeholder="https://example.com/image.png"
-                        value={url.startsWith("data:") ? "(uploaded file)" : url}
+                        value={url.startsWith("data:") ? "（アップロード済みファイル）" : url}
                         onChange={handleUrlChange}
                         autoFocus
                     />
@@ -131,7 +131,7 @@ export function SetAvatarModal({ userId, modalProps }: { userId: string; modalPr
                         <Notice
                             variant="warning"
                             className={Margins.top8}
-                            action={<Button size="small" variant="secondary" onClick={allowHost}>Allow Host</Button>}
+                            action={<Button size="small" variant="secondary" onClick={allowHost}>ホストを許可</Button>}
                         >
                             Images from {previewUrl?.host} are blocked. Allow this host if you trust it, then restart Discord.
                         </Notice>
@@ -151,7 +151,7 @@ export function SetAvatarModal({ userId, modalProps }: { userId: string; modalPr
                     }}
                     onClick={() => fileInputRef.current?.click()}
                 >
-                    {isDragging ? "Drop here!" : "⬆ Drag an image or click to upload (for GIFs or WebP use a URL instead)"}
+                    {isDragging ? "ここにドロップ！" : "⬆ 画像をドラッグするかクリックしてアップロード（GIFやWebPは代わりにURLを使用）"}
                     <input
                         ref={fileInputRef}
                         type="file"

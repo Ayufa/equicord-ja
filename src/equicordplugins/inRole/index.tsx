@@ -44,11 +44,11 @@ export default definePlugin({
     settingsAboutComponent: () => {
         return (
             <>
-                <Paragraph style={{ fontSize: "1.2rem", marginTop: "15px", fontWeight: "bold" }}>{Parser.parse(":warning:")} Limitations</Paragraph>
-                <Paragraph style={{ marginTop: "10px", fontWeight: "500" }} >If you don't have mod permissions on the server, and that server is large (over 100 members), the plugin may be limited in the following ways:</Paragraph>
-                <Paragraph>• Offline members won't be listed</Paragraph>
-                <Paragraph>• Up to 100 members will be listed by default. To get more, scroll down in the member list to load more members.</Paragraph>
-                <Paragraph>• However, friends will always be shown regardless of their status.</Paragraph>
+                <Paragraph style={{ fontSize: "1.2rem", marginTop: "15px", fontWeight: "bold" }}>{Parser.parse(":warning:")} 制限事項</Paragraph>
+                <Paragraph style={{ marginTop: "10px", fontWeight: "500" }} >サーバーでモデレーター権限を持っていない場合、そのサーバーが大規模（メンバー100人超）だと、プラグインには次の制限がかかります:</Paragraph>
+                <Paragraph>• オフラインのメンバーは表示されません</Paragraph>
+                <Paragraph>• デフォルトでは最大100人まで表示されます。それ以上表示するには、メンバーリストを下にスクロールして読み込んでください。</Paragraph>
+                <Paragraph>• ただし、フレンドはステータスに関係なく常に表示されます。</Paragraph>
             </>
         );
     },
@@ -56,12 +56,12 @@ export default definePlugin({
     commands: [
         {
             name: "inrole",
-            description: "Know who is in a role",
+            description: "ロールに属するユーザーを確認",
             inputType: ApplicationCommandInputType.BUILT_IN,
             options: [
                 {
                     name: "role",
-                    description: "The role",
+                    description: "ロール",
                     type: ApplicationCommandOptionType.ROLE,
                     required: true
                 },
@@ -69,7 +69,7 @@ export default definePlugin({
             execute: (args, ctx) => {
                 // Guild check
                 if (!ctx.guild) {
-                    return sendBotMessage(ctx.channel.id, { content: "Make sure that you are in a server." });
+                    return sendBotMessage(ctx.channel.id, { content: "サーバー内で実行してください。" });
                 }
                 const role = args[0].value;
                 showInRoleModal(getMembersInRole(role, ctx.guild.id), role, ctx.channel.id);
@@ -90,7 +90,7 @@ export default definePlugin({
             children.push(
                 <Menu.MenuItem
                     id="vc-view-inrole"
-                    label="View Members in Role"
+                    label="ロール内のメンバーを表示"
                     action={() => {
                         showInRoleModal(getMembersInRole(role.id, guild.id), role.id, channel.id);
                     }}
@@ -117,7 +117,7 @@ export default definePlugin({
             children.push(
                 <Menu.MenuItem
                     id="vc-view-inrole"
-                    label="View Members in Role"
+                    label="ロール内のメンバーを表示"
                     action={() => {
                         showInRoleModal(getMembersInRole(role.id, guild.id), role.id, channel.id);
                     }}

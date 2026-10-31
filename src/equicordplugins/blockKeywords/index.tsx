@@ -51,10 +51,10 @@ function RegexHelper() {
 
     return (
         <Card className={cl("regex")}>
-            <HeadingTertiary className={Margins.bottom8}>Regex Helper</HeadingTertiary>
+            <HeadingTertiary className={Margins.bottom8}>正規表現ヘルパー</HeadingTertiary>
             <TextInput
                 type="text"
-                placeholder="Input to test..."
+                placeholder="テストするテキストを入力..."
                 value={testInput}
                 onChange={setTestInput}
                 maxLength={null}
@@ -65,7 +65,7 @@ function RegexHelper() {
                     variant="warning"
                     className={classes(cl("card"), Margins.top8)}
                 >
-                    <code>No patterns configured</code>
+                    <code>パターンが設定されていません</code>
                 </Card> : (
                     results.map(({ pattern, matches, error }, i) => (
                         <Card

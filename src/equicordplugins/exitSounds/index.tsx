@@ -31,7 +31,7 @@ function GuildSelector() {
         <SearchableSelect
             options={options}
             value={options.find(o => o.value === soundGuildId)?.value}
-            placeholder="Select a server..."
+            placeholder="サーバーを選択..."
             maxVisibleItems={6}
             closeOnSelect={true}
             onChange={v => settings.store.soundGuildId = v}
@@ -58,7 +58,7 @@ function SoundIdInput() {
                 <TextInput
                     value={soundId}
                     onChange={v => settings.store.soundId = v}
-                    placeholder="Enter sound ID..."
+                    placeholder="サウンドIDを入力..."
                 />
             </div>
             <Button
@@ -89,7 +89,7 @@ const SoundButtonContext: NavContextMenuPatchCallback = (children, { sound }: { 
         <Menu.MenuGroup>
             <Menu.MenuItem
                 id="set-global-exit-sound"
-                label="Set as global exit sound"
+                label="グローバルな退出音に設定"
                 action={() => {
                     settings.store.soundGuildId = sound.guildId;
                     settings.store.soundId = sound.soundId;
@@ -134,7 +134,7 @@ export default definePlugin({
                 }
             });
         } catch {
-            showToast({ text: "Oops! Something went wrong.", variant: "critical" });
+            showToast({ text: "おっと！何か問題が発生しました。", variant: "critical" });
         }
     }
 });

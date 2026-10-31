@@ -86,10 +86,10 @@ export function GhostedUsersModal({ modalProps, ghostedChannels: initialChannels
         <Modal
             {...modalProps}
             size="md"
-            title={`Ghosted Users (${ghostedChannels.length})`}
+            title={`ゴースト中のユーザー (${ghostedChannels.length})`}
             actions={ghostedChannels.length > 0 ? [
                 {
-                    text: "Clear All",
+                    text: "すべてクリア",
                     variant: "primary",
                     onClick: handleClearAll
                 }
@@ -97,7 +97,7 @@ export function GhostedUsersModal({ modalProps, ghostedChannels: initialChannels
         >
             <div className={cl("modal-content")}>
                 {ghostedChannels.length === 0 ? (
-                    <Text size="md">No ghosts here!</Text>
+                    <Text size="md">ここにはゴーストはいません！</Text>
                 ) : (
                     ghostedChannels.map(channelId => {
                         const channel = ChannelStore.getChannel(channelId);

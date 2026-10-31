@@ -15,10 +15,10 @@ export const cl = classNameFactory("vc-userplugininstaller-");
 
 export function showInstallFinishedAlert(pluginToEnable: string, native: boolean) {
     Alerts.show({
-        title: "Done!",
-        body: `${pluginToEnable} has been successfully installed.${native ? " However, as it makes use of native functions, a client restart is required." : ""} What now?`,
-        confirmText: `Enable & ${native ? "restart" : "refresh"}`,
-        cancelText: native ? "Restart" : "Refresh",
+        title: "完了！",
+        body: `${pluginToEnable} のインストールに成功しました。${native ? " ただし、ネイティブ機能を使用するため、クライアントの再起動が必要です。" : ""} どうしますか？`,
+        confirmText: `有効化して${native ? "再起動" : "再読み込み"}`,
+        cancelText: native ? "再起動" : "再読み込み",
         onConfirm() {
             !Vencord.Plugins.plugins[pluginToEnable] ? Vencord.Settings.plugins[pluginToEnable] = { enabled: true } : Vencord.Settings.plugins[pluginToEnable].enabled = true;
             native ? relaunch() : window.location.reload();

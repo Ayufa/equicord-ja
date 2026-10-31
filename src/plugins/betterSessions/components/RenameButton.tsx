@@ -27,7 +27,7 @@ export function RenameButton({ session, state }: { session: SessionInfo["session
                 ))
             }
         >
-            Rename
+            名前を変更
         </Button>
     );
 }

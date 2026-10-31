@@ -29,7 +29,7 @@ function startRecording(children) {
             label={
                 <div>
                     <ScreenshareIcon height={24} width={24} />
-                    <div>Start Recording</div>
+                    <div>録画を開始</div>
                 </div>
             }
             action={async () => {
@@ -50,7 +50,7 @@ function stopRecording(children, props) {
             label={
                 <div>
                     <ScreenshareIcon height={24} width={24} />
-                    <div>Stop Recording</div>
+                    <div>録画を停止</div>
                 </div>
             }
             action={() => {

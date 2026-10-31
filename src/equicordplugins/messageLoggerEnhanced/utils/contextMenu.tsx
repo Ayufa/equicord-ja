@@ -24,6 +24,13 @@ const idFunctions = {
 
 type idKeys = keyof typeof idFunctions;
 
+const idTypeLabels: Record<idKeys, string> = {
+    Folder: "フォルダー",
+    Server: "サーバー",
+    User: "ユーザー",
+    Channel: "チャンネル"
+};
+
 function renderListOption(listType: ListType, IdType: idKeys, props: any) {
     const rawId = idFunctions[IdType](props);
     if (!rawId) return null;
@@ -33,7 +40,7 @@ function renderListOption(listType: ListType, IdType: idKeys, props: any) {
     const isBlocked = ids.every(id => settings.store[listType].includes(id));
     const oppositeListType = listType === "blacklistedIds" ? "whitelistedIds" : "blacklistedIds";
     const isOppositeBlocked = ids.some(id => settings.store[oppositeListType].includes(id));
-    const list = listType === "blacklistedIds" ? "Blacklist" : "Whitelist";
+    const list = listType === "blacklistedIds" ? "ブラックリスト" : "ホワイトリスト";
 
     const addToList = () => ids.forEach(id => addToXAndRemoveFromOpposite(listType, id));
     const removeFromList = () => ids.forEach(id => removeFromX(listType, id));
@@ -43,8 +50,8 @@ function renderListOption(listType: ListType, IdType: idKeys, props: any) {
             id={`${listType}-${IdType}-${ids[0]}`}
             label={
                 isOppositeBlocked
-                    ? `Move ${IdType} to ${list}`
-                    : isBlocked ? `Remove ${IdType} From ${list}` : `${list} ${IdType}`
+                    ? `${idTypeLabels[IdType]} を ${list} に移動`
+                    : isBlocked ? `${idTypeLabels[IdType]} を ${list} から削除` : `${idTypeLabels[IdType]} を ${list} に追加`
             }
             action={isBlocked ? removeFromList : addToList}
         />
@@ -59,7 +66,7 @@ function renderOpenLogs(idType: idKeys, props: any) {
     return (
         <Menu.MenuItem
             id={`open-logs-for-${idType.toLowerCase()}`}
-            label={`Open Logs For ${idType}`}
+            label={`${idTypeLabels[idType]} のログを開く`}
             action={() => openLogModal(`${idType.toLowerCase()}:${id}`)}
         />
     );
@@ -80,7 +87,7 @@ const removeMessageAction = async (props: any) => {
         }
     } catch (e) {
         console.error("Failed to remove message", e);
-        showToast({ text: "Failed to remove message. Check console for details.", variant: "critical" });
+        showToast({ text: "メッセージの削除に失敗しました。詳細はコンソールを確認してください。", variant: "critical" });
     }
 };
 
@@ -104,7 +111,7 @@ export const contextMenuPath: NavContextMenuPatchCallback = (children, props) =>
 
                 <Menu.MenuItem
                     id="open-logs"
-                    label="Open Logs"
+                    label="ログを開く"
                     action={() => openLogModal()}
                 />
 
@@ -127,7 +134,7 @@ export const contextMenuPath: NavContextMenuPatchCallback = (children, props) =>
                             <Menu.MenuSeparator />
                             <Menu.MenuItem
                                 id="remove-message"
-                                label={props.message?.deleted ? "Remove Message (Permanent)" : "Remove Message History (Permanent)"}
+                                label={props.message?.deleted ? "メッセージを削除（完全に）" : "メッセージ履歴を削除（完全に）"}
                                 color="danger"
                                 action={() => removeMessageAction(props)}
                             />
@@ -145,7 +152,7 @@ export const contextMenuPath: NavContextMenuPatchCallback = (children, props) =>
                             <Menu.MenuSeparator />
                             <Menu.MenuItem
                                 id="hide-from-message-loggers"
-                                label="Delete Message (Hide From Message Loggers)"
+                                label="メッセージを削除（メッセージロガーから隠す）"
                                 color="danger"
 
                                 action={async () => {

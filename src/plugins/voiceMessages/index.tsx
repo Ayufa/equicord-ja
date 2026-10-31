@@ -91,7 +91,7 @@ const ctxMenuPatch: NavContextMenuPatchCallback = (children, props) => {
                 type: "icon",
                 icon: Microphone
             }}
-            label="Send Voice Message"
+            label="ボイスメッセージを送信"
             action={() =>
                 openModal(modalProps => <VoiceMessageModal modalProps={modalProps} />, {
                     onCloseCallback: () => FluxDispatcher.dispatch({ type: "VENCORD_STOP_RECORDING" })
@@ -196,7 +196,7 @@ function sendAudio(blob: Blob, meta: AudioMetadata) {
             }
         });
     });
-    upload.on("error", () => showToast({ text: "Failed to upload voice message", variant: "critical" }));
+    upload.on("error", () => showToast({ text: "ボイスメッセージのアップロードに失敗しました", variant: "critical" }));
 
     upload.upload();
 }
@@ -254,14 +254,14 @@ function VoiceMessageModal({ modalProps }: { modalProps: RenderModalProps; }) {
     return (
         <Modal
             {...modalProps}
-            title="Record Voice Message"
+            title="ボイスメッセージを録音"
             actions={[{
-                text: "Send",
+                text: "送信",
                 variant: "primary",
                 onClick: () => {
                     sendAudio(blob!, meta ?? EMPTY_META);
                     modalProps.onClose();
-                    showToast({ text: "Now sending voice message... Please be patient", icon: ClockIcon, iconColor: "var(--text-default)" });
+                    showToast({ text: "ボイスメッセージを送信中です... しばらくお待ちください", icon: ClockIcon, iconColor: "var(--text-default)" });
                 },
                 disabled: !blob
             }]}
@@ -282,13 +282,13 @@ function VoiceMessageModal({ modalProps }: { modalProps: RenderModalProps; }) {
                         if (file) setAudioBlob(file);
                     }}
                 >
-                    Upload File
+                    ファイルをアップロード
                 </Button>
             </div>
 
-            <Heading>Preview</Heading>
+            <Heading>プレビュー</Heading>
             {metaError
-                ? <Paragraph className={cl("error")}>Failed to parse selected audio file: {metaError.message}</Paragraph>
+                ? <Paragraph className={cl("error")}>選択した音声ファイルの解析に失敗しました：{metaError.message}</Paragraph>
                 : (
                     <VoicePreview
                         src={blobUrl}
@@ -299,10 +299,10 @@ function VoiceMessageModal({ modalProps }: { modalProps: RenderModalProps; }) {
 
             {isUnsupportedFormat && (
                 <Card variant="warning" className={Margins.top16} defaultPadding>
-                    <Paragraph>Voice Messages have to be OggOpus to be playable on iOS. This file is <code>{blob.type}</code> so it will not be playable on iOS.</Paragraph>
+                    <Paragraph>ボイスメッセージは、iOSで再生できるようにOggOpus形式である必要があります。このファイルは <code>{blob.type}</code> 形式のため、iOSでは再生できません。</Paragraph>
 
                     <Paragraph className={Margins.top8}>
-                        To fix it, first convert it to OggOpus, for example using the <Link href="https://convertio.co/mp3-opus/">convertio web converter</Link>
+                        修正するには、まずOggOpusに変換してください。たとえば <Link href="https://convertio.co/mp3-opus/">convertioのWebコンバーター</Link> が使えます
                     </Paragraph>
                 </Card>
             )}

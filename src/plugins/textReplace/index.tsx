@@ -79,13 +79,13 @@ const settings = definePluginSettings({
                 <>
                     <TextReplaceTesting />
                     <TextReplace
-                        title="Simple Replacements"
-                        description="Simple find and replace rules. For example, find 'brb' and replace it with 'be right back'"
+                        title="シンプル置換"
+                        description="シンプルな検索・置換ルールです。たとえば「brb」を検索して「be right back」に置き換えるといったことができます"
                         rulesArray={stringRules}
                     />
                     <TextReplace
-                        title="Regex Replacements"
-                        description="More powerful replacements using Regular Expressions. This section is for advanced users. If you don't understand it, just ignore it"
+                        title="正規表現による置換"
+                        description="正規表現を使う、より強力な置換です。ここは上級者向けのセクションです。分からなければ無視してかまいません"
                         rulesArray={regexRules}
                         isRegex
                     />
@@ -109,11 +109,11 @@ const settings = definePluginSettings({
 function TextReplaceImportExport() {
     return (
         <div>
-            <HeadingSecondary>Import and Export</HeadingSecondary>
-            <Paragraph>Export your rules as a JSON file or import rules to add them to your existing rules.</Paragraph>
+            <HeadingSecondary>インポートとエクスポート</HeadingSecondary>
+            <Paragraph>ルールをJSONファイルとしてエクスポートしたり、ルールをインポートして既存のルールに追加したりできます。</Paragraph>
             <Flex className={cl("import-export-buttons")}>
-                <Button onClick={exportRules}>Export JSON</Button>
-                <Button onClick={importRules}>Import JSON</Button>
+                <Button onClick={exportRules}>JSONをエクスポート</Button>
+                <Button onClick={importRules}>JSONをインポート</Button>
             </Flex>
         </div>
     );
@@ -142,10 +142,10 @@ async function importRules() {
             settings.store[key] = [...settings.plain[key].filter(rule => !isEmptyRule(rule)), ...imported, makeEmptyRule()];
         }
 
-        showToast({ text: "Rules imported successfully.", variant: "success" });
+        showToast({ text: "ルールをインポートしました。", variant: "success" });
     } catch (err) {
         new Logger("TextReplace").error("Failed to import rules:", err);
-        showToast({ text: "Could not import rules. Choose a valid TextReplace JSON file.", variant: "critical" });
+        showToast({ text: "ルールをインポートできませんでした。有効なTextReplaceのJSONファイルを選んでください。", variant: "critical" });
     }
 }
 
@@ -245,9 +245,9 @@ function TextReplace({ title, description, rulesArray, isRegex = false }: TextRe
     }
 
     const scopeOptions = [
-        { label: "Apply to your messages (visible to everyone)", value: "myMessages" },
-        { label: "Apply to others' messages (only visible to you)", value: "othersMessages" },
-        { label: "Apply to all messages", value: "allMessages" }
+        { label: "自分のメッセージに適用（全員に見えます）", value: "myMessages" },
+        { label: "他人のメッセージに適用（自分にだけ見えます）", value: "othersMessages" },
+        { label: "すべてのメッセージに適用", value: "allMessages" }
     ];
 
     const filteredRules = rulesArray.reduce((acc: RuleWithIndex[], rule, index) => {
@@ -296,7 +296,7 @@ function TextReplace({ title, description, rulesArray, isRegex = false }: TextRe
                 <Paragraph>{description}</Paragraph>
                 <div className={cl("search-input")}>
                     <TextInput
-                        placeholder="Search for a rule..."
+                        placeholder="ルールを検索..."
                         value={searchQuery}
                         onChange={setSearchQuery}
                     />
@@ -304,7 +304,7 @@ function TextReplace({ title, description, rulesArray, isRegex = false }: TextRe
             </div>
             <Flex flexDirection="column" style={{ gap: "0.5em", paddingBottom: "1.25em" }}>
                 {!filteredRules.length && searchQuery && (
-                    <Paragraph>No rules match your search criteria.</Paragraph>
+                    <Paragraph>検索条件に一致するルールがありません。</Paragraph>
                 )}
                 {filteredRules.map(({ rule, index }) =>
                     <div
@@ -324,26 +324,26 @@ function TextReplace({ title, description, rulesArray, isRegex = false }: TextRe
                                 <>
                                     <div className={cl("input-grid")}>
                                         <TextRow
-                                            label="Name"
-                                            description="An optional name to help you identify this rule."
+                                            label="名前"
+                                            description="このルールを識別するための任意の名前です。"
                                             value={rule.name ?? ""}
                                             onChange={e => onChange(e, index, "name")}
                                         />
                                         <TextRow
-                                            label="Find"
-                                            description={isRegex ? "The regex pattern" : "The text to replace"}
+                                            label="検索"
+                                            description={isRegex ? "正規表現パターン" : "置換するテキスト"}
                                             value={rule.find}
                                             onChange={e => onChange(e, index, "find")}
                                         />
                                         <TextRow
-                                            label="Replace"
-                                            description="The text to replace the found text with"
+                                            label="置換"
+                                            description="見つかったテキストの置換先のテキスト"
                                             value={rule.replace}
                                             onChange={e => onChange(e, index, "replace")}
                                         />
                                         <TextRow
-                                            label="Only if includes"
-                                            description="Optionally, only apply this rule if the message includes this text."
+                                            label="このテキストを含む場合のみ"
+                                            description="任意で、メッセージにこのテキストが含まれる場合にのみこのルールを適用します。"
                                             value={rule.onlyIfIncludes}
                                             onChange={e => onChange(e, index, "onlyIfIncludes")}
                                         />
@@ -362,7 +362,7 @@ function TextReplace({ title, description, rulesArray, isRegex = false }: TextRe
                                         variant="dangerPrimary"
                                         onClick={() => onClickRemove(index)}
                                     >
-                                        Delete Rule
+                                        ルールを削除
                                     </Button>
                                 </>
                             )}
@@ -383,8 +383,8 @@ function TextReplace({ title, description, rulesArray, isRegex = false }: TextRe
                                     {rule.name
                                         ? rule.name
                                         : isEmptyRule(rule)
-                                            ? `Empty Rule ${index + 1}`
-                                            : `Rule ${index + 1} - ${rule.find}`
+                                            ? `空のルール ${index + 1}`
+                                            : `ルール ${index + 1} - ${rule.find}`
                                     }
                                 </Paragraph>
                             </div>
@@ -398,7 +398,7 @@ function TextReplace({ title, description, rulesArray, isRegex = false }: TextRe
                     }}
                     disabled={rulesArray.length > 0 && isEmptyRule(rulesArray[rulesArray.length - 1])}
                 >
-                    Add Rule
+                    ルールを追加
                 </Button>
             </Flex>
         </>
@@ -410,10 +410,10 @@ function TextReplaceTesting() {
 
     return (
         <div>
-            <HeadingSecondary>Rule Tester</HeadingSecondary>
+            <HeadingSecondary>ルールテスター</HeadingSecondary>
             <Flex flexDirection="column" gap={6}>
-                <TextInput placeholder="Type a message to test rules on" onChange={setValue} />
-                <TextInput placeholder="Message with rules applied" editable={false} value={applyRules(value, "allMessages")} style={{ opacity: 0.7 }} />
+                <TextInput placeholder="ルールをテストするメッセージを入力" onChange={setValue} />
+                <TextInput placeholder="ルール適用後のメッセージ" editable={false} value={applyRules(value, "allMessages")} style={{ opacity: 0.7 }} />
             </Flex>
         </div>
     );

@@ -86,8 +86,8 @@ export const settings = definePluginSettings({
         component: () =>
             <Button onClick={async () =>
                 (await getCollections()).length ? Alerts.show({
-                    title: "Are you sure?",
-                    body: "Importing collections will overwrite your current collections.",
+                    title: "本当によろしいですか？",
+                    body: "コレクションをインポートすると、現在のコレクションが上書きされます。",
                     confirmText: "Import",
                     confirmColor: "danger",
                     cancelText: "Nevermind",
@@ -110,8 +110,8 @@ export const settings = definePluginSettings({
         component: () =>
             <Button onClick={() =>
                 Alerts.show({
-                    title: "Are you sure?",
-                    body: "Resetting collections will remove all your collections.",
+                    title: "本当によろしいですか？",
+                    body: "コレクションをリセットすると、すべてのコレクションが削除されます。",
                     confirmText: "Reset",
                     confirmColor: "danger",
                     cancelText: "Nevermind",
@@ -152,21 +152,21 @@ function SortSettingsComponent() {
 
     return (
         <div className={cl("sort-container")}>
-            <Heading className={cl("sort-title")}>Sort Collections</Heading>
+            <Heading className={cl("sort-title")}>コレクションの並び替え</Heading>
             <Divider className={cl("sort-divider")} />
-            <Paragraph className={cl("sort-description")}>Choose a sorting criteria for your collections</Paragraph>
+            <Paragraph className={cl("sort-description")}>コレクションの並び替え基準を選択してください</Paragraph>
             <Divider className={cl("sort-divider")} />
             <div className={cl("sort-section")}>
-                <Paragraph className={cl("sort-section-title")}>Sort By</Paragraph>
-                <RadioOption name="sortType" value={SortingOptions.NAME} checked={sortType === SortingOptions.NAME} onChange={() => handleSortType(SortingOptions.NAME)} label="Name" />
-                <RadioOption name="sortType" value={SortingOptions.CREATION_DATE} checked={sortType === SortingOptions.CREATION_DATE} onChange={() => handleSortType(SortingOptions.CREATION_DATE)} label="Creation Date" />
-                <RadioOption name="sortType" value={SortingOptions.MODIFIED_DATE} checked={sortType === SortingOptions.MODIFIED_DATE} onChange={() => handleSortType(SortingOptions.MODIFIED_DATE)} label="Modified Date" />
+                <Paragraph className={cl("sort-section-title")}>並び替え基準</Paragraph>
+                <RadioOption name="sortType" value={SortingOptions.NAME} checked={sortType === SortingOptions.NAME} onChange={() => handleSortType(SortingOptions.NAME)} label="名前" />
+                <RadioOption name="sortType" value={SortingOptions.CREATION_DATE} checked={sortType === SortingOptions.CREATION_DATE} onChange={() => handleSortType(SortingOptions.CREATION_DATE)} label="作成日" />
+                <RadioOption name="sortType" value={SortingOptions.MODIFIED_DATE} checked={sortType === SortingOptions.MODIFIED_DATE} onChange={() => handleSortType(SortingOptions.MODIFIED_DATE)} label="更新日" />
             </div>
             <Divider className={cl("sort-divider")} />
             <div className={cl("sort-section")}>
-                <Paragraph className={cl("sort-section-title")}>Order</Paragraph>
-                <RadioOption name="sortOrder" value="asc" checked={sortOrder === "asc"} onChange={() => handleSortOrder("asc")} label="Ascending" />
-                <RadioOption name="sortOrder" value="desc" checked={sortOrder === "desc"} onChange={() => handleSortOrder("desc")} label="Descending" />
+                <Paragraph className={cl("sort-section-title")}>順序</Paragraph>
+                <RadioOption name="sortOrder" value="asc" checked={sortOrder === "asc"} onChange={() => handleSortOrder("asc")} label="昇順" />
+                <RadioOption name="sortOrder" value="desc" checked={sortOrder === "desc"} onChange={() => handleSortOrder("desc")} label="降順" />
             </div>
         </div>
     );

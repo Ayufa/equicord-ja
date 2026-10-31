@@ -107,28 +107,28 @@ export default definePlugin({
     commands: [
         {
             name: "tags",
-            description: "Manage all custom commands",
+            description: "すべてのカスタムコマンドを管理",
             inputType: ApplicationCommandInputType.BUILT_IN,
             options: [
                 {
                     name: "create",
-                    description: "Create a new tag",
+                    description: "新しいタグを作成",
                     type: ApplicationCommandOptionType.SUB_COMMAND,
                 },
                 {
                     name: "list",
-                    description: "List all your tags",
+                    description: "すべてのタグを一覧表示",
                     type: ApplicationCommandOptionType.SUB_COMMAND,
                     options: []
                 },
                 {
                     name: "delete",
-                    description: "Remove a tag by name",
+                    description: "名前を指定してタグを削除",
                     type: ApplicationCommandOptionType.SUB_COMMAND,
                     options: [
                         {
                             name: "tag-name",
-                            description: "The name of the tag",
+                            description: "タグの名前",
                             type: ApplicationCommandOptionType.STRING,
                             required: true
                         }
@@ -148,13 +148,13 @@ export default definePlugin({
 
                         if (!getTag(name))
                             return sendBotMessage(ctx.channel.id, {
-                                content: `A Tag with the name **${name}** does not exist!`
+                                content: `**${name}** という名前のタグは存在しません！`
                             });
 
                         removeTag(name);
 
                         sendBotMessage(ctx.channel.id, {
-                            content: `Successfully deleted the tag **${name}**!`
+                            content: `タグ **${name}** を削除しました！`
                         });
 
                         break;
@@ -166,7 +166,7 @@ export default definePlugin({
                             .join("\n");
 
                         sendBotMessage(ctx.channel.id, {
-                            content: content || "Woops! There are no tags yet, use `/tags create` to create one!",
+                            content: content || "タグはまだありません。`/tags create` で作成できます！",
                         });
 
                         break;

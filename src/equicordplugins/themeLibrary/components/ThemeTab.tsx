@@ -157,25 +157,25 @@ function ThemeTab() {
                             fontSize: "1.5em",
                             color: "var(--text-default)"
                         }}>
-                        <p> Getting the latest themes... </p>
+                        <p> 最新のテーマを取得しています... </p>
                         <p style={{
                             fontSize: ".75em",
                             color: "var(--text-muted)"
-                        }}> This won't take long! </p>
+                        }}> すぐに終わります！ </p>
 
                     </div>
                 ) : error ? (
                     <ErrorCard>
-                        <HeadingTertiary>Failed to fetch themes</HeadingTertiary>
-                        <Paragraph className={Margins.top8}>Could not fetch the theme list. Try again later.</Paragraph>
+                        <HeadingTertiary>テーマの取得に失敗しました</HeadingTertiary>
+                        <Paragraph className={Margins.top8}>テーマ一覧を取得できませんでした。後でもう一度お試しください。</Paragraph>
                     </ErrorCard>
                 ) : (
                     <>
                         {hideWarningCard ? null : (
                             <ErrorCard>
-                                <HeadingTertiary>Want your theme removed?</HeadingTertiary>
+                                <HeadingTertiary>テーマの削除をご希望ですか？</HeadingTertiary>
                                 <Paragraph className={Margins.top8}>
-                                    If you want your theme(s) permanently removed, please open an issue on <a href="https://github.com/Faf4a/plugins/issues/new?labels=removal&projects=&template=request_removal.yml&title=Theme+Removal">GitHub <OpenExternalIcon height={16} width={16} /></a>
+                                    テーマを完全に削除したい場合は、<a href="https://github.com/Faf4a/plugins/issues/new?labels=removal&projects=&template=request_removal.yml&title=Theme+Removal">GitHub <OpenExternalIcon height={16} width={16} /></a> でIssueを作成してください
                                 </Paragraph>
                                 <Button
                                     onClick={() => {
@@ -185,7 +185,7 @@ function ThemeTab() {
                                     size="small"
                                     variant="dangerPrimary"
                                     className={classes(Margins.top16, "vce-warning-button")}
-                                >Hide</Button>
+                                >非表示</Button>
                             </ErrorCard>
                         )}
                         <div className={classes(Margins.bottom8, Margins.top16)}>
@@ -194,7 +194,7 @@ function ThemeTab() {
                                     overflowWrap: "break-word",
                                     marginTop: 8,
                                 }}>
-                                {searchValue.status === SearchStatus.LIKED ? "Most Liked" : "Newest Additions"}
+                                {searchValue.status === SearchStatus.LIKED ? "いいねが多い順" : "新着"}
                             </HeadingPrimary>
 
                             {themes.slice(0, 2).map((theme: Theme) => (
@@ -215,18 +215,18 @@ function ThemeTab() {
                             Themes
                         </HeadingPrimary>
                         <div className={classes(Margins.bottom20, "vce-search-grid")}>
-                            <TextInput value={searchValue.value} placeholder="Search for a theme..." onChange={onSearch} />
+                            <TextInput value={searchValue.value} placeholder="テーマを検索..." onChange={onSearch} />
                             <div className={InputStyles.inputWrapper}>
                                 <SearchableSelect
                                     options={[
-                                        { label: "Show All", value: SearchStatus.ALL, default: true },
-                                        { label: "Show Themes", value: SearchStatus.THEME },
-                                        { label: "Show Snippets", value: SearchStatus.SNIPPET },
-                                        { label: "Show Most Liked", value: SearchStatus.LIKED },
-                                        { label: "Show Dark", value: SearchStatus.DARK },
-                                        { label: "Show Light", value: SearchStatus.LIGHT },
-                                        { label: "Show Enabled", value: SearchStatus.ENABLED },
-                                        { label: "Show Disabled", value: SearchStatus.DISABLED },
+                                        { label: "すべて", value: SearchStatus.ALL, default: true },
+                                        { label: "テーマのみ", value: SearchStatus.THEME },
+                                        { label: "スニペットのみ", value: SearchStatus.SNIPPET },
+                                        { label: "いいねが多い順", value: SearchStatus.LIKED },
+                                        { label: "ダークのみ", value: SearchStatus.DARK },
+                                        { label: "ライトのみ", value: SearchStatus.LIGHT },
+                                        { label: "有効のみ", value: SearchStatus.ENABLED },
+                                        { label: "無効のみ", value: SearchStatus.DISABLED },
                                     ]}
                                     // @ts-ignore
                                     value={searchValue.status}
@@ -277,4 +277,4 @@ function ThemeLibrary() {
     );
 }
 
-export default wrapTab(ThemeLibrary, "Theme Library");
+export default wrapTab(ThemeLibrary, "テーマライブラリ");

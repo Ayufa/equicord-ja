@@ -31,10 +31,10 @@ function AddSongModal({ modalProps, close, onAdd }: AddSongModalProps) {
             <Modal
                 {...modalProps}
                 size="md"
-                title="Add a new song"
+                title="新しい曲を追加"
                 actions={[
                     {
-                        text: "Add song",
+                        text: "曲を追加",
                         variant: "primary",
                         disabled: !url || !!error || pending,
                         onClick: async () => {
@@ -42,7 +42,7 @@ function AddSongModal({ modalProps, close, onAdd }: AddSongModalProps) {
                             try {
                                 const parsed = await Native.parseLink(url);
                                 if (!parsed) {
-                                    setError("Invalid link");
+                                    setError("無効なリンク");
                                     return setPending(false);
                                 }
 
@@ -56,7 +56,7 @@ function AddSongModal({ modalProps, close, onAdd }: AddSongModalProps) {
                             } catch (error) {
                                 logger.error("parseLink error", error);
 
-                                setError("Failed to parse link");
+                                setError("リンクの解析に失敗しました");
                                 setPending(false);
                             }
                         }
@@ -65,7 +65,7 @@ function AddSongModal({ modalProps, close, onAdd }: AddSongModalProps) {
             >
                 <Flex flexDirection="column" gap="10px">
                     <BaseText size="md" weight="normal" className={cl("sub")}>
-                        Song Spotlight supports these services: <b>{parsers.map(x => x.label).join(", ")}</b>
+                        Song Spotlightは次のサービスに対応しています: <b>{parsers.map(x => x.label).join(", ")}</b>
                     </BaseText>
                     <TextInput
                         placeholder="https://open.spotify.com/..."
@@ -76,7 +76,7 @@ function AddSongModal({ modalProps, close, onAdd }: AddSongModalProps) {
                                 if (value) new URL(value);
                                 setError(undefined);
                             } catch {
-                                setError("Invalid URL");
+                                setError("無効なURL");
                             }
                         }}
                     />
@@ -106,7 +106,7 @@ export default function AddSong({ onAdd }: AddSongProps) {
             <Flex alignItems="center" gap="12px" className={cl("editable-song", "add-song")}>
                 <PlusIcon width={28} height={28} className={cl("icon")} />
                 <Flex flexDirection="column" justifyContent="center" gap={0}>
-                    <BaseText size="md" weight="medium">Add song</BaseText>
+                    <BaseText size="md" weight="medium">曲を追加</BaseText>
                 </Flex>
             </Flex>
         </Clickable>

@@ -190,13 +190,13 @@ async function fetchAttachment(attachment: MessageAttachment): Promise<File> {
 export async function sendAttachment(attachment: MessageAttachment, channel: Channel) {
     const { filename, title, description } = attachment;
     const file = await fetchAttachment(attachment).catch(() =>
-        showToast({ text: `Couldn't fetch ${filename}`, variant: "critical" })
+        showToast({ text: `${filename} を取得できませんでした`, variant: "critical" })
     );
     if (!file) return;
 
     // Using promptToUpload instead of addFiles directly since it has file size checks with error popups
     await UploadHandler.promptToUpload([file], channel, DraftType.ChannelMessage).catch(() =>
-        showToast({ text: `Couldn't upload ${filename}`, variant: "critical" })
+        showToast({ text: `${filename} をアップロードできませんでした`, variant: "critical" })
     );
 
     const uploads = [...UploadAttachmentStore.getUploads(channel.id, DraftType.ChannelMessage)];

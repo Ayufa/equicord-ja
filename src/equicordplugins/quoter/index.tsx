@@ -76,7 +76,7 @@ export default definePlugin({
             const buttonElement = (
                 <Menu.MenuItem
                     id="vc-quote"
-                    label="Quote"
+                    label="引用"
                     icon={QuoteIcon}
                     leadingAccessory={{ type: "icon", icon: QuoteIcon }}
                     action={() => openModal(props => <QuoteModal message={message} {...props} />)}
@@ -168,31 +168,31 @@ function QuoteModal({ message, ...props }: RenderModalProps & { message: Message
         <Modal
             {...props}
             size="md"
-            title="Catch Them In 4K."
+            title="4K で捉えよう。"
             actions={[
                 {
-                    text: "Export",
+                    text: "エクスポート",
                     variant: "primary",
                     onClick: handleExport
                 },
                 {
-                    text: "Send",
+                    text: "送信",
                     variant: "primary",
                     onClick: handleSendInChat
                 }
             ]}
         >
-            <img alt="Quote preview" src="" id="quoterPreview" style={{ borderRadius: "20px", width: "100%", marginBottom: "20px" }} />
+            <img alt="引用プレビュー" src="" id="quoterPreview" style={{ borderRadius: "20px", width: "100%", marginBottom: "20px" }} />
 
-            <FormSwitch title="Grayscale" value={gray} onChange={setGray} />
+            <FormSwitch title="グレースケール" value={gray} onChange={setGray} />
             <FormSwitch
-                title="Save as GIF"
+                title="GIF として保存"
                 value={saveAsGif}
                 onChange={setSaveAsGif}
-                description="Saves/Sends the image as a GIF instead of a PNG"
+                description="画像を PNG ではなく GIF として保存/送信します"
             />
             <FormSwitch
-                title="Show Watermark"
+                title="透かしを表示"
                 value={showWatermark}
                 onChange={setShowWatermark}
                 hideBorder={showWatermark}
@@ -202,7 +202,7 @@ function QuoteModal({ message, ...props }: RenderModalProps & { message: Message
                     <TextInput
                         value={watermarkText}
                         onChange={setWatermarkText}
-                        placeholder="Watermark text (max 32 characters)"
+                        placeholder="透かしテキスト（最大32文字）"
                         maxLength={32}
                     />
                 </div>

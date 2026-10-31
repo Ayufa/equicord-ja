@@ -100,13 +100,13 @@ export function CommandPalette({ modalProps }: { modalProps: RenderModalProps; }
     }, [queryEh]);
 
     return (
-        <Modal {...modalProps} size="md" title="Command Palette">
+        <Modal {...modalProps} size="md" title="コマンドパレット">
             <div className={cl("root")} onKeyDown={handleKeyDown} onWheel={handleWheel}>
                 <TextInput
                     value={queryEh}
                     onChange={e => setQuery(e)}
                     style={{ width: "100%", borderBottomLeftRadius: "0", borderBottomRightRadius: "0", paddingLeft: "0.9rem" }}
-                    placeholder="Search the Command Palette"
+                    placeholder="コマンドパレットを検索"
                 />
                 <div className={cl("option-container")}>
                     {visibleActions.map((action, index) => (

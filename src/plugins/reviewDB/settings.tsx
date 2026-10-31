@@ -58,7 +58,7 @@ export const settings = definePluginSettings({
         type: OptionType.COMPONENT,
         component: () => (
             <div className={cl("button-grid")} >
-                <Button onClick={openBlockModal}>Manage Blocked Users</Button>
+                <Button onClick={openBlockModal}>ブロック中のユーザーを管理</Button>
 
                 <Button
                     variant="positive"

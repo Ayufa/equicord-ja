@@ -76,7 +76,7 @@ interface GrantedByTooltipProps {
 function GrantedByTooltip({ roleName, roleColor }: GrantedByTooltipProps) {
     return (
         <>
-            <Paragraph weight="medium">Granted By</Paragraph>
+            <Paragraph weight="medium">付与元</Paragraph>
             <FakeRole text={roleName} color={roleColor} />
         </>
     );
@@ -103,10 +103,10 @@ function UserPermissionsComponent({ guild, guildMember, closePopout }: { guild: 
                 permissions: Object.values(PermissionsBits).reduce((prev, curr) => prev | curr, 0n)
             });
 
-            const OWNER = getIntlMessage("GUILD_OWNER") ?? "Server Owner";
+            const OWNER = getIntlMessage("GUILD_OWNER") ?? "サーバー所有者";
             userPermissions.push({
                 permission: OWNER,
-                roleName: "Owner",
+                roleName: "所有者",
                 roleColor: "var(--primary-300)",
                 rolePosition: Infinity
             });
@@ -136,9 +136,9 @@ function UserPermissionsComponent({ guild, guildMember, closePopout }: { guild: 
 
     return <div>
         <div className={cl("user-header-container")}>
-            <Heading tag="h4">Permissions</Heading>
+            <Heading tag="h4">権限</Heading>
             <div className={cl("user-header-btns")}>
-                <Tooltip text={`Sorting by ${permissionsSortOrder === PermissionsSortOrder.HighestRole ? "Highest Role" : "Lowest Role"}`}>
+                <Tooltip text={`${permissionsSortOrder === PermissionsSortOrder.HighestRole ? "最も高いロール" : "最も低いロール"} の順に並べ替え`}>
                     {tooltipProps => (
                         <div
                             {...tooltipProps}
@@ -160,7 +160,7 @@ function UserPermissionsComponent({ guild, guildMember, closePopout }: { guild: 
                         </div>
                     )}
                 </Tooltip>
-                <Tooltip text="Role Details">
+                <Tooltip text="ロールの詳細">
                     {tooltipProps => (
                         <div
                             {...tooltipProps}

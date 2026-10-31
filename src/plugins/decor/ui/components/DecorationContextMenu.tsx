@@ -18,11 +18,11 @@ export default function DecorationContextMenu({ decoration }: { decoration: Deco
     return <Menu.Menu
         navId={cl("decoration-context-menu")}
         onClose={ContextMenuApi.closeContextMenu}
-        aria-label="Decoration Options"
+        aria-label="デコレーションのオプション"
     >
         <Menu.MenuItem
             id={cl("decoration-context-menu-copy-hash")}
-            label="Copy Decoration Hash"
+            label="デコレーションのハッシュをコピー"
             icon={CopyIcon}
             leadingAccessory={{ type: "icon", icon: CopyIcon }}
             action={() => copyToClipboard(decoration.hash)}
@@ -30,16 +30,16 @@ export default function DecorationContextMenu({ decoration }: { decoration: Deco
         {decoration.authorId === UserStore.getCurrentUser().id &&
             <Menu.MenuItem
                 id={cl("decoration-context-menu-delete")}
-                label="Delete Decoration"
+                label="デコレーションを削除"
                 color="danger"
                 icon={DeleteIcon}
                 leadingAccessory={{ type: "icon", icon: DeleteIcon }}
                 action={() => {
                     confirmAction({
-                        title: "Delete Decoration",
-                        subtitle: `Are you sure you want to delete ${decoration.alt}?`,
-                        confirmText: "Delete",
-                        cancelText: "Cancel",
+                        title: "デコレーションを削除",
+                        subtitle: `${decoration.alt} を削除してもよろしいですか？`,
+                        confirmText: "削除",
+                        cancelText: "キャンセル",
                         onConfirm: () => deleteDecoration(decoration)
                     });
                 }}

@@ -64,7 +64,7 @@ export default function SongLinker({ url, onResolved }: SongLinkerProps) {
                         }
                     </div>
                 </div>
-            </Card> : <BaseText>Loading song link...</BaseText>
+            </Card> : <BaseText>曲のリンクを読み込んでいます...</BaseText>
         }
     </BaseText >;
 }

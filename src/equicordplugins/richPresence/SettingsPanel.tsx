@@ -38,7 +38,7 @@ function TextSetting({ name, description, settingsKey, placeholder }: { name: st
                 type="text"
                 value={String(value)}
                 onChange={v => { setValue(v); (settings.store[settingsKey] as string) = v; }}
-                placeholder={placeholder ?? "Enter a value"}
+                placeholder={placeholder ?? "値を入力"}
             />
         </SettingsSection>
     );
@@ -52,8 +52,8 @@ function AllowServerSetting({ settingsKey }: { settingsKey: SettingsKey; }) {
     if (isAllowed) return null;
 
     return (
-        <Notice variant="warning" action={<Button size="small" variant="secondary" onClick={allow}>Allow Host</Button>}>
-            Connections to {URL.parse(fullUrl)?.host} are blocked. Allow this host if you trust it, then restart Discord.
+        <Notice variant="warning" action={<Button size="small" variant="secondary" onClick={allow}>ホストを許可</Button>}>
+            {URL.parse(fullUrl)?.host} への接続がブロックされています。信頼できる場合はこのホストを許可し、Discord を再起動してください。
         </Notice>
     );
 }
@@ -77,48 +77,48 @@ function SelectSetting({ name, description, settingsKey, options }: { name: stri
 function AudioBookShelfSettings() {
     return (
         <>
-            <SettingsSection id="audiobookshelf-settings" name="" description="Display your currently playing audiobooks as Discord Rich Presence. Requires your AudioBookShelf server URL, username, and password." />
-            <TextSetting name="Server URL" description="AudioBookShelf server URL." settingsKey="abs_serverUrl" placeholder="https://abs.example.com" />
+            <SettingsSection id="audiobookshelf-settings" name="" description="再生中のオーディオブックを Discord の Rich Presence として表示します。AudioBookShelf のサーバー URL、ユーザー名、パスワードが必要です。" />
+            <TextSetting name="サーバー URL" description="AudioBookShelf のサーバー URL。" settingsKey="abs_serverUrl" placeholder="https://abs.example.com" />
             <AllowServerSetting settingsKey="abs_serverUrl" />
-            <TextSetting name="Username" description="AudioBookShelf username." settingsKey="abs_username" />
-            <TextSetting name="Password" description="AudioBookShelf password." settingsKey="abs_password" />
+            <TextSetting name="ユーザー名" description="AudioBookShelf のユーザー名。" settingsKey="abs_username" />
+            <TextSetting name="パスワード" description="AudioBookShelf のパスワード。" settingsKey="abs_password" />
         </>
     );
 }
 
 function TosuSettings() {
     return (
-        <SettingsSection id="tosu-settings" name="" description="Connects to tosu via WebSocket on port 24050. No configuration needed, just make sure tosu is running alongside osu!." />
+        <SettingsSection id="tosu-settings" name="" description="ポート 24050 の WebSocket 経由で tosu に接続します。設定は不要で、osu! と一緒に tosu が起動していれば動作します。" />
     );
 }
 
 const nameFormatOptions = [
-    { label: "Use custom status name", value: NameFormat.StatusName },
-    { label: "Use format 'artist - song'", value: NameFormat.ArtistFirst },
-    { label: "Use format 'song - artist'", value: NameFormat.SongFirst },
-    { label: "Use artist name only", value: NameFormat.ArtistOnly },
-    { label: "Use song name only", value: NameFormat.SongOnly },
-    { label: "Use album name", value: NameFormat.AlbumName },
+    { label: "カスタムステータス名を使う", value: NameFormat.StatusName },
+    { label: "『アーティスト - 曲名』形式を使う", value: NameFormat.ArtistFirst },
+    { label: "『曲名 - アーティスト』形式を使う", value: NameFormat.SongFirst },
+    { label: "アーティスト名のみ使う", value: NameFormat.ArtistOnly },
+    { label: "曲名のみ使う", value: NameFormat.SongOnly },
+    { label: "アルバム名を使う", value: NameFormat.AlbumName },
 ];
 
 function StatsFmSettings() {
     return (
         <>
-            <SettingsSection id="statsfm-settings" name="" description="Show what you're currently listening to via stats.fm. Requires your listening history to be public." />
-            <TextSetting name="Username" description="Stats.fm username." settingsKey="sfm_username" placeholder="stats.fm username" />
-            <TextSetting name="Custom Status Text" description="Custom status text." settingsKey="sfm_statusName" placeholder="Stats.fm" />
-            <SelectSetting name="Name Format" description="Name format." settingsKey="sfm_nameFormat" options={nameFormatOptions} />
-            <SelectSetting name="Missing Art Fallback" description="Fallback when art is missing." settingsKey="sfm_missingArt" options={[
-                { label: "Use large Stats.fm logo", value: "StatsFmLogo" },
-                { label: "Use generic placeholder", value: "placeholder" },
+            <SettingsSection id="statsfm-settings" name="" description="stats.fm 経由で現在聴いている曲を表示します。再生履歴を公開にしておく必要があります。" />
+            <TextSetting name="ユーザー名" description="stats.fm のユーザー名。" settingsKey="sfm_username" placeholder="stats.fm のユーザー名" />
+            <TextSetting name="カスタムステータステキスト" description="カスタムステータスのテキスト。" settingsKey="sfm_statusName" placeholder="Stats.fm" />
+            <SelectSetting name="名前の形式" description="名前の表示形式。" settingsKey="sfm_nameFormat" options={nameFormatOptions} />
+            <SelectSetting name="アート欠落時の代替表示" description="アートがない場合の代替表示。" settingsKey="sfm_missingArt" options={[
+                { label: "Stats.fm の大きいロゴを使う", value: "StatsFmLogo" },
+                { label: "汎用プレースホルダーを使う", value: "placeholder" },
             ]} />
-            <SwitchSetting name="Show Listening Status" description="Show listening status." settingsKey="sfm_useListeningStatus" />
-            <SwitchSetting name="Show Stats.fm Logo" description="Show Stats.fm logo next to album art." settingsKey="sfm_showLogo" />
-            <SwitchSetting name="Show Profile Link" description="Show link to stats.fm profile." settingsKey="sfm_shareUsername" />
-            <SwitchSetting name="Show Song Link" description="Show link to song on stats.fm." settingsKey="sfm_shareSong" />
-            <SwitchSetting name="Hide With Spotify" description="Hide stats.fm presence if Spotify is running." settingsKey="sfm_hideWithSpotify" />
-            <SwitchSetting name="Hide With External RPC" description="Hide stats.fm presence if an external RPC is running." settingsKey="sfm_hideWithExternalRPC" />
-            <SwitchSetting name="Disable Album Art" description="Disable downloading album art." settingsKey="sfm_alwaysHideArt" />
+            <SwitchSetting name="リスニングステータスを表示" description="リスニングステータスを表示します。" settingsKey="sfm_useListeningStatus" />
+            <SwitchSetting name="Stats.fm ロゴを表示" description="アルバムアートの横に Stats.fm のロゴを表示します。" settingsKey="sfm_showLogo" />
+            <SwitchSetting name="プロフィールリンクを表示" description="stats.fm プロフィールへのリンクを表示します。" settingsKey="sfm_shareUsername" />
+            <SwitchSetting name="曲のリンクを表示" description="stats.fm の曲へのリンクを表示します。" settingsKey="sfm_shareSong" />
+            <SwitchSetting name="Spotify 使用時は隠す" description="Spotify が動作中は stats.fm のプレゼンスを隠します。" settingsKey="sfm_hideWithSpotify" />
+            <SwitchSetting name="外部 RPC 使用時は隠す" description="外部 RPC が動作中は stats.fm のプレゼンスを隠します。" settingsKey="sfm_hideWithExternalRPC" />
+            <SwitchSetting name="アルバムアートを無効化" description="アルバムアートのダウンロードを無効化します。" settingsKey="sfm_alwaysHideArt" />
         </>
     );
 }
@@ -126,36 +126,36 @@ function StatsFmSettings() {
 function JellyfinSettings() {
     return (
         <>
-            <SettingsSection id="jellyfin-settings" name="" description="Show what you're playing on Jellyfin. To get your API key: open your Jellyfin web UI, press F12 to open Developer Tools, go to the Network tab, look for requests to your server, find the Authorization header (Ctrl+F to search), and You need the part from Token='this'. Your user ID can be found in your profile page URL." />
-            <TextSetting name="Server URL" description="Jellyfin server URL." settingsKey="jf_serverUrl" placeholder="https://jellyfin.example.com" />
+            <SettingsSection id="jellyfin-settings" name="" description="Jellyfin で再生中のものを表示します。API キーの取得方法：Jellyfin の Web UI を開き、F12 で開発者ツールを開いて「ネットワーク」タブに移動し、サーバーへのリクエストを探して Authorization ヘッダー（Ctrl+F で検索）を見つけます。必要なのは Token='this' の部分です。ユーザー ID はプロフィールページの URL で確認できます。" />
+            <TextSetting name="サーバー URL" description="Jellyfin のサーバー URL。" settingsKey="jf_serverUrl" placeholder="https://jellyfin.example.com" />
             <AllowServerSetting settingsKey="jf_serverUrl" />
-            <TextSetting name="API Key" description="Jellyfin API key." settingsKey="jf_apiKey" placeholder="Authorization" />
-            <TextSetting name="User ID" description="Jellyfin user ID." settingsKey="jf_userId" placeholder="User ID from profile URL" />
-            <SelectSetting name="Name Display" description="Name display format." settingsKey="jf_nameDisplay" options={[
-                { label: "Series/Movie Name", value: "default" },
-                { label: "Series - Episode/Track/Movie Name", value: "full" },
-                { label: "Custom", value: "custom" },
+            <TextSetting name="API キー" description="Jellyfin の API キー。" settingsKey="jf_apiKey" placeholder="Authorization" />
+            <TextSetting name="ユーザー ID" description="Jellyfin のユーザー ID。" settingsKey="jf_userId" placeholder="プロフィール URL のユーザー ID" />
+            <SelectSetting name="名前の表示" description="名前の表示形式。" settingsKey="jf_nameDisplay" options={[
+                { label: "シリーズ/映画名", value: "default" },
+                { label: "シリーズ - エピソード/曲/映画名", value: "full" },
+                { label: "カスタム", value: "custom" },
             ]} />
-            <TextSetting name="Custom Name Template" description="Custom name template." settingsKey="jf_customName" placeholder="{name} on Jellyfin" />
-            <SelectSetting name="Cover Type" description="Cover type for TV shows." settingsKey="jf_coverType" options={[
-                { label: "Series Cover", value: "series" },
-                { label: "Episode Cover", value: "episode" },
+            <TextSetting name="カスタム名テンプレート" description="カスタム名のテンプレート。" settingsKey="jf_customName" placeholder="{name} on Jellyfin" />
+            <SelectSetting name="カバーの種類" description="TV 番組のカバーの種類。" settingsKey="jf_coverType" options={[
+                { label: "シリーズのカバー", value: "series" },
+                { label: "エピソードのカバー", value: "episode" },
             ]} />
-            <SelectSetting name="Episode Format" description="Episode number format." settingsKey="jf_episodeFormat" options={[
+            <SelectSetting name="エピソード形式" description="エピソード番号の形式。" settingsKey="jf_episodeFormat" options={[
                 { label: "S01E01", value: "long" },
                 { label: "1x01", value: "short" },
-                { label: "Season 1 Episode 1", value: "fulltext" },
+                { label: "シーズン1 エピソード1", value: "fulltext" },
             ]} />
-            <SelectSetting name="Override Presence Type" description="Override rich presence type." settingsKey="jf_overrideType" options={[
-                { label: "Off", value: "off" },
-                { label: "Listening", value: "2" },
-                { label: "Playing", value: "0" },
-                { label: "Streaming", value: "1" },
-                { label: "Watching", value: "3" },
+            <SelectSetting name="プレゼンスタイプの上書き" description="Rich Presence のタイプを上書きします。" settingsKey="jf_overrideType" options={[
+                { label: "オフ", value: "off" },
+                { label: "リスニング中", value: "2" },
+                { label: "プレイ中", value: "0" },
+                { label: "配信中", value: "1" },
+                { label: "視聴中", value: "3" },
             ]} />
-            <SwitchSetting name="Show Episode Name" description="Show episode name after season/episode info." settingsKey="jf_showEpisodeName" />
-            <SwitchSetting name="Show When Paused" description="Show presence when media is paused." settingsKey="jf_showPausedState" />
-            <SwitchSetting name="Privacy Mode" description="Hide media details." settingsKey="jf_privacyMode" />
+            <SwitchSetting name="エピソード名を表示" description="シーズン/エピソード情報の後にエピソード名を表示します。" settingsKey="jf_showEpisodeName" />
+            <SwitchSetting name="一時停止中も表示" description="メディアが一時停止中もプレゼンスを表示します。" settingsKey="jf_showPausedState" />
+            <SwitchSetting name="プライバシーモード" description="メディアの詳細を隠します。" settingsKey="jf_privacyMode" />
         </>
     );
 }
@@ -164,8 +164,8 @@ function GensokyoRadioSettings() {
     const [value, setValue] = useState(settings.store.gr_refreshInterval ?? 15);
     return (
         <>
-            <SettingsSection id="gensokyoradio-settings" name="" description="Discord rich presence for Gensokyo Radio. Just enable it and listen!" />
-            <SettingsSection id="refresh-interval" name="Refresh Interval" description="Refresh interval in seconds.">
+            <SettingsSection id="gensokyoradio-settings" name="" description="Gensokyo Radio 向けの Discord Rich Presence です。有効にして聴くだけで動作します！" />
+            <SettingsSection id="refresh-interval" name="更新間隔" description="更新間隔（秒）。">
                 <Slider
                     markers={[1, 2, 2.5, 3, 5, 10, 15]}
                     initialValue={value}
@@ -185,40 +185,40 @@ function NavidromeSettings() {
     const { nd_activityType, nd_albumArtMode } = settings.use(ND_DYNAMIC_KEYS);
     return (
         <>
-            <SettingsSection id="navidrome-settings" name="" description="Show what you're currently listening to via Navidrome." />
-            <TextSetting name="Server URL" description="Navidrome Server URL (must be a public domain, e.g. https://navidrome.example.com)." settingsKey="nd_serverUrl" placeholder="https://navidrome.example.com" />
+            <SettingsSection id="navidrome-settings" name="" description="Navidrome 経由で現在聴いている曲を表示します。" />
+            <TextSetting name="サーバー URL" description="Navidrome のサーバー URL（公開ドメインが必要。例: https://navidrome.example.com）。" settingsKey="nd_serverUrl" placeholder="https://navidrome.example.com" />
             <AllowServerSetting settingsKey="nd_serverUrl" />
-            <TextSetting name="Username" description="Navidrome username." settingsKey="nd_username" />
-            <TextSetting name="Password" description="Navidrome password." settingsKey="nd_password" />
-            <TextSetting name="Client ID" description="Optional Discord Application Client ID." settingsKey="nd_clientId" placeholder="1470554657506984069" />
-            <SelectSetting name="Album Art Mode" description="How to fetch album art." settingsKey="nd_albumArtMode" options={[
-                { label: "None", value: "none" },
-                { label: "Navidrome Instance (Exposes Server URL. One-time auth sent.)", value: "instance" },
-                { label: "Last.fm API (Sends Metadata to last.fm)", value: "lastfm" },
+            <TextSetting name="ユーザー名" description="Navidrome のユーザー名。" settingsKey="nd_username" />
+            <TextSetting name="パスワード" description="Navidrome のパスワード。" settingsKey="nd_password" />
+            <TextSetting name="クライアント ID" description="任意の Discord アプリケーションのクライアント ID。" settingsKey="nd_clientId" placeholder="1470554657506984069" />
+            <SelectSetting name="アルバムアートの取得方法" description="アルバムアートの取得方法。" settingsKey="nd_albumArtMode" options={[
+                { label: "なし", value: "none" },
+                { label: "Navidrome インスタンス（サーバー URL が公開されます。一度だけ認証が送信されます）", value: "instance" },
+                { label: "Last.fm API（メタデータを last.fm に送信）", value: "lastfm" },
             ]} />
             {nd_albumArtMode === "lastfm" && (
-                <TextSetting name="Last.fm API Key" description="Optional: Provide your own Last.fm API Key (leaves default if empty)." settingsKey="nd_lastfmApiKey" placeholder="feff915bf5987580c9dc354d523dc6b9" />
+                <TextSetting name="Last.fm API キー" description="任意：自分の Last.fm API キーを指定（空欄の場合はデフォルトを使用）。" settingsKey="nd_lastfmApiKey" placeholder="feff915bf5987580c9dc354d523dc6b9" />
             )}
-            <SwitchSetting name="Show Small Image" description="Show Navidrome logo in bottom right of album art." settingsKey="nd_showSmallImage" />
-            <SwitchSetting name="Show Album" description="Show album name in presence." settingsKey="nd_showAlbum" />
-            <SelectSetting name="Activity Type" description="Which type of activity to display." settingsKey="nd_activityType" options={[
-                { label: "Listening", value: 2 },
-                { label: "Playing", value: 0 },
-                { label: "Watching", value: 3 }
+            <SwitchSetting name="小さい画像を表示" description="アルバムアートの右下に Navidrome のロゴを表示します。" settingsKey="nd_showSmallImage" />
+            <SwitchSetting name="アルバムを表示" description="プレゼンスにアルバム名を表示します。" settingsKey="nd_showAlbum" />
+            <SelectSetting name="アクティビティタイプ" description="表示するアクティビティの種類。" settingsKey="nd_activityType" options={[
+                { label: "リスニング中", value: 2 },
+                { label: "プレイ中", value: 0 },
+                { label: "視聴中", value: 3 }
             ]} />
-            <SelectSetting name="Status Display Type" description="Show the state / details line contents in the member list" settingsKey="nd_statusDisplayType" options={[
-                { label: "Don't show (shows generic listening message)", value: "off" },
-                { label: "Show state line content", value: "artist" },
-                { label: "Show details line content", value: "track" }
+            <SelectSetting name="ステータス表示タイプ" description="メンバーリストに state / details 行の内容を表示します" settingsKey="nd_statusDisplayType" options={[
+                { label: "表示しない（汎用のリスニングメッセージを表示）", value: "off" },
+                { label: "state 行の内容を表示", value: "artist" },
+                { label: "details 行の内容を表示", value: "track" }
             ]} />
-            <SwitchSetting name="Hide On Pause" description="Hide Rich Presence when music is paused (instead of showing a stopwatch)" settingsKey="nd_hideOnPause" />
+            <SwitchSetting name="一時停止時に隠す" description="音楽が一時停止中は Rich Presence を隠します（ストップウォッチ表示の代わり）" settingsKey="nd_hideOnPause" />
             {Number(nd_activityType ?? 2) !== 0 && (
-                <TextSetting name="Activity Name Format" description="The 'Listening to' text (e.g. {artist})" settingsKey="nd_nameString" placeholder="Navidrome" />
+                <TextSetting name="アクティビティ名の形式" description="「Listening to」のテキスト（例: {artist}）" settingsKey="nd_nameString" placeholder="Navidrome" />
             )}
-            <TextSetting name="Details Format" description="The main line showing what song is playing (e.g. {song})" settingsKey="nd_detailsString" placeholder="{song}" />
-            <TextSetting name="State Format" description="The line below the song name (e.g. {artist})" settingsKey="nd_stateString" placeholder="{artist}" />
-            <TextSetting name="Large Text Format" description="The album line (e.g. {album})" settingsKey="nd_largeTextString" placeholder="{album}" />
-            <SettingsSection id="nd-refresh-interval" name="Refresh Interval" description="Refresh interval in seconds.">
+            <TextSetting name="詳細の形式" description="再生中の曲を示すメインの行（例: {song}）" settingsKey="nd_detailsString" placeholder="{song}" />
+            <TextSetting name="状態の形式" description="曲名の下の行（例: {artist}）" settingsKey="nd_stateString" placeholder="{artist}" />
+            <TextSetting name="大きいテキストの形式" description="アルバムの行（例: {album}）" settingsKey="nd_largeTextString" placeholder="{album}" />
+            <SettingsSection id="nd-refresh-interval" name="更新間隔" description="更新間隔（秒）。">
                 <Slider
                     markers={[1, 2, 5, 10, 15]}
                     initialValue={refreshInterval}
@@ -278,7 +278,7 @@ export function SettingsPanel() {
                     </TabBar.Item>
                 ))}
             </TabBar>
-            <SwitchSetting key={currentTab} name="Enabled" description={`Enable ${TAB_LABELS[currentTab]} presence.`} settingsKey={ENABLE_KEYS[currentTab]} />
+            <SwitchSetting key={currentTab} name="有効化" description={`${TAB_LABELS[currentTab]} のプレゼンスを有効化します。`} settingsKey={ENABLE_KEYS[currentTab]} />
             <TabComponent />
         </div>
     );

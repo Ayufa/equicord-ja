@@ -222,7 +222,7 @@ function FolderBookmarkItem({ bookmark, bookmarks, folderIndex, bookmarkIndex, m
                         <Menu.MenuItem
                             key="edit-bookmark"
                             id="edit-bookmark"
-                            label="Edit Bookmark"
+                            label="ブックマークを編集"
                             action={() => {
                                 const key = openModal(modalProps =>
                                     <EditModal
@@ -245,13 +245,13 @@ function FolderBookmarkItem({ bookmark, bookmarks, folderIndex, bookmarkIndex, m
                         <Menu.MenuItem
                             key="delete-bookmark"
                             id="delete-bookmark"
-                            label="Delete Bookmark"
+                            label="ブックマークを削除"
                             action={() => methods.deleteBookmark(bookmarkIndex, folderIndex)}
                         />
                         <Menu.MenuItem
                             key="remove-from-folder"
                             id="remove-from-folder"
-                            label="Remove from Folder"
+                            label="フォルダから削除"
                             action={() => {
                                 methods.addBookmark(bookmark);
                                 methods.deleteBookmark(bookmarkIndex, folderIndex);
@@ -658,7 +658,7 @@ export default function BookmarkContainer(props: BasicChannelTabsProps & { userI
                         style={{ width: "100%" }}
                         value={searchQuery}
                         onChange={setSearchQuery}
-                        placeholder="Search bookmarks"
+                        placeholder="ブックマークを検索"
                         onBlur={() => {
                             if (!searchQuery.trim()) setIsSearchOpen(false);
                         }}
@@ -672,7 +672,7 @@ export default function BookmarkContainer(props: BasicChannelTabsProps & { userI
                         }}
                     />
                 </div>
-                <Tooltip text="Search bookmarks" position="left">
+                <Tooltip text="ブックマークを検索" position="left">
                     {p => <button
                         className={classes(cl("button"), cl("bookmark-search-button"))}
                         {...p}
@@ -693,7 +693,7 @@ export default function BookmarkContainer(props: BasicChannelTabsProps & { userI
                 </Tooltip>
             </div>
 
-            <Tooltip text={isCurrentChannelBookmarked ? "Remove from Bookmarks" : "Add to Bookmarks"} position="left" >
+            <Tooltip text={isCurrentChannelBookmarked ? "ブックマークから削除" : "ブックマークに追加"} position="left" >
                 {p => <button className={cl("button")} {...p} onClick={() => {
                     if (isCurrentChannelBookmarked) {
                         if (currentChannelFolderIndex === -1)

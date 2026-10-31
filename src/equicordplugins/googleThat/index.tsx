@@ -83,11 +83,11 @@ export default definePlugin({
     commands: [
         {
             name: "googlethat",
-            description: "send a search engine link",
+            description: "検索エンジンのリンクを送信",
             options: [
                 {
                     name: "input",
-                    description: "The search query",
+                    description: "検索クエリ",
                     type: ApplicationCommandOptionType.STRING,
                     required: true,
                 }

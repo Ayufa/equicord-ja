@@ -25,6 +25,6 @@ export function DeleteCacheButton() {
         variant="dangerPrimary"
         onClick={() => clearCache().then(() => setSize(0))}
     >
-        Delete all cached files ({(size / 1024 / 1024).toFixed(2)} MB)
+        キャッシュファイルをすべて削除（{(size / 1024 / 1024).toFixed(2)} MB）
     </Button>;
 }

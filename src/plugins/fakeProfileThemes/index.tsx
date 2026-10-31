@@ -115,22 +115,22 @@ function SettingsAboutComponent() {
 
     return (
         <section>
-            <Heading tag="h3">Usage</Heading>
+            <Heading tag="h3">使い方</Heading>
             <Paragraph>
-                After enabling this plugin, you will see custom colors in
-                the profiles of other people using compatible plugins.{" "}
+                このプラグインを有効にすると、対応プラグインを使っている
+                他の人のプロフィールにカスタムカラーが表示されます。{" "}
             </Paragraph>
             <Paragraph className={Margins.top8}>
-                <strong>To set your own profile theme colors:</strong>
+                <strong>自分のプロフィールテーマカラーを設定するには:</strong>
                 <ul>
-                    <li>&mdash; use the color pickers below to choose your colors</li>
-                    <li>&mdash; click the "Copy 3y3" button</li>
-                    <li>&mdash; paste the invisible text anywhere in your bio</li>
+                    <li>&mdash; 下のカラーピッカーで色を選ぶ</li>
+                    <li>&mdash; 「3y3をコピー」ボタンをクリックする</li>
+                    <li>&mdash; 見えないテキストを自己紹介の任意の場所に貼り付ける</li>
                 </ul>
                 <Divider
                     className={classes(Margins.top8, Margins.bottom8)}
                 />
-                <Heading tag="h3">Color pickers</Heading>
+                <Heading tag="h3">カラーピッカー</Heading>
                 <Flex gap="1em">
                     <ColorPicker
                         color={color1}
@@ -139,7 +139,7 @@ function SettingsAboutComponent() {
                                 size="xs"
                                 style={{ marginTop: "4px" }}
                             >
-                                Primary
+                                プライマリ
                             </Paragraph>
                         }
                         onChange={(color: number) => {
@@ -153,7 +153,7 @@ function SettingsAboutComponent() {
                                 size="xs"
                                 style={{ marginTop: "4px" }}
                             >
-                                Accent
+                                アクセント
                             </Paragraph>
                         }
                         onChange={(color: number) => {
@@ -168,13 +168,13 @@ function SettingsAboutComponent() {
                         variant="secondary"
                         style={{ marginBottom: "auto" }}
                     >
-                        Copy 3y3
+                        3y3をコピー
                     </Button>
                 </Flex>
                 <Divider
                     className={classes(Margins.top8, Margins.bottom8)}
                 />
-                <Heading tag="h3">Preview</Heading>
+                <Heading tag="h3">プレビュー</Heading>
                 <div className="vc-fpt-preview">
                     <ProfileModal
                         user={UserStore.getCurrentUser()}

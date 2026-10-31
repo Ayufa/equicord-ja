@@ -65,9 +65,9 @@ export default definePlugin({
         const guild = selectedGuildId ? GuildStore.getGuild(selectedGuildId) : null;
 
         const badgeConditions = [
-            { id: 6101, condition: isPrivate, title: "This channel is locked." },
-            { id: 6100, condition: isNSFW, title: "This channel is marked as NSFW." },
-            { id: 6102, condition: guild?.rulesChannelId === channel.id, title: "This channel is the server rules channel." },
+            { id: 6101, condition: isPrivate, title: "このチャンネルはロックされています。" },
+            { id: 6100, condition: isNSFW, title: "このチャンネルは NSFW に指定されています。" },
+            { id: 6102, condition: guild?.rulesChannelId === channel.id, title: "このチャンネルはサーバールールのチャンネルです。" },
         ];
 
         let badges: JSX.Element[] = [];

@@ -374,11 +374,11 @@ async function sendScheduledMessage(msg: ScheduledMessage): Promise<boolean> {
         }
 
         if (settings.store.showNotifications) {
-            showToast({ text: `Scheduled message sent to ${getChannelDisplayInfo(msg.channelId).name}`, variant: "success" });
+            showToast({ text: `${getChannelDisplayInfo(msg.channelId).name} に予約メッセージを送信しました`, variant: "success" });
         }
         return true;
     } catch {
-        if (settings.store.showNotifications) showToast({ text: "Failed to send scheduled message", variant: "critical" });
+        if (settings.store.showNotifications) showToast({ text: "予約メッセージの送信に失敗しました", variant: "critical" });
         return false;
     }
 }
@@ -454,7 +454,7 @@ export async function sendScheduledMessageNow(id: string): Promise<{ success: bo
     await removeScheduledMessage(id);
     const sent = await sendScheduledMessage(message);
     if (!sent) {
-        return { success: false, error: "Failed to send scheduled message" };
+        return { success: false, error: "予約メッセージの送信に失敗しました" };
     }
 
     return { success: true };

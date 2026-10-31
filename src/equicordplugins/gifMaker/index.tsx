@@ -97,7 +97,7 @@ const messageContextMenuPatch: NavContextMenuPatchCallback = (children, props) =
     children.push(
         <Menu.MenuItem
             id={GIFMAKER_ID}
-            label="Make GIF"
+            label="GIFを作成"
             icon={GifIcon}
             leadingAccessory={{ type: "icon", icon: GifIcon }}
             action={() => openModal(modalProps => (
@@ -118,7 +118,7 @@ const imageContextMenuPatch: NavContextMenuPatchCallback = (children, props) => 
     children.push(
         <Menu.MenuItem
             id={GIFMAKER_ID}
-            label="Make GIF"
+            label="GIFを作成"
             icon={GifIcon}
             leadingAccessory={{ type: "icon", icon: GifIcon }}
             action={() => openModal(modalProps => <GifMakerModal url={info.url} isVideo={info.isVideo} sourceWidth={info.sourceWidth} sourceHeight={info.sourceHeight} {...modalProps} />)}
@@ -133,7 +133,7 @@ const gifPickerContextMenuPatch: NavContextMenuPatchCallback = (children, props)
         <Menu.MenuItem
             id="gif-maker-edit"
             key="gif-maker-edit"
-            label="Edit GIF"
+            label="GIFを編集"
             icon={RemixIcon}
             leadingAccessory={{ type: "icon", icon: RemixIcon }}
             action={() => openGifMakerFromItem(props)}
@@ -191,12 +191,12 @@ function FontSelector({ initialFont, onSelect }: { initialFont: string; onSelect
     };
 
     if (!fonts.length) {
-        return <div>Loading fonts...</div>;
+        return <div>フォントを読み込み中...</div>;
     }
 
     return (
         <Select
-            placeholder="Select a font..."
+            placeholder="フォントを選択..."
             options={options}
             maxVisibleItems={10}
             closeOnSelect={true}
@@ -327,15 +327,15 @@ function GifMakerModal({ url, isVideo, sourceWidth, sourceHeight, ...props }: Re
         <Modal
             {...props}
             size="lg"
-            title="Make GIF"
+            title="GIFを作成"
             actions={[
                 {
-                    text: "Send",
+                    text: "送信",
                     variant: "primary",
                     onClick: handleSend
                 },
                 {
-                    text: "Export",
+                    text: "エクスポート",
                     variant: "primary",
                     onClick: handleExport
                 }
@@ -367,7 +367,7 @@ function GifMakerModal({ url, isVideo, sourceWidth, sourceHeight, ...props }: Re
                 </div>
 
                 <div className={cl("controls-section")}>
-                    <div className={cl("section-heading")}>Captions</div>
+                    <div className={cl("section-heading")}>キャプション</div>
                     <div style={{ display: "flex", gap: 8 }} className={Margins.bottom16}>
                         {CAPTIONS.map(c => (
                             <Button
@@ -384,15 +384,15 @@ function GifMakerModal({ url, isVideo, sourceWidth, sourceHeight, ...props }: Re
                     {options.captionMode === "caption" && (
                         <div className={cl("section")}>
                             <div className={Margins.bottom16}>
-                                <label className={cl("label")}>Text</label>
+                                <label className={cl("label")}>テキスト</label>
                                 <TextInput
                                     value={options.captionText}
                                     onChange={v => patch({ captionText: v })}
-                                    placeholder="Enter caption..."
+                                    placeholder="キャプションを入力..."
                                 />
                             </div>
                             <div className="vc-gifmaker-font-range">
-                                <div>Font</div>
+                                <div>フォント</div>
                                 <div className={cl("font-selector")}>
                                     <FontSelector
                                         initialFont={options.fontFamily}
@@ -403,7 +403,7 @@ function GifMakerModal({ url, isVideo, sourceWidth, sourceHeight, ...props }: Re
                                 </div>
                             </div>
                             <div className="vc-gifmaker-font-range">
-                                <div>Font size</div>
+                                <div>フォントサイズ</div>
                                 <Slider
                                     initialValue={options.captionSize}
                                     onValueChange={v => patch({ captionSize: v })}
@@ -419,10 +419,10 @@ function GifMakerModal({ url, isVideo, sourceWidth, sourceHeight, ...props }: Re
                     {options.captionMode === "speechbubble" && (
                         <div className={cl("section")}>
                             <div className={cl("section-hint")}>
-                                Click on the preview to position the bubble tip
+                                プレビューをクリックして吹き出しの先端の位置を決めてください
                             </div>
                             <div className="vc-gifmaker-font-range">
-                                <div>Tip Base</div>
+                                <div>先端の幅</div>
                                 <Slider
                                     initialValue={Math.round(options.bubbleTipBase * 100)}
                                     onValueChange={v => patch({ bubbleTipBase: v / 100 })}
@@ -434,10 +434,10 @@ function GifMakerModal({ url, isVideo, sourceWidth, sourceHeight, ...props }: Re
                         </div>
                     )}
 
-                    <div className={cl("section-heading")}>Dimensions</div>
+                    <div className={cl("section-heading")}>サイズ</div>
                     <div className={cl("dims-row")}>
                         <div className={cl("field")}>
-                            <label className={cl("label")}>Width</label>
+                            <label className={cl("label")}>幅</label>
                             <input
                                 type="number"
                                 min={32}
@@ -446,11 +446,11 @@ function GifMakerModal({ url, isVideo, sourceWidth, sourceHeight, ...props }: Re
                                 onChange={e => patch({ width: Number(e.target.value) })}
                                 onBlur={e => patch({ width: clamp(Number(e.target.value), 32, 1024, 32) })}
                                 className={cl("input")}
-                                aria-label="Width"
+                                aria-label="幅"
                             />
                         </div>
                         <div className={cl("field")}>
-                            <label className={cl("label")}>Height</label>
+                            <label className={cl("label")}>高さ</label>
                             <input
                                 type="number"
                                 min={32}
@@ -459,7 +459,7 @@ function GifMakerModal({ url, isVideo, sourceWidth, sourceHeight, ...props }: Re
                                 onChange={e => patch({ height: Number(e.target.value) })}
                                 onBlur={e => patch({ height: clamp(Number(e.target.value), 32, 1024, 32) })}
                                 className={cl("input")}
-                                aria-label="Height"
+                                aria-label="高さ"
                             />
                         </div>
                     </div>

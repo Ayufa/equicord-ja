@@ -117,7 +117,7 @@ function ReviewList({ refetch, reviews, hideOwnReview, profileId, type }: { refe
 
             {reviews?.length === 0 && (
                 <Paragraph className={cl("placeholder")}>
-                    Looks like nobody reviewed this {type === ReviewType.User ? "user" : "server"} yet. You could be the first!
+                    まだ誰もこの{type === ReviewType.User ? "ユーザー" : "サーバー"}をレビューしていません。最初のレビューを書いてみましょう！
                 </Paragraph>
             )}
         </div>
@@ -138,7 +138,7 @@ export function ReviewsInputComponent(
         <>
             <div onClick={() => {
                 if (!token) {
-                    showToast({ text: "Opening authorization window..." });
+                    showToast({ text: "認証ウィンドウを開いています..." });
                     authorize();
                 }
             }}>
@@ -147,10 +147,10 @@ export function ReviewsInputComponent(
                     channel={channel}
                     placeholder={
                         !token
-                            ? "You need to authorize to review users!"
+                            ? "レビューするには認証が必要です！"
                             : isAuthor
-                                ? `Update review for @${name}`
-                                : `Review @${name}`
+                                ? `@${name} のレビューを更新`
+                                : `@${name} をレビュー`
                     }
                     type={inputType}
                     disableThemedBackground={true}

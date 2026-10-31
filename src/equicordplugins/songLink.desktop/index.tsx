@@ -156,12 +156,12 @@ export default definePlugin({
     commands: [
         {
             name: "musiclink",
-            description: "Convert a music link to other streaming platforms.",
+            description: "音楽リンクを他のストリーミングプラットフォーム用に変換",
             inputType: ApplicationCommandInputType.BUILT_IN,
             options: [
                 {
                     name: "url",
-                    description: "Music link (Spotify, Deezer, YouTube, Tidal, Apple Music, SoundCloud)",
+                    description: "音楽リンク（Spotify、Deezer、YouTube、Tidal、Apple Music、SoundCloud）",
                     type: ApplicationCommandOptionType.STRING,
                     required: true,
                 },
@@ -171,13 +171,13 @@ export default definePlugin({
 
                 if (!url) {
                     sendBotMessage(ctx.channel.id, {
-                        content: "Please provide a music link.",
+                        content: "音楽リンクを入力してください。",
                     });
                     return;
                 }
 
                 sendBotMessage(ctx.channel.id, {
-                    content: "This will take a moment...",
+                    content: "少しお待ちください...",
                 });
 
                 try {
@@ -187,7 +187,7 @@ export default definePlugin({
                     if (!formatted) {
                         sendBotMessage(ctx.channel.id, {
                             content:
-                                "No alternative platforms found for this link.",
+                                "このリンクに対応する他のプラットフォームが見つかりませんでした。",
                         });
                         return;
                     }
@@ -195,7 +195,7 @@ export default definePlugin({
                     sendMessage(ctx.channel.id, { content: formatted });
                 } catch (e: any) {
                     sendBotMessage(ctx.channel.id, {
-                        content: "Failed to resolve music link",
+                        content: "音楽リンクの解決に失敗しました",
                     });
                 }
             },

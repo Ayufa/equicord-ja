@@ -50,7 +50,7 @@ function PanelRow({ action, selected, index, onSelect, onRun }: {
 export function ActionsPanel({ actions, selectedIndex, onSelect, onRun }: ActionsPanelProps) {
     return (
         <div className={cl("panel")}>
-            <div className={cl("panel-title")}>Actions</div>
+            <div className={cl("panel-title")}>アクション</div>
             <div className={cl("panel-list")}>
                 {actions.map((action, i) => (
                     <PanelRow

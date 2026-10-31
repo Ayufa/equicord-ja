@@ -35,13 +35,13 @@ export function SimpleTextInput({ modalProps, onSelect, placeholder, info }: Sim
     }, []);
 
     return (
-        <Modal {...modalProps} size="sm" title="Text Input">
+        <Modal {...modalProps} size="sm" title="テキスト入力">
             <div className="vc-command-palette-simple-text" onKeyDown={handleKeyDown}>
                 <TextInput
                     value={inputValue}
                     onChange={e => setInputValue(e as unknown as string)}
                     style={{ width: "30vw", borderRadius: "5px" }}
-                    placeholder={placeholder ?? "Type and press Enter"}
+                    placeholder={placeholder ?? "入力してEnterを押してください"}
                 />
                 {info && <div className="vc-command-palette-textinfo">{info}</div>}
             </div>

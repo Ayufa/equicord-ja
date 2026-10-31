@@ -38,7 +38,7 @@ function copyProfileColors(userId: string, guildId?: string) {
     const colors = getProfileColors(userId, guildId);
 
     if (!colors) {
-        showToast({ text: "No profile colors found!", variant: "critical" });
+        showToast({ text: "プロフィールカラーが見つかりません！", variant: "critical" });
         return;
     }
 
@@ -49,10 +49,10 @@ function copyProfileColors(userId: string, guildId?: string) {
 
     try {
         copyToClipboard(formattedColors);
-        showToast({ text: "Profile colors copied to clipboard!", variant: "success" });
+        showToast({ text: "プロフィールカラーをクリップボードにコピーしました！", variant: "success" });
     } catch (e) {
         logger.error("Failed to copy to clipboard:", e);
-        showToast({ text: "Error copying profile colors!", variant: "critical" });
+        showToast({ text: "プロフィールカラーのコピーでエラーが発生しました！", variant: "critical" });
     }
 }
 
@@ -83,7 +83,7 @@ const userContextMenuPatch: NavContextMenuPatchCallback = (children, { user, gui
             id="CopyProfileColors"
             icon={ColorIcon}
             leadingAccessory={{ type: "icon", icon: ColorIcon }}
-            label="Copy Profile Colors"
+            label="プロフィールカラーをコピー"
             action={() => copyProfileColors(user.id)}
         />
     );
@@ -94,7 +94,7 @@ const userContextMenuPatch: NavContextMenuPatchCallback = (children, { user, gui
                 id="CopyServerProfileColors"
                 icon={ColorIcon}
                 leadingAccessory={{ type: "icon", icon: ColorIcon }}
-                label="Copy Server Profile Colors"
+                label="サーバープロフィールのカラーをコピー"
                 action={() => copyProfileColors(user.id, effectiveGuildId)}
             />
         );

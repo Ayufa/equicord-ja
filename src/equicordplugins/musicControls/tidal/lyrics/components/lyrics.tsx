@@ -40,7 +40,7 @@ function LyricsDisplay({ scroll = true }: { scroll?: boolean; }) {
             <div className="eq-tidal-lyrics"
                 onContextMenu={e => ContextMenuApi.openContextMenu(e, () => <LyricsContextMenu />)}
             >
-                <TooltipContainer text="No lyrics found">
+                <TooltipContainer text="歌詞が見つかりません">
                     {NoteElement}
                 </TooltipContainer>
             </div>

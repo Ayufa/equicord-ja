@@ -13,62 +13,62 @@ const SECTION = "Equicord";
 export const equicordCommands: PaletteCommand[] = [
     {
         id: "equicord.settings",
-        title: "Open Equicord Settings",
+        title: "Equicord 設定を開く",
         section: SECTION,
         keywords: ["equicord", "vencord", "settings"],
         icon: GearIcon,
         actions: [{
             id: "run",
-            label: "Open Equicord Settings",
+            label: "Equicord 設定を開く",
             run: () => void openSettingsPage("equicord_main")
         }]
     },
     {
         id: "equicord.quickCss",
-        title: "Open QuickCSS",
+        title: "QuickCSS を開く",
         section: SECTION,
         keywords: ["css", "quickcss", "editor", "style"],
         icon: PaintIcon,
         actions: [{
             id: "run",
-            label: "Open QuickCSS",
+            label: "QuickCSS を開く",
             run: () => VencordNative.quickCss.openEditor()
         }]
     },
     {
         id: "equicord.updater",
-        title: "Open Updater",
+        title: "アップデーターを開く",
         section: SECTION,
         keywords: ["update", "updater", "version"],
         icon: BoltIcon,
         predicate: () => !IS_UPDATER_DISABLED,
         actions: [{
             id: "run",
-            label: "Open Updater",
+            label: "アップデーターを開く",
             run: () => void openSettingsPage("equicord_updater")
         }]
     },
     {
         id: "equicord.changelog",
-        title: "Open Changelog",
+        title: "変更履歴を開く",
         section: SECTION,
         keywords: ["changelog", "news", "whats new"],
         icon: BoltIcon,
         actions: [{
             id: "run",
-            label: "Open Changelog",
+            label: "変更履歴を開く",
             run: () => void openSettingsPage("equicord_changelog")
         }]
     },
     {
         id: "equicord.restart",
-        title: "Restart Discord",
+        title: "Discord を再起動",
         section: SECTION,
         keywords: ["restart", "reload", "refresh"],
         icon: RestartIcon,
         actions: [{
             id: "run",
-            label: "Restart Discord",
+            label: "Discord を再起動",
             run: () => window.location.reload()
         }]
     }

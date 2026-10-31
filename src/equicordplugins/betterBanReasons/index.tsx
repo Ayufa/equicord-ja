@@ -23,14 +23,14 @@ interface BanReason {
 }
 
 const DELETE_DURATION_OPTIONS = [
-    { label: "Discord default", value: null },
-    { label: "Don't delete any", value: 0 },
-    { label: "Previous hour", value: 3600 },
-    { label: "Previous 6 hours", value: 21600 },
-    { label: "Previous 12 hours", value: 43200 },
-    { label: "Previous 24 hours", value: 86400 },
-    { label: "Previous 3 days", value: 259200 },
-    { label: "Previous 7 days", value: 604800 },
+    { label: "Discord のデフォルト", value: null },
+    { label: "何も削除しない", value: 0 },
+    { label: "過去1時間", value: 3600 },
+    { label: "過去6時間", value: 21600 },
+    { label: "過去12時間", value: 43200 },
+    { label: "過去24時間", value: 86400 },
+    { label: "過去3日間", value: 259200 },
+    { label: "過去7日間", value: 604800 },
 ];
 
 function normalizeReason(r: BanReason | string): BanReason {
@@ -51,13 +51,13 @@ function ReasonsComponent() {
 
     return (
         <section>
-            <Heading>Reasons</Heading>
+            <Heading>理由</Heading>
             {reasons.map((r, i) => (
                 <div key={i} className={cl("reason-wrapper")}>
                     <TextInput
                         value={r.text}
                         onChange={v => update(reasons.map((x, j) => j === i ? { ...x, text: v } : x))}
-                        placeholder="Reason"
+                        placeholder="理由"
                     />
                     <Button
                         className={cl("remove-button")}
@@ -68,7 +68,7 @@ function ReasonsComponent() {
                         <DeleteIcon />
                     </Button>
                     <div className={cl("duration-row")}>
-                        <span className="vc-text-base vc-text-sm vc-text-normal vc-text-defaultColor vc-plugins-setting-description">Message Auto-delete duration</span>
+                        <span className="vc-text-base vc-text-sm vc-text-normal vc-text-defaultColor vc-plugins-setting-description">メッセージ自動削除の期間</span>
                         <Select
                             options={DELETE_DURATION_OPTIONS}
                             select={v => update(reasons.map((x, j) => j === i ? { ...x, deleteSeconds: v === null ? undefined : v } : x))}

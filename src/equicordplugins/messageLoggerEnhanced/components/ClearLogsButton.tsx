@@ -15,35 +15,35 @@ interface ClearLogsButtonProps {
     onCleared?: () => void;
 }
 
-export function ClearLogsButton({ label = "Clear Logs", onCleared }: ClearLogsButtonProps) {
+export function ClearLogsButton({ label = "ログをクリア", onCleared }: ClearLogsButtonProps) {
     const [loading, setLoading] = useState(false);
     return (
         <Button
             disabled={loading}
             variant="dangerPrimary"
             onClick={() => Alerts.show({
-                title: "Clear Logs",
-                body: "Are you sure you want to clear all logs?",
+                title: "ログをクリア",
+                body: "すべてのログをクリアしてもよろしいですか？",
                 // @ts-ignore
                 confirmVariant: "critical-primary",
-                confirmText: "Clear",
-                cancelText: "Cancel",
+                confirmText: "クリア",
+                cancelText: "キャンセル",
                 onConfirm: async () => {
                     setLoading(true);
                     try {
                         await clearMessagesIDB();
                         onCleared?.();
-                        showToast({ text: "Cleared Logs", variant: "success" });
+                        showToast({ text: "ログをクリアしました", variant: "success" });
                     } catch (err) {
                         Flogger.error("Failed to clear logs", err);
-                        showToast({ text: "Failed to clear logs", variant: "critical" });
+                        showToast({ text: "ログのクリアに失敗しました", variant: "critical" });
                     } finally {
                         setLoading(false);
                     }
                 },
             })}
         >
-            {loading ? "Clearing Logs..." : label}
+            {loading ? "ログをクリア中..." : label}
         </Button>
     );
 }

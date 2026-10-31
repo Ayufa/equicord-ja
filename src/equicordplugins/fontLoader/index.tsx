@@ -121,12 +121,12 @@ function GoogleFontSearch({ onSelect }: { onSelect: (font: GoogleFontMetadata) =
 
     return (
         <section>
-            <HeadingSecondary>Search Google Fonts</HeadingSecondary>
-            <Paragraph className={Margins.bottom8}>Click on any font to apply it.</Paragraph>
+            <HeadingSecondary>Google Fontsを検索</HeadingSecondary>
+            <Paragraph className={Margins.bottom8}>フォントをクリックすると適用されます。</Paragraph>
 
             {selectedFont && (
                 <div className={classes(Margins.bottom8, "eq-googlefonts-current")}>
-                    <Paragraph>Current font: <strong>{selectedFont}</strong></Paragraph>
+                    <Paragraph>現在のフォント: <strong>{selectedFont}</strong></Paragraph>
                     <Button
                         variant="secondary"
                         size="small"
@@ -143,7 +143,7 @@ function GoogleFontSearch({ onSelect }: { onSelect: (font: GoogleFontMetadata) =
             <TextInput
                 value={query}
                 onChange={e => handleSearch(e)}
-                placeholder="Search fonts..."
+                placeholder="フォントを検索..."
                 disabled={loading}
             />
 

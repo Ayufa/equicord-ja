@@ -73,29 +73,30 @@ function Button(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
 }
 
 function CopyContextMenu({ name, type, path }: { type: string; name: string; path: string; }) {
+    const typeLabel = ({ Song: "曲", Artist: "アーティスト", Album: "アルバム" } as Record<string, string>)[type] ?? type;
     return (
         <Menu.Menu
             navId="vc-spotify-menu"
             onClose={ContextMenuApi.closeContextMenu}
-            aria-label={`Spotify ${type} Menu`}
+            aria-label={`Spotify ${typeLabel} メニュー`}
         >
             <Menu.MenuItem
                 id="vc-spotify-copy-name"
-                label={`Copy ${type} Name`}
+                label={`${typeLabel}の名前をコピー`}
                 action={() => copyWithToast(name)}
                 icon={CopyIcon}
                 leadingAccessory={{ type: "icon", icon: CopyIcon }}
             />
             <Menu.MenuItem
                 id="vc-spotify-copy-link"
-                label={`Copy ${type} Link`}
+                label={`${typeLabel}のリンクをコピー`}
                 action={() => copyWithToast("https://open.spotify.com" + path)}
                 icon={LinkIcon}
                 leadingAccessory={{ type: "icon", icon: LinkIcon }}
             />
             <Menu.MenuItem
                 id="vc-spotify-open"
-                label={`Open ${type} in Spotify`}
+                label={`Spotify で ${typeLabel} を開く`}
                 action={() => SpotifyStore.openExternal(path)}
                 icon={OpenExternalIcon}
                 leadingAccessory={{ type: "icon", icon: OpenExternalIcon }}
@@ -188,7 +189,7 @@ function SpotifySeekBar() {
                 size="xs"
                 weight="medium"
                 className={cl("progress-time") + " " + cl("time-left")}
-                aria-label="Progress"
+                aria-label="進行状況"
             >
                 {formatDuration(position)}
             </Span>
@@ -204,7 +205,7 @@ function SpotifySeekBar() {
                 size="xs"
                 weight="medium"
                 className={cl("progress-time") + " " + cl("time-right")}
-                aria-label="Total Duration"
+                aria-label="合計時間"
             >
                 {formatDuration(duration)}
             </Span>
@@ -219,12 +220,12 @@ function AlbumContextMenu({ track }: { track: Track; }) {
         <Menu.Menu
             navId="spotify-album-menu"
             onClose={() => FluxDispatcher.dispatch({ type: "CONTEXT_MENU_CLOSE" })}
-            aria-label="Spotify Album Menu"
+            aria-label="Spotify アルバムメニュー"
         >
             <Menu.MenuItem
                 key="open-album"
                 id="open-album"
-                label="Open Album"
+                label="アルバムを開く"
                 action={() => SpotifyStore.openExternal(`/album/${track.album.id}`)}
                 icon={OpenExternalIcon}
                 leadingAccessory={{ type: "icon", icon: OpenExternalIcon }}
@@ -232,7 +233,7 @@ function AlbumContextMenu({ track }: { track: Track; }) {
             <Menu.MenuItem
                 key="view-cover"
                 id="view-cover"
-                label="View Album Cover"
+                label="アルバムカバーを表示"
                 // trolley
                 action={() => openImageModal(track.album.image)}
                 icon={ImageIcon}
@@ -241,7 +242,7 @@ function AlbumContextMenu({ track }: { track: Track; }) {
             <Menu.MenuControlItem
                 id="spotify-volume"
                 key="spotify-volume"
-                label="Volume"
+                label="音量"
                 control={(props, ref) => (
                     <Menu.MenuSliderControl
                         {...props}
@@ -279,7 +280,7 @@ function Info({ track }: { track: Track; }) {
                 <img
                     id={cl("album-image")}
                     src={img.url}
-                    alt="Album Image"
+                    alt="アルバム画像"
                     onClick={() => setCoverExpanded(!coverExpanded)}
                     onContextMenu={e => {
                         ContextMenuApi.openContextMenu(e, () => <AlbumContextMenu track={track} />);

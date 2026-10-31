@@ -148,7 +148,7 @@ export function VoiceMessageButton({ src }: { src: string; }) {
                 className={cl("button")}
                 style={{ backgroundColor: "transparent" }}
                 onClick={handleClick}
-                title="Transcribe Voice Message"
+                title="ボイスメッセージを文字起こし"
             >
                 <ChannelListIcon colorClass={cl("icon")} />
             </button>
@@ -164,18 +164,18 @@ export function VoiceMessageButton({ src }: { src: string; }) {
                         <div className={cl("embed-title")}>
                             <span className={classes(cl("status-dot"), isWorking && cl("status-dot-active"), status === "error" && cl("status-dot-error"))} />
                             <span>
-                                {status === "downloading_audio" && "Downloading Audio..."}
-                                {status === "processing_audio" && "Processing Audio..."}
-                                {status === "loading" && "Loading Model..."}
-                                {status === "transcribing" && "Transcribing..."}
-                                {status === "complete" && "Transcription"}
-                                {status === "error" && "Transcription Error"}
+                                {status === "downloading_audio" && "音声をダウンロード中..."}
+                                {status === "processing_audio" && "音声を処理中..."}
+                                {status === "loading" && "モデルを読み込み中..."}
+                                {status === "transcribing" && "文字起こし中..."}
+                                {status === "complete" && "文字起こし"}
+                                {status === "error" && "文字起こしエラー"}
                             </span>
                         </div>
                         <div className={cl("embed-actions")}>
                             {result && (
                                 <>
-                                    <Tooltip text={showTimestamps ? "Hide Timestamps" : "Show Timestamps"}>
+                                    <Tooltip text={showTimestamps ? "タイムスタンプを隠す" : "タイムスタンプを表示"}>
                                         {props => (
                                             <button
                                                 {...props}
@@ -189,7 +189,7 @@ export function VoiceMessageButton({ src }: { src: string; }) {
                                             </button>
                                         )}
                                     </Tooltip>
-                                    <Tooltip text={copied ? "Copied!" : "Copy Text"}>
+                                    <Tooltip text={copied ? "コピーしました！" : "テキストをコピー"}>
                                         {props => (
                                             <button
                                                 {...props}
@@ -202,7 +202,7 @@ export function VoiceMessageButton({ src }: { src: string; }) {
                                     </Tooltip>
                                 </>
                             )}
-                            <Tooltip text="Close">
+                            <Tooltip text="閉じる">
                                 {props => (
                                     <button
                                         {...props}
@@ -228,7 +228,7 @@ export function VoiceMessageButton({ src }: { src: string; }) {
                                     onClick={startTranscription}
                                     style={{ alignSelf: "flex-start" }}
                                 >
-                                    Retry
+                                    再試行
                                 </Button>
                             </Flex>
                         ) : displayText ? (
@@ -237,7 +237,7 @@ export function VoiceMessageButton({ src }: { src: string; }) {
                             </ScrollerAuto>
                         ) : (
                             <Span size="xs" color="text-muted">
-                                {isWorking ? "Transcribing in progress..." : "Initializing..."}
+                                {isWorking ? "文字起こし中..." : "初期化中..."}
                             </Span>
                         )}
                     </div>

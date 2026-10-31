@@ -50,7 +50,7 @@ function ShowXSettings() {
 
     return (
         <ManaSelect
-            label="Specific Client Mods"
+            label="特定のクライアントMOD"
             options={badgeManaOptions}
             value={selectedValues}
             closeOnSelect={false}

@@ -50,44 +50,44 @@ function daysSince(dateString: string): number {
 const ranks: rankInfo[] =
     [
         {
-            title: "Sprout",
-            description: "Your friendship is just starting",
+            title: "新芽",
+            description: "友情は始まったばかり",
             requirement: 0,
             iconSrc: "https://equicord.org/assets/plugins/friendshipRanks/sprout.png"
         },
         {
-            title: "Blooming",
-            description: "Your friendship is getting there! (1 Month)",
+            title: "開花",
+            description: "友情が育ってきています！（1か月）",
             requirement: 30,
             iconSrc: "https://equicord.org/assets/plugins/friendshipRanks/blooming.png"
         },
         {
-            title: "Burning",
-            description: "Your friendship has reached terminal velocity (3 Months)",
+            title: "燃焼",
+            description: "友情が最高速度に到達（3か月）",
             requirement: 90,
             iconSrc: "https://equicord.org/assets/plugins/friendshipRanks/burning.png"
         },
         {
-            title: "Fighter",
-            description: "Your friendship is strong (6 Months)",
+            title: "ファイター",
+            description: "友情は強い（6か月）",
             requirement: 182.5,
             iconSrc: "https://equicord.org/assets/plugins/friendshipRanks/fighter.png"
         },
         {
-            title: "Star",
-            description: "Your friendship has been going on for a WHILE (1 Year)",
+            title: "スター",
+            description: "友情が長く続いています（1年）",
             requirement: 365,
             iconSrc: "https://equicord.org/assets/plugins/friendshipRanks/star.png"
         },
         {
-            title: "Royal",
-            description: "Your friendship has gone through thick and thin- a whole 2 years!",
+            title: "ロイヤル",
+            description: "山あり谷あり、丸2年！",
             requirement: 730,
             iconSrc: "https://equicord.org/assets/plugins/friendshipRanks/royal.png"
         },
         {
-            title: "Besties",
-            description: "How do you even manage this??? (5 Years)",
+            title: "大親友",
+            description: "どうやったらこんなに続くの？？？（5年）",
             requirement: 1826.25,
             iconSrc: "https://equicord.org/assets/plugins/friendshipRanks/besties.png"
         }

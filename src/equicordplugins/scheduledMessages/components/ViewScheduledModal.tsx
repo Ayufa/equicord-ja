@@ -26,18 +26,18 @@ function ViewScheduledModalInner({ rootProps, close }: ViewScheduledModalProps) 
     const handleDelete = async (id: string) => {
         await removeScheduledMessage(id);
         setMessages(getScheduledMessages());
-        showToast({ text: "Scheduled message removed", variant: "success" });
+        showToast({ text: "予約済みメッセージを削除しました", variant: "success" });
     };
 
     const handleClearAll = async () => {
         await clearAllScheduledMessages();
         setMessages([]);
-        showToast({ text: "All scheduled messages cleared", variant: "success" });
+        showToast({ text: "予約済みメッセージをすべてクリアしました", variant: "success" });
     };
 
     const actions = [
         {
-            text: "Close",
+            text: "閉じる",
             variant: "secondary",
             onClick: close
         }
@@ -45,7 +45,7 @@ function ViewScheduledModalInner({ rootProps, close }: ViewScheduledModalProps) 
 
     if (messages.length > 0) {
         actions.unshift({
-            text: "Clear All",
+            text: "すべてクリア",
             variant: "dangerPrimary",
             onClick: handleClearAll
         });
@@ -55,13 +55,13 @@ function ViewScheduledModalInner({ rootProps, close }: ViewScheduledModalProps) 
         <Modal
             {...rootProps}
             size="md"
-            title="Scheduled Messages"
+            title="予約済みメッセージ"
             actions={actions}
         >
             {!messages.length ? (
                 <div className={cl("empty-state")}>
                     <CalendarIcon width={48} height={48} />
-                    <span>No scheduled messages</span>
+                    <span>予約済みメッセージはありません</span>
                 </div>
             ) : (
                 <div className={cl("message-list")}>
@@ -95,7 +95,7 @@ function ViewScheduledModalInner({ rootProps, close }: ViewScheduledModalProps) 
                                     variant="dangerPrimary"
                                     onClick={() => handleDelete(msg.id)}
                                 >
-                                    Delete
+                                    削除
                                 </Button>
                             </div>
                         );

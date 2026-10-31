@@ -93,7 +93,7 @@ export default definePlugin({
             className={cl("settings-button")}
             onClick={() => VencordNative.native.openExternal("https://github.com/AutumnVN/usrbg#how-to-request-your-own-usrbg-banner")}
         >
-            Get your own USRBG banner
+            自分のUSRBGバナーを取得する
         </Button>
     ),
 

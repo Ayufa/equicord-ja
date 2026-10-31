@@ -50,13 +50,13 @@ export function BasicContextMenu() {
         <Menu.Menu
             navId="channeltabs-context"
             onClose={() => FluxDispatcher.dispatch({ type: "CONTEXT_MENU_CLOSE" })}
-            aria-label="ChannelTabs Context Menu"
+            aria-label="ChannelTabs コンテキストメニュー"
         >
             <Menu.MenuGroup>
                 <Menu.MenuCheckboxItem
                     checked={showBookmarkBar}
                     id="show-bookmark-bar"
-                    label="Bookmark Bar"
+                    label="ブックマークバー"
                     action={() => {
                         settings.store.showBookmarkBar = !settings.store.showBookmarkBar;
                     }}
@@ -111,7 +111,7 @@ function FolderChipPreview({ name, color, iconName }: { name: string; color: str
             padding: "6px 10px"
         }}>
             <FolderGlyph color={color} iconName={iconName} />
-            <BaseText size="sm">{name.trim() || "Folder"}</BaseText>
+            <BaseText size="sm">{name.trim() || "フォルダ"}</BaseText>
         </div>
     );
 }
@@ -138,18 +138,18 @@ function FolderIconPickerModal({ modalProps, modalKey, name, color, iconName, on
         <Modal
             {...modalProps}
             size="sm"
-            title={<BaseText size="lg" weight="semibold">Choose Folder Icon</BaseText>}
+            title={<BaseText size="lg" weight="semibold">フォルダアイコンを選択</BaseText>}
             actions={[
                 {
-                    text: "Close",
+                    text: "閉じる",
                     variant: "secondary",
                     onClick: () => closeModal(modalKey)
                 }
             ]}
         >
-            <Heading className={Margins.top16}>Preview</Heading>
+            <Heading className={Margins.top16}>プレビュー</Heading>
             <FolderChipPreview name={name} color={localColor} iconName={iconName} />
-            <Heading className={Margins.top16}>Icon Color</Heading>
+            <Heading className={Margins.top16}>アイコンの色</Heading>
             <div className={Margins.top8}>
                 <ColorPicker
                     color={colorToInt(localColor)}
@@ -161,7 +161,7 @@ function FolderIconPickerModal({ modalProps, modalKey, name, color, iconName, on
                     showEyeDropper={false}
                 />
             </div>
-            <Heading className={Margins.top16}>Search</Heading>
+            <Heading className={Margins.top16}>検索</Heading>
             <TextInput
                 value={search}
                 placeholder={`Search ${iconNames.length} icons...`}
@@ -211,7 +211,7 @@ function FolderAppearanceFields({
     setColor,
     iconName,
     setIconName,
-    placeholder = "Folder"
+    placeholder = "フォルダ"
 }: {
     name: string,
     setName: (value: string) => void,
@@ -222,13 +222,13 @@ function FolderAppearanceFields({
     placeholder?: string;
 }) {
     return <>
-        <Heading className={Margins.top16}>Folder Name</Heading>
+        <Heading className={Margins.top16}>フォルダ名</Heading>
         <TextInput
             value={name === placeholder ? undefined : name}
             placeholder={placeholder}
             onChange={setName}
         />
-        <Heading className={Margins.top16}>Folder Color</Heading>
+        <Heading className={Margins.top16}>フォルダの色</Heading>
         <div className={Margins.top8}>
             <ColorPicker
                 color={colorToInt(color)}
@@ -236,7 +236,7 @@ function FolderAppearanceFields({
                 showEyeDropper={false}
             />
         </div>
-        <Heading className={Margins.top16}>Folder Icon</Heading>
+        <Heading className={Margins.top16}>フォルダアイコン</Heading>
         <FolderChipPreview name={name} color={color} iconName={iconName} />
         <Button
             className={Margins.top8}
@@ -253,12 +253,12 @@ function FolderAppearanceFields({
                     />
                 ));
             }}
-        >Choose Icon</Button>
+        >アイコンを選択</Button>
         {iconName && <Button
             className={Margins.top8}
             variant="secondary"
             onClick={() => setIconName(undefined)}
-        >Use Default Icon</Button>}
+        >デフォルトのアイコンを使う</Button>}
     </>;
 }
 
@@ -277,15 +277,15 @@ export function EditModal({ modalProps, modalKey, bookmark, onSave }: {
         <Modal
             {...modalProps}
             size="sm"
-            title={<BaseText size="lg" weight="semibold">Edit Bookmark</BaseText>}
+            title={<BaseText size="lg" weight="semibold">ブックマークを編集</BaseText>}
             actions={[
                 {
-                    text: "Save",
+                    text: "保存",
                     variant: "primary",
                     onClick: () => onSave(name || placeholder, color, iconName)
                 },
                 {
-                    text: "Cancel",
+                    text: "キャンセル",
                     variant: "secondary",
                     onClick: () => closeModal(modalKey)
                 }
@@ -302,7 +302,7 @@ export function EditModal({ modalProps, modalKey, bookmark, onSave }: {
                     placeholder={placeholder}
                 />
                 : <>
-                    <Heading className={Margins.top16}>Bookmark Name</Heading>
+                    <Heading className={Margins.top16}>ブックマーク名</Heading>
                     <TextInput
                         value={name === placeholder ? undefined : name}
                         placeholder={placeholder}
@@ -328,21 +328,21 @@ function AddToFolderModal({ modalProps, modalKey, bookmarks, onSave }: {
         <Modal
             {...modalProps}
             size="sm"
-            title={<BaseText size="lg" weight="semibold">Add Bookmark to Folder</BaseText>}
+            title={<BaseText size="lg" weight="semibold">ブックマークをフォルダに追加</BaseText>}
             actions={[
                 {
-                    text: "Save",
+                    text: "保存",
                     variant: "primary",
                     onClick: () => onSave(folderIndex, folderName, folderColor, iconName)
                 },
                 {
-                    text: "Cancel",
+                    text: "キャンセル",
                     variant: "secondary",
                     onClick: () => closeModal(modalKey)
                 }
             ]}
         >
-            <Heading className={Margins.top16}>Select a folder</Heading>
+            <Heading className={Margins.top16}>フォルダを選択</Heading>
             <Select
                 options={[...Object.entries(bookmarks)
                     .filter(([, bookmark]) => isBookmarkFolder(bookmark))
@@ -351,7 +351,7 @@ function AddToFolderModal({ modalProps, modalKey, bookmarks, onSave }: {
                         value: parseInt(index, 10)
                     })),
                 {
-                    label: "Create one",
+                    label: "作成する",
                     value: -1,
                     default: true
                 }]}
@@ -380,15 +380,15 @@ function DeleteFolderConfirmationModal({ modalProps, modalKey, onConfirm }: {
         <Modal
             {...modalProps}
             size="sm"
-            title={<BaseText size="lg" weight="semibold">Are you sure?</BaseText>}
+            title={<BaseText size="lg" weight="semibold">本当によろしいですか？</BaseText>}
             actions={[
                 {
-                    text: "Delete",
+                    text: "削除",
                     variant: "critical-primary",
                     onClick: onConfirm
                 },
                 {
-                    text: "Cancel",
+                    text: "キャンセル",
                     variant: "secondary",
                     onClick: () => closeModal(modalKey)
                 }
@@ -410,7 +410,7 @@ export function BookmarkContextMenu({ bookmarks, index, methods }: { bookmarks: 
         <Menu.Menu
             navId="channeltabs-bookmark-context"
             onClose={() => FluxDispatcher.dispatch({ type: "CONTEXT_MENU_CLOSE" })}
-            aria-label="ChannelTabs Bookmark Context Menu"
+            aria-label="ChannelTabs ブックマークのコンテキストメニュー"
         >
             <Menu.MenuGroup>
                 {bookmarkNotificationDot && !isFolder &&
@@ -426,14 +426,14 @@ export function BookmarkContextMenu({ bookmarks, index, methods }: { bookmarks: 
                 {isFolder
                     ? <Menu.MenuItem
                         id="open-all-in-folder"
-                        label={"Open All Bookmarks"}
+                        label={"すべてのブックマークを開く"}
                         icon={StarFilled}
                         leadingAccessory={{ type: "icon", icon: StarFilled }}
                         action={() => bookmark.bookmarks.forEach(b => createTab(b))}
                     />
                     : < Menu.MenuItem
                         id="open-in-tab"
-                        label={"Open in New Tab"}
+                        label={"新しいタブで開く"}
                         icon={OpenExternalIcon}
                         leadingAccessory={{ type: "icon", icon: OpenExternalIcon }}
                         action={() => createTab(bookmark)}
@@ -443,7 +443,7 @@ export function BookmarkContextMenu({ bookmarks, index, methods }: { bookmarks: 
             <Menu.MenuGroup>
                 <Menu.MenuItem
                     id="edit-bookmark"
-                    label="Edit Bookmark"
+                    label="ブックマークを編集"
                     icon={PencilIcon}
                     leadingAccessory={{ type: "icon", icon: PencilIcon }}
                     action={() => {
@@ -466,7 +466,7 @@ export function BookmarkContextMenu({ bookmarks, index, methods }: { bookmarks: 
                 />
                 <Menu.MenuItem
                     id="delete-bookmark"
-                    label="Delete Bookmark"
+                    label="ブックマークを削除"
                     icon={TrashIcon}
                     leadingAccessory={{ type: "icon", icon: TrashIcon }}
                     action={() => {
@@ -486,7 +486,7 @@ export function BookmarkContextMenu({ bookmarks, index, methods }: { bookmarks: 
                 />
                 <Menu.MenuItem
                     id="add-to-folder"
-                    label="Add Bookmark to Folder"
+                    label="ブックマークをフォルダに追加"
                     icon={PencilIcon}
                     leadingAccessory={{ type: "icon", icon: PencilIcon }}
                     disabled={isFolder}
@@ -515,7 +515,7 @@ export function BookmarkContextMenu({ bookmarks, index, methods }: { bookmarks: 
                 <Menu.MenuCheckboxItem
                     checked={showBookmarkBar}
                     id="show-bookmark-bar"
-                    label="Bookmark Bar"
+                    label="ブックマークバー"
                     icon={StarOutlined}
                     leadingAccessory={{ type: "icon", icon: StarOutlined }}
                     action={() => {
@@ -536,7 +536,7 @@ export function TabContextMenu({ tab }: { tab: ChannelTabsProps; }) {
         <Menu.Menu
             navId="channeltabs-tab-context"
             onClose={() => FluxDispatcher.dispatch({ type: "CONTEXT_MENU_CLOSE" })}
-            aria-label="ChannelTabs Tab Context Menu"
+            aria-label="ChannelTabs タブのコンテキストメニュー"
         >
             <Menu.MenuGroup>
                 {channel &&
@@ -552,7 +552,7 @@ export function TabContextMenu({ tab }: { tab: ChannelTabsProps; }) {
                 <Menu.MenuCheckboxItem
                     checked={compact}
                     id="toggle-compact-tab"
-                    label="Compact"
+                    label="コンパクト表示"
                     icon={WindowTopOutlineIcon}
                     leadingAccessory={{ type: "icon", icon: WindowTopOutlineIcon }}
                     action={() => {
@@ -564,21 +564,21 @@ export function TabContextMenu({ tab }: { tab: ChannelTabsProps; }) {
             {openedTabs.length !== 1 && <Menu.MenuGroup>
                 <Menu.MenuItem
                     id="close-tab"
-                    label="Close Tab"
+                    label="タブを閉じる"
                     icon={XLargeBoldIcon}
                     leadingAccessory={{ type: "icon", icon: XLargeBoldIcon }}
                     action={() => closeTab(tab.id)}
                 />
                 <Menu.MenuItem
                     id="close-other-tabs"
-                    label="Close Other Tabs"
+                    label="他のタブを閉じる"
                     icon={XLargeBoldIcon}
                     leadingAccessory={{ type: "icon", icon: XLargeBoldIcon }}
                     action={() => closeOtherTabs(tab.id)}
                 />
                 <Menu.MenuItem
                     id="close-right-tabs"
-                    label="Close Tabs to the Right"
+                    label="右側のタブを閉じる"
                     icon={XLargeBoldIcon}
                     leadingAccessory={{ type: "icon", icon: XLargeBoldIcon }}
                     disabled={openedTabs.indexOf(tab) === openedTabs.length - 1}
@@ -586,7 +586,7 @@ export function TabContextMenu({ tab }: { tab: ChannelTabsProps; }) {
                 />
                 <Menu.MenuItem
                     id="close-left-tabs"
-                    label="Close Tabs to the Left"
+                    label="左側のタブを閉じる"
                     icon={XLargeBoldIcon}
                     leadingAccessory={{ type: "icon", icon: XLargeBoldIcon }}
                     disabled={openedTabs.indexOf(tab) === 0}
@@ -594,7 +594,7 @@ export function TabContextMenu({ tab }: { tab: ChannelTabsProps; }) {
                 />
                 <Menu.MenuItem
                     id="reopen-closed-tab"
-                    label="Reopen Closed Tab"
+                    label="閉じたタブを開き直す"
                     icon={UnsendIcon}
                     leadingAccessory={{ type: "icon", icon: UnsendIcon }}
                     disabled={!hasClosedTabs()}
@@ -605,7 +605,7 @@ export function TabContextMenu({ tab }: { tab: ChannelTabsProps; }) {
                 <Menu.MenuCheckboxItem
                     checked={showBookmarkBar}
                     id="show-bookmark-bar"
-                    label="Bookmark Bar"
+                    label="ブックマークバー"
                     icon={StarOutlined}
                     leadingAccessory={{ type: "icon", icon: StarOutlined }}
                     action={() => {

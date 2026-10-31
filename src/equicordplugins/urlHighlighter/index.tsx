@@ -36,7 +36,7 @@ const PatternsComponent = ErrorBoundary.wrap(() => {
 
     return (
         <section>
-            <Heading>URL Patterns</Heading>
+            <Heading>URLパターン</Heading>
             {patterns.map((entry, i) => (
                 <div key={i} className={cl("pattern-wrapper")}>
                     <TextInput
@@ -76,7 +76,7 @@ const PatternsComponent = ErrorBoundary.wrap(() => {
                 variant="secondary"
                 size="small"
             >
-                <PlusIcon className={cl("icon")} /> Add New
+                <PlusIcon className={cl("icon")} /> 新規追加
             </Button>
         </section>
     );

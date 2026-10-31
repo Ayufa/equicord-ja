@@ -46,7 +46,7 @@ const guildPopoutPatch: NavContextMenuPatchCallback = (children, { guild }: { gu
     if (!guild) return;
     children.push(
         <Menu.MenuItem
-            label="View Reviews"
+            label="レビューを見る"
             id="vc-rdb-server-reviews"
             icon={OpenExternalIcon}
             leadingAccessory={{ type: "icon", icon: OpenExternalIcon }}
@@ -59,7 +59,7 @@ const userContextPatch: NavContextMenuPatchCallback = (children, { user }: { use
     if (!user) return;
     children.push(
         <Menu.MenuItem
-            label="View Reviews"
+            label="レビューを見る"
             id="vc-rdb-user-reviews"
             icon={OpenExternalIcon}
             leadingAccessory={{ type: "icon", icon: OpenExternalIcon }}
@@ -106,15 +106,15 @@ export default definePlugin({
                     if (lastReviewId && lastReviewId < user.lastReviewID) {
                         s.lastReviewId = user.lastReviewID;
                         if (user.lastReviewID !== 0)
-                            showToast({ text: "You have new reviews on your profile!" });
+                            showToast({ text: "プロフィールに新しいレビューがあります！" });
                     }
                 }
 
                 const { notification } = user;
                 if (notification) {
                     const props = notification.type === NotificationType.Ban ? {
-                        cancelText: "Appeal",
-                        confirmText: "Ok",
+                        cancelText: "異議申し立て",
+                        confirmText: "OK",
                         onCancel: async () =>
                             VencordNative.native.openExternal(
                                 "https://reviewdb.mantikafasi.dev/api/redirect?"
@@ -163,7 +163,7 @@ export default definePlugin({
                                 onClick={() => !reviewData?.hasOptedOut && openReviewsModal(user.id, user.username, ReviewType.User)}
                             >
                                 <div className={classes(ProfileCardOverlayClasses.overlay, ProfileCardContainerClasses.innerContainer, ProfileCardClasses.card)}>
-                                    <Paragraph size={isSideBar ? "sm" : "xs"} weight="medium">User Reviews</Paragraph>
+                                    <Paragraph size={isSideBar ? "sm" : "xs"} weight="medium">ユーザーレビュー</Paragraph>
                                     {!!reviewData?.reviewCount
                                         ? (
                                             <div className={ProfileCardContainerClasses.icons}>

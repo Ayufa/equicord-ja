@@ -96,7 +96,7 @@ export default definePlugin({
         if (IS_DEV) {
             registerAction({
                 id: "openDevSettings",
-                label: "Open Dev tab",
+                label: "開発者タブを開く",
                 callback: () => SettingsRouter.openUserSettings("equicord_patch_helper_panel"),
                 registrar: "Equicord"
             });

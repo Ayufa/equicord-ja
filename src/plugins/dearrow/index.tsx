@@ -91,7 +91,7 @@ function DearrowButton({ component }: { component: Component<Props>; }) {
     if (!embed?.dearrow) return null;
 
     return (
-        <Tooltip text={embed.dearrow.enabled ? "This embed has been dearrowed, click to restore" : "Click to dearrow"}>
+        <Tooltip text={embed.dearrow.enabled ? "この埋め込みは Dearrow 適用済みです。クリックで元に戻します" : "クリックで Dearrow を適用"}>
             {({ onMouseEnter, onMouseLeave }) => (
                 <button
                     onMouseEnter={onMouseEnter}
@@ -118,7 +118,7 @@ function DearrowButton({ component }: { component: Component<Props>; }) {
                         width="24px"
                         height="24px"
                         viewBox="0 0 36 36"
-                        aria-label="Toggle Dearrow"
+                        aria-label="Dearrow のオン/オフ"
                         className="vc-dearrow-icon"
                     >
                         <path

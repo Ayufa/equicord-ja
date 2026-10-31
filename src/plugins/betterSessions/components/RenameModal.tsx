@@ -43,22 +43,22 @@ export function RenameModal({ props, session, state }: { props: RenderModalProps
     return (
         <Modal
             {...props}
-            title="Rename"
+            title="名前を変更"
             actions={[
                 {
-                    text: "Cancel",
+                    text: "キャンセル",
                     variant: "secondary",
                     onClick: () => props.onClose()
                 },
                 {
-                    text: "Save",
+                    text: "保存",
                     variant: "primary",
                     onClick: onSaveClick
                 }
             ]}
         >
             <div>
-                <Heading tag="h5">New device name</Heading>
+                <Heading tag="h5">新しいデバイス名</Heading>
                 <TextInput
                     style={{ marginBottom: "10px" }}
                     placeholder={getDefaultName(session.client_info)}
@@ -77,7 +77,7 @@ export function RenameModal({ props, session, state }: { props: RenderModalProps
                     }}
                     onClick={() => setValue("")}
                 >
-                    Reset Name
+                    名前をリセット
                 </TextButton>
             </div>
         </Modal>

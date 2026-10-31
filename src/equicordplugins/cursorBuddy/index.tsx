@@ -54,7 +54,7 @@ function OnekoColorSettings() {
         <div>
             <div className={cl("color-modal")}>
                 <div>
-                    <Heading className="form-subtitle">Fur Color</Heading>
+                    <Heading className="form-subtitle">毛色</Heading>
                     <div className={cl("color")}>
                         <ColorPicker
                             color={parseHexToNumber(furColor) ?? 16777215}
@@ -65,7 +65,7 @@ function OnekoColorSettings() {
                 </div>
 
                 <div>
-                    <Heading className="form-subtitle">Outline Color</Heading>
+                    <Heading className="form-subtitle">輪郭色</Heading>
                     <div className={cl("color")}>
                         <ColorPicker
                             color={parseHexToNumber(outlineColor) ?? 0}
@@ -100,14 +100,14 @@ const settings = definePluginSettings({
         description: "バディの速度",
         type: OptionType.NUMBER,
         default: 10,
-        isValid: (value: number) => value >= 0 || "Speed must be bigger than 0",
+        isValid: (value: number) => value >= 0 || "速度は0より大きくなければなりません",
         onChange: load,
     },
     fps: {
         description: "バディのフレームレート",
         type: OptionType.NUMBER,
         default: 24,
-        isValid: (value: number) => value > 0 || "Framerate must be bigger than 0",
+        isValid: (value: number) => value > 0 || "フレームレートは0より大きくなければなりません",
         onChange: load
     },
     // Oneko Specific
@@ -152,7 +152,7 @@ const settings = definePluginSettings({
         description: "Fatass Horse のサイズ",
         type: OptionType.NUMBER,
         default: 120,
-        isValid: (value: number) => value > 0 || "Size must be bigger than 0",
+        isValid: (value: number) => value > 0 || "サイズは0より大きくなければなりません",
         onChange: load
     },
     fade: {

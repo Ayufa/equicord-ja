@@ -456,13 +456,13 @@ export default definePlugin({
 
     settingsAboutComponent: () => (
         <>
-            <Heading>Information</Heading>
+            <Heading>情報</Heading>
             <Paragraph>
-                This plugin adds a christmas-y snowfall effect on top of Discord's interface.
-                You can change the type of snow in the settings below.
+                このプラグインはDiscordの画面上にクリスマス風の降雪エフェクトを追加します。
+                雪の種類は下の設定で変更できます。
                 <br /><br />
-                NOTE: While on most computers this plugin will not impact performance any more than your average Equicord extension,
-                it may cause some lag on lower end systems.
+                注意: ほとんどのコンピューターでは一般的なEquicord拡張機能以上にパフォーマンスへ影響しませんが、
+                低スペックなシステムでは遅延が生じる場合があります。
             </Paragraph>
         </>
     ),

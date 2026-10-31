@@ -62,7 +62,7 @@ export default definePlugin({
 
         return (
             <ActionBarIcon
-                tooltip="Upload clip file"
+                tooltip="クリップファイルをアップロード"
                 onClick={() => openUploadClipFileModal(channelId, clip)}
             >
                 <CloudUploadIcon width={20} height={20} />

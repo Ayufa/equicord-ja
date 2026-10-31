@@ -42,18 +42,18 @@ export default definePlugin({
         return (
             <Card variant="primary">
                 <Flex flexDirection="column" gap="4px">
-                    <Paragraph size="md" weight="semibold">The default behaviour is the following:</Paragraph>
+                    <Paragraph size="md" weight="semibold">デフォルトの動作は次のとおりです:</Paragraph>
                     <Paragraph>
                         <ul>
-                            <li>&mdash; In chat, optimised but full resolution images will be loaded.</li>
-                            <li>&mdash; In the image modal, the original image will be loaded.</li>
+                            <li>&mdash; チャットでは、最適化されつつもフル解像度の画像が読み込まれます。</li>
+                            <li>&mdash; 画像モーダルでは、元の画像が読み込まれます。</li>
                         </ul>
                     </Paragraph>
-                    <Paragraph size="md" weight="semibold" className={Margins.top8}>You can also enable original image in chat, but beware of the following caveats:</Paragraph>
+                    <Paragraph size="md" weight="semibold" className={Margins.top8}>チャットで元の画像を有効にすることもできますが、次の注意点があります:</Paragraph>
                     <Paragraph>
                         <ul>
-                            <li>&mdash; Animated images (GIF, WebP, etc.) in chat will always animate, regardless of if the App is focused.</li>
-                            <li>&mdash; May cause lag.</li>
+                            <li>&mdash; チャット内のアニメーション画像（GIF、WebP など）は、アプリにフォーカスがあるかどうかに関係なく常にアニメーションします。</li>
+                            <li>&mdash; ラグの原因になることがあります。</li>
                         </ul>
                     </Paragraph>
                 </Flex>

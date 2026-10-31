@@ -69,19 +69,19 @@ export function SoundOverrideComponent({ type, override, onChange }: {
                 const dataUri = await ensureDataURICached(override.selectedFileId);
 
                 if (!dataUri || !dataUri.startsWith("data:audio/")) {
-                    showToast({ text: "No custom sound file available for preview" });
+                    showToast({ text: "プレビューできるカスタムサウンドファイルがありません" });
                     return;
                 }
 
                 sound.current = playAudio(dataUri, {
                     volume: override.volume, onError: e => {
                         console.error("[CustomSounds] Error playing custom audio:", e);
-                        showToast({ text: "Error playing custom sound. File may be corrupted." });
+                        showToast({ text: "カスタムサウンドの再生エラー。ファイルが破損している可能性があります。" });
                     }
                 });
             } catch (error) {
                 console.error("[CustomSounds] Error in previewSound:", error);
-                showToast({ text: "Error playing sound." });
+                showToast({ text: "サウンドの再生エラー。" });
             }
         } else if (selectedSound === "default") {
             sound.current = playAudio(type.id);
@@ -96,13 +96,13 @@ export function SoundOverrideComponent({ type, override, onChange }: {
 
         const fileExtension = file.name.split(".").pop()?.toLowerCase();
         if (!fileExtension || !AUDIO_EXTENSIONS.includes(fileExtension)) {
-            showToast({ text: "Invalid file type. Please upload an audio file." });
+            showToast({ text: "ファイル形式が無効です。音声ファイルをアップロードしてください。" });
             event.target.value = "";
             return;
         }
 
         try {
-            showToast({ text: "Uploading file..." });
+            showToast({ text: "ファイルをアップロード中..." });
             const id = await saveAudio(file);
 
             const savedFiles = await getAllAudio();
@@ -114,10 +114,10 @@ export function SoundOverrideComponent({ type, override, onChange }: {
             await ensureDataURICached(id);
             await saveAndNotify();
 
-            showToast({ text: `File uploaded successfully: ${file.name}` });
+            showToast({ text: `ファイルをアップロードしました: ${file.name}` });
         } catch (error) {
             console.error("[CustomSounds] Error uploading file:", error);
-            showToast({ text: `Error uploading file: ${error}` });
+            showToast({ text: `ファイルのアップロードエラー: ${error}` });
         }
 
         event.target.value = "";
@@ -136,10 +136,10 @@ export function SoundOverrideComponent({ type, override, onChange }: {
             } else {
                 update();
             }
-            showToast({ text: "File deleted successfully" });
+            showToast({ text: "ファイルを削除しました" });
         } catch (error) {
             console.error("[CustomSounds] Error deleting file:", error);
-            showToast({ text: "Error deleting file." });
+            showToast({ text: "ファイルの削除エラー。" });
         }
     };
 
@@ -165,7 +165,7 @@ export function SoundOverrideComponent({ type, override, onChange }: {
                             await ensureDataURICached(override.selectedFileId);
                         } catch (error) {
                             console.error(`[CustomSounds] Failed to cache data URI for ${type.id}:`, error);
-                            showToast({ text: "Error loading custom sound file" });
+                            showToast({ text: "カスタムサウンドファイルの読み込みエラー" });
                         }
                     }
 
@@ -194,7 +194,7 @@ export function SoundOverrideComponent({ type, override, onChange }: {
                     </div>
 
                     <div className={Margins.bottom16}>
-                        <Heading>Volume</Heading>
+                        <Heading>音量</Heading>
                         <Slider
                             markers={makeRange(0, 100, 10)}
                             initialValue={override.volume}
@@ -208,12 +208,12 @@ export function SoundOverrideComponent({ type, override, onChange }: {
                     </div>
 
                     <div className={Margins.bottom16}>
-                        <Heading>Sound Source</Heading>
+                        <Heading>サウンドソース</Heading>
                         <Select
                             options={[
-                                { value: "default", label: "Default" },
+                                { value: "default", label: "デフォルト" },
                                 ...(type.seasonal?.map(id => ({ value: id, label: capitalizeWords(id) })) ?? []),
-                                { value: "custom", label: "Custom" }
+                                { value: "custom", label: "カスタム" }
                             ]}
                             isSelected={v => v === override.selectedSound}
                             select={async v => {
@@ -224,7 +224,7 @@ export function SoundOverrideComponent({ type, override, onChange }: {
                                         await ensureDataURICached(override.selectedFileId);
                                     } catch (error) {
                                         console.error(`[CustomSounds] Failed to cache data URI for ${type.id}:`, error);
-                                        showToast({ text: "Error loading custom sound file" });
+                                        showToast({ text: "カスタムサウンドファイルの読み込みエラー" });
                                     }
                                 }
 
@@ -237,10 +237,10 @@ export function SoundOverrideComponent({ type, override, onChange }: {
                     {override.selectedSound === "custom" && (
                         <>
                             <div className={Margins.bottom8}>
-                                <Heading>Custom File</Heading>
+                                <Heading>カスタムファイル</Heading>
                                 <Select
                                     options={[
-                                        { value: "", label: "Select a file..." },
+                                        { value: "", label: "ファイルを選択..." },
                                         ...customFileOptions
                                     ]}
                                     isSelected={v => v === (override.selectedFileId || "")}

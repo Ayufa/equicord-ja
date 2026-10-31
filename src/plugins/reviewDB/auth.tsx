@@ -60,13 +60,13 @@ export function authorize(callback?: () => void) {
 
                     if (!res.ok) {
                         const { message } = await res.json();
-                        showToast({ text: message ?? "An error occured while authorizing", variant: "critical" });
+                        showToast({ text: message ?? "認証中にエラーが発生しました", variant: "critical" });
                         return;
                     }
 
                     const { token } = await res.json();
                     updateAuth({ token });
-                    showToast({ text: "Successfully logged in!", variant: "success" });
+                    showToast({ text: "ログインしました！", variant: "success" });
                     callback?.();
                 } catch (e) {
                     new Logger("ReviewDB").error("Failed to authorize", e);

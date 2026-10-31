@@ -61,13 +61,13 @@ export default definePlugin({
             return;
         }
 
-        const backOnlineMessage = "Welcome back! Click the button to go online. Click the X to stay idle until reload.";
+        const backOnlineMessage = "おかえりなさい！オンラインになるにはボタンをクリックしてください。再読み込みするまでアイドル状態を続けるには X をクリックしてください。";
         if (
             currentNotice?.[1] === backOnlineMessage ||
             noticesQueue.some(([, noticeMessage]) => noticeMessage === backOnlineMessage)
         ) return;
 
-        showNotice(backOnlineMessage, "Exit idle", () => {
+        showNotice(backOnlineMessage, "アイドルを終了", () => {
             popNotice();
             FluxDispatcher.dispatch({
                 type: "IDLE",

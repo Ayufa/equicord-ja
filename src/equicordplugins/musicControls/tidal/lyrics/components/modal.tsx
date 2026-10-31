@@ -62,7 +62,7 @@ export function LyricsModal({ rootProps }: { rootProps: RenderModalProps; }) {
                         </BaseText>
                     ))
                 ) : (
-                    <BaseText size="sm" className={cl("modal-no-lyrics")}>No lyrics available :(</BaseText>
+                    <BaseText size="sm" className={cl("modal-no-lyrics")}>歌詞がありません :(</BaseText>
                 )}
             </div>
         </Modal>

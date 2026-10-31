@@ -25,7 +25,7 @@ function dispatchRefresh(collectionName: string) {
 function AddToCollectionMenu(gif: Gif) {
     return (
         <Menu.MenuItem
-            label="Add To Collection"
+            label="コレクションに追加"
             key="add-to-collection"
             id="add-to-collection"
             icon={FolderIcon}
@@ -43,7 +43,7 @@ function AddToCollectionMenu(gif: Gif) {
             <Menu.MenuItem
                 key="create-collection"
                 id="create-collection"
-                label="Create Collection"
+                label="コレクションを作成"
                 icon={PlusIcon}
                 leadingAccessory={{ type: "icon", icon: PlusIcon }}
                 action={() => openCreateCollectionModal(gif)}
@@ -64,14 +64,14 @@ export const addCollectionContextMenuPatch: NavContextMenuPatchCallback = (child
     if (settings.store.showCopyImageLink) {
         group.push(
             <Menu.MenuItem
-                label="Copy Image Link"
+                label="画像リンクをコピー"
                 key="copy-image-link"
                 id="copy-image-link"
                 icon={LinkIcon}
                 leadingAccessory={{ type: "icon", icon: LinkIcon }}
                 action={() => {
                     copyToClipboard(gif.url);
-                    showToast({ text: "Image link copied to clipboard", variant: "success" });
+                    showToast({ text: "画像リンクをクリップボードにコピーしました", variant: "success" });
                 }}
             />
         );
@@ -88,7 +88,7 @@ export function RemoveItemContextMenuItems({ type, nameOrId }: { type: "collecti
                     <Menu.MenuItem
                         key="collection-information"
                         id="collection-information"
-                        label="Collection Information"
+                        label="コレクション情報"
                         icon={InfoIcon}
                         leadingAccessory={{ type: "icon", icon: InfoIcon }}
                         action={() => {
@@ -100,7 +100,7 @@ export function RemoveItemContextMenuItems({ type, nameOrId }: { type: "collecti
                     <Menu.MenuItem
                         key="rename-collection"
                         id="rename-collection"
-                        label="Rename"
+                        label="名前を変更"
                         icon={PencilIcon}
                         leadingAccessory={{ type: "icon", icon: PencilIcon }}
                         action={() => openRenameCollectionModal(nameOrId)}
@@ -112,7 +112,7 @@ export function RemoveItemContextMenuItems({ type, nameOrId }: { type: "collecti
                     <Menu.MenuItem
                         key="gif-information"
                         id="gif-information"
-                        label="Information"
+                        label="情報"
                         icon={InfoIcon}
                         leadingAccessory={{ type: "icon", icon: InfoIcon }}
                         action={() => {
@@ -124,20 +124,20 @@ export function RemoveItemContextMenuItems({ type, nameOrId }: { type: "collecti
                     <Menu.MenuItem
                         key="copy-url"
                         id="copy-url"
-                        label="Copy URL"
+                        label="URLをコピー"
                         icon={LinkIcon}
                         leadingAccessory={{ type: "icon", icon: LinkIcon }}
                         action={() => {
                             const gif = getGifById(nameOrId);
                             if (!gif) return;
                             copyToClipboard(gif.url);
-                            showToast({ text: "URL copied to clipboard", variant: "success" });
+                            showToast({ text: "URLをクリップボードにコピーしました", variant: "success" });
                         }}
                     />
                     <Menu.MenuItem
                         key="move-to-collection"
                         id="move-to-collection"
-                        label="Move To Collection"
+                        label="コレクションへ移動"
                         icon={RemixIcon}
                         leadingAccessory={{ type: "icon", icon: RemixIcon }}
                         action={() => openMoveToCollectionModal(nameOrId)}
@@ -148,7 +148,7 @@ export function RemoveItemContextMenuItems({ type, nameOrId }: { type: "collecti
             <Menu.MenuItem
                 key="delete-collection"
                 id="delete-collection"
-                label={type === "collection" ? "Delete Collection" : "Remove"}
+                label={type === "collection" ? "コレクションを削除" : "削除"}
                 icon={TrashIcon}
                 leadingAccessory={{ type: "icon", icon: TrashIcon }}
                 action={() => {
@@ -169,8 +169,8 @@ export function RemoveItemContextMenuItems({ type, nameOrId }: { type: "collecti
                     }
 
                     Alerts.show({
-                        title: "Are you sure?",
-                        body: `Do you really want to ${type === "collection" ? "delete this collection" : "remove this item"}?`,
+                        title: "本当によろしいですか？",
+                        body: `本当に${type === "collection" ? "このコレクションを削除" : "このアイテムを削除"}しますか？`,
                         confirmText: type === "collection" ? "Delete" : "Remove",
                         confirmColor: "danger",
                         cancelText: "Nevermind",
@@ -187,18 +187,18 @@ export function GifPickerContextMenu({ gif }: { gif: Gif; }) {
         <Menu.Menu
             navId="gif-collection-id"
             onClose={() => FluxDispatcher.dispatch({ type: "CONTEXT_MENU_CLOSE" })}
-            aria-label="Gif Collections"
+            aria-label="GIFコレクション"
         >
             {settings.store.showCopyImageLink && (
                 <Menu.MenuItem
-                    label="Copy Image Link"
+                    label="画像リンクをコピー"
                     key="copy-image-link"
                     id="copy-image-link"
                     icon={LinkIcon}
                     leadingAccessory={{ type: "icon", icon: LinkIcon }}
                     action={() => {
                         copyToClipboard(gif.url);
-                        showToast({ text: "Image link copied to clipboard", variant: "success" });
+                        showToast({ text: "画像リンクをクリップボードにコピーしました", variant: "success" });
                     }}
                 />
             )}
@@ -213,14 +213,14 @@ export function getGifPickerContextMenuItems(src: string, url: string, height: n
         <Menu.MenuGroup key="gif-collections-group">
             {settings.store.showCopyImageLink && (
                 <Menu.MenuItem
-                    label="Copy Image Link"
+                    label="画像リンクをコピー"
                     key="copy-image-link"
                     id="copy-image-link"
                     icon={LinkIcon}
                     leadingAccessory={{ type: "icon", icon: LinkIcon }}
                     action={() => {
                         copyToClipboard(url);
-                        showToast({ text: "Image link copied to clipboard", variant: "success" });
+                        showToast({ text: "画像リンクをクリップボードにコピーしました", variant: "success" });
                     }}
                 />
             )}

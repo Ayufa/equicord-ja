@@ -29,7 +29,7 @@ export default function CharSelectModal({ modalProps, setCharacter }: { modalPro
         });
     }, [search, characters]);
     return (
-        <Modal {...modalProps} size="lg" title="Select character menu">
+        <Modal {...modalProps} size="lg" title="キャラクター選択メニュー">
             <Flex flexDirection="column" style={{ paddingTop: 12 }}>
                 <TextInput content="mafuyu" placeholder="Mafuyu" onChange={(e: string) => setSearch(e)} />
                 <ScrollerThin style={{ height: 520 }}>

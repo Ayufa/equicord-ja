@@ -182,12 +182,12 @@ export default definePlugin({
     commands: [
         {
             name: "Spoiler",
-            description: "Toggle your spoiler",
+            description: "スポイラーを切り替え",
             inputType: ApplicationCommandInputType.BUILT_IN,
             options: [
                 {
                     name: "value",
-                    description: "Toggle your Spoiler (default is toggle)",
+                    description: "スポイラーを切り替え（デフォルトは切り替え）",
                     required: false,
                     type: ApplicationCommandOptionType.BOOLEAN,
                 },
@@ -195,7 +195,7 @@ export default definePlugin({
             execute: async (args, ctx) => {
                 settings.store.spoilerMessages = !!findOption(args, "value", !settings.store.spoilerMessages);
                 sendBotMessage(ctx.channel.id, {
-                    content: settings.store.spoilerMessages ? "Spoiler enabled!" : "Spoiler disabled!",
+                    content: settings.store.spoilerMessages ? "スポイラーを有効にしました！" : "スポイラーを無効にしました！",
                 });
             },
         }

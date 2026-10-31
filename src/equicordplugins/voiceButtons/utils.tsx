@@ -88,7 +88,7 @@ export function UserChatButton({ user }: { user: User; }) {
     return (
         <VoiceUserButton
             user={user}
-            tooltip={isCurrent ? "Navigate to DMs" : `Open DMs with ${getUserName(user)}`}
+            tooltip={isCurrent ? "DMへ移動" : `${getUserName(user)} とのDMを開く`}
             icon={<ChatIcon size="sm" />}
             onClick={() => {
                 if (isCurrent) {
@@ -112,13 +112,13 @@ export function UserMuteButton({ user }: { user: User; }) {
     const isMuted = canServerMute ? isServerMuted : isLocalMuted;
     const color = isMuted ? "var(--status-danger)" : "var(--channels-default)";
 
-    const muteAction = canServerMute && (useServerMuteForSelf || !isCurrent) ? "Server Mute" : "Mute";
-    const tooltipAction = isMuted ? (canServerMute && (useServerMuteForSelf || !isCurrent) ? "Unserver Mute" : "Unmute") : muteAction;
+    const muteAction = canServerMute && (useServerMuteForSelf || !isCurrent) ? "サーバーミュート" : "ミュート";
+    const tooltipAction = isMuted ? (canServerMute && (useServerMuteForSelf || !isCurrent) ? "サーバーミュート解除" : "ミュート解除") : muteAction;
 
     return (
         <VoiceUserButton
             user={user}
-            tooltip={`${tooltipAction} ${isCurrent ? "yourself" : `${getUserName(user)}`}`}
+            tooltip={isCurrent ? `自分を${tooltipAction}` : `${getUserName(user)}を${tooltipAction}`}
             icon={isCurrent ? <MuteIconSelf muted={isMuted} size="sm" color={color} /> : <MuteIconOther muted={isMuted} size="sm" color={color} />}
             onClick={() => {
                 if (canServerMute) {
@@ -159,13 +159,13 @@ export function UserDeafenButton({ user }: { user: User; }) {
     const isDeafened = canServerDeafen && (useServerDeafenForSelf || !isCurrent) ? isServerDeafened : isLocalDeafened;
     const color = isDeafened ? "var(--status-danger)" : "var(--channels-default)";
 
-    const deafenAction = canServerDeafen && (useServerDeafenForSelf || !isCurrent) ? "Server Deafen" : "Deafen";
-    const tooltipAction = isDeafened ? (canServerDeafen && (useServerDeafenForSelf || !isCurrent) ? "Unserver Deafen" : "Undeafen") : deafenAction;
+    const deafenAction = canServerDeafen && (useServerDeafenForSelf || !isCurrent) ? "サーバースピーカーミュート" : "スピーカーミュート";
+    const tooltipAction = isDeafened ? (canServerDeafen && (useServerDeafenForSelf || !isCurrent) ? "サーバースピーカーミュート解除" : "スピーカーミュート解除") : deafenAction;
 
     return (
         <VoiceUserButton
             user={user}
-            tooltip={`${tooltipAction} ${isCurrent ? "yourself" : `${getUserName(user)}`}`}
+            tooltip={isCurrent ? `自分を${tooltipAction}` : `${getUserName(user)}を${tooltipAction}`}
             icon={isCurrent ? <DeafenIconSelf muted={isDeafened} size="sm" color={color} /> : <DeafenIconOther muted={isDeafened} size="sm" color={color} />}
             onClick={() => {
                 if (canServerDeafen) {

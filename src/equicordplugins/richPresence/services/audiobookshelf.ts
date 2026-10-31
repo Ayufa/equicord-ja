@@ -30,7 +30,7 @@ async function authenticate(): Promise<boolean> {
     const { abs_serverUrl, abs_username, abs_password } = settings.store;
     if (!abs_serverUrl || !abs_username || !abs_password) {
         logger.warn("AudioBookShelf server URL, username, or password is not set.");
-        showToast({ text: "AudioBookShelf RPC is not configured.", variant: "critical", duration: 15000 });
+        showToast({ text: "AudioBookShelf RPC が設定されていません。", variant: "critical", duration: 15000 });
         return false;
     }
 

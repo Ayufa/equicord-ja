@@ -44,7 +44,7 @@ export function SettingsPresetList(isResolution: boolean) {
                         <Flex gap={"0.5em"} alignItems="center" flexWrap="wrap">
                             <Paragraph size="sm" weight="semibold" className={cl("settings-preset-label")}>{label}</Paragraph>
                             <Button variant="dangerSecondary" size="iconOnly" disabled={label === "Source"} onClick={() => (isResolution ? resolutions : fpss).splice(index, 1)}>
-                                <DeleteIcon aria-label="Delete Tag" width={20} height={20} />
+                                <DeleteIcon aria-label="タグを削除" width={20} height={20} />
                             </Button>
                         </Flex>
                     </Card>

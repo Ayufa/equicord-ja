@@ -41,7 +41,7 @@ export function presentOAuth2Modal() {
                     useAuthorizationStore.getState().setToken(access, refresh);
                     getData();
 
-                    showToast({ text: "Successfully authorized!", variant: "success" });
+                    showToast({ text: "認証に成功しました！", variant: "success" });
                 } catch (error) {
                     logger.error("Got an error during OAuth2", error);
                     if (typeof error === "string") showToast({ text: error, variant: "critical" });

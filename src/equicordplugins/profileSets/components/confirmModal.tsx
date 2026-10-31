@@ -67,17 +67,17 @@ export function ImportProfilesModal({ title, message, onOverride, onMerge, onCan
             title={title}
             actions={[
                 {
-                    text: "Override",
+                    text: "上書き",
                     variant: "primary",
                     onClick: closeAfter(onOverride)
                 },
                 {
-                    text: "Merge",
+                    text: "マージ",
                     variant: "primary",
                     onClick: closeAfter(onMerge)
                 },
                 {
-                    text: "Cancel",
+                    text: "キャンセル",
                     variant: "secondary",
                     onClick: closeAfter(onCancel)
                 }

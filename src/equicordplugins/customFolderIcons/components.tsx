@@ -28,7 +28,7 @@ export function ImageModal(folderProps: folderProp) {
             {data && <>
                 <div style={{
                     color: "#FFF"
-                }}>Change the size of the folder icon</div>
+                }}>フォルダアイコンのサイズを変更</div>
                 <Slider
                     initialValue={100}
                     onValueChange={(v: number) => {
@@ -91,14 +91,14 @@ export function makeContextItem(a: folderProp) {
         <Menu.MenuItem
             id="custom-folder-icons"
             key="custom-folder-icons"
-            label="Change Icon"
+            label="アイコンを変更"
             action={() => {
                 openModalLazy(async () => {
                     return props => (
                         <Modal
                             {...props}
                             size="sm"
-                            title="Set a New Icon."
+                            title="新しいアイコンを設定。"
                         >
                             <ImageModal folderId={a.folderId} folderColor={a.folderColor} />
                             <div style={{

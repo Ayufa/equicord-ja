@@ -589,7 +589,7 @@ export default definePlugin({
     ), { noop: true }),
 
     EyeRightIcon: ErrorBoundary.wrap(() => (
-        <Tooltip text="Hidden Channel">
+        <Tooltip text="非表示チャンネル">
             {({ onMouseLeave, onMouseEnter }) => (
                 <svg
                     onMouseLeave={onMouseLeave}
@@ -608,7 +608,7 @@ export default definePlugin({
     ), { noop: true }),
 
     LockRightIcon: ErrorBoundary.wrap(() => (
-        <Tooltip text="Hidden Channel">
+        <Tooltip text="非表示チャンネル">
             {({ onMouseLeave, onMouseEnter }) => (
                 <svg
                     onMouseLeave={onMouseLeave}

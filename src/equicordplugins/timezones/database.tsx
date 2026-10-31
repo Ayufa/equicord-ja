@@ -20,8 +20,8 @@ export function DatabaseUrlNotice() {
     if (isAllowed) return null;
 
     return (
-        <Notice variant="warning" action={<Button size="small" variant="secondary" onClick={allow}>Allow Host</Button>}>
-            Connections to {URL.parse(databaseUrl)?.host} are blocked. Allow this host if you trust it, then restart Discord.
+        <Notice variant="warning" action={<Button size="small" variant="secondary" onClick={allow}>ホストを許可</Button>}>
+            {URL.parse(databaseUrl)?.host} への接続がブロックされています。信頼できる場合はこのホストを許可し、Discordを再起動してください。
         </Notice>
     );
 }
@@ -45,7 +45,7 @@ async function safeJsonParse(response: Response): Promise<any> {
         return await response.json();
     } catch (e) {
         console.warn("Failed to parse JSON response:", e);
-        return { message: "Invalid response format" };
+        return { message: "無効なレスポンス形式" };
     }
 }
 
@@ -122,14 +122,14 @@ async function setTimezoneInternal(timezone: string): Promise<boolean> {
 
         if (!res.ok) {
             const error = await safeJsonParse(res);
-            handleApiError(error, "Failed to set timezone");
+            handleApiError(error, "タイムゾーンの設定に失敗しました");
             return false;
         }
 
-        showToast({ text: "Timezone updated successfully!", variant: "success" });
+        showToast({ text: "タイムゾーンを更新しました！", variant: "success" });
         return true;
     } catch (e) {
-        handleApiError(e, "Failed to set timezone");
+        handleApiError(e, "タイムゾーンの設定に失敗しました");
         return false;
     }
 }
@@ -160,14 +160,14 @@ async function deleteTimezoneInternal(): Promise<boolean> {
 
         if (!res.ok) {
             const error = await safeJsonParse(res);
-            handleApiError(error, "Failed to delete timezone");
+            handleApiError(error, "タイムゾーンの削除に失敗しました");
             return false;
         }
 
-        showToast({ text: "Timezone deleted successfully!", variant: "success" });
+        showToast({ text: "タイムゾーンを削除しました！", variant: "success" });
         return true;
     } catch (e) {
-        handleApiError(e, "Failed to delete timezone");
+        handleApiError(e, "タイムゾーンの削除に失敗しました");
         return false;
     }
 }
@@ -192,13 +192,13 @@ export function authModal(callback?: () => void) {
                     });
                     const json = await safeJsonParse(r);
                     if (!r.ok) {
-                        handleApiError(json, "Authorization failed");
+                        handleApiError(json, "認証に失敗しました");
                         return;
                     }
-                    showToast({ text: "Authorization successful!", variant: "success" });
+                    showToast({ text: "認証に成功しました！", variant: "success" });
                     callback?.();
                 } catch (e) {
-                    handleApiError(e, "Unexpected error during authorization");
+                    handleApiError(e, "認証中に予期しないエラーが発生しました");
                 }
             }}
         />

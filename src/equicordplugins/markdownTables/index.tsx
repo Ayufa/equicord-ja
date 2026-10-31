@@ -120,7 +120,7 @@ function ToggleableTableBlock({
 
     return (
         <>
-            <div className={cl("toolbar")} role="group" aria-label="Markdown table view">
+            <div className={cl("toolbar")} role="group" aria-label="Markdownテーブル表示">
                 <button
                     aria-pressed={!showRaw}
                     className={cl("toggle", { "toggle-active": !showRaw })}

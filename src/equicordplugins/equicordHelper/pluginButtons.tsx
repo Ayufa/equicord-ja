@@ -34,11 +34,11 @@ export const PluginButtons = ErrorBoundary.wrap(function PluginCards({ message }
         if (pluginData.required || pluginData.name.endsWith("API")) return;
         const isEnabled = isPluginEnabled(matchedPlugin);
 
-        let label = `${matchedPlugin} is already ${isEnabled ? "enabled" : "disabled"}`;
+        let label = `${matchedPlugin} はすでに${isEnabled ? "有効" : "無効"}です`;
         let disabled = true;
 
         if ((startsWithDisabled && isEnabled) || (startsWithEnabled && !isEnabled)) {
-            label = `${isEnabled ? "Disable" : "Enable"} ${matchedPlugin}`;
+            label = `${matchedPlugin} を${isEnabled ? "無効化" : "有効化"}`;
             disabled = false;
         }
 
@@ -54,7 +54,7 @@ export const PluginButtons = ErrorBoundary.wrap(function PluginCards({ message }
                         if (success) showToast({ text: `${label}`, variant: "success" });
                     } catch (e) {
                         new Logger("EquicordHelper").error("Error while toggling:", e);
-                        showToast({ text: `Failed to ${label.toLowerCase()}`, variant: "critical" });
+                        showToast({ text: `${label}に失敗しました`, variant: "critical" });
                     }
                 }}
             >

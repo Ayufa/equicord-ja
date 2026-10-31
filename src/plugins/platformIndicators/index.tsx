@@ -31,7 +31,7 @@ const { useStatusFillColor } = mapMangledModuleLazy([".5625*", "translate"], {
 });
 
 const platformMap = {
-    embedded: "Embedded (Console or Game)",
+    embedded: "埋め込み（コンソールまたはゲーム）",
     vr: "VR"
 };
 

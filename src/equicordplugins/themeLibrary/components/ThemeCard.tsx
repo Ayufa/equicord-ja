@@ -67,10 +67,10 @@ export const ThemeCard: React.FC<ThemeCardProps> = ({ theme, themeLinks, likedTh
                 <Modal
                     {...modalProps}
                     size="sm"
-                    title="Hold on!"
+                    title="ちょっと待って！"
                     actions={[
                         {
-                            text: "Enable Plugin",
+                            text: "プラグインを有効化",
                             variant: "primary",
                             onClick: () => {
                                 Settings.plugins.ThemeAttributes.enabled = true;
@@ -79,15 +79,15 @@ export const ThemeCard: React.FC<ThemeCardProps> = ({ theme, themeLinks, likedTh
                             }
                         },
                         {
-                            text: "Cancel",
+                            text: "キャンセル",
                             variant: "secondary",
                             onClick: () => modalProps.onClose()
                         }
                     ]}
                 >
                     <Paragraph style={{ padding: "8px" }}>
-                        <p>This theme requires the <b>ThemeAttributes</b> plugin to work properly!</p>
-                        <p>Do you want to enable it?</p>
+                        <p>このテーマが正しく動作するには <b>ThemeAttributes</b> プラグインが必要です！</p>
+                        <p>有効化しますか？</p>
                     </Paragraph>
                 </Modal>
             ));
@@ -139,7 +139,7 @@ export const ThemeCard: React.FC<ThemeCardProps> = ({ theme, themeLinks, likedTh
                                 className={Margins.right8}
                                 disabled={!theme.content || theme.id === "preview"}
                             >
-                                {themeLinks.includes(`${apiUrl}/${theme.id}`) ? "Remove Theme" : "Add Theme"}
+                                {themeLinks.includes(`${apiUrl}/${theme.id}`) ? "テーマを削除" : "テーマを追加"}
                             </Button>
                             <Button
                                 onClick={async () => {

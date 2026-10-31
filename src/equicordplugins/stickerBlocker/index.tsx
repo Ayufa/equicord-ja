@@ -103,7 +103,7 @@ function buildMenuItem(name) {
         <Menu.MenuItem
             id="add-sticker-block"
             key="add-sticker-block"
-            label={(isStickerBlocked(name)) ? "Unblock Sticker" : "Block Sticker"}
+            label={(isStickerBlocked(name)) ? "ステッカーのブロックを解除" : "ステッカーをブロック"}
             action={() => toggleBlock(name)}
         />
     );
@@ -156,6 +156,6 @@ export default definePlugin({
 
         return false;
     },
-    blockedComponent: ErrorBoundary.wrap(blockedComponentRender, { fallback: () => <p style={{ color: "red" }}>Failed to render :(</p> }),
+    blockedComponent: ErrorBoundary.wrap(blockedComponentRender, { fallback: () => <p style={{ color: "red" }}>レンダリングに失敗しました :(</p> }),
     settings,
 });

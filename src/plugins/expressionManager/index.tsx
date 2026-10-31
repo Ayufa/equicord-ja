@@ -63,7 +63,7 @@ export function buildCloneItem(type: string, action: () => void) {
         <Menu.MenuItem
             id="vc-em-clone"
             key="vc-em-clone"
-            label={`Clone ${type}`}
+            label={`${type}を複製`}
             leadingAccessory={{ type: "icon", icon: PlusIcon }}
             action={action}
         />
@@ -91,14 +91,14 @@ function buildManageExpressionItems(id: string, type: string) {
 
     if (!guild || !PermissionStore.can(PermissionsBits.MANAGE_GUILD_EXPRESSIONS, guild)) return null;
 
-    const expressionName = type === "emoji" ? "Emoji" : "Sticker";
+    const expressionName = type === "emoji" ? "絵文字" : "スタンプ";
 
     return (
         <>
             <Menu.MenuItem
                 key="vc-em-edit"
                 id="vc-em-edit"
-                label={`Edit ${expressionName}`}
+                label={`${expressionName}を編集`}
                 leadingAccessory={{ type: "icon", icon: PencilIcon }}
                 action={() => {
                     if (type === "sticker") {
@@ -111,22 +111,22 @@ function buildManageExpressionItems(id: string, type: string) {
             <Menu.MenuItem
                 key="vc-em-delete"
                 id="vc-em-delete"
-                label={`Delete ${expressionName}`}
+                label={`${expressionName}を削除`}
                 leadingAccessory={{ type: "icon", icon: DeleteIcon }}
                 color="danger"
                 action={() => {
                     confirmAction({
-                        title: `Delete ${expression.name}`,
-                        subtitle: `Are you sure you want to delete this ${type}?`,
-                        confirmText: "Delete",
+                        title: `${expression.name}を削除`,
+                        subtitle: `この${expressionName}を削除してもよろしいですか？`,
+                        confirmText: "削除",
                         async onConfirm() {
                             const url = type === "emoji"
                                 ? Constants.Endpoints.GUILD_EMOJI(guild.id, id)
                                 : Constants.Endpoints.GUILD_STICKER(guild.id, id);
 
                             await RestAPI.del(url).then(
-                                () => showToast({ text: `${expressionName} deleted successfully.`, variant: "success" }),
-                                () => showToast({ text: `Failed to delete ${expressionName}`, variant: "critical" })
+                                () => showToast({ text: `${expressionName}を削除しました。`, variant: "success" }),
+                                () => showToast({ text: `${expressionName}の削除に失敗しました`, variant: "critical" })
                             );
                         }
                     });
@@ -181,7 +181,7 @@ function buildRemoveFrecentItem({ type, id, name }: Record<"type" | "id" | "name
         <Menu.MenuItem
             id="vc-em-remove-frecent"
             key="vc-em-remove-frecent"
-            label="Remove From Recents"
+            label="最近使ったものから削除"
             leadingAccessory={{ type: "icon", icon: HistoryIcon }}
             action={async e => {
                 const onConfirm = () => {
@@ -195,9 +195,9 @@ function buildRemoveFrecentItem({ type, id, name }: Record<"type" | "id" | "name
                 // The confirm modal closes the reaction popup, so skip confirmation
                 const confirmed = e.shiftKey || isReaction ||
                     await confirmAction({
-                        title: "Remove From Recents",
-                        subtitle: `This will reset all usage history for this ${type} and cannot be undone. Are you sure?`,
-                        confirmText: "Do it"
+                        title: "最近使ったものから削除",
+                        subtitle: `この${type}の使用履歴はすべてリセットされ、元に戻すことはできません。本当に実行しますか？`,
+                        confirmText: "実行する"
                     });
 
                 if (confirmed) onConfirm();

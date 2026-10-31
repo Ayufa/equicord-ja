@@ -15,21 +15,21 @@ export const cl = classNameFactory("vc-bie-");
 const SQUARE = new Set(["AVATAR", "AVATAR_DECORATION", "GUILD_ICON", "PERSONAL_WIDGET_FIELD"]);
 
 const KIND_NAMES: Record<string, string> = {
-    AVATAR: "avatars",
-    BANNER: "banners",
-    GUILD_ICON: "server icons",
-    GUILD_BANNER: "server banners",
-    SCHEDULED_EVENT_IMAGE: "event covers",
-    HOME_HEADER: "home headers",
-    AVATAR_DECORATION: "decorations",
-    PERSONAL_WIDGET_COVER: "widget covers",
-    PERSONAL_WIDGET_FIELD: "widget images"
+    AVATAR: "アバター",
+    BANNER: "バナー",
+    GUILD_ICON: "サーバーアイコン",
+    GUILD_BANNER: "サーバーバナー",
+    SCHEDULED_EVENT_IMAGE: "イベントカバー",
+    HOME_HEADER: "ホームヘッダー",
+    AVATAR_DECORATION: "デコレーション",
+    PERSONAL_WIDGET_COVER: "ウィジェットカバー",
+    PERSONAL_WIDGET_FIELD: "ウィジェット画像"
 };
 
 const kindName = (kind: Kind) => KIND_NAMES[kind] ?? kind.toLowerCase().replace(/_/g, " ");
 
 const isAnimated = (entry: Entry) => entry.type === "image/gif" || entry.name.toLowerCase().endsWith(".gif");
-export const croppedLabel = (kind: Kind) => `Cropped ${kindName(kind)}`;
+export const croppedLabel = (kind: Kind) => `${kindName(kind)}（切り抜き済み）`;
 
 const PinIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden {...props}>
@@ -87,7 +87,7 @@ export function Shelf({ kind, group, entries, thumbs, activeId, wornId, onGroup,
                     aria-selected={group === "original"}
                     className={cl("tab", { on: group === "original" })}
                     onClick={() => onGroup("original")}
-                >Originals</button>
+                >オリジナル</button>
                 <button
                     type="button"
                     role="tab"
@@ -98,7 +98,7 @@ export function Shelf({ kind, group, entries, thumbs, activeId, wornId, onGroup,
 
                 {onPutBack && (
                     <button type="button" className={cl("action")} onClick={onPutBack}>
-                        Put back the last one
+                        最後のものを戻す
                     </button>
                 )}
 
@@ -106,7 +106,7 @@ export function Shelf({ kind, group, entries, thumbs, activeId, wornId, onGroup,
 
             <div className={cl("bar")}>
                 <span className={cl("count")}>
-                    {wanted ? `${shown.length} of ${entries.length}` : `${entries.length} kept`}
+                    {wanted ? `${entries.length} 件中 ${shown.length} 件` : `${entries.length} 件を保持中`}
                 </span>
                 {entries.length > 12 && (
                     <div className={cl("find")}>
@@ -114,14 +114,14 @@ export function Shelf({ kind, group, entries, thumbs, activeId, wornId, onGroup,
                         <input
                             type="text"
                             value={filter}
-                            placeholder="Search"
-                            aria-label="Search saved pictures"
+                            placeholder="検索"
+                            aria-label="保存した画像を検索"
                             onChange={event => setFilter(event.currentTarget.value)}
                         />
                         {filter && (
                             <button
                                 type="button"
-                                aria-label="Clear the search"
+                                aria-label="検索をクリア"
                                 onClick={() => setFilter("")}
                             >&times;</button>
                         )}
@@ -129,7 +129,7 @@ export function Shelf({ kind, group, entries, thumbs, activeId, wornId, onGroup,
                 )}
             </div>
 
-            <div className={cl("strip")} role="group" aria-label="Saved pictures">
+            <div className={cl("strip")} role="group" aria-label="保存した画像">
                 {shown.map(entry => {
                     const picture = (hovered === entry.id && playing[entry.id]) || thumbs[entry.id];
 
@@ -143,7 +143,7 @@ export function Shelf({ kind, group, entries, thumbs, activeId, wornId, onGroup,
                             type="button"
                             aria-label={entry.name}
                             title={entry.id === wornId ? `${entry.name}
-You are wearing this` : entry.name}
+現在使用中です` : entry.name}
                             className={cl("thumb", { active: activeId === entry.id })}
                             style={picture ? { backgroundImage: `url(${picture})` } : undefined}
                             onClick={() => onPick(entry)}
@@ -155,8 +155,8 @@ You are wearing this` : entry.name}
                         <button
                             type="button"
                             className={cl("remove")}
-                            aria-label={`Remove ${entry.name}`}
-                            title="Remove. Hold Shift to skip the confirmation"
+                            aria-label={`${entry.name} を削除`}
+                            title="削除。Shift を押しながらだと確認を省略します"
                             onClick={event => onForget(entry, event.shiftKey)}
                         >
                             <DeleteIcon width={10} height={10} />
@@ -165,8 +165,8 @@ You are wearing this` : entry.name}
                             type="button"
                             aria-pressed={!!entry.pinned}
                             className={cl("pin", { on: entry.pinned })}
-                            aria-label={entry.pinned ? `Unpin ${entry.name}` : `Pin ${entry.name}`}
-                            title={entry.pinned ? "Pinned, so it never drops off the shelf" : "Pin so it never drops off the shelf"}
+                            aria-label={entry.pinned ? `${entry.name} のピンを外す` : `${entry.name} をピン留め`}
+                            title={entry.pinned ? "ピン留め済み。棚から落ちることはありません" : "ピン留めすると棚から落ちなくなります"}
                             onClick={() => onPin(entry)}
                         >
                             <PinIcon width={10} height={10} />
@@ -177,10 +177,10 @@ You are wearing this` : entry.name}
                 {!shown.length && (
                     <span className={cl("empty")}>
                         {entries.length
-                            ? "Nothing here matches that"
+                            ? "条件に一致するものはありません"
                             : group === "original"
-                                ? "Pictures you pick, paste or drop land here"
-                                : "Pictures you crop land here"}
+                                ? "選んだり、貼ったり、ドロップした画像はここに入ります"
+                                : "切り抜いた画像はここに入ります"}
                     </span>
                 )}
             </div>

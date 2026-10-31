@@ -32,7 +32,7 @@ export default definePlugin({
     start() {
         SettingsPlugin.customEntries.push({
             key: "vencord_startup_timings",
-            title: "Startup Timings",
+            title: "起動タイミング",
             Component: StartupTimingPage,
             Icon: ClockIcon
         });

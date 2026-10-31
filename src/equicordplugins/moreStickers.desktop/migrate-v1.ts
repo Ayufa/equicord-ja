@@ -75,7 +75,7 @@ export async function migrate() {
     const newPackMetas = await getStickerPackMetas(PACKS_KEY);
     if (newPackMetas.length > 0) {
         showToast({
-            text: "New sticker packs already exist, migration not needed",
+            text: "新しいスタンプパックがすでに存在するため、移行は不要です",
             variant: "critical",
             duration: 1000
         });
@@ -85,7 +85,7 @@ export async function migrate() {
     let oldPackMetas = await getStickerPackMetas(PACKS_KEY_OLD);
     if (oldPackMetas.length === 0) {
         showToast({
-            text: "Old sticker packs not found, nothing to migrate",
+            text: "古いスタンプパックが見つからないため、移行するものはありません",
             variant: "critical",
             duration: 1000
         });
@@ -107,7 +107,7 @@ export async function migrate() {
         } catch (e) {
             console.error(e);
             showToast({
-                text: `Migration failed: ${oldStickerPackMeta.title} (${oldStickerPackMeta.id})`,
+                text: `移行に失敗しました: ${oldStickerPackMeta.title} (${oldStickerPackMeta.id})`,
                 variant: "critical",
                 duration: 1000
             });
@@ -128,7 +128,7 @@ export async function migrate() {
 
     console.log("Migration complete");
     showToast({
-        text: "Sticker Pack Migration Complete",
+        text: "スタンプパックの移行が完了しました",
         variant: "success",
         duration: 1000
     });

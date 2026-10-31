@@ -22,7 +22,7 @@ export function CarouselControls({ activities, currentActivity, onActivityChange
                 justifyContent: "space-between",
             }}
         >
-            <Tooltip text="Left" tooltipClassName={cl("controls-tooltip")}>{({
+            <Tooltip text="左" tooltipClassName={cl("controls-tooltip")}>{({
                 onMouseEnter,
                 onMouseLeave
             }) => {
@@ -52,7 +52,7 @@ export function CarouselControls({ activities, currentActivity, onActivityChange
                 ))}
             </div>
 
-            <Tooltip text="Right" tooltipClassName={cl("controls-tooltip")}>{({
+            <Tooltip text="右" tooltipClassName={cl("controls-tooltip")}>{({
                 onMouseEnter,
                 onMouseLeave
             }) => {

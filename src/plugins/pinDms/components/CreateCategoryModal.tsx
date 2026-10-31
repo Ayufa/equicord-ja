@@ -74,9 +74,9 @@ export function NewCategoryModal({ categoryId, modalProps, initialChannelId }: P
     return (
         <Modal
             {...modalProps}
-            title={`${categoryId ? "Edit" : "New"} Category`}
+            title={categoryId ? "カテゴリーを編集" : "カテゴリーを作成"}
             actions={[{
-                text: categoryId ? "Save" : "Create",
+                text: categoryId ? "保存" : "作成",
                 variant: "primary",
                 onClick: onSave,
                 disabled: !name
@@ -90,14 +90,14 @@ export function NewCategoryModal({ categoryId, modalProps, initialChannelId }: P
                 }}
             >
                 <section>
-                    <Heading tag="h5">Name</Heading>
+                    <Heading tag="h5">名前</Heading>
                     <TextInput
                         value={name}
                         onChange={e => setName(e)}
                     />
                 </section>
                 <section>
-                    <Heading tag="h5">Color</Heading>
+                    <Heading tag="h5">色</Heading>
                     <ColorPickerWithSwatches
                         className={cl("color-picker")}
                         key={category.id}

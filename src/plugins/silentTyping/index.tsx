@@ -186,16 +186,16 @@ const SilentTypingChatToggle: ChatBarButtonFactory = ({ channel, type }) => {
     const effectiveList = getEffectiveList();
     const isLocallyDisallowed = isExplicitlyDisallowed(channel);
     const allowedLocallyImplicitly = isImplicitlyAllowed(channel);
-    const location = channel.guild_id && effectiveList.includes(channel.guild_id) ? "Guild" : effectiveList.includes(channel.id) ? "Channel" : "Global";
+    const location = channel.guild_id && effectiveList.includes(channel.guild_id) ? "サーバー" : effectiveList.includes(channel.id) ? "チャンネル" : "全体";
 
     const tooltip = enabledGlobally ? (
         allowedLocallyImplicitly === 1
-            ? "Typing Always Visible In The Connected Voice Channel Chat"
+            ? "接続中のボイスチャンネルのチャットでは入力中が常に表示されます"
             : allowedLocallyImplicitly === 2
-                ? "Typing Temporarily Visible In This Channel Due To A Recent Message"
+                ? "最近のメッセージにより、このチャンネルでは入力中が一時的に表示されます"
                 : isLocallyDisallowed
-                    ? `Typing Hidden (${location})` : `Typing Visible (${location})`
-    ) : "Typing Visible (Global)";
+                    ? `入力中は非表示（${location}）` : `入力中は表示（${location}）`
+    ) : "入力中は表示（全体）";
 
     function performAction(action: string): void {
         switch (action) {
@@ -347,15 +347,15 @@ const ChatBarContextCheckbox: NavContextMenuPatchCallback = children => {
 
     group.splice(idx >= 0 ? idx : 0, 0,
         <Menu.MenuItem id="vc-silent-typing" label="Silent Typing">
-            <Menu.MenuCheckboxItem id="vc-silent-typing-enabled" label="Enabled" checked={enabledGlobally}
+            <Menu.MenuCheckboxItem id="vc-silent-typing-enabled" label="有効" checked={enabledGlobally}
                 action={() => settings.store.enabledGlobally = !settings.store.enabledGlobally} />
-            <Menu.MenuCheckboxItem id="vc-silent-typing-chat-bar-indicators" label="Chat Bar Indicators" checked={settings.store.hideChatBoxTypingIndicators}
+            <Menu.MenuCheckboxItem id="vc-silent-typing-chat-bar-indicators" label="チャットバーのインジケーター" checked={settings.store.hideChatBoxTypingIndicators}
                 action={() => settings.store.hideChatBoxTypingIndicators = !settings.store.hideChatBoxTypingIndicators} />
-            <Menu.MenuCheckboxItem id="vc-silent-typing-members-list-indicators" label="Members List Indicators" checked={settings.store.hideMembersListTypingIndicators}
+            <Menu.MenuCheckboxItem id="vc-silent-typing-members-list-indicators" label="メンバーリストのインジケーター" checked={settings.store.hideMembersListTypingIndicators}
                 action={() => settings.store.hideMembersListTypingIndicators = !settings.store.hideMembersListTypingIndicators} />
-            <Menu.MenuCheckboxItem id="vc-silent-typing-chat-icon" label="Chat Icon" checked={chatIcon}
+            <Menu.MenuCheckboxItem id="vc-silent-typing-chat-icon" label="チャットアイコン" checked={chatIcon}
                 action={() => settings.store.chatIcon = !settings.store.chatIcon} />
-            <Menu.MenuCheckboxItem id="vc-silent-typing-default" label="Default Hidden" checked={defaultHidden}
+            <Menu.MenuCheckboxItem id="vc-silent-typing-default" label="デフォルトで非表示" checked={defaultHidden}
                 action={() => settings.store.defaultHidden = !settings.store.defaultHidden} />
         </Menu.MenuItem>
     );
@@ -464,48 +464,48 @@ export default definePlugin({
     commands: [
         {
             name: "silent-typing",
-            description: "Hide your typing indicator from chat.",
+            description: "チャットで自分の入力中インジケーターを非表示にします。",
             inputType: ApplicationCommandInputType.BUILT_IN,
 
             options: [
                 {
                     name: "toggle",
-                    description: "Toggle functionality globally, for the channel, or for the guild.",
+                    description: "全体／チャンネル／サーバー単位で機能を切り替えます。",
                     required: false,
                     type: ApplicationCommandOptionType.STRING,
                     choices: [
-                        { name: "Global", label: "Global", value: "global" },
-                        { name: "Channel", label: "Channel", value: "channel" },
-                        { name: "Guild", label: "Guild", value: "guild" },
+                        { name: "Global", label: "全体", value: "global" },
+                        { name: "Channel", label: "チャンネル", value: "channel" },
+                        { name: "Guild", label: "サーバー", value: "guild" },
                     ]
                 },
                 {
                     name: "chat-bar-indicators",
-                    description: "Hide other users' typing indicators from above the chat bar.",
+                    description: "チャットバーの上に表示される他のユーザーの入力中インジケーターを非表示にします。",
                     required: false,
                     type: ApplicationCommandOptionType.BOOLEAN,
                 },
                 {
                     name: "members-list-indicators",
-                    description: "Hide other users' typing indicators from the members list.",
+                    description: "メンバーリストの他のユーザーの入力中インジケーターを非表示にします。",
                     required: false,
                     type: ApplicationCommandOptionType.BOOLEAN,
                 },
                 {
                     name: "chat-icon",
-                    description: "Show an icon in the chat bar for toggling the plugin on the go.",
+                    description: "その場でプラグインを切り替えられるアイコンをチャットバーに表示します。",
                     required: false,
                     type: ApplicationCommandOptionType.BOOLEAN,
                 },
                 {
                     name: "chat-context-menu",
-                    description: "Show a dropdown in the chat context menu to toggle plugin settings on the go.",
+                    description: "チャットのコンテキストメニューに、その場でプラグイン設定を切り替えられるドロップダウンを表示します。",
                     required: false,
                     type: ApplicationCommandOptionType.BOOLEAN,
                 },
                 {
                     name: "default-hidden",
-                    description: "Whether to hide typing in DMs/channels/guilds by default or not.",
+                    description: "DM／チャンネル／サーバーで入力中表示をデフォルトで隠すかどうか。",
                     required: false,
                     type: ApplicationCommandOptionType.BOOLEAN,
                 }

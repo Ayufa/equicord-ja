@@ -94,7 +94,7 @@ function FlaggedInput({ index, forceUpdate }) {
     return (<Flex flexDirection="row">
         <div style={{ flexGrow: 1 }}>
             <TextInput
-                placeholder="Word"
+                placeholder="単語"
                 spellCheck={false}
                 value={value}
                 onChange={updateValue}
@@ -130,7 +130,7 @@ function FlaggedWords() {
 
     return (
         <>
-            <HeadingTertiary>Flagged Words</HeadingTertiary>
+            <HeadingTertiary>フラグされた単語</HeadingTertiary>
             {inputs}
         </>
     );

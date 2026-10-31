@@ -41,11 +41,11 @@ export async function rmPlugin(_, name: string): Promise<string> {
         if (!pl) return;
 
         const deleteReqDialog = await dialog.showMessageBox({
-            title: "Uninstall plugin",
-            message: `Uninstall ${pl.name}`,
+            title: "プラグインのアンインストール",
+            message: `${pl.name} をアンインストール`,
             type: "error",
-            detail: `The uninstall of the userplugin ${pl.name} has been requested. Would you like to do so?\n\nIf you did not initiate this, press No.`,
-            buttons: ["No", "Yes"]
+            detail: `ユーザープラグイン ${pl.name} のアンインストールが要求されました。実行しますか？\n\n心当たりがない場合は「いいえ」を押してください。`,
+            buttons: ["いいえ", "はい"]
         });
 
         if (deleteReqDialog.response !== 1) return reject("User rejected");
@@ -92,11 +92,11 @@ export function initPluginInstall(_, link: string, source: string, owner: string
 
         // Ask for clone
         const cloneDialog = await dialog.showMessageBox({
-            title: "Clone userplugin",
-            message: `You are about to clone a userplugin from ${source}.`,
+            title: "ユーザープラグインをクローン",
+            message: `${source} からユーザープラグインをクローンしようとしています。`,
             type: "question",
-            detail: `The repository name is "${repo}" and it is owned by "${owner}".\nThe repository URL is ${link}\n\n(If you did not request this intentionally, choose Cancel)`,
-            buttons: ["Cancel", "Clone repository and continue install", "Open repository in browser"]
+            detail: `リポジトリ名は「${repo}」で、所有者は「${owner}」です。\nリポジトリURLは ${link} です\n\n（意図した操作でない場合は「キャンセル」を選んでください）`,
+            buttons: ["キャンセル", "リポジトリをクローンしてインストールを続ける", "リポジトリをブラウザで開く"]
         });
         switch (cloneDialog.response) {
             case 0: {
@@ -125,7 +125,7 @@ export function initPluginInstall(_, link: string, source: string, owner: string
             webPreferences: {
                 devTools: true
             },
-            title: "Review userplugin",
+            title: "ユーザープラグインを確認",
             modal: true,
             parent: BrowserWindow.getAllWindows()[0],
             show: false,
@@ -241,11 +241,11 @@ async function cloneRepo(link: string, repo: string): Promise<void> {
                 if (!existsSync(join(vencordPath, "..", "src", "userplugins", repo)))
                     return reject("Failed to clone");
                 const deleteReqDialog = await dialog.showMessageBox({
-                    title: "Error",
-                    message: "Plugin already exists",
+                    title: "エラー",
+                    message: "プラグインはすでに存在します",
                     type: "error",
-                    detail: `The plugin that you tried to clone already exists at ${join(vencordPath, "..", "src", "userplugins")}.\nWould you like to reclone it? Only do this if you want to reinstall or update the plugin.`,
-                    buttons: ["No", "Yes"]
+                    detail: `クローンしようとしたプラグインは ${join(vencordPath, "..", "src", "userplugins")} にすでに存在します。\n再クローンしますか？プラグインを再インストールまたは更新したい場合のみ実行してください。`,
+                    buttons: ["いいえ", "はい"]
                 });
                 if (deleteReqDialog.response !== 1) return reject("User rejected");
                 await rm(join(vencordPath, "..", "src", "userplugins", repo), {
@@ -316,7 +316,7 @@ export async function updatePlugin(_, directory: string) {
                 webPreferences: {
                     devTools: true
                 },
-                title: "Review userplugin",
+                title: "ユーザープラグインを確認",
                 modal: true,
                 parent: BrowserWindow.getAllWindows()[0],
                 show: false,
@@ -387,7 +387,7 @@ export async function openGitPathModal(_: any) {
         webPreferences: {
             devTools: true
         },
-        title: "Set Git path",
+        title: "Gitのパスを設定",
         modal: true,
         parent: BrowserWindow.getAllWindows()[0],
         show: false,
@@ -420,30 +420,30 @@ export async function openGitPathModal(_: any) {
                 });
                 gitProc.on("error", e => {
                     dialog.showMessageBox({
-                        title: "Error",
-                        message: "Git error",
+                        title: "エラー",
+                        message: "Gitエラー",
                         type: "error",
-                        detail: `${e}\n\nDouble-check the path you entered.`,
+                        detail: `${e}\n\n入力したパスを確認してください。`,
                         buttons: ["OK"]
                     });
                 });
                 gitProc.once("close", () => {
                     if (gitProc.exitCode === 0) {
                         dialog.showMessageBox({
-                            title: "Success",
-                            message: "Git works!",
+                            title: "成功",
+                            message: "Gitが動作しています！",
                             type: "info",
-                            detail: `Successfully called ${rawOutput.trim()}`,
+                            detail: `正常に実行できました: ${rawOutput.trim()}`,
                             buttons: ["OK"]
                         });
                     }
                 });
             } catch (e) {
                 dialog.showMessageBox({
-                    title: "Error",
-                    message: "Git error",
+                    title: "エラー",
+                    message: "Gitエラー",
                     type: "error",
-                    detail: `${e}\n\nDouble-check the path you entered.`,
+                    detail: `${e}\n\n入力したパスを確認してください。`,
                     buttons: ["OK"]
                 });
             }

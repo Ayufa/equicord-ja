@@ -60,15 +60,15 @@ export async function importLogs() {
         }
 
         if (count === 0) {
-            showToast({ text: "No messages found in log file", variant: "critical" });
+            showToast({ text: "ログファイルにメッセージが見つかりません", variant: "critical" });
             return;
         }
 
-        showToast({ text: `Successfully imported ${count} logs`, variant: "success" });
+        showToast({ text: `${count} 件のログをインポートしました`, variant: "success" });
     } catch (e) {
         console.error(e);
 
-        showToast({ text: "Error importing logs. Check the console for more information", variant: "critical" });
+        showToast({ text: "ログのインポート中にエラーが発生しました。詳細はコンソールを確認してください", variant: "critical" });
     }
 }
 
@@ -94,7 +94,7 @@ export async function exportLogs() {
             await Native.writeNativeLogChunk(streamId, "\n  ]\n}");
             await Native.finishNativeLogExport(streamId);
 
-            showToast({ text: "Successfully exported logs", variant: "success" });
+            showToast({ text: "ログをエクスポートしました", variant: "success" });
             return;
         }
 
@@ -127,12 +127,12 @@ export async function exportLogs() {
             await writer.write(encoder.encode("\n  ]\n}"));
             await writer.close();
 
-            showToast({ text: `Successfully exported ${count} logs`, variant: "success" });
+            showToast({ text: `${count} 件のログをエクスポートしました`, variant: "success" });
         }
     } catch (e) {
         console.error(e);
 
-        showToast({ text: "Error exporting logs. Check the console for more information", variant: "critical" });
+        showToast({ text: "ログのエクスポート中にエラーが発生しました。詳細はコンソールを確認してください", variant: "critical" });
     }
 }
 

@@ -61,9 +61,9 @@ function HotkeyRecorder() {
 
     return (
         <div className={cl("hotkey-setting")}>
-            <BaseText size="md" weight="semibold">Open palette hotkey</BaseText>
+            <BaseText size="md" weight="semibold">パレットを開くホットキー</BaseText>
             <Button variant="secondary" onClick={() => setRecording(true)}>
-                {recording ? "Press keys..." : formatCombo(hotkey)}
+                {recording ? "キーを押してください..." : formatCombo(hotkey)}
             </Button>
         </div>
     );

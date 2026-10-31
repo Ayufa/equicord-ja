@@ -74,12 +74,12 @@ function CopyContextMenu({ name, path }: { name: string; path: string; }) {
         <Menu.Menu
             navId={`tdl-${name}-menu`}
             onClose={() => FluxDispatcher.dispatch({ type: "CONTEXT_MENU_CLOSE" })}
-            aria-label={`TIdal ${name} Menu`}
+            aria-label={`Tidal ${name} メニュー`}
         >
             <Menu.MenuItem
                 key={copyId}
                 id={copyId}
-                label={`Copy ${name} Link`}
+                label={`${name} のリンクをコピー`}
                 action={() => copyWithToast(path.replace("http://", "https://"))}
                 icon={LinkIcon}
                 leadingAccessory={{ type: "icon", icon: LinkIcon }}
@@ -87,7 +87,7 @@ function CopyContextMenu({ name, path }: { name: string; path: string; }) {
             <Menu.MenuItem
                 key={openId}
                 id={openId}
-                label={`Open ${name} in Tidal`}
+                label={`${name} を Tidal で開く`}
                 action={() => TidalStore.openExternal(path)}
                 icon={OpenExternalIcon}
                 leadingAccessory={{ type: "icon", icon: OpenExternalIcon }}
@@ -187,7 +187,7 @@ function TdlSeekBar() {
                 size="xs"
                 weight="medium"
                 className={`${cl("progress-time")} ${cl("time-left")}`}
-                aria-label="Progress"
+                aria-label="進行状況"
             >
                 {msToHuman(position)}
             </BaseText>
@@ -203,7 +203,7 @@ function TdlSeekBar() {
                 size="xs"
                 weight="medium"
                 className={`${cl("progress-time")} ${cl("time-right")}`}
-                aria-label="Total Duration"
+                aria-label="合計時間"
             >
                 {msToHuman(songDuration * 1000)}
             </BaseText>
@@ -216,12 +216,12 @@ function AlbumContextMenu({ track }: { track: PlayerState["track"]; }) {
         <Menu.Menu
             navId="tdl-album-menu"
             onClose={() => FluxDispatcher.dispatch({ type: "CONTEXT_MENU_CLOSE" })}
-            aria-label="Tidal Album Menu"
+            aria-label="Tidal アルバムメニュー"
         >
             <Menu.MenuItem
                 key="view-cover"
                 id="view-cover"
-                label="View Album Cover"
+                label="アルバムカバーを表示"
                 action={() => track?.imageSrc && openImageModal({ url: track.imageSrc })}
                 icon={ImageIcon}
                 leadingAccessory={{ type: "icon", icon: ImageIcon }}
@@ -229,7 +229,7 @@ function AlbumContextMenu({ track }: { track: PlayerState["track"]; }) {
             <Menu.MenuControlItem
                 id="tdl-volume"
                 key="tdl-volume"
-                label="Volume"
+                label="音量"
                 control={(props, ref) => (
                     <Menu.MenuSliderControl
                         {...props}

@@ -99,13 +99,13 @@ export function MultipleChoice({ modalProps, onSelect, choices }: MultipleChoice
     }, [queryEh]);
 
     return (
-        <Modal {...modalProps} size="md" title="Multiple Choice">
+        <Modal {...modalProps} size="md" title="複数選択">
             <div className={cl("root")} onKeyDown={handleKeyDown} onWheel={handleWheel}>
                 <TextInput
                     value={queryEh}
                     onChange={e => setQuery(e)}
                     style={{ width: "100%", borderBottomLeftRadius: "0", borderBottomRightRadius: "0", paddingLeft: "0.9rem" }}
-                    placeholder="Search the Command Palette"
+                    placeholder="コマンドパレットを検索"
                 />
                 <div className={cl("option-container")}>
                     {visibleActions.map((action, index) => (

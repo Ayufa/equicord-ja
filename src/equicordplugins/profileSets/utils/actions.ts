@@ -133,7 +133,7 @@ export async function importPresets(
             await savePresetsData(section);
             forceUpdate();
         } catch {
-            showToast({ text: "Failed to import presets. The file might be invalid.", variant: "critical" });
+            showToast({ text: "プリセットのインポートに失敗しました。ファイルが無効な可能性があります。", variant: "critical" });
         }
     };
     input.click();

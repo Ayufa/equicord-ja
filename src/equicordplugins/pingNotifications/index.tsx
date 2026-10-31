@@ -108,8 +108,8 @@ export default definePlugin({
                 if (!settings.store.showInActive && channel.id === SelectedChannelStore.getChannelId()) return;
                 if (PresenceStore.getStatus(currentUser.id) === "dnd") return;
 
-                const author = UserStore.getUser(message.author.id) || { username: "Unknown" };
-                const channelName = channel.name || (isDM ? "DM" : "Group");
+                const author = UserStore.getUser(message.author.id) || { username: "不明なユーザー" };
+                const channelName = channel.name || (isDM ? "DM" : "グループ");
                 const body = formatContent(message);
 
                 let shouldNotify = false;
@@ -124,7 +124,7 @@ export default definePlugin({
 
                 if (shouldNotify) {
                     showNotification({
-                        title: `${author.username} in ${channelName}`,
+                        title: `${channelName} の ${author.username}`,
                         body,
                         icon: author.getAvatarURL?.(undefined, 128),
                         onClick: () => NavigationRouter.transitionTo(

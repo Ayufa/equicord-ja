@@ -26,7 +26,7 @@ export function LanguageSelectionModal(props: { modalProps: RenderModalProps, sr
     const [task, setTask] = useState<string>("transcribe");
 
     const languageOptions = [
-        { label: "Auto Detect", value: "auto" },
+        { label: "自動検出", value: "auto" },
         ...Object.entries(LANGUAGES).map(([code, name]) => ({
             label: name.charAt(0).toUpperCase() + name.slice(1),
             value: code
@@ -48,10 +48,10 @@ export function LanguageSelectionModal(props: { modalProps: RenderModalProps, sr
         <Modal
             {...modalProps}
             size="md"
-            title="Transcription Options"
+            title="文字起こしオプション"
             actions={[
                 {
-                    text: "Start",
+                    text: "開始",
                     variant: "primary",
                     onClick: start
                 }
@@ -60,7 +60,7 @@ export function LanguageSelectionModal(props: { modalProps: RenderModalProps, sr
             <Flex flexDirection="column" gap={20} style={{ padding: "16px" }}>
                 <div>
                     <BaseText size="sm" weight="semibold" style={{ marginBottom: "8px" }}>
-                        Audio Language
+                        音声の言語
                     </BaseText>
                     <SearchableSelect
                         options={languageOptions}
@@ -71,14 +71,14 @@ export function LanguageSelectionModal(props: { modalProps: RenderModalProps, sr
 
                 <div>
                     <BaseText size="sm" weight="semibold" style={{ marginBottom: "8px" }}>
-                        Action
+                        操作
                     </BaseText>
                     <ManaBaseRadioGroup
                         options={[{
-                            name: "Transcribe",
+                            name: "文字起こし",
                             value: "transcribe"
                         }, {
-                            name: "Translate to English",
+                            name: "英語に翻訳",
                             value: "translate"
                         }]}
                         value={task}

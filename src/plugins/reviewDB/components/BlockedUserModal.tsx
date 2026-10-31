@@ -15,7 +15,7 @@ import { Modal, openModal, Tooltip, useState } from "@webpack/common";
 
 function UnblockButton(props: { onClick?(): void; }) {
     return (
-        <Tooltip text="Unblock user">
+        <Tooltip text="ユーザーのブロックを解除">
             {tooltipProps => (
                 <div
                     {...tooltipProps}
@@ -67,7 +67,7 @@ function BlockedUsersList() {
     if (error)
         return <Paragraph>Failed to fetch blocks: ${String(error)}</Paragraph>;
     if (!blocks.length)
-        return <Paragraph>No blocked users.</Paragraph>;
+        return <Paragraph>ブロック中のユーザーはいません。</Paragraph>;
 
     return (
         <>
@@ -87,10 +87,10 @@ export function openBlockModal() {
     openModal(modalProps => (
         <Modal
             {...modalProps}
-            title="Blocked Users"
+            title="ブロック中のユーザー"
         >
             <div className={cl("block-modal")}>
-                {Auth.token ? <BlockedUsersList /> : <Paragraph>You are not logged into ReviewDB!</Paragraph>}
+                {Auth.token ? <BlockedUsersList /> : <Paragraph>ReviewDBにログインしていません！</Paragraph>}
             </div>
         </Modal>
     ));

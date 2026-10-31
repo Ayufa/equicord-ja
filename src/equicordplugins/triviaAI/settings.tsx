@@ -16,7 +16,7 @@ function EndpointNotice() {
     if (isAllowed) return null;
 
     return (
-        <Notice variant="warning" action={<Button size="small" variant="secondary" onClick={allow}>Allow Host</Button>}>
+        <Notice variant="warning" action={<Button size="small" variant="secondary" onClick={allow}>ホストを許可</Button>}>
             Connections to {URL.parse(endpoint)?.host} are blocked. Allow this host if you trust it, then restart Discord.
         </Notice>
     );

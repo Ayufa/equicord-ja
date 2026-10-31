@@ -148,8 +148,8 @@ function normalizeEmojiNameForCompare(input: string | undefined): string {
 
 function getAliasValidationError(input: string): string | null {
     const normalized = normalizeAlias(input);
-    if (!normalized.length) return "Alias is required.";
-    if (!/^[a-z0-9_]{2,32}$/.test(normalized)) return "Alias must be 2-32 characters and only use lowercase letters, numbers, or underscores.";
+    if (!normalized.length) return "エイリアスを入力してください。";
+    if (!/^[a-z0-9_]{2,32}$/.test(normalized)) return "エイリアスは2〜32文字で、半角小文字・数字・アンダースコアのみ使用できます。";
     return null;
 }
 
@@ -660,7 +660,7 @@ async function saveAlias(aliasInput: string, ref: StoredEmojiRef): Promise<{ ok:
     const existing = aliasMap[alias];
 
     if (existing && !isSameEmoji(existing, ref)) {
-        return { ok: false, error: "Duplicate alias" };
+        return { ok: false, error: "エイリアスが重複しています" };
     }
 
     const normalizedRef = ref.kind === "unicode"
@@ -684,12 +684,12 @@ async function saveAlias(aliasInput: string, ref: StoredEmojiRef): Promise<{ ok:
         return { ok: true };
     } catch (error) {
         logger.error("Failed to save emoji alias.", error);
-        return { ok: false, error: "Failed to save alias." };
+        return { ok: false, error: "エイリアスの保存に失敗しました。" };
     }
 }
 
 function getAliasMenuLabel(ref: StoredEmojiRef): string {
-    return getExistingAliasForEmoji(ref) ? "Edit alias" : "Set alias";
+    return getExistingAliasForEmoji(ref) ? "エイリアスを編集" : "エイリアスを設定";
 }
 
 async function removeAlias(alias: string) {
@@ -700,10 +700,10 @@ async function removeAlias(alias: string) {
 
     try {
         await persistAliases(nextMap);
-        showToast({ text: `Removed alias :${alias}:`, variant: "success" });
+        showToast({ text: `エイリアス :${alias}: を削除しました`, variant: "success" });
     } catch (error) {
         logger.error("Failed to remove emoji alias.", error);
-        showToast({ text: "Failed to remove alias.", variant: "critical" });
+        showToast({ text: "エイリアスの削除に失敗しました。", variant: "critical" });
     }
 }
 
@@ -712,10 +712,10 @@ async function clearAliases() {
 
     try {
         await persistAliases({});
-        showToast({ text: "Deleted all emoji aliases.", variant: "success" });
+        showToast({ text: "すべての絵文字エイリアスを削除しました。", variant: "success" });
     } catch (error) {
         logger.error("Failed to clear emoji aliases.", error);
-        showToast({ text: "Failed to delete aliases.", variant: "critical" });
+        showToast({ text: "エイリアスの削除に失敗しました。", variant: "critical" });
     }
 }
 
@@ -734,7 +734,7 @@ function openSetAliasModal(ref: StoredEmojiRef) {
             onSave={async input => {
                 const result = await saveAlias(input, ref);
                 if (!result.ok) return result;
-                showToast({ text: `Alias set for ${getEmojiDisplayName(ref)}.`, variant: "success" });
+                showToast({ text: `${getEmojiDisplayName(ref)} にエイリアスを設定しました。`, variant: "success" });
                 return result;
             }}
         />

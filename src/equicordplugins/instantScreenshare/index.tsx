@@ -70,21 +70,21 @@ export default definePlugin({
 
     settingsAboutComponent: () => (
         <>
-            <HeadingSecondary>For Linux</HeadingSecondary>
+            <HeadingSecondary>Linux向け</HeadingSecondary>
             <Paragraph>
-                For Wayland it only pops up the screenshare select
+                Waylandでは画面共有の選択画面が表示されるだけです
                 <br />
-                For X11 it may or may not work :shrug:
+                X11では動作する場合としない場合があります :shrug:
             </Paragraph>
             <br />
-            <HeadingSecondary>Video Devices</HeadingSecondary>
+            <HeadingSecondary>ビデオデバイス</HeadingSecondary>
             <Paragraph>
-                Supports cameras and capture cards (like Elgato HD60X) when enabled in settings
+                設定で有効にすると、カメラやキャプチャーボード（Elgato HD60Xなど）に対応します
             </Paragraph>
             <br />
-            <HeadingSecondary>Regarding Sound & Preview Settings</HeadingSecondary>
+            <HeadingSecondary>サウンドとプレビューの設定について</HeadingSecondary>
             <Paragraph>
-                We use the settings set and used by discord to decide if stream preview and sound should be enabled or not
+                ストリームのプレビューとサウンドを有効にするかどうかは、Discordで設定されている設定に基づいて判断します
             </Paragraph>
         </>
     ),
@@ -141,7 +141,7 @@ export default definePlugin({
     toolboxActions: {
         "Instant Screenshare"() {
             settings.store.toolboxManagement = !settings.store.toolboxManagement;
-            showToast({ text: `Instant Screenshare ${settings.store.toolboxManagement ? "Enabled" : "Disabled"}`, variant: "success" });
+            showToast({ text: `Instant Screenshareを${settings.store.toolboxManagement ? "有効化" : "無効化"}しました`, variant: "success" });
         }
     }
 });

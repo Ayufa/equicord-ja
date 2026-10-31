@@ -105,8 +105,8 @@ export default definePlugin({
                 />
                 <div className="vc-bi-header-text">
                     {isSelf
-                        ? `You sent an invite to join ${guildName}`
-                        : `${inviter.global_name || inviter.username} invited you to ${guildName}`}
+                        ? `あなたは ${guildName} への招待を送信しました`
+                        : `${inviter.global_name || inviter.username} があなたを ${guildName} に招待しました`}
                 </div>
             </div>
         );

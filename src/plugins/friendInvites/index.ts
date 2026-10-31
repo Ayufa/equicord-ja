@@ -32,7 +32,7 @@ export default definePlugin({
     commands: [
         {
             name: "create friend invite",
-            description: "Generates a friend invite link.",
+            description: "フレンド招待リンクを生成します。",
             inputType: ApplicationCommandInputType.BUILT_IN,
 
             execute: async (args, ctx) => {
@@ -41,40 +41,40 @@ export default definePlugin({
                 sendBotMessage(ctx.channel.id, {
                     content: `
                         discord.gg/${invite.code} ·
-                        Expires: <t:${Math.round(new Date(invite.expires_at).getTime() / 1000)}:R> ·
-                        Max uses: \`${invite.max_uses}\`
+                        有効期限: <t:${Math.round(new Date(invite.expires_at).getTime() / 1000)}:R> ·
+                        最大使用回数: \`${invite.max_uses}\`
                     `.trim().replace(/\s+/g, " ")
                 });
             }
         },
         {
             name: "view friend invites",
-            description: "View a list of all generated friend invites.",
+            description: "生成したすべてのフレンド招待を一覧表示します。",
             inputType: ApplicationCommandInputType.BUILT_IN,
             execute: async (_, ctx) => {
                 const invites = await FriendInvites.getAllFriendInvites();
                 const friendInviteList = invites.map(i =>
                     `
                     _discord.gg/${i.code}_ ·
-                    Expires: <t:${Math.round(new Date(i.expires_at).getTime() / 1000)}:R> ·
-                    Times used: \`${i.uses}/${i.max_uses}\`
+                    有効期限: <t:${Math.round(new Date(i.expires_at).getTime() / 1000)}:R> ·
+                    使用回数: \`${i.uses}/${i.max_uses}\`
                     `.trim().replace(/\s+/g, " ")
                 );
 
                 sendBotMessage(ctx.channel.id, {
-                    content: friendInviteList.join("\n") || "You have no active friend invites!"
+                    content: friendInviteList.join("\n") || "有効なフレンド招待がありません！"
                 });
             },
         },
         {
             name: "revoke friend invites",
-            description: "Revokes all generated friend invites.",
+            description: "生成したすべてのフレンド招待を取り消します。",
             inputType: ApplicationCommandInputType.BUILT_IN,
             execute: async (_, ctx) => {
                 await FriendInvites.revokeFriendInvites();
 
                 sendBotMessage(ctx.channel.id, {
-                    content: "All friend invites have been revoked."
+                    content: "すべてのフレンド招待を取り消しました。"
                 });
             },
         },

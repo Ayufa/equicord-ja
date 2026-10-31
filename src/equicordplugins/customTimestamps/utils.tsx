@@ -32,50 +32,50 @@ const populateMessagePrototype = findByCodeLazy("isProbablyAValidSnowflake", "me
 
 export const timeFormats: Record<string, TimeFormat> = {
     cozyFormat: {
-        name: "Cozy mode",
-        description: "Time format to use in messages on cozy mode",
+        name: "コージーモード",
+        description: "コージーモードのメッセージで使用する時刻形式",
         default: "[calendar]",
         offset: 0,
     },
     compactFormat: {
-        name: "Compact mode",
-        description: "Time format on compact mode and hovering messages",
+        name: "コンパクトモード",
+        description: "コンパクトモードとメッセージへのホバー時に使用する時刻形式",
         default: "LT",
         offset: 0,
     },
     tooltipFormat: {
-        name: "Tooltip",
-        description: "Time format to use on tooltips",
+        name: "ツールチップ",
+        description: "ツールチップで使用する時刻形式",
         default: "LLLL • [relative]",
         offset: 0,
     },
     ariaLabelFormat: {
-        name: "Aria label",
-        description: "Time format to use on aria labels",
+        name: "Aria ラベル",
+        description: "Aria ラベルで使用する時刻形式",
         default: "[calendar]",
         offset: 0,
     },
     sameDayFormat: {
-        name: "Same day",
-        description: "[calendar] format for today",
+        name: "同じ日",
+        description: "今日用の [calendar] 形式",
         default: "[Today at] HH:mm:ss",
         offset: 0,
     },
     lastDayFormat: {
-        name: "Last day",
-        description: "[calendar] format for yesterday",
+        name: "前日",
+        description: "昨日用の [calendar] 形式",
         default: "[Yesterday at] HH:mm:ss",
         offset: -1000 * 60 * 60 * 24,
     },
     lastWeekFormat: {
-        name: "Last week",
-        description: "[calendar] format for within the last week",
+        name: "先週",
+        description: "過去1週間用の [calendar] 形式",
         default: "ddd DD.MM.YYYY HH:mm:ss",
         offset: -1000 * 60 * 60 * 24 * 6, // setting an offset of a week exactly pushes it into "older date" territory as soon as a second passes
     },
     sameElseFormat: {
-        name: "Older date",
-        description: "[calendar] format for older dates",
+        name: "それ以前の日付",
+        description: "それ以前の日付用の [calendar] 形式",
         default: "ddd DD.MM.YYYY HH:mm:ss",
         offset: -1000 * 60 * 60 * 24 * 31,
     }
@@ -102,7 +102,7 @@ const DemoMessage = (props: { msgId, compact, message, date: Date | undefined, i
     ) : <div className="vc-cmt-demo-message">
         <Paragraph>
             {/* @ts-ignore */}
-            <b>Preview:</b> {customTimestamps.renderTimestamp(date, "cozy")}
+            <b>プレビュー:</b> {customTimestamps.renderTimestamp(date, "cozy")}
         </Paragraph>
     </div>;
 };
@@ -117,13 +117,13 @@ export const DemoMessageContainer = ErrorBoundary.wrap(() => {
     return (
         <div className={"vc-cmt-demo-message-container"} onClick={() => setIsCompact(!isCompact)}>
             <DemoMessage compact={isCompact} msgId={"1337"}
-                message={`Click me to switch to ${isCompact ? "cozy" : "compact"} mode`} isGroupStart={true}
+                message={`クリックすると${isCompact ? "コージー" : "コンパクト"}モードに切り替わります`} isGroupStart={true}
                 date={aMonthAgo.current} />
-            <DemoMessage compact={isCompact} msgId={"1338"} message={"This message was sent in the last week"}
+            <DemoMessage compact={isCompact} msgId={"1338"} message={"このメッセージは先週送信されました"}
                 isGroupStart={true} date={lastWeek.current} />
-            <DemoMessage compact={isCompact} msgId={"1339"} message={"Hover over timestamps to see tooltip formats"}
+            <DemoMessage compact={isCompact} msgId={"1339"} message={"タイムスタンプにホバーするとツールチップ形式が見られます"}
                 isGroupStart={true} date={yesterday.current} />
-            <DemoMessage compact={isCompact} msgId={"1340"} message={"Edit the formats below to see them live update here"} isGroupStart={true}
+            <DemoMessage compact={isCompact} msgId={"1340"} message={"下の形式を編集すると、ここにリアルタイムで反映されます"} isGroupStart={true}
                 date={today.current} />
         </div>
     );

@@ -81,7 +81,7 @@ const settings = definePluginSettings({
 
 function validateInteger(value: unknown, min: number, max: number) {
     const parsedValue = Number(value);
-    return Number.isInteger(parsedValue) && parsedValue >= min && parsedValue <= max || `Enter a whole number from ${min} to ${max}.`;
+    return Number.isInteger(parsedValue) && parsedValue >= min && parsedValue <= max || `${min} から ${max} までの整数を入力してください。`;
 }
 
 function boundedInteger(value: string | number, min: number, max: number, fallback: number) {

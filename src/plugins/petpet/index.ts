@@ -117,36 +117,36 @@ export default definePlugin({
         {
             inputType: ApplicationCommandInputType.BUILT_IN,
             name: "petpet",
-            description: "Create a petpet gif. You can only specify one of the image options",
+            description: "petpet GIFを作成します。画像オプションは1つだけ指定できます",
             options: [
                 {
                     name: "delay",
-                    description: "The delay between each frame in ms. Rounded to nearest 10ms. Defaults to the minimum value of 20.",
+                    description: "各フレーム間の遅延（ミリ秒）。10ms単位に丸められます。デフォルトは最小値の20です。",
                     type: ApplicationCommandOptionType.INTEGER
                 },
                 {
                     name: "resolution",
-                    description: "Resolution for the gif. Defaults to 120. If you enter an insane number and it freezes Discord that's your fault.",
+                    description: "GIFの解像度。デフォルトは120です。非常識な数値を入力してDiscordが固まっても自己責任です。",
                     type: ApplicationCommandOptionType.INTEGER
                 },
                 {
                     name: "image",
-                    description: "Image attachment to use",
+                    description: "使用する画像の添付ファイル",
                     type: ApplicationCommandOptionType.ATTACHMENT
                 },
                 {
                     name: "url",
-                    description: "URL to fetch image from",
+                    description: "画像を取得するURL",
                     type: ApplicationCommandOptionType.STRING
                 },
                 {
                     name: "user",
-                    description: "User whose avatar to use as image",
+                    description: "アバターを画像として使用するユーザー",
                     type: ApplicationCommandOptionType.USER
                 },
                 {
                     name: "no-server-pfp",
-                    description: "Use the normal avatar instead of the server specific one when using the 'user' option",
+                    description: "'user' オプション使用時に、サーバー専用のアバターではなく通常のアバターを使用します",
                     type: ApplicationCommandOptionType.BOOLEAN
                 }
             ],

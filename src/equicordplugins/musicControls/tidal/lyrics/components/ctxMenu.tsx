@@ -20,12 +20,12 @@ export function LyricsContextMenu() {
         <Menu.Menu
             navId="tidal-lyrics-menu"
             onClose={() => FluxDispatcher.dispatch({ type: "CONTEXT_MENU_CLOSE" })}
-            aria-label="Tidal Lyrics Menu"
+            aria-label="Tidal 歌詞メニュー"
         >
             <Menu.MenuItem
                 key="copy-lyric"
                 id="copy-lyric"
-                label="Copy current lyric"
+                label="現在の歌詞をコピー"
                 disabled={!currLyric?.text}
                 action={() => copyWithToast(currLyric!.text!, "Lyric copied!")}
                 icon={CopyIcon}

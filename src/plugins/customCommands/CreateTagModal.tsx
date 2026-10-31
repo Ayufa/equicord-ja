@@ -35,24 +35,24 @@ function CreateTagDialog({ initialValue, modalProps }: { initialValue: Tag; moda
     const nameAlreadyExists = name !== initialValue.name && getTag(name);
 
     const notice = hasReservedEphemeral
-        ? 'The argument name "ephemeral" is reserved and cannot be used.'
+        ? '引数名 "ephemeral" は予約されているため使用できません。'
         : nameAlreadyExists
-            ? `A tag with the name "${name}" already exists and will be overwritten.`
+            ? `"${name}" という名前のタグは既に存在し、上書きされます。`
             : undefined;
 
     return (
         <Modal
             {...modalProps}
-            title={isEdit ? "Edit Tag" : "Create New Tag"}
-            subtitle={isEdit ? "Edit your custom command." : "Create a new tag which will be registered as a slash command."}
+            title={isEdit ? "タグを編集" : "新しいタグを作成"}
+            subtitle={isEdit ? "カスタムコマンドを編集します。" : "スラッシュコマンドとして登録される新しいタグを作成します。"}
             actions={[
                 {
-                    text: "Cancel",
+                    text: "キャンセル",
                     variant: "secondary",
                     onClick: modalProps.onClose
                 },
                 {
-                    text: isEdit ? "Save" : "Create",
+                    text: isEdit ? "保存" : "作成",
                     variant: "primary",
                     onClick: () => {
                         if (isEdit && initialValue.name !== name) {
@@ -70,23 +70,23 @@ function CreateTagDialog({ initialValue, modalProps }: { initialValue: Tag; moda
         >
             <Flex flexDirection="column" gap={12}>
                 <section>
-                    <Heading tag="h3">Name</Heading>
+                    <Heading tag="h3">名前</Heading>
                     <TextInput value={name} onChange={setName} placeholder="greet" />
                 </section>
 
                 <section>
-                    <Heading tag="h3">Response</Heading>
+                    <Heading tag="h3">応答</Heading>
                     <TextArea value={message} onChange={setMessage} placeholder={EXAMPLE_RESPONSE} autosize />
                 </section>
 
                 {detectedArguments.length > 0 && (
                     <section>
-                        <Heading tag="h3">Detected Arguments</Heading>
+                        <Heading tag="h3">検出された引数</Heading>
                         <Paragraph>
                             <ul>
                                 {detectedArguments.map(arg => (
                                     <li key={arg.name}>
-                                        &mdash; <b>{arg.name}</b>{arg.defaultValue ? ` (default: ${arg.defaultValue})` : ""}
+                                        &mdash; <b>{arg.name}</b>{arg.defaultValue ? ` (デフォルト: ${arg.defaultValue})` : ""}
                                     </li>
                                 ))}
                             </ul>
@@ -98,16 +98,16 @@ function CreateTagDialog({ initialValue, modalProps }: { initialValue: Tag; moda
                     renderContent={() => (
                         <Flex flexDirection="column" gap={12}>
                             <Paragraph>
-                                Your response can include variables wrapped in double curly braces which will become command arguments, for example <InlineCode>{"Hello {{user}}"}</InlineCode>.
+                                応答には二重中括弧で囲んだ変数を含めることができ、それがコマンドの引数になります。例: <InlineCode>{"Hello {{user}}"}</InlineCode>.
                             </Paragraph>
                             <Paragraph>
-                                You can specify arguments with default values by using an equals sign, for example <InlineCode>{"Hello {{user = pal}}"}</InlineCode>.
+                                イコール記号を使うと、引数にデフォルト値を指定できます。例: <InlineCode>{"Hello {{user = pal}}"}</InlineCode>.
                             </Paragraph>
 
                             <section>
-                                <Paragraph><b>Example Command response:</b> <InlineCode>{EXAMPLE_RESPONSE}</InlineCode></Paragraph>
-                                <Paragraph><b>Example usage:</b> <InlineCode>{"/greet user:@Clyde"}</InlineCode></Paragraph>
-                                <Paragraph><b>Example output:</b> <InlineCode>{"Hello @Clyde! I am feeling great."}</InlineCode></Paragraph>
+                                <Paragraph><b>コマンド応答の例:</b> <InlineCode>{EXAMPLE_RESPONSE}</InlineCode></Paragraph>
+                                <Paragraph><b>使用例:</b> <InlineCode>{"/greet user:@Clyde"}</InlineCode></Paragraph>
+                                <Paragraph><b>出力例:</b> <InlineCode>{"Hello @Clyde! I am feeling great."}</InlineCode></Paragraph>
                             </section>
                         </Flex>
                     )}

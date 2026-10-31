@@ -30,7 +30,7 @@ export const Editor = (props: { url?: string; }) => {
         <div className="vc-remix-editor">
             {!file && <FileUpload
                 filename={undefined}
-                placeholder="Choose an image"
+                placeholder="画像を選択"
                 buttonText="Browse"
                 filters={[{ name: "Image", extensions: ["png", "jpeg"] }]}
                 onFileSelect={(file: File) => setFile(file)}

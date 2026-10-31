@@ -57,21 +57,21 @@ export function VoiceMessagesInBackgroundPlayer() {
 
     if (!snapshot || snapshot.channelId === selectedChannelId) return null;
 
-    const channelName = channel?.name ?? "Direct message";
+    const channelName = channel?.name ?? "ダイレクトメッセージ";
     const duration = Math.max(snapshot.duration, snapshot.position, 1);
     const position = Math.min(snapshot.position, duration);
     const nextSpeed = SPEEDS[(SPEEDS.findIndex(speed => speed === snapshot.speed) + 1) % SPEEDS.length];
 
     return (
-        <div className={cl("player", { playing: !snapshot.paused })} aria-label="Voice Messages In-Background player">
+        <div className={cl("player", { playing: !snapshot.paused })} aria-label="バックグラウンド再生プレイヤー">
             <div className={cl("voice-icon")}>
                 <Microphone width={17} height={17} />
             </div>
-            <Tooltip text={snapshot.paused ? "Resume voice message" : "Pause voice message"}>
+            <Tooltip text={snapshot.paused ? "ボイスメッセージを再開" : "ボイスメッセージを一時停止"}>
                 {tooltipProps => (
                     <Button
                         {...tooltipProps}
-                        aria-label={snapshot.paused ? "Resume voice message" : "Pause voice message"}
+                        aria-label={snapshot.paused ? "ボイスメッセージを再開" : "ボイスメッセージを一時停止"}
                         className={cl("control")}
                         size="iconOnly"
                         variant="none"
@@ -82,7 +82,7 @@ export function VoiceMessagesInBackgroundPlayer() {
                 )}
             </Tooltip>
             <Button
-                aria-label={`Return to ${channelName}`}
+                aria-label={`${channelName} に戻る`}
                 className={cl("origin")}
                 disabled={!snapshot.channelId}
                 size="min"
@@ -90,7 +90,7 @@ export function VoiceMessagesInBackgroundPlayer() {
                 onClick={() => snapshot.channelId && ChannelRouter.transitionToChannel(snapshot.channelId)}
             >
                 <span className={cl("origin-copy")}>
-                    <span className={cl("title")}>Voice message</span>
+                    <span className={cl("title")}>ボイスメッセージ</span>
                     <span className={cl("channel")}>{channelName}</span>
                 </span>
             </Button>
@@ -98,7 +98,7 @@ export function VoiceMessagesInBackgroundPlayer() {
                 <span className={cl("time")}>{time(position)}</span>
                 <ControlledSlider
                     key={snapshot.src}
-                    aria-label="Voice message position"
+                    aria-label="ボイスメッセージの位置"
                     asValueChanges={seekPlayback}
                     className={cl("seek")}
                     handleSize={10}
@@ -113,11 +113,11 @@ export function VoiceMessagesInBackgroundPlayer() {
                 />
                 <span className={cl("time")}>{time(snapshot.duration)}</span>
             </div>
-            <Tooltip text="Change playback speed">
+            <Tooltip text="再生速度を変更">
                 {tooltipProps => (
                     <Button
                         {...tooltipProps}
-                        aria-label={`Playback speed ${snapshot.speed} times`}
+                        aria-label={`再生速度 ${snapshot.speed} 倍`}
                         className={cl("speed")}
                         size="min"
                         variant="none"
@@ -127,11 +127,11 @@ export function VoiceMessagesInBackgroundPlayer() {
                     </Button>
                 )}
             </Tooltip>
-            <Tooltip text="Close voice message player">
+            <Tooltip text="ボイスメッセージプレイヤーを閉じる">
                 {tooltipProps => (
                     <Button
                         {...tooltipProps}
-                        aria-label="Close voice message player"
+                        aria-label="ボイスメッセージプレイヤーを閉じる"
                         className={cl("control", "close")}
                         size="iconOnly"
                         variant="none"

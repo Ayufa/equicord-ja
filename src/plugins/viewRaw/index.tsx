@@ -104,7 +104,7 @@ function openViewRawModal(data: object, type: string, msgContent?: string) {
         <ErrorBoundary>
             <Modal
                 {...props}
-                title={`Raw ${type} Data`}
+                title={`${type}の生データ`}
                 size="xl"
                 actions={[
                     {
@@ -113,9 +113,9 @@ function openViewRawModal(data: object, type: string, msgContent?: string) {
                         onClick: () => copyWithToast(json, `${type} data copied to clipboard!`)
                     },
                     msgContent && {
-                        text: "Copy Raw Content",
+                        text: "生コンテンツをコピー",
                         variant: "secondary",
-                        onClick: () => copyWithToast(msgContent, "Content copied to clipboard!")
+                        onClick: () => copyWithToast(msgContent, "コンテンツをクリップボードにコピーしました！")
                     }
                 ].filter(isTruthy)}
             >
@@ -181,7 +181,7 @@ function MakeContextCallback(name: "Guild" | "Role" | "User" | "Channel" | "Mess
         (devContainer ?? children).splice(-1, 0,
             <Menu.MenuItem
                 id={id}
-                label="View Raw"
+                label="生データを表示"
                 action={action}
                 icon={CopyRawIcon}
                 leadingAccessory={{ type: "icon", icon: CopyRawIcon }}
@@ -200,7 +200,7 @@ const devContextCallback: NavContextMenuPatchCallback = (children, { id }: { id:
     children.push(
         <Menu.MenuItem
             id={"vc-view-role-raw"}
-            label="View Raw"
+            label="生データを表示"
             action={() => openViewRawModal(role, "Role")}
             icon={CopyRawIcon}
             leadingAccessory={{ type: "icon", icon: CopyRawIcon }}
@@ -253,8 +253,8 @@ export default definePlugin({
             };
 
             const label = settings.store.clickMethod === "Right"
-                ? "Copy Raw (Left Click) / View Raw (Right Click)"
-                : "View Raw (Left Click) / Copy Raw (Right Click)";
+                ? "生データをコピー（左クリック）/ 生データを表示（右クリック）"
+                : "生データを表示（左クリック）/ 生データをコピー（右クリック）";
 
             return {
                 label,

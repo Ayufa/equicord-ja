@@ -79,22 +79,22 @@ function UserPluginsTab() {
     return (
         <STab
             // @ts-ignore
-            title={`UserPlugins${pluginsLoaded ? ` (${plugins.length}, ${plugins.filter(p => Vencord.Settings.plugins[p.name].enabled).length} enabled)` : ""}`}
+            title={`ユーザープラグイン${pluginsLoaded ? ` (${plugins.length}件、${plugins.filter(p => Vencord.Settings.plugins[p.name].enabled).length}件有効)` : ""}`}
         >
             <div className={cl("update-check-container")}>
                 {isObjectEmpty(pluginsWithUpdates) ? (
                     !updatesLoaded && (
-                        <BaseText>Checking for updates...</BaseText>
+                        <BaseText>更新を確認しています...</BaseText>
                     )
                 ) : (
                     <Card
                         className={classes(cl("info-card"), "vc-warning-card")}
                     >
                         <HeadingTertiary className={cl("install-title")}>
-                            Plugin Updates Available
+                            プラグインの更新があります
                         </HeadingTertiary>
                         <Paragraph className={cl("install-desc")}>
-                            The following plugins are out-of-date:
+                            次のプラグインが古くなっています:
                             <ul className={cl("outdated-list")}>
                                 {Object.values(pluginsWithUpdates)
                                     .toSorted()
@@ -103,20 +103,20 @@ function UserPluginsTab() {
                                     ))}
                             </ul>
                             {!updatesLoaded &&
-                                "and possibly more, as update checking is not finished. "}
-                            You can update plugins below.
+                                "更新チェックが終わっていないため、他にもある可能性があります。"}
+                            下からプラグインを更新できます。
                         </Paragraph>
                     </Card>
                 )}
             </div>
             <Card className={cl("info-card")}>
                 <HeadingTertiary className={cl("install-title")}>
-                    Install Plugin
+                    プラグインをインストール
                 </HeadingTertiary>
                 <Paragraph className={cl("install-desc")}>
-                    You can install a plugin from GitHub, GitLab, Codeberg,
-                    git.nin0.dev, or plugins.nin0.dev by pasting its clone URL
-                    here.
+                    GitHub、GitLab、Codeberg、git.nin0.dev、plugins.nin0.dev の
+                    プラグインは、クローンURLをここに貼り付けて
+                    インストールできます。
                 </Paragraph>
                 <div className={cl("install-field")}>
                     <CheckedTextInput
@@ -132,13 +132,13 @@ function UserPluginsTab() {
                                     .includes(match[[3, 6][idpl]]);
                                 if (installed) {
                                     setValid(false);
-                                    return "Plugin already installed, update below";
+                                    return "プラグインはインストール済みです。下から更新してください";
                                 }
                                 setValid(true);
                                 return true;
                             } else {
                                 setValid(false);
-                                return "Invalid URL, read the notice above";
+                                return "無効なURLです。上の注意書きを読んでください";
                             }
                         }}
                         initialValue={url}
@@ -166,7 +166,7 @@ function UserPluginsTab() {
                             } catch (e: any) {
                                 if (e.toString().includes("silentStop")) return;
                                 Alerts.show({
-                                    title: "Install error",
+                                    title: "インストールエラー",
                                     body: e.toString(),
                                 });
                             }
@@ -215,13 +215,13 @@ function UserPluginsTab() {
                                                 plugin.directory!,
                                             );
                                             Alerts.show({
-                                                title: "Done!",
-                                                body: `${plugin.name} has been uninstalled. A ${plugin.usesNative ? "restart" : "refresh"} is needed to fully remove the plugin.`,
+                                                title: "完了！",
+                                                body: `${plugin.name} をアンインストールしました。完全に削除するには${plugin.usesNative ? "再起動" : "再読み込み"}が必要です。`,
                                                 confirmText:
                                                     plugin.usesNative
-                                                        ? "Restart"
-                                                        : "Refresh",
-                                                cancelText: "Later",
+                                                        ? "再起動"
+                                                        : "再読み込み",
+                                                cancelText: "後で",
                                                 onConfirm() {
                                                     plugin.usesNative
                                                         ? relaunch()
@@ -236,7 +236,7 @@ function UserPluginsTab() {
                                     setEnabled={t => {
                                         Vencord.Settings.plugins[pl.name].enabled = t;
                                         if (pluginRequiresRestart(pl)) {
-                                            showToast({ text: "Restart to apply changes!" });
+                                            showToast({ text: "変更を適用するには再起動してください！" });
                                         } else {
                                             (t ? startPlugin : stopPlugin)(pl);
                                         }
@@ -269,13 +269,13 @@ function UserPluginsTab() {
                                                                     },
                                                                 );
                                                                 Alerts.show({
-                                                                    title: "Done!",
-                                                                    body: `${plugin.name} has been updated. A ${plugin.usesNative ? "restart" : "refresh"} is needed to apply the update.`,
+                                                                    title: "完了！",
+                                                                    body: `${plugin.name} を更新しました。更新を適用するには${plugin.usesNative ? "再起動" : "再読み込み"}が必要です。`,
                                                                     confirmText:
                                                                         plugin.usesNative
-                                                                            ? "Restart"
-                                                                            : "Refresh",
-                                                                    cancelText: "Later",
+                                                                            ? "再起動"
+                                                                            : "再読み込み",
+                                                                    cancelText: "後で",
                                                                     onConfirm() {
                                                                         plugin.usesNative
                                                                             ? relaunch()
@@ -292,13 +292,13 @@ function UserPluginsTab() {
                                                                 )
                                                                     return;
                                                                 Alerts.show({
-                                                                    title: "Update error",
+                                                                    title: "更新エラー",
                                                                     body: e.toString(),
                                                                 });
                                                             }
                                                         }}
                                                     >
-                                                        Update
+                                                        更新
                                                     </Button>
                                                 )}
                                             <Button
@@ -311,13 +311,13 @@ function UserPluginsTab() {
                                                     )
                                                 }
                                             >
-                                                Source
+                                                ソース
                                             </Button>
                                             {plugin.supportChannelID && <Button variant="secondary" size="small" onClick={() => {
                                                 closeAllModals();
                                                 NavigationRouter.transitionTo(`/channels/1015060230222131221/${plugin.supportChannelID}`);
                                             }}>
-                                                Support
+                                                サポート
                                             </Button>}
                                         </div>
                                     )}
@@ -325,11 +325,11 @@ function UserPluginsTab() {
                             })}
                     </div>
                 ) : (
-                    <BaseText>Loading plugins...</BaseText>
+                    <BaseText>プラグインを読み込んでいます...</BaseText>
                 )}
             </div>
         </STab>
     );
 }
 
-export default wrapTab(UserPluginsTab, "UserPlugins");
+export default wrapTab(UserPluginsTab, "ユーザープラグイン");

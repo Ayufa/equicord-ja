@@ -14,26 +14,26 @@ export interface SettingsRoute {
 }
 
 export const DISCORD_SETTINGS_ROUTES: SettingsRoute[] = [
-    { route: "my_account", label: "My Account", keywords: ["account", "profile"] },
-    { route: "profiles", label: "Profiles", keywords: ["profile", "avatar", "bio"] },
-    { route: "data_and_privacy", label: "Data & Privacy", keywords: ["privacy", "safety"] },
-    { route: "devices", label: "Devices", keywords: ["sessions"] },
-    { route: "connections", label: "Connections", keywords: ["integrations"] },
-    { route: "appearance", label: "Appearance", keywords: ["theme", "dark", "light"] },
-    { route: "accessibility", label: "Accessibility", keywords: [] },
-    { route: "voice_and_video", label: "Voice & Video", keywords: ["audio", "mic", "camera"] },
-    { route: "chat", label: "Chat", keywords: ["messages"] },
-    { route: "text_and_images", label: "Text & Images", keywords: ["text", "images"] },
-    { route: "notifications", label: "Notifications", keywords: [] },
-    { route: "keybinds", label: "Keybinds", keywords: ["shortcuts"] },
-    { route: "authorized_apps", label: "Authorized Apps", keywords: ["oauth", "apps"] },
-    { route: "family_center", label: "Family Center", keywords: ["family", "safety"] },
-    { route: "advanced", label: "Advanced", keywords: ["developer"] },
+    { route: "my_account", label: "マイアカウント", keywords: ["account", "profile"] },
+    { route: "profiles", label: "プロフィール", keywords: ["profile", "avatar", "bio"] },
+    { route: "data_and_privacy", label: "データとプライバシー", keywords: ["privacy", "safety"] },
+    { route: "devices", label: "デバイス", keywords: ["sessions"] },
+    { route: "connections", label: "接続", keywords: ["integrations"] },
+    { route: "appearance", label: "外観", keywords: ["theme", "dark", "light"] },
+    { route: "accessibility", label: "アクセシビリティ", keywords: [] },
+    { route: "voice_and_video", label: "音声とビデオ", keywords: ["audio", "mic", "camera"] },
+    { route: "chat", label: "チャット", keywords: ["messages"] },
+    { route: "text_and_images", label: "テキストと画像", keywords: ["text", "images"] },
+    { route: "notifications", label: "通知", keywords: [] },
+    { route: "keybinds", label: "キーバインド", keywords: ["shortcuts"] },
+    { route: "authorized_apps", label: "承認済みアプリ", keywords: ["oauth", "apps"] },
+    { route: "family_center", label: "ファミリーセンター", keywords: ["family", "safety"] },
+    { route: "advanced", label: "高度な設定", keywords: ["developer"] },
     { route: "equicord_main", label: "Equicord", keywords: ["vencord"] },
-    { route: "equicord_plugins", label: "Equicord Plugins", keywords: ["plugins"] },
-    { route: "equicord_themes", label: "Equicord Themes", keywords: ["themes", "css"] },
-    { route: "equicord_updater", label: "Equicord Updater", keywords: ["update"] },
-    { route: "equicord_changelog", label: "Equicord Changelog", keywords: ["changelog", "news"] }
+    { route: "equicord_plugins", label: "Equicord プラグイン", keywords: ["plugins"] },
+    { route: "equicord_themes", label: "Equicord テーマ", keywords: ["themes", "css"] },
+    { route: "equicord_updater", label: "Equicord アップデーター", keywords: ["update"] },
+    { route: "equicord_changelog", label: "Equicord 変更履歴", keywords: ["changelog", "news"] }
 ];
 
 const ROUTE_ALIASES = new Map<string, string[]>([
@@ -110,7 +110,7 @@ const logger = new Logger("CommandPalette");
 export async function openSettingsPage(route: string, label?: string) {
     const candidates = resolveRouteCandidates(route);
     if (candidates.length === 0) {
-        showToast({ text: "No settings page was provided.", variant: "critical" });
+        showToast({ text: "設定ページが指定されていません。", variant: "critical" });
         return false;
     }
 
@@ -124,6 +124,6 @@ export async function openSettingsPage(route: string, label?: string) {
         }
     }
 
-    showToast({ text: `Unable to open ${label ?? "that settings page"}.`, variant: "critical" });
+    showToast({ text: `${label ?? "その設定ページ"}を開けませんでした。`, variant: "critical" });
     return false;
 }

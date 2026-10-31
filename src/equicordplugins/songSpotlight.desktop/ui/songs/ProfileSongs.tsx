@@ -92,7 +92,7 @@ export default function ProfileSongs({ user, isSideBar }: ProfileSongsProps) {
                 <BaseText size="xs" weight={isSideBar ? "semibold" : "medium"} className={cl("header")}>
                     Song Spotlight
                 </BaseText>
-                <Tooltip text="More">
+                <Tooltip text="その他">
                     {props => (
                         <MoreHorizontalIcon
                             {...props}
@@ -103,12 +103,12 @@ export default function ProfileSongs({ user, isSideBar }: ProfileSongsProps) {
                                     <Menu.Menu
                                         navId="vc-songspotlight-profile-songs"
                                         onClose={() => FluxDispatcher.dispatch({ type: "CONTEXT_MENU_CLOSE" })}
-                                        aria-label={"Profile songs"}
+                                        aria-label={"プロフィールの曲"}
                                     >
                                         {owned && (
                                             <Menu.MenuItem
                                                 id="edit-songs"
-                                                label="Edit songs"
+                                                label="曲を編集"
                                                 icon={PencilIcon}
                                                 leadingAccessory={{ type: "icon", icon: PencilIcon }}
                                                 action={() => openSettingsModal()}
@@ -116,7 +116,7 @@ export default function ProfileSongs({ user, isSideBar }: ProfileSongsProps) {
                                         )}
                                         <Menu.MenuItem
                                             id="copy-link"
-                                            label="Copy JSON"
+                                            label="JSONをコピー"
                                             icon={LinkIcon}
                                             leadingAccessory={{ type: "icon", icon: LinkIcon }}
                                             action={() => copyWithToast(JSON.stringify(data))}

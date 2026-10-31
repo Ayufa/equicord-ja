@@ -266,15 +266,15 @@ function ChannelTabContent(props: ChannelTabsProps & {
     // handle special synthetic pages
     if (channelId && channelId.startsWith("__")) {
         const specialPagesConfig: Record<string, { label: string, Icon: React.ComponentType<any>; }> = {
-            "__quests__": { label: "Quests", Icon: QuestIcon },
-            "__message-requests__": { label: "Message Requests", Icon: EnvelopeIcon },
+            "__quests__": { label: "クエスト", Icon: QuestIcon },
+            "__message-requests__": { label: "メッセージリクエスト", Icon: EnvelopeIcon },
             "__friends__": { label: getIntlMessage("FRIENDS"), Icon: FriendsIcon },
-            "__shop__": { label: "Shop", Icon: ShopIcon },
-            "__library__": { label: "Library", Icon: () => LibraryIcon(20, 20) },
-            "__discovery__": { label: "Discovery", Icon: DiscoveryIcon },
+            "__shop__": { label: "ショップ", Icon: ShopIcon },
+            "__library__": { label: "ライブラリ", Icon: () => LibraryIcon(20, 20) },
+            "__discovery__": { label: "発見", Icon: DiscoveryIcon },
             "__nitro__": { label: "Nitro", Icon: NitroIcon },
             "__icymi__": { label: "ICYMI", Icon: ICYMIIcon },
-            "__activity__": { label: "Activity", Icon: ActivityIcon },
+            "__activity__": { label: "アクティビティ", Icon: ActivityIcon },
         };
 
         const pageConfig = specialPagesConfig[channelId];

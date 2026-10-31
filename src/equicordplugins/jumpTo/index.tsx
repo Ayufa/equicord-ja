@@ -38,13 +38,13 @@ async function jumpToUserMessage(channelId: string, guildId: string, userId: str
 
         const messageId = res.body?.messages?.[0]?.[0]?.id;
         if (!messageId) {
-            showToast({ text: "No messages found from this user in this channel.", variant: "critical" });
+            showToast({ text: "このチャンネルでこのユーザーのメッセージは見つかりませんでした。", variant: "critical" });
             return;
         }
 
         NavigationRouter.transitionTo(`/channels/${guildId}/${channelId}/${messageId}`);
     } catch (e) {
-        showToast({ text: "Failed to search for messages.", variant: "critical" });
+        showToast({ text: "メッセージの検索に失敗しました。", variant: "critical" });
     }
 }
 
@@ -63,12 +63,12 @@ const ChannelMenuPatch: NavContextMenuPatchCallback = (
     children.push(
         <Menu.MenuItem
             id="vc-jump-to-first"
-            label="Jump To First Message"
+            label="最初のメッセージへ移動"
             action={() => jumpToFirstMessage(targetChannel.id, targetChannel.guild_id)}
         />,
         <Menu.MenuItem
             id="vc-jump-to-last"
-            label="Jump To Last Message"
+            label="最後のメッセージへ移動"
             action={() => jumpToLastMessage(targetChannel.id, targetChannel.guild_id)}
         />
     );
@@ -80,12 +80,12 @@ const UserMenuPatch: NavContextMenuPatchCallback = (children, { user, channel }:
     children.push(
         <Menu.MenuItem
             id="vc-jump-to-first"
-            label="Jump To First Message"
+            label="最初のメッセージへ移動"
             action={() => jumpToFirstMessage(channel.id, null)}
         />,
         <Menu.MenuItem
             id="vc-jump-to-last"
-            label="Jump To Last Message"
+            label="最後のメッセージへ移動"
             action={() => jumpToLastMessage(channel.id, null)}
         />
     );
@@ -99,12 +99,12 @@ const MessageMenuPatch: NavContextMenuPatchCallback = (children, { message }: { 
     children.push(
         <Menu.MenuItem
             id="vc-jump-to-first-user"
-            label="Jump To First Message"
+            label="最初のメッセージへ移動"
             action={() => jumpToUserMessage(channelId, guildId, message.author.id, true)}
         />,
         <Menu.MenuItem
             id="vc-jump-to-last-user"
-            label="Jump To Last Message"
+            label="最後のメッセージへ移動"
             action={() => jumpToUserMessage(channelId, guildId, message.author.id, false)}
         />
     );

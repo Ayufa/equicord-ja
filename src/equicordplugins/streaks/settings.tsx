@@ -27,7 +27,7 @@ export const settings = definePluginSettings({
                             onClick={() => remove(UserStore.getCurrentUser()?.id)}
                             variant="dangerPrimary"
                         >
-                            Log Out of Streaks API
+                            Streaks APIからログアウト
                         </Button>
                     </Flex>
                 );
@@ -39,7 +39,7 @@ export const settings = definePluginSettings({
                             await useStreaksStore.getState().migrate();
                             await useStreaksStore.getState().fetch();
                         }}>
-                            Log In to Streaks API
+                            Streaks APIにログイン
                         </Button>
                     </Flex>
                 );

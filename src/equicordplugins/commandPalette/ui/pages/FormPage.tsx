@@ -187,7 +187,7 @@ export function FormPage({ spec, ctx, formRef }: FormPageProps) {
         try {
             await spec.submit(currentValues, ctx, extras);
         } catch (e) {
-            setError(e instanceof Error ? e.message : "Something went wrong.");
+            setError(e instanceof Error ? e.message : "問題が発生しました。");
         } finally {
             setSubmitting(false);
         }

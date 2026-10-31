@@ -58,15 +58,15 @@ function CreateDecorationModal(props: RenderModalProps) {
     return <Modal
         {...props}
         size="lg"
-        title="Create Decoration"
+        title="デコレーションを作成"
         actions={[
             {
-                text: "Cancel",
+                text: "キャンセル",
                 variant: "secondary",
                 onClick: props.onClose
             },
             {
-                text: "Submit for Review",
+                text: "審査に提出",
                 variant: "primary",
                 onClick: () => {
                     setSubmitting(true);
@@ -80,37 +80,37 @@ function CreateDecorationModal(props: RenderModalProps) {
         <div className={cl("create-decoration-modal-content", DecorationModalClasses.modal)}>
             <ErrorBoundary>
                 <Card variant="warning">
-                    Make sure your decoration does not violate <Link
+                    提出する前に、デコレーションが<Link
                         href="https://github.com/decor-discord/.github/blob/main/GUIDELINES.md"
                     >
-                        the guidelines
-                    </Link> before submitting it.
+                        ガイドライン
+                    </Link>に違反していないか確認してください。
                 </Card>
                 <div className={cl("create-decoration-modal-form-preview-container")}>
                     <div className={cl("create-decoration-modal-form")}>
                         {error !== null && <Paragraph size="xs" style={{ color: "var(--text-danger, var(--text-default))" }}>{error.message}</Paragraph>}
                         <section>
-                            <Heading>File</Heading>
+                            <Heading>ファイル</Heading>
                             <FileUpload
                                 filename={file?.name}
-                                placeholder="Choose a file"
-                                buttonText="Browse"
+                                placeholder="ファイルを選択"
+                                buttonText="参照"
                                 filters={[{ name: "Decoration file", extensions: ["png", "apng"] }]}
                                 onFileSelect={setFile}
                             />
                             <Paragraph className={Margins.top8}>
-                                File should be APNG or PNG.
+                                ファイルは APNG または PNG にしてください。
                             </Paragraph>
                         </section>
                         <section>
-                            <Heading>Name</Heading>
+                            <Heading>名前</Heading>
                             <TextInput
                                 placeholder="Companion Cube"
                                 value={name}
                                 onChange={setName}
                             />
                             <Paragraph className={Margins.top8}>
-                                This name will be used when referring to this decoration.
+                                この名前は、このデコレーションを指すときに使われます。
                             </Paragraph>
                         </section>
                     </div>

@@ -120,7 +120,7 @@ const patchMessageContextMenu: NavContextMenuPatchCallback = (
             <Menu.MenuItem
                 id={TOGGLE_DELETE_STYLE_ID}
                 key={TOGGLE_DELETE_STYLE_ID}
-                label="Toggle Deleted Highlight"
+                label="削除ハイライトの切り替え"
                 leadingAccessory={{ type: "icon", icon: EyeIcon }}
                 action={() => domElement.classList.toggle("messagelogger-deleted")}
             />,
@@ -135,7 +135,7 @@ const patchMessageContextMenu: NavContextMenuPatchCallback = (
             <Menu.MenuItem
                 id={TOGGLE_DIFF_VIEW_ID}
                 key={TOGGLE_DIFF_VIEW_ID}
-                label={isDisabled ? "Enable Diff View" : "Disable Diff View"}
+                label={isDisabled ? "差分表示を有効化" : "差分表示を無効化"}
                 color="danger"
                 action={() => {
                     if (isDisabled) disabledDiffMessages.delete(id);
@@ -153,9 +153,9 @@ const patchMessageContextMenu: NavContextMenuPatchCallback = (
     let label;
 
     if (!isPluginEnabled("MessageLoggerEnhanced")) {
-        label = "Clear Message History";
+        label = "メッセージ履歴を消去";
     } else {
-        label = "Remove Message (Temporary)";
+        label = "メッセージを削除（一時的）";
     }
 
     children.push(
@@ -183,7 +183,7 @@ const patchChannelContextMenu: NavContextMenuPatchCallback = (
     group.push(
         <Menu.MenuItem
             id="vc-ml-clear-channel"
-            label="Clear Message Log"
+            label="メッセージログを消去"
             color="danger"
             action={() => {
                 messages.forEach(msg => {
@@ -473,7 +473,7 @@ export default definePlugin({
                 return null;
 
             return {
-                label: "Clear history",
+                label: "履歴を消去",
                 icon: HistoryIcon,
                 onClick: () => {
                     const latest = MessageStore.getMessage(message.channel_id, message.id) as MLMessage | undefined;
@@ -726,20 +726,20 @@ export default definePlugin({
             6,
             "count",
             {
-                "=0": ["No deleted messages"],
+                "=0": ["削除されたメッセージはありません"],
                 one: [
                     [
                         1,
                         "count"
                     ],
-                    " deleted message"
+                    "件の削除されたメッセージ"
                 ],
                 other: [
                     [
                         1,
                         "count"
                     ],
-                    " deleted messages"
+                    "件の削除されたメッセージ"
                 ]
             },
             0,

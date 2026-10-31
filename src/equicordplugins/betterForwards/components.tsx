@@ -55,7 +55,7 @@ function GuildIcon({ guild }: { guild: Guild | BasicGuild | GuildProfile; }) {
     );
 
     return icon ? (
-        <img src={src} alt={`Server icon for ${name}`} className={cl("guild-icon")} />
+        <img src={src} alt={`${name} のサーバーアイコン`} className={cl("guild-icon")} />
     ) : (
         <div className={cl("guild-acronym")}>{getGuildAcronym(guild)}</div>
     );
@@ -71,7 +71,7 @@ function WidgetIcon({ guildId, name }: { guildId: string; name: string; }) {
             width={DiscordIconSizes.xs}
             height={DiscordIconSizes.xs}
             role="img"
-            aria-label={`Server icon for ${name}`}
+            aria-label={`${name} のサーバーアイコン`}
             className={cl("widget-guild-icon")}
         >
             <image href={src} width={300} height={160} x={0} y={0} />
@@ -290,7 +290,7 @@ export function AttachmentPicker({ message, opts, setOpts, hasOpts, defaultOpts 
 
     return (
         <TagGroup
-            label="Message attachments"
+            label="メッセージの添付ファイル"
             selectionMode="multiple"
             size="sm"
             items={items}

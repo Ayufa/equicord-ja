@@ -51,7 +51,7 @@ export const settings = definePluginSettings({
     },
     tryDiscordHighlighter: {
         type: OptionType.SELECT,
-        displayName: "Try Discord's highlighter",
+        displayName: "Discordのハイライターを試す",
         description: "より軽量な Discord デフォルトのハイライターとテーマを使用する。",
         options: [
             {
@@ -119,9 +119,9 @@ export const settings = definePluginSettings({
         isValid(value) {
             if (!value) return true;
             const url = parseUrl(value);
-            if (!url) return "Must be a valid URL";
+            if (!url) return "有効なURLである必要があります";
 
-            if (!url.pathname.endsWith(".json")) return "Must be a json file";
+            if (!url.pathname.endsWith(".json")) return "JSONファイルである必要があります";
 
             return true;
         },

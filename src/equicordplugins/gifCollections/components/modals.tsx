@@ -19,21 +19,21 @@ import { cl, stripPrefix } from "../utils/misc";
 
 export function openCollectionInfoModal(collection: Collection) {
     openModal(props => (
-        <InfoModal props={props} title="Collection Information" rows={[
-            { label: "Name", value: stripPrefix(collection.name) },
-            { label: "Gifs", value: String(collection.gifs.length) },
-            { label: "Created At", value: collection.createdAt ? new Date(collection.createdAt).toLocaleString() : "Unknown" },
-            { label: "Last Updated", value: collection.lastUpdated ? new Date(collection.lastUpdated).toLocaleString() : "Unknown" },
+        <InfoModal props={props} title="コレクション情報" rows={[
+            { label: "名前", value: stripPrefix(collection.name) },
+            { label: "GIF", value: String(collection.gifs.length) },
+            { label: "作成日時", value: collection.createdAt ? new Date(collection.createdAt).toLocaleString() : "Unknown" },
+            { label: "最終更新", value: collection.lastUpdated ? new Date(collection.lastUpdated).toLocaleString() : "Unknown" },
         ]} />
     ));
 }
 
 export function openGifInfoModal(gif: Gif) {
     openModal(props => (
-        <InfoModal props={props} title="Information" rows={[
-            { label: "Added At", value: gif.addedAt ? new Date(gif.addedAt).toLocaleString() : "Unknown" },
-            { label: "Width", value: String(gif.width) },
-            { label: "Height", value: String(gif.height) },
+        <InfoModal props={props} title="情報" rows={[
+            { label: "追加日時", value: gif.addedAt ? new Date(gif.addedAt).toLocaleString() : "Unknown" },
+            { label: "幅", value: String(gif.width) },
+            { label: "高さ", value: String(gif.height) },
         ]} />
     ));
 }
@@ -57,7 +57,7 @@ function InfoModal({ props, title, rows }: { props: RenderModalProps; title: str
             size="sm"
             title={title}
             actions={[
-                { text: "Close", variant: "secondary", onClick: props.onClose }
+                { text: "閉じる", variant: "secondary", onClick: props.onClose }
             ]}
         >
             <section>
@@ -77,12 +77,12 @@ function MoveToCollectionModal({ props, gifId }: { props: RenderModalProps; gifI
         <Modal
             {...props}
             size="sm"
-            title="Move To Collection"
+            title="コレクションへ移動"
             actions={[
-                { text: "Close", variant: "secondary", onClick: props.onClose }
+                { text: "閉じる", variant: "secondary", onClick: props.onClose }
             ]}
         >
-            <Heading style={{ marginBottom: "10px" }}>Select a collection to move the item to</Heading>
+            <Heading style={{ marginBottom: "10px" }}>アイテムの移動先コレクションを選択してください</Heading>
             <div className={cl("buttons")}>
                 {cache_collections
                     .filter(col => col.name !== getItemCollectionNameFromId(gifId))
@@ -120,13 +120,13 @@ function CreateCollectionModal({ props, gif }: { props: RenderModalProps; gif: G
         <Modal
             {...props}
             size="sm"
-            title="Create Collection"
+            title="コレクションを作成"
             actions={[
-                { text: "Create", onClick: onSubmit, disabled: !name.length, variant: "primary" }
+                { text: "作成", onClick: onSubmit, disabled: !name.length, variant: "primary" }
             ]}
         >
             <form onSubmit={onSubmit}>
-                <Heading className={cl("rename-text")}>Collection Name</Heading>
+                <Heading className={cl("rename-text")}>コレクション名</Heading>
                 <TextInput onChange={setName} />
             </form>
         </Modal>
@@ -150,15 +150,15 @@ function RenameCollectionModal({ props, name }: { props: RenderModalProps; name:
         <Modal
             {...props}
             size="sm"
-            title="Rename Collection"
+            title="コレクションの名前を変更"
             actions={[
-                { text: "Rename", onClick: onSubmit, disabled: !newName.length || tooLong, variant: "primary" }
+                { text: "名前を変更", onClick: onSubmit, disabled: !newName.length || tooLong, variant: "primary" }
             ]}
         >
             <form onSubmit={onSubmit}>
-                <Paragraph className={cl("rename-text")}>New Collection Name</Paragraph>
+                <Paragraph className={cl("rename-text")}>新しいコレクション名</Paragraph>
                 <TextInput value={newName} className={classes(cl("rename-input"), tooLong ? cl("input-warning") : "")} onChange={setNewName} />
-                {tooLong && <Paragraph className={cl("warning-text")}>Name can't be longer than 24 characters</Paragraph>}
+                {tooLong && <Paragraph className={cl("warning-text")}>名前は24文字以内にしてください</Paragraph>}
             </form>
         </Modal>
     );

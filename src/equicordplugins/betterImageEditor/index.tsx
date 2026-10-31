@@ -11,7 +11,7 @@ import { Button } from "@components/Button";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { EquicordDevs } from "@utils/constants";
 import { Logger } from "@utils/Logger";
-import { classes, pluralise } from "@utils/misc";
+import { classes } from "@utils/misc";
 import definePlugin, { OptionType } from "@utils/types";
 import { chooseFile, saveFile } from "@utils/web";
 import { Alerts, React, showToast, useCallback, useEffect, useRef, useState } from "@webpack/common";
@@ -79,14 +79,14 @@ const settings = definePluginSettings({
             <Button
                 variant="secondary"
                 onClick={() => Alerts.show({
-                    title: "Forget every remembered crop?",
-                    body: "Your pictures stay. Each one opens unframed from now on, until you crop it again.",
+                    title: "記憶した切り抜きをすべて忘れますか？",
+                    body: "画像は残ります。今後は切り抜き直すまで、フレームなしで開くようになります。",
                     confirmColor: "danger",
-                    confirmText: "Forget",
-                    cancelText: "Cancel",
+                    confirmText: "忘れる",
+                    cancelText: "キャンセル",
                     onConfirm: () => forgetCrops()
                         .then(count => showToast({
-                            text: count ? `Forgot the framing on ${pluralise(count, "picture")}` : "Nothing was framed",
+                            text: count ? `${count} 枚の画像のフレーミングを解除しました` : "フレーミングされた画像はありませんでした",
                             variant: "success"
                         }))
                         .catch(err => logger.error("could not forget the remembered crops", err))
@@ -111,8 +111,8 @@ const settings = definePluginSettings({
         description: "画像とそのフレーミングを別のデバイスへ引き継ぎます。",
         component: () => (
             <div className={cl("buttons")}>
-                <Button variant="secondary" onClick={exportLibrary}>Export to a file</Button>
-                <Button variant="secondary" onClick={importLibrary}>Import from a file</Button>
+                <Button variant="secondary" onClick={exportLibrary}>ファイルにエクスポート</Button>
+                <Button variant="secondary" onClick={importLibrary}>ファイルからインポート</Button>
             </div>
         )
     },
@@ -123,11 +123,11 @@ const settings = definePluginSettings({
             <Button
                 variant="secondary"
                 onClick={() => Alerts.show({
-                    title: "Clear saved pictures?",
-                    body: "Every picture you have saved here goes, along with the crop remembered for each one. Discord's own archive and your current avatar and banner are not touched.",
+                    title: "保存した画像をクリアしますか？",
+                    body: "ここに保存した画像はすべて消え、それぞれに記憶された切り抜きも消えます。Discord 自体のアーカイブと現在のアイコン・バナーには影響しません。",
                     confirmColor: "danger",
-                    confirmText: "Clear",
-                    cancelText: "Cancel",
+                    confirmText: "クリア",
+                    cancelText: "キャンセル",
                     onConfirm: () => clear().catch(err => logger.error("could not clear the library", err))
                 })}
             >
@@ -166,7 +166,7 @@ async function exportLibrary() {
         else saveFile(new File([data], FILENAME, { type: "application/json" }));
     } catch (err) {
         logger.error("could not export the library", err);
-        showToast({ text: "Could not export your pictures", variant: "critical" });
+        showToast({ text: "画像をエクスポートできませんでした", variant: "critical" });
     }
 }
 
@@ -186,12 +186,12 @@ async function importLibrary() {
 
         const added = await importAll(json, settings.store.librarySize);
         showToast({
-            text: added ? `Added ${pluralise(added, "picture")}` : "Nothing new in that file",
+            text: added ? `${added} 枚の画像を追加しました` : "そのファイルに新しい画像はありません",
             variant: "success"
         });
     } catch (err) {
         logger.error("could not import the library", err);
-        showToast({ text: "Could not read that file", variant: "critical" });
+        showToast({ text: "そのファイルを読み込めませんでした", variant: "critical" });
     }
 }
 
@@ -247,11 +247,11 @@ function useForget(bump: () => void) {
         if (immediate) return void run();
 
         Alerts.show({
-            title: "Remove this picture?",
+            title: "この画像を削除しますか？",
             body: `${entry.name} goes from your saved pictures, along with the crop remembered for it.`,
             confirmColor: "danger",
-            confirmText: "Remove",
-            cancelText: "Cancel",
+            confirmText: "削除",
+            cancelText: "キャンセル",
             onConfirm: run
         });
     }, [bump]);
@@ -325,7 +325,7 @@ function PickerShelf({ kind, open, complete, maxSize }: {
 
     const onPick = useCallback(async (entry: Entry) => {
         const blob = await getFile(entry.id);
-        if (!blob) return showToast({ text: "That picture is missing", variant: "critical" });
+        if (!blob) return showToast({ text: "その画像が見つかりません", variant: "critical" });
 
         const file = new File([blob], entry.name, { type: blob.type });
         await touch(entry.id);
@@ -345,7 +345,7 @@ function PickerShelf({ kind, open, complete, maxSize }: {
     }, [bump]);
 
     const accept = useCallback(async (file: File) => {
-        if (maxSize && file.size > maxSize) return showToast({ text: "That picture is too big for Discord", variant: "critical" });
+        if (maxSize && file.size > maxSize) return showToast({ text: "その画像は Discord には大きすぎます", variant: "critical" });
 
         try {
             const entry = await add(file, kind, "original", settings.store.librarySize);
@@ -353,7 +353,7 @@ function PickerShelf({ kind, open, complete, maxSize }: {
             await hand(entry.id, file, settings.store.rememberCrop ? entry.crop ?? null : null);
         } catch (err) {
             logger.error("could not take that picture", err);
-            showToast({ text: "Could not use that picture", variant: "critical" });
+            showToast({ text: "その画像を使用できませんでした", variant: "critical" });
         }
     }, [kind, hand, bump, maxSize]);
 
@@ -433,7 +433,7 @@ function EditorShelf({ Original, ownProps }: { Original: React.ComponentType<Edi
             await show(entry.id, file, settings.store.rememberCrop ? entry.crop ?? null : null);
         } catch (err) {
             logger.error("could not take that picture", err);
-            showToast({ text: "Could not use that picture", variant: "critical" });
+            showToast({ text: "その画像を使用できませんでした", variant: "critical" });
         }
     }, [kind, show, bump, setGroup]);
 
@@ -441,7 +441,7 @@ function EditorShelf({ Original, ownProps }: { Original: React.ComponentType<Edi
 
     const onPick = useCallback(async (entry: Entry) => {
         const blob = await getFile(entry.id);
-        if (!blob) return showToast({ text: "That picture is missing", variant: "critical" });
+        if (!blob) return showToast({ text: "その画像が見つかりません", variant: "critical" });
 
         await touch(entry.id);
         bump();
@@ -465,16 +465,16 @@ function EditorShelf({ Original, ownProps }: { Original: React.ComponentType<Edi
         };
         const run = () => save().catch(err => {
             logger.error("could not keep the cropped copy", err);
-            showToast({ text: "Could not keep the cropped copy", variant: "critical" });
+            showToast({ text: "切り抜いたコピーを保持できませんでした", variant: "critical" });
         });
 
         if (!settings.store.askBeforeSavingCropped) return void run();
 
         Alerts.show({
-            title: "Keep the cropped copy?",
-            body: `It goes on the ${croppedLabel(kind).toLowerCase()} shelf, next to your originals.`,
-            confirmText: "Keep",
-            cancelText: "No thanks",
+            title: "切り抜いたコピーを保持しますか？",
+            body: `${croppedLabel(kind)}の棚の、オリジナルの隣に置かれます。`,
+            confirmText: "保持する",
+            cancelText: "やめておく",
             onConfirm: run
         });
     }, [kind, bump]);

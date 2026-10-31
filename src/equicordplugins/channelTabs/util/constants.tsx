@@ -24,21 +24,21 @@ interface DynamicDropdownSettingOption {
 
 function AnimationSettings(): JSX.Element {
     const animationOptions: DynamicDropdownSettingOption[] = [
-        { label: "Tab Hover Effects (lift + scale)", value: "hover", selected: settings.store.animationHover },
-        { label: "Selected Tab Lift Animation", value: "selection", selected: settings.store.animationSelection },
-        { label: "Tab Drag & Drop (ghost + reorder)", value: "drag-drop", selected: settings.store.animationDragDrop },
-        { label: "Tab Enter/Exit Slides (creation + closing)", value: "enter-exit", selected: settings.store.animationEnterExit },
-        { label: "Icon Pop on Selection (icon scale-up)", value: "icon-pop", selected: settings.store.animationIconPop },
-        { label: "Close Button Rotation", value: "close-rotation", selected: settings.store.animationCloseRotation },
-        { label: "Plus Button Pulse", value: "plus-pulse", selected: settings.store.animationPlusPulse },
-        { label: "Mention Badge Glow", value: "mention-glow", selected: settings.store.animationMentionGlow },
-        { label: "Compact Mode Expansion", value: "compact-expand", selected: settings.store.animationCompactExpand },
-        { label: "Selected Tab Accent Border", value: "selected-border", selected: settings.store.animationSelectedBorder },
-        { label: "Selected Tab Background Color", value: "selected-background", selected: settings.store.animationSelectedBackground },
-        { label: "Tab Shadow Effects", value: "tab-shadows", selected: settings.store.animationTabShadows },
-        { label: "Tab Repositioning (smooth position changes)", value: "tab-positioning", selected: settings.store.animationTabPositioning },
-        { label: "Resize Handle Fade", value: "resize-handle", selected: settings.store.animationResizeHandle },
-        { label: "Active Quests Gradient", value: "quests-active", selected: settings.store.animationQuestsActive }
+        { label: "タブのホバーエフェクト（浮き上がり＋拡大）", value: "hover", selected: settings.store.animationHover },
+        { label: "選択中タブの浮き上がりアニメーション", value: "selection", selected: settings.store.animationSelection },
+        { label: "タブのドラッグ＆ドロップ（ゴースト＋並び替え）", value: "drag-drop", selected: settings.store.animationDragDrop },
+        { label: "タブの出現/消滅スライド（作成＋閉じる）", value: "enter-exit", selected: settings.store.animationEnterExit },
+        { label: "選択時のアイコンポップ（アイコン拡大）", value: "icon-pop", selected: settings.store.animationIconPop },
+        { label: "閉じるボタンの回転", value: "close-rotation", selected: settings.store.animationCloseRotation },
+        { label: "プラスボタンのパルス", value: "plus-pulse", selected: settings.store.animationPlusPulse },
+        { label: "メンションバッジの発光", value: "mention-glow", selected: settings.store.animationMentionGlow },
+        { label: "コンパクトモードの展開", value: "compact-expand", selected: settings.store.animationCompactExpand },
+        { label: "選択中タブのアクセント枠線", value: "selected-border", selected: settings.store.animationSelectedBorder },
+        { label: "選択中タブの背景色", value: "selected-background", selected: settings.store.animationSelectedBackground },
+        { label: "タブの影エフェクト", value: "tab-shadows", selected: settings.store.animationTabShadows },
+        { label: "タブの位置変更（滑らかな移動）", value: "tab-positioning", selected: settings.store.animationTabPositioning },
+        { label: "リサイズハンドルのフェード", value: "resize-handle", selected: settings.store.animationResizeHandle },
+        { label: "アクティブなクエストのグラデーション", value: "quests-active", selected: settings.store.animationQuestsActive }
     ];
 
     const [currentValue, setCurrentValue] = useState(animationOptions.filter(option => option.selected).map(option => option.value));
@@ -87,13 +87,13 @@ function AnimationSettings(): JSX.Element {
 
     return (
         <section>
-            <Heading>Animation Controls</Heading>
+            <Heading>アニメーション設定</Heading>
             <Paragraph>
                 Enable or disable specific animations for channel tabs. Each option can be toggled independently.
             </Paragraph>
             <div style={{ marginTop: "8px" }}>
                 <SearchableSelect
-                    placeholder="Select which animations to enable..."
+                    placeholder="有効にするアニメーションを選択..."
                     maxVisibleItems={12}
                     clearable={true}
                     multi={true}

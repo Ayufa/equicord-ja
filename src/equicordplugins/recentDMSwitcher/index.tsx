@@ -77,9 +77,9 @@ const settings = definePluginSettings({
                     cycleSnapshot = [];
                     cycleIndex = -1;
                     await DataStore.set(STORAGE_KEY, []);
-                    showToast({ text: "Cleared RDMS history", variant: "success" });
+                    showToast({ text: "RDMS の履歴をクリアしました", variant: "success" });
                 }}>
-                "Clear RDMS History
+                "RDMS の履歴をクリア
             </Button>
         )
     }
@@ -318,7 +318,7 @@ function showCycleToast() {
     const id = cycleSnapshot[cycleIndex];
     if (!id) return;
     const { name } = getDisplayForChannel(id);
-    showToast({ text: `Switching to: ${name}`, position: "bottom", duration: settings.store.toastDurationMs });
+    showToast({ text: `切り替え先: ${name}`, position: "bottom", duration: settings.store.toastDurationMs });
 }
 
 export default definePlugin({

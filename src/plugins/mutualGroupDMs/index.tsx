@@ -194,7 +194,7 @@ export default definePlugin({
                     : (
                         <div className={ProfileListClasses.empty}>
                             <div className={ProfileListClasses.textContainer}>
-                                <Paragraph size="md" weight="medium" style={{ color: "var(--text-strong)" }}>You don't have any group chats in common</Paragraph>
+                                <Paragraph size="md" weight="medium" style={{ color: "var(--text-strong)" }}>共通のグループチャットはありません</Paragraph>
                             </div>
                         </div>
                     )

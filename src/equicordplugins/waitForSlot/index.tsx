@@ -41,7 +41,7 @@ const ChannelContext: NavContextMenuPatchCallback = (children, { channel }) => {
     children.splice(-1, 0,
         <Menu.MenuItem
             id="vc-wait-for-slot"
-            label={isWaiting ? "Leave Queue" : "Join Queue"}
+            label={isWaiting ? "キューを離れる" : "キューに参加"}
             action={() => { waitingChannelId = isWaiting ? null : channel.id; }}
         />
     );
@@ -53,7 +53,7 @@ function promptVoiceChannel(channel: Channel | null | undefined): boolean {
     if (Object.keys(VoiceStateStore.getVoiceStatesForChannel(channel.id)).length < channel.userLimit) return false;
     if (waitingChannelId === channel.id) return true;
 
-    showNotice(`Voice channel ${channel.name} is full. Wait for a slot?`, "Wait", () => {
+    showNotice(`ボイスチャンネル ${channel.name} は満員です。空きを待ちますか？`, "待つ", () => {
         popNotice();
         waitingChannelId = channel.id;
     });
@@ -99,7 +99,7 @@ export default definePlugin({
                 if (settings.store.autoJoin) {
                     ChannelActions.selectVoiceChannel(channelId);
                 } else {
-                    showNotice(`Hey, someone just left #${channel.name} and there's a spot for you now!`, "Join", () => {
+                    showNotice(`#${channel.name} で誰かが退出し、空きができました！`, "参加", () => {
                         popNotice();
                         ChannelActions.selectVoiceChannel(channelId);
                     });

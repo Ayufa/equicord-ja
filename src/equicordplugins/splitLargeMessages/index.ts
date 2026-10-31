@@ -110,7 +110,7 @@ function restoreUnsentContent(channelId: string, chunks: string[], sent: number)
     if (getCurrentChannel()?.id === channelId) {
         insertTextIntoChatInputBox(unsentContent);
     } else {
-        copyWithToast(unsentContent, "Unsent message parts copied to clipboard.");
+        copyWithToast(unsentContent, "未送信のメッセージ部分をクリップボードにコピーしました。");
     }
 }
 
@@ -120,7 +120,7 @@ const listener: MessageSendListener = async (channelId, message) => {
 
     const channel = ChannelStore.getChannel(channelId);
     if (!canSplitInChannel(channel)) {
-        showToast({ text: "Cannot split this message because of the channel's slowmode.", variant: "critical" });
+        showToast({ text: "チャンネルの低速モードのため、このメッセージを分割できません。", variant: "critical" });
         return { cancel: true };
     }
 
@@ -130,7 +130,7 @@ const listener: MessageSendListener = async (channelId, message) => {
     const sent = await sendChunks(channelId, chunks, getSendDelay(channel));
     if (sent !== chunks.length) {
         restoreUnsentContent(channelId, chunks, sent);
-        showToast({ text: `Only ${sent}/${chunks.length} message parts were sent.`, variant: "critical" });
+        showToast({ text: `${chunks.length}件中${sent}件のメッセージ部分のみ送信されました。`, variant: "critical" });
     }
 
     return { cancel: true };

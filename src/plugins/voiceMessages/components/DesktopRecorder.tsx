@@ -46,7 +46,7 @@ export const VoiceRecorderDesktop: VoiceRecorder = ({ setAudioBlob, onRecordingC
                 if (buf)
                     setAudioBlob(new Blob([new Uint8Array(buf)], { type: "audio/ogg; codecs=opus" }));
                 else
-                    showToast({ text: "Failed to finish recording", variant: "critical" });
+                    showToast({ text: "録音の終了に失敗しました", variant: "critical" });
             }
             changeRecording(false);
         });
@@ -67,7 +67,7 @@ export const VoiceRecorderDesktop: VoiceRecorder = ({ setAudioBlob, onRecordingC
                     if (success)
                         changeRecording(true);
                     else
-                        showToast({ text: "Failed to start recording", variant: "critical" });
+                        showToast({ text: "録音の開始に失敗しました", variant: "critical" });
                 }
             );
         } else {
@@ -77,7 +77,7 @@ export const VoiceRecorderDesktop: VoiceRecorder = ({ setAudioBlob, onRecordingC
 
     return (
         <Button onClick={toggleRecording}>
-            {recording ? "Stop" : "Start"} recording
+            {recording ? "録音を停止" : "録音を開始"}
         </Button>
     );
 };
