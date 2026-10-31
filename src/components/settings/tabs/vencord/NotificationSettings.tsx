@@ -19,17 +19,17 @@ import { Modal, openModal, Select, Slider } from "@webpack/common";
 export function NotificationSection() {
     return (
         <section className={Margins.top16}>
-            <Heading>Notifications</Heading>
+            <Heading>通知</Heading>
             <Paragraph className={Margins.bottom8}>
-                Settings for Notifications sent by Vencord.
-                This does NOT include Discord notifications (messages, etc)
+                Vencord が送る通知の設定です。
+                Discord の通知 (メッセージなど) は含みません
             </Paragraph>
             <Flex>
                 <Button onClick={openNotificationSettingsModal}>
-                    Notification Settings
+                    通知設定
                 </Button>
                 <Button onClick={openNotificationLogModal}>
-                    View Notification Log
+                    通知ログを見る
                 </Button>
             </Flex>
         </section>
@@ -41,7 +41,7 @@ export function openNotificationSettingsModal() {
         <Modal
             {...props}
             size="lg"
-            title="Notification Settings"
+            title="通知設定"
         >
             <NotificationSettings />
         </Modal>
@@ -53,26 +53,26 @@ function NotificationSettings() {
 
     return (
         <>
-            <Heading tag="h5">Notification Style</Heading>
+            <Heading tag="h5">通知のスタイル</Heading>
             {settings.useNative !== "never" && Notification?.permission === "denied" && (
                 <ErrorCard style={{ padding: "1em" }} className={Margins.bottom8}>
-                    <Heading>Desktop Notification Permission denied</Heading>
-                    <Paragraph>You have denied Notification Permissions. Thus, Desktop notifications will not work!</Paragraph>
+                    <Heading>デスクトップ通知の権限が拒否されています</Heading>
+                    <Paragraph>通知の権限が拒否されているため、デスクトップ通知は動作しません。</Paragraph>
                 </ErrorCard>
             )}
             <Paragraph className={Margins.bottom8}>
-                Some plugins may show you notifications. These come in two styles:
+                一部のプラグインは通知を表示することがあります。通知には2つのスタイルがあります。
                 <ul>
-                    <li><strong>Equicord Notifications</strong>: These are in-app notifications</li>
-                    <li><strong>Desktop Notifications</strong>: Native Desktop notifications (like when you get a ping)</li>
+                    <li><strong>Equicord 通知</strong>：アプリ内通知です</li>
+                    <li><strong>デスクトップ通知</strong>：OS 標準のデスクトップ通知です (メンションされたときのような通知)</li>
                 </ul>
             </Paragraph>
             <Select
-                placeholder="Notification Style"
+                placeholder="通知のスタイル"
                 options={[
-                    { label: "Only use Desktop notifications when Discord is not focused", value: "not-focused", default: true },
-                    { label: "Always use Desktop notifications", value: "always" },
-                    { label: "Always use Equicord notifications", value: "never" },
+                    { label: "Discord がフォーカスされていないときだけデスクトップ通知を使う", value: "not-focused", default: true },
+                    { label: "常にデスクトップ通知を使う", value: "always" },
+                    { label: "常に Equicord 通知を使う", value: "never" },
                 ] satisfies Array<{ value: typeof settings["useNative"]; } & Record<string, any>>}
                 closeOnSelect={true}
                 select={v => settings.useNative = v}
@@ -80,28 +80,28 @@ function NotificationSettings() {
                 serialize={identity}
             />
 
-            <Heading className={Margins.top16 + " " + Margins.bottom8}>Notification Position</Heading>
+            <Heading className={Margins.top16 + " " + Margins.bottom8}>通知の位置</Heading>
             <Select
                 isDisabled={settings.useNative === "always"}
-                placeholder="Notification Position"
+                placeholder="通知の位置"
                 options={[
-                    { label: "Bottom Right", value: "bottom-right", default: true },
-                    { label: "Top Right", value: "top-right" },
+                    { label: "右下", value: "bottom-right", default: true },
+                    { label: "右上", value: "top-right" },
                 ] satisfies Array<{ value: typeof settings["position"]; } & Record<string, any>>}
                 select={v => settings.position = v}
                 isSelected={v => v === settings.position}
                 serialize={identity}
             />
 
-            <Heading className={Margins.top16 + " " + Margins.bottom8}>Missed Notification Count</Heading>
+            <Heading className={Margins.top16 + " " + Margins.bottom8}>見逃した通知の件数</Heading>
             <FormSwitch
-                title="When refocusing discord a notification will popup with how you missed"
+                title="Discord にフォーカスを戻したとき、見逃した通知の件数をポップアップで知らせる"
                 value={settings.missed}
                 onChange={(v: boolean) => settings.missed = v}
             />
 
-            <Heading className={Margins.top16 + " " + Margins.bottom8}>Notification Timeout</Heading>
-            <Paragraph className={Margins.bottom16}>Set to 0s to never automatically time out</Paragraph>
+            <Heading className={Margins.top16 + " " + Margins.bottom8}>通知のタイムアウト</Heading>
+            <Paragraph className={Margins.bottom16}>0秒に設定すると、自動では消えなくなります</Paragraph>
             <Slider
                 disabled={settings.useNative === "always"}
                 markers={[0, 1000, 2500, 5000, 10_000, 20_000]}
@@ -114,10 +114,10 @@ function NotificationSettings() {
                 stickToMarkers={false}
             />
 
-            <Heading className={Margins.top16 + " " + Margins.bottom8}>Notification Log Limit</Heading>
+            <Heading className={Margins.top16 + " " + Margins.bottom8}>通知ログの上限</Heading>
             <Paragraph className={Margins.bottom16}>
-                The amount of notifications to save in the log until old ones are removed.
-                Set to <code>0</code> to disable Notification log and <code>∞</code> to never automatically remove old Notifications
+                古いものが削除されるまでに、ログへ保存しておく通知の数です。
+                <code>0</code> に設定すると通知ログが無効になり、<code>∞</code> に設定すると古い通知が自動で削除されなくなります
             </Paragraph>
             <Slider
                 markers={[0, 25, 50, 75, 100, 200]}

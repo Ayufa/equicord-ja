@@ -1081,7 +1081,7 @@ export default definePlugin({
     name: "FavoriteEmojiFirst",
     authors: [Devs.Aria, Devs.Ven, EquicordDevs.justjxke],
     tags: ["Emotes", "Customisation"],
-    description: "Puts your favorite emoji first in the emoji autocomplete and also has emoji alias.",
+    description: "お気に入りの絵文字を絵文字の自動補完の先頭に表示し、絵文字エイリアス機能も備えています。",
     dependencies: ["MessagePopoverAPI"],
     settings,
     contextMenus: {

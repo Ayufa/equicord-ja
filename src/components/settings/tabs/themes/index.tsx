@@ -41,11 +41,11 @@ enum ThemeFilter {
 }
 
 const filterOptions = [
-    { label: "Show All", value: ThemeFilter.All },
-    { label: "Online Themes", value: ThemeFilter.Online },
-    { label: "Local Themes", value: ThemeFilter.Local },
-    { label: "Enabled", value: ThemeFilter.Enabled },
-    { label: "Disabled", value: ThemeFilter.Disabled }
+    { label: "すべて表示", value: ThemeFilter.All },
+    { label: "オンラインテーマ", value: ThemeFilter.Online },
+    { label: "ローカルテーマ", value: ThemeFilter.Local },
+    { label: "有効", value: ThemeFilter.Enabled },
+    { label: "無効", value: ThemeFilter.Disabled }
 ];
 
 function inferThemeActivationMode(css: string) {
@@ -109,14 +109,14 @@ function CspErrorCard() {
 
     return (
         <ErrorCard className={classes(cl("error-card"), Margins.top16)}>
-            <Heading className={Margins.bottom8}>Blocked Resources</Heading>
+            <Heading className={Margins.bottom8}>ブロックされたリソース</Heading>
             <Paragraph className={Margins.bottom8}>
-                Some resources were blocked from disallowed domains. Move them to GitHub or Imgur, or allow trusted domains below.
+                一部のリソースが許可されていないドメインからブロックされました。GitHub や Imgur に移動するか、以下の信頼できるドメインを許可してください。
             </Paragraph>
 
             {allowableHosts.size > 1 && (
                 <Button size="small" className={Margins.bottom8} onClick={() => allowUrls(allowableUrls)}>
-                    Allow All ({allowableHosts.size} domains)
+                    すべて許可（{allowableHosts.size} 件のドメイン）
                 </Button>
             )}
 
@@ -124,14 +124,14 @@ function CspErrorCard() {
                 <div key={url} className="vc-settings-csp-row">
                     <Link href={url}>{url}</Link>
                     <Button size="small" variant="secondary" onClick={() => allowUrls([url])} disabled={!allowableUrls.includes(url)}>
-                        Allow
+                        許可
                     </Button>
                 </div>
             ))}
 
             {errors.some(isImgurHtmlDomain) && (
                 <Paragraph color="text-subtle" className={Margins.top8}>
-                    Imgur links should be direct links like <code>https://i.imgur.com/...</code>
+                    Imgur リンクは、次のような直接リンクにしてください: <code>https://i.imgur.com/...</code>
                 </Paragraph>
             )}
         </ErrorCard>
@@ -323,9 +323,9 @@ function ThemesTab() {
             setOnlineThemes(prev =>
                 prev?.map(t => t.link === link ? updatedTheme : t) ?? null
             );
-            showToast({ text: "Theme refreshed!", variant: "success" });
+            showToast({ text: "テーマを更新しました！", variant: "success" });
         } catch {
-            showToast({ text: "Failed to refresh theme", variant: "critical" });
+            showToast({ text: "テーマの更新に失敗しました", variant: "critical" });
         }
     }
 
@@ -348,7 +348,7 @@ function ThemesTab() {
                 URL.revokeObjectURL(url);
             }
         } catch {
-            showToast({ text: "Failed to download theme", variant: "critical" });
+            showToast({ text: "テーマのダウンロードに失敗しました", variant: "critical" });
         }
     }
 
@@ -431,14 +431,14 @@ function ThemesTab() {
         <SettingsTab>
             <CspErrorCard />
 
-            <Heading className={Margins.top16}>Theme Management</Heading>
+            <Heading className={Margins.top16}>テーマ管理</Heading>
             <Paragraph className={Margins.bottom16}>
-                Customize Discord's appearance with themes. Add local .css files or load themes directly from URLs. Themes with a cog wheel icon have customizable settings you can modify.
+                テーマで Discord の外観をカスタマイズできます。ローカルの .css ファイルを追加したり、URL から直接テーマを読み込んだりできます。歯車アイコンのあるテーマには、カスタマイズ可能な設定があります。
             </Paragraph>
 
-            <Heading>Quick Actions</Heading>
+            <Heading>クイックアクション</Heading>
             <Paragraph className={Margins.bottom16}>
-                Shortcuts for managing your themes. Open your themes folder to add new themes, use QuickCSS for quick style tweaks, or reload themes after making changes.
+                テーマ管理のショートカットです。テーマフォルダーを開いて新しいテーマを追加したり、QuickCSS でスタイルを手軽に調整したり、変更後にテーマを再読み込みしたりできます。
             </Paragraph>
 
             <QuickActionsSection
@@ -466,17 +466,17 @@ function ThemesTab() {
 
             <Divider className={Margins.top20} />
 
-            <Heading className={Margins.top20}>Installed Themes</Heading>
+            <Heading className={Margins.top20}>インストール済みテーマ</Heading>
             <Paragraph className={Margins.bottom8}>
-                Manage your themes here. Local themes load from your themes folder, online themes from URLs. Themes with a cog wheel icon have customizable settings.
+                ここでテーマを管理できます。ローカルテーマはテーマフォルダーから、オンラインテーマは URL から読み込まれます。歯車アイコンのあるテーマには、カスタマイズ可能な設定があります。
             </Paragraph>
             <Paragraph color="text-subtle" className={Margins.bottom16}>
-                {allThemes.length} theme{allThemes.length !== 1 ? "s" : ""} installed ({localCount} local, {onlineCount} online) · {enabledCount} enabled
+                {allThemes.length} 件のテーマ（ローカル {localCount} 件、オンライン {onlineCount} 件）をインストール済み · {enabledCount} 件が有効
             </Paragraph>
 
             <div className={cl("filter-row")}>
                 <TextInput
-                    placeholder="Search for a theme..."
+                    placeholder="テーマを検索…"
                     value={searchQuery}
                     onChange={setSearchQuery}
                 />
@@ -491,12 +491,12 @@ function ThemesTab() {
             </div>
 
             {userThemes === null ? (
-                <Paragraph color="text-muted" className={Margins.top16}>Loading themes...</Paragraph>
+                <Paragraph color="text-muted" className={Margins.top16}>テーマを読み込み中…</Paragraph>
             ) : filteredThemes.length === 0 ? (
                 <Paragraph color="text-muted" className={Margins.top16}>
                     {allThemes.length === 0
-                        ? "No themes installed yet. Add theme files to your themes folder or add an online theme above to get started."
-                        : "No themes match your search or filter criteria."
+                        ? "まだテーマがインストールされていません。テーマフォルダーにテーマファイルを追加するか、上のオンラインテーマを追加して始めましょう。"
+                        : "検索条件またはフィルター条件に一致するテーマがありません。"
                     }
                 </Paragraph>
             ) : (
@@ -520,7 +520,7 @@ function ThemesTab() {
                                     onPin={() => togglePinTheme(onlineTheme.link)}
                                     isPinned={settings.pinnedThemes.includes(onlineTheme.link)}
                                     themeLink={onlineTheme.link}
-                                    onCopyUrl={() => copyWithToast(onlineTheme.link, "Theme URL copied!")}
+                                    onCopyUrl={() => copyWithToast(onlineTheme.link, "テーマの URL をコピーしました！")}
                                     onRefresh={() => refreshOnlineTheme(onlineTheme.link)}
                                     onDownload={() => downloadTheme(onlineTheme.link, onlineTheme.name ?? "theme")}
                                     isLocal={false}
@@ -570,17 +570,17 @@ function ThemesTab() {
 function UserscriptThemesTab() {
     return (
         <SettingsTab>
-            <Heading className={Margins.top16}>Themes Not Supported</Heading>
+            <Heading className={Margins.top16}>テーマはサポートされていません</Heading>
             <Paragraph className={Margins.bottom8}>
-                Themes are not available on the Userscript version.
+                テーマは Userscript 版では利用できません。
             </Paragraph>
             <Paragraph color="text-subtle">
-                You can install themes using the <Link href={getStylusWebStoreUrl()}>Stylus extension</Link> instead.
+                代わりに <Link href={getStylusWebStoreUrl()}>Stylus 拡張機能</Link> を使ってテーマをインストールできます。
             </Paragraph>
         </SettingsTab>
     );
 }
 
 export default IS_USERSCRIPT
-    ? wrapTab(UserscriptThemesTab, "Themes")
-    : wrapTab(ThemesTab, "Themes");
+    ? wrapTab(UserscriptThemesTab, "テーマ")
+    : wrapTab(ThemesTab, "テーマ");

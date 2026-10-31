@@ -54,7 +54,7 @@ function validateUrl(url: string) {
         new URL(url);
         return true;
     } catch {
-        return "Invalid URL";
+        return "無効な URL";
     }
 }
 
@@ -64,10 +64,10 @@ const cloudBackendOptions = [
 ];
 
 const syncDirectionOptions = [
-    { label: "Two-way sync (changes go both directions)", value: "both" },
-    { label: "This device is the source (upload only)", value: "push" },
-    { label: "The cloud is the source (download only)", value: "pull" },
-    { label: "Do not sync automatically (manual sync via buttons below only)", value: "manual" }
+    { label: "双方向同期（変更は両方向に反映）", value: "both" },
+    { label: "このデバイスをソースにする（アップロードのみ）", value: "push" },
+    { label: "クラウドをソースにする（ダウンロードのみ）", value: "pull" },
+    { label: "自動同期しない（下のボタンで手動同期のみ）", value: "manual" }
 ];
 
 function CloudTab() {
@@ -91,20 +91,20 @@ function CloudTab() {
 
     return (
         <SettingsTab>
-            <Heading className={Margins.top16}>Cloud Integration</Heading>
+            <Heading className={Margins.top16}>クラウド連携</Heading>
             <Paragraph className={Margins.bottom16}>
-                Equicord's cloud integration allows you to sync your settings across multiple devices and Discord installations. Your data is securely stored and can be easily restored at any time.
+                Equicord のクラウド連携を使うと、複数のデバイスや Discord のインストール間で設定を同期できます。データは安全に保存され、いつでも簡単に復元できます。
             </Paragraph>
 
             <Notice.Info className={Margins.bottom16}>
-                We use our own <Link href="https://github.com/Equicord/Equicloud">Equicloud backend</Link> with enhanced features.
-                View our <Link href="https://equicord.org/cloud/policy">privacy policy</Link> to see what we store and how we use your data.
-                Equicloud is BSD 3.0 licensed, so you can self-host if preferred.
+                私たちは独自の <Link href="https://github.com/Equicord/Equicloud">Equicloud バックエンド</Link> を、機能を強化して使用しています。
+                何を保存し、データをどう使うかについては、<Link href="https://equicord.org/cloud/policy">プライバシーポリシー</Link> をご覧ください。
+                Equicloud は BSD 3.0 ライセンスなので、希望すればセルフホストもできます。
             </Notice.Info>
 
             <FormSwitch
-                title="Enable Cloud Integration"
-                description="Connect to the cloud backend for settings synchronization. This will request authorization if you haven't set up cloud integration yet."
+                title="クラウド連携を有効化"
+                description="設定同期のためにクラウドバックエンドに接続します。クラウド連携をまだ設定していない場合は、承認を求められます。"
                 value={isAuthenticated}
                 onChange={v => {
                     if (v)
@@ -117,9 +117,9 @@ function CloudTab() {
 
             <Divider className={Margins.top20} />
 
-            <Heading className={Margins.top20}>Cloud Backend</Heading>
+            <Heading className={Margins.top20}>クラウドバックエンド</Heading>
             <Paragraph className={Margins.bottom16}>
-                Choose which cloud backend to use for storing your settings. You can switch between Equicord's and Vencord's cloud services, or use a self-hosted instance.
+                設定の保存に使うクラウドバックエンドを選んでください。Equicord と Vencord のクラウドサービスを切り替えたり、セルフホストしたインスタンスを使ったりできます。
             </Paragraph>
 
             <div className={Margins.bottom8}>
@@ -155,21 +155,21 @@ function CloudTab() {
                 >
                     <Flex gap="8px" alignItems="center">
                         <RefreshIcon color="currentColor" />
-                        Reauthorize
+                        再承認
                     </Flex>
                 </Button>
             </Flex>
 
             <Divider className={Margins.top20} />
 
-            <Heading className={Margins.top20}>Settings Sync</Heading>
+            <Heading className={Margins.top20}>設定の同期</Heading>
             <Paragraph className={Margins.bottom16}>
-                Synchronize your Equicord settings to the cloud. This makes it easy to keep your configuration consistent across multiple devices without manual import/export.
+                Equicord の設定をクラウドに同期します。手動のインポート/エクスポートなしで、複数のデバイス間で構成を簡単に統一できます。
             </Paragraph>
 
             <FormSwitch
-                title="Enable Settings Sync"
-                description="When enabled, your settings can be synced to and from the cloud. Use the actions below to manually sync."
+                title="設定の同期を有効化"
+                description="有効にすると、設定をクラウドとの間で同期できます。下の操作で手動同期もできます。"
                 value={cloud.settingsSync}
                 onChange={v => { cloud.settingsSync = v; }}
                 disabled={!isAuthenticated}
@@ -178,9 +178,9 @@ function CloudTab() {
 
             <Divider className={Margins.top20} />
 
-            <Heading className={Margins.top20}>Sync Rules for This Device</Heading>
+            <Heading className={Margins.top20}>このデバイスの同期ルール</Heading>
             <Paragraph className={Margins.bottom16}>
-                This setting controls how settings move between <strong>this device</strong> and the cloud. You can let changes flow both ways, or choose one place to be the main source of truth.
+                この設定は、<strong>このデバイス</strong> とクラウドの間で設定がどう移動するかを制御します。変更を双方向に流すことも、どちらか一方を主要なソースにすることもできます。
             </Paragraph>
 
             <Select
@@ -202,7 +202,7 @@ function CloudTab() {
                 >
                     <Flex gap="8px" alignItems="center">
                         <CloudUploadIcon />
-                        Sync to Cloud
+                        クラウドへ同期
                     </Flex>
                 </Button>
                 <Button
@@ -212,22 +212,22 @@ function CloudTab() {
                 >
                     <Flex gap="8px" alignItems="center">
                         <CloudDownloadIcon />
-                        Sync from Cloud
+                        クラウドから同期
                     </Flex>
                 </Button>
             </Flex>
 
             {!isAuthenticated && (
                 <Notice.Warning className={Margins.top8}>
-                    Enable cloud integration above to use settings sync features.
+                    設定同期機能を使うには、上のクラウド連携を有効にしてください。
                 </Notice.Warning>
             )}
 
             <Divider className={Margins.top20} />
 
-            <Heading className={Margins.top20}>Danger Zone</Heading>
+            <Heading className={Margins.top20}>危険な操作</Heading>
             <Paragraph className={Margins.bottom16}>
-                Permanently delete all your data from the cloud. This action cannot be undone and will remove all synced settings and any other data stored on the cloud backend.
+                クラウドからすべてのデータを完全に削除します。この操作は取り消せず、同期されたすべての設定と、クラウドバックエンドに保存されたその他のデータが削除されます。
             </Paragraph>
 
             <Flex gap="8px">
@@ -239,7 +239,7 @@ function CloudTab() {
                 >
                     <Flex gap="8px" alignItems="center">
                         <TrashIcon color="currentColor" />
-                        Delete Cloud Settings
+                        クラウド設定を削除
                     </Flex>
                 </Button>
                 <Button
@@ -247,17 +247,17 @@ function CloudTab() {
                     size="medium"
                     disabled={!isAuthenticated}
                     onClick={() => Alerts.show({
-                        title: "Delete Cloud Account",
-                        body: "Are you sure you want to permanently delete your cloud account and all associated data? This action cannot be undone.",
+                        title: "クラウドアカウントを削除",
+                        body: "クラウドアカウントと関連するすべてのデータを完全に削除してもよろしいですか？この操作は取り消せません。",
                         onConfirm: eraseAllCloudData,
-                        confirmText: "Delete Account",
+                        confirmText: "アカウントを削除",
                         confirmColor: "vc-cloud-erase-data-danger-btn",
-                        cancelText: "Cancel"
+                        cancelText: "キャンセル"
                     })}
                 >
                     <Flex gap="8px" alignItems="center">
                         <SkullIcon />
-                        Delete Cloud Account
+                        クラウドアカウントを削除
                     </Flex>
                 </Button>
             </Flex>
@@ -265,4 +265,4 @@ function CloudTab() {
     );
 }
 
-export default wrapTab(CloudTab, "Cloud");
+export default wrapTab(CloudTab, "クラウド");

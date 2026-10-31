@@ -145,7 +145,7 @@ function playSample(type: string) {
 migrateSettingsFromPlugin("VcNarrator", "VcNarratorCustom", "enabled");
 export default definePlugin({
     name: "VcNarrator",
-    description: "Announces when users join, leave, or move voice channels via narrator",
+    description: "ユーザーがボイスチャンネルに参加・退出・移動したことを、ナレーションで読み上げます",
     tags: ["Voice", "Accessibility"],
     authors: [Devs.Ven],
     reporterTestable: ReporterTestable.None,

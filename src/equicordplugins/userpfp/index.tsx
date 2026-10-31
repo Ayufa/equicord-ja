@@ -64,7 +64,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "UserPFP",
-    description: "Allows you to set local static or animated avatars for yourself and other users",
+    description: "自分や他のユーザーに、ローカルの静止画またはアニメーションアバターを設定できます",
     tags: ["Appearance", "Customisation", "Servers"],
     authors: [EquicordDevs.nexpid, Devs.thororen, EquicordDevs.soapphia, EquicordDevs.sketchmyname],
     settings,

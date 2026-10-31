@@ -14,7 +14,7 @@ let recoder: MediaRecorder;
 
 export default definePlugin({
     name: "ScreenRecorder",
-    description: "Adds an option to record your screen and upload the recording to the channel",
+    description: "画面を録画して、その録画をチャンネルにアップロードするオプションを追加します",
     tags: ["Chat"],
     authors: [Devs.AutumnVN],
     contextMenus: {

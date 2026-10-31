@@ -448,7 +448,7 @@ function onToggle(e: KeyboardEvent) {
 
 export default definePlugin({
     name: "ElementHighlighter",
-    description: "Highlight and inspect elements easily.",
+    description: "要素を簡単にハイライトして調査できます。",
     tags: ["Developers"],
     authors: [Devs.prism],
     settings,

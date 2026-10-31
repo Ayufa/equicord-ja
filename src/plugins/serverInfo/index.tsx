@@ -51,7 +51,7 @@ export const settings = definePluginSettings({
 
 export default definePlugin({
     name: "ServerInfo",
-    description: "Allows you to view info about a server",
+    description: "サーバーの情報を表示できるようにします",
     tags: ["Servers", "Utility"],
     authors: [Devs.Ven, Devs.Nuckyz, EquicordDevs.Z1xus],
     dependencies: ["DynamicImageModalAPI"],

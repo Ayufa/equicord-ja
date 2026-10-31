@@ -65,7 +65,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "MessageBurst",
-    description: "Merges messages sent within a time period with your previous sent message if no one else sends a message before you.",
+    description: "一定時間内に送信したメッセージを、間に他の誰かが送信しなければ、前に送信したメッセージと結合します。",
     dependencies: ["MessagePopoverAPI"],
     tags: ["Chat"],
     authors: [EquicordDevs.port22exposed],

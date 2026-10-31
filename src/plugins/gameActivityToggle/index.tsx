@@ -145,7 +145,7 @@ function GameActivityToggleButton(props: UserAreaRenderProps) {
 
 export default definePlugin({
     name: "GameActivityToggle",
-    description: "Adds a button next to the mic and deafen button to toggle game activity. Right click it to toggle Spotify activity.",
+    description: "マイクとスピーカーミュートボタンの横に、ゲームアクティビティを切り替えるボタンを追加します。右クリックすると Spotify アクティビティを切り替えます。",
     tags: ["Activity", "Shortcuts"],
     authors: [Devs.Nuckyz, Devs.RuukuLada],
     dependencies: ["UserSettingsAPI", "UserAreaAPI"],

@@ -24,7 +24,7 @@ const WrappedVoiceMessagesInBackgroundPlayer = ErrorBoundary.wrap(VoiceMessagesI
 migratePluginSettings("VoiceMessagesInBackground", "Voice Messages In-Background");
 export default definePlugin({
     name: "VoiceMessagesInBackground",
-    description: "Keeps voice messages playing across chats with a synchronized mini player.",
+    description: "同期されたミニプレイヤーで、チャットを移動してもボイスメッセージの再生を続けます。",
     authors: [EquicordDevs.ELJoOker],
     tags: ["Voice", "Media", "Chat"],
     dependencies: ["AudioPlayerAPI", "HeaderBarAPI"],

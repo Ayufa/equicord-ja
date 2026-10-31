@@ -90,7 +90,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
     const hasSettings = hasAnyVisibleSettings(plugin);
 
     // avoid layout shift by showing dummy users while loading users
-    const fallbackAuthors = useMemo(() => [makeDummyUser({ username: "Loading...", id: "-1465912127305809920" })], []);
+    const fallbackAuthors = useMemo(() => [makeDummyUser({ username: "読み込み中...", id: "-1465912127305809920" })], []);
     const [authors, setAuthors] = useState<Partial<User>[]>([]);
 
     useEffect(() => {
@@ -117,7 +117,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
     function renderSettings() {
         const { settings } = plugin;
         if (!hasSettings || !settings)
-            return <Paragraph>There are no settings for this plugin.</Paragraph>;
+            return <Paragraph>このプラグインには設定がありません。</Paragraph>;
 
         const options = Object.entries(settings.def).map(([key, setting]) => {
             if (setting.type === OptionType.CUSTOM) return null;
@@ -198,7 +198,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
             {!!plugin.settingsAboutComponent && (
                 <div className={classes(Margins.top16, cl("about-box"))}>
                     <section>
-                        <ErrorBoundary message="An error occurred while rendering this plugin's custom Info Component">
+                        <ErrorBoundary message="このプラグインのカスタム情報コンポーネントの描画中にエラーが発生しました">
                             <plugin.settingsAboutComponent />
                         </ErrorBoundary>
                     </section>
@@ -206,7 +206,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
             )}
             <div className={"vc-settings-modal-content"}>
                 <section>
-                    <Heading tag="h1" className={classes(Margins.top8, Margins.bottom8)}>Authors</Heading>
+                    <Heading tag="h1" className={classes(Margins.top8, Margins.bottom8)}>作者</Heading>
                     <div style={{ width: "fit-content" }}>
                         <ErrorBoundary noop>
                             <UserSummaryItem
@@ -234,7 +234,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
                 </section>
 
                 <section>
-                    <BaseText size="lg" weight="semibold" color="text-strong" className={classes(Margins.top16, Margins.bottom8)}>Settings</BaseText>
+                    <BaseText size="lg" weight="semibold" color="text-strong" className={classes(Margins.top16, Margins.bottom8)}>設定</BaseText>
                     {renderSettings()}
                 </section>
             </div>
@@ -242,7 +242,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
                 <Flex flexDirection="column" style={{ width: "100%" }}>
                     <Flex style={{ justifyContent: "space-between", alignItems: "center" }}>
                         {hasSettings ? (
-                            <Tooltip text="Reset to default settings" shouldShow={!isObjectEmpty(pluginSettings)}>
+                            <Tooltip text="デフォルト設定にリセット" shouldShow={!isObjectEmpty(pluginSettings)}>
                                 {({ onMouseEnter, onMouseLeave }) => (
                                     <Button
                                         variant="dangerPrimary"
@@ -251,7 +251,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
                                         onMouseEnter={onMouseEnter}
                                         onMouseLeave={onMouseLeave}
                                     >
-                                        Reset
+                                        リセット
                                     </Button>
                                 )}
                             </Tooltip>
@@ -263,11 +263,11 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
                                     onClick={() => pluginSettings.isFavorite = !pluginSettings.isFavorite}
                                 />
                                 <WebsiteButton
-                                    text="Website"
+                                    text="ウェブサイト"
                                     href={isEquicordPlugin ? `https://equicord.org/plugins/${plugin.name}` : `https://vencord.dev/plugins/${plugin.name}`}
                                 />
                                 <GithubButton
-                                    text="Source Code"
+                                    text="ソースコード"
                                     href={`https://github.com/${gitRemote}/tree/main/${pluginMeta.folderName}`}
                                 />
                             </div>
@@ -325,7 +325,7 @@ function resetSettings(plugin: Plugin, onRestartNeeded?: (pluginName: string) =>
     }
 
     showToast({
-        text: `Settings for ${pluginName} have been reset.`,
+        text: `${pluginName} の設定をリセットしました。`,
         variant: "success",
         position: "top"
     });
@@ -336,9 +336,9 @@ export function openWarningModal(plugin?: Plugin | null, onRestartNeeded?: (plug
         <ConfirmModal
             {...props}
             className={cl("confirm")}
-            header={isPlugin ? "Reset Settings" : "Disable Plugins"}
-            confirmText={isPlugin ? "Reset" : "Disable All"}
-            cancelText="Cancel"
+            header={isPlugin ? "設定のリセット" : "プラグインの無効化"}
+            confirmText={isPlugin ? "リセット" : "すべて無効化"}
+            cancelText="キャンセル"
             onConfirm={() => {
                 if (isPlugin && plugin) {
                     resetSettings(plugin, onRestartNeeded);
@@ -350,13 +350,13 @@ export function openWarningModal(plugin?: Plugin | null, onRestartNeeded?: (plug
         >
             <Paragraph>
                 {isPlugin
-                    ? <>Are you sure you want to reset all settings for <strong>{plugin?.name}</strong> to their default values?</>
-                    : `Are you sure you want to disable ${enabledPlugins} plugins?`
+                    ? <><strong>{plugin?.name}</strong> のすべての設定をデフォルト値にリセットしてもよろしいですか？</>
+                    : `${enabledPlugins} 個のプラグインを無効化してもよろしいですか？`
                 }
             </Paragraph>
             <div className={classes(Margins.top16, cl("warning"))}>
                 <WarningIcon color="var(--text-feedback-critical)" />
-                <span>This action cannot be undone.</span>
+                <span>この操作は元に戻せません。</span>
             </div>
         </ConfirmModal>
     ));

@@ -74,7 +74,7 @@ function computeClean(name: string, type: number): string {
 export default definePlugin({
     name: "CleanChannelName",
     authors: [Devs.AutumnVN],
-    description: "Remove emoji and decoration from channel names. Reverts to the original while you're editing the channel.",
+    description: "チャンネル名から絵文字や装飾を取り除きます。チャンネル編集中は元の名前に戻ります。",
     tags: ["Appearance", "Customisation", "Chat", "Emotes", "Servers"],
     settings,
     patches: [

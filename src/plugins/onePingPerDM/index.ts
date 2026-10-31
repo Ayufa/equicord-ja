@@ -47,7 +47,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "OnePingPerDM",
-    description: "If unread messages are sent by a user in DMs multiple times, you'll only receive one audio ping. Read the messages to reset the limit",
+    description: "DMで同じユーザーから未読メッセージが複数回送られても、通知音は1回だけ鳴ります。メッセージを読むと制限がリセットされます",
     tags: ["Notifications", "Customisation"],
     authors: [Devs.ProffDea],
     isModified: true,

@@ -211,7 +211,7 @@ const devContextCallback: NavContextMenuPatchCallback = (children, { id }: { id:
 migratePluginSettings("ViewRaw", "ViewRawVariant");
 export default definePlugin({
     name: "ViewRaw",
-    description: "Copy and view the raw content/data of any message, channel or guild",
+    description: "任意のメッセージ・チャンネル・サーバーの、生の内容／データをコピーして表示します",
     dependencies: ["MessagePopoverAPI"],
     tags: ["Chat", "Developers"],
     authors: [Devs.KingFish, Devs.Ven, Devs.rad, Devs.ImLvna],

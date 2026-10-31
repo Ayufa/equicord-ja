@@ -19,7 +19,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "SecretRingToneEnabler",
-    description: "Always play the secret version of the discord ringtone (except during special ringtone events)",
+    description: "Discordの着信音のシークレットバージョンを常に再生します（特別な着信音イベント時を除く）",
     tags: ["Notifications", "Fun"],
     authors: [Devs.AndrewDLO, Devs.FieryFlames, Devs.RamziAH],
     settings,

@@ -101,7 +101,7 @@ const SoundButtonContext: NavContextMenuPatchCallback = (children, { sound }: { 
 
 export default definePlugin({
     name: "ExitSounds",
-    description: "Play soundboard sounds when you disconnect from voice.",
+    description: "ボイスチャンネルから切断したときにサウンドボードのサウンドを再生します。",
     tags: ["Fun", "Voice"],
     authors: [Devs.prism],
     dependencies: ["AudioPlayerAPI"],

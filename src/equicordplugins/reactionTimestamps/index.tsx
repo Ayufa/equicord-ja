@@ -96,7 +96,7 @@ function ReactionName(props: ReactionUserRowProps) {
 
 export default definePlugin({
     name: "ReactionTimestamps",
-    description: "Shows each reaction time in the reaction popout.",
+    description: "リアクションのポップアウトに各リアクションの時刻を表示します。",
     authors: [EquicordDevs.Kurt],
     tags: ["Reactions", "Chat"],
 

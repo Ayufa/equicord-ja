@@ -51,7 +51,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "CopyEmojiMarkdown",
-    description: "Allows you to copy emojis as formatted string (<:blobcatcozy:1026533070955872337>)",
+    description: "絵文字をフォーマット済み文字列（<:blobcatcozy:1026533070955872337>）としてコピーできるようにします",
     tags: ["Emotes", "Utility"],
     authors: [Devs.HappyEnderman, Devs.Vishnya],
     settings,

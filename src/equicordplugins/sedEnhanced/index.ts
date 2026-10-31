@@ -20,7 +20,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "SedEnhanced",
-    description: "Expands on Discord's rudimentary `sed` support.",
+    description: "Discord の初歩的な `sed` サポートを拡張します。",
     authors: [EquicordDevs.dawn, EquicordDevs.Willow, EquicordDevs.kat],
     tags: ["Chat"],
     patches: [

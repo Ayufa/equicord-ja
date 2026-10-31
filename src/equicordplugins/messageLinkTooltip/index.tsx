@@ -62,7 +62,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "MessageLinkTooltip",
-    description: "Adds a tooltip with a message preview when hovering over message links, replies, and forwarded messages.",
+    description: "メッセージリンク、返信、転送メッセージにホバーしたとき、メッセージのプレビュー付きツールチップを表示します。",
     tags: ["Appearance", "Chat"],
     authors: [Devs.Kyuuhachi],
 

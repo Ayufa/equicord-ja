@@ -32,7 +32,7 @@ const SekaiStickerChatButton: ChatBarButtonFactory = () => {
 let IS_FONTS_LOADED = false;
 export default definePlugin({
     name: "SekaiStickers",
-    description: "Sekai Stickers built in discord originally from github.com/TheOriginalAyaka",
+    description: "もともと github.com/TheOriginalAyaka による、Discord 向けに作られた Sekai Stickers",
     dependencies: ["ChatInputButtonAPI"],
     tags: ["Chat", "Emotes"],
     authors: [Devs.MaiKokain],

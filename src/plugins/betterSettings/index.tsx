@@ -91,7 +91,7 @@ function Layer({ mode, baseLayer = false, ...props }: LayerProps) {
 
 export default definePlugin({
     name: "BetterSettings",
-    description: "Enhances your settings-menu-opening experience",
+    description: "設定メニューを開く体験を向上させます",
     authors: [Devs.Kyuuhachi],
     tags: ["Appearance", "Customisation", "Organisation"],
     settings,

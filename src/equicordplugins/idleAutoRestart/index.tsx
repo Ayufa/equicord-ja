@@ -35,7 +35,7 @@ function onActivity() {
 
 export default definePlugin({
     name: "IdleAutoRestart",
-    description: "Automatically restarts the client after being idle for a configurable amount of time, but avoids restarting while you are in VC.",
+    description: "設定した時間アイドル状態が続くとクライアントを自動で再起動しますが、VC中は再起動を避けます。",
     tags: ["Utility"],
     authors: [EquicordDevs.SteelTech],
     settings,

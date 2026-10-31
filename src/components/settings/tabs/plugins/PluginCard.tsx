@@ -48,7 +48,7 @@ export function PluginCard({ plugin, disabled, onRestartNeeded, onMouseEnter, on
 
             if (failures.length) {
                 logger.error(`Failed to start dependencies for ${plugin.name}: ${failures.join(", ")}`);
-                showNotice("Failed to start dependencies: " + failures.join(", "), "Close", () => null);
+                showNotice("依存関係の起動に失敗しました: " + failures.join(", "), "閉じる", () => null);
                 return;
             }
 
@@ -78,7 +78,7 @@ export function PluginCard({ plugin, disabled, onRestartNeeded, onMouseEnter, on
         if (!result) {
             settings.enabled = false;
 
-            const msg = `Error while ${wasEnabled ? "stopping" : "starting"} plugin ${plugin.name}`;
+            const msg = `プラグイン ${plugin.name} の${wasEnabled ? "停止" : "起動"}中にエラーが発生しました`;
             showToast({ text: msg, variant: "critical", position: "bottom" });
 
             return;
@@ -91,26 +91,26 @@ export function PluginCard({ plugin, disabled, onRestartNeeded, onMouseEnter, on
         {
             condition: isModifiedPlugin,
             src: "https://equicord.org/assets/icons/equicord/modified.png",
-            alt: "Modified",
-            title: "Modified Vencord Plugin"
+            alt: "改変",
+            title: "改変された Vencord プラグイン"
         },
         {
             condition: isEquicordPlugin,
             src: "https://equicord.org/assets/favicon.png",
             alt: "Equicord",
-            title: "Equicord Plugin"
+            title: "Equicord プラグイン"
         },
         {
             condition: isVencordPlugin,
             src: "https://equicord.org/assets/icons/vencord/icon-light.png",
             alt: "Vencord",
-            title: "Vencord Plugin"
+            title: "Vencord プラグイン"
         },
         {
             condition: isUserPlugin,
             src: "https://equicord.org/assets/icons/misc/userplugin.png",
-            alt: "User",
-            title: "User Plugin"
+            alt: "ユーザー",
+            title: "ユーザープラグイン"
         }
     ];
 
@@ -124,7 +124,7 @@ export function PluginCard({ plugin, disabled, onRestartNeeded, onMouseEnter, on
         />
     ) : null;
 
-    const tooltip = pluginDetails?.title || "Unknown Plugin";
+    const tooltip = pluginDetails?.title || "不明なプラグイン";
 
     return (
         <AddonCard

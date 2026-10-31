@@ -562,7 +562,7 @@ let area: Size | null = null;
 
 export default definePlugin({
     name: "BetterImageEditor",
-    description: "Keeps a shelf of your pictures in the avatar and banner editor, and remembers how you cropped each one.",
+    description: "アバターとバナーのエディターに画像のシェルフを保持し、それぞれの切り抜き方を記憶します。",
     authors: [EquicordDevs.heart_menace],
     settings,
 

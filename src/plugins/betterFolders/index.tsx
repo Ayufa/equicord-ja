@@ -139,7 +139,7 @@ const GRID_STYLE_NAME = "vc-betterFolders-sidebar-grid";
 
 export default definePlugin({
     name: "BetterFolders",
-    description: "Shows server folders on dedicated sidebar and adds folder related improvements",
+    description: "サーバーフォルダーを専用サイドバーに表示し、フォルダー関連の改良を追加します",
     authors: [Devs.juby, Devs.AutumnVN, Devs.Nuckyz],
     isModified: true,
     tags: ["Organisation", "Servers", "Appearance"],

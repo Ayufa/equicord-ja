@@ -192,7 +192,7 @@ async function playSound(buffer: AudioBuffer, volume: number) {
 
 export default definePlugin({
     name: "Animalese",
-    description: "Plays animal crossing animalese for every message sent (they yap a lot)",
+    description: "送信されるすべてのメッセージで『どうぶつの森』の動物語を再生します（よくしゃべります）",
     tags: ["Customisation", "Fun"],
     authors: [EquicordDevs.ryanamay, EquicordDevs.Mocha],
     settings,

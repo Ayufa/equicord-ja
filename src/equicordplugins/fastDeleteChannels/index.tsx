@@ -73,7 +73,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "FastDeleteChannels",
-    description: "Adds a trash icon to delete channels",
+    description: "チャンネルを削除するためのゴミ箱アイコンを追加します",
     tags: ["Servers", "Utility"],
     authors: [Devs.thororen],
     settings,

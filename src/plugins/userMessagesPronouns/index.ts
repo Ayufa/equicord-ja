@@ -27,7 +27,7 @@ migratePluginSettings("UserMessagesPronouns", "PronounDB");
 export default definePlugin({
     name: "UserMessagesPronouns",
     authors: [Devs.Tyman, Devs.TheKodeToad, Devs.Ven, Devs.Elvyra],
-    description: "Adds pronouns to chat user messages",
+    description: "チャットのユーザーメッセージに代名詞（プロナウン）を追加します",
     tags: ["Chat", "Appearance"],
     settings,
 

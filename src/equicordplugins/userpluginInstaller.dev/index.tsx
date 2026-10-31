@@ -53,7 +53,7 @@ export const settings = definePluginSettings({
 
 export default definePlugin({
     name: "UserpluginInstaller",
-    description: "Install userplugins with a simple button click",
+    description: "ボタンひとつでユーザープラグインをインストールできます",
     tags: ["Developers"],
     settingsAboutComponent: () => (
         <Notice.Warning>

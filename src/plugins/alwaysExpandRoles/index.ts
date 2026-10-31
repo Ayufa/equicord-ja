@@ -32,7 +32,7 @@ const settings = definePluginSettings({
 migratePluginSettings("AlwaysExpandRoles", "ShowAllRoles");
 export default definePlugin({
     name: "AlwaysExpandRoles",
-    description: "Always expands the role list in profile popouts",
+    description: "プロフィールのポップアウトでロール一覧を常に展開します",
     tags: ["Appearance", "Roles"],
     authors: [Devs.surgedevs],
     isModified: true,

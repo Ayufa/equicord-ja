@@ -29,28 +29,28 @@ import { Margins } from "@utils/margins";
 function BackupAndRestoreTab() {
     return (
         <SettingsTab>
-            <Heading className={Margins.top16}>Backup & Restore</Heading>
+            <Heading className={Margins.top16}>バックアップと復元</Heading>
             <Paragraph className={Margins.bottom20}>
-                Import and export your Equicord settings as a JSON file. This allows you to easily transfer your settings to another device, or recover them after reinstalling Equicord or Discord.
+                Equicord の設定を JSON ファイルとしてインポート/エクスポートします。設定を別のデバイスへ簡単に移行したり、Equicord や Discord を再インストールした後に復元したりできます。
             </Paragraph>
 
             <Notice.Warning className={Margins.bottom20}>
-                Importing a settings file will overwrite your current settings. Make sure to export a backup first if you want to keep your current configuration.
+                設定ファイルをインポートすると、現在の設定が上書きされます。現在の構成を残したい場合は、先にバックアップをエクスポートしてください。
             </Notice.Warning>
 
-            <Heading>What's included in a backup</Heading>
+            <Heading>バックアップに含まれるもの</Heading>
             <Paragraph className={Margins.bottom20}>
-                • Custom QuickCSS<br />
-                • Theme Links<br />
-                • Plugin Settings<br />
-                • DataStore Data
+                • カスタム QuickCSS<br />
+                • テーマリンク<br />
+                • プラグイン設定<br />
+                • DataStore データ
             </Paragraph>
 
             <Divider className={Margins.bottom20} />
 
-            <Heading>Import Settings</Heading>
+            <Heading>設定をインポート</Heading>
             <Paragraph className={Margins.bottom16}>
-                Select a previously exported settings file to restore your configuration. This will replace all your current settings with the ones from the backup.
+                以前にエクスポートした設定ファイルを選んで構成を復元します。現在の設定はすべてバックアップの内容に置き換えられます。
             </Paragraph>
 
             <Flex gap="8px" className={Margins.bottom20} style={{ flexWrap: "wrap" }}>
@@ -59,33 +59,33 @@ function BackupAndRestoreTab() {
                     size="small"
                     variant="secondary"
                 >
-                    Import All Settings
+                    すべての設定をインポート
                 </Button>
                 <Button
                     onClick={() => uploadSettingsBackup("plugins")}
                     size="small"
                 >
-                    Import Plugins
+                    プラグインをインポート
                 </Button>
                 <Button
                     onClick={() => uploadSettingsBackup("css")}
                     size="small"
                 >
-                    Import QuickCSS
+                    QuickCSS をインポート
                 </Button>
                 <Button
                     onClick={() => uploadSettingsBackup("datastore")}
                     size="small"
                 >
-                    Import DataStore
+                    DataStore をインポート
                 </Button>
             </Flex>
 
             <Divider className={Margins.bottom20} />
 
-            <Heading>Export Settings</Heading>
+            <Heading>設定をエクスポート</Heading>
             <Paragraph className={Margins.bottom16}>
-                Download your current settings as a backup file. You can export everything at once, or choose to export only specific parts of your configuration.
+                現在の設定をバックアップファイルとしてダウンロードします。すべてをまとめてエクスポートすることも、構成の一部だけを選んでエクスポートすることもできます。
             </Paragraph>
 
             <Flex gap="8px" style={{ flexWrap: "wrap" }}>
@@ -94,29 +94,29 @@ function BackupAndRestoreTab() {
                     size="small"
                     variant="secondary"
                 >
-                    Export All Settings
+                    すべての設定をエクスポート
                 </Button>
                 <Button
                     onClick={() => downloadSettingsBackup("plugins")}
                     size="small"
                 >
-                    Export Plugins
+                    プラグインをエクスポート
                 </Button>
                 <Button
                     onClick={() => downloadSettingsBackup("css")}
                     size="small"
                 >
-                    Export QuickCSS
+                    QuickCSS をエクスポート
                 </Button>
                 <Button
                     onClick={() => downloadSettingsBackup("datastore")}
                     size="small"
                 >
-                    Export DataStore
+                    DataStore をエクスポート
                 </Button>
             </Flex>
         </SettingsTab>
     );
 }
 
-export default wrapTab(BackupAndRestoreTab, "Backup & Restore");
+export default wrapTab(BackupAndRestoreTab, "バックアップと復元");

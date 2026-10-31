@@ -57,8 +57,8 @@ function Switches() {
     const Switches = [
         {
             key: "useQuickCss",
-            title: "Enable Custom CSS",
-            description: "Apply your configured QuickCSS"
+            title: "カスタムCSSを有効にする",
+            description: "設定した QuickCSS を適用します"
         },
         {
             value: disableAnalytics,
@@ -67,61 +67,61 @@ function Switches() {
             },
             reactKey: "NoTrack::disableAnalytics",
             key: null!,
-            title: "Block Discord Analytics",
+            title: "Discord のアナリティクスをブロック",
             description: NoTrack.settings.def.disableAnalytics.description,
             restartRequired: NoTrack.settings.def.disableAnalytics.restartNeeded,
         },
         (!IS_WEB && !IS_DISCORD_DESKTOP || !IS_WINDOWS) && {
             key: "mainWindowFrameless",
-            title: "Disable the Main Window Frame",
-            description: "Remove the native window frame for a cleaner look. You can still move the window by dragging the title bar area.",
+            title: "メインウィンドウのフレームを無効にする",
+            description: "ネイティブのウィンドウフレームを取り除いて、すっきりした見た目にします。タイトルバーの部分をドラッグすればウィンドウは移動できます。",
             restartRequired: true,
         },
         !IS_WEB && (!IS_DISCORD_DESKTOP || !IS_WINDOWS
             ? {
                 key: "frameless",
-                title: "Disable All Window Frames",
-                description: "Remove the native window frame for a cleaner look. You can still move the window by dragging the title bar area.",
+                title: "すべてのウィンドウフレームを無効にする",
+                description: "ネイティブのウィンドウフレームを取り除いて、すっきりした見た目にします。タイトルバーの部分をドラッグすればウィンドウは移動できます。",
                 restartRequired: true,
             }
             : {
                 key: "nativeTitleBar",
-                title: "Use Windows' native title bar instead of Discord's custom one",
-                description: "Replace Discord's custom title bar with the standard Windows title bar. This may improve compatibility with some window management tools.",
+                title: "Discord のカスタムタイトルバーの代わりに Windows 標準のタイトルバーを使う",
+                description: "Discord のカスタムタイトルバーを Windows 標準のタイトルバーに置き換えます。一部のウィンドウ管理ツールとの相性が良くなる場合があります。",
                 restartRequired: true,
             }
         ),
         IS_DISCORD_DESKTOP && {
             key: "noRoundCorners",
-            title: "Disable Rounded Window Corners",
-            description: "Makes the corners of the Discord window squared instead of rounded.",
+            title: "ウィンドウの角丸を無効にする",
+            description: "Discord ウィンドウの角を、丸ではなく四角にします。",
             restartRequired: true
         },
         !IS_WEB && {
             key: "transparent",
-            title: "Enable Window Transparency",
-            description: "Make the Discord window transparent. A theme that supports transparency is required or this will do nothing.",
+            title: "ウィンドウの透明化を有効にする",
+            description: "Discord ウィンドウを透明にします。透明化に対応したテーマが必要です。対応していないテーマでは何も起こりません。",
             restartRequired: true,
             warning: IS_WINDOWS
-                ? "This will stop the window from being resizable and prevents you from snapping the window to screen edges."
-                : "This will stop the window from being resizable.",
+                ? "有効にすると、ウィンドウのサイズ変更ができなくなり、画面の端へスナップすることもできなくなります。"
+                : "有効にすると、ウィンドウのサイズ変更ができなくなります。",
         },
         IS_DISCORD_DESKTOP && {
             key: "disableMinSize",
-            title: "Disable Minimum Window Size",
-            description: "Allows you to resize the window to any size, even smaller than Discord's minimum size",
+            title: "ウィンドウの最小サイズを無効にする",
+            description: "Discord の最小サイズより小さいサイズにも、ウィンドウをリサイズできるようにします",
             restartRequired: true
         },
         !IS_WEB && IS_WINDOWS && {
             key: "winCtrlQ",
-            title: "Register Ctrl+Q as shortcut to close Discord",
-            description: "Add Ctrl+Q as a keyboard shortcut to close Discord. This provides an alternative to Alt+F4 for quickly closing the application.",
+            title: "Ctrl+Q を Discord を閉じるショートカットとして登録する",
+            description: "Discord を閉じるキーボードショートカットとして Ctrl+Q を追加します。Alt+F4 の代わりとして、すばやくアプリを閉じられます。",
             restartRequired: true,
         },
         !IS_WEB && {
             key: "enableReactDevtools",
-            title: "Enable React Developer Tools",
-            description: "Mainly useful for plugin developers. Ignore this if you don't know what it is",
+            title: "React Developer Tools を有効にする",
+            description: "主にプラグイン開発者向けの設定です。何のことか分からない場合は気にしなくて大丈夫です",
             restartRequired: true
         },
     ] satisfies Array<false | {
@@ -184,14 +184,14 @@ function EquicordSettings() {
         <SettingsTab>
             {(isEquicordDonor(user?.id) || isVencordDonor(user?.id)) ? (
                 <SpecialCard
-                    title="Donations"
-                    subtitle="Thank you for donating!"
+                    title="寄付"
+                    subtitle="寄付ありがとうございます！"
                     description={
                         isEquicordDonor(user?.id) && isVencordDonor(user?.id)
-                            ? "All Vencord users can see your Vencord donor badge, and Equicord users can see your Equicord donor badge. To change your Vencord donor badge, contact @vending.machine. For your Equicord donor badge, make a ticket in Equicord's server."
+                            ? "すべての Vencord ユーザーにはあなたの Vencord 寄付者バッジが、Equicord ユーザーにはあなたの Equicord 寄付者バッジが見えます。Vencord 寄付者バッジを変更したい場合は @vending.machine に連絡してください。Equicord 寄付者バッジについては、Equicord のサーバーでチケットを作成してください。"
                             : isVencordDonor(user?.id)
-                                ? "All Vencord users can see your badge! You can manage your perks by messaging @vending.machine."
-                                : "All Equicord users can see your badge! You can manage your perks by making a ticket in Equicord's server."
+                                ? "すべての Vencord ユーザーにあなたのバッジが見えます。特典は @vending.machine にメッセージを送ることで管理できます。"
+                                : "すべての Equicord ユーザーにあなたのバッジが見えます。特典は Equicord のサーバーでチケットを作成することで管理できます。"
                     }
                     cardImage={VENNIE_DONATOR_IMAGE}
                     backgroundImage={DONOR_BACKGROUND_IMAGE}
@@ -201,8 +201,8 @@ function EquicordSettings() {
                 </SpecialCard>
             ) : (
                 <SpecialCard
-                    title="Support the Project"
-                    description="Please consider supporting the development of Equicord by donating!"
+                    title="プロジェクトを支援する"
+                    description="Equicord の開発を支援するため、寄付をご検討ください！"
                     cardImage={donateImage}
                     backgroundImage={DONOR_BACKGROUND_IMAGE}
                     backgroundColor="#c3a3ce"
@@ -212,9 +212,9 @@ function EquicordSettings() {
             )}
             {isAnyPluginDev(user?.id) && (
                 <SpecialCard
-                    title="Contributions"
-                    subtitle="Thank you for contributing!"
-                    description="Since you've contributed to Equicord you now have a cool new badge!"
+                    title="コントリビューション"
+                    subtitle="コントリビュートありがとうございます！"
+                    description="Equicord にコントリビュートしたので、新しいバッジが付きました！"
                     cardImage={COZY_CONTRIB_IMAGE}
                     backgroundImage={CONTRIB_BACKGROUND_IMAGE}
                     backgroundColor="#EDCC87"
@@ -227,44 +227,44 @@ function EquicordSettings() {
                         className="vc-contrib-button"
                     >
                         <GithubIcon aria-hidden fill={"#000000"} className={"vc-contrib-github"} />
-                        See what you've contributed to
+                        自分のコントリビューションを見る
                     </Button>
                 </SpecialCard>
             )}
 
-            <Heading className={Margins.top16}>Quick Actions</Heading>
+            <Heading className={Margins.top16}>クイックアクション</Heading>
             <Paragraph className={Margins.bottom16}>
-                Common actions you might want to perform. These shortcuts give you quick access to frequently used features without navigating through menus.
+                よく使う操作へのショートカットです。メニューをたどらなくても、よく使う機能にすぐアクセスできます。
             </Paragraph>
 
             <QuickActionCard>
                 <QuickAction
                     Icon={LogIcon}
-                    text="Notification Log"
+                    text="通知ログ"
                     action={openNotificationLogModal}
                 />
                 <QuickAction
                     Icon={PaintbrushIcon}
-                    text="Edit QuickCSS"
+                    text="QuickCSS を編集"
                     action={() => VencordNative.quickCss.openEditor()}
                 />
                 {!IS_WEB && (
                     <QuickAction
                         Icon={RestartIcon}
-                        text="Relaunch Discord"
+                        text="Discord を再起動"
                         action={relaunch}
                     />
                 )}
                 {!IS_WEB && (
                     <QuickAction
                         Icon={FolderIcon}
-                        text="Open Settings Folder"
+                        text="設定フォルダーを開く"
                         action={() => VencordNative.settings.openFolder()}
                     />
                 )}
                 <QuickAction
                     Icon={GithubIcon}
-                    text="View Source Code"
+                    text="ソースコードを見る"
                     action={() =>
                         VencordNative.native.openExternal(
                             "https://github.com/" + gitRemote,
@@ -275,19 +275,19 @@ function EquicordSettings() {
 
             <Divider className={Margins.top20} />
 
-            <Heading className={Margins.top20}>Client Settings</Heading>
+            <Heading className={Margins.top20}>クライアント設定</Heading>
             <Paragraph className={Margins.bottom16}>
-                Configure how Equicord behaves and integrates with Discord. These settings affect the Discord client's appearance and behavior.
+                Equicord の動作や Discord との連携の仕方を設定します。これらの設定は Discord クライアントの見た目と動作に影響します。
             </Paragraph>
             <Notice.Info className={Margins.bottom20} style={{ width: "100%" }}>
-                You can customize where this settings section appears in Discord's settings menu by configuring the{" "}
+                この設定セクションが Discord の設定メニューに表示される位置は、{" "}
                 <a
                     role="button"
                     onClick={() => openPluginModal(SettingsPlugin)}
                     style={{ cursor: "pointer", color: "var(--text-link)" }}
                 >
-                    Settings Plugin
-                </a>.
+                    Settings プラグイン
+                </a>で変更できます。
             </Notice.Info>
 
             <Switches />

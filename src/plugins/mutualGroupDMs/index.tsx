@@ -86,7 +86,7 @@ function renderClickableGDMs(mutualDms: Channel[], onClose?: () => void) {
 
 export default definePlugin({
     name: "MutualGroupDMs",
-    description: "Shows mutual group dms in profiles",
+    description: "プロフィールに共通のグループDMを表示します",
     tags: ["Friends", "Appearance"],
     authors: [Devs.amia],
 

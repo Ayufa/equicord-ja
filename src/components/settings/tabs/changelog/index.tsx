@@ -70,7 +70,7 @@ function ChangelogCard({
                         />
                     </code>
                     <span className="vc-changelog-entry-author">
-                        by {entry.author}
+                        作者: {entry.author}
                     </span>
                 </div>
                 <div className="vc-changelog-entry-message">
@@ -111,9 +111,9 @@ function UpdateLogCard({
                         <span>
                             {isRepositoryFetch
                                 ? isUpToDate
-                                    ? `Repository check: ${log.fromHash.slice(0, 7)} (up to date)`
-                                    : `Repository check: ${log.fromHash.slice(0, 7)} → ${log.toHash.slice(0, 7)}`
-                                : `Update: ${log.fromHash.slice(0, 7)} → ${log.toHash.slice(0, 7)}`}
+                                    ? `リポジトリ確認: ${log.fromHash.slice(0, 7)}（最新）`
+                                    : `リポジトリ確認: ${log.fromHash.slice(0, 7)} → ${log.toHash.slice(0, 7)}`
+                                : `更新: ${log.fromHash.slice(0, 7)} → ${log.toHash.slice(0, 7)}`}
                         </span>
                         <Button
                             size="min"
@@ -139,15 +139,15 @@ function UpdateLogCard({
                     <div className="vc-changelog-log-meta">
                         {formatTimestamp(log.timestamp)}
                         {log.commits.length > 0 &&
-                            ` • ${log.commits.length} commits available`}
-                        {log.commits.length === 0 && " • No new commits"}
+                            ` • ${log.commits.length} 件のコミット`}
+                        {log.commits.length === 0 && " • 新しいコミットなし"}
                         {log.newPlugins.length > 0 &&
-                            ` • ${log.newPlugins.length} new plugins`}
+                            ` • 新しいプラグイン ${log.newPlugins.length} 件`}
                         {log.updatedPlugins.length > 0 &&
-                            ` • ${log.updatedPlugins.length} updated plugins`}
+                            ` • 更新されたプラグイン ${log.updatedPlugins.length} 件`}
                         {log.newSettings &&
                             getNewSettingsSize(log.newSettings) > 0 &&
-                            ` • ${getNewSettingsEntries(log.newSettings).reduce((sum, [, arr]) => sum + arr.length, 0)} new settings`}
+                            ` • ${getNewSettingsEntries(log.newSettings).reduce((sum, [, arr]) => sum + arr.length, 0)} 件の新しい設定`}
                     </div>
                 </div>
                 <div
@@ -171,7 +171,7 @@ function UpdateLogCard({
                     {log.updatedPlugins.length > 0 && (
                         <div className="vc-changelog-log-plugins">
                             <Heading className={Margins.bottom8}>
-                                Updated Plugins
+                                更新されたプラグイン
                             </Heading>
                             <NewPluginsCompact
                                 newPlugins={log.updatedPlugins}
@@ -184,7 +184,7 @@ function UpdateLogCard({
                         getNewSettingsSize(log.newSettings) > 0 && (
                             <div className="vc-changelog-log-plugins">
                                 <Heading className={Margins.bottom8}>
-                                    New Settings
+                                    新しい設定
                                 </Heading>
                                 <div className="vc-changelog-new-plugins-list">
                                     {getNewSettingsEntries(log.newSettings).map(
@@ -193,7 +193,7 @@ function UpdateLogCard({
                                                 <span
                                                     key={`${pluginName}-${setting}`}
                                                     className="vc-changelog-new-plugin-tag"
-                                                    title={`New setting in ${pluginName}`}
+                                                    title={`${pluginName} の新しい設定`}
                                                 >
                                                     {pluginName}.{setting}
                                                 </span>
@@ -225,7 +225,7 @@ function UpdateLogCard({
 
 function ChangelogContent() {
     const [repo, repoErr, repoPending] = useAwaiter(getRepo, {
-        fallbackValue: "Loading...",
+        fallbackValue: "読み込み中…",
     });
     const [changelog, setChangelog] = React.useState<ChangelogEntry[]>([]);
     const [changelogHistory, setChangelogHistory] =
@@ -255,7 +255,7 @@ function ChangelogContent() {
     React.useEffect(() => {
         if (repoErr) {
             UpdateLogger.error("Failed to retrieve repo", repoErr);
-            setError("Failed to retrieve repository information");
+            setError("リポジトリ情報の取得に失敗しました");
         }
     }, [repoErr]);
 
@@ -353,7 +353,7 @@ function ChangelogContent() {
                 if (!logged) {
                     setChangelog([]);
                     showToast({
-                        text: "Already up to date with repository",
+                        text: "リポジトリと比べて最新です",
                         position: "bottom"
                     });
                 }
@@ -381,7 +381,7 @@ function ChangelogContent() {
                     setRecentlyChecked(true);
 
                     showToast({
-                        text: `Found ${updates.value.length} commit${updates.value.length === 1 ? "" : "s"} from repository`,
+                        text: `リポジトリから ${updates.value.length} 件のコミットが見つかりました`,
                         variant: "success",
                         position: "bottom"
                     });
@@ -390,8 +390,8 @@ function ChangelogContent() {
                     setRecentlyChecked(true);
                     showToast({
                         text: logged
-                            ? "Logged commits from your latest update"
-                            : "Repository is up to date with your local copy",
+                            ? "最新の更新のコミットを記録しました"
+                            : "リポジトリはローカルのコピーと比べて最新です",
                         variant: logged ? "success" : "default",
                         position: "bottom"
                     });
@@ -401,19 +401,19 @@ function ChangelogContent() {
                 }
             } else if (!updates.ok) {
                 throw new Error(
-                    updates.error?.message || "Failed to fetch from repository",
+                    updates.error?.message || "リポジトリからの取得に失敗しました",
                 );
             }
         } catch (err: any) {
             UpdateLogger.error("Failed to fetch commits from repository", err);
             const errorMessage =
                 err?.message ||
-                "Failed to connect to repository. Check your internet connection.";
+                "リポジトリへの接続に失敗しました。インターネット接続を確認してください。";
             setError(errorMessage);
 
             // funny little error toast hopefully doesn't happen!
             showToast({
-                text: "Could not fetch commits from repository",
+                text: "リポジトリからコミットを取得できませんでした",
                 variant: "critical",
                 position: "bottom"
             });
@@ -464,9 +464,9 @@ function ChangelogContent() {
 
     return (
         <>
-            <Heading className={Margins.top16}>Fetch Changes</Heading>
+            <Heading className={Margins.top16}>変更を取得</Heading>
             <Paragraph className={Margins.bottom16}>
-                Check the repository for new commits, plugin updates, and code changes. This will compare your current version with the latest available and show you what's new.
+                リポジトリで新しいコミット、プラグインの更新、コードの変更を確認します。現在のバージョンを利用可能な最新バージョンと比較し、新しい内容を表示します。
             </Paragraph>
 
             <div className="vc-changelog-controls">
@@ -477,10 +477,10 @@ function ChangelogContent() {
                     variant={recentlyChecked ? "positive" : "primary"}
                 >
                     {isLoading
-                        ? "Loading..."
+                        ? "読み込み中…"
                         : recentlyChecked
-                            ? "Repository Up to Date"
-                            : "Fetch from Repository"}
+                            ? "リポジトリは最新です"
+                            : "リポジトリから取得"}
                 </Button>
 
                 {changelogHistory.length > 0 && (
@@ -491,24 +491,24 @@ function ChangelogContent() {
                             onClick={() => setShowHistory(!showHistory)}
                             style={{ marginLeft: "8px" }}
                         >
-                            {showHistory ? "Hide Logs" : "Show Logs"}
+                            {showHistory ? "ログを隠す" : "ログを表示"}
                         </Button>
                         <Button
                             size="small"
                             variant="dangerPrimary"
                             onClick={() => {
                                 Alerts.show({
-                                    title: "Clear All Logs",
-                                    body: "Are you sure you would like to clear all logs? This can't be undone.",
-                                    confirmText: "Clear All",
+                                    title: "すべてのログを消去",
+                                    body: "すべてのログを消去してもよろしいですか？この操作は取り消せません。",
+                                    confirmText: "すべて消去",
                                     confirmColor: "danger",
-                                    cancelText: "Cancel",
+                                    cancelText: "キャンセル",
                                     onConfirm: async () => {
                                         await clearChangelogHistory();
                                         await loadChangelogHistory();
                                         setShowHistory(false);
                                         showToast({
-                                            text: "All logs have been cleared",
+                                            text: "すべてのログを消去しました",
                                             variant: "success",
                                             position: "bottom"
                                         });
@@ -517,7 +517,7 @@ function ChangelogContent() {
                             }}
                             style={{ marginLeft: "8px" }}
                         >
-                            Clear All Logs
+                            すべてのログを消去
                         </Button>
                     </>
                 )}
@@ -527,22 +527,22 @@ function ChangelogContent() {
                 <ErrorCard style={{ padding: "1em", marginTop: "1em" }}>
                     <Paragraph>{error}</Paragraph>
                     <Paragraph color="text-subtle" style={{ marginTop: "0.5em" }}>
-                        Make sure you have an internet connection and try again.
+                        インターネット接続があることを確認して、もう一度試してください。
                     </Paragraph>
                 </ErrorCard>
             )}
 
             <Divider className={Margins.top20} />
 
-            <Heading className={Margins.top20}>Repository</Heading>
+            <Heading className={Margins.top20}>リポジトリ</Heading>
             <Paragraph className={Margins.bottom8}>
-                This is the GitHub repository where Equicord fetches updates from.
+                Equicord が更新を取得する GitHub リポジトリです。
             </Paragraph>
             <Paragraph color="text-subtle">
                 {repoPending ? (
                     repo
                 ) : repoErr ? (
-                    "Failed to retrieve - check console"
+                    "取得に失敗しました - コンソールを確認してください"
                 ) : (
                     <Link href={repo}>
                         {repo.split("/").slice(-2).join("/")}
@@ -555,9 +555,9 @@ function ChangelogContent() {
                 <>
                     <Divider className={Margins.top20} />
 
-                    <Heading className={Margins.top20}>Recent Changes</Heading>
+                    <Heading className={Margins.top20}>最近の変更</Heading>
                     <Paragraph className={Margins.bottom16}>
-                        These are the new commits and plugin updates since your last version. You can see what features were added, bugs were fixed, and which plugins received updates.
+                        前回のバージョン以降の新しいコミットとプラグインの更新です。追加された機能、修正されたバグ、更新されたプラグインを確認できます。
                     </Paragraph>
 
                     {newPlugins.length > 0 && (
@@ -572,7 +572,7 @@ function ChangelogContent() {
                     {updatedPlugins.length > 0 && (
                         <div className={Margins.bottom16}>
                             <Heading className={Margins.bottom8}>
-                                Updated Plugins ({updatedPlugins.length})
+                                更新されたプラグイン（{updatedPlugins.length}）
                             </Heading>
                             <NewPluginsCompact newPlugins={updatedPlugins} />
                         </div>
@@ -581,7 +581,7 @@ function ChangelogContent() {
                     {changelog.length > 0 && (
                         <div>
                             <Heading className={Margins.bottom8}>
-                                Code Changes ({changelog.length} {changelog.length === 1 ? "commit" : "commits"})
+                                コードの変更（{changelog.length} 件のコミット）
                             </Heading>
                             <div className="vc-changelog-commits-list">
                                 {changelog.map(entry => (
@@ -601,9 +601,9 @@ function ChangelogContent() {
             {!hasCurrentChanges && !isLoading && !error && (
                 <>
                     <Divider className={Margins.top20} />
-                    <Heading className={Margins.top20}>Recent Changes</Heading>
+                    <Heading className={Margins.top20}>最近の変更</Heading>
                     <Paragraph color="text-subtle">
-                        No commits available ahead of your current version. Click "Fetch from Repository" to check for new changes.
+                        現在のバージョンより先のコミットはありません。「リポジトリから取得」をクリックして新しい変更を確認してください。
                     </Paragraph>
                 </>
             )}
@@ -613,10 +613,10 @@ function ChangelogContent() {
                     <Divider className={Margins.top20} />
 
                     <Heading className={Margins.top20}>
-                        Update Logs ({changelogHistory.length} {changelogHistory.length === 1 ? "log" : "logs"})
+                        更新ログ（{changelogHistory.length} 件）
                     </Heading>
                     <Paragraph className={Margins.bottom16}>
-                        A history of your previous update sessions with their commit history and plugin changes. Click on a log to expand it and see the details.
+                        過去の更新セッションの履歴（コミット履歴とプラグインの変更を含む）です。ログをクリックすると展開して詳細が見られます。
                     </Paragraph>
 
                     <div className="vc-changelog-history-list">
@@ -630,11 +630,11 @@ function ChangelogContent() {
                                 onToggleExpand={() => toggleLogExpanded(log.id)}
                                 onClearLog={logId => {
                                     Alerts.show({
-                                        title: "Clear Log",
-                                        body: "Are you sure you would like to clear this log? This can't be undone.",
-                                        confirmText: "Clear Log",
+                                        title: "ログを消去",
+                                        body: "このログを消去してもよろしいですか？この操作は取り消せません。",
+                                        confirmText: "ログを消去",
                                         confirmColor: "danger",
-                                        cancelText: "Cancel",
+                                        cancelText: "キャンセル",
                                         onConfirm: async () => {
                                             await clearIndividualLog(logId);
                                             await loadChangelogHistory();
@@ -644,7 +644,7 @@ function ChangelogContent() {
                                                 ),
                                             );
                                             showToast({
-                                                text: "Log has been cleared",
+                                                text: "ログを消去しました",
                                                 variant: "success",
                                                 position: "bottom"
                                             });
@@ -668,4 +668,4 @@ function ChangelogTab() {
     );
 }
 
-export default wrapTab(ChangelogTab, "Changelog");
+export default wrapTab(ChangelogTab, "変更履歴");

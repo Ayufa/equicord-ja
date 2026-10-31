@@ -19,7 +19,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "AutoJumpToMessage",
-    description: "Automatically opens the channel from new messages.",
+    description: "新着メッセージから自動でチャンネルを開きます。",
     tags: ["Chat", "Utility"],
     authors: [EquicordDevs.k304],
     settings,

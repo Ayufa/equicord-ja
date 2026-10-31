@@ -323,7 +323,7 @@ function showCycleToast() {
 
 export default definePlugin({
     name: "RecentDMSwitcher",
-    description: "Ctrl+Tab between most recently used DMs (Ctrl+Shift+Tab reverse)",
+    description: "最近使ったDM間を Ctrl+Tab で切り替えます（Ctrl+Shift+Tab で逆順）",
     tags: ["Chat", "Utility"],
     authors: [EquicordDevs.mmeta],
     settings,

@@ -87,7 +87,7 @@ function fixImageUrl(urlString: string) {
 
 export default definePlugin({
     name: "WebContextMenus",
-    description: "Re-adds context menus missing in the web version of Discord: Links & Images (Copy/Open Link/Image), Text Area (Copy, Cut, Paste, SpellCheck)",
+    description: "Web版Discordで欠けているコンテキストメニューを再度追加します：リンクと画像（リンク／画像のコピー・開く）、テキストエリア（コピー、切り取り、貼り付け、スペルチェック）",
     tags: ["Utility"],
     authors: [Devs.Ven],
     enabledByDefault: true,

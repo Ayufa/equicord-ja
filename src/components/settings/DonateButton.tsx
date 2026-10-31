@@ -38,7 +38,7 @@ export function DonateButton({
             className={className || "vc-donate-button"}
         >
             <Heart />
-            Donate
+            寄付する
         </Button>
     );
 }
@@ -56,12 +56,12 @@ export function InviteButton({
             onClick={async e => {
                 e.preventDefault();
                 openInviteModal("wKgT9j2xfN").catch(() =>
-                    showToast({ text: "Invalid or expired invite" }),
+                    showToast({ text: "招待が無効か、期限切れです" }),
                 );
             }}
             className={className || "vc-donate-button"}
         >
-            Invite
+            招待する
             <OpenExternalIcon className="vc-invite-link" />
         </Button>
     );
@@ -81,7 +81,7 @@ export function TranslateButton({
             onClick={() => VencordNative.native.openExternal(link)}
             className={className || "vc-translate-button"}
         >
-            Translate Here
+            翻訳はこちら
         </Button>
     );
 }

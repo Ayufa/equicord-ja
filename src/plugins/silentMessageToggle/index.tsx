@@ -109,7 +109,7 @@ const SilentMessageToggle: ChatBarButtonFactory = ({ isMainChat }) => {
 export default definePlugin({
     name: "SilentMessageToggle",
     authors: [Devs.Nuckyz, Devs.CatNoir, EquicordDevs.Z1xus],
-    description: "Adds a button to the chat bar to toggle sending a silent message.",
+    description: "サイレントメッセージの送信を切り替えるボタンを、チャットバーに追加します。",
     dependencies: ["ChatInputButtonAPI"],
     tags: ["Chat", "Utility"],
     settings,

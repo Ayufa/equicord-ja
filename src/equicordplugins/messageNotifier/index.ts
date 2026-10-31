@@ -37,7 +37,7 @@ const settings = definePluginSettings({
 export default definePlugin({
     authors: [EquicordDevs.cassie, EquicordDevs.mochienya],
     name: "MessageNotifier",
-    description: "Get toasts for when chosen users send a message",
+    description: "指定したユーザーがメッセージを送信したときにトースト通知を表示します",
     tags: ["Chat", "Notifications"],
     settings,
     flux: {

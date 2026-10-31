@@ -47,7 +47,7 @@ type MediaRef = RefObject<HTMLMediaElement> | undefined;
 
 export default definePlugin({
     name: "MediaPlaybackSpeed",
-    description: "Allows changing the (default) playback speed of media embeds",
+    description: "メディア埋め込みの（デフォルトの）再生速度を変更できます",
     tags: ["Chat", "Media"],
     authors: [Devs.D3SOX],
     settings,

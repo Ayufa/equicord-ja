@@ -51,7 +51,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "PlatformSpoofer",
-    description: "Spoof what platform or device you're on",
+    description: "使用しているプラットフォームやデバイスを偽装します",
     tags: ["Utility"],
     authors: [EquicordDevs.Drag, EquicordDevs.neoarz],
     settingsAboutComponent: () => (

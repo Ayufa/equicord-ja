@@ -31,7 +31,7 @@ export type ComponentSettingProps<T extends Omit<PluginSettingDefCommon, "descri
 export function resolveError(isValidResult: boolean | string) {
     if (typeof isValidResult === "string") return isValidResult;
 
-    return isValidResult ? null : "Invalid input provided";
+    return isValidResult ? null : "入力内容が正しくありません";
 }
 
 interface SettingsSectionProps extends PropsWithChildren {

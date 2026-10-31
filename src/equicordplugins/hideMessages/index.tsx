@@ -101,7 +101,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "HideMessages",
-    description: "Temporarily hide messages and DMs until you restart.",
+    description: "再起動するまで、メッセージとDMを一時的に非表示にします。",
     dependencies: ["MessagePopoverAPI"],
     tags: ["Chat", "Utility"],
     authors: [EquicordDevs.yash],

@@ -9,7 +9,7 @@ import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "ImageLink",
-    description: "Never hide image links in messages, even if it's the only content",
+    description: "メッセージ内の画像リンクを、それだけが内容の場合でも非表示にしません",
     tags: ["Media", "Appearance"],
     authors: [Devs.Kyuuhachi, Devs.Sqaaakoi],
 

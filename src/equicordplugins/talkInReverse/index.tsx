@@ -65,7 +65,7 @@ function ReverseMessageIcon() {
 export default definePlugin({
     name: "TalkInReverse",
     authors: [EquicordDevs.Tolgchu],
-    description: "Reverses the message content before sending it.",
+    description: "送信前にメッセージの内容を逆順にします。",
     tags: ["Chat", "Fun"],
     dependencies: ["MessageEventsAPI", "ChatInputButtonAPI"],
     chatBarButton: {

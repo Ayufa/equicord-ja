@@ -100,7 +100,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "CustomUserColors",
-    description: "Lets you add a custom color to any user, anywhere! Highly recommend to use with typingTweaks and roleColorEverywhere",
+    description: "あらゆる場所で、任意のユーザーにカスタムカラーを追加できます！typingTweaks と roleColorEverywhere との併用がおすすめです",
     tags: ["Appearance", "Customisation", "Chat"],
     authors: [EquicordDevs.mochienya],
     contextMenus: {

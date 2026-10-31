@@ -37,7 +37,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "SpotifyCrack",
-    description: "Free listen along, no auto-pausing in voice chat, and allows activity to continue playing when idling",
+    description: "無料で一緒に聴くことができ、ボイスチャット中も自動で一時停止せず、放置中もアクティビティの再生を続けられます",
     tags: ["Media", "Utility", "Activity"],
     authors: [Devs.Cyn, Devs.Nuckyz],
     settings,

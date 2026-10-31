@@ -173,7 +173,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "VoiceChatUtilities",
-    description: "This plugin allows you to perform multiple actions on an entire channel (move, mute, disconnect, etc.) (originally by dutake)",
+    description: "チャンネル全体に対して複数のアクション（移動、ミュート、切断など）を実行できるプラグインです（原作者：dutake）",
     tags: ["Chat", "Servers", "Voice"],
     authors: [Devs.D3SOX, EquicordDevs.nickwoah],
 

@@ -61,7 +61,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "NoReplyMention",
-    description: "Disables reply pings by default",
+    description: "返信時の通知（ping）をデフォルトで無効にします",
     tags: ["Chat", "Notifications"],
     authors: [Devs.DustyAngel47, Devs.rae, Devs.pylix, Devs.outfoxxed],
     settings,

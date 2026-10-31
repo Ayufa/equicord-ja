@@ -32,7 +32,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "Equissant",
-    description: "Crossant every specified amount of clicks :trolley:",
+    description: "クリック回数が指定した数に達するたびにクロワッサンを表示します :trolley:",
     tags: ["Fun"],
     authors: [EquicordDevs.SomeAspy, Devs.thororen],
     dependencies: ["AudioPlayerAPI"],

@@ -339,7 +339,7 @@ const patchForumTagContextMenu: NavContextMenuPatchCallback = (children, { tag }
 migratePluginSettings("ExpressionManager", "ExpressionCloner", "EmoteCloner");
 export default definePlugin({
     name: "ExpressionManager",
-    description: "Clone Emotes & Stickers. Adds context menu options to quickly clone, edit, or delete them. Also adds Copy & Save options for stickers",
+    description: "絵文字とステッカーをクローンします。すばやくクローン、編集、削除できるコンテキストメニューオプションを追加します。ステッカーにはコピーと保存のオプションも追加します",
     tags: ["Emotes", "Servers"],
     searchTerms: ["StickerCloner", "ExpressionCloner", "EmoteCloner", "EmojiCloner"],
     authors: [Devs.Ven, Devs.Nuckyz, Devs.scattagain, Devs.sadan],

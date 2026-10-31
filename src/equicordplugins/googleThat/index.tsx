@@ -74,7 +74,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "GoogleThat",
-    description: "Adds a command to send a internet search link",
+    description: "インターネット検索のリンクを送信するコマンドを追加します",
     dependencies: ["CommandsAPI"],
     tags: ["Commands", "Utility"],
     authors: [Devs.Samwich, EquicordDevs.KrystalSkull],

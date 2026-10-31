@@ -98,26 +98,26 @@ interface SettingsLayoutBuilder {
 const settings = definePluginSettings({
     settingsLocation: {
         type: OptionType.SELECT,
-        description: "Where to put the Equicord settings section",
+        description: "Equicord 設定セクションを表示する場所",
         options: [
-            { label: "At the very top", value: "top" },
-            { label: "Above Billing section", value: "aboveNitro", default: true },
-            { label: "Below Billing section", value: "belowNitro" },
-            { label: "Above Games & Apps Settings", value: "aboveActivity" },
-            { label: "Below Games & Apps Settings", value: "belowActivity" },
-            { label: "At the very bottom", value: "bottom" },
+            { label: "一番上", value: "top" },
+            { label: "請求セクションの上", value: "aboveNitro", default: true },
+            { label: "請求セクションの下", value: "belowNitro" },
+            { label: "ゲームとアプリの設定の上", value: "aboveActivity" },
+            { label: "ゲームとアプリの設定の下", value: "belowActivity" },
+            { label: "一番下", value: "bottom" },
         ] as { label: string; value: SettingsLocation; default?: boolean; }[]
     },
     includeVencordInfoWhenCopying: {
         type: OptionType.BOOLEAN,
-        description: "Also copy Equicord info (Equicord, Electron, Chromium) when clicking the version info in the bottom left area of the Settings page",
+        description: "設定ページ左下のバージョン情報をクリックしたとき、Equicord の情報 (Equicord、Electron、Chromium) もコピーする",
         default: true
     }
 });
 
 export default definePlugin({
     name: "Settings",
-    description: "Adds Settings UI and debug info",
+    description: "設定UIとデバッグ情報を追加する",
     authors: [Devs.Ven, Devs.Megu],
     tags: ["Utility"],
     required: true,
@@ -193,51 +193,51 @@ export default definePlugin({
             buildEntry({
                 key: "equicord_main",
                 title: "Equicord",
-                panelTitle: "Equicord Settings",
+                panelTitle: "Equicord 設定",
                 Component: VencordTab,
                 Icon: MainSettingsIcon
             }),
             buildEntry({
                 key: "equicord_plugins",
-                title: "Plugins",
+                title: "プラグイン",
                 Component: PluginsTab,
                 Icon: PluginsIcon
             }),
             buildEntry({
                 key: "equicord_themes",
-                title: "Themes",
+                title: "テーマ",
                 Component: ThemesTab,
                 Icon: PaintbrushIcon
             }),
             !IS_UPDATER_DISABLED && UpdaterTab && buildEntry({
                 key: "equicord_updater",
-                title: "Updater",
-                panelTitle: "Equicord Updater",
+                title: "アップデーター",
+                panelTitle: "Equicord アップデーター",
                 Component: UpdaterTab,
                 Icon: UpdaterIcon
             }),
             buildEntry({
                 key: "equicord_changelog",
-                title: "Changelog",
+                title: "変更履歴",
                 Component: ChangelogTab,
                 Icon: LogIcon,
             }),
             buildEntry({
                 key: "equicord_cloud",
-                title: "Cloud",
-                panelTitle: "Equicord Cloud",
+                title: "クラウド",
+                panelTitle: "Equicord クラウド",
                 Component: CloudTab,
                 Icon: CloudIcon
             }),
             buildEntry({
                 key: "equicord_backup_restore",
-                title: "Backup & Restore",
+                title: "バックアップと復元",
                 Component: BackupAndRestoreTab,
                 Icon: BackupRestoreIcon
             }),
             !IS_STANDALONE && PatchHelperTab && buildEntry({
                 key: "equicord_patch_helper",
-                title: "Patch Helper",
+                title: "パッチヘルパー",
                 Component: PatchHelperTab,
                 Icon: PatchHelperIcon
             }),
@@ -247,7 +247,7 @@ export default definePlugin({
         const equicordSection: SettingsLayoutNode = {
             key: "equicord_section",
             type: LayoutTypes.SECTION,
-            useTitle: () => "Equicord Settings",
+            useTitle: () => "Equicord 設定",
             buildLayout: () => equicordEntries
         };
 

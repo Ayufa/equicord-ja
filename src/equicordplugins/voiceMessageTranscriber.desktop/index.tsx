@@ -21,7 +21,7 @@ const VoiceMessageButtonWrapped = ErrorBoundary.wrap(VoiceMessageButton, { noop:
 export default definePlugin({
     name: "VoiceMessageTranscriber",
     authors: [Devs.TheSun, EquicordDevs.tt],
-    description: "On-device transcriptions for voice messages powered by Whisper",
+    description: "Whisperによる、ボイスメッセージのデバイス上での文字起こし",
     tags: ["Chat", "Media", "Utility", "Voice"],
     patches: [
         {

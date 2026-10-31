@@ -47,7 +47,7 @@ function setCss() {
 
 export default definePlugin({
     name: "BlurNSFW",
-    description: "Blur attachments in NSFW channels until hovered",
+    description: "NSFW チャンネルの添付ファイルを、ホバーするまでぼかします",
     tags: ["Privacy", "Appearance"],
     authors: [Devs.Ven],
     isModified: true,

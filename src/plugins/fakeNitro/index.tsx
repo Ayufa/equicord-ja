@@ -202,7 +202,7 @@ function showCannotEmbedNotice() {
 export default definePlugin({
     name: "FakeNitro",
     authors: [Devs.Arjix, Devs.D3SOX, Devs.Ven, Devs.fawn, Devs.captain, Devs.Nuckyz, Devs.AutumnVN, Devs.sadan],
-    description: "Allows you to send fake emojis/stickers, use nitro themes, and stream in nitro quality",
+    description: "偽の絵文字やステッカーの送信、Nitro テーマの使用、Nitro 画質での配信ができるようにします",
     tags: ["Emotes", "Appearance", "Customisation", "Chat"],
     dependencies: ["MessageEventsAPI"],
 

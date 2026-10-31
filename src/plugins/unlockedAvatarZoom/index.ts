@@ -19,7 +19,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "UnlockedAvatarZoom",
-    description: "Allows you to zoom in further in the image crop tool when changing your avatar",
+    description: "アバター変更時の画像切り抜きツールで、さらに拡大できるようにします",
     tags: ["Media", "Utility"],
     authors: [Devs.nakoyasha],
     settings,

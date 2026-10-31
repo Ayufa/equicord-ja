@@ -36,7 +36,7 @@ migratePluginToSettings(true, "MoreUserTags", "NoAppsAllowed", "noAppsAllowed");
 
 export default definePlugin({
     name: "MoreUserTags",
-    description: "Adds tags for webhooks and moderative roles (owner, admin, etc.)",
+    description: "Webhookや管理系ロール（オーナー、管理者など）向けのタグを追加します",
     dependencies: ["MemberListDecoratorsAPI", "MessageDecorationsAPI", "NicknameIconsAPI"],
     tags: ["Appearance", "Chat"],
     authors: [Devs.Cyn, Devs.TheSun, Devs.RyanCaoDev, Devs.LordElias, Devs.AutumnVN, EquicordDevs.Hen, EquicordDevs.meowabyte],

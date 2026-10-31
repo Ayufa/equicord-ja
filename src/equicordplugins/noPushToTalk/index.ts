@@ -9,7 +9,7 @@ import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "NoPushToTalk",
-    description: "Bypasses the push-to-talk requirement for voice activity in channels that enforce it.",
+    description: "プッシュトゥトークが強制されるチャンネルでも、その要件を回避してボイスアクティビティを使えるようにします。",
     tags: ["Servers", "Voice"],
     authors: [EquicordDevs.omaw],
     patches: [

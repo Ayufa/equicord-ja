@@ -137,7 +137,7 @@ export const settings = definePluginSettings({
 
 export default definePlugin({
     name: "ServerListIndicators",
-    description: "Add online friend count or server count in the server list",
+    description: "サーバーリストに、オンライン中のフレンド数やサーバー数を表示します",
     tags: ["Servers", "Appearance"],
     authors: [Devs.Rini, EquicordDevs.Panniku],
     dependencies: ["ServerListAPI"],

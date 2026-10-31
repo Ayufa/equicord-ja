@@ -26,7 +26,7 @@ export const settings = definePluginSettings({
 migratePluginSettings("FavoriteAnything", "FavouriteAnything");
 export default definePlugin({
     name: "FavoriteAnything",
-    description: "Favorite any image, video, or file attachment",
+    description: "画像、動画、ファイルの添付ファイルをお気に入りに登録できます",
     tags: ["Chat", "Media", "Utility"],
     authors: [Devs.Davri, Devs.nin0dev],
     searchTerms: ["favorite"],

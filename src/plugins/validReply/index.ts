@@ -32,7 +32,7 @@ const createMessageRecord = findByCodeLazy(".createFromServer(", ".isBlockedForM
 
 export default definePlugin({
     name: "ValidReply",
-    description: 'Fixes "Message could not be loaded" upon hovering over the reply',
+    description: '返信にホバーしたときに「メッセージを読み込めませんでした」と表示される問題を修正します',
     tags: ["Chat", "Utility"],
     authors: [Devs.newwares],
     patches: [

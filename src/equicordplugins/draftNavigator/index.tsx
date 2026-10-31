@@ -144,7 +144,7 @@ const DraftChatBarButton = ErrorBoundary.wrap<Parameters<ChatBarButtonFactory>[0
 
 export default definePlugin({
     name: "DraftNavigator",
-    description: "Search unsent drafts, preview their text, and jump to the channel.",
+    description: "未送信の下書きを検索し、内容をプレビューして、そのチャンネルへ移動できます。",
     authors: [EquicordDevs.rot],
     tags: ["Chat", "Utility"],
     dependencies: ["ChatInputButtonAPI"],

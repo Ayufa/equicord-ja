@@ -53,7 +53,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "CustomStatusTimeouts",
-    description: "Adds configurable timeout presets to the status (presence) menu.",
+    description: "ステータス（プレゼンス）メニューに、設定可能なタイムアウトのプリセットを追加します。",
     tags: ["Activity", "Utility"],
     authors: [EquicordDevs.Kiri, EquicordDevs.thororen],
     settings,

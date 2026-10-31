@@ -30,7 +30,7 @@ export const settings = definePluginSettings({
 
 export default definePlugin({
     name: "ProfileSets",
-    description: "Allows you to save and load different profile presets.",
+    description: "さまざまなプロフィールプリセットを保存・読み込みできるようにします。",
     tags: ["Appearance", "Customisation", "Utility"],
     authors: [EquicordDevs.omaw, EquicordDevs.justjxke],
     settings,

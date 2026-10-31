@@ -19,17 +19,17 @@ export function MacOSVibrancySettings() {
 
     return (
         <ErrorBoundary noop>
-            <Heading tag="h5">MacOS Window vibrancy style (requires restart)</Heading>
+            <Heading tag="h5">macOS ウィンドウの Vibrancy スタイル (再起動が必要)</Heading>
             <Select
                 className={Margins.bottom20}
-                placeholder="Window vibrancy style"
+                placeholder="ウィンドウの Vibrancy スタイル"
                 options={[
                     // Sorted from most opaque to most transparent
                     {
-                        label: "No vibrancy", value: undefined
+                        label: "Vibrancy なし", value: undefined
                     },
                     {
-                        label: "Under Page (window tinting)",
+                        label: "Under Page (ウィンドウの色合い)",
                         value: "under-page"
                     },
                     {
@@ -69,11 +69,11 @@ export function MacOSVibrancySettings() {
                         value: "popover"
                     },
                     {
-                        label: "Fullscreen UI (transparent but slightly muted)",
+                        label: "Fullscreen UI (透明だが少し落ち着いた色味)",
                         value: "fullscreen-ui"
                     },
                     {
-                        label: "HUD (Most transparent)",
+                        label: "HUD (最も透明)",
                         value: "hud"
                     },
                 ]}

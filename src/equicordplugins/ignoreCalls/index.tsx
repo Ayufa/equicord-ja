@@ -91,7 +91,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "IgnoreCalls",
-    description: "Allows you to ignore calls from specific users or dm groups.",
+    description: "特定のユーザーやDMグループからの通話を無視できます。",
     tags: ["Voice"],
     authors: [EquicordDevs.TheArmagan, Devs.thororen],
     settings,

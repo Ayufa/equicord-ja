@@ -17,7 +17,7 @@ let clicked = false;
 
 export default definePlugin({
     name: "EquicordHelper",
-    description: "Used to provide support and fix discord caused crashes.",
+    description: "サポートの提供や、Discordが原因のクラッシュの修正に使用されます。",
     tags: ["Utility"],
     dependencies: ["MessageAccessoriesAPI"],
     authors: [

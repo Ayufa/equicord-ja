@@ -130,7 +130,7 @@ function isStickerBlocked(name) {
 
 export default definePlugin({
     name: "StickerBlocker",
-    description: "Allows you to block stickers from being displayed.",
+    description: "スタンプが表示されないようにブロックできます。",
     tags: ["Chat", "Emotes", "Utility"],
     authors: [Devs.Samwich],
     patches: [

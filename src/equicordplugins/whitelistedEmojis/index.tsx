@@ -395,7 +395,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "WhitelistedEmojis",
-    description: "Adds the ability to disable all message emojis except for a whitelisted set.",
+    description: "ホワイトリストに登録した絵文字以外の、すべてのメッセージ絵文字を無効化できるようにします。",
     tags: ["Chat", "Emotes"],
     authors: [EquicordDevs.creations],
     patches: [

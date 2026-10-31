@@ -9,7 +9,7 @@ import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "BypassPinPrompt",
-    description: "Bypass the pin prompt when using the pin functions",
+    description: "ピン留め機能を使うときの確認プロンプトをスキップします",
     tags: ["Shortcuts"],
     authors: [Devs.thororen],
     patches: [

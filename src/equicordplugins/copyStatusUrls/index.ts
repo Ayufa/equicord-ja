@@ -22,7 +22,7 @@ const getMetadataFromApi: (activity: any, userId: string) => Promise<any> = find
 
 export default definePlugin({
     name: "CopyStatusUrls",
-    description: "Copy the users status url when you right-click it",
+    description: "ステータスを右クリックしたときに、そのユーザーのステータス URL をコピーします",
     tags: ["Activity", "Utility"],
     authors: [Devs.sadan],
 

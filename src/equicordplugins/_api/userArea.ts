@@ -14,7 +14,7 @@ const accountClasses = findCssClassesLazy("iconForeground", "accountPopoutButton
 
 export default definePlugin({
     name: "UserAreaAPI",
-    description: "API to add buttons to the user area panel.",
+    description: "ユーザーエリアパネルにボタンを追加するための API。",
     authors: [Devs.prism],
 
     patches: [

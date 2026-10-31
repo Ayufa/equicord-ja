@@ -109,7 +109,7 @@ function applyPaletteTransparent(data: Uint8Array | Uint8ClampedArray, palette: 
 migratePluginSettings("PetPet", "petpet");
 export default definePlugin({
     name: "PetPet",
-    description: "Adds a /petpet slash command to create headpet gifs from any image",
+    description: "任意の画像からなでなでGIFを作成する /petpet スラッシュコマンドを追加します",
     dependencies: ["CommandsAPI"],
     tags: ["Fun", "Commands"],
     authors: [Devs.Ven, Devs.u32],

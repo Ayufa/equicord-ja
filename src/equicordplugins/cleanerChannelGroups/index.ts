@@ -9,7 +9,7 @@ import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "CleanerChannelGroups",
-    description: "Hides all channels in collapsed categories, even if they have unread messages.",
+    description: "折りたたまれたカテゴリ内のすべてのチャンネルを、未読メッセージがあっても非表示にします。",
     tags: ["Appearance", "Customisation", "Chat", "Organisation", "Servers"],
     authors: [EquicordDevs.justjxke],
     patches: [

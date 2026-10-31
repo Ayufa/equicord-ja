@@ -23,18 +23,18 @@ export function Validator({ link, onValidate }: { link: string; onValidate: (val
         const contentType = res.headers.get("Content-Type");
         if (!contentType?.startsWith("text/css") && !contentType?.startsWith("text/plain")) {
             onValidate(false);
-            throw "Not a CSS file. Remember to use the raw link!";
+            throw "CSS ファイルではありません。raw リンクを使ってください！";
         }
 
         onValidate(true);
-        return "Okay!";
+        return "OK！";
     }));
 
     const text = pending
-        ? "Checking..."
+        ? "確認中…"
         : err
-            ? `Error: ${err instanceof Error ? err.message : String(err)}`
-            : "Valid!";
+            ? `エラー: ${err instanceof Error ? err.message : String(err)}`
+            : "有効です！";
 
     return <Paragraph style={{
         color: pending ? "var(--text-muted)" : err ? "var(--text-feedback-critical)" : "var(--status-positive)"
@@ -62,19 +62,19 @@ export function OnlineThemesSection({
 }: OnlineThemesSectionProps) {
     return (
         <>
-            <Heading className={Margins.top20}>Online Themes</Heading>
+            <Heading className={Margins.top20}>オンラインテーマ</Heading>
             <Paragraph className={Margins.bottom16}>
-                Load themes directly from URLs instead of local files. Online themes auto-update when the source changes, so you always have the latest version without manual downloads.
+                ローカルファイルの代わりに、URL から直接テーマを読み込みます。オンラインテーマはソースが変更されると自動で更新されるため、手動でダウンロードしなくても常に最新版を使えます。
             </Paragraph>
             <FormSwitch
-                title="Enable Online Themes"
-                description="Toggle online theme loading. When disabled, all online themes will be turned off and you won't be able to add new ones."
+                title="オンラインテーマを有効化"
+                description="オンラインテーマの読み込みを切り替えます。無効にすると、すべてのオンラインテーマがオフになり、新しいテーマを追加できなくなります。"
                 value={enableOnlineThemes}
                 onChange={setEnableOnlineThemes}
             />
 
             <Notice.Info className={Margins.bottom16} style={{ width: "100%" }}>
-                Looking for themes? Check out <Link href="https://betterdiscord.app/themes">BetterDiscord Themes</Link> or search on <Link href="https://github.com/search?q=discord+theme">GitHub</Link>. When downloading from BetterDiscord, click "Download" and place the .theme.css file into your themes folder.
+                テーマをお探しですか？ <Link href="https://betterdiscord.app/themes">BetterDiscord Themes</Link> をチェックするか、<Link href="https://github.com/search?q=discord+theme">GitHub</Link> で検索してください。BetterDiscord からダウンロードする場合は「Download」をクリックし、.theme.css ファイルをテーマフォルダーに入れてください。
             </Notice.Info>
 
             <div className={cl("link-row")}>
@@ -85,7 +85,7 @@ export function OnlineThemesSection({
                     disabled={!enableOnlineThemes}
                 />
                 <Button onClick={() => addThemeLink(currentThemeLink)} disabled={!themeLinkValid || !enableOnlineThemes}>
-                    Add
+                    追加
                 </Button>
             </div>
             {currentThemeLink && (

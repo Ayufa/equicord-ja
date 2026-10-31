@@ -11,7 +11,7 @@ import FriendCodesPanel from "./FriendCodesPanel";
 
 export default definePlugin({
     name: "FriendCodes",
-    description: "Generate FriendCodes to easily add friends",
+    description: "フレンドを簡単に追加できるフレンドコードを生成します",
     tags: ["Friends", "Utility"],
     authors: [Devs.HypedDomi],
     patches: [

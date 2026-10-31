@@ -145,7 +145,7 @@ function disabledIcon() {
 
 export default definePlugin({
     name: "Ingtoninator",
-    description: "Suffixes 'ington' to a random word in your message",
+    description: "メッセージ内のランダムな単語に 'ington' を付けます",
     dependencies: ["ChatInputButtonAPI"],
     tags: ["Fun"],
     authors: [EquicordDevs.zyqunix, EquicordDevs.BioTomateDE],

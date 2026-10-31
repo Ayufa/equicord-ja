@@ -155,7 +155,7 @@ const settings = definePluginSettings({
 export default definePlugin({
     name: "KeywordNotify",
     authors: [EquicordDevs.camila314, EquicordDevs.x3rt, EquicordDevs.benjas333],
-    description: "Sends a notification if a given message matches certain keywords or regexes",
+    description: "メッセージが特定のキーワードや正規表現に一致したときに通知を送ります",
     settings,
     keywordTabId: KEYWORD_TAB_ID,
     patches: [

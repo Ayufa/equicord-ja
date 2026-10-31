@@ -72,7 +72,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "RPCEditor",
-    description: "Edit the type and content of any Rich Presence",
+    description: "あらゆるリッチプレゼンスの種類と内容を編集します",
     tags: ["Customisation"],
     authors: [Devs.Nyako, Devs.nin0dev],
     patches: [

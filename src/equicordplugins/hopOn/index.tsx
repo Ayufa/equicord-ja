@@ -31,7 +31,7 @@ const settings = definePluginSettings({
 });
 export default definePlugin({
     name: "HopOn",
-    description: "Hop on! Opens a configurable URL when a message matches a custom regex in the current channel.",
+    description: "Hop on! 現在のチャンネルのメッセージがカスタム正規表現に一致したときに、設定したURLを開きます。",
     tags: ["Fun"],
     authors: [Devs.ImLvna],
     settings,

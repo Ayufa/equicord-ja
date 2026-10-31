@@ -278,7 +278,7 @@ migratePluginSetting("Timezones", "twentyFourHourFormat", "24h Time");
 export default definePlugin({
     name: "Timezones",
     authors: [Devs.Aria, EquicordDevs.creations],
-    description: "Shows the local time of users in profiles and message headers",
+    description: "プロフィールとメッセージヘッダーにユーザーの現地時刻を表示します",
     tags: ["Appearance", "Chat", "Utility"],
     contextMenus: {
         "user-context": userContextMenuPatch

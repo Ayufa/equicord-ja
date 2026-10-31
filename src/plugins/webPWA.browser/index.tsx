@@ -94,7 +94,7 @@ async function setManifest() {
 
 export default definePlugin({
     name: "WebPWA",
-    description: "Makes Discord installable as an App (PWA). Enables notification badges, global key-binds and Discord's custom title bar.",
+    description: "Discordをアプリ（PWA）としてインストール可能にします。通知バッジ、グローバルキーバインド、Discordのカスタムタイトルバーを有効にします。",
     authors: [Devs.ThaUnknown],
     tags: ["Utility"],
     managedStyle,

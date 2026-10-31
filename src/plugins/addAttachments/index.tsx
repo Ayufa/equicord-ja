@@ -112,7 +112,7 @@ function handlePaste(e: ClipboardEvent) {
 
 export default definePlugin({
     name: "AddAttachments",
-    description: "Allows you to add new attachments while editing messages",
+    description: "メッセージの編集中に新しい添付ファイルを追加できるようにします",
     authors: [Devs.Lumap],
 
     start() {

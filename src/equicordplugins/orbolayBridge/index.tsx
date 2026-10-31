@@ -341,7 +341,7 @@ const createWebsocket = () => {
 
 export default definePlugin({
     name: "OrbolayBridge",
-    description: "Bridge plugin to connect Orbolay to Discord",
+    description: "Orbolay を Discord に接続するためのブリッジプラグイン",
     tags: ["Utility", "Voice"],
     authors: [EquicordDevs.SpikeHD],
     settings,

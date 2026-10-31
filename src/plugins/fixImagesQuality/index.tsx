@@ -23,7 +23,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "FixImagesQuality",
-    description: "Improves quality of images by loading them at their original resolution",
+    description: "画像を元の解像度で読み込むことで画質を向上させます",
     tags: ["Media", "Appearance"],
     authors: [Devs.Nuckyz, Devs.Ven],
     settings,

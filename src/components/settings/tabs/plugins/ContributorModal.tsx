@@ -55,7 +55,7 @@ function ContributorModal({ user, modalProps }: { user: User; modalProps: Render
             .sort((a, b) => Number(a.required ?? false) - Number(b.required ?? false));
     }, [user.id, user.username]);
 
-    const ContributedHyperLink = <Link href="https://github.com/Equicord/Equicord">contributed</Link>;
+    const ContributedHyperLink = <Link href="https://github.com/Equicord/Equicord">コントリビュート</Link>;
 
     const hasLinks = website || githubName;
 
@@ -76,12 +76,12 @@ function ContributorModal({ user, modalProps }: { user: User; modalProps: Render
                 plugins.length
                     ? (
                         <Paragraph>
-                            {user.username} has {ContributedHyperLink} to {pluralize(plugins.length, "plugin")}!
+                            {user.username} は {pluralize(plugins.length, "plugin")} に {ContributedHyperLink} しています！
                         </Paragraph>
                     )
                     : (
                         <Paragraph>
-                            {user.username} has not made any plugins. They likely {ContributedHyperLink} in other ways!
+                            {user.username} はプラグインを作成していません。おそらく他の形で {ContributedHyperLink} しています！
                         </Paragraph>
                     )
             }
@@ -115,7 +115,7 @@ function ContributorModal({ user, modalProps }: { user: User; modalProps: Render
                                 key={p.name}
                                 plugin={p}
                                 disabled={p.required ?? false}
-                                onRestartNeeded={() => showToast({ text: "Restart to apply changes!" })}
+                                onRestartNeeded={() => showToast({ text: "変更を適用するには再起動してください！" })}
                             />
                         )}
                     </div>

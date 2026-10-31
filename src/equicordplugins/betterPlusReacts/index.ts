@@ -12,7 +12,7 @@ import { MessageStore } from "@webpack/common";
 export default definePlugin({
     name: "BetterPlusReacts",
     authors: [Devs.Joona],
-    description: "The amount of plus before :emoji: is the message to add it to",
+    description: ":emoji: の前にあるプラスの数が、リアクションを追加するメッセージを示します",
     tags: ["Chat", "Emotes"],
     patches: [
         {

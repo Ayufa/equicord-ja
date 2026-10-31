@@ -49,18 +49,18 @@ function EquibopSection() {
         <Flex className={Margins.bottom20} flexDirection="column" gap="1em">
             <Card variant="brand">
                 <HeadingSecondary>Equibop & Equicord</HeadingSecondary>
-                <Paragraph>Equibop and Equicord are two separate things. This updater is for Equicord.</Paragraph>
+                <Paragraph>Equibop と Equicord は別々のものです。このアップデーターは Equicord 用です。</Paragraph>
                 <Paragraph className={Margins.top8}>
-                    You receive separate popups for Equibop updates. You can also manually update by installing the <Link href="https://equibop.org/install">latest version</Link>.
+                    Equibop の更新については別途ポップアップが表示されます。手動で更新するには、<Link href="https://equibop.org/install">最新バージョン</Link> をインストールしてください。
                 </Paragraph>
             </Card>
 
             {isEquibopOutdated && (
                 <Card variant="warning">
-                    <HeadingSecondary>Equibop Outdated</HeadingSecondary>
+                    <HeadingSecondary>Equibop が古くなっています</HeadingSecondary>
                     <Flex flexDirection="column" gap="0.5em">
-                        <Paragraph>Your version of Equibop is outdated!</Paragraph>
-                        <Button variant="link" onClick={() => VesktopNative.app.openUpdater()}>Open Equibop Updater</Button>
+                        <Paragraph>お使いの Equibop のバージョンが古くなっています！</Paragraph>
+                        <Button variant="link" onClick={() => VesktopNative.app.openUpdater()}>Equibop アップデーターを開く</Button>
                     </Flex>
                 </Card>
             )}
@@ -71,7 +71,7 @@ function EquibopSection() {
 function Updater() {
     const settings = useSettings(["autoUpdate", "autoUpdateNotification"]);
 
-    const [repo, err, repoPending] = useAwaiter(getRepo, { fallbackValue: "Loading..." });
+    const [repo, err, repoPending] = useAwaiter(getRepo, { fallbackValue: "読み込み中…" });
 
     React.useEffect(() => {
         if (err)
@@ -86,22 +86,22 @@ function Updater() {
     return (
         <SettingsTab>
             <EquibopSection />
-            <Heading className={Margins.top16}>Update Preferences</Heading>
+            <Heading className={Margins.top16}>更新設定</Heading>
             <Paragraph className={Margins.bottom20}>
-                Control how Equicord keeps itself up to date. You can choose to update automatically in the background or be notified when new updates are available.
+                Equicord の更新方法を制御します。バックグラウンドで自動的に更新するか、新しい更新があるときに通知を受け取るか選べます。
             </Paragraph>
 
             <div className="vc-settings-switches">
                 <FormSwitch
-                    title="Automatically update"
-                    description="When enabled, Equicord will automatically download and install updates in the background without asking for confirmation. You'll need to restart Discord to apply the changes."
+                    title="自動的に更新"
+                    description="有効にすると、Equicord は確認を求めずにバックグラウンドで更新を自動的にダウンロードしてインストールします。変更を適用するには Discord の再起動が必要です。"
                     value={settings.autoUpdate}
                     onChange={(v: boolean) => settings.autoUpdate = v}
                     hideBorder
                 />
                 <FormSwitch
-                    title="Get notified when an automatic update completes"
-                    description="Receive a notification when Equicord finishes downloading an update in the background, so you know when to restart Discord."
+                    title="自動更新が完了したときに通知を受け取る"
+                    description="Equicord がバックグラウンドで更新のダウンロードを終えたら通知を受け取り、Discord を再起動するタイミングが分かります。"
                     value={settings.autoUpdateNotification}
                     onChange={(v: boolean) => settings.autoUpdateNotification = v}
                     disabled={!settings.autoUpdate}
@@ -111,15 +111,15 @@ function Updater() {
 
             <Divider className={Margins.top20} />
 
-            <Heading className={Margins.top20}>Repository</Heading>
+            <Heading className={Margins.top20}>リポジトリ</Heading>
             <Paragraph className={Margins.bottom8}>
-                This is the GitHub repository where Equicord fetches updates from.
+                Equicord が更新を取得する GitHub リポジトリです。
             </Paragraph>
             <Paragraph color="text-subtle">
                 {repoPending
                     ? repo
                     : err
-                        ? "Failed to retrieve - check console"
+                        ? "取得に失敗しました - コンソールを確認してください"
                         : (
                             <Link href={repo}>
                                 {repo.split("/").slice(-2).join("/")}
@@ -131,7 +131,7 @@ function Updater() {
 
             <Divider className={Margins.top20} />
 
-            <Heading className={Margins.top20}>Updates</Heading>
+            <Heading className={Margins.top20}>更新</Heading>
             {isNewer ? <Newer {...commonProps} /> : <Updatable {...commonProps} />}
         </SettingsTab>
     );
@@ -139,4 +139,4 @@ function Updater() {
 
 export default IS_UPDATER_DISABLED
     ? null
-    : wrapTab(Updater, "Updater");
+    : wrapTab(Updater, "アップデーター");

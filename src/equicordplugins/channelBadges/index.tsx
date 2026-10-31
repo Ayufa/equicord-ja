@@ -31,7 +31,7 @@ function renderBadge(id: number, title: string) {
 
 export default definePlugin({
     name: "ChannelBadges",
-    description: "Adds badges to channels based on their type",
+    description: "チャンネルの種類に応じてバッジを追加します",
     tags: ["Appearance", "Customisation", "Servers"],
     authors: [EquicordDevs.creations, Devs.thororen],
     settings,

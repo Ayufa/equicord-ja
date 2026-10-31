@@ -120,7 +120,7 @@ function getMatchingPattern(url: string): PatternEntry | null {
 
 export default definePlugin({
     name: "UrlHighlighter",
-    description: "Highlights URLs in messages that match your patterns.",
+    description: "メッセージ内で、あなたのパターンに一致するURLをハイライト表示します。",
     tags: ["Appearance", "Customisation"],
     authors: [Devs.prism],
     settings,

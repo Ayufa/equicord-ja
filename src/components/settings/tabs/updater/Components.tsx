@@ -63,7 +63,7 @@ export function Newer(props: CommonProps) {
     return (
         <>
             <Paragraph>
-                Your local copy has more recent commits than the remote repository. This usually happens when you've made local changes. Please stash or reset them before updating.
+                ローカルのコピーには、リモートリポジトリより新しいコミットが含まれています。これは通常、ローカルで変更を行った場合に発生します。更新する前に、変更をスタッシュするかリセットしてください。
             </Paragraph>
             <Changes {...props} updates={changes} />
         </>
@@ -90,12 +90,12 @@ export function Updatable(props: CommonProps) {
                         } else {
                             setUpdates([]);
 
-                            showToast({ text: "No updates found!", position: "bottom" });
+                            showToast({ text: "更新は見つかりませんでした！", position: "bottom" });
 
                         }
                     })}
                 >
-                    Check for Updates
+                    更新を確認
                 </Button>
                 {isOutdated && (
                     <Button
@@ -107,35 +107,35 @@ export function Updatable(props: CommonProps) {
                                 setUpdates([]);
 
                                 promptToRestart("relaunch", {
-                                    title: "Update Success!",
-                                    subtitle: "Successfully updated. Restart now to apply the changes?",
-                                    confirmText: "Restart",
-                                    cancelText: "Not now!"
+                                    title: "更新が完了しました！",
+                                    subtitle: "更新が完了しました。変更を適用するために今すぐ再起動しますか？",
+                                    confirmText: "再起動",
+                                    cancelText: "後で"
                                 });
                             }
                         })}
                     >
-                        Update Now
+                        今すぐ更新
                     </Button>
                 )}
             </Flex>
             {!updates && updateError ? (
                 <>
-                    <Span size="md" weight="medium" color="text-strong">Error checking for updates</Span>
+                    <Span size="md" weight="medium" color="text-strong">更新の確認中にエラーが発生しました</Span>
                     <ErrorCard className={Margins.top8} style={{ padding: "1em" }}>
-                        <p>{updateError.stderr || updateError.stdout || "An unknown error occurred"}</p>
+                        <p>{updateError.stderr || updateError.stdout || "不明なエラーが発生しました"}</p>
                     </ErrorCard>
                 </>
             ) : isOutdated ? (
                 <>
                     <Paragraph>
-                        There {updates.length === 1 ? "is 1 update" : `are ${updates.length} updates`} available. Click the button above to download and install.
+                        {updates.length} 件の更新があります。上のボタンをクリックしてダウンロードとインストールを行ってください。
                     </Paragraph>
                     <Changes updates={updates} {...props} />
                 </>
             ) : (
                 <Paragraph>
-                    You're running the latest version of Equicord.
+                    Equicord の最新バージョンを使用しています。
                 </Paragraph>
             )}
         </>

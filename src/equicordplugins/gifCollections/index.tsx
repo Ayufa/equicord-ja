@@ -47,7 +47,7 @@ const gifPickerContextMenuPatch: NavContextMenuPatchCallback = (children, props)
 
 export default definePlugin({
     name: "GifCollections",
-    description: "Allows you to create collections of gifs.",
+    description: "GIFのコレクションを作成できます。",
     tags: ["Chat", "Emotes"],
     authors: [EquicordDevs.creations],
     settings,

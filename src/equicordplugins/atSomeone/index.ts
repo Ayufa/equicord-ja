@@ -12,7 +12,7 @@ import { ChannelStore, GuildMemberStore, SelectedChannelStore, SelectedGuildStor
 export default definePlugin({
     name: "AtSomeone",
     authors: [Devs.Joona],
-    description: "Mention someone randomly",
+    description: "ランダムに誰かをメンションします",
     tags: ["Chat", "Fun"],
     patches: [
         {

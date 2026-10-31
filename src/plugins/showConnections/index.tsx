@@ -230,7 +230,7 @@ function CompactConnectionComponent({ connection, theme }: { connection: Connect
 
 export default definePlugin({
     name: "ShowConnections",
-    description: "Show connected accounts in user popouts and the DM sidebar",
+    description: "ユーザーポップアウトとDMサイドバーに、連携済みアカウントを表示します",
     tags: ["Friends", "Appearance"],
     authors: [Devs.TheKodeToad],
     settings,

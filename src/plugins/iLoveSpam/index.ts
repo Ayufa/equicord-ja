@@ -23,7 +23,7 @@ import definePlugin from "@utils/types";
 migratePluginSettings("IloveSpam", "iLoveSpam");
 export default definePlugin({
     name: "ILoveSpam",
-    description: "Do not hide messages from 'likely spammers'",
+    description: "「スパムの可能性が高い」ユーザーのメッセージを非表示にしないようにします",
     tags: ["Utility", "Chat"],
     authors: [Devs.botato, Devs.Nyako],
     patches: [

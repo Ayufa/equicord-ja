@@ -167,7 +167,7 @@ function SectionSeparator(title: string) {
 export default definePlugin({
     name: "Declutter",
     description:
-        "Cleans up Discord by removing non-essential UI elements like profile effects, shop tabs, boosts, and more.",
+        "プロフィールエフェクト、ショップタブ、ブーストなどの不要な UI 要素を取り除き、Discord をすっきりさせます。",
     tags: ["Appearance", "Customisation"],
     authors: [EquicordDevs.Leon135, Devs.prism, Devs.Kyuuhachi, Devs.SomeAspy],
     start() {

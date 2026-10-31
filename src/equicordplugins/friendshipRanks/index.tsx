@@ -170,7 +170,7 @@ const FriendDecoration = ErrorBoundary.wrap(({ userId }: { userId: string; }) =>
 
 export default definePlugin({
     name: "FriendshipRanks",
-    description: "Adds badges showcasing how long you have been friends with a user for",
+    description: "ユーザーとフレンドになってからの期間を示すバッジを追加します",
     tags: ["Friends"],
     authors: [Devs.Samwich, EquicordDevs.lucabeyer],
     settings,

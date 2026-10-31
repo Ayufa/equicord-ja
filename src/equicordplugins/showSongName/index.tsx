@@ -9,7 +9,7 @@ import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "ShowSongName",
-    description: "Shows song name instead of artist for Spotify activity",
+    description: "Spotifyアクティビティでアーティスト名の代わりに曲名を表示します",
     tags: ["Activity"],
     authors: [Devs.prism],
 

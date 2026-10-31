@@ -21,7 +21,7 @@ import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "DisableCallIdle",
-    description: "Disables automatically getting kicked from a DM voice call after 3 minutes and being moved to an AFK voice channel.",
+    description: "DM のボイス通話で3分後に自動で退出させられ、AFK ボイスチャンネルに移動させられるのを無効化します。",
     tags: ["Voice", "Utility"],
     authors: [Devs.Nuckyz],
     patches: [

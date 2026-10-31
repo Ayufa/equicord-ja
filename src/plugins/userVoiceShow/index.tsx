@@ -47,7 +47,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "UserVoiceShow",
-    description: "Shows an indicator when a user is in a Voice Channel",
+    description: "ユーザーがボイスチャンネルにいるときにインジケーターを表示します",
     tags: ["Voice", "Appearance", "Friends"],
     dependencies: ["MemberListDecoratorsAPI", "MessageDecorationsAPI", "NicknameIconsAPI"],
     authors: [Devs.Nuckyz, Devs.LordElias, EquicordDevs.omaw],

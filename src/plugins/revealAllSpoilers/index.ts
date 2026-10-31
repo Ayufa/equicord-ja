@@ -25,7 +25,7 @@ const MessagesClasses = findCssClassesLazy("messagesWrapper", "navigationDescrip
 
 export default definePlugin({
     name: "RevealAllSpoilers",
-    description: "Reveal all spoilers in a message by Ctrl-clicking a spoiler, or in the chat with Ctrl+Shift-click",
+    description: "スポイラーをCtrl+クリックするか、チャット内をCtrl+Shift+クリックすることで、メッセージ内のすべてのスポイラーを表示します",
     authors: [Devs.whqwert],
     tags: ["Accessibility", "Chat", "Shortcuts", "Utility"],
     patches: [

@@ -59,7 +59,7 @@ let shouldAttemptRecover = true;
 
 export default definePlugin({
     name: "CrashHandler",
-    description: "Utility plugin for handling and possibly recovering from crashes without a restart",
+    description: "再起動せずにクラッシュへの対処や復旧を行うためのユーティリティプラグインです",
     authors: [Devs.Nuckyz],
     tags: ["Utility", "Developers"],
     enabledByDefault: true,

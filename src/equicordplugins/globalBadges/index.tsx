@@ -21,7 +21,7 @@ let intervalId: any;
 
 export default definePlugin({
     name: "GlobalBadges",
-    description: "Adds global badges from other client mods",
+    description: "他のクライアントMODのグローバルバッジを追加します",
     tags: ["Appearance"],
     authors: [Devs.HypedDomi, EquicordDevs.Wolfie, Devs.thororen],
     settings,

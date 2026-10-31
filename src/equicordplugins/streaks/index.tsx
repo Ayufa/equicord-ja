@@ -136,7 +136,7 @@ const StreakBadge = ({ userId }: { userId: string; }) => {
 
 export default definePlugin({
     name: "Streaks",
-    description: "Shows a streak next to a user when you exchange DMs with them on consecutive days.",
+    description: "連続した日数にわたってDMをやり取りしたユーザーの横に、連続記録（ストリーク）を表示します。",
     authors: [EquicordDevs.Moowi, Devs.thororen],
     tags: ["Friends", "Fun"],
     dependencies: ["MessageDecorationsAPI", "MemberListDecoratorsAPI", "ConcatenatedModules"],

@@ -241,7 +241,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "BetterAudioPlayer",
-    description: "Adds a spectrograph and oscilloscope visualizer to audio attachment players.",
+    description: "音声添付ファイルのプレイヤーにスペクトログラフとオシロスコープのビジュアライザーを追加します。",
     tags: ["Appearance", "Media", "Voice"],
     authors: [EquicordDevs.creations],
     settings,

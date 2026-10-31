@@ -154,7 +154,7 @@ const SendTimestampButton: ChatBarButtonFactory = ({ isAnyChat }) => {
 
 export default definePlugin({
     name: "SendTimestamps",
-    description: "Send timestamps easily via chat box button & text shortcuts. Read the extended description!",
+    description: "チャット欄のボタンやテキストショートカットで、タイムスタンプを簡単に送信できます。詳細な説明も読んでください！",
     dependencies: ["ChatInputButtonAPI", "MessagePopoverAPI"],
     tags: ["Chat", "Commands"],
     authors: [Devs.Ven, Devs.Tyler, Devs.Grzesiek11],

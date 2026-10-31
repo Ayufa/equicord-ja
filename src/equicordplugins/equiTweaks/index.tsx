@@ -187,7 +187,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "EquiTweaks",
-    description: "A collection of small tweaks and fixes for Discord.",
+    description: "Discord向けの小さな調整と修正を集めたプラグインです。",
     tags: ["Appearance", "Commands", "Utility"],
     dependencies: ["CommandsAPI", "HeaderBarAPI"],
     authors: [

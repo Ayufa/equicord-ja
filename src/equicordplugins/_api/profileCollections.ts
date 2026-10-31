@@ -9,7 +9,7 @@ import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "ProfileCollectionsAPI",
-    description: "API to add collections to the user profile panel like discords game collection.",
+    description: "Discord のゲームコレクションのように、ユーザープロフィールパネルにコレクションを追加するための API。",
     authors: [Devs.thororen],
     patches: [
         // message and member list popouts

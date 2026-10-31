@@ -114,7 +114,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "SaveFavoriteGIFs",
-    description: "Export favorited GIF urls",
+    description: "お気に入り登録した GIF の URL をエクスポートします",
     dependencies: ["CommandsAPI"],
     tags: ["Emotes", "Utility"],
     authors: [Devs.thororen],

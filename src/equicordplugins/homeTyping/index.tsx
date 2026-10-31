@@ -18,7 +18,7 @@ const ThreeDots = findComponentByCodeLazy("Math.min(1,Math.max(", "dotRadius:");
 
 export default definePlugin({
     name: "HomeTyping",
-    description: "Changes the home button to a typing indicator if someone in your dms is typing",
+    description: "DMの相手が入力中のとき、ホームボタンを入力中インジケーターに変えます",
     tags: ["Chat"],
     authors: [Devs.Samwich],
     TypingIcon() {

@@ -50,7 +50,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "AlwaysAnimate",
-    description: "Animates anything that can be animated",
+    description: "アニメーション可能なものすべてをアニメーションさせます",
     tags: ["Appearance", "Fun"],
     authors: [Devs.FieryFlames],
     settings,

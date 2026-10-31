@@ -132,7 +132,7 @@ const keydownListener = (event: KeyboardEvent) => {
 migratePluginSettings("RepeatMessages", "RepeatMessage");
 export default definePlugin({
     name: "RepeatMessages",
-    description: "Allows you to repeat messages quickly. If you hold shift while clicking the Repeat option, it will reply to the message.",
+    description: "メッセージを手早く繰り返し送信できるようにします。Shift を押しながら「Repeat」オプションをクリックすると、そのメッセージへの返信として送信されます。",
     dependencies: ["MessagePopoverAPI"],
     tags: ["Chat"],
     authors: [EquicordDevs.Tolgchu, Devs.thororen],

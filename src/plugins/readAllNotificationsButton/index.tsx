@@ -65,7 +65,7 @@ const ReadAllButton = () => (
 
 export default definePlugin({
     name: "ReadAllNotificationsButton",
-    description: "Read all server notifications with a single button click!",
+    description: "ボタン1つで全サーバーの通知を既読にできます！",
     tags: ["Notifications", "Shortcuts"],
     authors: [Devs.kemo, EquicordDevs.KrystalSkull],
     dependencies: ["ServerListAPI"],

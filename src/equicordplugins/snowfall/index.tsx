@@ -450,7 +450,7 @@ let container: HTMLDivElement | null = null;
 
 export default definePlugin({
     name: "Snowfall",
-    description: "Let it snow on Discord",
+    description: "Discordに雪を降らせます",
     tags: ["Appearance"],
     authors: [EquicordDevs.ZcraftElite, EquicordDevs.square],
 

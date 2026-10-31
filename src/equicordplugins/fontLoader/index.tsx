@@ -200,7 +200,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "FontLoader",
-    description: "Loads any font from Google Fonts",
+    description: "Google Fontsから任意のフォントを読み込みます",
     tags: ["Appearance", "Customisation"],
     authors: [EquicordDevs.vmohammad],
     settings,

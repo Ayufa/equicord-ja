@@ -9,7 +9,7 @@ import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "NormalizeMessageLinks",
-    description: "Strip canary/ptb from message links",
+    description: "メッセージリンクから canary/ptb を取り除きます",
     tags: ["Chat"],
     authors: [Devs.bb010g],
     patches: [

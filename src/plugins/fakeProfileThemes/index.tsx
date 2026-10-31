@@ -193,7 +193,7 @@ function SettingsAboutComponent() {
 
 export default definePlugin({
     name: "FakeProfileThemes",
-    description: "Allows profile theming by hiding the colors in your bio thanks to invisible 3y3 encoding",
+    description: "不可視の 3y3 エンコーディングで自己紹介に色を隠し、プロフィールのテーマ設定を可能にします",
     tags: ["Appearance", "Customisation"],
     authors: [Devs.Alyxia, Devs.Remty],
     settings,

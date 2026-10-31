@@ -28,7 +28,7 @@ let updateFunc = (v: any) => { };
 
 export default definePlugin({
     name: "BetterBlockedUsers",
-    description: "Allows you to search in blocked users list, make names selectable in settings, skips blocked profile prompt, and groups blocked / ignored messages.",
+    description: "ブロック済みユーザーリストの検索、設定画面での名前の選択、ブロック済みプロフィールの確認プロンプトのスキップ、ブロック / 無視したメッセージのグループ化ができるようになります。",
     tags: ["Appearance", "Shortcuts"],
     authors: [EquicordDevs.TheArmagan],
     patches: [

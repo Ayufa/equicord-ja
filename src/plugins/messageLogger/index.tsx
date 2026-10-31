@@ -445,7 +445,7 @@ export const settings = definePluginSettings({
 
 export default definePlugin({
     name: "MessageLogger",
-    description: "Temporarily logs deleted and edited messages.",
+    description: "削除・編集されたメッセージを一時的に記録します。",
     tags: ["Chat", "Utility"],
     authors: [Devs.rushii, Devs.Ven, Devs.AutumnVN, Devs.Nickyux, Devs.Kyuuhachi, Devs.sadan, EquicordDevs.justjxke, Devs.f3tch],
     dependencies: ["MessageUpdaterAPI"],

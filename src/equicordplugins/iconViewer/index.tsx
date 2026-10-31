@@ -18,7 +18,7 @@ import { SettingsAbout } from "./components/Modals";
 
 export default definePlugin({
     name: "IconViewer",
-    description: "Adds a new tab to settings to preview all icons.",
+    description: "設定に、すべてのアイコンをプレビューできる新しいタブを追加します。",
     tags: ["Developers"],
     authors: [EquicordDevs.iamme],
     dependencies: ["Settings", "ConcatenatedModules"],

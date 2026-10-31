@@ -9,7 +9,7 @@ import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "SurfaceClassesAPI",
-    description: "API to add plugin-owned semantic data attributes and limited props to stable Discord layout surfaces.",
+    description: "プラグイン所有のセマンティックな data 属性や限定的な props を、安定した Discord レイアウトサーフェスに追加するための API。",
     authors: [EquicordDevs.benjii],
 
     patches: [

@@ -42,9 +42,9 @@ const findCandidates = debounce(function ({ find, setModule, setError }) {
     const len = keys.length;
 
     if (len === 0)
-        setError("No match. Perhaps that module is lazy loaded?");
+        setError("一致するモジュールがありません。そのモジュールは遅延読み込みされている可能性があります。");
     else if (len !== 1)
-        setError("Multiple matches. Please refine your filter");
+        setError("複数のモジュールが一致しました。フィルターを絞り込んでください。");
     else
         setModule([keys[0], candidates[keys[0]]]);
 });
@@ -108,9 +108,9 @@ function PatchHelper() {
 
     return (
         <SettingsTab>
-            <Heading className={Margins.top16}>Patch Helper</Heading>
+            <Heading className={Margins.top16}>パッチヘルパー</Heading>
             <Paragraph className={Margins.bottom16}>
-                A developer tool to help you create patches for Equicord plugins.
+                Equicord プラグインのパッチ作成を支援する開発者向けツールです。
             </Paragraph>
 
             <Heading className="">Full Patch</Heading>
@@ -152,7 +152,7 @@ function PatchHelper() {
             {module && (
                 <>
                     <Divider className={Margins.top16 + " " + Margins.bottom16} />
-                    <Span size="md" weight="medium" color="text-strong">Preview</Span>
+                    <Span size="md" weight="medium" color="text-strong">プレビュー</Span>
                     <PatchPreview
                         module={module}
                         match={match}
@@ -165,16 +165,16 @@ function PatchHelper() {
             {!!(find && match && replacement) && (
                 <>
                     <Divider className={Margins.top16 + " " + Margins.bottom16} />
-                    <Span size="md" weight="medium" color="text-strong">Generated Code</Span>
+                    <Span size="md" weight="medium" color="text-strong">生成されたコード</Span>
                     <div style={{ width: "100%", marginTop: 8 }}>
                         <CodeBlock lang="js" content={code} />
                     </div>
                     <Flex className={Margins.top8} gap="8px">
                         <Button size="small" onClick={() => copyWithToast(code)}>
-                            Copy to Clipboard
+                            クリップボードにコピー
                         </Button>
                         <Button size="small" onClick={() => copyWithToast("```ts\n" + code + "\n```")}>
-                            Copy as Codeblock
+                            コードブロックとしてコピー
                         </Button>
                     </Flex>
                 </>
@@ -183,4 +183,4 @@ function PatchHelper() {
     );
 }
 
-export default !IS_STANDALONE ? wrapTab(PatchHelper, "PatchHelper") : null;
+export default !IS_STANDALONE ? wrapTab(PatchHelper, "パッチヘルパー") : null;

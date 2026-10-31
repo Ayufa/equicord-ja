@@ -65,19 +65,19 @@ function ReloadRequiredCard({ required, enabledPlugins, openWarningModal, resetC
         <Card className={classes(cl("info-card"), required && "vc-warning-card")}>
             {required ? (
                 <>
-                    <HeadingTertiary>Restart required!</HeadingTertiary>
+                    <HeadingTertiary>再起動が必要です！</HeadingTertiary>
                     <Paragraph className={cl("dep-text")}>
-                        Restart now to apply new plugins and their settings
+                        新しいプラグインとその設定を適用するには、今すぐ再起動してください
                     </Paragraph>
                     <Button variant="primary" className={cl("restart-button")} onClick={() => location.reload()}>
-                        Restart
+                        再起動
                     </Button>
                 </>
             ) : (
                 <>
-                    <HeadingTertiary>Plugin Management</HeadingTertiary>
-                    <Paragraph>Press the cog wheel or info icon to get more info on a plugin</Paragraph>
-                    <Paragraph>Plugins with a cog wheel have settings you can modify!</Paragraph>
+                    <HeadingTertiary>プラグイン管理</HeadingTertiary>
+                    <Paragraph>プラグインの詳細を見るには、歯車アイコンまたは情報アイコンを押してください</Paragraph>
+                    <Paragraph>歯車アイコンの付いたプラグインには、変更できる設定があります！</Paragraph>
                 </>
             )}
             {enabledPlugins.length > 0 && !required && (
@@ -89,7 +89,7 @@ function ReloadRequiredCard({ required, enabledPlugins, openWarningModal, resetC
                         return openWarningModal(null, undefined, false, enabledPlugins.length, resetCheckAndDo);
                     }}
                 >
-                    Disable All Plugins
+                    すべてのプラグインを無効化
                 </Button>
             )}
         </Card>
@@ -109,13 +109,13 @@ const enum SearchStatus {
 }
 
 export const ExcludedReasons: Record<PluginTarget, string> = {
-    desktop: "Discord Desktop app or Vesktop/Equibop",
-    discordDesktop: "Discord Desktop app",
-    vesktop: "Vesktop/Equibop apps",
-    equibop: "Vesktop/Equibop apps",
-    web: "Vesktop/Equibop apps & Discord web",
-    dev: "Developer version of Equicord",
-    browser: "Web Browser version of Equicord"
+    desktop: "Discord デスクトップアプリ、または Vesktop/Equibop",
+    discordDesktop: "Discord デスクトップアプリ",
+    vesktop: "Vesktop/Equibop アプリ",
+    equibop: "Vesktop/Equibop アプリ",
+    web: "Vesktop/Equibop アプリと Discord Web",
+    dev: "Equicord の開発者版",
+    browser: "Equicord の Web ブラウザー版"
 };
 
 function ExcludedPluginsList({ search }: { search: string; }) {
@@ -128,16 +128,16 @@ function ExcludedPluginsList({ search }: { search: string; }) {
         <Paragraph className={Margins.top16}>
             {matchingExcludedPlugins.length
                 ? <>
-                    <Paragraph>Are you looking for:</Paragraph>
+                    <Paragraph>もしかして、こちらをお探しですか：</Paragraph>
                     <ul>
                         {matchingExcludedPlugins.map(([name, reason]) => (
                             <li key={name}>
-                                <b>{name}</b>: Only available on the {ExcludedReasons[reason]}
+                                <b>{name}</b>：{ExcludedReasons[reason]} でのみ利用できます
                             </li>
                         ))}
                     </ul>
                 </>
-                : "No plugins meet the search criteria."
+                : "検索条件に合うプラグインはありません。"
             }
         </Paragraph>
     );
@@ -160,7 +160,7 @@ export default function PluginSettings() {
 
             promptToRestart("reload", {
                 children: <>
-                    <p>The following plugins require a restart:</p>
+                    <p>次のプラグインは再起動が必要です：</p>
                     <div>
                         {displayed.map((s, i) => (
                             <React.Fragment key={i}>
@@ -168,7 +168,7 @@ export default function PluginSettings() {
                                 {Parser.parse("`" + s + "`")}
                             </React.Fragment>
                         ))}
-                        {remainingCount > 0 && <span> and {remainingCount} more</span>}
+                        {remainingCount > 0 && <span>、他 {remainingCount} 件</span>}
                     </div>
                 </>
             });
@@ -278,7 +278,7 @@ export default function PluginSettings() {
 
             if (isRequired) {
                 const tooltipText = p.required || !depMap[p.name]
-                    ? "This plugin is required for Equicord to function."
+                    ? "このプラグインは Equicord の動作に必要です。"
                     : <PluginDependencyList deps={depMap[p.name]?.filter(d => settings.plugins[d].enabled)} />;
 
                 requiredPlugins.push(
@@ -326,7 +326,7 @@ export default function PluginSettings() {
 
             if (!result) {
                 logger.error(`Error while stopping plugin ${plugin}`);
-                showErrorToast(`Error while stopping plugin ${plugin}`);
+                showErrorToast(`プラグイン ${plugin} の停止中にエラーが発生しました`);
                 continue;
             }
 
@@ -335,15 +335,15 @@ export default function PluginSettings() {
 
         if (restartNeeded) {
             Alerts.show({
-                title: "Restart Required",
+                title: "再起動が必要です",
                 body: (
                     <>
-                        <p style={{ textAlign: "center" }}>Some plugins require a restart to fully disable.</p>
-                        <p style={{ textAlign: "center" }}>Would you like to restart now?</p>
+                        <p style={{ textAlign: "center" }}>一部のプラグインを完全に無効化するには、再起動が必要です。</p>
+                        <p style={{ textAlign: "center" }}>今すぐ再起動しますか？</p>
                     </>
                 ),
-                confirmText: "Restart Now",
-                cancelText: "Later",
+                confirmText: "今すぐ再起動",
+                cancelText: "後で",
                 onConfirm: () => location.reload()
             });
         }
@@ -399,13 +399,13 @@ export default function PluginSettings() {
             </div>
 
             <HeadingTertiary className={classes(Margins.top20, Margins.bottom8)}>
-                Filters
+                フィルター
             </HeadingTertiary>
 
             <ErrorBoundary noop>
                 <TextInput
                     inputClassName={cl("filter-control")}
-                    placeholder="Search for a plugin..."
+                    placeholder="プラグインを検索..."
                     value={searchValue.value}
                     onChange={onSearch}
                     autoFocus
@@ -416,34 +416,34 @@ export default function PluginSettings() {
                 <div className={classes(Margins.bottom20, Margins.top8, cl("filter-controls"))}>
                     <Select
                         options={[
-                            { label: "Show All", value: SearchStatus.ALL, default: true },
-                            { label: "Show Favorites", value: SearchStatus.FAVORITES },
-                            { label: "Show Enabled", value: SearchStatus.ENABLED },
-                            { label: "Show Disabled", value: SearchStatus.DISABLED },
-                            { label: "Show Equicord", value: SearchStatus.EQUICORD },
-                            { label: "Show Vencord", value: SearchStatus.VENCORD },
-                            { label: "Show New", value: SearchStatus.NEW },
-                            hasUserPlugins && { label: "Show UserPlugins", value: SearchStatus.USER_PLUGINS },
-                            { label: "Show API Plugins", value: SearchStatus.API_PLUGINS },
+                            { label: "すべて表示", value: SearchStatus.ALL, default: true },
+                            { label: "お気に入りを表示", value: SearchStatus.FAVORITES },
+                            { label: "有効なものを表示", value: SearchStatus.ENABLED },
+                            { label: "無効なものを表示", value: SearchStatus.DISABLED },
+                            { label: "Equicord を表示", value: SearchStatus.EQUICORD },
+                            { label: "Vencord を表示", value: SearchStatus.VENCORD },
+                            { label: "新しいものを表示", value: SearchStatus.NEW },
+                            hasUserPlugins && { label: "ユーザープラグインを表示", value: SearchStatus.USER_PLUGINS },
+                            { label: "API プラグインを表示", value: SearchStatus.API_PLUGINS },
                         ].filter(isTruthy)}
                         serialize={String}
                         select={status => setSearchValue(prev => ({ ...prev, status }))}
                         isSelected={v => v === searchValue.status}
                         closeOnSelect={true}
-                        placeholder="Filter by Type"
+                        placeholder="種類で絞り込む"
                     />
                     <SearchableSelect
                         options={PluginTags.map(tag => ({ label: tag, value: tag }))}
                         value={searchValue.tags}
                         onChange={tags => setSearchValue(prev => ({ ...prev, tags }))}
                         closeOnSelect={false}
-                        placeholder="Filter by Tags"
+                        placeholder="タグで絞り込む"
                         multi
                     />
                 </div>
             </ErrorBoundary>
 
-            <HeadingTertiary className={Margins.top20}>Plugins</HeadingTertiary>
+            <HeadingTertiary className={Margins.top20}>プラグイン</HeadingTertiary>
 
             {plugins.length || requiredPlugins.length
                 ? (
@@ -451,7 +451,7 @@ export default function PluginSettings() {
                         <div className={cl("grid")}>
                             {visiblePlugins.length
                                 ? visiblePlugins
-                                : <Paragraph>No plugins meet the search criteria.</Paragraph>
+                                : <Paragraph>検索条件に合うプラグインはありません。</Paragraph>
                             }
                         </div>
                         {visibleCount < plugins.length && (
@@ -465,13 +465,13 @@ export default function PluginSettings() {
             <Divider className={Margins.top20} />
 
             <HeadingTertiary className={classes(Margins.top20, Margins.bottom8)}>
-                Required Plugins
+                必須プラグイン
             </HeadingTertiary>
 
             <div className={cl("grid")}>
                 {requiredPlugins.length
                     ? requiredPlugins
-                    : <Paragraph>No plugins meet the search criteria.</Paragraph>
+                    : <Paragraph>検索条件に合うプラグインはありません。</Paragraph>
                 }
             </div>
         </SettingsTab >
@@ -481,7 +481,7 @@ export default function PluginSettings() {
 export function PluginDependencyList({ deps }: { deps: string[]; }) {
     return (
         <>
-            <Paragraph>This plugin is required by:</Paragraph>
+            <Paragraph>このプラグインを必要としているプラグイン：</Paragraph>
             {deps.map((dep: string) => <Paragraph key={dep} className={cl("dep-text")}>{dep}</Paragraph>)}
         </>
     );

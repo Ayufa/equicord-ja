@@ -59,7 +59,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "AlwaysTrust",
-    description: "Removes the annoying untrusted domain and suspicious file popup",
+    description: "煩わしい信頼できないドメインと不審なファイルのポップアップを削除します",
     tags: ["Utility"],
     authors: [Devs.zt, Devs.Trwy],
     isModified: true,

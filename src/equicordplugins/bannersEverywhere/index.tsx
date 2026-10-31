@@ -42,7 +42,7 @@ const DATASTORE_KEY = "bannersEverywhere";
 
 export default definePlugin({
     name: "BannersEverywhere",
-    description: "Displays banners in the member list ",
+    description: "メンバーリストにバナーを表示します ",
     tags: ["Appearance", "Customisation"],
     authors: [Devs.ImLvna, Devs.AutumnVN],
     settings,

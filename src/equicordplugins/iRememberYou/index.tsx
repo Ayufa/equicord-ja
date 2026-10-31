@@ -18,7 +18,7 @@ import DataUI from "./components/ui";
 
 export default definePlugin({
     name: "IRememberYou",
-    description: "Locally saves everyone you've been communicating with (including servers), in case of lose",
+    description: "アカウントを失った場合に備えて、やり取りした相手（サーバーを含む）をローカルに保存します",
     tags: ["Chat", "Servers"],
     authors: [EquicordDevs.zoodogood, EquicordDevs.keircn, EquicordDevs.tt],
     dependencies: ["MessageEventsAPI"],

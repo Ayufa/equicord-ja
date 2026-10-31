@@ -66,7 +66,7 @@ export function NewPluginsSection({
         if (!deps) return null;
         return (
             <React.Fragment>
-                <Paragraph>This plugin is required by:</Paragraph>
+                <Paragraph>このプラグインは次のプラグインに必要です:</Paragraph>
                 {deps.map((dep: string) => (
                     <Paragraph key={dep} className="vc-changelog-dep-text">
                         {dep}
@@ -79,11 +79,11 @@ export function NewPluginsSection({
     return (
         <div className={cl("new-plugins-section")}>
             <Heading className={Margins.bottom8}>
-                New Plugins ({sortedPlugins.length})
+                新しいプラグイン（{sortedPlugins.length}）
             </Heading>
 
             <Paragraph className={Margins.bottom16}>
-                The following plugins have been added in recent updates:
+                最近の更新で次のプラグインが追加されました:
             </Paragraph>
 
             <div className={cl("new-plugins-grid")}>
@@ -95,7 +95,7 @@ export function NewPluginsSection({
                         ) ||
                         plugin.name.endsWith("API");
                     const tooltipText = plugin.required
-                        ? "This plugin is required for Equicord to function."
+                        ? "このプラグインは Equicord の動作に必要です。"
                         : makeDependencyList(
                             depMap[plugin.name]?.filter(
                                 d => settings.plugins[d].enabled,
@@ -153,7 +153,7 @@ export function NewPluginsSection({
                     <Tooltip
                         text={
                             <>
-                                The following plugins require a restart:
+                                次のプラグインは再起動が必要です:
                                 <div className={Margins.bottom8} />
                                 <ul>
                                     {Array.from(changes, p => (
@@ -171,7 +171,7 @@ export function NewPluginsSection({
                                 onClick={() => location.reload()}
                                 className={Margins.top16}
                             >
-                                Restart Required
+                                再起動が必要です
                             </Button>
                         )}
                     </Tooltip>
@@ -203,9 +203,9 @@ function CompactPluginCard({
         depMap[plugin.name]?.some(d => settings.plugins[d].enabled);
 
     const tooltipText = plugin.required
-        ? "This plugin is required for Equicord to function."
+        ? "このプラグインは Equicord の動作に必要です。"
         : depMap[plugin.name]?.length > 0
-            ? `This plugin is required by: ${depMap[plugin.name]
+            ? `このプラグインは次のプラグインに必要です: ${depMap[plugin.name]
                 ?.filter(d => settings.plugins[d].enabled)
                 .join(", ")}`
             : null;
@@ -218,11 +218,11 @@ function CompactPluginCard({
                     {isRequired && " *"}
                 </span>
                 <span className="vc-changelog-entry-author">
-                    {plugin.authors?.[0]?.name || "Unknown"}
+                    {plugin.authors?.[0]?.name || "不明"}
                 </span>
             </div>
             <div className="vc-changelog-entry-message">
-                {plugin.description || "No description available"}
+                {plugin.description || "説明がありません"}
             </div>
             {tooltipText && (
                 <div className="vc-changelog-dep-text">{tooltipText}</div>
@@ -273,7 +273,7 @@ export function NewPluginsCompact({
                 {hasMore && (
                     <div className="vc-changelog-entry">
                         <div className="vc-changelog-entry-message">
-                            +{newPlugins.length - maxDisplay} more plugins
+                            他に {newPlugins.length - maxDisplay} 件のプラグイン
                         </div>
                     </div>
                 )}

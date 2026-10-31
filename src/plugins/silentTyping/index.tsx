@@ -374,7 +374,7 @@ function shouldHideMembersListTypingIndicators(): boolean {
 export default definePlugin({
     name: "SilentTyping",
     authors: [Devs.Ven, Devs.Rini, Devs.ImBanana, EquicordDevs.Etorix],
-    description: "Hide that you are typing",
+    description: "入力中であることを隠します",
     dependencies: ["CommandsAPI", "ChatInputButtonAPI"],
     tags: ["Chat", "Privacy"],
     isModified: true,

@@ -95,7 +95,7 @@ function getCustomMessageCount() {
 
 export default definePlugin({
     name: "BetterBackreading",
-    description: "Improve backreading with earlier message loading and less rubberbanding.",
+    description: "過去のメッセージを早めに読み込み、ラバーバンディングを減らして読み返しを快適にします。",
     authors: [EquicordDevs.Etorix],
     tags: ["Chat", "Utility"],
     settings,

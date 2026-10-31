@@ -55,7 +55,7 @@ migratePluginSettings("SortFriends", "SortFriendRequests");
 export default definePlugin({
     name: "SortFriends",
     authors: [Devs.Megu, EquicordDevs.CallMeGii],
-    description: "Sorts friend requests by date of receipt",
+    description: "フレンドリクエストを受信日順に並べ替えます",
     tags: ["Friends", "Organisation"],
     isModified: true,
     settings,

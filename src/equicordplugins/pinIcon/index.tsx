@@ -23,7 +23,7 @@ import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "PinIcon",
-    description: "Adds a pin icon to pinned messages",
+    description: "ピン留めされたメッセージにピンアイコンを追加します",
     tags: ["Appearance", "Chat"],
     authors: [EquicordDevs.iamme],
     patches: [

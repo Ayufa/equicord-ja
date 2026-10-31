@@ -36,7 +36,7 @@ export function QuickActionsSection({ fileInputRef, onFileUpload, refreshLocalTh
                 <QuickAction
                     text={
                         <span style={{ position: "relative" }}>
-                            Upload Theme
+                            テーマをアップロード
                             <FileInput
                                 ref={fileInputRef}
                                 onChange={onFileUpload}
@@ -49,24 +49,24 @@ export function QuickActionsSection({ fileInputRef, onFileUpload, refreshLocalTh
                 />
             ) : (
                 <QuickAction
-                    text="Open Themes Folder"
+                    text="テーマフォルダーを開く"
                     action={() => VencordNative.themes.openFolder()}
                     Icon={FolderIcon}
                 />
             )}
             <QuickAction
-                text="Load missing Themes"
+                text="不足しているテーマを読み込む"
                 action={refreshLocalThemes}
                 Icon={RestartIcon}
             />
             <QuickAction
-                text="Edit QuickCSS"
+                text="QuickCSS を編集"
                 action={() => VencordNative.quickCss.openEditor()}
                 Icon={PaintbrushIcon}
             />
             {Settings.plugins.ClientTheme.enabled && (
                 <QuickAction
-                    text="Edit ClientTheme"
+                    text="ClientTheme を編集"
                     action={() => openPluginModal(Plugins.ClientTheme)}
                     Icon={PencilIcon}
                 />

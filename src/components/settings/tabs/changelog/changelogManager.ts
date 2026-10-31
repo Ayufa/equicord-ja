@@ -76,11 +76,11 @@ async function fetchCommitsBetween(
 
         return data.commits.map((commit: any) => {
             const message: string = commit?.commit?.message ?? "";
-            const summary = message.split("\n")[0] || "No message";
+            const summary = message.split("\n")[0] || "メッセージなし";
             const authorName =
                 commit?.commit?.author?.name ||
                 commit?.author?.login ||
-                "Unknown";
+                "不明";
             const timestamp = commit?.commit?.author?.date
                 ? Date.parse(commit.commit.author.date)
                 : undefined;

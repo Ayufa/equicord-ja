@@ -194,7 +194,7 @@ function showFailureToast(message: string) {
 
 export default definePlugin({
     name: "ShowMessageEmbeds",
-    description: "Adds a context menu option to show embeds for links that don't have one",
+    description: "埋め込みのないリンクに対して埋め込みを表示するコンテキストメニューオプションを追加します",
     tags: ["Appearance", "Chat"],
     authors: [EquicordDevs.Suffocate],
 

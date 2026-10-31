@@ -42,7 +42,7 @@ export function FavoriteButton({ isFavorite, onClick }: { isFavorite: boolean; o
     const Icon = isFavorite ? StarFilled : StarOutlined;
 
     return (
-        <Tooltip text={isFavorite ? "Unfavorite plugin" : "Favorite plugin - pins it to the top of the plugin list"}>
+        <Tooltip text={isFavorite ? "お気に入りから外す" : "お気に入りに追加する (プラグイン一覧の先頭に固定されます)"}>
             {props =>
                 <Clickable {...props} onClick={onClick} className={cl("favorite-button", isFavorite && "favorite-button-active", getThemeClass())}>
                     <Icon aria-hidden className={cl("link-icon", "favorite-icon")} />

@@ -81,7 +81,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "WhosWatching",
-    description: "Hover over the screenshare icon to view what users are watching your stream",
+    description: "画面共有アイコンにカーソルを合わせると、あなたの配信を見ているユーザーを確認できます",
     tags: ["Activity"],
     authors: [EquicordDevs.Fres, Devs.thororen],
     settings,

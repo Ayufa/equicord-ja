@@ -237,7 +237,7 @@ function shouldShowActivity(lastMessage: Message | undefined, hasActivity: boole
 
 export default definePlugin({
     name: "MessagePeek",
-    description: "Shows the last message preview and timestamp in the Direct Messages list.",
+    description: "ダイレクトメッセージ一覧に最後のメッセージのプレビューとタイムスタンプを表示します。",
     dependencies: ["MemberListDecoratorsAPI"],
     tags: ["Appearance", "Chat"],
     authors: [Devs.prism, EquicordDevs.justjxke],

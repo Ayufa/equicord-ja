@@ -63,7 +63,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "PolishWording",
-    description: "Tweaks your messages to make them look nicer and have better grammar. See settings",
+    description: "メッセージを調整して、見た目を良くし文法を改善します。設定を確認してください",
     dependencies: ["MessageEventsAPI"],
     tags: ["Chat"],
     authors: [Devs.Samwich, EquicordDevs.WKoA],

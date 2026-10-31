@@ -51,7 +51,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "BetterSessions",
-    description: "Enhances the sessions (devices) menu. Allows you to view exact timestamps, give each session a custom name, and receive notifications about new sessions.",
+    description: "セッション（デバイス）メニューを強化します。正確なタイムスタンプの表示、各セッションへのカスタム名の設定、新しいセッションの通知を受け取れるようにします。",
     authors: [Devs.amia],
     tags: ["Notifications", "Customisation", "Utility"],
     settings: settings,

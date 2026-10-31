@@ -124,7 +124,7 @@ function SongLinkerList({ urls }: { urls: string[]; }) {
 
 export default definePlugin({
     name: "SongLink",
-    description: "Adds streaming service buttons below song links",
+    description: "曲のリンクの下にストリーミングサービスのボタンを追加します",
     dependencies: ["MessageAccessoriesAPI"],
     tags: ["Media", "Utility"],
     authors: [Devs.nin0dev, EquicordDevs.NassCT],

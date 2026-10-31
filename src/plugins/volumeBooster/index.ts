@@ -50,7 +50,7 @@ interface StreamData {
 export default definePlugin({
     name: "VolumeBooster",
     authors: [Devs.Nuckyz, Devs.sadan],
-    description: "Allows you to set the user and stream volume above the default maximum",
+    description: "ユーザーと配信の音量を、デフォルトの最大値を超えて設定できるようにします",
     tags: ["Voice", "Utility"],
     settings,
 

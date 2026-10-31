@@ -127,7 +127,7 @@ export function LastActiveIcon() {
 
 export default definePlugin({
     name: "LastActive",
-    description: "A plugin to jump to last active message from yourself or another user in a channel/server.",
+    description: "チャンネル/サーバー内で、自分や他のユーザーの最後のアクティブなメッセージにジャンプするプラグインです。",
     tags: ["Chat", "Utility"],
     authors: [EquicordDevs.Crxa],
     contextMenus: {

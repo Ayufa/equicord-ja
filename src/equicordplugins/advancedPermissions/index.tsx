@@ -91,7 +91,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "AdvancedPermissions",
-    description: "Show advanced permissions card by default.",
+    description: "詳細な権限カードをデフォルトで表示します。",
     authors: [EquicordDevs.bastih18],
     tags: ["Utility"],
     settings,

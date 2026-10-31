@@ -74,7 +74,7 @@ function stopAllServices() {
 
 export default definePlugin({
     name: "RichPresence",
-    description: "Unified rich presence hub for AudioBookShelf, osu!, stats.fm, Jellyfin, Navidrome, and Gensokyo Radio.",
+    description: "AudioBookShelf、osu!、stats.fm、Jellyfin、Navidrome、Gensokyo Radio 向けの統合リッチプレゼンスハブ。",
     tags: ["Activity"],
     authors: [
         EquicordDevs.vmohammad,

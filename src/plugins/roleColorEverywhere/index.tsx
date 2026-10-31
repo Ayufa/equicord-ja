@@ -75,7 +75,7 @@ const settings = definePluginSettings({
 export default definePlugin({
     name: "RoleColorEverywhere",
     authors: [Devs.KingFish, Devs.lewisakura, Devs.AutumnVN, Devs.Kyuuhachi, Devs.jamesbt365],
-    description: "Adds the top role color anywhere possible",
+    description: "最上位ロールの色を、可能な限りあらゆる場所に反映します",
     tags: ["Roles", "Appearance"],
     settings,
 

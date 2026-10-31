@@ -34,7 +34,7 @@ import { clearStyles } from "./utils/createStyle";
 migratePluginSetting("ShikiCodeblocks", "tryHljs", "tryDiscordHighlighter");
 export default definePlugin({
     name: "ShikiCodeblocks",
-    description: "Brings vscode-style codeblocks into Discord, powered by Shiki",
+    description: "Shikiを使って、VS Code風のコードブロックをDiscordに導入します",
     tags: ["Appearance", "Chat", "Customisation"],
     authors: [Devs.Vap],
     reporterTestable: ReporterTestable.Patches,

@@ -25,13 +25,13 @@ const DownloadIcon = findComponentByCodeLazy("1.42l3.3 3.3V3a1");
 const cl = classNameFactory("vc-settings-theme-");
 
 const themeActivationModeOptions: { value: ThemeActivationMode; label: string; }[] = [
-    { value: "always", label: "Always on" },
-    { value: "light", label: "Light only" },
-    { value: "dark", label: "Dark only" }
+    { value: "always", label: "常時オン" },
+    { value: "light", label: "ライトモードのみ" },
+    { value: "dark", label: "ダークモードのみ" }
 ];
 
 export function getThemeActivationModeLabel(mode: ThemeActivationMode) {
-    return themeActivationModeOptions.find(option => option.value === mode)?.label ?? "Always on";
+    return themeActivationModeOptions.find(option => option.value === mode)?.label ?? "常時オン";
 }
 
 export function ThemeActivationMenu({ themeId, activationMode, onActivationModeChange, children }: {
@@ -45,7 +45,7 @@ export function ThemeActivationMenu({ themeId, activationMode, onActivationModeC
     return (
         <Menu.Menu navId={`theme-card-menu-${themeId}`} onClose={ContextMenuApi.closeContextMenu}>
             {onActivationModeChange && (
-                <Menu.MenuItem id={`theme-activation-${themeId}`} label="Theme activation">
+                <Menu.MenuItem id={`theme-activation-${themeId}`} label="テーマの有効化">
                     {themeActivationModeOptions.map(option => (
                         <Menu.MenuRadioItem
                             key={option.value}
@@ -115,7 +115,7 @@ export function ThemeCard({ theme, enabled, onChange, onDelete, showDeleteButton
                 {onPin && (
                     <Menu.MenuItem
                         id="pin-theme"
-                        label={isPinned ? "Unpin" : "Pin"}
+                        label={isPinned ? "ピン留めを外す" : "ピン留め"}
                         icon={PinIcon}
                         action={onPin}
                     />
@@ -123,7 +123,7 @@ export function ThemeCard({ theme, enabled, onChange, onDelete, showDeleteButton
                 {theme.website && (
                     <Menu.MenuItem
                         id="open-website"
-                        label="Open Website"
+                        label="Web サイトを開く"
                         icon={HomeIcon}
                         action={() => window.open(theme.website, "_blank")}
                     />
@@ -131,11 +131,11 @@ export function ThemeCard({ theme, enabled, onChange, onDelete, showDeleteButton
                 {theme.invite && (
                     <Menu.MenuItem
                         id="join-discord"
-                        label="Join Discord"
+                        label="Discord に参加"
                         icon={DiscordIcon}
                         action={() => {
                             openInviteModal(theme.invite!).catch(() =>
-                                showToast({ text: "Invalid or expired invite" })
+                                showToast({ text: "招待が無効か期限切れです" })
                             );
                         }}
                     />
@@ -143,7 +143,7 @@ export function ThemeCard({ theme, enabled, onChange, onDelete, showDeleteButton
                 {onCopyUrl && themeLink && (
                     <Menu.MenuItem
                         id="copy-url"
-                        label="Copy URL"
+                        label="URL をコピー"
                         icon={LinkIcon}
                         action={onCopyUrl}
                     />
@@ -151,7 +151,7 @@ export function ThemeCard({ theme, enabled, onChange, onDelete, showDeleteButton
                 {onDownload && (
                     <Menu.MenuItem
                         id="download-theme"
-                        label="Download"
+                        label="ダウンロード"
                         icon={DownloadIcon}
                         action={onDownload}
                     />
@@ -159,7 +159,7 @@ export function ThemeCard({ theme, enabled, onChange, onDelete, showDeleteButton
                 {onOpenFolder && (
                     <Menu.MenuItem
                         id="open-folder"
-                        label="Open in Folder"
+                        label="フォルダーで開く"
                         icon={FolderIcon}
                         action={onOpenFolder}
                     />
@@ -167,7 +167,7 @@ export function ThemeCard({ theme, enabled, onChange, onDelete, showDeleteButton
                 {onRefresh && (
                     <Menu.MenuItem
                         id="refresh-theme"
-                        label="Refresh"
+                        label="更新"
                         icon={RefreshIcon}
                         action={onRefresh}
                     />
@@ -177,7 +177,7 @@ export function ThemeCard({ theme, enabled, onChange, onDelete, showDeleteButton
                         <Menu.MenuSeparator />
                         <Menu.MenuItem
                             id="delete-theme"
-                            label="Delete"
+                            label="削除"
                             color="danger"
                             icon={DeleteIcon}
                             action={() => onDelete()}
@@ -191,9 +191,9 @@ export function ThemeCard({ theme, enabled, onChange, onDelete, showDeleteButton
     return (
         <OnlineThemeCard
             customName={theme.customName}
-            name={theme.name || theme.fileName || "Unknown Theme"}
-            description={theme.description || "No description provided."}
-            author={theme.author || "Unknown"}
+            name={theme.name || theme.fileName || "不明なテーマ"}
+            description={theme.description || "説明がありません。"}
+            author={theme.author || "不明"}
             enabled={enabled}
             setEnabled={onChange}
             disabled={disabled}
@@ -209,7 +209,7 @@ export function ThemeCard({ theme, enabled, onChange, onDelete, showDeleteButton
             }
             footer={
                 <Flex flexDirection="row" gap="0.4em" alignItems="center">
-                    <Tooltip text={isLocal ? "Local Theme" : "Online Theme"}>
+                    <Tooltip text={isLocal ? "ローカルテーマ" : "オンラインテーマ"}>
                         {({ onMouseLeave, onMouseEnter }) => (
                             <div
                                 onMouseEnter={onMouseEnter}
@@ -221,7 +221,7 @@ export function ThemeCard({ theme, enabled, onChange, onDelete, showDeleteButton
                         )}
                     </Tooltip>
                     {isPinned && (
-                        <Tooltip text="Pinned">
+                        <Tooltip text="ピン留め済み">
                             {({ onMouseLeave, onMouseEnter }) => (
                                 <div
                                     onMouseEnter={onMouseEnter}
@@ -233,7 +233,7 @@ export function ThemeCard({ theme, enabled, onChange, onDelete, showDeleteButton
                             )}
                         </Tooltip>
                     )}
-                    {!!theme.website && <Link href={theme.website}>Website</Link>}
+                    {!!theme.website && <Link href={theme.website}>Web サイト</Link>}
                     {!!(theme.website && theme.invite) && (
                         <span style={{ color: "var(--text-muted)" }}>•</span>
                     )}
@@ -242,10 +242,10 @@ export function ThemeCard({ theme, enabled, onChange, onDelete, showDeleteButton
                             href={`https://discord.gg/${theme.invite}`}
                             onClick={async e => {
                                 e.preventDefault();
-                                theme.invite != null && openInviteModal(theme.invite).catch(() => showToast({ text: "Invalid or expired invite", variant: "critical" }));
+                                theme.invite != null && openInviteModal(theme.invite).catch(() => showToast({ text: "招待が無効か期限切れです", variant: "critical" }));
                             }}
                         >
-                            Discord Server
+                            Discord サーバー
                         </Link>
                     )}
                     {activationMode !== "always" && (

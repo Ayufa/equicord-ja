@@ -133,7 +133,7 @@ function getUsernames(contacts: ContactsList[], type: number): string[] {
 
 export default definePlugin({
     name: "ExportMessages",
-    description: "Allows you to export any message to a file",
+    description: "任意のメッセージをファイルにエクスポートできます",
     tags: ["Chat", "Utility"],
     authors: [EquicordDevs.veygax, EquicordDevs.dat_insanity],
     settings,

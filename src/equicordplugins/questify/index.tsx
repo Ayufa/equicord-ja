@@ -128,7 +128,7 @@ function wrapOrbsBalance(balance: String): JSX.Element {
 
 export default definePlugin({
     name: "Questify",
-    description: "Enhance specific Quest features, disable annoyances, or completely remove Quests.",
+    description: "特定のクエスト機能の強化、煩わしい要素の無効化、またはクエストの完全な削除ができます。",
     tags: ["Appearance", "Customisation", "Privacy", "Utility"],
     authors: [EquicordDevs.Etorix],
     dependencies: ["AudioPlayerAPI", "ServerListAPI"],

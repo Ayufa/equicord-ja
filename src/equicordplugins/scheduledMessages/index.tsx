@@ -85,7 +85,7 @@ function handleReactionEvent(event: FluxReactionEvent): void {
 
 export default definePlugin({
     name: "ScheduledMessages",
-    description: "Schedule messages to be sent at a specific time or after a delay.",
+    description: "指定した時刻、または一定時間後にメッセージを送信するようスケジュールします。",
     tags: ["Chat", "Utility"],
     dependencies: ["ChatInputButtonAPI", "MessageAccessoriesAPI", "MessageEventsAPI"],
     authors: [EquicordDevs.mmeta, Devs.prism],

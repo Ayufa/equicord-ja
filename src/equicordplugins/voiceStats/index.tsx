@@ -136,7 +136,7 @@ const VoiceStatsSection = ErrorBoundary.wrap(({ userId, isSideBar }: { userId: s
 
 export default definePlugin({
     name: "VoiceStats",
-    description: "Shows how long you've spent in voice with each user in their profile",
+    description: "プロフィールに、各ユーザーとボイスで過ごした時間を表示します",
     tags: ["Voice", "Friends"],
     authors: [EquicordDevs.Moowi],
     dependencies: ["ProfileSectionsAPI"],

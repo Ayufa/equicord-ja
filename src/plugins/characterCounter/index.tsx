@@ -33,7 +33,7 @@ function getCounterColor(percentage: number) {
 
 export default definePlugin({
     name: "CharacterCounter",
-    description: "Adds a character counter to the chat input",
+    description: "チャット入力欄に文字数カウンターを追加します",
     authors: [Devs.thororen, Devs.creations],
     tags: ["Utility"],
     settings,

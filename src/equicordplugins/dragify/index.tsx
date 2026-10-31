@@ -148,7 +148,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "Dragify",
-    description: "Drop users, channels, or servers into chat to insert mentions or invites.",
+    description: "ユーザー、チャンネル、サーバーをチャットにドロップして、メンションや招待を挿入できます。",
     tags: ["Chat", "Servers", "Utility", "Voice"],
     authors: [EquicordDevs.justjxke],
     settings,

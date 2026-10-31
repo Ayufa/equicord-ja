@@ -12,7 +12,7 @@ export let iconsModule: IconsDef;
 
 export default definePlugin({
     name: "ConcatenatedModules",
-    description: "Extract modules that have been concatenated by the bundler",
+    description: "バンドラーによって連結されたモジュールを抽出します",
     authors: [Devs.thororen],
     patches: [
         {

@@ -99,7 +99,7 @@ const ChatBarContextCheckbox: NavContextMenuPatchCallback = children => {
 
 export default definePlugin({
     name: "Signature",
-    description: "Automated fingerprint/end text",
+    description: "自動で付与される署名/末尾テキスト",
     dependencies: ["CommandsAPI", "ChatInputButtonAPI", "MessagePopoverAPI"],
     tags: ["Appearance", "Chat"],
     authors: [Devs.Ven, Devs.Rini, Devs.ImBanana, EquicordDevs.KrystalSkull],

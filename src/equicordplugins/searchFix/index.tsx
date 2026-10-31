@@ -38,7 +38,7 @@ function settingsComponent() {
 
 export default definePlugin({
     name: "SearchFix",
-    description: 'Fixes the annoying "We dropped the magnifying glass!" error.',
+    description: 'うっとうしい「We dropped the magnifying glass!」エラーを修正します。',
     tags: ["Utility"],
     settingsAboutComponent: () => settingsComponent(),
     authors: [EquicordDevs.Jaxx],
