@@ -77,11 +77,11 @@ async function listHistory() {
             const title = block.match(/<title[^>]*>([\s\S]*?)<\/title>/)?.[1]?.trim();
             if (!sha || !title) continue;
             const authorName = block.match(/<author>\s*<name>([\s\S]*?)<\/name>/)?.[1]?.trim();
-            const authorEmail = block.match(/<author>[\s\S]*?<email>([\s\S]*?)<\/email>/)?.[1]?.trim();
-            const author = authorName || (authorEmail ? authorEmail.split("@")[0] : undefined);
             entries.push({
                 hash: sha,
-                author: decodeXmlEntities(author || "Unknown Author"),
+                // [equicord-ja] 作者名が取れないコミットは、このリポジトリの所有者のものとして表示する
+                // （メールアドレスは表示に使わない）
+                author: decodeXmlEntities(authorName || gitRemote.split("/")[0]),
                 message: decodeXmlEntities(title).split("\n")[0]
             });
             if (entries.length >= 20) break;
