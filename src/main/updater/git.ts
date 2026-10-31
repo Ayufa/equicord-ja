@@ -86,6 +86,8 @@ async function build() {
 const GitUpdater: Updater = {
     getRepo,
     listUpdates: calculateGitChanges,
+    // [equicord-ja] git 版では履歴表示は未対応
+    listHistory: async () => [],
     fetchUpdate: pull,
     applyUpdate: build
 };

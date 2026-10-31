@@ -404,47 +404,20 @@ export async function getCommitsSinceLastSeen(
 
 // [equicord-ja] 現在のビルドまでの直近コミットを取得する。
 // 本家の「最近の変更」は未適用の更新しか出ないため、最新状態では常に空になる。
-// 適用済みの変更履歴として表示するために使う。
+// 適用済みの変更履歴として表示するために使う。取得はメインプロセス経由
+// （Atom フィード利用で GitHub API のレート制限を避ける）。
 export async function getRecentCommits(
-    repoUrl: string,
     limit: number = 15,
 ): Promise<ChangelogEntry[]> {
-    const repoSlug = normalizeRepoUrl(repoUrl);
-    if (!repoSlug || typeof fetch !== "function") return [];
-
     try {
-        const res = await fetch(
-            `${GITHUB_COMPARE_ENDPOINT}/${repoSlug}/commits?sha=${gitHash}&per_page=${limit}`,
-            {
-                headers: {
-                    Accept: "application/vnd.github+json",
-                    "Cache-Control": "no-cache",
-                },
-            },
-        );
-
+        const res = await VencordNative.updater.getHistory();
         if (!res.ok) return [];
-        const data = await res.json();
-        if (!Array.isArray(data)) return [];
 
-        return data.map((commit: any) => {
-            const message: string = commit?.commit?.message ?? "";
-            const summary = message.split("\n")[0] || "メッセージなし";
-            const authorName =
-                commit?.commit?.author?.name ||
-                commit?.author?.login ||
-                "不明";
-            const timestamp = commit?.commit?.author?.date
-                ? Date.parse(commit.commit.author.date)
-                : undefined;
-
-            return {
-                hash: commit.sha,
-                author: authorName,
-                message: summary,
-                timestamp,
-            } satisfies ChangelogEntry;
-        });
+        return res.value.slice(0, limit).map(u => ({
+            hash: u.hash,
+            author: u.author,
+            message: u.message,
+        }));
     } catch {
         return [];
     }

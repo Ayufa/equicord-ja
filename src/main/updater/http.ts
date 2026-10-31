@@ -53,6 +53,56 @@ async function listUpdates() {
     }));
 }
 
+// [equicord-ja] 適用済みの変更履歴用に、現在のビルドまでの直近コミットを取得する。
+// REST API は未認証だとレート制限（60回/時・IP単位）が厳しく履歴表示が失敗するため、
+// 主にコミット一覧の Atom フィードを使い、失敗時だけ REST API にフォールバックする。
+function decodeXmlEntities(s: string) {
+    return s
+        .replace(/&lt;/g, "<")
+        .replace(/&gt;/g, ">")
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .replace(/&amp;/g, "&");
+}
+
+async function listHistory() {
+    try {
+        const buf = await fetchBuffer(`https://github.com/${gitRemote}/commits/main.atom`);
+        const xml = Buffer.isBuffer(buf) ? buf.toString("utf-8") : new TextDecoder().decode(buf);
+
+        const entries: { hash: string; author: string; message: string; }[] = [];
+        for (const m of xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)) {
+            const block = m[1];
+            const sha = block.match(/Commit\/([0-9a-f]{40})/)?.[1];
+            const title = block.match(/<title[^>]*>([\s\S]*?)<\/title>/)?.[1]?.trim();
+            if (!sha || !title) continue;
+            const authorName = block.match(/<author>\s*<name>([\s\S]*?)<\/name>/)?.[1]?.trim();
+            const authorEmail = block.match(/<author>[\s\S]*?<email>([\s\S]*?)<\/email>/)?.[1]?.trim();
+            const author = authorName || (authorEmail ? authorEmail.split("@")[0] : undefined);
+            entries.push({
+                hash: sha,
+                author: decodeXmlEntities(author || "Unknown Author"),
+                message: decodeXmlEntities(title).split("\n")[0]
+            });
+            if (entries.length >= 20) break;
+        }
+
+        if (entries.length) {
+            // 現在のビルドより新しいコミットは履歴に含めない
+            // （フィードは新しい順なので、自分のビルドの位置から後ろが履歴になる）
+            const idx = entries.findIndex(e => gitHash.startsWith(e.hash) || e.hash.startsWith(gitHash));
+            return idx >= 0 ? entries.slice(idx, idx + 15) : entries.slice(0, 15);
+        }
+    } catch { /* REST API へフォールバック */ }
+
+    const data = await githubGet(`/commits?sha=${gitHash}&per_page=15`);
+    return data.map((c: any) => ({
+        hash: c.sha,
+        author: c.author?.login ?? c.commit?.author?.name ?? "Unknown Author",
+        message: c.commit.message.split("\n")[0]
+    }));
+}
+
 async function fetchUpdate() {
     const data = await githubGet("/releases/latest");
 
@@ -81,6 +131,7 @@ async function applyUpdate() {
 const HttpUpdater: Updater = {
     getRepo: async () => `https://github.com/${gitRemote}`,
     listUpdates,
+    listHistory,
     fetchUpdate,
     applyUpdate
 };

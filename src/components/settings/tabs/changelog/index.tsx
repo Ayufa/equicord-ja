@@ -453,7 +453,7 @@ function ChangelogContent() {
     // [equicord-ja] 適用済みの変更履歴を読み込む
     React.useEffect(() => {
         if (repoPending || repoErr || !repo) return;
-        getRecentCommits(repo)
+        getRecentCommits()
             .then(setRecentCommits)
             .catch(() => { });
     }, [repo, repoPending, repoErr]);
