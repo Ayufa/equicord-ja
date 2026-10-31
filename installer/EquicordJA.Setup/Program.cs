@@ -131,15 +131,6 @@ internal sealed class MainForm : Form
             // ファイルがロックされて上書きできないため、先に終了させる
             KillStaleCli();
 
-            if (!uninstall)
-            {
-                statusLabel.Text = "ファイルを配置しています...";
-                ExtractFileResource("equicord.asar", asarPath);
-                AppendLog("Equicord JA 本体を配置しました: " + asarPath);
-            }
-
-            ExtractCli();
-
             // 対象の Discord を決める。CLI の対話式の選択画面は GUI からは
             // 操作できないため、--location / --branch で非対話に指定する
             var installs = FindDiscordInstalls();
@@ -184,6 +175,17 @@ internal sealed class MainForm : Form
                 KillDiscord();
                 AppendLog("Discord を終了しました。");
             }
+
+            // 本体の配置は Discord を終了させた後に行う。
+            // Discord 起動中は equicord.asar が読み込まれてロックされるため。
+            if (!uninstall)
+            {
+                statusLabel.Text = "ファイルを配置しています...";
+                await ExtractAsarWithRetryAsync();
+                AppendLog("Equicord JA 本体を配置しました: " + asarPath);
+            }
+
+            ExtractCli();
 
             statusLabel.Text = uninstall ? "アンインストールしています..." : "インストールしています...";
             progressBar.Style = ProgressBarStyle.Marquee;
@@ -236,7 +238,12 @@ internal sealed class MainForm : Form
             progressBar.Value = 0;
             statusLabel.Text = "エラーが発生しました。";
             AppendLog("エラー: " + ex.Message);
-            MessageBox.Show(this, "エラーが発生しました: " + ex.Message, "エラー",
+            var message = "エラーが発生しました: " + ex.Message;
+            if (ex is IOException)
+            {
+                message += "\n\nファイルが使用中の可能性があります。Discord が完全に終了しているか（タスクトレイも含む）確認して、もう一度お試しください。";
+            }
+            MessageBox.Show(this, message, "エラー",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         finally
@@ -323,6 +330,25 @@ internal sealed class MainForm : Form
         using var src = OpenResource(name);
         using var dst = File.Create(destPath);
         src.CopyTo(dst);
+    }
+
+    // equicord.asar の配置。Discord 終了直後はロックが残ることがあるため、
+    // IOException の間は少し待って再試行する。
+    private async Task ExtractAsarWithRetryAsync()
+    {
+        for (var attempt = 1; ; attempt++)
+        {
+            try
+            {
+                ExtractFileResource("equicord.asar", asarPath);
+                return;
+            }
+            catch (IOException) when (attempt < 8)
+            {
+                AppendLog("本体ファイルが使用中のため、少し待って再試行します...");
+                await Task.Delay(700);
+            }
+        }
     }
 
     // EquilotlCli.exe の展開。前回の残留プロセス等でロックされている場合は
