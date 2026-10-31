@@ -3,86 +3,251 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
  * 日本語化した Equicord ビルド (dist/desktop) と公式 CLI インストーラー
- * (EquilotlCli.exe) を内蔵し、起動するだけで Discord にインストールする。
- * 仕組みは本家の `pnpm inject` (scripts/runInstaller.mjs) と同じで、
- * 同じ環境変数を設定して EquilotlCli.exe --install を実行するだけ。
+ * (EquilotlCli.exe) を内蔵した GUI インストーラー。
+ * インストール処理そのものは本家の `pnpm inject` (scripts/runInstaller.mjs)
+ * と同じで、同じ環境変数を設定して EquilotlCli.exe --install を
+ * バックグラウンドで実行する（コンソール画面は出ない）。
  */
 
 using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 internal static class Program
 {
-    private static int Main(string[] args)
+    [STAThread]
+    private static void Main()
     {
-        Console.OutputEncoding = Encoding.UTF8;
-        var uninstall = args.Any(a =>
-            a.Equals("uninstall", StringComparison.OrdinalIgnoreCase) ||
-            a.Equals("--uninstall", StringComparison.OrdinalIgnoreCase));
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
+        Application.SetHighDpiMode(HighDpiMode.SystemAware);
+        Application.Run(new MainForm());
+    }
+}
 
+internal sealed class MainForm : Form
+{
+    private readonly Label statusLabel;
+    private readonly TextBox logBox;
+    private readonly ProgressBar progressBar;
+    private readonly Button installButton;
+    private readonly Button uninstallButton;
+    private readonly Button closeButton;
+
+    private readonly string installDir;
+    private readonly string desktopDir;
+    private readonly string installerDir;
+    private readonly string cliPath;
+
+    public MainForm()
+    {
+        installDir = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+            "equicord-ja");
+        desktopDir = Path.Combine(installDir, "dist", "desktop");
+        installerDir = Path.Combine(installDir, "installer");
+        cliPath = Path.Combine(installerDir, "EquilotlCli.exe");
+
+        Text = "Equicord JA セットアップ";
+        ClientSize = new Size(560, 404);
+        FormBorderStyle = FormBorderStyle.FixedDialog;
+        MaximizeBox = false;
+        StartPosition = FormStartPosition.CenterScreen;
+        Font = new Font("Yu Gothic UI", 9F);
+
+        var titleLabel = new Label
+        {
+            Text = "Equicord JA（日本語化版）を Discord にインストールします。",
+            Location = new Point(16, 14),
+            Size = new Size(528, 22)
+        };
+        statusLabel = new Label
+        {
+            Text = "「インストール」ボタンを押してください。",
+            Location = new Point(16, 42),
+            Size = new Size(528, 22)
+        };
+        progressBar = new ProgressBar
+        {
+            Location = new Point(16, 70),
+            Size = new Size(528, 14),
+            Style = ProgressBarStyle.Continuous
+        };
+        logBox = new TextBox
+        {
+            Location = new Point(16, 92),
+            Size = new Size(528, 252),
+            Multiline = true,
+            ReadOnly = true,
+            ScrollBars = ScrollBars.Vertical,
+            BackColor = Color.White
+        };
+        installButton = new Button
+        {
+            Text = "インストール",
+            Location = new Point(16, 356),
+            Size = new Size(140, 32)
+        };
+        uninstallButton = new Button
+        {
+            Text = "アンインストール",
+            Location = new Point(164, 356),
+            Size = new Size(150, 32)
+        };
+        closeButton = new Button
+        {
+            Text = "閉じる",
+            Location = new Point(404, 356),
+            Size = new Size(140, 32)
+        };
+
+        installButton.Click += async (s, e) => await RunInstallerAsync(false);
+        uninstallButton.Click += async (s, e) => await RunInstallerAsync(true);
+        closeButton.Click += (s, e) => Close();
+
+        Controls.AddRange(new Control[]
+        {
+            titleLabel, statusLabel, progressBar, logBox,
+            installButton, uninstallButton, closeButton
+        });
+    }
+
+    private async Task RunInstallerAsync(bool uninstall)
+    {
+        SetBusy(true);
         try
         {
-            var installDir = Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                "equicord-ja");
-            var desktopDir = Path.Combine(installDir, "dist", "desktop");
-            var installerDir = Path.Combine(installDir, "installer");
             Directory.CreateDirectory(desktopDir);
             Directory.CreateDirectory(installerDir);
 
-            Console.WriteLine("Equicord JA のファイルを展開しています...");
-            ExtractZipResource("payload.zip", desktopDir);
-            var cliPath = Path.Combine(installerDir, "EquilotlCli.exe");
+            if (!uninstall)
+            {
+                statusLabel.Text = "ファイルを展開しています...";
+                ExtractZipResource("payload.zip", desktopDir);
+                AppendLog("Equicord JA のファイルを展開しました: " + desktopDir);
+            }
+
             ExtractFileResource("EquilotlCli.exe", cliPath);
 
             if (!uninstall && IsDiscordRunning())
             {
-                Console.Write("Discord が起動中です。終了してから続けますか？ [Y/n]: ");
-                var answer = Console.ReadLine();
-                if (answer != null && answer.Trim().Equals("n", StringComparison.OrdinalIgnoreCase))
+                var answer = MessageBox.Show(
+                    this,
+                    "Discord が起動中です。終了してから続けますか？",
+                    "確認",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+                if (answer != DialogResult.Yes)
                 {
-                    Console.WriteLine("中止しました。Discord を終了してから、もう一度実行してください。");
-                    WaitExit();
-                    return 1;
+                    statusLabel.Text = "中止しました。Discord を終了してから、もう一度お試しください。";
+                    AppendLog("ユーザーにより中止されました。");
+                    return;
                 }
                 KillDiscord();
+                AppendLog("Discord を終了しました。");
             }
 
-            var psi = new ProcessStartInfo
+            statusLabel.Text = uninstall ? "アンインストールしています..." : "インストールしています...";
+            progressBar.Style = ProgressBarStyle.Marquee;
+            AppendLog(uninstall ? "アンインストールを開始します。" : "インストールを開始します。");
+
+            var exitCode = await RunCliAsync(uninstall ? "--uninstall" : "--install");
+
+            progressBar.Style = ProgressBarStyle.Continuous;
+            if (exitCode == 0)
             {
-                FileName = cliPath,
-                Arguments = uninstall ? "--uninstall" : "--install",
-                UseShellExecute = false
-            };
-            psi.Environment["EQUICORD_DIRECTORY"] = desktopDir;
-            psi.Environment["EQUICORD_USER_DATA_DIR"] = installDir;
-            psi.Environment["EQUICORD_DEV_INSTALL"] = "1";
-
-            Console.WriteLine(uninstall ? "アンインストールを実行します..." : "インストールを実行します...");
-            using var process = Process.Start(psi);
-            if (process == null)
-                throw new InvalidOperationException("インストーラーを起動できませんでした。");
-            process.WaitForExit();
-
-            Console.WriteLine(process.ExitCode == 0
-                ? (uninstall
-                    ? "アンインストールが完了しました。"
-                    : "インストールが完了しました。Discord を起動してください。")
-                : $"インストーラーがエラーで終了しました (コード {process.ExitCode})。上のログを確認してください。");
-            WaitExit();
-            return process.ExitCode;
+                progressBar.Value = 100;
+                statusLabel.Text = uninstall ? "アンインストールが完了しました。" : "インストールが完了しました。";
+                AppendLog("完了しました。");
+                MessageBox.Show(
+                    this,
+                    uninstall
+                        ? "アンインストールが完了しました。"
+                        : "インストールが完了しました。Discord を起動してください。",
+                    "完了",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            else
+            {
+                progressBar.Value = 0;
+                statusLabel.Text = $"インストーラーがエラーで終了しました (コード {exitCode})。";
+                AppendLog($"エラーで終了しました (コード {exitCode})。上のログを確認してください。");
+                MessageBox.Show(
+                    this,
+                    $"インストーラーがエラーで終了しました (コード {exitCode})。\nログの内容を確認してください。",
+                    "エラー",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
         }
         catch (Exception ex)
         {
-            Console.WriteLine("エラーが発生しました: " + ex.Message);
-            WaitExit();
-            return 1;
+            progressBar.Style = ProgressBarStyle.Continuous;
+            progressBar.Value = 0;
+            statusLabel.Text = "エラーが発生しました。";
+            AppendLog("エラー: " + ex.Message);
+            MessageBox.Show(this, "エラーが発生しました: " + ex.Message, "エラー",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+        finally
+        {
+            SetBusy(false);
+        }
+    }
+
+    private async Task<int> RunCliAsync(string arguments)
+    {
+        var psi = new ProcessStartInfo
+        {
+            FileName = cliPath,
+            Arguments = arguments,
+            UseShellExecute = false,
+            CreateNoWindow = true,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            StandardOutputEncoding = Encoding.UTF8,
+            StandardErrorEncoding = Encoding.UTF8
+        };
+        psi.Environment["EQUICORD_DIRECTORY"] = desktopDir;
+        psi.Environment["EQUICORD_USER_DATA_DIR"] = installDir;
+        psi.Environment["EQUICORD_DEV_INSTALL"] = "1";
+
+        using var process = new Process { StartInfo = psi, EnableRaisingEvents = true };
+        process.OutputDataReceived += (s, e) => { if (e.Data != null) AppendLog(e.Data); };
+        process.ErrorDataReceived += (s, e) => { if (e.Data != null) AppendLog(e.Data); };
+
+        if (!process.Start())
+            throw new InvalidOperationException("インストーラーを起動できませんでした。");
+        process.BeginOutputReadLine();
+        process.BeginErrorReadLine();
+        await process.WaitForExitAsync();
+        return process.ExitCode;
+    }
+
+    private void SetBusy(bool busy)
+    {
+        installButton.Enabled = !busy;
+        uninstallButton.Enabled = !busy;
+        closeButton.Enabled = !busy;
+        UseWaitCursor = busy;
+    }
+
+    private void AppendLog(string line)
+    {
+        if (InvokeRequired)
+        {
+            BeginInvoke(new Action<string>(AppendLog), line);
+            return;
+        }
+        logBox.AppendText(line + Environment.NewLine);
     }
 
     private static Stream OpenResource(string name)
@@ -152,12 +317,5 @@ internal static class Program
                 }
             }
         }
-    }
-
-    private static void WaitExit()
-    {
-        Console.WriteLine();
-        Console.Write("Enter キーを押すと閉じます。");
-        Console.ReadLine();
     }
 }
