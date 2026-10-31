@@ -48,7 +48,7 @@ async function listUpdates() {
 
     return data.commits.map((c: any) => ({
         hash: c.sha,
-        author: c.author?.login ?? c.commit?.author?.name ?? "アンノウン",
+        author: c.author?.login ?? c.commit?.author?.name ?? "Unknown",
         message: c.commit.message.split("\n")[0]
     }));
 }
@@ -79,9 +79,9 @@ async function listHistory() {
             const authorName = block.match(/<author>\s*<name>([\s\S]*?)<\/name>/)?.[1]?.trim();
             entries.push({
                 hash: sha,
-                // [equicord-ja] 作者名が取れないコミットは「アンノウン」と表示する
+                // [equicord-ja] 作者名が取れないコミットは「Unknown」と表示する
                 // （メールアドレスは表示に使わない）
-                author: decodeXmlEntities(authorName || "アンノウン"),
+                author: decodeXmlEntities(authorName || "Unknown"),
                 message: decodeXmlEntities(title).split("\n")[0]
             });
             if (entries.length >= 20) break;
@@ -98,7 +98,7 @@ async function listHistory() {
     const data = await githubGet(`/commits?sha=${gitHash}&per_page=15`);
     return data.map((c: any) => ({
         hash: c.sha,
-        author: c.author?.login ?? c.commit?.author?.name ?? "アンノウン",
+        author: c.author?.login ?? c.commit?.author?.name ?? "Unknown",
         message: c.commit.message.split("\n")[0]
     }));
 }
