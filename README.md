@@ -1,128 +1,61 @@
-# [<img src="./browser/icon.png" width="40" align="left" alt="Equicord">](https://github.com/Equicord/Equicord) Equicord
+# Equicord JA — Equicord 日本語化版（個人用）
 
-[![Equibop](https://img.shields.io/badge/Equibop-grey?style=flat)](https://github.com/Equicord/Equibop)
-[![Tests](https://github.com/Equicord/Equicord/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/Equicord/Equicord/actions/workflows/test.yml)
-[![Discord](https://img.shields.io/discord/1173279886065029291.svg?color=768AD4&label=Discord&logo=discord&logoColor=white)](https://equicord.org/discord)
+[Equicord](https://github.com/Equicord/Equicord)（[Vencord](https://github.com/Vendicated/Vencord) のフォークで、300以上のプラグインを同梱する Discord クライアント MOD）を個人用にコピーし、UI を日本語化したリポジトリです。
 
-Equicord is a fork of [Vencord](https://github.com/Vendicated/Vencord), with over 300+ plugins.
+> これは個人用の非公式コピーです。本家 Equicord プロジェクトとは関係ありません。
 
-You can join our [Discord server](https://equicord.org/discord) for commits, changes, chatting, or even support.
+## 日本語化している範囲
 
-### Included Plugins
+- 全プラグインの説明文（375件）
+- 各プラグインの設定項目（説明・ラベル・選択肢など、約1,600件）
+- Equicord の設定画面まわりのコア UI 文言（431件）
+- コマンドの説明、右クリックメニュー、プラグイン独自の画面、トースト・通知の文言（約2,500件。Questify の設定画面も含む）
 
-Our included plugins can be found [here](https://equicord.org/plugins).
+Discord 本体の UI は Discord 自身が日本語化しているため対象外です。ブランド名・固有名詞と、パッチや内部処理に使う文字列（訳すと動作が壊れるもの）は英語のままにしています。
 
-## Installing / Uninstalling
+## インストール（Windows）
 
-Windows
+1. [最新のリリース](https://github.com/Ayufa/equicord-ja/releases/latest) から `EquicordJA-Setup.exe` をダウンロード
+2. 起動して「インストール」ボタンを押す（Discord が起動中なら、終了するか聞かれます）
+3. 完了したら Discord を起動
 
-| | X64 | ARM64 |
-| --- | --- | --- |
-| GUI | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl.exe) | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl-arm64.exe) |
-| CLI | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/EquilotlCli.exe) | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/EquilotlCli-arm64.exe) |
+- 初回は Windows SmartScreen の警告が出ることがあります（署名のない個人ビルドのため）。「詳細情報」→「実行」で進めます
+- 本体は `%LOCALAPPDATA%\equicord-ja\equicord.asar` に配置されます
+- アンインストールは、同じ exe の「アンインストール」ボタンから
 
-MacOS
+## 更新方法
 
-| | Universal | X64 | ARM64 |
-| --- | --- | --- | --- |
-| GUI | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl.dmg) | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl-x64.dmg) | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl-arm64.dmg) |
-| CLI | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/EquilotlCli-universal) | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/EquilotlCli-x64) | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/EquilotlCli-arm64) |
+- **アプリ内更新**: Discord の Equicord 設定「Updater」から、このリポジトリの最新リリースに更新できます（内蔵アップデーターの参照先がこのリポジトリになっている standalone ビルドのため）。本家の英語ビルドで上書きされることはありません
+- **exe の再実行**: 新しい `EquicordJA-Setup.exe` を実行しても上書き更新できます
+- **本家の取り込み**: 週1回（月曜）に自動で確認し、新しい変更があれば日本語化したうえで新しいリリースを出します
 
-The CLI builds are plain binaries, so run `chmod +x <file>` after downloading.
+## 方針（本家との関係）
 
-Linux
+- 本家リポジトリには**一切干渉しません**（プルリクエスト、マージ、Issue 作成などは行いません）
+- 本家は git remote `upstream` として読み取り専用（fetch のみ）で登録されています。push 先 URL は無効化済みで、誤って本家へ push することはできません
+- 本家からの更新は一方通行で取り込みます
 
-| | X64 | ARM64 |
-| --- | --- | --- |
-| Combined GUI | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl) | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl-arm64) |
-| X11 GUI | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl-x11) | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl-x11-arm64) |
-| Wayland GUI | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl-wayland) | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl-wayland-arm64) |
-| CLI | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/EquilotlCli-linux) | [Download](https://github.com/Equicord/Equilotl/releases/latest/download/EquilotlCli-linux-arm64) |
+## 本家の更新を取り込む手順（手動の場合）
 
-```shell
-bash -c "$(curl -sS https://raw.githubusercontent.com/Equicord/Equilotl/refs/heads/main/install.sh)"
+```bash
+git fetch upstream
+git merge upstream/main   # 日本語化した行とぶつかった場合は競合を解消する
+git push origin main
 ```
 
-## Installing Equicord Devbuild
+## ソースからビルド・導入する場合
 
-### Dependencies
-
-[Git](https://git-scm.com/download) and [Node.JS LTS](https://nodejs.dev/en/) are required.
-
-Install `pnpm`:
-
-> :exclamation: This next command may need to be run as admin/root depending on your system, and you may need to close and reopen your terminal for pnpm to be in your PATH.
-
-```shell
-npm i -g pnpm
-```
-
-> :exclamation: **IMPORTANT** Make sure you aren't using an admin/root terminal from here onwards. It **will** mess up your Discord/Equicord instance and you **will** most likely have to reinstall.
-
-Clone Equicord:
-
-```shell
-git clone https://github.com/Equicord/Equicord
-cd Equicord
-```
-
-Install dependencies:
-
-```shell
+```bash
 pnpm install --frozen-lockfile
+pnpm build            # ビルド
+pnpm testTsc          # 型チェック
+pnpm inject           # Discord を終了してから実行（開発用インストール）
 ```
 
-Build Equicord:
+## 注意
 
-```shell
-pnpm build
-```
+Discord のクライアント改造は Discord の利用規約に抵触します。利用は自己責任でお願いします。本家 FAQ によれば、クライアント MOD の使用のみを理由としたアカウント BAN の事例は知られていませんが、保証はできません。
 
-Inject Equicord into your desktop client:
+## ライセンス
 
-```shell
-pnpm inject
-```
-
-Build Equicord for web:
-
-```shell
-pnpm buildWeb
-```
-
-After building Equicord's web extension, locate the appropriate ZIP file in the `dist` directory and follow your browser’s guide for installing custom extensions, if supported.
-
-Note: Firefox extension zip requires Firefox for developers
-
-## Credits
-
-Thank you to [Vendicated](https://github.com/Vendicated) for creating [Vencord](https://github.com/Vendicated/Vencord) & [Suncord](https://github.com/verticalsync/Suncord) by [verticalsync](https://github.com/verticalsync) for helping when needed.
-
-## Star History
-
-<a href="https://star-history.com/#Equicord/Equicord&Timeline">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Equicord/Equicord&type=Timeline&theme=dark&sealed_token=64drv2U7WiV6dQ5VRbOZdxHT3mRzxUzhVvfm5qt1VRpGjVPje0PbObjibX2FYe4zd-h36lCAGZ873gAgb_5_tAzUBixUVbtaLHqy1fNH6PkQP_PqPdKztatlI2s17T9IUFzRyhYynmJ1-H4idFFzEAMN1gRZlVvvmJ71P0LovJPOIqTT7uHIubWcHzxC" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Equicord/Equicord&type=Timeline&sealed_token=64drv2U7WiV6dQ5VRbOZdxHT3mRzxUzhVvfm5qt1VRpGjVPje0PbObjibX2FYe4zd-h36lCAGZ873gAgb_5_tAzUBixUVbtaLHqy1fNH6PkQP_PqPdKztatlI2s17T9IUFzRyhYynmJ1-H4idFFzEAMN1gRZlVvvmJ71P0LovJPOIqTT7uHIubWcHzxC" />
-    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Equicord/Equicord&type=Timeline&sealed_token=64drv2U7WiV6dQ5VRbOZdxHT3mRzxUzhVvfm5qt1VRpGjVPje0PbObjibX2FYe4zd-h36lCAGZ873gAgb_5_tAzUBixUVbtaLHqy1fNH6PkQP_PqPdKztatlI2s17T9IUFzRyhYynmJ1-H4idFFzEAMN1gRZlVvvmJ71P0LovJPOIqTT7uHIubWcHzxC" />
-  </picture>
-</a>
-
-## Disclaimer
-
-Discord is trademark of Discord Inc., and solely mentioned for the sake of descriptivity.
-Mentioning it does not imply any affiliation with or endorsement by Discord Inc.
-Vencord is not connected to Equicord and as such, all donation links go to Vendicated's donation link.
-
-<details>
-<summary>Using Equicord violates Discord's terms of service</summary>
-
-Client modifications are against Discord’s Terms of Service.
-
-However, Discord is pretty indifferent about them and there are no known cases of users getting banned for using client mods! So you should generally be fine if you don’t use plugins that implement abusive behaviour. But no worries, all inbuilt plugins are safe to use!
-
-Regardless, if your account is essential to you and getting disabled would be a disaster for you, you should probably not use any client mods (not exclusive to Equicord), just to be safe.
-
-Additionally, make sure not to post screenshots with Equicord in a server where you might get banned for it.
-
-</details>
+本家 Equicord に従い GPL-3.0 です。元のプロジェクト: [Equicord](https://github.com/Equicord/Equicord) / [Vencord](https://github.com/Vendicated/Vencord)
