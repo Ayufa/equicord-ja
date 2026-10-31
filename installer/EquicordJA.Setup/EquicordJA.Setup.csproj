@@ -17,7 +17,7 @@
 
   <!-- payload.zip と EquilotlCli.exe は CI (release-installer.yml) が publish 前にこのフォルダへ配置する -->
   <ItemGroup>
-    <EmbeddedResource Include="payload.zip" LogicalName="payload.zip" />
+    <EmbeddedResource Include="equicord.asar" LogicalName="equicord.asar" />
     <EmbeddedResource Include="EquilotlCli.exe" LogicalName="EquilotlCli.exe" />
   </ItemGroup>
 

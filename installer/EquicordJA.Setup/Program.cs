@@ -2,8 +2,8 @@
  * Equicord JA Setup launcher (personal use)
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * 日本語化した Equicord ビルド (dist/desktop) と公式 CLI インストーラー
- * (EquilotlCli.exe) を内蔵した GUI インストーラー。
+ * 日本語化した Equicord ビルド (standalone の equicord.asar) と公式 CLI
+ * インストーラー (EquilotlCli.exe) を内蔵した GUI インストーラー。
  * インストール処理そのものは本家の `pnpm inject` (scripts/runInstaller.mjs)
  * と同じで、同じ環境変数を設定して EquilotlCli.exe --install を
  * バックグラウンドで実行する（コンソール画面は出ない）。
@@ -13,7 +13,6 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -42,7 +41,7 @@ internal sealed class MainForm : Form
     private readonly Button closeButton;
 
     private readonly string installDir;
-    private readonly string desktopDir;
+    private readonly string asarPath;
     private readonly string installerDir;
     private readonly string cliPath;
 
@@ -51,7 +50,7 @@ internal sealed class MainForm : Form
         installDir = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
             "equicord-ja");
-        desktopDir = Path.Combine(installDir, "dist", "desktop");
+        asarPath = Path.Combine(installDir, "equicord.asar");
         installerDir = Path.Combine(installDir, "installer");
         cliPath = Path.Combine(installerDir, "EquilotlCli.exe");
 
@@ -124,14 +123,14 @@ internal sealed class MainForm : Form
         SetBusy(true);
         try
         {
-            Directory.CreateDirectory(desktopDir);
+            Directory.CreateDirectory(installDir);
             Directory.CreateDirectory(installerDir);
 
             if (!uninstall)
             {
-                statusLabel.Text = "ファイルを展開しています...";
-                ExtractZipResource("payload.zip", desktopDir);
-                AppendLog("Equicord JA のファイルを展開しました: " + desktopDir);
+                statusLabel.Text = "ファイルを配置しています...";
+                ExtractFileResource("equicord.asar", asarPath);
+                AppendLog("Equicord JA 本体を配置しました: " + asarPath);
             }
 
             ExtractFileResource("EquilotlCli.exe", cliPath);
@@ -216,7 +215,7 @@ internal sealed class MainForm : Form
             StandardOutputEncoding = Encoding.UTF8,
             StandardErrorEncoding = Encoding.UTF8
         };
-        psi.Environment["EQUICORD_DIRECTORY"] = desktopDir;
+        psi.Environment["EQUICORD_DIRECTORY"] = asarPath;
         psi.Environment["EQUICORD_USER_DATA_DIR"] = installDir;
         psi.Environment["EQUICORD_DEV_INSTALL"] = "1";
 
@@ -268,25 +267,6 @@ internal sealed class MainForm : Form
         using var src = OpenResource(name);
         using var dst = File.Create(destPath);
         src.CopyTo(dst);
-    }
-
-    private static void ExtractZipResource(string name, string destDir)
-    {
-        using var src = OpenResource(name);
-        using var zip = new ZipArchive(src, ZipArchiveMode.Read);
-        foreach (var entry in zip.Entries)
-        {
-            var destPath = Path.GetFullPath(Path.Combine(destDir, entry.FullName));
-            if (!destPath.StartsWith(Path.GetFullPath(destDir), StringComparison.OrdinalIgnoreCase))
-                continue; // zip slip guard
-            if (entry.Name.Length == 0)
-            {
-                Directory.CreateDirectory(destPath);
-                continue;
-            }
-            Directory.CreateDirectory(Path.GetDirectoryName(destPath));
-            entry.ExtractToFile(destPath, overwrite: true);
-        }
     }
 
     private static readonly string[] DiscordProcessNames = { "Discord", "DiscordPTB", "DiscordCanary", "DiscordDevelopment" };

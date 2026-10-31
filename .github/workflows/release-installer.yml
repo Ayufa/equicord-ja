@@ -29,10 +29,12 @@ jobs:
 
             - name: Build Equicord
               shell: pwsh
+              env:
+                  EQUICORD_REMOTE: Ayufa/equicord-ja
               run: |
                   corepack enable
                   pnpm install --frozen-lockfile
-                  pnpm build
+                  pnpm buildStandalone
 
             - name: Download Equilotl CLI installer
               shell: pwsh
@@ -41,11 +43,10 @@ jobs:
                       -Uri "https://github.com/Equicord/Equilotl/releases/latest/download/EquilotlCli.exe" `
                       -OutFile "installer/EquicordJA.Setup/EquilotlCli.exe"
 
-            - name: Create payload.zip (dist/desktop without sourcemaps)
+            - name: Stage asar payload
               shell: pwsh
               run: |
-                  $files = Get-ChildItem "dist/desktop" -File | Where-Object { $_.Extension -ne ".map" }
-                  Compress-Archive -Path $files.FullName -DestinationPath "installer/EquicordJA.Setup/payload.zip"
+                  Copy-Item "dist/desktop.asar" "installer/EquicordJA.Setup/equicord.asar"
 
             - name: Setup .NET
               uses: actions/setup-dotnet@v4
@@ -83,12 +84,11 @@ jobs:
                   3. 完了したら Discord を起動
 
                   - 初回は Windows SmartScreen の警告が出ることがあります。その場合は「詳細情報」→「実行」を選んでください（署名のない個人ビルドのため）。
-                  - ファイルは %LOCALAPPDATA%\equicord-ja に展開され、そこを参照する形でインストールされます。この exe を再実行すると、その時点のビルドで上書き更新されます。
+                  - 本体は %LOCALAPPDATA%\equicord-ja\equicord.asar に配置され、そこを参照する形でインストールされます。
+                  - 更新は Discord 内の Equicord 設定「Updater」からもできます（このリポジトリの最新リリースを見に行きます）。exe を再実行して上書き更新もできます。
                   - アンインストール: 起動して「アンインストール」ボタンを押してください。
-
-                  ## 注意
-                  Equicord 内蔵の自動アップデーターは使わないでください（本家の英語ビルドで上書きされます）。更新は新しい exe をリリースし直して実行してください。
                   "@
-                  gh release create "${{ steps.tag.outputs.tag }}" "out/EquicordJA-Setup.exe" `
-                      --title "Equicord JA Setup ${{ steps.tag.outputs.tag }}" `
+                  $hash = git rev-parse HEAD
+                  gh release create "${{ steps.tag.outputs.tag }}" "out/EquicordJA-Setup.exe" "dist/desktop.asar" `
+                      --title "Equicord JA Setup ${{ steps.tag.outputs.tag }} $hash" `
                       --notes $notes
