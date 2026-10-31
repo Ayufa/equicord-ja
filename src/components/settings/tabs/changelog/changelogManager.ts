@@ -402,6 +402,54 @@ export async function getCommitsSinceLastSeen(
     return fetchCommitsBetween(repoSlug, lastSeenHash, gitHash);
 }
 
+// [equicord-ja] 現在のビルドまでの直近コミットを取得する。
+// 本家の「最近の変更」は未適用の更新しか出ないため、最新状態では常に空になる。
+// 適用済みの変更履歴として表示するために使う。
+export async function getRecentCommits(
+    repoUrl: string,
+    limit: number = 15,
+): Promise<ChangelogEntry[]> {
+    const repoSlug = normalizeRepoUrl(repoUrl);
+    if (!repoSlug || typeof fetch !== "function") return [];
+
+    try {
+        const res = await fetch(
+            `${GITHUB_COMPARE_ENDPOINT}/${repoSlug}/commits?sha=${gitHash}&per_page=${limit}`,
+            {
+                headers: {
+                    Accept: "application/vnd.github+json",
+                    "Cache-Control": "no-cache",
+                },
+            },
+        );
+
+        if (!res.ok) return [];
+        const data = await res.json();
+        if (!Array.isArray(data)) return [];
+
+        return data.map((commit: any) => {
+            const message: string = commit?.commit?.message ?? "";
+            const summary = message.split("\n")[0] || "メッセージなし";
+            const authorName =
+                commit?.commit?.author?.name ||
+                commit?.author?.login ||
+                "不明";
+            const timestamp = commit?.commit?.author?.date
+                ? Date.parse(commit.commit.author.date)
+                : undefined;
+
+            return {
+                hash: commit.sha,
+                author: authorName,
+                message: summary,
+                timestamp,
+            } satisfies ChangelogEntry;
+        });
+    } catch {
+        return [];
+    }
+}
+
 export async function updateKnownSettings(): Promise<void> {
     const currentSettings = getCurrentSettings(Object.keys(plugins));
     const knownSettings = await getKnownSettings();

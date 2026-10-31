@@ -36,6 +36,7 @@ import {
     getNewSettings,
     getNewSettingsEntries,
     getNewSettingsSize,
+    getRecentCommits,
     getUpdatedPlugins,
     initializeChangelog,
     saveUpdateSession,
@@ -239,6 +240,8 @@ function ChangelogContent() {
     );
     const [showHistory, setShowHistory] = React.useState(false);
     const [recentlyChecked, setRecentlyChecked] = React.useState(false);
+    // [equicord-ja] 適用済みの変更履歴（現在のビルドまでの直近コミット）
+    const [recentCommits, setRecentCommits] = React.useState<ChangelogEntry[]>([]);
 
     React.useEffect(() => {
         const init = async () => {
@@ -447,6 +450,14 @@ function ChangelogContent() {
         ensureLocalUpdateLogged,
     ]);
 
+    // [equicord-ja] 適用済みの変更履歴を読み込む
+    React.useEffect(() => {
+        if (repoPending || repoErr || !repo) return;
+        getRecentCommits(repo)
+            .then(setRecentCommits)
+            .catch(() => { });
+    }, [repo, repoPending, repoErr]);
+
     const toggleLogExpanded = (logId: string) => {
         const newExpanded = new Set(expandedLogs);
         if (newExpanded.has(logId)) {
@@ -602,9 +613,28 @@ function ChangelogContent() {
                 <>
                     <Divider className={Margins.top20} />
                     <Heading className={Margins.top20}>最近の変更</Heading>
-                    <Paragraph color="text-subtle">
-                        現在のバージョンより先のコミットはありません。「リポジトリから取得」をクリックして新しい変更を確認してください。
-                    </Paragraph>
+                    {/* [equicord-ja] 未適用の更新がないときは、適用済みの変更履歴を表示する */}
+                    {recentCommits.length > 0 ? (
+                        <>
+                            <Paragraph className={Margins.bottom16}>
+                                新しい更新はありません。現在のバージョンまでに取り込まれた変更の履歴です（直近 {recentCommits.length} 件のコミット）。
+                            </Paragraph>
+                            <div className="vc-changelog-commits-list">
+                                {recentCommits.map(entry => (
+                                    <ChangelogCard
+                                        key={entry.hash}
+                                        entry={entry}
+                                        repo={repo}
+                                        repoPending={repoPending}
+                                    />
+                                ))}
+                            </div>
+                        </>
+                    ) : (
+                        <Paragraph color="text-subtle">
+                            現在のバージョンより先のコミットはありません。「リポジトリから取得」をクリックして新しい変更を確認してください。
+                        </Paragraph>
+                    )}
                 </>
             )}
 

@@ -25,6 +25,11 @@ on:
                 description: "今回の変更内容（不具合修正の内容など。リリースノートに載ります）"
                 required: false
                 type: string
+            prerelease:
+                description: "プレリリースとして公開する（アプリ内アップデーターの対象外になります）"
+                required: false
+                type: boolean
+                default: false
 
 permissions:
     contents: write
@@ -97,6 +102,9 @@ jobs:
                           $version = "1.0.0"
                       }
                   }
+                  if ("${{ inputs.prerelease }}" -eq "true" -and $version -notmatch "-") {
+                      $version = "$version-pre"
+                  }
                   "version=$version" >> $env:GITHUB_OUTPUT
                   "tag=v$version" >> $env:GITHUB_OUTPUT
 
@@ -124,6 +132,8 @@ jobs:
                   - アンインストール: 起動して「アンインストール」ボタンを押してください。
                   "@
                   $hash = git rev-parse --short=8 HEAD
+                  $preFlag = @()
+                  if ("${{ inputs.prerelease }}" -eq "true") { $preFlag = @("--prerelease") }
                   gh release create "${{ steps.tag.outputs.tag }}" "out/EquicordJA-Setup.exe" "dist/desktop.asar" `
                       --title "Equicord JA v${{ steps.tag.outputs.version }} $hash" `
-                      --notes $notes
+                      --notes $notes @preFlag
