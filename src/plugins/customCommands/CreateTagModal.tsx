@@ -9,6 +9,7 @@ import { ExpandableSection } from "@components/ExpandableCard";
 import { Flex } from "@components/Flex";
 import { Heading } from "@components/Heading";
 import { InfoIcon } from "@components/Icons";
+import { Margins } from "@components/margins";
 import { Paragraph } from "@components/Paragraph";
 import { RenderModalProps } from "@vencord/discord-types";
 import { Modal, openModal, TextArea, TextInput, useState } from "@webpack/common";
@@ -70,18 +71,18 @@ function CreateTagDialog({ initialValue, modalProps }: { initialValue: Tag; moda
         >
             <Flex flexDirection="column" gap={12}>
                 <section>
-                    <Heading tag="h3">名前</Heading>
+                    <Heading className={Margins.bottom8}>名前</Heading>
                     <TextInput value={name} onChange={setName} placeholder="greet" />
                 </section>
 
                 <section>
-                    <Heading tag="h3">応答</Heading>
+                    <Heading className={Margins.bottom8}>応答</Heading>
                     <TextArea value={message} onChange={setMessage} placeholder={EXAMPLE_RESPONSE} autosize />
                 </section>
 
                 {detectedArguments.length > 0 && (
                     <section>
-                        <Heading tag="h3">検出された引数</Heading>
+                        <Heading className={Margins.bottom8}>検出された引数</Heading>
                         <Paragraph>
                             <ul>
                                 {detectedArguments.map(arg => (

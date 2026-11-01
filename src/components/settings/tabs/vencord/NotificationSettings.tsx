@@ -19,7 +19,7 @@ import { Modal, openModal, Select, Slider } from "@webpack/common";
 export function NotificationSection() {
     return (
         <section className={Margins.top16}>
-            <Heading>通知</Heading>
+            <Heading className={Margins.bottom8}>通知</Heading>
             <Paragraph className={Margins.bottom8}>
                 Vencord が送る通知の設定です。
                 Discord の通知 (メッセージなど) は含みません
@@ -53,10 +53,10 @@ function NotificationSettings() {
 
     return (
         <>
-            <Heading tag="h5">通知のスタイル</Heading>
+            <Heading className={Margins.bottom8}>通知のスタイル</Heading>
             {settings.useNative !== "never" && Notification?.permission === "denied" && (
                 <ErrorCard style={{ padding: "1em" }} className={Margins.bottom8}>
-                    <Heading>デスクトップ通知の権限が拒否されています</Heading>
+                    <Heading className={Margins.bottom8}>デスクトップ通知の権限が拒否されています</Heading>
                     <Paragraph>通知の権限が拒否されているため、デスクトップ通知は動作しません。</Paragraph>
                 </ErrorCard>
             )}

@@ -25,6 +25,7 @@ import { Divider } from "@components/Divider";
 import { Flex } from "@components/Flex";
 import { Heading } from "@components/Heading";
 import { Paragraph } from "@components/Paragraph";
+import { Text } from "@components/Text";
 import { Devs } from "@utils/constants";
 import { copyWithToast, fetchUserProfile } from "@utils/discord";
 import { Margins } from "@utils/margins";
@@ -115,12 +116,12 @@ function SettingsAboutComponent() {
 
     return (
         <section>
-            <Heading tag="h3">使い方</Heading>
+            <Heading className={Margins.bottom8}>使い方</Heading>
             <Paragraph>
                 このプラグインを有効にすると、対応プラグインを使っている
                 他の人のプロフィールにカスタムカラーが表示されます。{" "}
             </Paragraph>
-            <Paragraph className={Margins.top8}>
+            <Text size="sm" className={Margins.top8}>
                 <strong>自分のプロフィールテーマカラーを設定するには:</strong>
                 <ul>
                     <li>&mdash; 下のカラーピッカーで色を選ぶ</li>
@@ -130,7 +131,7 @@ function SettingsAboutComponent() {
                 <Divider
                     className={classes(Margins.top8, Margins.bottom8)}
                 />
-                <Heading tag="h3">カラーピッカー</Heading>
+                <Heading className={Margins.bottom8}>カラーピッカー</Heading>
                 <Flex gap="1em">
                     <ColorPicker
                         color={color1}
@@ -174,7 +175,7 @@ function SettingsAboutComponent() {
                 <Divider
                     className={classes(Margins.top8, Margins.bottom8)}
                 />
-                <Heading tag="h3">プレビュー</Heading>
+                <Heading className={Margins.bottom8}>プレビュー</Heading>
                 <div className="vc-fpt-preview">
                     <ProfileModal
                         user={UserStore.getCurrentUser()}
@@ -187,7 +188,7 @@ function SettingsAboutComponent() {
                         isTryItOut={true}
                     />
                 </div>
-            </Paragraph>
+            </Text>
         </section>);
 }
 

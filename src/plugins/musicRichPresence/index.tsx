@@ -249,7 +249,7 @@ function CustomInstanceAboutComponent() {
     if (!instanceAPIBaseUrl || !instanceBaseURL)
         return (
             <Card variant="danger">
-                <Heading>ListenBrainz互換インスタンスが無効です</Heading>
+                <Heading className={Margins.bottom8}>ListenBrainz互換インスタンスが無効です</Heading>
                 <Paragraph>カスタムListenBrainzインスタンスの <b>API Base URL</b> と <b>Instance Base URL</b> の両方を入力するか、ListenBrainz/Last.FMに戻してください</Paragraph>
             </Card>
         );
@@ -257,7 +257,7 @@ function CustomInstanceAboutComponent() {
     if (!cspAllowed)
         return (
             <Card variant="warning">
-                <Heading>VencordがListenBrainzインスタンスに接続することを許可</Heading>
+                <Heading className={Margins.bottom8}>VencordがListenBrainzインスタンスに接続することを許可</Heading>
                 <Paragraph>カスタムListenBrainzインスタンスを使うには、まずVencordがそのインスタンスに接続することを許可する必要があります。</Paragraph>
                 <Button
                     size="small"
@@ -295,8 +295,8 @@ export default definePlugin({
         if (settings.store.scrobblerBackend === "lastfm")
             return (
                 <Card>
-                    <Heading tag="h2">Last.FM</Heading>
-                    <Heading>APIキーの作成方法</Heading>
+                    <Heading tag="h4" className={Margins.bottom20}>Last.FM</Heading>
+                    <Heading className={Margins.bottom8}>APIキーの作成方法</Heading>
                     <Paragraph><strong>Application name</strong> と <strong>Application description</strong> には任意の値を設定し、それ以外は空欄のままにしてください。</Paragraph>
                     <LinkButton size="small" href="https://www.last.fm/api/account/create" className={Margins.top8}>APIキーを作成</LinkButton>
                 </Card>

@@ -22,6 +22,7 @@ import { Button } from "@components/Button";
 import { Card } from "@components/Card";
 import { Divider } from "@components/Divider";
 import { Flex } from "@components/Flex";
+import { Heading } from "@components/Heading";
 import { Link } from "@components/Link";
 import { Paragraph } from "@components/Paragraph";
 import { Devs } from "@utils/constants";
@@ -315,7 +316,7 @@ export default definePlugin({
                 {!enablePresence && (
                     <Card variant="warning">
                         <Flex flexDirection="column" gap=".5em" alignItems="flex-start">
-                            <Paragraph size="md" weight="bold">Custom RPC が無効です</Paragraph>
+                            <Heading tag="h4" weight="bold">Custom RPC が無効です</Heading>
                             <Paragraph>プレゼンス表示が無効になっているため、プレゼンスは表示されません。意図しない場合は、下の設定で有効にしてください。</Paragraph>
                         </Flex>
                     </Card>
@@ -323,7 +324,7 @@ export default definePlugin({
                 {!gameActivityEnabled && (
                     <Card variant="danger">
                         <Flex flexDirection="column" gap=".5em" alignItems="flex-start">
-                            <Paragraph size="md" weight="bold">アクティビティ共有が無効です</Paragraph>
+                            <Heading tag="h4" weight="bold">アクティビティ共有が無効です</Heading>
                             <Paragraph>アクティビティ共有が有効でないため、カスタムリッチプレゼンスは他の人に表示されません！</Paragraph>
 
                             <Button

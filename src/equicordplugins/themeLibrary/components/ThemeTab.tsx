@@ -10,7 +10,7 @@ import * as DataStore from "@api/DataStore";
 import { Settings } from "@api/Settings";
 import { Button } from "@components/Button";
 import { ErrorCard } from "@components/ErrorCard";
-import { HeadingPrimary, HeadingTertiary } from "@components/Heading";
+import { Heading } from "@components/Heading";
 import { OpenExternalIcon } from "@components/Icons";
 import { Paragraph } from "@components/Paragraph";
 import { SettingsTab, wrapTab } from "@components/settings";
@@ -166,14 +166,14 @@ function ThemeTab() {
                     </div>
                 ) : error ? (
                     <ErrorCard>
-                        <HeadingTertiary>テーマの取得に失敗しました</HeadingTertiary>
+                        <Heading tag="h4">テーマの取得に失敗しました</Heading>
                         <Paragraph className={Margins.top8}>テーマ一覧を取得できませんでした。後でもう一度お試しください。</Paragraph>
                     </ErrorCard>
                 ) : (
                     <>
                         {hideWarningCard ? null : (
                             <ErrorCard>
-                                <HeadingTertiary>テーマの削除をご希望ですか？</HeadingTertiary>
+                                <Heading tag="h4">テーマの削除をご希望ですか？</Heading>
                                 <Paragraph className={Margins.top8}>
                                     テーマを完全に削除したい場合は、<a href="https://github.com/Faf4a/plugins/issues/new?labels=removal&projects=&template=request_removal.yml&title=Theme+Removal">GitHub <OpenExternalIcon height={16} width={16} /></a> でIssueを作成してください
                                 </Paragraph>
@@ -189,13 +189,15 @@ function ThemeTab() {
                             </ErrorCard>
                         )}
                         <div className={classes(Margins.bottom8, Margins.top16)}>
-                            <HeadingPrimary
+                            <Heading
+                                tag="h2"
+                                className={Margins.bottom20}
                                 style={{
                                     overflowWrap: "break-word",
                                     marginTop: 8,
                                 }}>
                                 {searchValue.status === SearchStatus.LIKED ? "いいねが多い順" : "新着"}
-                            </HeadingPrimary>
+                            </Heading>
 
                             {themes.slice(0, 2).map((theme: Theme) => (
                                 <ThemeCard
@@ -208,12 +210,12 @@ function ThemeTab() {
                                 />
                             ))}
                         </div>
-                        <HeadingPrimary style={{
+                        <Heading tag="h2" className={Margins.bottom20} style={{
                             overflowWrap: "break-word",
                             marginTop: 20,
                         }}>
                             Themes
-                        </HeadingPrimary>
+                        </Heading>
                         <div className={classes(Margins.bottom20, "vce-search-grid")}>
                             <TextInput value={searchValue.value} placeholder="テーマを検索..." onChange={onSearch} />
                             <div className={InputStyles.inputWrapper}>

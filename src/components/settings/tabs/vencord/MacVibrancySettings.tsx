@@ -19,7 +19,7 @@ export function MacOSVibrancySettings() {
 
     return (
         <ErrorBoundary noop>
-            <Heading tag="h5">macOS ウィンドウの Vibrancy スタイル (再起動が必要)</Heading>
+            <Heading className={Margins.bottom8}>macOS ウィンドウの Vibrancy スタイル (再起動が必要)</Heading>
             <Select
                 className={Margins.bottom20}
                 placeholder="ウィンドウの Vibrancy スタイル"

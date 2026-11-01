@@ -8,7 +8,7 @@ import "./styles.css";
 
 import { definePluginSettings } from "@api/Settings";
 import { Card } from "@components/Card";
-import { HeadingTertiary } from "@components/Heading";
+import { Heading } from "@components/Heading";
 import { ErrorBoundary } from "@components/index";
 import { Margins } from "@components/margins";
 import { EquicordDevs } from "@utils/constants";
@@ -51,7 +51,7 @@ function RegexHelper() {
 
     return (
         <Card className={cl("regex")}>
-            <HeadingTertiary className={Margins.bottom8}>正規表現ヘルパー</HeadingTertiary>
+            <Heading tag="h4" className={Margins.bottom8}>正規表現ヘルパー</Heading>
             <TextInput
                 type="text"
                 placeholder="テストするテキストを入力..."

@@ -5,7 +5,8 @@
  */
 
 import { getUserSettingLazy } from "@api/UserSettings";
-import { HeadingSecondary } from "@components/Heading";
+import { Heading } from "@components/Heading";
+import { Margins } from "@components/margins";
 import { Paragraph } from "@components/Paragraph";
 import { Devs, EquicordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
@@ -70,19 +71,19 @@ export default definePlugin({
 
     settingsAboutComponent: () => (
         <>
-            <HeadingSecondary>Linux向け</HeadingSecondary>
+            <Heading tag="h3" className={Margins.bottom8}>Linux向け</Heading>
             <Paragraph>
                 Waylandでは画面共有の選択画面が表示されるだけです
                 <br />
                 X11では動作する場合としない場合があります :shrug:
             </Paragraph>
             <br />
-            <HeadingSecondary>ビデオデバイス</HeadingSecondary>
+            <Heading tag="h3" className={Margins.bottom8}>ビデオデバイス</Heading>
             <Paragraph>
                 設定で有効にすると、カメラやキャプチャーボード（Elgato HD60Xなど）に対応します
             </Paragraph>
             <br />
-            <HeadingSecondary>サウンドとプレビューの設定について</HeadingSecondary>
+            <Heading tag="h3" className={Margins.bottom8}>サウンドとプレビューの設定について</Heading>
             <Paragraph>
                 ストリームのプレビューとサウンドを有効にするかどうかは、Discordで設定されている設定に基づいて判断します
             </Paragraph>

@@ -5,6 +5,7 @@
  */
 
 import { Heading } from "@components/Heading";
+import { Margins } from "@components/margins";
 import { DEFAULT_COLOR, SWATCHES } from "@plugins/pinDms/constants";
 import { categoryLen, createCategory, getCategory } from "@plugins/pinDms/data";
 import { classNameFactory } from "@utils/css";
@@ -90,14 +91,14 @@ export function NewCategoryModal({ categoryId, modalProps, initialChannelId }: P
                 }}
             >
                 <section>
-                    <Heading tag="h5">名前</Heading>
+                    <Heading className={Margins.bottom8}>名前</Heading>
                     <TextInput
                         value={name}
                         onChange={e => setName(e)}
                     />
                 </section>
                 <section>
-                    <Heading tag="h5">色</Heading>
+                    <Heading className={Margins.bottom8}>色</Heading>
                     <ColorPickerWithSwatches
                         className={cl("color-picker")}
                         key={category.id}

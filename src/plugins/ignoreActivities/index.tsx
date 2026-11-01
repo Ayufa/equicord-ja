@@ -135,7 +135,7 @@ function IdsListComponent(props: { setValue: (value: string) => void; }) {
 
     return (
         <section>
-            <Heading tag="h3">フィルター一覧</Heading>
+            <Heading className={Margins.bottom8}>フィルター一覧</Heading>
             <Paragraph className={Margins.bottom8}>フィルターするアクティビティIDのカンマ区切りリスト（特定のRPCアクティビティやCustomRPCをフィルタリングする際に便利です）</Paragraph>
             <TextArea
                 type="text"

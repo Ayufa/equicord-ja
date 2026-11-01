@@ -7,7 +7,7 @@
 import { Card } from "@components/Card";
 import { CheckedTextInput } from "@components/CheckedTextInput";
 import { FormSwitch } from "@components/FormSwitch";
-import { Heading, HeadingSecondary } from "@components/Heading";
+import { Heading } from "@components/Heading";
 import { Paragraph } from "@components/Paragraph";
 import { Margins } from "@utils/margins";
 import { identity } from "@utils/misc";
@@ -32,7 +32,7 @@ export function ReplaceTutorial() {
     const activities: Activity[] = PresenceStore.getActivities(UserStore.getCurrentUser().id);
     return (
         <>
-            <HeadingSecondary>現在実行中のアクティビティの ID</HeadingSecondary>
+            <Heading tag="h3" className={Margins.bottom8}>現在実行中のアクティビティの ID</Heading>
             {
                 activities.length === 0
                     ? <Paragraph>実行中のアクティビティはありません</Paragraph>
@@ -43,7 +43,7 @@ export function ReplaceTutorial() {
                             : null;
                     })
             }
-            <HeadingSecondary className={Margins.top8}>使用できる変数</HeadingSecondary>
+            <Heading tag="h3" className={Margins.top8}>使用できる変数</Heading>
             <Paragraph>
                 すべてのフィールド（ストリーム URL を除く）で、元の内容に自動で置き換えられる変数を使えます：
                 <pre style={{ fontFamily: "monospace" }}>
@@ -52,7 +52,7 @@ export function ReplaceTutorial() {
                     :large_image:, :large_text:, :small_image:, :small_text:
                 </pre>
             </Paragraph>
-            <HeadingSecondary className={Margins.top8}>詳細</HeadingSecondary>
+            <Heading tag="h3" className={Margins.top8}>詳細</Heading>
             <Paragraph>
                 フィールドを空のままにすると、そのまま保持されます。
                 <br />
@@ -90,7 +90,7 @@ export function ReplaceSettings({ appIds, update, save }: SettingsProps) {
                                     }}
                                     className={Margins.bottom8}
                                     hideBorder={true}
-                                /> : <HeadingSecondary>新しいアプリケーションを追加</HeadingSecondary>
+                                /> : <Heading tag="h3" className={Margins.bottom8}>新しいアプリケーションを追加</Heading>
                         }
                         <Heading className={`${Margins.top8} ${Margins.bottom8}`}>アプリケーション ID</Heading>
                         <CheckedTextInput

@@ -10,7 +10,7 @@ import { BaseText } from "@components/BaseText";
 import { Button } from "@components/Button";
 import { Card } from "@components/Card";
 import { CheckedTextInput } from "@components/CheckedTextInput";
-import { HeadingTertiary } from "@components/Heading";
+import { Heading } from "@components/Heading";
 import { DeleteIcon } from "@components/Icons";
 import { Paragraph } from "@components/Paragraph";
 import { AddonCard } from "@components/settings";
@@ -90,9 +90,9 @@ function UserPluginsTab() {
                     <Card
                         className={classes(cl("info-card"), "vc-warning-card")}
                     >
-                        <HeadingTertiary className={cl("install-title")}>
-                            プラグインの更新があります
-                        </HeadingTertiary>
+                        <Heading tag="h4" className={cl("install-title")}>
+                            Plugin Updates Available
+                        </Heading>
                         <Paragraph className={cl("install-desc")}>
                             次のプラグインが古くなっています:
                             <ul className={cl("outdated-list")}>
@@ -110,9 +110,9 @@ function UserPluginsTab() {
                 )}
             </div>
             <Card className={cl("info-card")}>
-                <HeadingTertiary className={cl("install-title")}>
-                    プラグインをインストール
-                </HeadingTertiary>
+                <Heading tag="h4" className={cl("install-title")}>
+                    Install Plugin
+                </Heading>
                 <Paragraph className={cl("install-desc")}>
                     GitHub、GitLab、Codeberg、git.nin0.dev、plugins.nin0.dev の
                     プラグインは、クローンURLをここに貼り付けて

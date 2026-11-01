@@ -90,7 +90,7 @@ function PickerModal(props: RenderModalProps) {
                 }}
             />
 
-            <Heading tag="h5">タイムスタンプの形式</Heading>
+            <Heading className={Margins.bottom8}>タイムスタンプの形式</Heading>
             <div className={cl("format-select")}>
                 <Select
                     options={

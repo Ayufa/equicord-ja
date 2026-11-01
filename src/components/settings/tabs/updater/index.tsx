@@ -22,7 +22,7 @@ import { Card } from "@components/Card";
 import { Divider } from "@components/Divider";
 import { Flex } from "@components/Flex";
 import { FormSwitch } from "@components/FormSwitch";
-import { Heading, HeadingSecondary } from "@components/Heading";
+import { Heading } from "@components/Heading";
 import { Link } from "@components/Link";
 import { Paragraph } from "@components/Paragraph";
 import { SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
@@ -48,7 +48,7 @@ function EquibopSection() {
     return (
         <Flex className={Margins.bottom20} flexDirection="column" gap="1em">
             <Card variant="brand">
-                <HeadingSecondary>Equibop & Equicord</HeadingSecondary>
+                <Heading tag="h3" className={Margins.bottom8}>Equibop & Equicord</Heading>
                 <Paragraph>Equibop と Equicord は別々のものです。このアップデーターは Equicord 用です。</Paragraph>
                 <Paragraph className={Margins.top8}>
                     Equibop の更新については別途ポップアップが表示されます。手動で更新するには、<Link href="https://equibop.org/install">最新バージョン</Link> をインストールしてください。
@@ -57,7 +57,7 @@ function EquibopSection() {
 
             {isEquibopOutdated && (
                 <Card variant="warning">
-                    <HeadingSecondary>Equibop が古くなっています</HeadingSecondary>
+                    <Heading tag="h3" className={Margins.bottom8}>Equibop が古くなっています</Heading>
                     <Flex flexDirection="column" gap="0.5em">
                         <Paragraph>お使いの Equibop のバージョンが古くなっています！</Paragraph>
                         <Button variant="link" onClick={() => VesktopNative.app.openUpdater()}>Equibop アップデーターを開く</Button>

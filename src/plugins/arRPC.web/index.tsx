@@ -18,8 +18,9 @@
 
 import { popNotice, showNotice } from "@api/Notices";
 import { migratePluginSettings } from "@api/Settings";
-import { HeadingSecondary } from "@components/Heading";
+import { Heading } from "@components/Heading";
 import { Link } from "@components/Link";
+import { Margins } from "@components/margins";
 import { Paragraph } from "@components/Paragraph";
 import { Devs } from "@utils/constants";
 import definePlugin, { ReporterTestable } from "@utils/types";
@@ -49,7 +50,7 @@ export default definePlugin({
 
     settingsAboutComponent: () => (
         <>
-            <HeadingSecondary>arRPC の使い方</HeadingSecondary>
+            <Heading className={Margins.bottom8}>arRPC の使い方</Heading>
             <Paragraph>
                 <Link href="https://github.com/OpenAsar/arrpc/tree/main#server">GitHub リポジトリの手順</Link>に従ってサーバーを起動し、このプラグインを有効にしてください。
             </Paragraph>

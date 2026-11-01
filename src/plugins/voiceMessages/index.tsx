@@ -286,7 +286,7 @@ function VoiceMessageModal({ modalProps }: { modalProps: RenderModalProps; }) {
                 </Button>
             </div>
 
-            <Heading>プレビュー</Heading>
+            <Heading className={Margins.bottom8}>プレビュー</Heading>
             {metaError
                 ? <Paragraph className={cl("error")}>選択した音声ファイルの解析に失敗しました：{metaError.message}</Paragraph>
                 : (

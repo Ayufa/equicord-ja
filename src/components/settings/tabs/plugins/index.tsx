@@ -25,7 +25,7 @@ import { Button } from "@components/Button";
 import { Card } from "@components/Card";
 import { Divider } from "@components/Divider";
 import ErrorBoundary from "@components/ErrorBoundary";
-import { HeadingTertiary } from "@components/Heading";
+import { Heading } from "@components/Heading";
 import { Paragraph } from "@components/Paragraph";
 import { SettingsTab } from "@components/settings";
 import { debounce } from "@shared/debounce";
@@ -65,7 +65,7 @@ function ReloadRequiredCard({ required, enabledPlugins, openWarningModal, resetC
         <Card className={classes(cl("info-card"), required && "vc-warning-card")}>
             {required ? (
                 <>
-                    <HeadingTertiary>再起動が必要です！</HeadingTertiary>
+                    <Heading tag="h4">再起動が必要です！</Heading>
                     <Paragraph className={cl("dep-text")}>
                         新しいプラグインとその設定を適用するには、今すぐ再起動してください
                     </Paragraph>
@@ -75,7 +75,7 @@ function ReloadRequiredCard({ required, enabledPlugins, openWarningModal, resetC
                 </>
             ) : (
                 <>
-                    <HeadingTertiary>プラグイン管理</HeadingTertiary>
+                    <Heading tag="h4">プラグイン管理</Heading>
                     <Paragraph>プラグインの詳細を見るには、歯車アイコンまたは情報アイコンを押してください</Paragraph>
                     <Paragraph>歯車アイコンの付いたプラグインには、変更できる設定があります！</Paragraph>
                 </>
@@ -398,9 +398,9 @@ export default function PluginSettings() {
                 <UIElementsButton />
             </div>
 
-            <HeadingTertiary className={classes(Margins.top20, Margins.bottom8)}>
-                フィルター
-            </HeadingTertiary>
+            <Heading tag="h4" className={classes(Margins.top20, Margins.bottom8)}>
+                Filters
+            </Heading>
 
             <ErrorBoundary noop>
                 <TextInput
@@ -443,7 +443,7 @@ export default function PluginSettings() {
                 </div>
             </ErrorBoundary>
 
-            <HeadingTertiary className={Margins.top20}>プラグイン</HeadingTertiary>
+            <Heading tag="h4" className={Margins.top20}>プラグイン</Heading>
 
             {plugins.length || requiredPlugins.length
                 ? (
@@ -464,9 +464,9 @@ export default function PluginSettings() {
 
             <Divider className={Margins.top20} />
 
-            <HeadingTertiary className={classes(Margins.top20, Margins.bottom8)}>
-                必須プラグイン
-            </HeadingTertiary>
+            <Heading tag="h4" className={classes(Margins.top20, Margins.bottom8)}>
+                Required Plugins
+            </Heading>
 
             <div className={cl("grid")}>
                 {requiredPlugins.length

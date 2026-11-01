@@ -19,7 +19,7 @@ export function WindowsMaterialSettings() {
 
     return (
         <ErrorBoundary noop>
-            <Heading>背景マテリアル</Heading>
+            <Heading className={Margins.bottom8}>背景マテリアル</Heading>
             <Paragraph className={Margins.bottom8}>
                 Windows の透明な背景効果です。透明化に対応したテーマが必要です。対応していないテーマでは何も起こりません。この設定を変更した後は再起動が必要です。
             </Paragraph>

@@ -8,7 +8,7 @@ import { definePluginSettings } from "@api/Settings";
 import { BaseText } from "@components/BaseText";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { ErrorCard } from "@components/ErrorCard";
-import { HeadingPrimary, HeadingSecondary } from "@components/Heading";
+import { Heading } from "@components/Heading";
 import { Paragraph } from "@components/Paragraph";
 import { Devs, IS_MAC } from "@utils/constants";
 import { Margins } from "@utils/margins";
@@ -153,7 +153,7 @@ export default definePlugin({
     settingsAboutComponent: () => {
         return (
             <React.Fragment>
-                <HeadingSecondary>詳細情報</HeadingSecondary>
+                <Heading className={Margins.bottom8}>詳細情報</Heading>
                 <BaseText size="md">
                     Discord の DevTools は次のキーで開けます: {" "}
                     <div className={KbdStyles.combo} style={{ display: "inline-flex" }}>
@@ -168,7 +168,7 @@ export default definePlugin({
 
     WarningCard: ErrorBoundary.wrap(() => (
         <ErrorCard id="vc-experiments-warning-card" className={Margins.bottom16}>
-            <HeadingPrimary>ちょっと待って！！</HeadingPrimary>
+            <Heading tag="h3" className={Margins.bottom8}>ちょっと待って！！</Heading>
 
             <Paragraph>
                 Experiments（実験機能）は未公開の Discord 機能です。動作しない可能性があり、クライアントが壊れたり、アカウントが無効化されたりすることもあります。

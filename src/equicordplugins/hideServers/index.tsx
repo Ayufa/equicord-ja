@@ -74,7 +74,7 @@ export default definePlugin({
     name: "HideServers",
     description: "右クリックでサーバーをギルドリストとクイックスイッチャーから非表示にできます",
     tags: ["Servers", "Utility"],
-    authors: [EquicordDevs.bep],
+    authors: [EquicordDevs.bep, EquicordDevs.Panniku],
     searchTerms: ["guild", "server", "hide", "folder"],
 
     dependencies: ["ServerListAPI"],

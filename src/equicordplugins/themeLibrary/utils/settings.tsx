@@ -7,7 +7,7 @@
 import * as DataStore from "@api/DataStore";
 import { definePluginSettings } from "@api/Settings";
 import { Button } from "@components/Button";
-import { HeadingSecondary } from "@components/Heading";
+import { Heading } from "@components/Heading";
 import { OpenExternalIcon } from "@components/Icons";
 import { Paragraph } from "@components/Paragraph";
 import { copyToClipboard } from "@utils/clipboard";
@@ -52,7 +52,7 @@ export const settings = definePluginSettings({
 
             return (
                 <section>
-                    <HeadingSecondary style={{ marginTop: 0, marginBottom: 8 }}>ThemeLibrary 認証</HeadingSecondary>
+                    <Heading tag="h3" style={{ marginTop: 0, marginBottom: 8 }}>ThemeLibrary 認証</Heading>
                     <div className={cl("button-grid")}>
                         <Button onClick={() => authorizeUser()}>
                             ThemeLibraryで認証
@@ -64,7 +64,7 @@ export const settings = definePluginSettings({
                             ThemeLibraryの認証を解除
                         </Button>
                     </div>
-                    <HeadingSecondary style={{ marginTop: 8, marginBottom: 8 }}>テーマの削除</HeadingSecondary>
+                    <Heading tag="h3" style={{ marginTop: 8, marginBottom: 8 }}>テーマの削除</Heading>
                     <Paragraph style={{ marginTop: 0, marginBottom: 8 }}>すべてのテーマ作者はテーマ情報にクレジットされており、ソースは改変されていません。それでもテーマの削除を希望する場合は、下のボタンからIssueを作成してください。</Paragraph>
                     <div className={cl("button-grid")}>
                         <Button onClick={() => VencordNative.native.openExternal("https://github.com/Faf4a/plugins/issues/new?labels=removal&projects=&template=request_removal.yml&title=Theme+Removal")}>

@@ -6,9 +6,9 @@
 
 import { definePluginSettings } from "@api/Settings";
 import { getUserSettingLazy } from "@api/UserSettings";
+import { Heading } from "@components/Heading";
 import {
     Divider,
-    Heading,
     Paragraph,
     Span,
 } from "@components/index";
@@ -170,7 +170,7 @@ function ModalComponent({ modalProps, submit, close, options }: {
                 <div>
                     <div className={cl("flex", "padding")}>
                         <section className={cl("quality-section")}>
-                            <Heading tag="h2">解像度</Heading>
+                            <Heading tag="h4">解像度</Heading>
                             <OptionRadio
                                 options={StreamResolution}
                                 settings={liveSettings}
@@ -180,7 +180,7 @@ function ModalComponent({ modalProps, submit, close, options }: {
                         </section>
 
                         <section className={cl("quality-section")}>
-                            <Heading tag="h2">フレームレート</Heading>
+                            <Heading tag="h4">フレームレート</Heading>
                             <OptionRadio
                                 options={StreamFps}
                                 settings={liveSettings}
@@ -190,7 +190,7 @@ function ModalComponent({ modalProps, submit, close, options }: {
                         </section>
                     </div>
                     <div>
-                        <Heading tag="h2">配信モード</Heading>
+                        <Heading tag="h4">配信モード</Heading>
                         <div>
                             <OptionRadio
                                 options={StreamContentHint}
@@ -209,7 +209,7 @@ function ModalComponent({ modalProps, submit, close, options }: {
                             shape="box"
                             reverse={true}>
                             <div className={cl("control-content")}>
-                                <Heading tag="h2">配信音声をミュート</Heading>
+                                <Heading tag="h4">配信音声をミュート</Heading>
                                 <Paragraph style={{ color: "var(--text-subtle, var(--text-default))" }}>システム音声が配信に含まれないようにします。</Paragraph>
                             </div>
                         </Checkbox>
@@ -221,7 +221,7 @@ function ModalComponent({ modalProps, submit, close, options }: {
                             shape="box"
                             reverse={true}>
                             <div className={cl("control-content")}>
-                                <Heading tag="h2">配信プレビューを表示</Heading>
+                                <Heading tag="h4">配信プレビューを表示</Heading>
                                 <Paragraph style={{ color: "var(--text-subtle, var(--text-default))" }}>他のユーザーが参加前にあなたの配信のプレビューを見られるようにします。</Paragraph>
                             </div>
                         </Checkbox>

@@ -7,7 +7,8 @@
 import { BaseText } from "@components/BaseText";
 import { CodeBlock } from "@components/CodeBlock";
 import { Flex } from "@components/Flex";
-import { HeadingSecondary } from "@components/Heading";
+import { Heading } from "@components/Heading";
+import { Margins } from "@components/margins";
 import { Paragraph } from "@components/Paragraph";
 import { TooltipContainer } from "@components/TooltipContainer";
 import { copyWithToast, getIntlMessage } from "@utils/discord";
@@ -287,7 +288,7 @@ export function openIconModal(iconName: string, Icon: Icon) {
 export function SettingsAbout() {
     return (
         <>
-            <HeadingSecondary>機能</HeadingSecondary>
+            <Heading tag="h3" className={Margins.bottom8}>機能</Heading>
             <Paragraph>
                 <ul className="vc-ic-unordered-list">
                     <li>アイコンのプレビュー</li>
@@ -298,7 +299,7 @@ export function SettingsAbout() {
                     <li>色名を右クリックして色を検索</li>
                 </ul>
             </Paragraph>
-            <HeadingSecondary>謝辞</HeadingSecondary>
+            <Heading tag="h3" className={Margins.bottom8}>謝辞</Heading>
             <Paragraph>
                 <ul className="vc-ic-unordered-list">
                     <li>krystalskullofficial._.</li>

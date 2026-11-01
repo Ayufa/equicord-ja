@@ -22,7 +22,8 @@ import { definePluginSettings } from "@api/Settings";
 import { Button } from "@components/Button";
 import { ExpandableSection } from "@components/ExpandableCard";
 import { Flex } from "@components/Flex";
-import { HeadingSecondary } from "@components/Heading";
+import { Heading } from "@components/Heading";
+import { Margins } from "@components/margins";
 import { Paragraph } from "@components/Paragraph";
 import { Span } from "@components/Span";
 import { TooltipContainer } from "@components/TooltipContainer";
@@ -109,7 +110,7 @@ const settings = definePluginSettings({
 function TextReplaceImportExport() {
     return (
         <div>
-            <HeadingSecondary>インポートとエクスポート</HeadingSecondary>
+            <Heading className={Margins.bottom8}>インポートとエクスポート</Heading>
             <Paragraph>ルールをJSONファイルとしてエクスポートしたり、ルールをインポートして既存のルールに追加したりできます。</Paragraph>
             <Flex className={cl("import-export-buttons")}>
                 <Button onClick={exportRules}>JSONをエクスポート</Button>
@@ -292,7 +293,7 @@ function TextReplace({ title, description, rulesArray, isRegex = false }: TextRe
     return (
         <>
             <div>
-                <HeadingSecondary>{title}</HeadingSecondary>
+                <Heading className={Margins.bottom8}>{title}</Heading>
                 <Paragraph>{description}</Paragraph>
                 <div className={cl("search-input")}>
                     <TextInput
@@ -410,7 +411,7 @@ function TextReplaceTesting() {
 
     return (
         <div>
-            <HeadingSecondary>ルールテスター</HeadingSecondary>
+            <Heading className={Margins.bottom8}>ルールテスター</Heading>
             <Flex flexDirection="column" gap={6}>
                 <TextInput placeholder="ルールをテストするメッセージを入力" onChange={setValue} />
                 <TextInput placeholder="ルール適用後のメッセージ" editable={false} value={applyRules(value, "allMessages")} style={{ opacity: 0.7 }} />
