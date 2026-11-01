@@ -174,7 +174,7 @@ const settings = definePluginSettings({
     },
     gifPickerTyping: {
         type: OptionType.BOOLEAN,
-        description: "Shows you as typing while the GIF picker is open",
+        description: "GIF ピッカーを開いている間、入力中として表示します",
         restartNeeded: true,
         default: false,
     },

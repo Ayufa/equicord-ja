@@ -9,7 +9,7 @@ import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "MutedServersActivityBadge",
-    description: "Keeps the servers activity badge visible even when server is muted.",
+    description: "サーバーをミュートしていても、サーバーのアクティビティバッジを表示し続けます。",
     authors: [Devs.NiNoX],
     tags: ["Servers", "Appearance", "Activity", "Voice"],
 

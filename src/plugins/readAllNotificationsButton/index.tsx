@@ -31,7 +31,7 @@ const settings = definePluginSettings({
     compact: {
         type: OptionType.BOOLEAN,
         default: false,
-        description: "Show a small text button instead of a server list icon"
+        description: "サーバーリストのアイコンの代わりに、小さなテキストボタンを表示します"
     }
 });
 
