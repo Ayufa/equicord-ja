@@ -32,7 +32,42 @@ export function clearCache(messageId: string) {
     failed.delete(messageId);
 }
 
-async function fetchTranslation(text: string, targetLang: string): Promise<TranslateResponse> {
+interface GooglePaResponse {
+    translation?: string;
+    sourceLanguage?: string;
+    detectedLanguages?: {
+        srclangs?: string[];
+        srclangsConfidences?: number[];
+    };
+}
+
+// [equicord-ja] Use the translate-pa endpoint (same as the built-in Translate plugin).
+// The legacy gtx endpoint rate-limits (HTTP 429) under auto-translate traffic,
+// which silently disabled all translations. Kept below only as a fallback.
+async function fetchTranslationPa(text: string, targetLang: string): Promise<TranslateResponse> {
+    const url = "https://translate-pa.googleapis.com/v1/translate?" + new URLSearchParams({
+        "params.client": "gtx",
+        "dataTypes": "TRANSLATION",
+        "key": "AIzaSyDLEeFI5OtFBwYBIoK_jj5m32rZK5CkCXA", // some google API key
+        "query.sourceLanguage": "auto",
+        "query.targetLanguage": targetLang,
+        "query.text": text,
+    });
+
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`Translation API returned ${response.status} ${response.statusText}`);
+    }
+
+    const data: GooglePaResponse = await response.json();
+    return {
+        src: data.sourceLanguage ?? data.detectedLanguages?.srclangs?.[0] ?? "",
+        confidence: data.detectedLanguages?.srclangsConfidences?.[0] ?? 1,
+        sentences: [{ trans: data.translation }],
+    };
+}
+
+async function fetchTranslationLegacy(text: string, targetLang: string): Promise<TranslateResponse> {
     const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${targetLang}&dt=t&dj=1&q=${encodeURIComponent(text)}`;
     const response = await fetch(url);
 
@@ -41,6 +76,14 @@ async function fetchTranslation(text: string, targetLang: string): Promise<Trans
     }
 
     return await response.json();
+}
+
+async function fetchTranslation(text: string, targetLang: string): Promise<TranslateResponse> {
+    try {
+        return await fetchTranslationPa(text, targetLang);
+    } catch {
+        return fetchTranslationLegacy(text, targetLang);
+    }
 }
 
 export async function translate(messageId: string, text: string): Promise<CachedTranslation | null> {
