@@ -39,7 +39,7 @@ export function QuestTileContextMenu(
             {canLaunchActivity && (
                 <Menu.MenuItem
                     id={q("launch-activity")}
-                    label="Launch Activity"
+                    label="アクティビティを起動"
                     action={async () => {
                         await enrollAndLaunchQuestActivity(quest);
                         rerenderQuests();

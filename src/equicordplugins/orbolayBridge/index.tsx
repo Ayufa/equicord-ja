@@ -26,7 +26,7 @@ interface SoundboardSoundPayload {
 
 const openConfig = () => {
     if (ws?.readyState !== WebSocket.OPEN) {
-        showToast({ text: "Not connected to Orbolay", variant: "critical" });
+        showToast({ text: "Orbolayに接続していません", variant: "critical" });
         return;
     }
 
@@ -42,7 +42,7 @@ const settings = definePluginSettings({
     },
     openConfig: {
         type: OptionType.COMPONENT,
-        component: () => <Button onClick={openConfig}>Open Orbolay settings</Button>
+        component: () => <Button onClick={openConfig}>Orbolay設定を開く</Button>
     },
 });
 

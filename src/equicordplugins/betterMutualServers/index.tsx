@@ -54,7 +54,7 @@ function MemberDetails({ user, guild }: MemberDetailsProps) {
 
     return (
         <Text size="xs" weight="medium" className={cl("line")}>
-            {member.joinedAt && <span className={cl("meta")}>Joined {moment(member.joinedAt).format("ll")}</span>}
+            {member.joinedAt && <span className={cl("meta")}>{moment(member.joinedAt).format("ll")}に参加</span>}
             {roles.slice(0, MAX_ROLES).map(role => (
                 <span key={role.id} className={cl("role")} title={role.name}>
                     <span className={cl("dot")} style={{ backgroundColor: role.colorString }} />
@@ -72,7 +72,7 @@ function MemberDetails({ user, guild }: MemberDetailsProps) {
 
 export default definePlugin({
     name: "BetterMutualServers",
-    description: "Shows roles and join dates in the Mutual Servers list.",
+    description: "共通サーバーの一覧に、ロールと参加日を表示します。",
     tags: ["Roles", "Servers"],
     authors: [EquicordDevs.Z1xus],
     patches: [

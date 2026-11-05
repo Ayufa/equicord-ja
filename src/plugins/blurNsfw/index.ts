@@ -27,7 +27,7 @@ const settings = definePluginSettings({
     },
     ignoredChannels: {
         type: OptionType.STRING,
-        description: "List of channel IDs to not blur attachments in, separated by a space or comma",
+        description: "添付ファイルをぼかさないチャンネルIDのリスト（スペースまたはカンマ区切り）",
         default: "",
         multiline: true,
     }

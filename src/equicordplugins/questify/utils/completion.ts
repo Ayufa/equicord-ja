@@ -839,7 +839,7 @@ export async function enrollAndLaunchQuestActivity(quest: Quest): Promise<boolea
         QL.error("QUEST_ACTIVITY_LAUNCH_FAILED", { questId: quest.id, appId, error });
 
         if (isCurrentSession()) {
-            showToast({ text: `Could not launch the activity for ${normalizeQuestName(quest)}.`, variant: "critical" });
+            showToast({ text: `${normalizeQuestName(quest)} のアクティビティを起動できませんでした。`, variant: "critical" });
         }
 
         return false;

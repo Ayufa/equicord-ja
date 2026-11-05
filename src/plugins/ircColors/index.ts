@@ -38,12 +38,12 @@ const settings = definePluginSettings({
         default: 70,
     },
     saturation: {
-        description: "Saturation, in %. Change if the colors are too vibrant or dull",
+        description: "彩度（%）。色が鮮やかすぎる・くすんでいる場合は変更してください",
         type: OptionType.NUMBER,
         default: 100
     },
     seed: {
-        description: "Changing this will shuffle everyone's username color to a new color",
+        description: "変更すると、全員のユーザー名の色が新しい色にシャッフルされます",
         type: OptionType.STRING,
         default: "",
     },
