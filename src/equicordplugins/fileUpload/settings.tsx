@@ -6,10 +6,8 @@
 
 import { definePluginSettings } from "@api/Settings";
 import { Button } from "@components/Button";
-import { Notice } from "@components/Notice";
 import { SettingsSection } from "@components/settings/tabs/plugins/components/Common";
 import { Switch } from "@components/Switch";
-import { useCspPermission } from "@utils/csp";
 import { classNameFactory } from "@utils/css";
 import { useForceUpdater } from "@utils/react";
 import { OptionType, PluginNative } from "@utils/types";
@@ -62,6 +60,18 @@ const encryptingHostUrlStyleOptions = [
     { label: "パラメータ", value: "param" },
     { label: "偽リンク", value: "fakelink" },
     { label: "埋め込み", value: "embed" }
+];
+
+const webdavServerTypeOptions = [
+    { label: "Nextcloud", value: "nextcloud", default: true },
+    { label: "ownCloud", value: "owncloud" },
+    { label: "汎用 WebDAV", value: "generic" }
+];
+
+const webdavShareTypeOptions = [
+    { label: "共有ページ", value: "share-page", default: true },
+    { label: "直接ダウンロード", value: "direct-download" },
+    { label: "Markdownリンク", value: "markdown" }
 ];
 
 export const settings = definePluginSettings({
@@ -352,22 +362,14 @@ export const settings = definePluginSettings({
     webdavServerType: {
         type: OptionType.SELECT,
         description: "WebDAVサーバーの種類",
-        options: [
-            { label: "Nextcloud", value: "nextcloud", default: true },
-            { label: "ownCloud", value: "owncloud" },
-            { label: "汎用 WebDAV", value: "generic" }
-        ],
+        options: webdavServerTypeOptions,
         default: "nextcloud",
         hidden: true
     },
     webdavShareType: {
         type: OptionType.SELECT,
         description: "WebDAV共有リンクの形式",
-        options: [
-            { label: "共有ページ", value: "share-page", default: true },
-            { label: "直接ダウンロード", value: "direct-download" },
-            { label: "Markdownリンク", value: "markdown" }
-        ],
+        options: webdavShareTypeOptions,
         default: "share-page",
         hidden: true
     },
@@ -523,30 +525,10 @@ function FallbackOrderSettings() {
     );
 }
 
-function getShareXRequestUrl(config: string) {
-    try {
-        return parseShareXConfig(config).RequestURL;
-    } catch {
-        return undefined;
-    }
-}
-
-function AllowHostNotice({ url }: { url?: string; }) {
-    const [isAllowed, allow] = useCspPermission(url, ["connect-src"], "FileUpload");
-    if (isAllowed || !url) return null;
-
-    return (
-        <Notice variant="warning" action={<Button size="small" variant="secondary" onClick={allow}>ホストを許可</Button>}>
-            {URL.parse(url)?.host} への接続はブロックされています。信頼できる場合のみこのホストを許可し、Discordを再起動してください。
-        </Notice>
-    );
-}
-
 export function SettingsComponent() {
     const update = useForceUpdater();
     const sharexFileInputRef = React.useRef<HTMLInputElement>(null);
     const { serviceType } = settings.store;
-    const { serviceUrl, sharexConfig, corsProxyUrl } = settings.use(["serviceUrl", "sharexConfig", "corsProxyUrl"]);
 
     const validateShareXConfig = () => {
         try {
@@ -604,7 +586,6 @@ export function SettingsComponent() {
                         onChange={v => settings.store.serviceUrl = v}
                         placeholder="https://your-zipline-instance.com"
                     />
-                    <AllowHostNotice url={serviceUrl} />
                     <SettingTextInput
                         name="Ziplineトークン"
                         description="あなたのZipline API認証トークン"
@@ -856,7 +837,6 @@ export function SettingsComponent() {
                             onChange={handleShareXFileUpload}
                         />
                     </SettingsSection>
-                    <AllowHostNotice url={getShareXRequestUrl(sharexConfig || "")} />
                 </SettingGroup>
             )}
 
@@ -892,11 +872,7 @@ export function SettingsComponent() {
                     />
                     <SettingsSection id="server-type" name="サーバーの種類" description="WebDAVサーバーの種類を選択します。NextcloudとownCloudでは公開共有リンクが作成されます。汎用では生のファイルURLが返されます。">
                         <Select
-                            options={[
-                                { label: "Nextcloud", value: "nextcloud", default: true },
-                                { label: "ownCloud", value: "owncloud" },
-                                { label: "汎用WebDAV", value: "generic" }
-                            ]}
+                            options={webdavServerTypeOptions}
                             isSelected={v => v === settings.store.webdavServerType}
                             select={v => {
                                 settings.store.webdavServerType = v;
@@ -909,11 +885,7 @@ export function SettingsComponent() {
                     {settings.store.webdavServerType !== "generic" && (
                         <SettingsSection id="share-link-format" name="共有リンクの形式" description="公開共有リンクの返し方。共有ページはWebページへのリンク、直接ダウンロードはファイルへの直接リンク、Markdownリンクは共有ページをクリック可能なファイル名で囲みます。">
                             <Select
-                                options={[
-                                    { label: "共有ページ", value: "share-page", default: true },
-                                    { label: "直接ダウンロード", value: "direct-download" },
-                                    { label: "Markdownリンク", value: "markdown" }
-                                ]}
+                                options={webdavShareTypeOptions}
                                 isSelected={v => v === settings.store.webdavShareType}
                                 select={v => {
                                     settings.store.webdavShareType = v;
@@ -1050,7 +1022,6 @@ export function SettingsComponent() {
                     onChange={v => settings.store.corsProxyUrl = v}
                     placeholder="https://your-cors-proxy.example.com"
                 />
-                <AllowHostNotice url={corsProxyUrl} />
 
                 <SettingsSection id="upload-timeout" name="アップロードタイムアウト" description="フォールバックに切り替える前に1回のアップロード試行で待つ最大時間">
                     <Select
