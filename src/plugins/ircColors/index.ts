@@ -36,11 +36,15 @@ const settings = definePluginSettings({
         description: "明度（%）。色が明るすぎる・暗すぎる場合は変更してください",
         type: OptionType.NUMBER,
         default: 70,
+        min: 0,
+        max: 100
     },
     saturation: {
         description: "彩度（%）。色が鮮やかすぎる・くすんでいる場合は変更してください",
         type: OptionType.NUMBER,
-        default: 100
+        default: 100,
+        min: 0,
+        max: 100
     },
     seed: {
         description: "変更すると、全員のユーザー名の色が新しい色にシャッフルされます",

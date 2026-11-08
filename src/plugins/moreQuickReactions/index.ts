@@ -15,7 +15,9 @@ const settings = definePluginSettings({
         description: "リアクションの数（0〜42）",
         type: OptionType.NUMBER,
         restartNeeded: true,
-        default: 5
+        default: 5,
+        min: 0,
+        max: 42
     },
     frequentEmojis: {
         description: "お気に入りの絵文字の代わりによく使う絵文字を使用します",

@@ -62,7 +62,8 @@ const settings = definePluginSettings({
     randomisedLength: {
         description: "ランダム文字列の長さ",
         type: OptionType.NUMBER,
-        default: 7
+        default: 7,
+        min: 1
     },
     consistent: {
         description: "固定のファイル名",

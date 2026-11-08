@@ -318,6 +318,12 @@ export default definePlugin({
                         <Flex flexDirection="column" gap=".5em" alignItems="flex-start">
                             <Heading tag="h4" weight="bold">Custom RPC が無効です</Heading>
                             <Paragraph>プレゼンス表示が無効になっているため、プレゼンスは表示されません。意図しない場合は、下の設定で有効にしてください。</Paragraph>
+                            <Button
+                                variant="overlayPrimary"
+                                onClick={() => settings.store.enablePresence = true}
+                            >
+                                プレゼンスを有効にする
+                            </Button>
                         </Flex>
                     </Card>
                 )}

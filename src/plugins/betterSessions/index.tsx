@@ -45,6 +45,7 @@ const settings = definePluginSettings({
         description: "バックグラウンドで新しいセッションを確認する間隔（分。有効な場合）",
         type: OptionType.NUMBER,
         default: 20,
+        min: 1,
         restartNeeded: true
     }
 });

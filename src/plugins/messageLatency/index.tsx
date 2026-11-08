@@ -36,7 +36,8 @@ export default definePlugin({
         latency: {
             type: OptionType.NUMBER,
             description: "レイテンシインジケーターのしきい値（秒）",
-            default: 2
+            default: 2,
+            min: 0
         },
         detectDiscordKotlin: {
             type: OptionType.BOOLEAN,

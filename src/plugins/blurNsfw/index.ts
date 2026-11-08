@@ -18,6 +18,7 @@ const settings = definePluginSettings({
         type: OptionType.NUMBER,
         description: "ぼかしの量（ピクセル）",
         default: 10,
+        min: 0,
         onChange: setCss
     },
     blurAllChannels: {
