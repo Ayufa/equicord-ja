@@ -137,7 +137,7 @@ const openViewRawModalMessage = (msg: Message) => openViewRawModal(cleanMessage(
 
 const copyMessage = (msg: Message) => {
     const message = msg.messageSnapshots?.[0]?.message ?? msg;
-    if (!message.content) return showToast({ text: "Can't copy empty message.", variant: "critical" });
+    if (!message.content) return showToast({ text: "空のメッセージはコピーできません。", variant: "critical" });
     copyWithToast(message.content);
 };
 
