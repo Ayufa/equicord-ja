@@ -89,10 +89,10 @@ function AudioBookShelfSettings() {
 function TosuSettings() {
     return (
         <>
-            <SettingsSection id="tosu-settings" name="" description="Connects to tosu via WebSocket. Just make sure tosu is running alongside osu!." />
-            <TextSetting name="Server URL" description="tosu domain URL." settingsKey="tosu_serverUrl" placeholder="127.0.0.1:24050" />
+            <SettingsSection id="tosu-settings" name="" description="WebSocket 経由で tosu に接続します。osu! と一緒に tosu が起動していることを確認してください。" />
+            <TextSetting name="サーバー URL" description="tosu のドメイン URL。" settingsKey="tosu_serverUrl" placeholder="127.0.0.1:24050" />
             <AllowServerSetting settingsKey="tosu_serverUrl" />
-            <SwitchSetting name="Privacy Mode" description="Hides your username inside the presence." settingsKey="tosu_privacyMode" />
+            <SwitchSetting name="プライバシーモード" description="プレゼンス内でユーザー名を隠します。" settingsKey="tosu_privacyMode" />
         </>
     );
 }

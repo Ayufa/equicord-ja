@@ -103,62 +103,62 @@ async function clearSavedHistory() {
 const settings = definePluginSettings({
     imageScrollMargin: {
         type: OptionType.STRING,
-        displayName: "Image Preload Distance",
-        description: "How far ahead to load images, in pixels (300-3000).",
+        displayName: "画像の先読み距離",
+        description: "画像を先読みする距離（ピクセル、300〜3000）。",
         default: "1500",
         isValid: value => validateInteger(value, 300, 3000),
         restartNeeded: true
     },
     messageLoadBuffer: {
         type: OptionType.STRING,
-        displayName: "Message Load Buffer",
-        description: "How far ahead to fetch more messages, in pixels (500-3000).",
+        displayName: "メッセージ読み込みバッファ",
+        description: "追加のメッセージを取得し始める距離（ピクセル、500〜3000）。",
         default: "1500",
         isValid: value => validateInteger(value, 500, 3000),
         restartNeeded: true
     },
     useDiscordMessageCount: {
         type: OptionType.BOOLEAN,
-        displayName: "Use Discord's Dynamic Message Count",
-        description: "Let Discord choose how many messages to fetch based on your window and chat settings.",
+        displayName: "Discordの動的メッセージ件数を使う",
+        description: "ウィンドウやチャット設定に応じて、取得するメッセージ数をDiscordに決めさせます。",
         default: true
     },
     messageCount: {
         type: OptionType.STRING,
-        displayName: "Custom Message Count",
-        description: "How many messages to fetch per history request when the dynamic count is disabled (30-100).",
+        displayName: "カスタムメッセージ件数",
+        description: "動的件数が無効なときに、履歴リクエストごとに取得するメッセージ数（30〜100）。",
         default: "50",
         isValid: value => validateInteger(value, 30, 100)
     },
     channelOpenScrollMode: {
         type: OptionType.SELECT,
-        displayName: "Channel Opening Position",
-        description: "Where in the chat history to open channels. If you leave within 5 messages of the latest, \"Saved Position\" is considered unset and the next fallback is used. If your last-read message is older than the maximum age below, the channel is considered abandoned and \"Oldest Unread\" is considered unset.",
+        displayName: "チャンネルを開いたときの位置",
+        description: "チャンネルを開くときに、チャット履歴のどの位置を表示するか。最新のメッセージから5件以内で離れた場合は「保存した位置」は未設定とみなされ、次のフォールバックが使われます。最後に読んだメッセージが下の最大経過時間より古い場合は、そのチャンネルは離脱したとみなされ、「最も古い未読」は未設定とみなされます。",
         options: [
-            { label: "Saved Position > Latest Message", value: "savedLatest" },
-            { label: "Saved Position > Oldest Unread > Latest Message", value: "saved", default: true },
-            { label: "Oldest Unread > Latest Message", value: "unread" },
-            { label: "Latest Message", value: "bottom" },
-            { label: "Discord Default", value: "default" }
+            { label: "保存した位置 > 最新メッセージ", value: "savedLatest" },
+            { label: "保存した位置 > 最も古い未読 > 最新メッセージ", value: "saved", default: true },
+            { label: "最も古い未読 > 最新メッセージ", value: "unread" },
+            { label: "最新メッセージ", value: "bottom" },
+            { label: "Discordのデフォルト", value: "default" }
         ]
     },
     maximumLastReadAge: {
         type: OptionType.STRING,
-        displayName: "Maximum Last-Read Age",
-        description: "Maximum age of your last-read message, in minutes, to use the \"Oldest Unread\" fallback. Set to 0 for unlimited.",
+        displayName: "最後に読んだメッセージの最大経過時間",
+        description: "「最も古い未読」フォールバックを使うための、最後に読んだメッセージの最大経過時間（分）。0 で無制限。",
         default: "10080",
         isValid: value => validateInteger(value, 0, 5256000)
     },
     showJumpToPresentSooner: {
         type: OptionType.BOOLEAN,
-        displayName: "Show Jump To Present Button Sooner",
-        description: "Shows the Jump To Present button when scrolled 5 or more messages above the latest.",
+        displayName: "「最新へジャンプ」ボタンを早めに表示する",
+        description: "最新のメッセージから5件以上上にスクロールしたときに、「最新へジャンプ」ボタンを表示します。",
         default: true
     },
     addChatbarButton: {
         type: OptionType.BOOLEAN,
-        displayName: "Add Chatbar Button",
-        description: "Adds a chatbar button to quickly switch channel opening position.",
+        displayName: "チャットバーボタンを追加",
+        description: "チャンネルを開いたときの位置を素早く切り替えるチャットバーボタンを追加します。",
         default: false
     },
     clearSavedHistory: {
@@ -183,7 +183,7 @@ function ChannelOpeningMenu() {
     const { channelOpenScrollMode } = settings.use(["channelOpenScrollMode"]);
 
     return (
-        <Menu.Menu navId="betterbackreading-opening-position" aria-label="Channel Opening Position" onClose={ContextMenuApi.closeContextMenu}>
+        <Menu.Menu navId="betterbackreading-opening-position" aria-label="チャンネルを開いたときの位置" onClose={ContextMenuApi.closeContextMenu}>
             {settings.def.channelOpenScrollMode.options.map(option => (
                 <Menu.MenuRadioItem
                     key={option.value}
@@ -210,7 +210,7 @@ const OpeningPositionButton: ChatBarButtonFactory = ({ isAnyChat }) => {
 
     return (
         <ChatBarButton
-            tooltip={selected?.label ?? "Discord Default"}
+            tooltip={selected?.label ?? "Discordのデフォルト"}
             tooltipClassName="vc-betterbackreading-tooltip"
             buttonProps={{ "aria-haspopup": "menu" }}
             onClick={event => ContextMenuApi.openContextMenu(event, () => <ChannelOpeningMenu />)}
@@ -232,7 +232,7 @@ const OpeningPositionButton: ChatBarButtonFactory = ({ isAnyChat }) => {
 function validateInteger(value: unknown, min: number, max: number) {
     const parsedValue = Number(value);
 
-    return Number.isInteger(parsedValue) && parsedValue >= min && parsedValue <= max || `Enter a whole number from ${min} to ${max}.`;
+    return Number.isInteger(parsedValue) && parsedValue >= min && parsedValue <= max || `${min} から ${max} までの整数を入力してください。`;
 }
 
 function boundedInteger(value: string | number, min: number, max: number, fallback: number) {
@@ -412,7 +412,7 @@ function isActive(manager?: ScrollManager): boolean {
 
 export default definePlugin({
     name: "BetterBackreading",
-    description: "Improve backreading with earlier message loading and less rubberbanding.",
+    description: "過去のメッセージを早めに読み込み、ラバーバンディングを減らして読み返しを快適にします。",
     authors: [EquicordDevs.Etorix],
     tags: ["Chat", "Utility"],
     dependencies: ["ChatInputButtonAPI"],

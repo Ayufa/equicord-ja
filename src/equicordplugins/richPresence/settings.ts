@@ -171,13 +171,13 @@ export const settings = definePluginSettings({
 
     // tosu
     tosu_serverUrl: {
-        description: "tosu domain URL.",
+        description: "tosu のドメイン URL。",
         type: OptionType.STRING,
         default: "",
         hidden: true
     },
     tosu_privacyMode: {
-        description: "Privacy Mode",
+        description: "プライバシーモード",
         type: OptionType.BOOLEAN,
         default: false,
         hidden: true

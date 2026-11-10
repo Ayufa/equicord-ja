@@ -16,7 +16,7 @@ interface HistoryControlsProps {
 export function HistoryControls(props: HistoryControlsProps) {
     const { onClear } = props;
     const [busy, setBusy] = useState(false);
-    const [result, setResult] = useState<{ label: "Success" | "Failure"; } | null>(null);
+    const [result, setResult] = useState<{ label: "成功" | "失敗"; } | null>(null);
 
     useEffect(() => {
         if (!result) {
@@ -34,9 +34,9 @@ export function HistoryControls(props: HistoryControlsProps) {
 
         try {
             await onClear();
-            setResult({ label: "Success" });
+            setResult({ label: "成功" });
         } catch {
-            setResult({ label: "Failure" });
+            setResult({ label: "失敗" });
         } finally {
             setBusy(false);
         }
@@ -45,11 +45,11 @@ export function HistoryControls(props: HistoryControlsProps) {
     return (
         <SettingsSection
             id="clearSavedHistory"
-            name="Clear Saved History"
-            description="Clears local backreading progress which is tracked to restore scroll position after reloads."
+            name="保存した履歴を消去"
+            description="再読み込み後にスクロール位置を復元するために記録している、ローカルの読み返し進捗を消去します。"
         >
             <Button variant="secondary" style={{ width: "100%" }} disabled={busy} aria-busy={busy} aria-live="polite" onClick={clear}>
-                {result?.label ?? "Clear"}
+                {result?.label ?? "消去"}
             </Button>
         </SettingsSection>
     );

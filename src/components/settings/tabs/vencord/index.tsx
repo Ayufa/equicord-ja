@@ -271,7 +271,7 @@ function EquicordSettings() {
                 />
                 {IS_DEV && <QuickAction
                     Icon={PaintbrushIcon}
-                    text="Open Component Playground"
+                    text="コンポーネントプレイグラウンドを開く"
                     action={() => openPlayground()}
                 />}
             </QuickActionCard>

@@ -15,7 +15,7 @@ import { Modal, openModal, Select, useState } from "@webpack/common";
 
 export function openPlayground() {
     openModal(props => (
-        <Modal {...props} title="Component Playground">
+        <Modal {...props} title="コンポーネントプレイグラウンド">
             <Playground />
         </Modal>
     ));
@@ -41,9 +41,9 @@ function Playground() {
 
     return (
         <Flex flexDirection="column">
-            <Section title="Buttons">
+            <Section title="ボタン">
                 <Select
-                    placeholder="Button Size"
+                    placeholder="ボタンのサイズ"
                     options={ButtonSizes.map(size => ({ label: size, value: size }))}
                     isSelected={s => s === buttonSize}
                     select={s => setButtonSize(s)}
@@ -62,10 +62,10 @@ function Playground() {
                 </Flex>
             </Section>
 
-            <Section title="Cards">
+            <Section title="カード">
                 {CardVariants.map(variant => (
                     <Card key={variant} variant={variant}>
-                        {variant} card
+                        {variant} カード
                     </Card>
                 ))}
             </Section>
