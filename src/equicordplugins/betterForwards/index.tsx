@@ -5,11 +5,11 @@
  */
 
 import { definePluginSettings, migratePluginSettings } from "@api/Settings";
-import { BaseText } from "@components/BaseText";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Flex } from "@components/Flex";
 import { InfoIcon } from "@components/Icons";
 import { Margins } from "@components/margins";
+import { Text } from "@components/Text";
 import { Devs, EquicordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import { sendMessage } from "@utils/discord";
@@ -263,7 +263,7 @@ export default definePlugin({
                     {message && message.embeds.length + message.attachments.length > 0 && (
                         <Flex className={Margins.top16}>
                             <Checkbox value={!hasOpts} onChange={() => setOpts(!hasOpts ? defaultOpts : {})} size={20}>
-                                <BaseText size="sm">すべて転送</BaseText>
+                                <Text size="sm">すべて転送</Text>
                             </Checkbox>
                             <Tooltip text="このオプションを無効にすると、メッセージのテキストは転送されません">
                                 {props => <InfoIcon {...props} color="var(--text-muted)" width={20} height={20} />}

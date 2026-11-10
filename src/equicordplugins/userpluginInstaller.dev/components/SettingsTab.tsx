@@ -6,7 +6,6 @@
 
 import { pluginRequiresRestart, startPlugin, stopPlugin } from "@api/PluginManager";
 import { useSettings } from "@api/Settings";
-import { BaseText } from "@components/BaseText";
 import { Button } from "@components/Button";
 import { Card } from "@components/Card";
 import { CheckedTextInput } from "@components/CheckedTextInput";
@@ -18,6 +17,7 @@ import {
     SettingsTab as STab,
     wrapTab,
 } from "@components/settings/tabs/BaseTab";
+import { Text } from "@components/Text";
 import { classes, isObjectEmpty } from "@utils/misc";
 import { relaunch } from "@utils/native";
 import { Alerts, closeAllModals, NavigationRouter, showToast,useEffect, useState } from "@webpack/common";
@@ -84,7 +84,7 @@ function UserPluginsTab() {
             <div className={cl("update-check-container")}>
                 {isObjectEmpty(pluginsWithUpdates) ? (
                     !updatesLoaded && (
-                        <BaseText>更新を確認しています...</BaseText>
+                        <Text>更新を確認しています...</Text>
                     )
                 ) : (
                     <Card
@@ -325,7 +325,7 @@ function UserPluginsTab() {
                             })}
                     </div>
                 ) : (
-                    <BaseText>プラグインを読み込んでいます...</BaseText>
+                    <Text>プラグインを読み込んでいます...</Text>
                 )}
             </div>
         </STab>

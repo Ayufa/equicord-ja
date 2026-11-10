@@ -4,10 +4,10 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { BaseText } from "@components/BaseText";
 import { Button } from "@components/Button";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Flex } from "@components/Flex";
+import { Text } from "@components/Text";
 import { apiConstants, deleteData, getData, saveData } from "@equicordplugins/songSpotlight.desktop/lib/api";
 import { presentOAuth2Modal } from "@equicordplugins/songSpotlight.desktop/lib/oauth2";
 import { useAuthorizationStore } from "@equicordplugins/songSpotlight.desktop/lib/stores/AuthorizationStore";
@@ -110,19 +110,19 @@ export default function Settings({ templateData }: SettingsProps) {
 
     return (
         <Flex flexDirection="column" gap="20px">
-            <BaseText size="md" weight="normal">
+            <Text size="md" weight="normal">
                 あなたの曲は {Parser.parse("</songspotlight:1468320979938971802>")} コマンドでも確認できます！
-            </BaseText>
+            </Text>
             {localData
                 ? (
                     <Flex flexDirection="column" gap="12px">
                         <Flex flexDirection="column" gap={0}>
-                            <BaseText size="lg" weight="semibold">曲</BaseText>
+                            <Text size="lg" weight="semibold">曲</Text>
                             {self?.at
                                 && (
-                                    <BaseText size="xs" weight="normal" className={cl("sub")}>
+                                    <Text size="xs" weight="normal" className={cl("sub")}>
                                         最終更新 <b>{Intl.DateTimeFormat().format(new Date(self.at))}</b>
-                                    </BaseText>
+                                    </Text>
                                 )}
                         </Flex>
                         <Flex flexDirection="column" gap="6px">
@@ -167,7 +167,7 @@ export default function Settings({ templateData }: SettingsProps) {
                 )
                 : <Spinner type={Spinner.Type.WANDERING_CUBES} />}
             <Flex flexDirection="column" gap="12px">
-                <BaseText size="lg" weight="semibold">認証</BaseText>
+                <Text size="lg" weight="semibold">認証</Text>
                 <div className={cl("twin-buttons")}>
                     <Button
                         variant="dangerPrimary"

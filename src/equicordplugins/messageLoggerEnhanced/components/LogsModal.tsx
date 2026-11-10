@@ -4,10 +4,10 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { BaseText } from "@components/BaseText";
 import { Button } from "@components/Button";
 import { Flex } from "@components/Flex";
 import { InfoIcon } from "@components/Icons";
+import { Text } from "@components/Text";
 import { copyWithToast, openUserProfile } from "@utils/discord";
 import { LazyComponent } from "@utils/react";
 import { Channel, RenderModalProps, type User } from "@vencord/discord-types";
@@ -236,12 +236,12 @@ function NoResults({ tab }: { tab: LogTabs; }) {
 
     return (
         <div className={cl("modal-empty-logs", "modal-content-inner")} style={{ textAlign: "center" }}>
-            <BaseText size="lg">
+            <Text size="lg">
                 <b>{LogTabLabels[tab]}</b> には結果がありません。
-            </BaseText>
-            <BaseText size="lg" style={{ marginTop: "0.2rem" }}>
+            </Text>
+            <Text size="lg" style={{ marginTop: "0.2rem" }}>
                 <b>{LogTabLabels[nextTab as LogTabs]}</b> や <b>{LogTabLabels[lastTab as LogTabs]}</b> を試してみてください
-            </BaseText>
+            </Text>
         </div>
     );
 }
@@ -251,9 +251,9 @@ function EmptyLogs({ hasQuery, reset: forceUpdate }: { hasQuery: boolean; reset:
         <div className={cl("modal-empty-logs", "modal-content-inner")} style={{ textAlign: "center" }}>
             <Flex flexDirection="column" style={{ position: "relative" }}>
 
-                <BaseText size="lg">
+                <Text size="lg">
                     空っぽです
-                </BaseText>
+                </Text>
 
                 {!hasQuery && (
                     <>
@@ -283,9 +283,9 @@ function LoadingLogs({ tab }: { tab: LogTabs; }) {
     return (
         <div className={cl("modal-empty-logs", "modal-content-inner")} style={{ textAlign: "center" }}>
             <Flex flexDirection="column" style={{ position: "relative" }}>
-                <BaseText size="lg">
+                <Text size="lg">
                     {LogTabLabels[tab]} のログを読み込み中...
-                </BaseText>
+                </Text>
             </Flex>
         </div>
     );

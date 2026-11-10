@@ -5,11 +5,11 @@
  */
 
 import { definePluginSettings } from "@api/Settings";
-import { BaseText } from "@components/BaseText";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { ErrorCard } from "@components/ErrorCard";
 import { Heading } from "@components/Heading";
 import { Paragraph } from "@components/Paragraph";
+import { Text } from "@components/Text";
 import { Devs, IS_MAC } from "@utils/constants";
 import { Margins } from "@utils/margins";
 import definePlugin, { OptionType } from "@utils/types";
@@ -154,14 +154,14 @@ export default definePlugin({
         return (
             <React.Fragment>
                 <Heading className={Margins.bottom8}>詳細情報</Heading>
-                <BaseText size="md">
+                <Text size="md">
                     Discord の DevTools は次のキーで開けます: {" "}
                     <div className={KbdStyles.combo} style={{ display: "inline-flex" }}>
                         <kbd className={KbdStyles.key}>{modKey}</kbd>{" "}
                         <kbd className={KbdStyles.key}>{altKey}</kbd>{" "}
                         <kbd className={KbdStyles.key}>O</kbd>{" "}
                     </div>
-                </BaseText>
+                </Text>
             </React.Fragment>
         );
     },

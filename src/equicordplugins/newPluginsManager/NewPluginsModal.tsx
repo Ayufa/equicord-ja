@@ -7,12 +7,12 @@
 import "./styles.css";
 
 import { Settings, useSettings } from "@api/Settings";
-import { BaseText } from "@components/BaseText";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Link } from "@components/Link";
 import { Notice } from "@components/Notice";
 import { PluginDependencyList } from "@components/settings/tabs/plugins";
 import { PluginCard } from "@components/settings/tabs/plugins/PluginCard";
+import { Text } from "@components/Text";
 import { ChangeList } from "@utils/ChangeList";
 import { classNameFactory } from "@utils/css";
 import { useForceUpdater } from "@utils/react";
@@ -123,16 +123,16 @@ function NewPluginsModal({ modalProps, newPlugins, newSettings }: ModalComponent
             size="md"
             title={
                 <div className={cl("header-content")}>
-                    <BaseText size="lg" weight="semibold" className={cl("title")}>
+                    <Text size="lg" weight="semibold" className={cl("title")}>
                         新しいプラグインと設定（{totalCount}）
-                    </BaseText>
+                    </Text>
                 </div>
             }
             subtitle={
                 <>
-                    <BaseText size="sm" className={cl("description")}>
+                    <Text size="sm" className={cl("description")}>
                         前回の訪問以降、新しいプラグインが追加されています。使いたいものを有効化するか、そのまま続行して閉じてください。
-                    </BaseText>
+                    </Text>
                     <br />
                     <Notice.Info className={cl("notice")}>
                         Equicord はオープンソースソフトウェアです。気に入っていただけたなら、<Link href="https://github.com/sponsors/thororen1234" target="_blank" rel="noopener noreferrer">こちら</Link>から支援をご検討ください。

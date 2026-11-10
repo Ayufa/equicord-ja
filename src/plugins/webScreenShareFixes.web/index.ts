@@ -6,6 +6,7 @@
 
 import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
+import { FluxDispatcher } from "@webpack/common";
 
 export default definePlugin({
     name: "WebScreenShareFixes",
@@ -13,25 +14,35 @@ export default definePlugin({
     description: "ChromiumとVesktopクライアントにおける2500kbpsのビットレート上限を撤廃し、画面共有中にCPU使用率が際限なく増加する問題を修正します。",
     tags: ["Voice"],
     enabledByDefault: true,
+    start() {
+        FluxDispatcher.dispatch({
+            type: "EXPERIMENT_OVERRIDE_BUCKET",
+            experimentId: "2026-10-web-screen-share-audio",
+            experimentBucket: 1,
+        });
+    },
+    stop() {
+        FluxDispatcher.dispatch({
+            type: "EXPERIMENT_OVERRIDE_BUCKET",
+            experimentId: "2026-10-web-screen-share-audio",
+            experimentBucket: null,
+        });
+    },
 
     patches: [
         {
             find: "x-google-max-bitrate",
             replacement: [
                 {
-                    match: /`x-google-max-bitrate=\$\{\i\}`/,
+                    match: /`x-google-max-bitrate=\$\{i\}`/,
                     replace: '"x-google-max-bitrate=80000"'
-                },
-                {
-                    match: /;usedtx=\$\{(\i)\?"0":"1"\}/,
-                    replace: '$&${$1?";stereo=1;sprop-stereo=1":""}'
                 },
             ]
         },
         {
             find: "ApplicationStreamPreviewUploadManager",
             replacement: {
-                match: /removeAttribute\("srcObject"\)(?<=(\i)\..+?)/,
+                match: /removeAttribute\("srcObject"\)(?<=(i)\..+?)/,
                 replace: "pause(),$1.srcObject=null"
             }
         }

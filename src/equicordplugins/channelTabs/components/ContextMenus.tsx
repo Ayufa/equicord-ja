@@ -4,11 +4,11 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { BaseText } from "@components/BaseText";
 import { Button } from "@components/Button";
 import { Heading } from "@components/Heading";
 import { BookCheckIcon, OpenExternalIcon, PencilIcon, StarFilled, StarOutlined, TrashIcon, UnsendIcon, WindowTopOutlineIcon, XLargeBoldIcon } from "@components/Icons";
 import { Paragraph } from "@components/Paragraph";
+import { Text } from "@components/Text";
 import { bookmarkFolderColors, bookmarkPlaceholderName, closeOtherTabs, closeTab, closeTabsToTheLeft, closeTabsToTheRight, createTab, getDiscordFolderIcon, getDiscordFolderIconNames, hasClosedTabs, isBookmarkFolder, openedTabs, reopenClosedTab, settings, toggleCompactTab } from "@equicordplugins/channelTabs/util";
 import { Bookmark, BookmarkFolder, Bookmarks, ChannelTabsProps, UseBookmarkMethods } from "@equicordplugins/channelTabs/util/types";
 import { getIntlMessage } from "@utils/discord";
@@ -111,7 +111,7 @@ function FolderChipPreview({ name, color, iconName }: { name: string; color: str
             padding: "6px 10px"
         }}>
             <FolderGlyph color={color} iconName={iconName} />
-            <BaseText size="sm">{name.trim() || "フォルダ"}</BaseText>
+            <Text size="sm">{name.trim() || "フォルダ"}</Text>
         </div>
     );
 }
@@ -138,7 +138,7 @@ function FolderIconPickerModal({ modalProps, modalKey, name, color, iconName, on
         <Modal
             {...modalProps}
             size="sm"
-            title={<BaseText size="lg" weight="semibold">フォルダアイコンを選択</BaseText>}
+            title={<Text size="lg" weight="semibold">フォルダアイコンを選択</Text>}
             actions={[
                 {
                     text: "閉じる",
@@ -277,7 +277,7 @@ export function EditModal({ modalProps, modalKey, bookmark, onSave }: {
         <Modal
             {...modalProps}
             size="sm"
-            title={<BaseText size="lg" weight="semibold">ブックマークを編集</BaseText>}
+            title={<Text size="lg" weight="semibold">ブックマークを編集</Text>}
             actions={[
                 {
                     text: "保存",
@@ -328,7 +328,7 @@ function AddToFolderModal({ modalProps, modalKey, bookmarks, onSave }: {
         <Modal
             {...modalProps}
             size="sm"
-            title={<BaseText size="lg" weight="semibold">ブックマークをフォルダに追加</BaseText>}
+            title={<Text size="lg" weight="semibold">ブックマークをフォルダに追加</Text>}
             actions={[
                 {
                     text: "保存",
@@ -380,7 +380,7 @@ function DeleteFolderConfirmationModal({ modalProps, modalKey, onConfirm }: {
         <Modal
             {...modalProps}
             size="sm"
-            title={<BaseText size="lg" weight="semibold">本当によろしいですか？</BaseText>}
+            title={<Text size="lg" weight="semibold">本当によろしいですか？</Text>}
             actions={[
                 {
                     text: "削除",

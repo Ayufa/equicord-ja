@@ -88,7 +88,12 @@ function AudioBookShelfSettings() {
 
 function TosuSettings() {
     return (
-        <SettingsSection id="tosu-settings" name="" description="ポート 24050 の WebSocket 経由で tosu に接続します。設定は不要で、osu! と一緒に tosu が起動していれば動作します。" />
+        <>
+            <SettingsSection id="tosu-settings" name="" description="Connects to tosu via WebSocket. Just make sure tosu is running alongside osu!." />
+            <TextSetting name="Server URL" description="tosu domain URL." settingsKey="tosu_serverUrl" placeholder="127.0.0.1:24050" />
+            <AllowServerSetting settingsKey="tosu_serverUrl" />
+            <SwitchSetting name="Privacy Mode" description="Hides your username inside the presence." settingsKey="tosu_privacyMode" />
+        </>
     );
 }
 
