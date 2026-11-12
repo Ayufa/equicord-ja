@@ -131,12 +131,12 @@ export async function importPresets(
             try {
                 importedPresets = JSON.parse(text);
             } catch {
-                showToast({ text: "Failed to import presets. The file might be invalid.", variant: "critical" });
+                showToast({ text: "プリセットのインポートに失敗しました。ファイルが無効な可能性があります。", variant: "critical" });
                 return;
             }
 
             if (!Array.isArray(importedPresets)) {
-                showToast({ text: "Failed to import presets. The file might be invalid.", variant: "critical" });
+                showToast({ text: "プリセットのインポートに失敗しました。ファイルが無効な可能性があります。", variant: "critical" });
                 return;
             }
 
@@ -151,7 +151,7 @@ export async function importPresets(
             }));
 
             if (!validPresets.length) {
-                showToast({ text: "Failed to import presets. The file might be invalid.", variant: "critical" });
+                showToast({ text: "プリセットのインポートに失敗しました。ファイルが無効な可能性があります。", variant: "critical" });
                 return;
             }
 

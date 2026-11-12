@@ -26,7 +26,7 @@ import { Flux, FluxDispatcher } from "@webpack/common";
 const settings = definePluginSettings({
     disableAnalytics: {
         type: OptionType.BOOLEAN,
-        description: "Block Discord's tracking analytics",
+        description: "Discord のトラッキング分析をブロックします",
         default: true,
         restartNeeded: true
     },
@@ -39,7 +39,7 @@ const settings = definePluginSettings({
     },
     allowBadgeTracking: {
         type: OptionType.BOOLEAN,
-        description: "Still send the events needed for badges to track your progress (eg: hours played, hours streamed)",
+        description: "バッジで進捗を記録するために必要なイベントは引き続き送信します（例: プレイ時間、配信時間）",
         default: true,
         restartNeeded: true,
         disabled() { return !this.store.disableAnalytics; }

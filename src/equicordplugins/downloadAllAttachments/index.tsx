@@ -61,7 +61,7 @@ async function fetchAttachment(attachment: MessageAttachment) {
 async function downloadAll(message: Message) {
     const { id, attachments } = message;
     if (attachments.reduce((sum, a) => sum + a.size, 0) > MAX_ZIP_BYTES)
-        return showToast({ text: "These attachments are too large to zip. Save them one by one instead.", variant: "critical" });
+        return showToast({ text: "これらの添付ファイルは大きすぎて zip にまとめられません。1つずつ保存してください。", variant: "critical" });
 
     const names = uniqueFilenames(attachments.map(a => a.filename));
     const limit = pLimit(4);
@@ -76,7 +76,7 @@ async function downloadAll(message: Message) {
     const saved = Object.keys(files);
     const failed = attachments.length - saved.length;
     if (!saved.length)
-        return showToast({ text: "Could not download any attachments.", variant: "critical" });
+        return showToast({ text: "添付ファイルを1つもダウンロードできませんでした。", variant: "critical" });
 
     saveFile(saved.length === 1
         ? new File([files[saved[0]] as BlobPart], saved[0])

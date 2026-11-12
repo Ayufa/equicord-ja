@@ -31,7 +31,7 @@ const DuplicateCategoryModal = ErrorBoundary.wrap(({ category, ...props }: Rende
         try {
             const source = ChannelStore.getChannel(category.id);
             if (!source || source.type !== ChannelType.GUILD_CATEGORY)
-                throw new Error("The original category no longer exists.");
+                throw new Error("元のカテゴリーはもう存在しません。");
             await RestAPI.post({
                 url: Constants.Endpoints.GUILD_CHANNELS(source.guild_id),
                 body: {
@@ -46,10 +46,10 @@ const DuplicateCategoryModal = ErrorBoundary.wrap(({ category, ...props }: Rende
                 }
             });
             props.onClose();
-            showToast({ text: "Category created.", variant: "success" });
+            showToast({ text: "カテゴリーを作成しました。", variant: "success" });
         } catch (error) {
             console.error("[DuplicateCategory] Failed to create category", error);
-            setError(error instanceof Error ? error.message : "Could not create the category. Check your permissions and try again.");
+            setError(error instanceof Error ? error.message : "カテゴリーを作成できませんでした。権限を確認して、もう一度お試しください。");
             setSaving(false);
         }
     }
@@ -57,12 +57,12 @@ const DuplicateCategoryModal = ErrorBoundary.wrap(({ category, ...props }: Rende
     return (
         <Modal
             {...props}
-            title="Create Category"
+            title="カテゴリーを作成"
             size="md"
             notice={error ? { message: error, type: "critical" } : undefined}
             actions={[
-                { text: "Cancel", variant: "secondary", onClick: props.onClose, disabled: saving },
-                { text: "Create Category", variant: "primary", onClick: createCategory, loading: saving, disabled: saving || !name.trim() }
+                { text: "キャンセル", variant: "secondary", onClick: props.onClose, disabled: saving },
+                { text: "カテゴリーを作成", variant: "primary", onClick: createCategory, loading: saving, disabled: saving || !name.trim() }
             ]}
         >
             <form onSubmit={event => { event.preventDefault(); void createCategory(); }}>
@@ -70,7 +70,7 @@ const DuplicateCategoryModal = ErrorBoundary.wrap(({ category, ...props }: Rende
                     htmlFor="vc-duplicate-category-name"
                     className={cl("label")}
                 >
-                    Category Name
+                    カテゴリー名
                 </label>
                 <TextInput
                     id="vc-duplicate-category-name"
@@ -78,7 +78,7 @@ const DuplicateCategoryModal = ErrorBoundary.wrap(({ category, ...props }: Rende
                     value={name}
                     maxLength={100}
                     disabled={saving}
-                    placeholder="New Category"
+                    placeholder="新しいカテゴリー"
                     onChange={setName}
                 />
             </form>
@@ -99,7 +99,7 @@ const DuplicateCategoryModal = ErrorBoundary.wrap(({ category, ...props }: Rende
                         }}
                     >
                         <CopyIcon width={16} height={16} className={cl("icon")} />
-                        <span>Copy Permissions</span>
+                        <span>権限をコピー</span>
                     </div>
                     <div
                         role="switch"
@@ -120,7 +120,7 @@ const DuplicateCategoryModal = ErrorBoundary.wrap(({ category, ...props }: Rende
                     </div>
                 </div>
                 <div className={cl("description")}>
-                    Copy the original category's permissions to the new category. Turn this off to use the server's default permissions.
+                    元のカテゴリーの権限を新しいカテゴリーにコピーします。オフにすると、サーバーのデフォルト権限が使われます。
                 </div>
             </div>
         </Modal>
@@ -139,7 +139,7 @@ const patchCategoryMenu: NavContextMenuPatchCallback = (children, { channel }: {
             <Menu.MenuItem
                 id="vc-duplicate-category"
                 key="vc-duplicate-category"
-                label="Duplicate Category"
+                label="カテゴリーを複製"
                 action={() => openModal(props => <DuplicateCategoryModal {...props} category={channel} />)}
             />
         );
@@ -150,7 +150,7 @@ const patchCategoryMenu: NavContextMenuPatchCallback = (children, { channel }: {
 
 export default definePlugin({
     name: "DuplicateCategory",
-    description: "Adds an option to duplicate a category with the same permissions.",
+    description: "同じ権限でカテゴリーを複製するオプションを追加します。",
     tags: ["Utility"],
     authors: [EquicordDevs.lethied],
     contextMenus: {
