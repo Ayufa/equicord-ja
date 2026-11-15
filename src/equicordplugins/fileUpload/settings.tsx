@@ -95,13 +95,13 @@ export const settings = definePluginSettings({
     },
     ziplineStripExtension: {
         type: OptionType.BOOLEAN,
-        description: "Strip file extension",
+        description: "ファイル拡張子を取り除きます",
         default: false,
         hidden: true
     },
     ziplineOriginalName: {
         type: OptionType.BOOLEAN,
-        description: "Keep original file name",
+        description: "元のファイル名を保持します",
         default: false,
         hidden: true
     },
@@ -613,14 +613,14 @@ export function SettingsComponent() {
                         placeholder="フォルダーなしの場合は空欄"
                     />
                     <SettingSwitch
-                        name="Strip file extension"
-                        description="Remove the file extension from the generated URL"
+                        name="ファイル拡張子を取り除く"
+                        description="生成されたURLからファイル拡張子を取り除きます"
                         checked={settings.store.ziplineStripExtension}
                         onChange={v => settings.store.ziplineStripExtension = v}
                     />
                     <SettingSwitch
-                        name="Save original file name"
-                        description="Whether the file name will be saved on Zipline and restored on download, regardless of the chosen URL format"
+                        name="元のファイル名を保存する"
+                        description="選択したURL形式にかかわらず、ファイル名をZiplineに保存し、ダウンロード時に復元するかどうか"
                         checked={settings.store.ziplineOriginalName}
                         onChange={v => settings.store.ziplineOriginalName = v}
                     />

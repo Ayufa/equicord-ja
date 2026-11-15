@@ -9,7 +9,7 @@ import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "BetterPollDetails",
-    description: "Shows poll percentages and vote counts before voting or expiration without disabling the ability to vote",
+    description: "投票や投票の終了を待たずに、投票できる状態のまま投票のパーセンテージと票数を表示します",
     authors: [EquicordDevs.lethied],
     tags: ["Chat", "Utility"],
     patches: [
