@@ -19,7 +19,11 @@
 import "./style.css";
 
 import { definePluginSettings } from "@api/Settings";
+import { Card } from "@components/Card";
 import ErrorBoundary from "@components/ErrorBoundary";
+import { Flex } from "@components/Flex";
+import { Heading } from "@components/Heading";
+import { Paragraph } from "@components/Paragraph";
 import { Devs, EquicordDevs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import { classes } from "@utils/misc";
@@ -81,11 +85,27 @@ function isUncategorized(objChannel: { channel: Channel; comparator: number; }) 
 
 export default definePlugin({
     name: "ShowHiddenChannels",
-    description: "閲覧権限のないチャンネルも表示します。",
+    description: "このプラグインは使えなくなりました！Discord 側で対策されました。詳細はプラグイン設定を確認してください。",
     tags: ["Servers", "Utility"],
     authors: [Devs.BigDuck, Devs.AverageReactEnjoyer, Devs.D3SOX, Devs.Ven, Devs.Nuckyz, Devs.Nickyux, Devs.Rini, EquicordDevs.Oggetto],
     isModified: true,
     settings,
+
+    settingsAboutComponent() {
+        return (
+            <Card variant="danger">
+                <Flex flexDirection="column" gap="0.5em">
+                    <Heading tag="h3">Plugin Deprecated</Heading>
+                    <Paragraph>
+                        Discord patched this plugin, it's no longer possible to see hidden channels. All channels will instead show up as "No Access"!
+                    </Paragraph>
+                    <Paragraph>
+                        There is nothing we can do to fix it, so the plugin will be removed soon.
+                    </Paragraph>
+                </Flex>
+            </Card>
+        );
+    },
 
     patches: [
         {

@@ -411,7 +411,7 @@ export default definePlugin({
     name: "FileUpload",
     description: "Zipline、Nest、S3、WebDAVなどのホスティングサービスにファイルをアップロードします",
     tags: ["Media"],
-    authors: [EquicordDevs.creations, EquicordDevs.keircn, Devs.ScattrdBlade],
+    authors: [Devs.creations, EquicordDevs.keircn, Devs.ScattrdBlade],
     settings,
     patches: [
         {

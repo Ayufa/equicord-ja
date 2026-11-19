@@ -75,16 +75,6 @@ function ApiUrlNotice() {
 }
 
 export const settings = definePluginSettings({
-    showModStyle: {
-        type: OptionType.SELECT,
-        description: "Modの表示スタイル",
-        default: "none",
-        options: [
-            { label: "Modを表示しない", value: "none" },
-            { label: "Modをプレフィックスとして表示", value: "prefix" },
-            { label: "Modをサフィックスとして表示", value: "suffix" },
-        ]
-    },
     apiUrl: {
         type: OptionType.STRING,
         description: "使用するAPI",

@@ -5,7 +5,7 @@
  */
 
 import { definePluginSettings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 
 enum SteamStatus {
@@ -86,7 +86,7 @@ export default definePlugin({
     name: "SteamStatusSync",
     description: "ステータスをSteamに同期します！（オンライン、退席中、表示しない、オフライン）",
     tags: ["Activity", "Appearance", "Customisation"],
-    authors: [EquicordDevs.niko],
+    authors: [Devs.niko],
 
     settings,
 

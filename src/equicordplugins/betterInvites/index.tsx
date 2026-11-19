@@ -7,7 +7,7 @@
 import "./style.css";
 
 import { InfoIcon } from "@components/Icons";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs } from "@utils/constants";
 import { openUserProfile } from "@utils/discord";
 import { classes } from "@utils/misc";
 import definePlugin, { StartAt } from "@utils/types";
@@ -35,7 +35,7 @@ export default definePlugin({
     name: "BetterInvites",
     description: "招待の有効期限の確認、招待者のプロフィールの表示、名前をクリックして参加前にサーバーをプレビューできます",
     tags: ["Appearance", "Customisation", "Chat", "Servers"],
-    authors: [EquicordDevs.iamme, Devs.thororen],
+    authors: [Devs.iamme, Devs.thororen],
     patches: [
         {
             find: "#{intl::xdCLeM::raw}",

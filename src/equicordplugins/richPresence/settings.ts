@@ -70,6 +70,13 @@ export const settings = definePluginSettings({
         hidden: true,
         onChange: () => onServiceChange?.(),
     },
+    px_enabled: {
+        description: "Enable Plex presence.",
+        type: OptionType.BOOLEAN,
+        default: false,
+        hidden: true,
+        onChange: () => onServiceChange?.(),
+    },
 
     // AudioBookShelf
     abs_serverUrl: {
@@ -263,6 +270,50 @@ export const settings = definePluginSettings({
     },
     jf_privacyMode: {
         description: "メディアの詳細を隠します。",
+        type: OptionType.BOOLEAN,
+        default: false,
+        hidden: true,
+    },
+
+    // Plex
+    px_serverUrl: {
+        description: "Plex server URL.",
+        type: OptionType.STRING,
+        default: "",
+        hidden: true,
+    },
+    px_token: {
+        description: "Plex token.",
+        type: OptionType.STRING,
+        default: "",
+        hidden: true,
+    },
+    px_username: {
+        description: "Plex username to show sessions for.",
+        type: OptionType.STRING,
+        default: "",
+        hidden: true,
+    },
+    px_showEpisodeName: {
+        description: "Show episode name after season/episode info.",
+        type: OptionType.BOOLEAN,
+        default: true,
+        hidden: true,
+    },
+    px_showCover: {
+        description: "Show cover art. Your Plex token is sent to Discord in the image URL.",
+        type: OptionType.BOOLEAN,
+        default: false,
+        hidden: true,
+    },
+    px_showPausedState: {
+        description: "Show presence when media is paused.",
+        type: OptionType.BOOLEAN,
+        default: true,
+        hidden: true,
+    },
+    px_privacyMode: {
+        description: "Hide media details.",
         type: OptionType.BOOLEAN,
         default: false,
         hidden: true,

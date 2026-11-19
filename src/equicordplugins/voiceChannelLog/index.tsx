@@ -55,7 +55,7 @@ export default definePlugin({
     name: "VoiceChannelLog",
     description: "入室、退出、サウンドボード、ミュート、カメラ、画面共有など、ボイスチャンネルのアクティビティを記録します。",
     tags: ["Servers", "Utility", "Voice"],
-    authors: [Devs.Sqaaakoi, Devs.thororen, EquicordDevs.nyx, Devs.Moxxie, EquicordDevs.Fres, Devs.amy],
+    authors: [Devs.Sqaaakoi, Devs.thororen, Devs.nyx, Devs.Moxxie, EquicordDevs.Fres, Devs.amy],
     dependencies: ["AudioPlayerAPI", "HeaderBarAPI"],
     settings,
     contextMenus: {

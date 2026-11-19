@@ -141,7 +141,7 @@ export default definePlugin({
     name: "Ghosted",
     description: "DMに返信しないと、かわいいゴーストが現れます",
     tags: ["Chat", "Utility"],
-    authors: [EquicordDevs.vei, Devs.sadan, EquicordDevs.justjxke, EquicordDevs.iamme],
+    authors: [EquicordDevs.vei, Devs.sadan, EquicordDevs.justjxke, Devs.iamme],
     settings,
     dependencies: ["AudioPlayerAPI", "ServerListAPI"],
     contextMenus: {

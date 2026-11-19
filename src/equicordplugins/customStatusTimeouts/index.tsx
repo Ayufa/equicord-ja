@@ -5,7 +5,7 @@
  */
 
 import { definePluginSettings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { Devs, EquicordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 
 const Millis = {
@@ -55,7 +55,7 @@ export default definePlugin({
     name: "CustomStatusTimeouts",
     description: "ステータス（プレゼンス）メニューに、設定可能なタイムアウトのプリセットを追加します。",
     tags: ["Activity", "Utility"],
-    authors: [EquicordDevs.Kiri, EquicordDevs.thororen],
+    authors: [EquicordDevs.Kiri, Devs.thororen],
     settings,
     patches: [
         {

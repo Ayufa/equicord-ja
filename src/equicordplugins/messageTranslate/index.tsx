@@ -7,7 +7,7 @@
 import "./styles.css";
 
 import { TranslateIcon } from "@plugins/translate/TranslateIcon";
-import { EquicordDevs } from "@utils/constants";
+import { Devs } from "@utils/constants";
 import { classNameFactory } from "@utils/css";
 import definePlugin from "@utils/types";
 import { ChannelStore, FluxDispatcher, MessageStore, Parser, UserStore } from "@webpack/common";
@@ -53,7 +53,7 @@ export default definePlugin({
     name: "MessageTranslate",
     description: "キャッシュ、チャンネルごとの切り替えなどのオプション付きで、メッセージをあなたの言語に自動翻訳します。",
     tags: ["Chat", "Utility"],
-    authors: [EquicordDevs.creations],
+    authors: [Devs.creations],
     settings,
 
     patches: [
