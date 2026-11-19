@@ -95,12 +95,12 @@ export default definePlugin({
         return (
             <Card variant="danger">
                 <Flex flexDirection="column" gap="0.5em">
-                    <Heading tag="h3">Plugin Deprecated</Heading>
+                    <Heading tag="h3">このプラグインは廃止されました</Heading>
                     <Paragraph>
-                        Discord patched this plugin, it's no longer possible to see hidden channels. All channels will instead show up as "No Access"!
+                        Discord 側で対策されたため、隠しチャンネルを見ることはできなくなりました。すべてのチャンネルは代わりに「No Access」と表示されます！
                     </Paragraph>
                     <Paragraph>
-                        There is nothing we can do to fix it, so the plugin will be removed soon.
+                        修正する方法がないため、このプラグインは近日中に削除されます。
                     </Paragraph>
                 </Flex>
             </Card>

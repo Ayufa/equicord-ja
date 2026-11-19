@@ -71,7 +71,7 @@ export const settings = definePluginSettings({
         onChange: () => onServiceChange?.(),
     },
     px_enabled: {
-        description: "Enable Plex presence.",
+        description: "Plex のプレゼンスを有効にします。",
         type: OptionType.BOOLEAN,
         default: false,
         hidden: true,
@@ -277,43 +277,43 @@ export const settings = definePluginSettings({
 
     // Plex
     px_serverUrl: {
-        description: "Plex server URL.",
+        description: "Plex のサーバー URL。",
         type: OptionType.STRING,
         default: "",
         hidden: true,
     },
     px_token: {
-        description: "Plex token.",
+        description: "Plex トークン。",
         type: OptionType.STRING,
         default: "",
         hidden: true,
     },
     px_username: {
-        description: "Plex username to show sessions for.",
+        description: "セッションを表示する Plex ユーザー名。",
         type: OptionType.STRING,
         default: "",
         hidden: true,
     },
     px_showEpisodeName: {
-        description: "Show episode name after season/episode info.",
+        description: "シーズン/エピソード情報の後にエピソード名を表示します。",
         type: OptionType.BOOLEAN,
         default: true,
         hidden: true,
     },
     px_showCover: {
-        description: "Show cover art. Your Plex token is sent to Discord in the image URL.",
+        description: "カバーアートを表示します。あなたの Plex トークンは画像 URL で Discord に送信されます。",
         type: OptionType.BOOLEAN,
         default: false,
         hidden: true,
     },
     px_showPausedState: {
-        description: "Show presence when media is paused.",
+        description: "メディアが一時停止中のときもプレゼンスを表示します。",
         type: OptionType.BOOLEAN,
         default: true,
         hidden: true,
     },
     px_privacyMode: {
-        description: "Hide media details.",
+        description: "メディアの詳細を隠します。",
         type: OptionType.BOOLEAN,
         default: false,
         hidden: true,

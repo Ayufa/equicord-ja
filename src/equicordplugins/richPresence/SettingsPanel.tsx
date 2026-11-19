@@ -168,15 +168,15 @@ function JellyfinSettings() {
 function PlexSettings() {
     return (
         <>
-            <SettingsSection id="plex-settings" name="" description="Show what you're playing on your Plex server. You must be the server owner to see sessions. To get your token, open any item in Plex Web, choose Get Info, then View XML, and copy the X-Plex-Token value from the URL." />
-            <TextSetting name="Server URL" description="Plex server URL." settingsKey="px_serverUrl" placeholder="https://1-2-3-4.abc123.plex.direct:32400" />
+            <SettingsSection id="plex-settings" name="" description="Plex サーバーで再生中のものを表示します。セッションを表示するにはサーバーの所有者である必要があります。トークンを取得するには、Plex Web で任意のアイテムを開き、「Get Info」→「View XML」を選択し、URL から X-Plex-Token の値をコピーしてください。" />
+            <TextSetting name="サーバー URL" description="Plex のサーバー URL。" settingsKey="px_serverUrl" placeholder="https://1-2-3-4.abc123.plex.direct:32400" />
             <AllowServerSetting settingsKey="px_serverUrl" />
-            <TextSetting name="Token" description="Plex token." settingsKey="px_token" placeholder="X-Plex-Token" />
-            <TextSetting name="Username" description="Plex username to show sessions for." settingsKey="px_username" placeholder="Plex username" />
-            <SwitchSetting name="Show Episode Name" description="Show episode name after season/episode info." settingsKey="px_showEpisodeName" />
-            <SwitchSetting name="Show Cover Art" description="Show cover art. Your Plex token is sent to Discord in the image URL." settingsKey="px_showCover" />
-            <SwitchSetting name="Show When Paused" description="Show presence when media is paused." settingsKey="px_showPausedState" />
-            <SwitchSetting name="Privacy Mode" description="Hide media details." settingsKey="px_privacyMode" />
+            <TextSetting name="トークン" description="Plex トークン。" settingsKey="px_token" placeholder="X-Plex-Token" />
+            <TextSetting name="ユーザー名" description="セッションを表示する Plex ユーザー名。" settingsKey="px_username" placeholder="Plex のユーザー名" />
+            <SwitchSetting name="エピソード名を表示" description="シーズン/エピソード情報の後にエピソード名を表示します。" settingsKey="px_showEpisodeName" />
+            <SwitchSetting name="カバーアートを表示" description="カバーアートを表示します。あなたの Plex トークンは画像 URL で Discord に送信されます。" settingsKey="px_showCover" />
+            <SwitchSetting name="一時停止中も表示" description="メディアが一時停止中もプレゼンスを表示します。" settingsKey="px_showPausedState" />
+            <SwitchSetting name="プライバシーモード" description="メディアの詳細を隠します。" settingsKey="px_privacyMode" />
         </>
     );
 }

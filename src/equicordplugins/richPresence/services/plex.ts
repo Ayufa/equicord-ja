@@ -45,7 +45,7 @@ async function getActivity(): Promise<Activity | null> {
     if (!px_serverUrl || !px_token || !px_username) {
         if (!hasShownError) {
             logger.warn("Plex server URL, token, or username is not set.");
-            showToast({ text: "Plex RPC is not configured.", variant: "critical", duration: 15000 });
+            showToast({ text: "Plex RPC が設定されていません。", variant: "critical", duration: 15000 });
             hasShownError = true;
         }
         return null;

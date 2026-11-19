@@ -78,18 +78,18 @@ function BadgeDirectoryDetailContent({
     }, [isContributor, targetUserId, user?.username]);
 
     if (isContributor) {
-        const ContributedHyperLink = <Link href="https://github.com/Equicord/Equicord">contributed</Link>;
+        const ContributedHyperLink = <Link href="https://github.com/Equicord/Equicord">コントリビュート</Link>;
 
         return (
             <div className="vc-badge-directory-section">
                 <Paragraph>
                     {plugins.length
                         ? (isSelf
-                            ? <>You have {ContributedHyperLink} to {pluralize(plugins.length, "plugin")}!</>
-                            : <>This person has {ContributedHyperLink} to {pluralize(plugins.length, "plugin")}!</>)
+                            ? <>あなたは {pluralize(plugins.length, "plugin")} に {ContributedHyperLink} しています！</>
+                            : <>このユーザーは {pluralize(plugins.length, "plugin")} に {ContributedHyperLink} しています！</>)
                         : (isSelf
-                            ? <>You have not made any plugins yet. You likely {ContributedHyperLink} in other ways!</>
-                            : <>This person has not made any plugins. They likely {ContributedHyperLink} in other ways!</>)}
+                            ? <>あなたはまだプラグインを作成していません。おそらく他の形で {ContributedHyperLink} しています！</>
+                            : <>このユーザーはプラグインを作成していません。おそらく他の形で {ContributedHyperLink} しています！</>)}
                 </Paragraph>
                 {!!plugins.length && (
                     <div className="vc-badge-directory-plugins">
@@ -98,7 +98,7 @@ function BadgeDirectoryDetailContent({
                                 key={p.name}
                                 plugin={p}
                                 disabled={p.required ?? false}
-                                onRestartNeeded={() => showToast({ text: "Restart to apply changes!" })}
+                                onRestartNeeded={() => showToast({ text: "変更を適用するには再起動してください！" })}
                             />
                         ))}
                     </div>
@@ -112,10 +112,10 @@ function BadgeDirectoryDetailContent({
             <div className="vc-badge-directory-section vc-badge-directory-translator vc-badge-directory-dark">
                 <SpecialCard
                     className="vc-special-card-dark"
-                    subtitle={isSelf ? "Thank you for translating!" : "This user is an Equicord translator!"}
+                    subtitle={isSelf ? "翻訳ありがとうございます！" : "このユーザーは Equicord の翻訳者です！"}
                     description={isSelf
-                        ? "Awarded for helping expand Equicord's language support."
-                        : "Awarded to contributors who expand Equicord's language support by translating content for the community."}
+                        ? "Equicord の言語サポート拡大に貢献した証として授与されました。"
+                        : "コミュニティ向けにコンテンツを翻訳し、Equicord の言語サポートを拡大したコントリビューターに授与されます。"}
                     cardImage={TRANSLATOR_IMAGE}
                     backgroundImage={DONOR_BACKGROUND_IMAGE}
                     backgroundColor="#232428"
@@ -133,17 +133,17 @@ function BadgeDirectoryDetailContent({
             <div className={`vc-badge-directory-section ${donorType === "equicord" ? "vc-badge-directory-equicord-donor vc-badge-directory-dark" : ""}`}>
                 <SpecialCard
                     className={donorType === "equicord" ? "vc-special-card-dark" : ""}
-                    title={donorType === "equicord" ? undefined : "Donations"}
+                    title={donorType === "equicord" ? undefined : "寄付"}
                     subtitle={isSelf
-                        ? "Thank you for donating!"
-                        : donorType === "equicord" ? "This user is an Equicord donor!" : "This user is a Vencord donor!"}
+                        ? "寄付ありがとうございます！"
+                        : donorType === "equicord" ? "このユーザーは Equicord の寄付者です！" : "このユーザーは Vencord の寄付者です！"}
                     description={isSelf
                         ? (donorType === "equicord"
-                            ? "Manage your perks by making a ticket in Equicord's server."
-                            : "Manage your perks by messaging @vending.machine.")
+                            ? "特典は Equicord のサーバーでチケットを作成することで管理できます。"
+                            : "特典は @vending.machine にメッセージを送ることで管理できます。")
                         : (donorType === "equicord"
-                            ? "Support Equicord to get your own badge and perks!"
-                            : "Support Vencord to get your own badge and perks!")}
+                            ? "Equicord を支援して、自分のバッジと特典を手に入れましょう！"
+                            : "Vencord を支援して、自分のバッジと特典を手に入れましょう！")}
                     cardImage={donorType === "equicord" ? EQUICORD_DONOR_IMAGE : VENNIE_DONATOR_IMAGE}
                     backgroundImage={DONOR_BACKGROUND_IMAGE}
                     backgroundColor={donorType === "equicord" ? "#232428" : "#ED87A9"}

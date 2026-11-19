@@ -56,7 +56,7 @@ let hardwareH264Profiles: string[] = [];
 const settings = definePluginSettings({
     betterCodecs: {
         type: OptionType.BOOLEAN,
-        description: "MAY CAUSE ISSUES! Prefer better codecs like AV1 and VP9 when streaming. Should improve quality but may lead to issues like infinitely loading streams.",
+        description: "問題が発生する可能性があります！配信時に AV1 や VP9 などのより良いコーデックを優先します。品質は向上しますが、配信が無限に読み込み中になるなどの問題が発生する場合があります。",
         default: false,
         restartNeeded: true
     }

@@ -48,12 +48,12 @@ export const settings = definePluginSettings({
     },
     showOnSelf: {
         type: OptionType.BOOLEAN,
-        description: "Show the streak on your own messages in DMs",
+        description: "DM 内の自分のメッセージにストリークを表示します",
         default: false
     },
     showOutsideDMs: {
         type: OptionType.BOOLEAN,
-        description: "Show streaks on messages outside DMs",
+        description: "DM 以外のメッセージにもストリークを表示します",
         default: true
     },
     eliteColor: {
