@@ -54,7 +54,7 @@ const settings = definePluginSettings({
     },
     hideDmListTypingIndicators: {
         type: OptionType.BOOLEAN,
-        description: "Hide typing indicators on conversations in the Direct Messages list.",
+        description: "DMリストの会話の入力中インジケーターを非表示にする。",
         default: false,
     },
     chatIcon: {
@@ -501,7 +501,7 @@ export default definePlugin({
                 },
                 {
                     name: "dm-list-indicators",
-                    description: "Hide typing indicators on conversations in the Direct Messages list.",
+                    description: "DMリストの会話の入力中インジケーターを非表示にする。",
                     required: false,
                     type: ApplicationCommandOptionType.BOOLEAN,
                 },

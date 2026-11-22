@@ -72,8 +72,8 @@ function Switches() {
         },
         !IS_WEB && {
             key: "enableBackgroundRendering",
-            title: "Enable Background Rendering",
-            description: "Keeps the app window updating even when it is not fully focused",
+            title: "バックグラウンドレンダリングを有効にする",
+            description: "アプリのウィンドウが完全にフォーカスされていなくても更新し続けます",
             restartRequired: true
         },
         (!IS_WEB && !IS_DISCORD_DESKTOP || !IS_WINDOWS) && {

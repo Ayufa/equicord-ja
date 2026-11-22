@@ -80,7 +80,7 @@ export function showNotice(messageOrNotice: ReactNode | NoticeOptions, buttonTex
 
     const fullNotice: Notice = {
         id: crypto.randomUUID(),
-        buttonText: notice.buttonText || "Dismiss",
+        buttonText: notice.buttonText || "閉じる",
         ...notice,
         callback(event: MouseEvent<HTMLButtonElement>) {
             const dismiss = async () => {

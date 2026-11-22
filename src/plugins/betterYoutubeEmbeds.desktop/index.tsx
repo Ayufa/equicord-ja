@@ -16,18 +16,18 @@ interface ToggleableDescriptionProps { embed: Embed, original: () => any; }
 const settings = definePluginSettings({
     fixBlockedEmbeds: {
         type: OptionType.BOOLEAN,
-        description: "Restore videos blocked from displaying in Discord, for example by UMG",
+        description: "UMG などによって Discord で表示がブロックされた動画を復元する",
         default: true,
         restartNeeded: true
     },
     blockAds: {
         type: OptionType.BOOLEAN,
-        description: "Blocks ads in YouTube embeds and WatchTogether. Video may take some seconds to load, due to YouTube's anti-ad measures",
+        description: "YouTube 埋め込みと WatchTogether の広告をブロックします。YouTube の広告対策のため、動画の読み込みに数秒かかる場合があります",
         default: true
     },
     youtubeDescription: {
         type: OptionType.BOOLEAN,
-        description: "Adds descriptions to youtube video embeds",
+        description: "YouTube 動画の埋め込みに説明文を追加する",
         default: false,
         restartNeeded: true
     }
