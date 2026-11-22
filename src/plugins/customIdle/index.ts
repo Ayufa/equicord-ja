@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { currentNotice, noticesQueue, popNotice, showNotice } from "@api/Notices";
+import { currentNotice, NoticeColors, noticesQueue, showNotice } from "@api/Notices";
 import { definePluginSettings } from "@api/Settings";
 import { Devs } from "@utils/constants";
 import definePlugin, { makeRange, OptionType } from "@utils/types";
@@ -65,16 +65,21 @@ export default definePlugin({
 
         const backOnlineMessage = "おかえりなさい！オンラインになるにはボタンをクリックしてください。再読み込みするまでアイドル状態を続けるには X をクリックしてください。";
         if (
-            currentNotice?.[1] === backOnlineMessage ||
-            noticesQueue.some(([, noticeMessage]) => noticeMessage === backOnlineMessage)
+            currentNotice?.message === backOnlineMessage ||
+            noticesQueue.some(notice => notice.message === backOnlineMessage)
         ) return;
 
-        showNotice(backOnlineMessage, "アイドルを終了", () => {
-            popNotice();
-            FluxDispatcher.dispatch({
-                type: "IDLE",
-                idle: false
-            });
+        showNotice({
+            message: backOnlineMessage,
+            buttonText: "アイドルを終了",
+            color: NoticeColors.DEFAULT,
+            callback({ dismiss }) {
+                dismiss();
+                FluxDispatcher.dispatch({
+                    type: "IDLE",
+                    idle: false
+                });
+            }
         });
     },
 
