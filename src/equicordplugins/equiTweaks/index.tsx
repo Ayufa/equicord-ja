@@ -168,7 +168,7 @@ const settings = definePluginSettings({
     },
     removeChannelSuggestions: {
         type: OptionType.BOOLEAN,
-        description: "Removes the Suggested channels category from the server sidebar",
+        description: "サーバーのサイドバーから「おすすめチャンネル」カテゴリを削除します",
         restartNeeded: true,
         default: false,
     },

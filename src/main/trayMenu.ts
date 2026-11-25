@@ -64,11 +64,11 @@ function createVencordMenuItems(): MenuItemConstructorOptions[] {
             label: "Equicord",
             submenu: [
                 {
-                    label: "About Equicord",
+                    label: "Equicord について",
                     click: () => openAboutWindow()
                 },
                 {
-                    label: "Update Equicord",
+                    label: "Equicord を更新",
                     visible: !IS_UPDATER_DISABLED,
                     async click(_item, window) {
                         if (isUpdating) return;
@@ -97,11 +97,11 @@ function createVencordMenuItems(): MenuItemConstructorOptions[] {
                 },
                 { type: "separator" },
                 {
-                    label: "Open Settings Folder",
+                    label: "設定フォルダーを開く",
                     click: () => shell.openPath(SETTINGS_DIR)
                 },
                 {
-                    label: "Open Themes Folder",
+                    label: "テーマフォルダーを開く",
                     click: () => shell.openPath(THEMES_DIR)
                 }
             ]

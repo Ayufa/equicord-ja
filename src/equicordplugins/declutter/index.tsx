@@ -147,19 +147,19 @@ export const settings = definePluginSettings({
     },
     removeAccountPopoutBadges: {
         type: OptionType.BOOLEAN,
-        description: "Remove badges from the account popout.",
+        description: "アカウントポップアウトからバッジを削除します。",
         default: false,
         restartNeeded: true,
     },
     removeAccountPopoutOrbs: {
         type: OptionType.BOOLEAN,
-        description: "Remove orbs from the account popout.",
+        description: "アカウントポップアウトからオーブを削除します。",
         default: false,
         restartNeeded: true,
     },
     removeInvisibleWarning: {
         type: OptionType.BOOLEAN,
-        description: "Remove the invisible status warning from the account popout.",
+        description: "アカウントポップアウトから非表示ステータスの警告を削除します。",
         default: false,
         restartNeeded: true,
     },
