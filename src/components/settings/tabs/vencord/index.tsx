@@ -50,7 +50,7 @@ type KeysOfType<Object, Type> = {
 }[keyof Object];
 
 function Switches() {
-    const settings = useSettings(["useQuickCss", "enableReactDevtools", "mainWindowFrameless", "frameless", "nativeTitleBar", "noRoundCorners", "transparent", "winCtrlQ", "disableMinSize"]);
+    const settings = useSettings(["useQuickCss", "disableBackgroundOptimization", "enableReactDevtools", "mainWindowFrameless", "frameless", "nativeTitleBar", "noRoundCorners", "transparent", "winCtrlQ", "disableMinSize"]);
     const { disableAnalytics } = NoTrack.settings.use(["disableAnalytics"]);
 
     const Switches = [
@@ -70,10 +70,10 @@ function Switches() {
             description: NoTrack.settings.def.disableAnalytics.description,
             restartRequired: NoTrack.settings.def.disableAnalytics.restartNeeded,
         },
-        !IS_WEB && {
-            key: "enableBackgroundRendering",
-            title: "バックグラウンドレンダリングを有効にする",
-            description: "アプリのウィンドウが完全にフォーカスされていなくても更新し続けます",
+        IS_DISCORD_DESKTOP && {
+            key: "disableBackgroundOptimization",
+            title: "バックグラウンド最適化を無効にする",
+            description: "アプリのウィンドウが完全にフォーカスされていなくても更新し続けます。Discord のアンロード／切断の問題を解決します",
             restartRequired: true
         },
         (!IS_WEB && !IS_DISCORD_DESKTOP || !IS_WINDOWS) && {

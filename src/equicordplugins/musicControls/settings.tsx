@@ -9,12 +9,9 @@ import { disableStyle, enableStyle } from "@api/Styles";
 import { Button } from "@components/Button";
 import { Heading } from "@components/Heading";
 import { Margins } from "@components/margins";
-import { Notice } from "@components/Notice";
 import { Paragraph } from "@components/Paragraph";
-import { SettingsSection } from "@components/settings/tabs/plugins/components/Common";
-import { useCspPermission } from "@utils/csp";
 import { makeRange, OptionType } from "@utils/types";
-import { MaskedLink, Select, showToast, TextInput } from "@webpack/common";
+import { MaskedLink, showToast } from "@webpack/common";
 
 import hoverOnlyStyle from "./hoverOnly.css?managed";
 import { clearLyricsCache, removeTranslations } from "./spotify/lyrics/api";
@@ -41,54 +38,6 @@ function InstallInstructions() {
     );
 }
 
-function LyricsProviderSettings() {
-    const { spotifyLyricsApiUrl } = settings.use(["spotifyLyricsApiUrl"]);
-    const [isLyricsServerAllowed, allowLyricsServer] = useCspPermission(spotifyLyricsApiUrl.trim(), ["connect-src"], "MusicControls");
-
-    return (
-        <>
-            <SettingsSection id="lyrics-provider" name="歌詞プロバイダー" description="歌詞の取得元です。">
-                <Select
-                    options={[
-                        { value: Provider.Lrclib, label: "LRCLIB", default: true },
-                        { value: Provider.Spotify, label: "Spotify (Musixmatch)" },
-                    ]}
-                    isSelected={v => v === settings.store.lyricsProvider}
-                    select={v => { settings.store.lyricsProvider = v as Provider; }}
-                    serialize={v => v}
-                    placeholder="歌詞プロバイダーを選択"
-                />
-            </SettingsSection>
-
-            {settings.store.lyricsProvider === Provider.Spotify && (
-                <SettingsSection
-                    id="spotify-lyrics-provider"
-                    name="Spotify 歌詞 API のベース URL"
-                    description="カスタムインスタンスのベース URL（例: http://localhost:8080）。"
-                >
-                    <TextInput
-                        type="text"
-                        value={settings.store.spotifyLyricsApiUrl}
-                        onChange={v => {
-                            settings.store.spotifyLyricsApiUrl = v;
-                            void clearLyricsCache();
-                            showToast({ text: "歌詞キャッシュを消去しました", variant: "success" });
-                        }}
-                        placeholder="https://spotify-lyrics-api-pi.vercel.app"
-                        maxLength={null}
-                    />
-                </SettingsSection>
-            )}
-
-            {!isLyricsServerAllowed && settings.store.lyricsProvider === Provider.Spotify && (
-                <Notice variant="warning" action={<Button size="small" variant="secondary" onClick={allowLyricsServer}>ホストを許可</Button>}>
-                    {URL.parse(spotifyLyricsApiUrl.trim())?.host} への接続がブロックされています。信頼できる場合はこのホストを許可し、Discord を再起動してください。
-                </Notice>
-            )}
-        </>
-    );
-}
-
 export const settings = definePluginSettings({
     hoverControls: {
         description: "ホバー時にコントロールを表示",
@@ -109,29 +58,6 @@ export const settings = definePluginSettings({
             { value: "below", label: "プレイヤーの下", default: true },
         ],
     },
-    lyricsProvider: {
-        description: "歌詞の取得元",
-        type: OptionType.SELECT,
-        options: [
-            { value: Provider.Lrclib, label: "LRCLIB", default: true },
-            { value: Provider.Spotify, label: "Spotify (Musixmatch)" },
-        ],
-        hidden: true,
-    },
-    spotifyLyricsApiUrl: {
-        type: OptionType.STRING,
-        description: "Spotify 歌詞 API のベース URL。",
-        hidden: true,
-        default: "https://spotify-lyrics-api-pi.vercel.app",
-        onChange: async () => {
-            await clearLyricsCache();
-            showToast({ text: "歌詞キャッシュを消去しました", variant: "success" });
-        }
-    },
-    lyricsProviderSettings: {
-        type: OptionType.COMPONENT,
-        component: LyricsProviderSettings,
-    },
     translateTo: {
         description: "歌詞の翻訳先 - 変更すると既存の翻訳がクリアされます",
         type: OptionType.SELECT,
@@ -149,11 +75,6 @@ export const settings = definePluginSettings({
             { value: Provider.Translated, label: "翻訳" },
             { value: Provider.Romanized, label: "ローマ字化" },
         ]
-    },
-    fallbackProvider: {
-        description: "歌詞プロバイダーが失敗したら、他のプロバイダーを試す",
-        type: OptionType.BOOLEAN,
-        default: true,
     },
     showFailedToasts: {
         description: "歌詞の取得に失敗したときにトーストを隠す",

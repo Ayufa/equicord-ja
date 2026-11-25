@@ -41,13 +41,11 @@ async function githubGet<T = any>(endpoint: string) {
 }
 
 async function listUpdates() {
-    const isOutdated = await fetchUpdate();
-    if (!isOutdated) return [];
-
     const data = await githubGet(`/compare/${gitHash}...HEAD`);
 
     return data.commits.map((c: any) => ({
         hash: c.sha,
+        // [equicord-ja] 作者名が取れないコミットは「Unknown」と表示する
         author: c.author?.login ?? c.commit?.author?.name ?? "Unknown",
         message: c.commit.message.split("\n")[0]
     }));
@@ -104,13 +102,11 @@ async function listHistory() {
 }
 
 async function fetchUpdate() {
-    const data = await githubGet("/releases/latest");
-
-    const hash = data.name.slice(data.name.lastIndexOf(" ") + 1);
-    // [equicord-ja] リリースタイトルには短縮ハッシュを載せるため、前方一致でも最新とみなす
-    if (hash === gitHash || gitHash.startsWith(hash))
+    const { ahead_by } = await githubGet(`/compare/${gitHash}...HEAD`);
+    if (!ahead_by)
         return false;
 
+    const data = await githubGet("/releases/latest");
     const asset = data.assets.find(a => a.name === ASAR_FILE);
     PendingUpdate = asset.browser_download_url;
 
